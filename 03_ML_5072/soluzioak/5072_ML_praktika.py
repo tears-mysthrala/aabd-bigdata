@@ -7,19 +7,29 @@
 
 # %% imports
 from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
-from sklearn.linear_model import LinearRegression, Ridge, Lasso, LogisticRegression
-from sklearn.metrics import mean_squared_error, accuracy_score, f1_score, confusion_matrix
+from sklearn.linear_model import Lasso, LinearRegression, LogisticRegression, Ridge
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    f1_score,
+    mean_squared_error,
+)
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-DATA = Path(__file__).resolve().parents[1].joinpath(
-    "../04_Programazioa_5073/data/cnc_mock.csv"
-).resolve()
+DATA = (
+    Path(__file__)
+    .resolve()
+    .parents[1]
+    .joinpath("../04_Programazioa_5073/data/cnc_mock.csv")
+    .resolve()
+)
 # Cuando se ejecuta desde 03_ML_5072/soluzioak/, DATA apunta a 04_Programazioa_5073/data/.
 # Fallback a ruta absoluta del lab:
 if not DATA.is_file():
@@ -27,7 +37,9 @@ if not DATA.is_file():
 
 # %% 1. Karga + tipologia X/y
 df = pd.read_csv(DATA)
-assert list(df.columns) == ["makina_id", "tenperatura", "bibrazioa", "errorea"], df.columns.tolist()
+assert list(df.columns) == ["makina_id", "tenperatura", "bibrazioa", "errorea"], (
+    df.columns.tolist()
+)
 assert len(df) == 100, len(df)
 print(f"n={len(df)}, p=3 ezaugarri + 1 etiketa")
 print(df.dtypes.to_string())
@@ -60,9 +72,23 @@ for c in num_cols:
 
 pre = ColumnTransformer(
     [
-        ("num", Pipeline([("imp", SimpleImputer(strategy="median")), ("sc", StandardScaler())]), num_cols),
-        ("cat", Pipeline([("imp", SimpleImputer(strategy="most_frequent")),
-                          ("oh", OneHotEncoder(handle_unknown="ignore"))]), cat_cols),
+        (
+            "num",
+            Pipeline(
+                [("imp", SimpleImputer(strategy="median")), ("sc", StandardScaler())]
+            ),
+            num_cols,
+        ),
+        (
+            "cat",
+            Pipeline(
+                [
+                    ("imp", SimpleImputer(strategy="most_frequent")),
+                    ("oh", OneHotEncoder(handle_unknown="ignore")),
+                ]
+            ),
+            cat_cols,
+        ),
     ]
 )
 X = df[["makina_id", "tenperatura", "bibrazioa"]]
@@ -90,17 +116,38 @@ assert np.isfinite(mse_te) and mse_te > 0
 # (Erregresioan helburua tenperatura da → ezaugarriak: makina_id + bibrazioa.)
 pre_reg = ColumnTransformer(
     [
-        ("num", Pipeline([("imp", SimpleImputer(strategy="median")), ("sc", StandardScaler())]), ["bibrazioa"]),
-        ("cat", Pipeline([("imp", SimpleImputer(strategy="most_frequent")),
-                          ("oh", OneHotEncoder(handle_unknown="ignore"))]), ["makina_id"]),
+        (
+            "num",
+            Pipeline(
+                [("imp", SimpleImputer(strategy="median")), ("sc", StandardScaler())]
+            ),
+            ["bibrazioa"],
+        ),
+        (
+            "cat",
+            Pipeline(
+                [
+                    ("imp", SimpleImputer(strategy="most_frequent")),
+                    ("oh", OneHotEncoder(handle_unknown="ignore")),
+                ]
+            ),
+            ["makina_id"],
+        ),
     ]
 )
 y_reg = df_reg["tenperatura"].to_numpy()
 X_train, X_test, y_train, y_test = train_test_split(
-    df_reg[["makina_id", "bibrazioa"]], y_reg, test_size=0.25, random_state=42,
+    df_reg[["makina_id", "bibrazioa"]],
+    y_reg,
+    test_size=0.25,
+    random_state=42,
 )
 resultados = {}
-for nombre, modelo in [("lineala", LinearRegression()), ("ridge", Ridge(alpha=1.0)), ("lasso", Lasso(alpha=0.1, max_iter=5000))]:
+for nombre, modelo in [
+    ("lineala", LinearRegression()),
+    ("ridge", Ridge(alpha=1.0)),
+    ("lasso", Lasso(alpha=0.1, max_iter=5000)),
+]:
     pipe = Pipeline([("pre", pre_reg), ("mdl", modelo)])
     pipe.fit(X_train, y_train)
     mse = mean_squared_error(y_test, pipe.predict(X_test))
@@ -127,8 +174,12 @@ assert 0.0 <= acc_te <= 1.0
 # Overfitting seinalea: train >> test aldea handia bada, regularizatu (C txikiagoa) edo datu gehiago.
 print(f"overfitting aldea (train-test)={acc_tr - acc_te:+.3f}")
 # Klase-desoreka (95/5): F1=0 → ereduak dena 0 iragartzen du. Konponbidea: class_weight='balanced'.
-clf_bal = Pipeline([("pre", pre), ("mdl", LogisticRegression(max_iter=2000, class_weight="balanced"))])
+clf_bal = Pipeline(
+    [("pre", pre), ("mdl", LogisticRegression(max_iter=2000, class_weight="balanced"))]
+)
 clf_bal.fit(Xc_tr, yc_tr)
-print(f"balanced: acc test={accuracy_score(yc_te, clf_bal.predict(Xc_te)):.3f} "
-      f"F1={f1_score(yc_te, clf_bal.predict(Xc_te), zero_division=0):.3f}")
+print(
+    f"balanced: acc test={accuracy_score(yc_te, clf_bal.predict(Xc_te)):.3f} "
+    f"F1={f1_score(yc_te, clf_bal.predict(Xc_te), zero_division=0):.3f}"
+)
 print("OK — 5072 praktika osoa (EDA + preprocess + erregresio + sailkapena).")

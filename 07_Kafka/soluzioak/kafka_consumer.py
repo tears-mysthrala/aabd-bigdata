@@ -5,13 +5,13 @@ Broker errealarekin:
 Broker gabe:
     python kafka_consumer.py --mock --mock-file mock_log.jsonl --max 10
 """
+
 from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
-
 import os
+from pathlib import Path
 
 DEFAULT_TOPIC = os.environ.get("TOPIC", "iabd-topic")
 DEFAULT_GROUP = os.environ.get("GROUP", "iabd-taldea-1")
@@ -33,9 +33,12 @@ def run_mock(mock_file: Path, max_msgs: int, quiet: bool = False) -> list[dict]:
     return out
 
 
-def run_kafka(topic: str, group: str, bootstrap: str, max_msgs: int, quiet: bool = False) -> None:
-    from kafka import KafkaConsumer
+def run_kafka(
+    topic: str, group: str, bootstrap: str, max_msgs: int, quiet: bool = False
+) -> None:
     from json import loads
+
+    from kafka import KafkaConsumer
 
     consumer = KafkaConsumer(
         topic,
@@ -65,7 +68,9 @@ def main() -> None:
     ap.add_argument("--group", default=DEFAULT_GROUP)
     ap.add_argument("--bootstrap", default=DEFAULT_BOOTSTRAP)
     ap.add_argument("--max", type=int, default=10)
-    ap.add_argument("--quiet", action="store_true", help="zenbatu bakarrik (bolumen handietarako)")
+    ap.add_argument(
+        "--quiet", action="store_true", help="zenbatu bakarrik (bolumen handietarako)"
+    )
     ap.add_argument("--mock", action="store_true")
     ap.add_argument("--mock-file", default="mock_log.jsonl")
     args = ap.parse_args()
