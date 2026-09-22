@@ -29,6 +29,15 @@ Compat legacy: `materialak/`, `soluzioak/`, `notebooks_compat`, `SBOM_compat`, `
 
 Auth: `.env` (fuerte, gitignoreado) + `.env.example` (defaults docentes, solo-lab).
 
+## Erronka 1 completa 2026-09-22 ✅ (prototipo → resolución)
+
+- `proyecto_cnc_guard/src/cnc_guard/fuzzy.py`: Mamdani numpy (12 reglas, zentroidea), 9 tests.
+- `proyecto_cnc_guard/src/cnc_guard/anomaly.py`: IsolationForest + `riesgo_final=max`, 9 tests.
+- `proyecto_cnc_guard/CNC_Guard.ipynb` (+`.py`, 11 celdas, ejecutado sin errores, determinista):
+  EDA 200k → fuzzy crisp (13.3/50.0/94.4) → IF 500k → consenso en holdout 200k.
+- Métricas: `ta=0.7 tf=0.5 acc=0.9863 F1=0.1762`. Total tests proyecto: 18/18 + Ruff.
+- Límite honesto: datos sintéticos (85% ruido) → F1 techo de los datos; sin OPC-UA/MQTT reales.
+
 ## Infra split 2026-09-22 ✅
 
 - `infra/`: nginx frontal + Kafka KRaft compartidos (red externa `iabd-infra-net`).

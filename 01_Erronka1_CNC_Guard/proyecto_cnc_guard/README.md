@@ -1,6 +1,6 @@
-# CNC Guard: instalación multiplataforma
+# CNC Guard: instalación multiplataforma + erronka ebatzia
 
-Plantilla reproducible para preparar un entorno académico de análisis de condición de CNC con Python, JupyterLab, pandas, scikit-learn, DuckDB y Parquet. No es el análisis terminado del reto ni software listo para conectarse a una CNC real.
+Plantilla reproducible para preparar un entorno académico de análisis de condición de CNC con Python, JupyterLab, pandas, scikit-learn, DuckDB y Parquet, **más la resolución de la Erronka 1**: `src/cnc_guard/` (fusión difusa Mamdani + IsolationForest) y `CNC_Guard.ipynb` (EDA, diseño fuzzy, anomalías, fusión por consenso y conclusiones sobre `cnc_10M.csv`). No es software listo para conectarse a una CNC real (datos sintéticos, sin conectores industriales).
 
 La guía completa de criterios, recursos y límites está en [INSTALACION_CNC_GUARD_UV_JUPYTER.md](INSTALACION_CNC_GUARD_UV_JUPYTER.md). Este README contiene el procedimiento operativo para instalarlo en Windows, macOS y Linux.
 
@@ -294,4 +294,4 @@ No compartas tokens de Jupyter, credenciales, certificados privados, datasets in
 
 ## Estructura y alcance
 
-Incluye `pyproject.toml`, `uv.lock`, scripts de bootstrap y verificación, configuración de recursos, pruebas y `00_verificacion_entorno.ipynb`. El notebook auxiliar usa datos de juguete; el equipo debe desarrollar `CNC_Guard.ipynb` con sus datos, modelos, interpretación y conclusiones. No se incluyen datasets, credenciales, conectores que actúen sobre máquinas ni servicios Docker desplegados.
+Incluye `pyproject.toml`, `uv.lock`, scripts de bootstrap y verificación, configuración de recursos, pruebas, `00_verificacion_entorno.ipynb` y la resolución (`src/cnc_guard/fuzzy.py`, `src/cnc_guard/anomaly.py`, `CNC_Guard.ipynb` + `CNC_Guard.py`, generados por `generar_notebook.py`). El notebook auxiliar usa datos de juguete; `CNC_Guard.ipynb` usa `cnc_10M.csv` (generado con `04_Programazioa_5073/data/generar_cnc_10M.py`, no versionado). Métricas de referencia: holdout 200k → acc=0.9863, F1=0.1762 (`reports/metrikas.json`, no versionado). No se incluyen datasets, credenciales, conectores que actúen sobre máquinas ni servicios Docker desplegados.

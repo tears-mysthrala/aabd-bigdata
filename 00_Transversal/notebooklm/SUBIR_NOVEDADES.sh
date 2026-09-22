@@ -17,6 +17,7 @@ add 07_Kafka/soluzioak/kafka_consumer.py
 add 06_NiFi/soluzioak/07_AEMET_Datu_Lakua_Medallion_DF2.3/README.md
 add 04_Programazioa_5073/git_ariketa_4_2/PR_DESC.md
 add 04_Programazioa_5073/data/README_10M.md
+add 01_Erronka1_CNC_Guard/proyecto_cnc_guard/CNC_Guard.py
 add INDICE.md
 
 echo "OK: 8 fuentes enviadas. Revisa duplicados con: notebooklm source list"
