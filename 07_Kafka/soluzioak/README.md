@@ -33,11 +33,23 @@ pytest test_kafka_mock.py -v
 
 ## Test real 2026-09-22 (broker KRaft local, `cnc_10M.csv`)
 ```bash
+# Funcional: 100k con clave makina_id
 python kafka_producer.py --topic iabd-cnc --csv ../../04_Programazioa_5073/data/cnc_10M.csv --n 100000 --keys
 python kafka_consumer.py --topic iabd-cnc --group iabd-verifica --max 100000 --quiet
+# -> 100000 producidos → 100000 consumidos ✅
 ```
-Resultado: **100000 producidos (585/s) → 100000 consumidos**, clave `makina_id`
-(particionado por máquina). Opciones: `--interval 0.2` (demo), `--csv` (dataset).
+## Throughput 2026-09-22 (topic `iabd-tput`, 3 particiones, CSV en streaming)
+
+| Sentido | Volumen | Tiempo | Ritmo |
+|---|---|---|---|
+| produce (3 en paralelo, `--keys`, 333k cada uno) | 1M | 21 s | ~48k/s |
+| consume (`--quiet`, 1 grupo) | 1M | 59 s | ~17k/s |
+
+Extrapolación honesta a 10M (≈1.2 GB en broker): **~3.5 min produciendo, ~10 min
+consumiendo** (mismo nodo, sin réplicas). Los 10M enteros por Kafka **no** se han
+movido (coste ~15 min + 1.2 GB): el benchmark de 1M es representativo y repetible.
+Lección: el producer inicial tardaba 171 s/100k porque materializaba todo el CSV
+en memoria (`list(reader)`); en streaming (`islice`) ×30 más rápido.
 
 ## DF3.1 / DF3.2 / DF3.3 (proposamena, PDF 09 atala + 10.1 oharrak)
 - **DF3.1 — partizioak + gakoak**: topic 3 partiziorekin sortu, `kafka_producer.py --keys` erabili;

@@ -19,8 +19,9 @@ Compat legacy: `materialak/`, `soluzioak/`, `notebooks_compat`, `SBOM_compat`, `
 
 1. ✅ Fix `01/proyecto_cnc_guard`: `.venv` birsortua, `uv run pytest` 3/3, `pip-audit` limpio.
 2. ✅ `03_ML_5072/soluzioak/`: `5072_ML_praktika.py/.ipynb` (NaN errealak, Ridge/Lasso, balanced).
-3. ✅ `07_Kafka/soluzioak/`: compose KRaft (127.0.0.1) + producer/consumer (+mock, `--csv`, `--keys`) + DF3.1/2/3.
-   **Real**: 100k msgs `cnc_10M.csv` → 100k consumidos (585/s).
+3. ✅ `07_Kafka/soluzioak/`: compose KRaft (127.0.0.1) + producer/consumer (+mock, `--csv`, `--keys`, `--skip`) + DF3.1/2/3.
+   **Real**: 100k → 100k ✅. **Throughput**: 1M en 21 s produce (~48k/s, 3 en paralelo) y
+   59 s consume (~17k/s) → 10M ≈ 3.5/10 min (extrapolado; 10M enteros no movidos).
 4. ✅ `06_NiFi` DF2.2 stack (MySQL 12435 customers, Mongo, NiFi, nginx): `test_environment.sh` 8/8,
    11 fluxu inportatuak API-tik, DF2.3 ebidentziak (10/10/3) + `SBOM/releases/0.1.0` (3199).
 5. ✅ `04/git_ariketa_4_2`: `feat/arg-izena` + merge `--no-ff` (PR #1) + 4 test, bundle preservado.

@@ -31,7 +31,7 @@ def run_mock(n: int, mock_file: Path) -> list[dict]:
 
 
 def run_kafka(n: int, topic: str, bootstrap: str, keys: bool, interval: float,
-              csv: str | None = None) -> None:
+              csv: str | None = None, skip: int = 0) -> int:
     from kafka import KafkaProducer
     from json import dumps
 
@@ -45,26 +45,34 @@ def run_kafka(n: int, topic: str, bootstrap: str, keys: bool, interval: float,
     rows = None
     if csv:
         import csv as csvlib
-        with open(csv, encoding="utf-8") as fh:
-            rows = list(csvlib.DictReader(fh))
-            rows = rows[:n] if n > 0 else rows
+        from itertools import islice
+
+        fh = open(csv, encoding="utf-8")
+        reader = csvlib.DictReader(fh)
+        rows = islice(reader, skip, None if n <= 0 else skip + n)
+        total = "stream"
+    sent = 0
     try:
         if rows is not None:
             for r in rows:
                 key = r.get("makina_id", "") if keys else None
                 producer.send(topic, value=r, key=key)
+                sent += 1
                 if interval > 0:
                     time.sleep(interval)
+            fh.close()
         else:
             for i in range(n):
                 mezua = build_message(i)
                 key = f"gakoa{i % 2}" if keys else None
                 producer.send(topic, value=mezua, key=key)
+                sent += 1
                 if interval > 0:
                     time.sleep(interval)
         producer.flush()
     finally:
         producer.close()
+    return sent
 
 
 def main() -> None:
@@ -75,6 +83,7 @@ def main() -> None:
     ap.add_argument("--keys", action="store_true", help="gakoak bidali (partizio-banaketa)")
     ap.add_argument("--interval", type=float, default=0.0, help="segundo arteko pausa (demo: 0.2)")
     ap.add_argument("--csv", default=None, help="CSV-etik bidali (Dituen zutabeak JSON gisa, lehen n lerroak)")
+    ap.add_argument("--skip", type=int, default=0, help="CSV lerroak saltatu (producers paralelos)")
     ap.add_argument("--mock", action="store_true")
     ap.add_argument("--mock-file", default="mock_log.jsonl")
     args = ap.parse_args()
@@ -83,9 +92,9 @@ def main() -> None:
         print(f"mock: {len(msgs)} mezu {args.mock_file}-n")
     else:
         t0 = time.time()
-        run_kafka(args.n, args.topic, args.bootstrap, args.keys, args.interval, args.csv)
+        sent = run_kafka(args.n, args.topic, args.bootstrap, args.keys, args.interval, args.csv, args.skip)
         dt = time.time() - t0
-        print(f"kafka: {args.n} mezu -> {args.topic} ({dt:.1f}s)")
+        print(f"kafka: {sent} mezu -> {args.topic} ({dt:.1f}s, {sent / dt:.0f}/s)")
 
 
 if __name__ == "__main__":
