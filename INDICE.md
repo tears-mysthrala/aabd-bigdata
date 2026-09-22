@@ -15,13 +15,19 @@ Compat legacy: `materialak/`, `soluzioak/`, `notebooks_compat`, `SBOM_compat`, `
 - `07_Kafka/`: `materialak/01_03_ApacheKafka.pdf` ✅, `soluzioak/` ⏳ PENDIENTE
 - `_archivo_legacy/`: `notebooks_root_duplicado/`, `NiFi_duplicado_06_viejo/`, READMEs originales, `deskargatu_berriak/`
 
-## Estado (2026-09-22, dena eginda ✅)
+## Estado (2026-09-22, stacks reales levantados ✅)
 
-1. ✅ Fix `01/proyecto_cnc_guard`: `.venv` birsortua (shebang zaharra `erronka1/…`), `uv run pytest` 3/3.
+1. ✅ Fix `01/proyecto_cnc_guard`: `.venv` birsortua, `uv run pytest` 3/3, `pip-audit` limpio.
 2. ✅ `03_ML_5072/soluzioak/`: `5072_ML_praktika.py/.ipynb` (NaN errealak, Ridge/Lasso, balanced).
-3. ✅ `07_Kafka/soluzioak/`: compose KRaft + producer/consumer (+mock) + DF3.1/2/3, mock test 1/1.
-4. ✅ `06_NiFi` DF2.3 ebidentziak (`simulatu_aemet_medallion.py`: 10/10/3) + `SBOM/releases/0.1.0` (3199).
-5. ✅ `04/git_ariketa_4_2`: `feat/arg-izena` + merge `--no-ff` (PR #1) + 4 test, 6 commit.
+3. ✅ `07_Kafka/soluzioak/`: compose KRaft (127.0.0.1) + producer/consumer (+mock, `--csv`, `--keys`) + DF3.1/2/3.
+   **Real**: 100k msgs `cnc_10M.csv` → 100k consumidos (585/s).
+4. ✅ `06_NiFi` DF2.2 stack (MySQL 12435 customers, Mongo, NiFi, nginx): `test_environment.sh` 8/8,
+   11 fluxu inportatuak API-tik, DF2.3 ebidentziak (10/10/3) + `SBOM/releases/0.1.0` (3199).
+5. ✅ `04/git_ariketa_4_2`: `feat/arg-izena` + merge `--no-ff` (PR #1) + 4 test, bundle preservado.
+6. ✅ `04/data/cnc_10M.csv`: 10M filas seeded (350 MB, gitignoreado) + `test_estabilidad_10M.py`
+   (chunks 1M, SGD incremental, holdout): acc=0.9861 F1=0.2036.
+
+Auth: `.env` (fuerte, gitignoreado) + `.env.example` (defaults docentes, solo-lab).
 
 Eskuz (interbentzioa behar): Kafka/NiFi/Mongo docker stack-ak altxatu (`docker compose up -d`)
 eta fluxuak NiFi UI-n inportatu (`06_NiFi/soluzioak/scripts/`).

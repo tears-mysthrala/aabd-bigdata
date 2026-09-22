@@ -19,6 +19,7 @@ dist/
 
 # Restos locales pesados / personales
 04_Programazioa_5073/data/_legacy_root/
+04_Programazioa_5073/data/cnc_10M.csv
 **/test_env/
 mock_log.jsonl
 .DS_Store

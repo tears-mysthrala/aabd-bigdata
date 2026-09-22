@@ -28,7 +28,8 @@ def run_mock(n: int, mock_file: Path) -> list[dict]:
     return msgs
 
 
-def run_kafka(n: int, topic: str, bootstrap: str, keys: bool) -> None:
+def run_kafka(n: int, topic: str, bootstrap: str, keys: bool, interval: float,
+              csv: str | None = None) -> None:
     from kafka import KafkaProducer
     from json import dumps
 
@@ -36,13 +37,29 @@ def run_kafka(n: int, topic: str, bootstrap: str, keys: bool) -> None:
         value_serializer=lambda m: dumps(m).encode("utf-8"),
         key_serializer=(lambda k: k.encode("utf-8")) if keys else None,
         bootstrap_servers=[bootstrap],
+        linger_ms=20,
+        batch_size=64 * 1024,
     )
+    rows = None
+    if csv:
+        import csv as csvlib
+        with open(csv, encoding="utf-8") as fh:
+            rows = list(csvlib.DictReader(fh))
+            rows = rows[:n] if n > 0 else rows
     try:
-        for i in range(n):
-            mezua = build_message(i)
-            key = f"gakoa{i % 2}".encode("utf-8") if keys else None
-            producer.send(topic, value=mezua, key=key)
-            time.sleep(0.2)
+        if rows is not None:
+            for r in rows:
+                key = r.get("makina_id", "") if keys else None
+                producer.send(topic, value=r, key=key)
+                if interval > 0:
+                    time.sleep(interval)
+        else:
+            for i in range(n):
+                mezua = build_message(i)
+                key = f"gakoa{i % 2}" if keys else None
+                producer.send(topic, value=mezua, key=key)
+                if interval > 0:
+                    time.sleep(interval)
         producer.flush()
     finally:
         producer.close()
@@ -54,6 +71,8 @@ def main() -> None:
     ap.add_argument("--bootstrap", default=DEFAULT_BOOTSTRAP)
     ap.add_argument("--n", type=int, default=10)
     ap.add_argument("--keys", action="store_true", help="gakoak bidali (partizio-banaketa)")
+    ap.add_argument("--interval", type=float, default=0.0, help="segundo arteko pausa (demo: 0.2)")
+    ap.add_argument("--csv", default=None, help="CSV-etik bidali (Dituen zutabeak JSON gisa, lehen n lerroak)")
     ap.add_argument("--mock", action="store_true")
     ap.add_argument("--mock-file", default="mock_log.jsonl")
     args = ap.parse_args()
@@ -61,8 +80,10 @@ def main() -> None:
         msgs = run_mock(args.n, Path(args.mock_file))
         print(f"mock: {len(msgs)} mezu {args.mock_file}-n")
     else:
-        run_kafka(args.n, args.topic, args.bootstrap, args.keys)
-        print(f"kafka: {args.n} mezu -> {args.topic}")
+        t0 = time.time()
+        run_kafka(args.n, args.topic, args.bootstrap, args.keys, args.interval, args.csv)
+        dt = time.time() - t0
+        print(f"kafka: {args.n} mezu -> {args.topic} ({dt:.1f}s)")
 
 
 if __name__ == "__main__":

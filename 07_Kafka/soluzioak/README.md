@@ -31,6 +31,14 @@ python kafka_consumer.py --mock --max 10
 pytest test_kafka_mock.py -v
 ```
 
+## Test real 2026-09-22 (broker KRaft local, `cnc_10M.csv`)
+```bash
+python kafka_producer.py --topic iabd-cnc --csv ../../04_Programazioa_5073/data/cnc_10M.csv --n 100000 --keys
+python kafka_consumer.py --topic iabd-cnc --group iabd-verifica --max 100000 --quiet
+```
+Resultado: **100000 producidos (585/s) → 100000 consumidos**, clave `makina_id`
+(particionado por máquina). Opciones: `--interval 0.2` (demo), `--csv` (dataset).
+
 ## DF3.1 / DF3.2 / DF3.3 (proposamena, PDF 09 atala + 10.1 oharrak)
 - **DF3.1 — partizioak + gakoak**: topic 3 partiziorekin sortu, `kafka_producer.py --keys` erabili;
   gako bera → partizio bera (ordena entitate-mailan). Egiaztatu `--property print.key=true`-rekin kontsolan.

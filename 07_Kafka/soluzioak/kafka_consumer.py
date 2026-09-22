@@ -16,7 +16,7 @@ DEFAULT_GROUP = "iabd-taldea-1"
 DEFAULT_BOOTSTRAP = "localhost:9092"
 
 
-def run_mock(mock_file: Path, max_msgs: int) -> list[dict]:
+def run_mock(mock_file: Path, max_msgs: int, quiet: bool = False) -> list[dict]:
     out = []
     with mock_file.open(encoding="utf-8") as fh:
         for line in fh:
@@ -25,12 +25,13 @@ def run_mock(mock_file: Path, max_msgs: int) -> list[dict]:
                 out.append(json.loads(line))
             if len(out) >= max_msgs:
                 break
-    for m in out:
-        print(m)
+    if not quiet:
+        for m in out:
+            print(m)
     return out
 
 
-def run_kafka(topic: str, group: str, bootstrap: str, max_msgs: int) -> None:
+def run_kafka(topic: str, group: str, bootstrap: str, max_msgs: int, quiet: bool = False) -> None:
     from kafka import KafkaConsumer
     from json import loads
 
@@ -44,10 +45,14 @@ def run_kafka(topic: str, group: str, bootstrap: str, max_msgs: int) -> None:
         consumer_timeout_ms=10000,
     )
     try:
-        for i, m in enumerate(consumer):
-            print(m.value)  # m.topic, m.partition, m.offset, m.key, m.timestamp
-            if i + 1 >= max_msgs:
+        n = 0
+        for m in consumer:
+            if not quiet:
+                print(m.value)  # m.topic, m.partition, m.offset, m.key, m.timestamp
+            n += 1
+            if n >= max_msgs:
                 break
+        print(f"kafka: {n} mezu irakurrita ({topic}/{group})")
     finally:
         consumer.close()
 
@@ -58,14 +63,15 @@ def main() -> None:
     ap.add_argument("--group", default=DEFAULT_GROUP)
     ap.add_argument("--bootstrap", default=DEFAULT_BOOTSTRAP)
     ap.add_argument("--max", type=int, default=10)
+    ap.add_argument("--quiet", action="store_true", help="zenbatu bakarrik (bolumen handietarako)")
     ap.add_argument("--mock", action="store_true")
     ap.add_argument("--mock-file", default="mock_log.jsonl")
     args = ap.parse_args()
     if args.mock:
-        out = run_mock(Path(args.mock_file), args.max)
+        out = run_mock(Path(args.mock_file), args.max, args.quiet)
         print(f"mock: {len(out)} mezu irakurrita")
     else:
-        run_kafka(args.topic, args.group, args.bootstrap, args.max)
+        run_kafka(args.topic, args.group, args.bootstrap, args.max, args.quiet)
 
 
 if __name__ == "__main__":
