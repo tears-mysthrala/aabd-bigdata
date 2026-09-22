@@ -1,8 +1,10 @@
 # Laborategia: MySQL (retail_db) -> NiFi -> MongoDB.
 # Uso:
 #   cp .env.example .env   # y cambia las contraseñas
+#   ../../../../infra listo primero: (cd ../../../../infra && docker compose up -d)
 #   ./redeploy.sh           # o: docker compose up --build -d
-# UI NiFi: https://localhost:8443/nifi  (usuario/clave de .env)
+# UI NiFi: https://nifi.bigdata.local/nifi (vía nginx de infra) o
+#          https://localhost:8443/nifi (directo, usuario/clave de .env)
 name: iabd-nifi-lab
 
 services:
@@ -83,41 +85,24 @@ services:
       - ./ariketak:/opt/nifi/ariketak
     networks:
       - iabd-net
+      - iabd-infra
     healthcheck:
-      # /nifi responde 200 sin auth; resolve garantiza SNI=localhost y enlace correcto a la IP
-      test: ["CMD-SHELL", "curl -kf https://localhost:8443/nifi/ --resolve localhost:8443:127.0.0.1 --resolve localhost:8443:$$(hostname -i 2>/dev/null || echo 127.0.0.1) || exit 1"]
+      # /nifi responde 200 sin auth; resolve garantiza SNI=localhost.
+      # Primera IP (el contenedor tiene 2 redes: datos + infra).
+      test: ["CMD-SHELL", "curl -kf https://localhost:8443/nifi/ --resolve localhost:8443:$$(hostname -i 2>/dev/null | awk '{print $$1}' || echo 127.0.0.1) || exit 1"]
       interval: 15s
       timeout: 5s
       retries: 24
       start_period: 60s
 
-  nginx:
-    image: nginx:1.28
-    container_name: iabd-nginx-nifi
-    restart: unless-stopped
-    depends_on:
-      nifi:
-        condition: service_healthy
-    ports:
-      - "${NGINX_HTTP_PORT:-80}:80"
-      - "${NGINX_HTTPS_PORT:-443}:443"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/bigdata.conf:ro
-      - ./certs/bigdata.local.crt:/etc/nginx/certs/bigdata.local.crt:ro
-      - ./certs/bigdata.local.key:/etc/nginx/certs/bigdata.local.key:ro
-    networks:
-      - iabd-net
-    healthcheck:
-      test: ["CMD-SHELL", "curl -kf -L -H 'Host: nifi.bigdata.local' https://127.0.0.1/ || exit 1"]
-      interval: 15s
-      timeout: 5s
-      retries: 6
-      start_period: 10s
-
 networks:
   iabd-net:
     name: iabd-nifi-lab-net
     driver: bridge
+  # Red compartida creada por infra/ (arrancar infra primero).
+  iabd-infra:
+    external: true
+    name: iabd-infra-net
 
 volumes:
   mysql-data:

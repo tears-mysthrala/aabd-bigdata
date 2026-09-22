@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Re-despliegue controlado del laboratorio NiFi + MySQL + MongoDB.
+# El frontal nginx vive en infra/ (arrancarlo primero).
 # Uso:
 #   ./redeploy.sh          # build + up + espera a healthy + estado
 #   ./redeploy.sh --clean  # además borra volúmenes (DATOS: reimporta create_db.sql)
@@ -26,8 +27,8 @@ docker compose build
 docker compose up -d
 
 echo "--- esperando servicios healthy (máx ~6 min por NiFi) ---"
-declare -A cont=( [mysql]=iabd-mysql-nifi [mongodb]=iabd-mongodb-nifi [nifi]=iabd-nifi [nginx]=iabd-nginx-nifi )
-for svc in mysql mongodb nifi nginx; do
+declare -A cont=( [mysql]=iabd-mysql-nifi [mongodb]=iabd-mongodb-nifi [nifi]=iabd-nifi )
+for svc in mysql mongodb nifi; do
   for _ in $(seq 1 72); do
     st=$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}sin-health{{end}}' "${cont[$svc]}" 2>/dev/null || echo "?")
     [[ "$st" == "healthy" ]] && { echo "$svc: healthy"; break; }
@@ -36,7 +37,7 @@ for svc in mysql mongodb nifi nginx; do
 done
 
 docker compose ps
-echo "NiFi (vía nginx): https://nifi.bigdata.local/nifi  (usuario: ${NIFI_USER:-nifi})"
+echo "NiFi (vía nginx de infra): https://nifi.bigdata.local/nifi  (usuario: ${NIFI_USER:-nifi})"
 echo "NiFi directo (reserva): https://127.0.0.1:${NIFI_HTTPS_PORT:-8443}/nifi"
 echo "MySQL: 127.0.0.1:${MYSQL_PORT:-3306}/${MYSQL_DATABASE:-retail_db} (usuario: ${MYSQL_USER:-iabd})"
 echo "Mongo: 127.0.0.1:${MONGO_PORT:-27017}"

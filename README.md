@@ -21,6 +21,7 @@ soluciones dentro**. En euskera (material de clase) con resúmenes en español.
 | `06_NiFi/` | 7 casos NiFi (11 flujos), labs MariaDB→MongoDB y AEMET Medallion | ✅ |
 | `07_Kafka/` | Pub/sub, consumer groups, lab Python + `docker-compose` | ✅ |
 | `horario/` | Calendarios y horarios del curso | ✅ |
+| `infra/` | nginx frontal + Kafka compartidos (red `iabd-infra-net`) | ✅ |
 | `_archivo_legacy/` | Duplicados antiguos (no usar) | 🗄️ |
 | `INDICE.md` | Mapa detallado + auditoría de seguridad 2026-09-22 | 📖 |
 
@@ -41,16 +42,17 @@ uv sync && uv run pytest -v
 01_Erronka1_CNC_Guard/proyecto_cnc_guard/.venv/bin/python \
   03_ML_5072/soluzioak/5072_ML_praktika.py
 
-# 4. Lab Kafka (necesita Docker; incluye modo --mock sin broker)
+# 4. Infra compartida (primero) + lab Kafka
+cd infra && cp .env.example .env && docker compose up -d && cd ..
 cd 07_Kafka/soluzioak
-docker compose up -d
-python kafka_producer.py --n 10
+python kafka_producer.py --n 10   #usa BOOTSTRAP de infra (localhost:9092)
 python kafka_consumer.py --max 10
 
-# 5. Lab NiFi + MariaDB + MongoDB
+# 5. Lab NiFi + MariaDB + MongoDB (con infra ya arriba)
 cd 06_NiFi/soluzioak/06_MariaDB_MongoDB_Laborategia_DF2.2
 cp .env.example .env   # ¡cambia las contraseñas!
-docker compose up -d
+./redeploy.sh
+# Frontal: https://nifi.bigdata.local/nifi (nginx en infra/)
 ```
 
 Requisitos: Python 3.13 + [`uv`](https://docs.astral.sh/uv/), Docker con grupo

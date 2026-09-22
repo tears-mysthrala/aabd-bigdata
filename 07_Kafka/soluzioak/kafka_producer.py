@@ -12,8 +12,10 @@ import json
 import time
 from pathlib import Path
 
-DEFAULT_TOPIC = "iabd-topic"
-DEFAULT_BOOTSTRAP = "localhost:9092"
+import os
+
+DEFAULT_TOPIC = os.environ.get("TOPIC", "iabd-topic")
+DEFAULT_BOOTSTRAP = os.environ.get("BOOTSTRAP", "localhost:9092")
 
 
 def build_message(i: int) -> dict:

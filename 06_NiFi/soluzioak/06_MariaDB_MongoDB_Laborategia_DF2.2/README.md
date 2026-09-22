@@ -79,3 +79,15 @@ docker exec -it iabd-mongodb-nifi mongosh iabd --eval 'db["6kasua-classic"].coun
 # 2. Aldaera (Record API)
 docker exec -it iabd-mongodb-nifi mongosh iabd --eval 'db["6kasua-record"].countDocuments()'
 ```
+
+## 6. Nota operativa: flujos efímeros (2026-09-22)
+
+El `flow.json.gz` de NiFi vive en el contenedor, **no** en un volumen: al recrear
+el contenedor (`up -d` tras cambiar el compose, `--clean`, etc.) el canvas queda
+vacío y hay que **reimportar** (los JSON del repo son la fuente de verdad):
+```bash
+set -a; source .env; set +a; export NIFI_PASS="$NIFI_PASSWORD"
+python3 ../scripts/inportatu_fluxuak.py   # 7 grupos (01–07) en el canvas
+```
+No reimportar dos veces seguidas sin limpiar: cada importación crea grupos nuevos
+(IDs distintos). El frontal nginx y Kafka viven en `infra/` (arrancar primero).

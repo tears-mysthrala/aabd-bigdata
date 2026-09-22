@@ -29,6 +29,16 @@ Compat legacy: `materialak/`, `soluzioak/`, `notebooks_compat`, `SBOM_compat`, `
 
 Auth: `.env` (fuerte, gitignoreado) + `.env.example` (defaults docentes, solo-lab).
 
+## Infra split 2026-09-22 ✅
+
+- `infra/`: nginx frontal + Kafka KRaft compartidos (red externa `iabd-infra-net`).
+  Kafka **no** va tras nginx (binario TCP ≠ HTTP; endurecer = SASL/TLS).
+- DF2.2 adelgazado (sin nginx/certs, red externa). Healthcheck NiFi robusto a 2 IPs.
+- 07 solo-código (scripts leen `TOPIC/GROUP/BOOTSTRAP` del entorno).
+- Hallazgo: `flow.json.gz` vive en el contenedor → al recrear, reimportar
+  (`inportatu_fluxuak.py`, 7 grupos). Re-verificado: env 8/8, proxy nginx→NiFi 200,
+  Kafka infra 5000/5000, NiFi healthy.
+
 Eskuz (interbentzioa behar): Kafka/NiFi/Mongo docker stack-ak altxatu (`docker compose up -d`)
 eta fluxuak NiFi UI-n inportatu (`06_NiFi/soluzioak/scripts/`).
 

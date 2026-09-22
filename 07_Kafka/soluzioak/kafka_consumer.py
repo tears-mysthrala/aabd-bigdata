@@ -11,9 +11,11 @@ import argparse
 import json
 from pathlib import Path
 
-DEFAULT_TOPIC = "iabd-topic"
-DEFAULT_GROUP = "iabd-taldea-1"
-DEFAULT_BOOTSTRAP = "localhost:9092"
+import os
+
+DEFAULT_TOPIC = os.environ.get("TOPIC", "iabd-topic")
+DEFAULT_GROUP = os.environ.get("GROUP", "iabd-taldea-1")
+DEFAULT_BOOTSTRAP = os.environ.get("BOOTSTRAP", "localhost:9092")
 
 
 def run_mock(mock_file: Path, max_msgs: int, quiet: bool = False) -> list[dict]:

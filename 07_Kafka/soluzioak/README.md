@@ -3,14 +3,14 @@
 Teoria: `../materialak/01_03_ApacheKafka.pdf` (1150 lerro testu: pub/sub, partizioak, consumer groups, acks, LAG).
 
 ## Fitxategiak
-- `docker-compose.yml` — `apache/kafka:3.7.0` KRaft (Zookeeper gabe), `localhost:9092`, topic auto-create.
-- `kafka_producer.py` / `kafka_consumer.py` — PDF 10.2/10.3-ko kodea, `localhost`-era egokitua + `--keys` + `--mock`.
+- `kafka_producer.py` / `kafka_consumer.py` — PDF 10.2/10.3-ko kodea, `localhost`-era egokitua + `--keys` + `--mock` + `--csv`.
+  Defaults desde entorno (`TOPIC`, `GROUP`, `BOOTSTRAP`; ver `.env.example`).
 - `test_kafka_mock.py` — roundtrip broker gabe (10 mezu).
 - `requirements.txt` — `kafka-python`, `pymongo`, `faker` (DF3.3).
+- **Broker**: vive en `infra/` (`docker compose up -d kafka` allí). Este lab es solo código.
 
-## 0. kasua (kontsola, broker martxan)
+## 0. kasua (kontsola, broker martxan: antes `cd ../../infra && docker compose up -d kafka`)
 ```bash
-docker compose up -d && docker ps
 docker exec -it iabd-kafka /opt/kafka/bin/kafka-topics.sh --create --topic iabd-topic --bootstrap-server localhost:9092
 docker exec -it iabd-kafka bash
 /opt/kafka/bin/kafka-console-producer.sh --topic iabd-topic --bootstrap-server localhost:9092
