@@ -1,0 +1,108 @@
+{
+  "name": "AABD ETHAZI Materialak eta Baliabideak",
+  "children": [
+    {
+      "name": "01 Erronka: CNC Guard",
+      "children": [
+        {
+          "name": "Talde Plana: Helburuak eta Konpromezuak"
+        },
+        {
+          "name": "Rolak: Koordinatzailea, Bozeramailea, Idazkaria, Laguntzailea"
+        },
+        {
+          "name": "Dokumentazioa: Kontratua (Anexo 1), Proposamena (Anexo 4)"
+        }
+      ]
+    },
+    {
+      "name": "02-03 Adimen Artifiziala eta ML",
+      "children": [
+        {
+          "name": "Ereduak: Sarrera kontzeptuala eta Logika lausoa"
+        },
+        {
+          "name": "ML: Datua, Aurreprozesamenua eta Ikasketa Gainbegiratua"
+        }
+      ]
+    },
+    {
+      "name": "04 Lengoaiak eta Datu Zientzia",
+      "children": [
+        {
+          "name": "Baliabideak: VS Code eta Jupyter Notebooks"
+        },
+        {
+          "name": "Formatuak: .ipynb (Interactive) eta .py (Scripts)"
+        },
+        {
+          "name": "Edukiak: Python adibideak eta ariketak"
+        }
+      ]
+    },
+    {
+      "name": "05-06 Big Data eta Apache NiFi",
+      "children": [
+        {
+          "name": "Apache NiFi Oinarriak",
+          "children": [
+            {
+              "name": "Definizioa: Datu-fluxuen ingestioa eta eraldaketa"
+            },
+            {
+              "name": "Kontzeptuak: FlowFile, Prozesadorea, Ilara, Linajea"
+            },
+            {
+              "name": "DataFlow: Datua mugimenduan (In motion)"
+            },
+            {
+              "name": "Filosofia: Arrastatu-askatu eta DAG programazioa"
+            }
+          ]
+        },
+        {
+          "name": "Arkitektura eta Optimizazioa",
+          "children": [
+            {
+              "name": "Medallion: Bronze (Gordina), Silver (Garbitua), Gold (Agregatua)"
+            },
+            {
+              "name": "Dual-Storage: File-lake (Historikoa) eta MongoDB (Operatiboa)"
+            },
+            {
+              "name": "Errendimendua: SplitRecord saihestu eta QueryRecord erabili"
+            }
+          ]
+        },
+        {
+          "name": "Kasu Praktikoak eta Integrazioa",
+          "children": [
+            {
+              "name": "Fitxategiak: GetFile eta PutFile"
+            },
+            {
+              "name": "Datu-baseak: MariaDB (JDBC), MongoDB eta S3"
+            },
+            {
+              "name": "Prozesamendua: SQL kontsultak (Calcite) eta JSON bihurketak"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Kanpoko Baliabideak",
+      "children": [
+        {
+          "name": "Gitflow vs GitHub Flow"
+        },
+        {
+          "name": "NiFi REST API dokumentazioa"
+        },
+        {
+          "name": "Padlet: Parametroen ezarpena"
+        }
+      ]
+    }
+  ]
+}

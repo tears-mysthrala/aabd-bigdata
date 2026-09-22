@@ -1,0 +1,23 @@
+# Ingurune birtualak
+.venv/
+venv/
+ENV/
+
+# Byte-compiled / optimizatuak
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Fitxategi sentikorrak eta sekretuak
+.env
+.env.*.local
+*.secret
+*.pem
+
+# IDE eta editore fitxategiak
+.vscode/
+.idea/
+*.swp
+
+# Datuak eta esportazio fitxategiak
+*.log

@@ -1,0 +1,854 @@
+{
+  "flowContents": {
+    "identifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+    "instanceIdentifier": "b407e437-01a0-1000-ae8d-f56d429cfced",
+    "name": "03_Atributuak_Linajea_Aldaera2_MongoDB",
+    "comments": "Apache NiFi 3. Kasua - 2. Aldaera: AttributesToJSON eta MongoDB Txertaketa",
+    "position": {
+      "x": 700.0,
+      "y": 350.0
+    },
+    "processGroups": [],
+    "remoteProcessGroups": [],
+    "processors": [
+      {
+        "identifier": "a8264c94-c45b-3bea-9b71-8e9464fdeec3",
+        "instanceIdentifier": "b407e4bf-01a0-1000-1e65-10b5e2cfc80e",
+        "name": "PutMongo",
+        "comments": "5. JSON dokumentua MongoDB 3kasua bilduman zuzenean txertatu.",
+        "position": {
+          "x": 1900.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.mongodb.PutMongo",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-mongodb-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Upsert": "false",
+          "Update Query Key": null,
+          "Update Method": "one",
+          "Mode": "insert",
+          "Mongo Collection Name": "datuak",
+          "Mongo Database Name": "nifi",
+          "Character Set": "UTF-8",
+          "mongo-client-service": "6f352988-b5e5-3e19-882e-66fca64f6ea1",
+          "put-mongo-update-mode": "doc",
+          "putmongo-update-query": null
+        },
+        "propertyDescriptors": {
+          "Upsert": {
+            "name": "Upsert",
+            "displayName": "Upsert",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Update Query Key": {
+            "name": "Update Query Key",
+            "displayName": "Update Query Key",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Update Method": {
+            "name": "Update Method",
+            "displayName": "Update Method",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Mode": {
+            "name": "Mode",
+            "displayName": "Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Update Mode": {
+            "name": "Update Mode",
+            "displayName": "Update Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Mongo Collection Name": {
+            "name": "Mongo Collection Name",
+            "displayName": "Mongo Collection Name",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Mongo Database Name": {
+            "name": "Mongo Database Name",
+            "displayName": "Mongo Database Name",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Client Service": {
+            "name": "Client Service",
+            "displayName": "Client Service",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Update Query": {
+            "name": "Update Query",
+            "displayName": "Update Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Character Set": {
+            "name": "Character Set",
+            "displayName": "Character Set",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "success",
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      },
+      {
+        "identifier": "698392d8-108f-3285-9bcd-74457c89e065",
+        "instanceIdentifier": "b407e47c-01a0-1000-bfa5-252a0febc276",
+        "name": "ReplaceText",
+        "comments": "2. Informazio egituratua testuan gehitu.",
+        "position": {
+          "x": 550.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.ReplaceText",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Replacement Value": " [[[ Data: ${now()} ]]]",
+          "Evaluation Mode": "Line-by-Line",
+          "Text to Prepend": null,
+          "Line-by-Line Evaluation Mode": "All",
+          "Character Set": "UTF-8",
+          "Maximum Buffer Size": "1 MB",
+          "Replacement Strategy": "Append",
+          "Text to Append": null,
+          "Regular Expression": "(?s)(^.*$)"
+        },
+        "propertyDescriptors": {
+          "Replacement Value": {
+            "name": "Replacement Value",
+            "displayName": "Replacement Value",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Search Value": {
+            "name": "Search Value",
+            "displayName": "Search Value",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Evaluation Mode": {
+            "name": "Evaluation Mode",
+            "displayName": "Evaluation Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Text to Prepend": {
+            "name": "Text to Prepend",
+            "displayName": "Text to Prepend",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Line-by-Line Evaluation Mode": {
+            "name": "Line-by-Line Evaluation Mode",
+            "displayName": "Line-by-Line Evaluation Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Character Set": {
+            "name": "Character Set",
+            "displayName": "Character Set",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum Buffer Size": {
+            "name": "Maximum Buffer Size",
+            "displayName": "Maximum Buffer Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Replacement Strategy": {
+            "name": "Replacement Strategy",
+            "displayName": "Replacement Strategy",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Text to Append": {
+            "name": "Text to Append",
+            "displayName": "Text to Append",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 25,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      },
+      {
+        "identifier": "ef3db6a5-9a75-3004-880d-a67402f9cf0f",
+        "instanceIdentifier": "b407e494-01a0-1000-7b44-424cca2c8bc8",
+        "name": "ExtractText",
+        "comments": "3. Regex erabiliz balioak FlowFile atributu bihurtu.",
+        "position": {
+          "x": 1000.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.ExtractText",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Enable Unicode Predefined Character Classes": "false",
+          "Permit Whitespace and Comments in Pattern": "false",
+          "Enable Unicode-aware Case Folding": "false",
+          "Enable DOTALL Mode": "false",
+          "Enable Unix Lines Mode": "false",
+          "Maximum Buffer Size": "1 MB",
+          "Enable Canonical Equivalence": "false",
+          "Enable Case-insensitive Matching": "false",
+          "Enable Multiline Mode": "false",
+          "Maximum Capture Group Length": "1024",
+          "Enable Literal Parsing of the Pattern": "false",
+          "edukia": "(.*)",
+          "Character Set": "UTF-8",
+          "Include Capture Group 0": "false",
+          "Enable repeating capture group": "false",
+          "Enable named group support": "false"
+        },
+        "propertyDescriptors": {
+          "Enable Unicode Predefined Character Classes": {
+            "name": "Enable Unicode Predefined Character Classes",
+            "displayName": "Enable Unicode Predefined Character Classes",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Permit Whitespace and Comments in Pattern": {
+            "name": "Permit Whitespace and Comments in Pattern",
+            "displayName": "Permit Whitespace and Comments in Pattern",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Enable Unicode-aware Case Folding": {
+            "name": "Enable Unicode-aware Case Folding",
+            "displayName": "Enable Unicode-aware Case Folding",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Enable DOTALL Mode": {
+            "name": "Enable DOTALL Mode",
+            "displayName": "Enable DOTALL Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Enable Unix Lines Mode": {
+            "name": "Enable Unix Lines Mode",
+            "displayName": "Enable Unix Lines Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Enable Repeating Capture Group": {
+            "name": "Enable Repeating Capture Group",
+            "displayName": "Enable Repeating Capture Group",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum Buffer Size": {
+            "name": "Maximum Buffer Size",
+            "displayName": "Maximum Buffer Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Enable Canonical Equivalence": {
+            "name": "Enable Canonical Equivalence",
+            "displayName": "Enable Canonical Equivalence",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Enable Case-insensitive Matching": {
+            "name": "Enable Case-insensitive Matching",
+            "displayName": "Enable Case-insensitive Matching",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Enable Multiline Mode": {
+            "name": "Enable Multiline Mode",
+            "displayName": "Enable Multiline Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Enable Named Groups": {
+            "name": "Enable Named Groups",
+            "displayName": "Enable Named Groups",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum Capture Group Length": {
+            "name": "Maximum Capture Group Length",
+            "displayName": "Maximum Capture Group Length",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Enable Literal Parsing of the Pattern": {
+            "name": "Enable Literal Parsing of the Pattern",
+            "displayName": "Enable Literal Parsing of the Pattern",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "edukia": {
+            "name": "edukia",
+            "displayName": "edukia",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": true
+          },
+          "Character Set": {
+            "name": "Character Set",
+            "displayName": "Character Set",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Include Capture Group 0": {
+            "name": "Include Capture Group 0",
+            "displayName": "Include Capture Group 0",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "unmatched"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      },
+      {
+        "identifier": "c05b18df-f6f6-3eeb-b541-28e573185a03",
+        "instanceIdentifier": "b407e455-01a0-1000-acfb-c0947bca9d6d",
+        "name": "GenerateFlowFile",
+        "comments": "1. Datu-korrontea simulatu 10 segundoro mezu testuarekin.",
+        "position": {
+          "x": 100.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.GenerateFlowFile",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "File Size": "10B",
+          "Batch Size": "1",
+          "Unique FlowFiles": "true",
+          "Mime Type": null,
+          "Custom Text": null,
+          "Character Set": "UTF-8",
+          "Data Format": "Text"
+        },
+        "propertyDescriptors": {
+          "File Size": {
+            "name": "File Size",
+            "displayName": "File Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Batch Size": {
+            "name": "Batch Size",
+            "displayName": "Batch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Unique FlowFiles": {
+            "name": "Unique FlowFiles",
+            "displayName": "Unique FlowFiles",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Mime Type": {
+            "name": "Mime Type",
+            "displayName": "Mime Type",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Custom Text": {
+            "name": "Custom Text",
+            "displayName": "Custom Text",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Character Set": {
+            "name": "Character Set",
+            "displayName": "Character Set",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Data Format": {
+            "name": "Data Format",
+            "displayName": "Data Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "1 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      },
+      {
+        "identifier": "72b24c43-e1d4-331a-8cdc-895455007b01",
+        "instanceIdentifier": "b407e4ab-01a0-1000-03d4-110fdf76fd7a",
+        "name": "AttributesToJSON",
+        "comments": "4. Atributu hautatuak JSON dokumentu garbi bihurtu edukian.",
+        "position": {
+          "x": 1450.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.AttributesToJSON",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Attributes Regular Expression": null,
+          "Destination": "flowfile-content",
+          "Null Value": "false",
+          "Attributes List": "edukia",
+          "Pretty Print": "false",
+          "Include Core Attributes": "false",
+          "JSON Handling Strategy": "ESCAPED"
+        },
+        "propertyDescriptors": {
+          "Attributes Regular Expression": {
+            "name": "Attributes Regular Expression",
+            "displayName": "Attributes Regular Expression",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Destination": {
+            "name": "Destination",
+            "displayName": "Destination",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Null Value": {
+            "name": "Null Value",
+            "displayName": "Null Value",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Attributes List": {
+            "name": "Attributes List",
+            "displayName": "Attributes List",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Pretty Print": {
+            "name": "Pretty Print",
+            "displayName": "Pretty Print",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Include Core Attributes": {
+            "name": "Include Core Attributes",
+            "displayName": "Include Core Attributes",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "JSON Handling Strategy": {
+            "name": "JSON Handling Strategy",
+            "displayName": "JSON Handling Strategy",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      }
+    ],
+    "inputPorts": [],
+    "outputPorts": [],
+    "connections": [
+      {
+        "identifier": "7c531f16-1bcc-3116-abdb-6706c297a95f",
+        "instanceIdentifier": "b407e4d3-01a0-1000-2a0c-2a4e6b17f2c8",
+        "name": "Gen to Rep",
+        "source": {
+          "id": "c05b18df-f6f6-3eeb-b541-28e573185a03",
+          "type": "PROCESSOR",
+          "groupId": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+          "name": "GenerateFlowFile",
+          "comments": "",
+          "instanceIdentifier": "b407e455-01a0-1000-acfb-c0947bca9d6d"
+        },
+        "destination": {
+          "id": "698392d8-108f-3285-9bcd-74457c89e065",
+          "type": "PROCESSOR",
+          "groupId": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+          "name": "ReplaceText",
+          "comments": "",
+          "instanceIdentifier": "b407e47c-01a0-1000-bfa5-252a0febc276"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      },
+      {
+        "identifier": "ecb6f318-3823-39f3-8b09-e490c2ff9d62",
+        "instanceIdentifier": "b407e505-01a0-1000-d0cd-c8b95718a83f",
+        "name": "Ext to AttrJSON",
+        "source": {
+          "id": "ef3db6a5-9a75-3004-880d-a67402f9cf0f",
+          "type": "PROCESSOR",
+          "groupId": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+          "name": "ExtractText",
+          "comments": "",
+          "instanceIdentifier": "b407e494-01a0-1000-7b44-424cca2c8bc8"
+        },
+        "destination": {
+          "id": "72b24c43-e1d4-331a-8cdc-895455007b01",
+          "type": "PROCESSOR",
+          "groupId": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+          "name": "AttributesToJSON",
+          "comments": "",
+          "instanceIdentifier": "b407e4ab-01a0-1000-03d4-110fdf76fd7a"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "matched"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      },
+      {
+        "identifier": "c0046161-395d-38be-ac82-1ce4c4692527",
+        "instanceIdentifier": "b407e51d-01a0-1000-9c03-2ce951c552e1",
+        "name": "AttrJSON to PutMongo",
+        "source": {
+          "id": "72b24c43-e1d4-331a-8cdc-895455007b01",
+          "type": "PROCESSOR",
+          "groupId": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+          "name": "AttributesToJSON",
+          "comments": "",
+          "instanceIdentifier": "b407e4ab-01a0-1000-03d4-110fdf76fd7a"
+        },
+        "destination": {
+          "id": "a8264c94-c45b-3bea-9b71-8e9464fdeec3",
+          "type": "PROCESSOR",
+          "groupId": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+          "name": "PutMongo",
+          "comments": "",
+          "instanceIdentifier": "b407e4bf-01a0-1000-1e65-10b5e2cfc80e"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      },
+      {
+        "identifier": "e5017221-31e7-3b4c-923e-e81bc34ce7b6",
+        "instanceIdentifier": "b407e4f0-01a0-1000-f89f-3162d60955b7",
+        "name": "Rep to Ext",
+        "source": {
+          "id": "698392d8-108f-3285-9bcd-74457c89e065",
+          "type": "PROCESSOR",
+          "groupId": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+          "name": "ReplaceText",
+          "comments": "",
+          "instanceIdentifier": "b407e47c-01a0-1000-bfa5-252a0febc276"
+        },
+        "destination": {
+          "id": "ef3db6a5-9a75-3004-880d-a67402f9cf0f",
+          "type": "PROCESSOR",
+          "groupId": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+          "name": "ExtractText",
+          "comments": "",
+          "instanceIdentifier": "b407e494-01a0-1000-7b44-424cca2c8bc8"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      }
+    ],
+    "labels": [
+      {
+        "identifier": "master-flow_03_atributuak_linajea_aldaera2_mongodb.json",
+        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \ud83c\udff7\ufe0f LABORATEGIA 03: ATRIBUTUAK ETA MONGODB NOSQL BILTEGIA (ALDAERA 2)                                    \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura: FlowFile sortu \u2794 Regex erauzketa \u2794 Atributuak JSON bihurtu \u2794 MongoDB NoSQL bilduman txertatu",
+        "position": {
+          "x": 60.0,
+          "y": 15.0
+        },
+        "width": 2220.0,
+        "height": 75.0,
+        "style": {
+          "background-color": "#d5f5e3",
+          "font-size": "12pt"
+        }
+      },
+      {
+        "identifier": "stage-0-flow_03_atributuak_linajea_aldaera2_mongodb.json",
+        "label": "\ud83d\ude80 1. SORKUNTZA",
+        "position": {
+          "x": 80.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#d6eaf8",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-1-flow_03_atributuak_linajea_aldaera2_mongodb.json",
+        "label": "\u270f\ufe0f 2. TESTU ERALDAKETA",
+        "position": {
+          "x": 530.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#eaeded",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-2-flow_03_atributuak_linajea_aldaera2_mongodb.json",
+        "label": "\ud83d\udd0d 3. ATRIBUTUAK ERAUZI",
+        "position": {
+          "x": 980.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#fcf3cf",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-3-flow_03_atributuak_linajea_aldaera2_mongodb.json",
+        "label": "\ud83d\udd04 4. ATRIBUTUAK -> JSON",
+        "position": {
+          "x": 1430.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#d5f5e3",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-4-flow_03_atributuak_linajea_aldaera2_mongodb.json",
+        "label": "\ud83c\udf43 5. MONGODB BILTEGIA",
+        "position": {
+          "x": 1880.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#a9dfbf",
+          "font-size": "11pt"
+        }
+      }
+    ],
+    "funnels": [],
+    "controllerServices": [],
+    "defaultFlowFileExpiration": "0 sec",
+    "defaultBackPressureObjectThreshold": 10000,
+    "defaultBackPressureDataSizeThreshold": "1 GB",
+    "scheduledState": "ENABLED",
+    "executionEngine": "INHERITED",
+    "maxConcurrentTasks": 1,
+    "statelessFlowTimeout": "1 min",
+    "flowFileConcurrency": "UNBOUNDED",
+    "flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
+    "componentType": "PROCESS_GROUP"
+  },
+  "externalControllerServices": {
+    "6f352988-b5e5-3e19-882e-66fca64f6ea1": {
+      "identifier": "6f352988-b5e5-3e19-882e-66fca64f6ea1",
+      "name": "MongoDBControllerService"
+    }
+  },
+  "parameterContexts": {},
+  "flowEncodingVersion": "1.0",
+  "parameterProviders": {},
+  "latest": false
+}

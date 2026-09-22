@@ -1,0 +1,15 @@
+ProductID;Date;Zip;Units;Revenue;Country
+725;1/15/1999;41540;1;115.5;Germany
+850;2/03/1999;75000;3;245.0;France
+425;3/21/1999;28013;1;87.25;Spain
+725;4/12/1999;75008;5;577.5;France
+910;5/05/1999;10115;2;230.0;Germany
+850;6/30/1999;69001;4;392.0;France
+
+# Iragazketaren xedea:
+#   Country = 'France' ETA Units > 1
+# Helburua: Frantziako salmentak unitate bat baino gehiago
+# duten erregistroak SOILIK pasatzea.
+ 
+# Bereizlea: ; (puntu eta koma) — ohikoa Europar formatuan
+# Lehen lerroa: GOIBURUA (zutabe-izenak)

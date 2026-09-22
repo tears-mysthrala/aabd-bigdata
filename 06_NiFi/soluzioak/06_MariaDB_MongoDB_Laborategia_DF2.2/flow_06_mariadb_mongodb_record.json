@@ -1,0 +1,396 @@
+{
+  "flowContents": {
+    "identifier": "5d66f627-e844-3634-b1a6-5493f4ef9d92",
+    "instanceIdentifier": "b40e342c-01a0-1000-46ce-2c480516b7be",
+    "name": "6kasua_record",
+    "comments": "DF2.2 Ariketa: 6. Kasua - 2. Aldaera Modernoa (ExecuteSQLRecord + PutMongoRecord Direct Bulk)",
+    "position": {
+      "x": 750.0,
+      "y": 600.0
+    },
+    "processGroups": [],
+    "remoteProcessGroups": [],
+    "processors": [
+      {
+        "identifier": "5b11a6c9-adc6-3e4a-a73e-598baa09cac8",
+        "instanceIdentifier": "b40e3444-01a0-1000-92e6-b02a85c5de59",
+        "name": "ExecuteSQLRecord_Customers",
+        "comments": "1. MariaDB datu-basetik bezeroak atera DBCP konexio-igerilekuaren bidez.",
+        "position": {
+          "x": 100.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.ExecuteSQLRecord",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Set Auto Commit": "true",
+          "Max Wait Time": "0 seconds",
+          "SQL Query": "SELECT * FROM customers LIMIT 100",
+          "Normalize Table/Column Names": "false",
+          "Database Connection Pooling Service": "74888e3f-4e6e-3a48-b543-c2162080cfa1",
+          "SQL Post-Query": null,
+          "Fetch Size": "0",
+          "Output Batch Size": "0",
+          "Use Avro Logical Types": "false",
+          "SQL Pre-Query": null,
+          "Max Rows Per FlowFile": "0",
+          "esqlrecord-record-writer": "1e207816-ca56-38af-8d4f-4408c7fc579f",
+          "dbf-default-precision": "10",
+          "dbf-default-scale": "0"
+        },
+        "propertyDescriptors": {
+          "Set Auto Commit": {
+            "name": "Set Auto Commit",
+            "displayName": "Set Auto Commit",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Max Wait Time": {
+            "name": "Max Wait Time",
+            "displayName": "Max Wait Time",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Query": {
+            "name": "SQL Query",
+            "displayName": "SQL Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Normalize Table/Column Names": {
+            "name": "Normalize Table/Column Names",
+            "displayName": "Normalize Table/Column Names",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Database Connection Pooling Service": {
+            "name": "Database Connection Pooling Service",
+            "displayName": "Database Connection Pooling Service",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Default Decimal Scale": {
+            "name": "Default Decimal Scale",
+            "displayName": "Default Decimal Scale",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Post-Query": {
+            "name": "SQL Post-Query",
+            "displayName": "SQL Post-Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Fetch Size": {
+            "name": "Fetch Size",
+            "displayName": "Fetch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Output Batch Size": {
+            "name": "Output Batch Size",
+            "displayName": "Output Batch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Use Avro Logical Types": {
+            "name": "Use Avro Logical Types",
+            "displayName": "Use Avro Logical Types",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Record Writer": {
+            "name": "Record Writer",
+            "displayName": "Record Writer",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Pre-Query": {
+            "name": "SQL Pre-Query",
+            "displayName": "SQL Pre-Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Default Decimal Precision": {
+            "name": "Default Decimal Precision",
+            "displayName": "Default Decimal Precision",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Max Rows Per FlowFile": {
+            "name": "Max Rows Per FlowFile",
+            "displayName": "Max Rows Per FlowFile",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "5d66f627-e844-3634-b1a6-5493f4ef9d92"
+      },
+      {
+        "identifier": "70d81e90-3123-3fc9-b27d-40194dcb0a3f",
+        "instanceIdentifier": "b40e3462-01a0-1000-d5d6-7c1d624c19cf",
+        "name": "PutMongoRecord_Direct",
+        "comments": "2. FlowFile bakarrean 12.435 erregistroak zuzenean MongoDB-ra kargatu Record API bidez.",
+        "position": {
+          "x": 650.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.mongodb.PutMongoRecord",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-mongodb-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Update Key Fields": null,
+          "Mongo Collection Name": "6kasua-record",
+          "Mongo Database Name": "iabd",
+          "mongo-client-service": "6f352988-b5e5-3e19-882e-66fca64f6ea1",
+          "record-reader": "f0cb7f47-a0e5-3e6e-8c48-c28b0792890c",
+          "insert_count": "100",
+          "ordered": "False",
+          "bypass-validation": "False",
+          "update-mode": "one"
+        },
+        "propertyDescriptors": {
+          "Batch Size": {
+            "name": "Batch Size",
+            "displayName": "Batch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Update Key Fields": {
+            "name": "Update Key Fields",
+            "displayName": "Update Key Fields",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Ordered": {
+            "name": "Ordered",
+            "displayName": "Ordered",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Update Mode": {
+            "name": "Update Mode",
+            "displayName": "Update Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Mongo Collection Name": {
+            "name": "Mongo Collection Name",
+            "displayName": "Mongo Collection Name",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Record Reader": {
+            "name": "Record Reader",
+            "displayName": "Record Reader",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Mongo Database Name": {
+            "name": "Mongo Database Name",
+            "displayName": "Mongo Database Name",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Client Service": {
+            "name": "Client Service",
+            "displayName": "Client Service",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Bypass Validation": {
+            "name": "Bypass Validation",
+            "displayName": "Bypass Validation",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "success",
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "5d66f627-e844-3634-b1a6-5493f4ef9d92"
+      }
+    ],
+    "inputPorts": [],
+    "outputPorts": [],
+    "connections": [
+      {
+        "identifier": "557a6b56-8e24-3bdc-b8b4-81dc8e06f22d",
+        "instanceIdentifier": "b40e3476-01a0-1000-d709-a8704ed052f7",
+        "name": "SQL to PutMongoRecord",
+        "source": {
+          "id": "5b11a6c9-adc6-3e4a-a73e-598baa09cac8",
+          "type": "PROCESSOR",
+          "groupId": "5d66f627-e844-3634-b1a6-5493f4ef9d92",
+          "name": "ExecuteSQLRecord_Customers",
+          "comments": "",
+          "instanceIdentifier": "b40e3444-01a0-1000-92e6-b02a85c5de59"
+        },
+        "destination": {
+          "id": "70d81e90-3123-3fc9-b27d-40194dcb0a3f",
+          "type": "PROCESSOR",
+          "groupId": "5d66f627-e844-3634-b1a6-5493f4ef9d92",
+          "name": "PutMongoRecord_Direct",
+          "comments": "",
+          "instanceIdentifier": "b40e3462-01a0-1000-d5d6-7c1d624c19cf"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "5d66f627-e844-3634-b1a6-5493f4ef9d92"
+      }
+    ],
+    "labels": [
+      {
+        "identifier": "master-flow_06_mariadb_mongodb_record.json",
+        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \ud83d\uddc4\ufe0f LABORATEGIA 06: MARIADB (SQL) \u2794 MONGODB (NOSQL) - KASU 6: RECORD-ORIENTED (DF 2.2)                   \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura Aurreratua: SQL kontsulta \u2794 FlowFile BAKARRA \u2794 PutMongoRecord bidez bulk streaming zuzena (%90 azkarragoa!)",
+        "position": {
+          "x": 60.0,
+          "y": 15.0
+        },
+        "width": 1350.0,
+        "height": 75.0,
+        "style": {
+          "background-color": "#d5f5e3",
+          "font-size": "12pt"
+        }
+      },
+      {
+        "identifier": "stage-0-flow_06_mariadb_mongodb_record.json",
+        "label": "\ud83d\udc2c 1. MARIADB SQL (DBCP POOL)",
+        "position": {
+          "x": 80.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#d6eaf8",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-1-flow_06_mariadb_mongodb_record.json",
+        "label": "\ud83c\udf43 2. MONGODB RECORD STREAMING (FLOWFILE BAKARRA)",
+        "position": {
+          "x": 630.0,
+          "y": 105.0
+        },
+        "width": 450.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#a9dfbf",
+          "font-size": "11pt"
+        }
+      }
+    ],
+    "funnels": [],
+    "controllerServices": [],
+    "defaultFlowFileExpiration": "0 sec",
+    "defaultBackPressureObjectThreshold": 10000,
+    "defaultBackPressureDataSizeThreshold": "1 GB",
+    "scheduledState": "ENABLED",
+    "executionEngine": "INHERITED",
+    "maxConcurrentTasks": 1,
+    "statelessFlowTimeout": "1 min",
+    "flowFileConcurrency": "UNBOUNDED",
+    "flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
+    "componentType": "PROCESS_GROUP"
+  },
+  "externalControllerServices": {
+    "1e207816-ca56-38af-8d4f-4408c7fc579f": {
+      "identifier": "1e207816-ca56-38af-8d4f-4408c7fc579f",
+      "name": "JsonRecordSetWriter_NDJSON"
+    },
+    "6f352988-b5e5-3e19-882e-66fca64f6ea1": {
+      "identifier": "6f352988-b5e5-3e19-882e-66fca64f6ea1",
+      "name": "MongoDBControllerService"
+    },
+    "74888e3f-4e6e-3a48-b543-c2162080cfa1": {
+      "identifier": "74888e3f-4e6e-3a48-b543-c2162080cfa1",
+      "name": "DBCPConnectionPool_MariaDB"
+    },
+    "f0cb7f47-a0e5-3e6e-8c48-c28b0792890c": {
+      "identifier": "f0cb7f47-a0e5-3e6e-8c48-c28b0792890c",
+      "name": "JsonTreeReader"
+    }
+  },
+  "parameterContexts": {},
+  "flowEncodingVersion": "1.0",
+  "parameterProviders": {},
+  "latest": false
+}

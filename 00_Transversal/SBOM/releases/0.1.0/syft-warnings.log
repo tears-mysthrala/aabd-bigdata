@@ -1,0 +1,4 @@
+[0000]  WARN no explicit name and version provided for directory source, deriving artifact ID from the given path (which is not ideal)
+[0049] ERROR unable to parse yarn v2 package key key=__metadata
+[0049] ERROR unable to parse yarn v2 package key key=__metadata
+[0050] ERROR unable to parse yarn v2 package key key=__metadata

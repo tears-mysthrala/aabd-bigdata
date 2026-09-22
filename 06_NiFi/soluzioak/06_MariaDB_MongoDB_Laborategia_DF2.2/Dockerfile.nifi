@@ -1,0 +1,14 @@
+# NiFi de laboratorio con el driver JDBC horneado en la imagen.
+# Motivo: antes el .jar se montaba con bind y el .sql de init estaba
+# colgado del servicio equivocado. Con esto el re-despliegue es
+# `docker compose up --build -d` y el driver siempre está en la misma ruta
+# que espera la doc (DBCPConnectionPool -> /opt/mysql-connector-j-8.0.31.jar).
+FROM apache/nifi:2.0.0
+
+USER root
+
+COPY mysql-connector-j-8.0.31.jar /opt/mysql-connector-j-8.0.31.jar
+RUN chmod 644 /opt/mysql-connector-j-8.0.31.jar \
+    && (chown nifi:nifi /opt/mysql-connector-j-8.0.31.jar || true)
+
+USER nifi

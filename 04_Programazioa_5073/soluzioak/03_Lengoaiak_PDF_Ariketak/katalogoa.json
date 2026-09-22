@@ -1,0 +1,37 @@
+[
+  {
+    "id": 101,
+    "izena": "Esne Osoa 1L",
+    "kategoria": "Elikadura",
+    "prezioa": 1.15,
+    "stock": 250
+  },
+  {
+    "id": 102,
+    "izena": "Oliba Olio Birjina 1L",
+    "kategoria": "Elikadura",
+    "prezioa": 8.9,
+    "stock": 80
+  },
+  {
+    "id": 103,
+    "izena": "Garbigarri Ekologikoa",
+    "kategoria": "Garbiketa",
+    "prezioa": 3.45,
+    "stock": 45
+  },
+  {
+    "id": 104,
+    "izena": "Hortzetako Pasta",
+    "kategoria": "Higienea",
+    "prezioa": 2.2,
+    "stock": 120
+  },
+  {
+    "id": 105,
+    "izena": "Sagar Gorriak 1kg",
+    "kategoria": "Frutak",
+    "prezioa": 2.1,
+    "stock": 190
+  }
+]

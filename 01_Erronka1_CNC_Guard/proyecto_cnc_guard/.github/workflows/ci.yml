@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025, macos-15]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: '3.13.13'
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install locked environment
+        run: uv sync --locked --managed-python
+
+      - name: Run smoke test
+        run: uv run --locked python scripts/verify_setup.py
+
+      - name: Run unit tests
+        run: uv run --locked pytest -q
+
+      - name: Check Ruff
+        run: uv run --locked ruff check src scripts tests
+
+      - name: Check formatting
+        run: uv run --locked ruff format --check src scripts tests
+
+      - name: Validate notebook
+        run: >-
+          uv run --locked python -c "import nbformat;
+          nbformat.validate(nbformat.read('00_verificacion_entorno.ipynb', as_version=4))"
+
+      - name: Execute verification notebook
+        run: >-
+          uv run --locked jupyter nbconvert --to notebook --execute
+          00_verificacion_entorno.ipynb --output 00_verificacion_entorno.ejecutado.ipynb
+          --output-dir reports --ExecutePreprocessor.kernel_name=cnc-guard
+          --ExecutePreprocessor.timeout=600
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: validation-${{ matrix.os }}
+          path: |
+            reports/environment.json
+            reports/00_verificacion_entorno.ejecutado.ipynb
+          if-no-files-found: ignore
+          retention-days: 14

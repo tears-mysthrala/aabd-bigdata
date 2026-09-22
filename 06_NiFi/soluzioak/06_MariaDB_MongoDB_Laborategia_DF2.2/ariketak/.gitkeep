@@ -1,0 +1,3 @@
+# Directorio de trabajo NiFi <-> host.
+# Montado en /opt/nifi/ariketak dentro del contenedor.
+# Dejar los ficheros de intercambio de las prácticas aquí.

@@ -1,0 +1,28 @@
+# Entornos, cachés y dependencias (regenerables con uv)
+.venv/
+.venv_data/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+
+# Secretos: NUNCA se versionan (ver SECURITY.md)
+.env
+*.key
+*.srl
+*.p12
+*.pfx
+
+# Restos locales pesados / personales
+04_Programazioa_5073/data/_legacy_root/
+**/test_env/
+mock_log.jsonl
+.DS_Store
+Thumbs.db
+
+# NOTA: no se ignora historial.bundle (evidencia del ejercicio Git 4.4),
+# ni SBOM/ (evidencia de cumplimiento), ni las evidencias bronze/silver/gold.

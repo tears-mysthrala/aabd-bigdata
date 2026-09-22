@@ -1,0 +1,138 @@
+# Laborategia: MySQL (retail_db) -> NiFi -> MongoDB.
+# Uso:
+#   cp .env.example .env   # y cambia las contraseñas
+#   ./redeploy.sh           # o: docker compose up --build -d
+# UI NiFi: https://localhost:8443/nifi  (usuario/clave de .env)
+name: iabd-nifi-lab
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: iabd-mysql-nifi
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Madrid
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?pon MYSQL_ROOT_PASSWORD en .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-retail_db}
+      MYSQL_USER: ${MYSQL_USER:-iabd}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?pon MYSQL_PASSWORD en .env}
+    ports:
+      - "127.0.0.1:${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      # Init de la BD: el dump (sin CREATE DATABASE ni USE) se ejecuta
+      # contra $MYSQL_DATABASE al arrancar el contenedor por primera vez.
+      # Solo se ejecuta con el volumen mysql-data vacío.
+      - ./create_db.sql:/docker-entrypoint-initdb.d/01-retail_db.sql:ro
+    networks:
+      - iabd-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  mongodb:
+    image: mongo:7.0
+    container_name: iabd-mongodb-nifi
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${MONGO_PORT:-27017}:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - iabd-net
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  nifi:
+    build:
+      context: .
+      dockerfile: Dockerfile.nifi
+    image: iabd-nifi:2.0.0-local
+    container_name: iabd-nifi
+    hostname: nifi
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    environment:
+      SINGLE_USER_CREDENTIALS_USERNAME: ${NIFI_USER:-nifi}
+      SINGLE_USER_CREDENTIALS_PASSWORD: ${NIFI_PASSWORD:?pon NIFI_PASSWORD en .env (min. 12 caracteres)}
+      NIFI_JVM_HEAP_MAX: ${NIFI_HEAP_MAX:-2g}
+      NIFI_SENSITIVE_PROPS_KEY: ${NIFI_SENSITIVE_PROPS_KEY:?pon NIFI_SENSITIVE_PROPS_KEY en .env}
+      NIFI_WEB_HTTPS_HOST: "0.0.0.0"
+      NIFI_WEB_PROXY_HOST: "${NIFI_PROXY_HOST:-nifi.bigdata.local:443,nifi.bigdata.local,localhost:8443,localhost,127.0.0.1:8443,127.0.0.1}"
+    ports:
+      # Acceso directo local (reserva); la vía normal es https://nifi.bigdata.local
+      - "127.0.0.1:${NIFI_HTTPS_PORT:-8443}:8443"
+    volumes:
+      - nifi-database-repository:/opt/nifi/nifi-current/database_repository
+      - nifi-flowfile-repository:/opt/nifi/nifi-current/flowfile_repository
+      - nifi-content-repository:/opt/nifi/nifi-current/content_repository
+      - nifi-provenance-repository:/opt/nifi/nifi-current/provenance_repository
+      - nifi-state:/opt/nifi/nifi-current/state
+      - nifi-logs:/opt/nifi/nifi-current/logs
+      - ./ariketak:/opt/nifi/ariketak
+    networks:
+      - iabd-net
+    healthcheck:
+      # /nifi responde 200 sin auth; resolve garantiza SNI=localhost y enlace correcto a la IP
+      test: ["CMD-SHELL", "curl -kf https://localhost:8443/nifi/ --resolve localhost:8443:127.0.0.1 --resolve localhost:8443:$$(hostname -i 2>/dev/null || echo 127.0.0.1) || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 24
+      start_period: 60s
+
+  nginx:
+    image: nginx:1.28
+    container_name: iabd-nginx-nifi
+    restart: unless-stopped
+    depends_on:
+      nifi:
+        condition: service_healthy
+    ports:
+      - "${NGINX_HTTP_PORT:-80}:80"
+      - "${NGINX_HTTPS_PORT:-443}:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/bigdata.conf:ro
+      - ./certs/bigdata.local.crt:/etc/nginx/certs/bigdata.local.crt:ro
+      - ./certs/bigdata.local.key:/etc/nginx/certs/bigdata.local.key:ro
+    networks:
+      - iabd-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -kf -L -H 'Host: nifi.bigdata.local' https://127.0.0.1/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+
+networks:
+  iabd-net:
+    name: iabd-nifi-lab-net
+    driver: bridge
+
+volumes:
+  mysql-data:
+    name: iabd-mysql-data
+  mongo-data:
+    name: iabd-mongo-data
+  nifi-database-repository:
+    name: iabd-nifi-database-repository
+  nifi-flowfile-repository:
+    name: iabd-nifi-flowfile-repository
+  nifi-content-repository:
+    name: iabd-nifi-content-repository
+  nifi-provenance-repository:
+    name: iabd-nifi-provenance-repository
+  nifi-state:
+    name: iabd-nifi-state
+  nifi-logs:
+    name: iabd-nifi-logs

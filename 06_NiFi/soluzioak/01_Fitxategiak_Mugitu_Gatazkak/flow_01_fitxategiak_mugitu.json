@@ -1,0 +1,633 @@
+{
+  "flowContents": {
+    "identifier": "5414ce6d-a5db-3707-b1be-ffaf12cb339b",
+    "instanceIdentifier": "b40114f5-01a0-1000-b940-fcc16bbab079",
+    "name": "01_Fitxategiak_Mugitu_Gatazkak",
+    "comments": "Apache NiFi 1. Kasua: Fitxategiak mugitu sarrera -> irteera eta gatazkak kudeatu timestamp bidez",
+    "position": {
+      "x": 100.0,
+      "y": 100.0
+    },
+    "processGroups": [],
+    "remoteProcessGroups": [],
+    "processors": [
+      {
+        "identifier": "da5f4265-d9b6-3a63-8f94-5818f2f9f40a",
+        "instanceIdentifier": "b40115e1-01a0-1000-ef9e-9031c75533bd",
+        "name": "UpdateAttribute",
+        "comments": "3. Gatazketan izen unikoa sortu timestamp erantsiz: ${now():toNumber()}-${filename}",
+        "position": {
+          "x": 550.0,
+          "y": 460.0
+        },
+        "type": "org.apache.nifi.processors.attributes.UpdateAttribute",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-update-attribute-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Delete Attributes Expression": null,
+          "filename": "${now():toNumber()}-${filename}",
+          "Store State": "Do not store state",
+          "Cache Value Lookup Cache Size": "100",
+          "Stateful Variables Initial Value": null
+        },
+        "propertyDescriptors": {
+          "Delete Attributes Expression": {
+            "name": "Delete Attributes Expression",
+            "displayName": "Delete Attributes Expression",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "filename": {
+            "name": "filename",
+            "displayName": "filename",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": true
+          },
+          "Store State": {
+            "name": "Store State",
+            "displayName": "Store State",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Cache Value Lookup Cache Size": {
+            "name": "Cache Value Lookup Cache Size",
+            "displayName": "Cache Value Lookup Cache Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Stateful Variables Initial Value": {
+            "name": "Stateful Variables Initial Value",
+            "displayName": "Stateful Variables Initial Value",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 25,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "5414ce6d-a5db-3707-b1be-ffaf12cb339b"
+      },
+      {
+        "identifier": "992a7713-c903-36f3-9478-cff71abbaf06",
+        "instanceIdentifier": "b40116ac-01a0-1000-f556-bc4bb69382b0",
+        "name": "GatazkaFitxategiaMugitu",
+        "comments": "4. Berrizendatutako fitxategia gatazkak karpetan gorde (/irteera/gatazkak).",
+        "position": {
+          "x": 1000.0,
+          "y": 460.0
+        },
+        "type": "org.apache.nifi.processors.standard.PutFile",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Group": null,
+          "Owner": null,
+          "Create Missing Directories": "true",
+          "Permissions": null,
+          "Maximum File Count": null,
+          "Last Modified Time": null,
+          "File Resource Service": null,
+          "Directory": "/opt/nifi/ariketak/01-ariketa-getfile-putfile/irteera/gatazkak",
+          "Conflict Resolution Strategy": "fail"
+        },
+        "propertyDescriptors": {
+          "Group": {
+            "name": "Group",
+            "displayName": "Group",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Owner": {
+            "name": "Owner",
+            "displayName": "Owner",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Create Missing Directories": {
+            "name": "Create Missing Directories",
+            "displayName": "Create Missing Directories",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Permissions": {
+            "name": "Permissions",
+            "displayName": "Permissions",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Resource Transfer Source": {
+            "name": "Resource Transfer Source",
+            "displayName": "Resource Transfer Source",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum File Count": {
+            "name": "Maximum File Count",
+            "displayName": "Maximum File Count",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Last Modified Time": {
+            "name": "Last Modified Time",
+            "displayName": "Last Modified Time",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "File Resource Service": {
+            "name": "File Resource Service",
+            "displayName": "File Resource Service",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Directory": {
+            "name": "Directory",
+            "displayName": "Directory",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Conflict Resolution Strategy": {
+            "name": "Conflict Resolution Strategy",
+            "displayName": "Conflict Resolution Strategy",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "success",
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "5414ce6d-a5db-3707-b1be-ffaf12cb339b"
+      },
+      {
+        "identifier": "15dea3d3-cead-30ba-8396-35d3f822aba8",
+        "instanceIdentifier": "b4011539-01a0-1000-1a90-89c383f071be",
+        "name": "FitxategiaEskuratu",
+        "comments": "1. Sarrerako fitxategiak irakurri (/sarrera). Keep Source File=false.",
+        "position": {
+          "x": 100.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.GetFile",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Keep Source File": "false",
+          "Minimum File Age": "0 sec",
+          "Polling Interval": "0 sec",
+          "Input Directory": "/opt/nifi/ariketak/01-ariketa-getfile-putfile/sarrera",
+          "Maximum File Age": null,
+          "Batch Size": "10",
+          "Maximum File Size": null,
+          "Minimum File Size": "0 B",
+          "Ignore Hidden Files": "true",
+          "Recurse Subdirectories": "true",
+          "File Filter": "[^\\.].*",
+          "Path Filter": null
+        },
+        "propertyDescriptors": {
+          "Keep Source File": {
+            "name": "Keep Source File",
+            "displayName": "Keep Source File",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Minimum File Age": {
+            "name": "Minimum File Age",
+            "displayName": "Minimum File Age",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Polling Interval": {
+            "name": "Polling Interval",
+            "displayName": "Polling Interval",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Input Directory": {
+            "name": "Input Directory",
+            "displayName": "Input Directory",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum File Age": {
+            "name": "Maximum File Age",
+            "displayName": "Maximum File Age",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Batch Size": {
+            "name": "Batch Size",
+            "displayName": "Batch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum File Size": {
+            "name": "Maximum File Size",
+            "displayName": "Maximum File Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Minimum File Size": {
+            "name": "Minimum File Size",
+            "displayName": "Minimum File Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Ignore Hidden Files": {
+            "name": "Ignore Hidden Files",
+            "displayName": "Ignore Hidden Files",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Recurse Subdirectories": {
+            "name": "Recurse Subdirectories",
+            "displayName": "Recurse Subdirectories",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "File Filter": {
+            "name": "File Filter",
+            "displayName": "File Filter",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Path Filter": {
+            "name": "Path Filter",
+            "displayName": "Path Filter",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "5414ce6d-a5db-3707-b1be-ffaf12cb339b"
+      },
+      {
+        "identifier": "f67c95f0-1327-39d5-a0ec-afd07595d552",
+        "instanceIdentifier": "b40115c4-01a0-1000-3110-45e76e4fa023",
+        "name": "FitxategiaJarri",
+        "comments": "2. Helmugan idatzi (/irteera). Izena badago -> failure bideratu.",
+        "position": {
+          "x": 550.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.PutFile",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Group": null,
+          "Owner": null,
+          "Create Missing Directories": "true",
+          "Permissions": null,
+          "Maximum File Count": null,
+          "Last Modified Time": null,
+          "File Resource Service": null,
+          "Directory": "/opt/nifi/ariketak/01-ariketa-getfile-putfile/irteera",
+          "Conflict Resolution Strategy": "fail"
+        },
+        "propertyDescriptors": {
+          "Group": {
+            "name": "Group",
+            "displayName": "Group",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Owner": {
+            "name": "Owner",
+            "displayName": "Owner",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Create Missing Directories": {
+            "name": "Create Missing Directories",
+            "displayName": "Create Missing Directories",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Permissions": {
+            "name": "Permissions",
+            "displayName": "Permissions",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Resource Transfer Source": {
+            "name": "Resource Transfer Source",
+            "displayName": "Resource Transfer Source",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum File Count": {
+            "name": "Maximum File Count",
+            "displayName": "Maximum File Count",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Last Modified Time": {
+            "name": "Last Modified Time",
+            "displayName": "Last Modified Time",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "File Resource Service": {
+            "name": "File Resource Service",
+            "displayName": "File Resource Service",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Directory": {
+            "name": "Directory",
+            "displayName": "Directory",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Conflict Resolution Strategy": {
+            "name": "Conflict Resolution Strategy",
+            "displayName": "Conflict Resolution Strategy",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "success"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "5414ce6d-a5db-3707-b1be-ffaf12cb339b"
+      }
+    ],
+    "inputPorts": [],
+    "outputPorts": [],
+    "connections": [
+      {
+        "identifier": "b0b67800-baf1-3581-b19d-258bc56cad89",
+        "instanceIdentifier": "b4011715-01a0-1000-7de9-2925900ad98c",
+        "name": "PutFile1 to UpdateAttribute (failure)",
+        "source": {
+          "id": "f67c95f0-1327-39d5-a0ec-afd07595d552",
+          "type": "PROCESSOR",
+          "groupId": "5414ce6d-a5db-3707-b1be-ffaf12cb339b",
+          "name": "FitxategiaJarri",
+          "comments": "",
+          "instanceIdentifier": "b40115c4-01a0-1000-3110-45e76e4fa023"
+        },
+        "destination": {
+          "id": "da5f4265-d9b6-3a63-8f94-5818f2f9f40a",
+          "type": "PROCESSOR",
+          "groupId": "5414ce6d-a5db-3707-b1be-ffaf12cb339b",
+          "name": "UpdateAttribute",
+          "comments": "",
+          "instanceIdentifier": "b40115e1-01a0-1000-ef9e-9031c75533bd"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "failure"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "5414ce6d-a5db-3707-b1be-ffaf12cb339b"
+      },
+      {
+        "identifier": "34413ff2-6b36-34c5-ab29-6fa9f7654349",
+        "instanceIdentifier": "b40116cb-01a0-1000-0fb0-71e616f4febe",
+        "name": "GetFile to PutFile1",
+        "source": {
+          "id": "15dea3d3-cead-30ba-8396-35d3f822aba8",
+          "type": "PROCESSOR",
+          "groupId": "5414ce6d-a5db-3707-b1be-ffaf12cb339b",
+          "name": "FitxategiaEskuratu",
+          "comments": "",
+          "instanceIdentifier": "b4011539-01a0-1000-1a90-89c383f071be"
+        },
+        "destination": {
+          "id": "f67c95f0-1327-39d5-a0ec-afd07595d552",
+          "type": "PROCESSOR",
+          "groupId": "5414ce6d-a5db-3707-b1be-ffaf12cb339b",
+          "name": "FitxategiaJarri",
+          "comments": "",
+          "instanceIdentifier": "b40115c4-01a0-1000-3110-45e76e4fa023"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "5414ce6d-a5db-3707-b1be-ffaf12cb339b"
+      },
+      {
+        "identifier": "3c7cdf2a-d7a8-39af-a892-38f0b0cd2316",
+        "instanceIdentifier": "b401172c-01a0-1000-3b7f-27f9e672377c",
+        "name": "UpdateAttribute to PutFile2",
+        "source": {
+          "id": "da5f4265-d9b6-3a63-8f94-5818f2f9f40a",
+          "type": "PROCESSOR",
+          "groupId": "5414ce6d-a5db-3707-b1be-ffaf12cb339b",
+          "name": "UpdateAttribute",
+          "comments": "",
+          "instanceIdentifier": "b40115e1-01a0-1000-ef9e-9031c75533bd"
+        },
+        "destination": {
+          "id": "992a7713-c903-36f3-9478-cff71abbaf06",
+          "type": "PROCESSOR",
+          "groupId": "5414ce6d-a5db-3707-b1be-ffaf12cb339b",
+          "name": "GatazkaFitxategiaMugitu",
+          "comments": "",
+          "instanceIdentifier": "b40116ac-01a0-1000-f556-bc4bb69382b0"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "5414ce6d-a5db-3707-b1be-ffaf12cb339b"
+      }
+    ],
+    "labels": [
+      {
+        "identifier": "master-flow_01_fitxategiak_mugitu.json",
+        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \ud83d\udcc1 LABORATEGIA 01: FITXATEGIEN TRANSFERENTZIA ETA GATAZKA KUDEAKETA                                      \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura: /sarrera monitorizatu \u2794 /irteera karpetara eraman \u2794 Bikoiztua bada, timestamp gehituz /gatazkak karpetan gorde",
+        "position": {
+          "x": 60.0,
+          "y": 15.0
+        },
+        "width": 1350.0,
+        "height": 75.0,
+        "style": {
+          "background-color": "#eaf2f8",
+          "font-size": "12pt"
+        }
+      },
+      {
+        "identifier": "stage-0-flow_01_fitxategiak_mugitu.json",
+        "label": "\ud83d\udfe2 1. BIDERATZE ARRUNTA (SARRERA \u2794 IRTEERA ZUZENA)",
+        "position": {
+          "x": 80.0,
+          "y": 105.0
+        },
+        "width": 840.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#d5f5e3",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-1-flow_01_fitxategiak_mugitu.json",
+        "label": "\u26a0\ufe0f 2. GATAZKA ADARRA (FITXATEGI BIKOIZTUAK BERRIZENDATU & GORDE)",
+        "position": {
+          "x": 530.0,
+          "y": 390.0
+        },
+        "width": 840.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#fcf3cf",
+          "font-size": "11pt"
+        }
+      }
+    ],
+    "funnels": [],
+    "controllerServices": [],
+    "defaultFlowFileExpiration": "0 sec",
+    "defaultBackPressureObjectThreshold": 10000,
+    "defaultBackPressureDataSizeThreshold": "1 GB",
+    "scheduledState": "ENABLED",
+    "executionEngine": "INHERITED",
+    "maxConcurrentTasks": 1,
+    "statelessFlowTimeout": "1 min",
+    "flowFileConcurrency": "UNBOUNDED",
+    "flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
+    "componentType": "PROCESS_GROUP"
+  },
+  "externalControllerServices": {},
+  "parameterContexts": {},
+  "flowEncodingVersion": "1.0",
+  "parameterProviders": {},
+  "latest": false
+}

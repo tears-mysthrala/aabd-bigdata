@@ -1,0 +1,529 @@
+{
+  "flowContents": {
+    "identifier": "939edf16-f77a-39cc-8291-dfc61e986556",
+    "instanceIdentifier": "b40e339f-01a0-1000-356c-d4408ae90c7a",
+    "name": "6kasua_classic",
+    "comments": "DF2.2 Ariketa: 6. Kasua - 1. Aldaera Klasikoa (ExecuteSQLRecord + SplitText + PutMongo)",
+    "position": {
+      "x": 400.0,
+      "y": 600.0
+    },
+    "processGroups": [],
+    "remoteProcessGroups": [],
+    "processors": [
+      {
+        "identifier": "569e8a83-a0f2-372f-aac5-253a9cbb2746",
+        "instanceIdentifier": "b40e33f3-01a0-1000-dd61-8ce5138deb37",
+        "name": "PutMongo_Classic",
+        "comments": "3. FlowFile bakoitza banan-banan MongoDB customers_classic bilduman txertatu.",
+        "position": {
+          "x": 1000.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.mongodb.PutMongo",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-mongodb-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Upsert": "false",
+          "Update Query Key": null,
+          "Update Method": "one",
+          "Mode": "insert",
+          "Mongo Collection Name": "6kasua-classic",
+          "Mongo Database Name": "iabd",
+          "Character Set": "UTF-8",
+          "mongo-client-service": "6f352988-b5e5-3e19-882e-66fca64f6ea1",
+          "put-mongo-update-mode": "doc",
+          "putmongo-update-query": null
+        },
+        "propertyDescriptors": {
+          "Upsert": {
+            "name": "Upsert",
+            "displayName": "Upsert",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Update Query Key": {
+            "name": "Update Query Key",
+            "displayName": "Update Query Key",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Update Method": {
+            "name": "Update Method",
+            "displayName": "Update Method",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Mode": {
+            "name": "Mode",
+            "displayName": "Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Update Mode": {
+            "name": "Update Mode",
+            "displayName": "Update Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Mongo Collection Name": {
+            "name": "Mongo Collection Name",
+            "displayName": "Mongo Collection Name",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Mongo Database Name": {
+            "name": "Mongo Database Name",
+            "displayName": "Mongo Database Name",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Client Service": {
+            "name": "Client Service",
+            "displayName": "Client Service",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Update Query": {
+            "name": "Update Query",
+            "displayName": "Update Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Character Set": {
+            "name": "Character Set",
+            "displayName": "Character Set",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "success",
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "939edf16-f77a-39cc-8291-dfc61e986556"
+      },
+      {
+        "identifier": "c854f58e-72b6-3982-bc5b-ae2d04f8c642",
+        "instanceIdentifier": "b40e33c1-01a0-1000-8d7e-70bf58ab25a7",
+        "name": "ExecuteSQLRecord_Customers",
+        "comments": "1. MariaDB datu-basetik 12.435 bezero atera SQL bidez.",
+        "position": {
+          "x": 100.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.ExecuteSQLRecord",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Set Auto Commit": "true",
+          "Max Wait Time": "0 seconds",
+          "SQL Query": "SELECT * FROM customers LIMIT 100",
+          "Normalize Table/Column Names": "false",
+          "Database Connection Pooling Service": "74888e3f-4e6e-3a48-b543-c2162080cfa1",
+          "SQL Post-Query": null,
+          "Fetch Size": "0",
+          "Output Batch Size": "0",
+          "Use Avro Logical Types": "false",
+          "SQL Pre-Query": null,
+          "Max Rows Per FlowFile": "0",
+          "esqlrecord-record-writer": "1e207816-ca56-38af-8d4f-4408c7fc579f",
+          "dbf-default-precision": "10",
+          "dbf-default-scale": "0"
+        },
+        "propertyDescriptors": {
+          "Set Auto Commit": {
+            "name": "Set Auto Commit",
+            "displayName": "Set Auto Commit",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Max Wait Time": {
+            "name": "Max Wait Time",
+            "displayName": "Max Wait Time",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Query": {
+            "name": "SQL Query",
+            "displayName": "SQL Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Normalize Table/Column Names": {
+            "name": "Normalize Table/Column Names",
+            "displayName": "Normalize Table/Column Names",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Database Connection Pooling Service": {
+            "name": "Database Connection Pooling Service",
+            "displayName": "Database Connection Pooling Service",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Default Decimal Scale": {
+            "name": "Default Decimal Scale",
+            "displayName": "Default Decimal Scale",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Post-Query": {
+            "name": "SQL Post-Query",
+            "displayName": "SQL Post-Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Fetch Size": {
+            "name": "Fetch Size",
+            "displayName": "Fetch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Output Batch Size": {
+            "name": "Output Batch Size",
+            "displayName": "Output Batch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Use Avro Logical Types": {
+            "name": "Use Avro Logical Types",
+            "displayName": "Use Avro Logical Types",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Record Writer": {
+            "name": "Record Writer",
+            "displayName": "Record Writer",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Pre-Query": {
+            "name": "SQL Pre-Query",
+            "displayName": "SQL Pre-Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Default Decimal Precision": {
+            "name": "Default Decimal Precision",
+            "displayName": "Default Decimal Precision",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Max Rows Per FlowFile": {
+            "name": "Max Rows Per FlowFile",
+            "displayName": "Max Rows Per FlowFile",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "939edf16-f77a-39cc-8291-dfc61e986556"
+      },
+      {
+        "identifier": "f4029037-9565-3ff0-a31b-729f4fbc565b",
+        "instanceIdentifier": "b40e33da-01a0-1000-2af8-24f0dd735eec",
+        "name": "SplitText_Lines",
+        "comments": "2. Fitxategia lerroz lerro zatitu (12.435 FlowFile sortzen dira ilaran!).",
+        "position": {
+          "x": 550.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.SplitText",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Remove Trailing Newlines": "true",
+          "Maximum Fragment Size": null,
+          "Header Line Marker Characters": null,
+          "Header Line Count": "0",
+          "Line Split Count": "1"
+        },
+        "propertyDescriptors": {
+          "Remove Trailing Newlines": {
+            "name": "Remove Trailing Newlines",
+            "displayName": "Remove Trailing Newlines",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum Fragment Size": {
+            "name": "Maximum Fragment Size",
+            "displayName": "Maximum Fragment Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Header Line Marker Characters": {
+            "name": "Header Line Marker Characters",
+            "displayName": "Header Line Marker Characters",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Header Line Count": {
+            "name": "Header Line Count",
+            "displayName": "Header Line Count",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Line Split Count": {
+            "name": "Line Split Count",
+            "displayName": "Line Split Count",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "original",
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "939edf16-f77a-39cc-8291-dfc61e986556"
+      }
+    ],
+    "inputPorts": [],
+    "outputPorts": [],
+    "connections": [
+      {
+        "identifier": "5cd866d1-6b94-3893-b1d9-4c9e6a5081fa",
+        "instanceIdentifier": "b40e3419-01a0-1000-4c86-9ee0be87b0b5",
+        "name": "SplitText to PutMongo",
+        "source": {
+          "id": "f4029037-9565-3ff0-a31b-729f4fbc565b",
+          "type": "PROCESSOR",
+          "groupId": "939edf16-f77a-39cc-8291-dfc61e986556",
+          "name": "SplitText_Lines",
+          "comments": "",
+          "instanceIdentifier": "b40e33da-01a0-1000-2af8-24f0dd735eec"
+        },
+        "destination": {
+          "id": "569e8a83-a0f2-372f-aac5-253a9cbb2746",
+          "type": "PROCESSOR",
+          "groupId": "939edf16-f77a-39cc-8291-dfc61e986556",
+          "name": "PutMongo_Classic",
+          "comments": "",
+          "instanceIdentifier": "b40e33f3-01a0-1000-dd61-8ce5138deb37"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "splits"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "939edf16-f77a-39cc-8291-dfc61e986556"
+      },
+      {
+        "identifier": "53b6b4b6-f889-38f7-815a-91e9dad4add5",
+        "instanceIdentifier": "b40e3406-01a0-1000-12fb-20425b57b58c",
+        "name": "SQL to SplitText",
+        "source": {
+          "id": "c854f58e-72b6-3982-bc5b-ae2d04f8c642",
+          "type": "PROCESSOR",
+          "groupId": "939edf16-f77a-39cc-8291-dfc61e986556",
+          "name": "ExecuteSQLRecord_Customers",
+          "comments": "",
+          "instanceIdentifier": "b40e33c1-01a0-1000-8d7e-70bf58ab25a7"
+        },
+        "destination": {
+          "id": "f4029037-9565-3ff0-a31b-729f4fbc565b",
+          "type": "PROCESSOR",
+          "groupId": "939edf16-f77a-39cc-8291-dfc61e986556",
+          "name": "SplitText_Lines",
+          "comments": "",
+          "instanceIdentifier": "b40e33da-01a0-1000-2af8-24f0dd735eec"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "939edf16-f77a-39cc-8291-dfc61e986556"
+      }
+    ],
+    "labels": [
+      {
+        "identifier": "master-flow_06_mariadb_mongodb_classic.json",
+        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \ud83d\uddc4\ufe0f LABORATEGIA 06: MARIADB (SQL) \u2794 MONGODB (NOSQL) - KASU 6: KLASIKOA (DF 2.2)                          \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura Klasikoa: SQL kontsulta \u2794 12.435 FlowFile sortu SplitText bidez \u2794 Banan-banan MongoDB-n txertatu (I/O eta CPU astuna)",
+        "position": {
+          "x": 60.0,
+          "y": 15.0
+        },
+        "width": 1350.0,
+        "height": 75.0,
+        "style": {
+          "background-color": "#fadbd8",
+          "font-size": "12pt"
+        }
+      },
+      {
+        "identifier": "stage-0-flow_06_mariadb_mongodb_classic.json",
+        "label": "\ud83d\udc2c 1. MARIADB SQL (DBCP POOL)",
+        "position": {
+          "x": 80.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#d6eaf8",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-1-flow_06_mariadb_mongodb_classic.json",
+        "label": "\u2702\ufe0f 2. TESTU ZATIKETA (12.435 FLOWFILE ILARAN)",
+        "position": {
+          "x": 530.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#fadbd8",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-2-flow_06_mariadb_mongodb_classic.json",
+        "label": "\ud83c\udf43 3. MONGODB TXERTAKETA BANAN-BANAN",
+        "position": {
+          "x": 980.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#f9ebea",
+          "font-size": "11pt"
+        }
+      }
+    ],
+    "funnels": [],
+    "controllerServices": [],
+    "defaultFlowFileExpiration": "0 sec",
+    "defaultBackPressureObjectThreshold": 10000,
+    "defaultBackPressureDataSizeThreshold": "1 GB",
+    "scheduledState": "ENABLED",
+    "executionEngine": "INHERITED",
+    "maxConcurrentTasks": 1,
+    "statelessFlowTimeout": "1 min",
+    "flowFileConcurrency": "UNBOUNDED",
+    "flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
+    "componentType": "PROCESS_GROUP"
+  },
+  "externalControllerServices": {
+    "1e207816-ca56-38af-8d4f-4408c7fc579f": {
+      "identifier": "1e207816-ca56-38af-8d4f-4408c7fc579f",
+      "name": "JsonRecordSetWriter_NDJSON"
+    },
+    "6f352988-b5e5-3e19-882e-66fca64f6ea1": {
+      "identifier": "6f352988-b5e5-3e19-882e-66fca64f6ea1",
+      "name": "MongoDBControllerService"
+    },
+    "74888e3f-4e6e-3a48-b543-c2162080cfa1": {
+      "identifier": "74888e3f-4e6e-3a48-b543-c2162080cfa1",
+      "name": "DBCPConnectionPool_MariaDB"
+    }
+  },
+  "parameterContexts": {},
+  "flowEncodingVersion": "1.0",
+  "parameterProviders": {},
+  "latest": false
+}

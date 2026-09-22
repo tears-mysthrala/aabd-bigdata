@@ -1,0 +1,4 @@
+[core]
+    remote = lokala
+['remote "lokala"']
+    url = /tmp/dvc-biltegia

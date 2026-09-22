@@ -1,0 +1,14 @@
+# Valores iniciales de planificación; medir y ajustar en el equipo de referencia.
+[resources]
+blas_threads = 1
+model_jobs = 2
+duckdb_threads = 2
+duckdb_memory_limit = "1GB"
+batch_rows = 100000
+random_seed = 42
+
+[model]
+random_forest_trees = 128
+random_forest_max_depth = 12
+isolation_forest_trees = 100
+isolation_forest_max_samples = 256

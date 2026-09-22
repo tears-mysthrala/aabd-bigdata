@@ -1,0 +1,6 @@
+*.py text eol=lf
+*.toml text eol=lf
+*.md text eol=lf
+*.ipynb text eol=lf
+uv.lock text eol=lf
+.python-version text eol=lf

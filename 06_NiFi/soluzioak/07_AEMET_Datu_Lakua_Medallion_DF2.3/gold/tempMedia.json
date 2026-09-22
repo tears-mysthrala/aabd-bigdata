@@ -1,0 +1,23 @@
+[
+  {
+    "hiria":"Bilbo",
+    "fecha":"2026-09-22_08-03-30",
+    "tenperatura":15.93,
+    "hezetasuna":60.33,
+    "presioa":1009
+  },
+  {
+    "hiria":"Donostia",
+    "fecha":"2026-09-22_08-04-00",
+    "tenperatura":15.77,
+    "hezetasuna":63.33,
+    "presioa":1010
+  },
+  {
+    "hiria":"Gasteiz",
+    "fecha":"2026-09-22_08-04-30",
+    "tenperatura":15.4,
+    "hezetasuna":63.5,
+    "presioa":1009
+  }
+]

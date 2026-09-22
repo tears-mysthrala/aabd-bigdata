@@ -1,0 +1,1080 @@
+{
+  "flowContents": {
+    "identifier": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896",
+    "instanceIdentifier": "b40545bc-01a0-1000-0776-4d73c307283d",
+    "name": "02_CSV_Datuak_Iragazi_Aldaera3_Optimizatua",
+    "comments": "Apache NiFi 2. Kasua: CSV Iragazketa - 3. Aldaera Optimizatua (SplitRecord gabe, Calcite in-memory streaming)",
+    "position": {
+      "x": 400.0,
+      "y": 100.0
+    },
+    "processGroups": [],
+    "remoteProcessGroups": [],
+    "processors": [
+      {
+        "identifier": "912dc18b-660a-3ff2-a37b-556b89d302d9",
+        "instanceIdentifier": "b40547a1-01a0-1000-3127-635124e71032",
+        "name": "FitxategiaBerrizendatu",
+        "comments": "3. Metadatuak ezarri: fitxategi izena ${filename:substringBeforeLast('.')}_optimizatua.csv.",
+        "position": {
+          "x": 1000.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.attributes.UpdateAttribute",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-update-attribute-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Delete Attributes Expression": null,
+          "filename": "${filename:substringBeforeLast(\".\")}_${uuid}_${now():toNumber()}.csv",
+          "Store State": "Do not store state",
+          "Cache Value Lookup Cache Size": "100",
+          "Stateful Variables Initial Value": null
+        },
+        "propertyDescriptors": {
+          "Delete Attributes Expression": {
+            "name": "Delete Attributes Expression",
+            "displayName": "Delete Attributes Expression",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "filename": {
+            "name": "filename",
+            "displayName": "filename",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": true
+          },
+          "Store State": {
+            "name": "Store State",
+            "displayName": "Store State",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Cache Value Lookup Cache Size": {
+            "name": "Cache Value Lookup Cache Size",
+            "displayName": "Cache Value Lookup Cache Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Stateful Variables Initial Value": {
+            "name": "Stateful Variables Initial Value",
+            "displayName": "Stateful Variables Initial Value",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 25,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896"
+      },
+      {
+        "identifier": "9c2c51bd-ecd5-334d-a7b2-82a7bc2dff24",
+        "instanceIdentifier": "b4054743-01a0-1000-fbd3-3b8703bfbcf0",
+        "name": "SQLkontsulta",
+        "comments": "2. QueryRecord streaming zuzena (fitxategia zatitu gabe): SELECT * WHERE adina >= 18.",
+        "position": {
+          "x": 550.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.QueryRecord",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "FrantziaGehiago1": "SELECT * FROM FLOWFILE WHERE COUNTRY = 'France' and Units > 1",
+          "record-reader": "e3afeac2-3508-3cf3-9aa0-99de93600424",
+          "record-writer": "e4b1c04c-a99d-3ac0-bc4e-53ad35ee4f2f",
+          "include-zero-record-flowfiles": "false",
+          "dbf-default-precision": "10",
+          "dbf-default-scale": "0"
+        },
+        "propertyDescriptors": {
+          "Include Zero Record FlowFiles": {
+            "name": "Include Zero Record FlowFiles",
+            "displayName": "Include Zero Record FlowFiles",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "FrantziaGehiago1": {
+            "name": "FrantziaGehiago1",
+            "displayName": "FrantziaGehiago1",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": true
+          },
+          "Default Decimal Scale": {
+            "name": "Default Decimal Scale",
+            "displayName": "Default Decimal Scale",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Record Writer": {
+            "name": "Record Writer",
+            "displayName": "Record Writer",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Record Reader": {
+            "name": "Record Reader",
+            "displayName": "Record Reader",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Default Decimal Precision": {
+            "name": "Default Decimal Precision",
+            "displayName": "Default Decimal Precision",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "original",
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896"
+      },
+      {
+        "identifier": "3d12a9f5-4180-3d8a-a094-9fa25b676a54",
+        "instanceIdentifier": "b4054687-01a0-1000-3ba7-772aafa9a810",
+        "name": "CSVFitxategiaEskuratu",
+        "comments": "1. Sarrerako CSV fitxategia irakurri (/sarrera karpeta).",
+        "position": {
+          "x": 100.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.GetFile",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Keep Source File": "false",
+          "Minimum File Age": "0 sec",
+          "Polling Interval": "0 sec",
+          "Input Directory": "/opt/nifi/ariketak/02-ariketa-csv-iragazi/sarrera",
+          "Maximum File Age": null,
+          "Batch Size": "10",
+          "Maximum File Size": null,
+          "Minimum File Size": "0 B",
+          "Ignore Hidden Files": "true",
+          "Recurse Subdirectories": "true",
+          "File Filter": "salmentak\\.csv",
+          "Path Filter": null
+        },
+        "propertyDescriptors": {
+          "Keep Source File": {
+            "name": "Keep Source File",
+            "displayName": "Keep Source File",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Minimum File Age": {
+            "name": "Minimum File Age",
+            "displayName": "Minimum File Age",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Polling Interval": {
+            "name": "Polling Interval",
+            "displayName": "Polling Interval",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Input Directory": {
+            "name": "Input Directory",
+            "displayName": "Input Directory",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum File Age": {
+            "name": "Maximum File Age",
+            "displayName": "Maximum File Age",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Batch Size": {
+            "name": "Batch Size",
+            "displayName": "Batch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum File Size": {
+            "name": "Maximum File Size",
+            "displayName": "Maximum File Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Minimum File Size": {
+            "name": "Minimum File Size",
+            "displayName": "Minimum File Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Ignore Hidden Files": {
+            "name": "Ignore Hidden Files",
+            "displayName": "Ignore Hidden Files",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Recurse Subdirectories": {
+            "name": "Recurse Subdirectories",
+            "displayName": "Recurse Subdirectories",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "File Filter": {
+            "name": "File Filter",
+            "displayName": "File Filter",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Path Filter": {
+            "name": "Path Filter",
+            "displayName": "Path Filter",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896"
+      },
+      {
+        "identifier": "9a5ff6bd-5f6b-3c4d-9afe-68fb3c2d6498",
+        "instanceIdentifier": "b40547c9-01a0-1000-f0ec-36ad7c078322",
+        "name": "FitxategiaJarri",
+        "comments": "4. Emaitza /irteera/aldaera3 karpetan gorde FlowFile bakar batean.",
+        "position": {
+          "x": 1450.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.PutFile",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Group": null,
+          "Owner": null,
+          "Create Missing Directories": "true",
+          "Permissions": null,
+          "Maximum File Count": null,
+          "Last Modified Time": null,
+          "File Resource Service": null,
+          "Directory": "/opt/nifi/ariketak/02-ariketa-csv-iragazi/irteera",
+          "Conflict Resolution Strategy": "fail"
+        },
+        "propertyDescriptors": {
+          "Group": {
+            "name": "Group",
+            "displayName": "Group",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Owner": {
+            "name": "Owner",
+            "displayName": "Owner",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Create Missing Directories": {
+            "name": "Create Missing Directories",
+            "displayName": "Create Missing Directories",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Permissions": {
+            "name": "Permissions",
+            "displayName": "Permissions",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Resource Transfer Source": {
+            "name": "Resource Transfer Source",
+            "displayName": "Resource Transfer Source",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Maximum File Count": {
+            "name": "Maximum File Count",
+            "displayName": "Maximum File Count",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Last Modified Time": {
+            "name": "Last Modified Time",
+            "displayName": "Last Modified Time",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "File Resource Service": {
+            "name": "File Resource Service",
+            "displayName": "File Resource Service",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Directory": {
+            "name": "Directory",
+            "displayName": "Directory",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Conflict Resolution Strategy": {
+            "name": "Conflict Resolution Strategy",
+            "displayName": "Conflict Resolution Strategy",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "success",
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896"
+      }
+    ],
+    "inputPorts": [],
+    "outputPorts": [],
+    "connections": [
+      {
+        "identifier": "b208bff7-d32d-3b5a-86f0-6e5680fd1955",
+        "instanceIdentifier": "b40657e3-01a0-1000-9702-fa70078c92a5",
+        "name": "GetFile to QueryRecord",
+        "source": {
+          "id": "3d12a9f5-4180-3d8a-a094-9fa25b676a54",
+          "type": "PROCESSOR",
+          "groupId": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896",
+          "name": "CSVFitxategiaEskuratu",
+          "comments": "",
+          "instanceIdentifier": "b4054687-01a0-1000-3ba7-772aafa9a810"
+        },
+        "destination": {
+          "id": "9c2c51bd-ecd5-334d-a7b2-82a7bc2dff24",
+          "type": "PROCESSOR",
+          "groupId": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896",
+          "name": "SQLkontsulta",
+          "comments": "",
+          "instanceIdentifier": "b4054743-01a0-1000-fbd3-3b8703bfbcf0"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896"
+      },
+      {
+        "identifier": "8e4b246d-d9fa-3894-af31-05687aca7513",
+        "instanceIdentifier": "b4054842-01a0-1000-0825-ad058789d2e3",
+        "name": "QueryRecord to UpdateAttribute",
+        "source": {
+          "id": "9c2c51bd-ecd5-334d-a7b2-82a7bc2dff24",
+          "type": "PROCESSOR",
+          "groupId": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896",
+          "name": "SQLkontsulta",
+          "comments": "",
+          "instanceIdentifier": "b4054743-01a0-1000-fbd3-3b8703bfbcf0"
+        },
+        "destination": {
+          "id": "912dc18b-660a-3ff2-a37b-556b89d302d9",
+          "type": "PROCESSOR",
+          "groupId": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896",
+          "name": "FitxategiaBerrizendatu",
+          "comments": "",
+          "instanceIdentifier": "b40547a1-01a0-1000-3127-635124e71032"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "FrantziaGehiago1"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896"
+      },
+      {
+        "identifier": "866e360f-3d2b-3979-9754-85fa635c580a",
+        "instanceIdentifier": "b4054864-01a0-1000-b645-4a9f5477d1ce",
+        "name": "UpdateAttribute to PutFile",
+        "source": {
+          "id": "912dc18b-660a-3ff2-a37b-556b89d302d9",
+          "type": "PROCESSOR",
+          "groupId": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896",
+          "name": "FitxategiaBerrizendatu",
+          "comments": "",
+          "instanceIdentifier": "b40547a1-01a0-1000-3127-635124e71032"
+        },
+        "destination": {
+          "id": "9a5ff6bd-5f6b-3c4d-9afe-68fb3c2d6498",
+          "type": "PROCESSOR",
+          "groupId": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896",
+          "name": "FitxategiaJarri",
+          "comments": "",
+          "instanceIdentifier": "b40547c9-01a0-1000-f0ec-36ad7c078322"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896"
+      }
+    ],
+    "labels": [
+      {
+        "identifier": "master-flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json",
+        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \u26a1 LABORATEGIA 02: CSV DATUAK IRAGAZI - ALDAERA 3: RECORD-ORIENTED OPTIMIZATUA                           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura Aurreratua: Fitxategia ZATITU GABE streamingean prozesatu \u2794 RAM eta CPU eraginkortasun gorena (FlowFile bakarra!)",
+        "position": {
+          "x": 60.0,
+          "y": 15.0
+        },
+        "width": 1770.0,
+        "height": 75.0,
+        "style": {
+          "background-color": "#e8f8f5",
+          "font-size": "12pt"
+        }
+      },
+      {
+        "identifier": "stage-0-flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json",
+        "label": "\ud83d\udce5 1. INGESTA",
+        "position": {
+          "x": 80.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#d6eaf8",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-1-flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json",
+        "label": "\u26a1 2. STREAMING RECORD IRAGAZKETA",
+        "position": {
+          "x": 530.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#a3e4d7",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-2-flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json",
+        "label": "\ud83c\udff7\ufe0f 3. METADATUAK",
+        "position": {
+          "x": 980.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#eaeded",
+          "font-size": "11pt"
+        }
+      },
+      {
+        "identifier": "stage-3-flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json",
+        "label": "\ud83d\udcbe 4. BILTEGIRATZEA",
+        "position": {
+          "x": 1430.0,
+          "y": 105.0
+        },
+        "width": 390.0,
+        "height": 45.0,
+        "style": {
+          "background-color": "#d5f5e3",
+          "font-size": "11pt"
+        }
+      }
+    ],
+    "funnels": [],
+    "controllerServices": [
+      {
+        "identifier": "e4b1c04c-a99d-3ac0-bc4e-53ad35ee4f2f",
+        "instanceIdentifier": "b4054617-01a0-1000-0dbe-96419947249f",
+        "name": "CSVRecordSetWriter",
+        "comments": "",
+        "type": "org.apache.nifi.csv.CSVRecordSetWriter",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-record-serialization-services-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "CSV Format": "custom",
+          "Include Header Line": "true",
+          "Escape Character": "\\",
+          "Date Format": null,
+          "Null String": null,
+          "Trim Fields": "true",
+          "Schema Version": null,
+          "Time Format": null,
+          "Comment Marker": null,
+          "Schema Branch": null,
+          "Schema Reference Reader": null,
+          "Quote Character": "\"",
+          "Value Separator": ";",
+          "Schema Registry": null,
+          "Record Separator": "\\n",
+          "Timestamp Format": null,
+          "Schema Write Strategy": "no-schema",
+          "Schema Cache": null,
+          "Quote Mode": "MINIMAL",
+          "Schema Reference Writer": null,
+          "Include Trailing Delimiter": "false"
+        },
+        "propertyDescriptors": {
+          "CSV Format": {
+            "name": "CSV Format",
+            "displayName": "CSV Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Include Header Line": {
+            "name": "Include Header Line",
+            "displayName": "Include Header Line",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Access Strategy": {
+            "name": "Schema Access Strategy",
+            "displayName": "Schema Access Strategy",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Name": {
+            "name": "Schema Name",
+            "displayName": "Schema Name",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "CSV Writer": {
+            "name": "CSV Writer",
+            "displayName": "CSV Writer",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Escape Character": {
+            "name": "Escape Character",
+            "displayName": "Escape Character",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Date Format": {
+            "name": "Date Format",
+            "displayName": "Date Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Null String": {
+            "name": "Null String",
+            "displayName": "Null String",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Trim Fields": {
+            "name": "Trim Fields",
+            "displayName": "Trim Fields",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Version": {
+            "name": "Schema Version",
+            "displayName": "Schema Version",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Time Format": {
+            "name": "Time Format",
+            "displayName": "Time Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Comment Marker": {
+            "name": "Comment Marker",
+            "displayName": "Comment Marker",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Branch": {
+            "name": "Schema Branch",
+            "displayName": "Schema Branch",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Reference Reader": {
+            "name": "Schema Reference Reader",
+            "displayName": "Schema Reference Reader",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Text": {
+            "name": "Schema Text",
+            "displayName": "Schema Text",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Quote Character": {
+            "name": "Quote Character",
+            "displayName": "Quote Character",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Value Separator": {
+            "name": "Value Separator",
+            "displayName": "Value Separator",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Registry": {
+            "name": "Schema Registry",
+            "displayName": "Schema Registry",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Record Separator": {
+            "name": "Record Separator",
+            "displayName": "Record Separator",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Timestamp Format": {
+            "name": "Timestamp Format",
+            "displayName": "Timestamp Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Write Strategy": {
+            "name": "Schema Write Strategy",
+            "displayName": "Schema Write Strategy",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Cache": {
+            "name": "Schema Cache",
+            "displayName": "Schema Cache",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Character Set": {
+            "name": "Character Set",
+            "displayName": "Character Set",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Quote Mode": {
+            "name": "Quote Mode",
+            "displayName": "Quote Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Reference Writer": {
+            "name": "Schema Reference Writer",
+            "displayName": "Schema Reference Writer",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Include Trailing Delimiter": {
+            "name": "Include Trailing Delimiter",
+            "displayName": "Include Trailing Delimiter",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "controllerServiceApis": [
+          {
+            "type": "org.apache.nifi.serialization.RecordSetWriterFactory",
+            "bundle": {
+              "group": "org.apache.nifi",
+              "artifact": "nifi-standard-services-api-nar",
+              "version": "2.12.0"
+            }
+          }
+        ],
+        "scheduledState": "DISABLED",
+        "bulletinLevel": "WARN",
+        "componentType": "CONTROLLER_SERVICE",
+        "groupIdentifier": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896"
+      },
+      {
+        "identifier": "e3afeac2-3508-3cf3-9aa0-99de93600424",
+        "instanceIdentifier": "b40545e4-01a0-1000-60a2-8e1754ee18da",
+        "name": "CSVReader",
+        "comments": "",
+        "type": "org.apache.nifi.csv.CSVReader",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-record-serialization-services-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Schema Branch": null,
+          "Schema Reference Reader": null,
+          "CSV Format": "custom",
+          "Quote Character": "\"",
+          "Value Separator": ";",
+          "Schema Registry": null,
+          "Record Separator": "\\n",
+          "Timestamp Format": null,
+          "Escape Character": "\\",
+          "Date Format": null,
+          "Null String": null,
+          "Trim Fields": "true",
+          "Schema Version": null,
+          "Time Format": null,
+          "Comment Marker": null
+        },
+        "propertyDescriptors": {
+          "Schema Branch": {
+            "name": "Schema Branch",
+            "displayName": "Schema Branch",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Reference Reader": {
+            "name": "Schema Reference Reader",
+            "displayName": "Schema Reference Reader",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Text": {
+            "name": "Schema Text",
+            "displayName": "Schema Text",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "CSV Format": {
+            "name": "CSV Format",
+            "displayName": "CSV Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Quote Character": {
+            "name": "Quote Character",
+            "displayName": "Quote Character",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Value Separator": {
+            "name": "Value Separator",
+            "displayName": "Value Separator",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Registry": {
+            "name": "Schema Registry",
+            "displayName": "Schema Registry",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Treat First Line as Header": {
+            "name": "Treat First Line as Header",
+            "displayName": "Treat First Line as Header",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Access Strategy": {
+            "name": "Schema Access Strategy",
+            "displayName": "Schema Access Strategy",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Ignore CSV Header Column Names": {
+            "name": "Ignore CSV Header Column Names",
+            "displayName": "Ignore CSV Header Column Names",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Name": {
+            "name": "Schema Name",
+            "displayName": "Schema Name",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Record Separator": {
+            "name": "Record Separator",
+            "displayName": "Record Separator",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Timestamp Format": {
+            "name": "Timestamp Format",
+            "displayName": "Timestamp Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Escape Character": {
+            "name": "Escape Character",
+            "displayName": "Escape Character",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Date Format": {
+            "name": "Date Format",
+            "displayName": "Date Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Trim Double Quote": {
+            "name": "Trim Double Quote",
+            "displayName": "Trim Double Quote",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Null String": {
+            "name": "Null String",
+            "displayName": "Null String",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Trim Fields": {
+            "name": "Trim Fields",
+            "displayName": "Trim Fields",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Schema Version": {
+            "name": "Schema Version",
+            "displayName": "Schema Version",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Time Format": {
+            "name": "Time Format",
+            "displayName": "Time Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Comment Marker": {
+            "name": "Comment Marker",
+            "displayName": "Comment Marker",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Allow Duplicate Header Names": {
+            "name": "Allow Duplicate Header Names",
+            "displayName": "Allow Duplicate Header Names",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "CSV Parser": {
+            "name": "CSV Parser",
+            "displayName": "CSV Parser",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Character Set": {
+            "name": "Character Set",
+            "displayName": "Character Set",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "controllerServiceApis": [
+          {
+            "type": "org.apache.nifi.serialization.RecordReaderFactory",
+            "bundle": {
+              "group": "org.apache.nifi",
+              "artifact": "nifi-standard-services-api-nar",
+              "version": "2.12.0"
+            }
+          }
+        ],
+        "scheduledState": "DISABLED",
+        "bulletinLevel": "WARN",
+        "componentType": "CONTROLLER_SERVICE",
+        "groupIdentifier": "1eaa1d34-f35e-301c-b3a4-d5d9286f4896"
+      }
+    ],
+    "defaultFlowFileExpiration": "0 sec",
+    "defaultBackPressureObjectThreshold": 10000,
+    "defaultBackPressureDataSizeThreshold": "1 GB",
+    "scheduledState": "ENABLED",
+    "executionEngine": "INHERITED",
+    "maxConcurrentTasks": 1,
+    "statelessFlowTimeout": "1 min",
+    "flowFileConcurrency": "UNBOUNDED",
+    "flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
+    "componentType": "PROCESS_GROUP"
+  },
+  "externalControllerServices": {},
+  "parameterContexts": {},
+  "flowEncodingVersion": "1.0",
+  "parameterProviders": {},
+  "latest": false
+}

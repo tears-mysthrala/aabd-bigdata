@@ -1,0 +1,4 @@
+kafka-python>=2.0.2
+pymongo>=4.10
+faker>=20
+pytest>=8

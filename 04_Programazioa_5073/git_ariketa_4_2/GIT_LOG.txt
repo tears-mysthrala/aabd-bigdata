@@ -1,0 +1,5 @@
+2e93915 merge: PR #1 feat/arg-izena -> master (feature branching 4.4)
+669c852 feat: --izena argudioa eta testak gehitu
+c39b72f feat: add GIT_LOG.txt with recent commit history
+789ab55 feat: agur pertsonalizatua gehitu
+e86a42c feat: agur funtzioa gehitu

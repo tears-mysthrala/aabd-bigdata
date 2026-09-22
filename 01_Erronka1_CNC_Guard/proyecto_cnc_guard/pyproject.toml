@@ -1,0 +1,64 @@
+[project]
+name = "cnc-guard"
+version = "0.1.0"
+description = "Demostrador académico de supervisión de condición de CNC"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "numpy>=2.2,<3",
+    "pandas>=2.2.3,<3",
+    "scipy>=1.15,<2",
+    "scikit-learn>=1.6,<2",
+    "duckdb>=1.2,<2",
+    "pyarrow>=19",
+    "joblib>=1.4,<2",
+]
+
+[project.optional-dependencies]
+dashboard = ["streamlit>=1.40,<2"]
+opcua = ["asyncua>=1.1,<2"]
+mqtt = ["paho-mqtt>=2,<3"]
+mongo = ["pymongo>=4.10,<5"]
+mat73 = ["h5py>=3.12,<4"]
+excel = ["openpyxl>=3.1,<4"]
+
+[dependency-groups]
+notebook = [
+    "jupyterlab>=4.3,<5",
+    "ipykernel>=6.29,<8",
+    "nbconvert>=7.16,<8",
+    "nbformat>=5.10,<6",
+    "matplotlib>=3.9,<4",
+]
+dev = [
+    "pytest>=8,<10",
+    "ruff>=0.10,<1",
+    "psutil>=6,<8",
+]
+security = ["pip-audit>=2.9,<3"]
+classic = ["notebook>=7,<8"]
+pdf = ["nbconvert[webpdf]>=7.16,<8"]
+
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cnc_guard"]
+
+[tool.uv]
+required-version = ">=0.10"
+default-groups = ["notebook", "dev"]
+# Evitar compilaciones de dependencias desde sdists. El código local
+# y sus requisitos editables pueden seguir ejecutando su backend de build.
+no-build = true
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
