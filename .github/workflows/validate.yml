@@ -1,0 +1,55 @@
+# Validación solo en PR (nunca en push a master): material de estudio, sin despliegues.
+# - leaks: secretos en el diff (trufflehog OSS)
+# - quality: ruff (mismo listón que proyecto_cnc_guard) + compileall
+# - tests: unitarios rápidos sin broker ni dataset 10M (eso es local)
+name: validate
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  leaks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+
+  quality:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install 'ruff==0.16.8'
+      - run: ruff check --select E4,E7,E9,F,I 01_Erronka1_CNC_Guard/proyecto_cnc_guard/src 01_Erronka1_CNC_Guard/proyecto_cnc_guard/tests 01_Erronka1_CNC_Guard/proyecto_cnc_guard/scripts 01_Erronka1_CNC_Guard/proyecto_cnc_guard/generar_notebook.py 03_ML_5072/soluzioak/5072_ML_praktika.py 07_Kafka/soluzioak/ 04_Programazioa_5073/data/generar_cnc_10M.py 04_Programazioa_5073/data/test_estabilidad_10M.py 04_Programazioa_5073/git_ariketa_4_2/
+      - run: ruff format --check 01_Erronka1_CNC_Guard/proyecto_cnc_guard/src 01_Erronka1_CNC_Guard/proyecto_cnc_guard/tests 01_Erronka1_CNC_Guard/proyecto_cnc_guard/scripts 01_Erronka1_CNC_Guard/proyecto_cnc_guard/generar_notebook.py 03_ML_5072/soluzioak/5072_ML_praktika.py 07_Kafka/soluzioak/ 04_Programazioa_5073/data/generar_cnc_10M.py 04_Programazioa_5073/data/test_estabilidad_10M.py 04_Programazioa_5073/git_ariketa_4_2/
+      # Solo código Python real: los .py docentes de materialak/ llevan magics
+      # IPython (!pip/!git) y no compilan por diseño (son compañeros del .ipynb).
+      - run: python -m compileall -q 01_Erronka1_CNC_Guard/proyecto_cnc_guard/src 01_Erronka1_CNC_Guard/proyecto_cnc_guard/tests 01_Erronka1_CNC_Guard/proyecto_cnc_guard/scripts 01_Erronka1_CNC_Guard/proyecto_cnc_guard/generar_notebook.py 03_ML_5072/soluzioak/5072_ML_praktika.py 07_Kafka/soluzioak/kafka_producer.py 07_Kafka/soluzioak/kafka_consumer.py 07_Kafka/soluzioak/test_kafka_mock.py 04_Programazioa_5073/data/generar_cnc_10M.py 04_Programazioa_5073/data/test_estabilidad_10M.py 04_Programazioa_5073/git_ariketa_4_2/agur.py 04_Programazioa_5073/git_ariketa_4_2/test_agur.py
+
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install pytest numpy pandas scikit-learn
+      - run: pytest -q 07_Kafka/soluzioak/test_kafka_mock.py 04_Programazioa_5073/git_ariketa_4_2/test_agur.py
+      - run: PYTHONPATH=src pytest -q tests/
+        working-directory: 01_Erronka1_CNC_Guard/proyecto_cnc_guard

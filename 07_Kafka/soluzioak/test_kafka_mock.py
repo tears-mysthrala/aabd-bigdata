@@ -1,4 +1,5 @@
 """Roundtrip mock test: producer --mock -> consumer --mock (brokerrik gabe)."""
+
 import json
 import subprocess
 import sys
@@ -8,7 +9,9 @@ HERE = Path(__file__).parent
 
 
 def run(*args: str) -> str:
-    r = subprocess.run([sys.executable, *args], cwd=HERE, capture_output=True, text=True)
+    r = subprocess.run(
+        [sys.executable, *args], cwd=HERE, capture_output=True, text=True
+    )
     assert r.returncode == 0, r.stderr
     return r.stdout
 

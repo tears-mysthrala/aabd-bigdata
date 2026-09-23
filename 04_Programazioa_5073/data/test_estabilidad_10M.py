@@ -3,6 +3,7 @@
 Uso (venv CNC): .../proyecto_cnc_guard/.venv/bin/python test_estabilidad_10M.py [--csv cnc_10M.csv]
 RAM: nunca carga el CSV entero (chunks de 1M).
 """
+
 from __future__ import annotations
 
 import argparse
@@ -45,15 +46,23 @@ def main() -> None:
     n = 0
     suma = {}
     err = 0
-    for ch in pd.read_csv(args.csv, chunksize=args.chunksize, usecols=["makina_id", "tenperatura", "errorea"]):
+    for ch in pd.read_csv(
+        args.csv,
+        chunksize=args.chunksize,
+        usecols=["makina_id", "tenperatura", "errorea"],
+    ):
         n += len(ch)
         err += int(ch["errorea"].sum())
         for m, g in ch.groupby("makina_id")["tenperatura"].mean().items():
             suma.setdefault(m, []).append((float(g), len(ch[ch["makina_id"] == m])))
     assert n == 10_000_000, f"filas={n}"
     rate = err / n
-    medias = {m: sum(v * k for v, k in vs) / sum(k for _, k in vs) for m, vs in suma.items()}
-    print(f"conteo={n} err_rate={rate:.4f} t_medias={np.mean(list(medias.values())):.2f}")
+    medias = {
+        m: sum(v * k for v, k in vs) / sum(k for _, k in vs) for m, vs in suma.items()
+    }
+    print(
+        f"conteo={n} err_rate={rate:.4f} t_medias={np.mean(list(medias.values())):.2f}"
+    )
     assert 0.005 < rate < 0.03, rate  # fallos raros (industria realista)
     assert 63.0 < np.mean(list(medias.values())) < 67.0, medias
 
