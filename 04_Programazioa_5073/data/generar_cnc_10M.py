@@ -5,6 +5,7 @@ NO se versiona (ver .gitignore): se regenera con este script en ~3-5 min.
 Uso (venv del proyecto CNC, con numpy):
   ../../01_Erronka1_CNC_Guard/proyecto_cnc_guard/.venv/bin/python generar_cnc_10M.py [--n 10000000]
 """
+
 from __future__ import annotations
 
 import argparse

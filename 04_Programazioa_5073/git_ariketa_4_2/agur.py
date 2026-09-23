@@ -1,4 +1,5 @@
 """Agur pertsonalizatua (ariketa 4.2 + feature branch 4.4: --izena arg)."""
+
 from __future__ import annotations
 
 import argparse

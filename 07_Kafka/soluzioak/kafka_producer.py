@@ -5,14 +5,14 @@ Broker errealarekin:
 Broker gabe (test/didáktika):
     python kafka_producer.py --mock --mock-file mock_log.jsonl --n 10
 """
+
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import time
 from pathlib import Path
-
-import os
 
 DEFAULT_TOPIC = os.environ.get("TOPIC", "iabd-topic")
 DEFAULT_BOOTSTRAP = os.environ.get("BOOTSTRAP", "localhost:9092")
@@ -30,10 +30,18 @@ def run_mock(n: int, mock_file: Path) -> list[dict]:
     return msgs
 
 
-def run_kafka(n: int, topic: str, bootstrap: str, keys: bool, interval: float,
-              csv: str | None = None, skip: int = 0) -> int:
-    from kafka import KafkaProducer
+def run_kafka(
+    n: int,
+    topic: str,
+    bootstrap: str,
+    keys: bool,
+    interval: float,
+    csv: str | None = None,
+    skip: int = 0,
+) -> int:
     from json import dumps
+
+    from kafka import KafkaProducer
 
     producer = KafkaProducer(
         value_serializer=lambda m: dumps(m).encode("utf-8"),
@@ -50,7 +58,6 @@ def run_kafka(n: int, topic: str, bootstrap: str, keys: bool, interval: float,
         fh = open(csv, encoding="utf-8")
         reader = csvlib.DictReader(fh)
         rows = islice(reader, skip, None if n <= 0 else skip + n)
-        total = "stream"
     sent = 0
     try:
         if rows is not None:
@@ -80,10 +87,20 @@ def main() -> None:
     ap.add_argument("--topic", default=DEFAULT_TOPIC)
     ap.add_argument("--bootstrap", default=DEFAULT_BOOTSTRAP)
     ap.add_argument("--n", type=int, default=10)
-    ap.add_argument("--keys", action="store_true", help="gakoak bidali (partizio-banaketa)")
-    ap.add_argument("--interval", type=float, default=0.0, help="segundo arteko pausa (demo: 0.2)")
-    ap.add_argument("--csv", default=None, help="CSV-etik bidali (Dituen zutabeak JSON gisa, lehen n lerroak)")
-    ap.add_argument("--skip", type=int, default=0, help="CSV lerroak saltatu (producers paralelos)")
+    ap.add_argument(
+        "--keys", action="store_true", help="gakoak bidali (partizio-banaketa)"
+    )
+    ap.add_argument(
+        "--interval", type=float, default=0.0, help="segundo arteko pausa (demo: 0.2)"
+    )
+    ap.add_argument(
+        "--csv",
+        default=None,
+        help="CSV-etik bidali (Dituen zutabeak JSON gisa, lehen n lerroak)",
+    )
+    ap.add_argument(
+        "--skip", type=int, default=0, help="CSV lerroak saltatu (producers paralelos)"
+    )
     ap.add_argument("--mock", action="store_true")
     ap.add_argument("--mock-file", default="mock_log.jsonl")
     args = ap.parse_args()
@@ -92,7 +109,15 @@ def main() -> None:
         print(f"mock: {len(msgs)} mezu {args.mock_file}-n")
     else:
         t0 = time.time()
-        sent = run_kafka(args.n, args.topic, args.bootstrap, args.keys, args.interval, args.csv, args.skip)
+        sent = run_kafka(
+            args.n,
+            args.topic,
+            args.bootstrap,
+            args.keys,
+            args.interval,
+            args.csv,
+            args.skip,
+        )
         dt = time.time() - t0
         print(f"kafka: {sent} mezu -> {args.topic} ({dt:.1f}s, {sent / dt:.0f}/s)")
 
