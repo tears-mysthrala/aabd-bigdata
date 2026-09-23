@@ -305,11 +305,24 @@ print(df_langileak[["izena", "soldata", "soldata_urtekoa"]])
 # `data/`-n beste CSVak egon arren, hilabeteak iragazten dira (irakasle-tranpa jasaten du).
 from laguntzaileak import pilatu_csvak
 
-_df_q1, tx_22 = pilatu_csvak("*.csv", "data", zenbakizkoak=("unitateak", "prezioa"))
-df_hiruhilekoa = _df_q1[_df_q1["iturria"].isin(("urtarrila", "otsaila", "martxoa"))].copy()
-df_hiruhilekoa["hilabetea"] = df_hiruhilekoa["iturria"].str.capitalize()
-df_hiruhilekoa = df_hiruhilekoa.reset_index(drop=True)
+_df_q1, tx_22 = pilatu_csvak(
+    "*.csv",
+    "data",
+    zutabeak=("data", "produktua", "kategoria", "unitateak", "prezioa"),
+    zenbakizkoak=("unitateak", "prezioa"),
+)
+HILABETE_ORDENA = ("urtarrila", "otsaila", "martxoa")
+df_hiruhilekoa = _df_q1[_df_q1["iturria"].isin(HILABETE_ORDENA)].copy()
+df_hiruhilekoa["hilabetea"] = pd.Categorical(
+    df_hiruhilekoa["iturria"].str.capitalize(),
+    categories=[h.capitalize() for h in HILABETE_ORDENA],
+    ordered=True,
+)
+df_hiruhilekoa = df_hiruhilekoa.sort_values("hilabetea", kind="stable").reset_index(drop=True)
+df_hiruhilekoa["hilabetea"] = df_hiruhilekoa["hilabetea"].astype(str)
+df_hiruhilekoa = df_hiruhilekoa.drop(columns=["iturria"])  # iturria → hilabetea (output esperado)
 assert len(df_hiruhilekoa) == 12, tx_22.to_string()
+assert list(df_hiruhilekoa["hilabetea"].iloc[[0, 4, 8]]) == ["Urtarrila", "Otsaila", "Martxoa"]
 df_hiruhilekoa["salmenta_osoa"] = df_hiruhilekoa["unitateak"] * df_hiruhilekoa["prezioa"]
 
 print("=== ARIKETA 2.2: PILATUTAKO SALMENTAK (Q1) ===")
