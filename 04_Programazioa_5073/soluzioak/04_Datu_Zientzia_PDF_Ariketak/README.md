@@ -28,3 +28,13 @@ jupyter lab 5073_2_Datu_Zientzia_PDF_Ariketak.ipynb
 # Edo Python fitxategi interaktiboa exekutatu
 python 5073_2_Datu_Zientzia_PDF_Ariketak.py
 ```
+
+## Azterketarako gogortua (`laguntzaileak.py`, menpekotasun berririk gabe)
+
+`laguntzaileak.py` (stdlib + pandas) CSV tranpak jasaten ditu: encoding okerrak,
+lerro malformituak, zutabe okerrak/hutsak, fitxategi hutsak, ehunka fitxategi,
+koma-dezimalak (`1.234,56 €` → 1234.56; komarik gabe puntua dezimala da).
+Kopiatu fitxategi hori + `pilatu_csvak("data/*.csv", ...)` 3 lerro.
+```bash
+python test_laguntzaileak.py   # 200 fixture zikin: 265 errenkada + 10 txar ✅
+```

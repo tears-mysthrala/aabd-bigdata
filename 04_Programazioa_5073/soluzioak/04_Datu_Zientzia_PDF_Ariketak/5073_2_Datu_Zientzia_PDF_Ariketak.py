@@ -301,18 +301,15 @@ print(df_langileak[["izena", "soldata", "soldata_urtekoa"]])
 # """
 
 # %%
-# 1. Kargatu eta iturria etiketatu (glob: eskalagarria, ez banakako read_csv)
-HILABETEAK = ("urtarrila", "otsaila", "martxoa")
-df_list = []
-for bidea in sorted(Path("data").glob("*.csv")):
-    if bidea.stem in HILABETEAK:
-        df_hila = pd.read_csv(bidea)
-        df_hila["hilabetea"] = bidea.stem.capitalize()  # fitxategi-izenetik eratorria
-        df_list.append(df_hila)
-assert len(df_list) == 3, f"Q1 CSVak falta: {[p.name for p in sorted(Path('data').glob('*.csv'))]}"
+# 1-2. Kargatu (glob gogorra: `laguntzaileak`, azterketarako berrerabilgarria) + pilatu.
+# `data/`-n beste CSVak egon arren, hilabeteak iragazten dira (irakasle-tranpa jasaten du).
+from laguntzaileak import pilatu_csvak
 
-# 2. Pilatu (concat)
-df_hiruhilekoa = pd.concat(df_list, ignore_index=True)
+_df_q1, tx_22 = pilatu_csvak("*.csv", "data", zenbakizkoak=("unitateak", "prezioa"))
+df_hiruhilekoa = _df_q1[_df_q1["iturria"].isin(("urtarrila", "otsaila", "martxoa"))].copy()
+df_hiruhilekoa["hilabetea"] = df_hiruhilekoa["iturria"].str.capitalize()
+df_hiruhilekoa = df_hiruhilekoa.reset_index(drop=True)
+assert len(df_hiruhilekoa) == 12, tx_22.to_string()
 df_hiruhilekoa["salmenta_osoa"] = df_hiruhilekoa["unitateak"] * df_hiruhilekoa["prezioa"]
 
 print("=== ARIKETA 2.2: PILATUTAKO SALMENTAK (Q1) ===")
