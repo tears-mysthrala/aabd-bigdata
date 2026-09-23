@@ -15,7 +15,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-
 from laguntzaileak import pilatu_csvak
 
 # %%
@@ -97,6 +96,7 @@ def ariketa_1_1() -> pd.DataFrame:
     return df_bench
 
 
+df_bench = ariketa_1_1()
 # %%
 # """
 # ---
@@ -153,6 +153,7 @@ def ariketa_1_2() -> dict:
     }
 
 
+ariketa_1_2()
 # %%
 # """
 # ---
@@ -184,6 +185,7 @@ def ariketa_1_3() -> pd.DataFrame:
     return df_prezioak
 
 
+ariketa_1_3()
 # %%
 # """
 # ---
@@ -215,6 +217,7 @@ def ariketa_1_4() -> dict:
     return {"kritikoak": int(np.sum(kritiko_maskara)), "eskaera": hornitze_eskaera}
 
 
+ariketa_1_4()
 # %%
 # """
 # ---
@@ -261,6 +264,7 @@ def ariketa_1_5() -> dict:
     return {"urtekoak": urtekoak, "aldakorrena": aldakorrena}
 
 
+ariketa_1_5()
 # %%
 # """
 # ### 💡 Ardatzen (axis) Azalpen Metodologikoa:
@@ -322,6 +326,7 @@ def ariketa_2_1() -> pd.DataFrame:
     return df
 
 
+df_langileak = ariketa_2_1()
 # %%
 # """
 # ---
@@ -368,6 +373,7 @@ def ariketa_2_2() -> pd.DataFrame:
     return df
 
 
+df_hiruhilekoa = ariketa_2_2()
 # %%
 # """
 # ---
@@ -416,6 +422,7 @@ def ariketa_2_3() -> pd.DataFrame:
     return df_garbia
 
 
+ariketa_2_3()
 # %%
 # """
 # ---
@@ -495,6 +502,7 @@ def ariketa_2_4() -> dict:
     return {"salm_hiriak": salm_hiriak, "pivot": pivot}
 
 
+ariketa_2_4()
 # %%
 # """
 # ---
@@ -538,6 +546,7 @@ def ariketa_2_5() -> dict:
     return {"inner": df_inner, "left": df_left}
 
 
+ariketa_2_5()
 # %%
 # """
 # ### 💡 Eztabaida: `merge` vs `concat`
@@ -608,6 +617,7 @@ def ariketa_3_1() -> None:
     )
 
 
+ariketa_3_1()
 # %%
 # """
 # ---
@@ -674,6 +684,7 @@ def ariketa_3_2() -> pd.DataFrame:
     return korrelazioa
 
 
+ariketa_3_2()
 # %%
 # """
 # ---
@@ -743,6 +754,7 @@ def ariketa_3_3() -> pd.DataFrame:
     return df_tamainak
 
 
+ariketa_3_3()
 # %%
 # """
 # ---
@@ -800,6 +812,7 @@ def ariketa_4_1(repo_dir: Path | None = None) -> Path:
     return dvc_file
 
 
+ariketa_4_1()
 # %%
 # """
 # ### 💡 Eztabaida: Zergatik dago `notak.csv` `.gitignore`-n baina ez `notak.csv.dvc`?
@@ -860,6 +873,7 @@ def ariketa_5_1() -> pd.DataFrame:
     return df_ebal
 
 
+ariketa_5_1()
 # %%
 # """
 # ### 💡 Eztabaidatzeko: Zenbat enpresak hautatu dute "Python soilik"? Zenbatek "biak"?
@@ -870,11 +884,12 @@ def ariketa_5_1() -> pd.DataFrame:
 # """
 
 # %%
-# Ariketa guztiak ordenan (azken gelaxkatik deitzen da `main()`).
+# Ariketa guztiak ordenan berrerabiltzeko (`from ... import main` + `main()`).
+# Script moduan, gelaxka bakoitzak bere ariketa exekutatzen du.
 
 
 def main() -> None:
-    """Ariketa guztiak ordenan (azken gelaxkatik deitzen da)."""
+    """Ariketa guztiak ordenan berrerabiltzeko: `main()`."""
     ariketa_1_1()
     ariketa_1_2()
     ariketa_1_3()
@@ -890,8 +905,3 @@ def main() -> None:
     ariketa_3_3()
     ariketa_4_1()
     ariketa_5_1()
-
-
-# %%
-# Exekuzio osoa (gelaxkaz gelaxka edo script moduan)
-main()
