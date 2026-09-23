@@ -301,18 +301,18 @@ print(df_langileak[["izena", "soldata", "soldata_urtekoa"]])
 # """
 
 # %%
-# 1. Kargatu eta iturria etiketatu
-df_urt = pd.read_csv("data/urtarrila.csv")
-df_urt["hilabetea"] = "Urtarrila"
-
-df_ots = pd.read_csv("data/otsaila.csv")
-df_ots["hilabetea"] = "Otsaila"
-
-df_mar = pd.read_csv("data/martxoa.csv")
-df_mar["hilabetea"] = "Martxoa"
+# 1. Kargatu eta iturria etiketatu (glob: eskalagarria, ez banakako read_csv)
+HILABETEAK = ("urtarrila", "otsaila", "martxoa")
+df_list = []
+for bidea in sorted(Path("data").glob("*.csv")):
+    if bidea.stem in HILABETEAK:
+        df_hila = pd.read_csv(bidea)
+        df_hila["hilabetea"] = bidea.stem.capitalize()  # fitxategi-izenetik eratorria
+        df_list.append(df_hila)
+assert len(df_list) == 3, f"Q1 CSVak falta: {[p.name for p in sorted(Path('data').glob('*.csv'))]}"
 
 # 2. Pilatu (concat)
-df_hiruhilekoa = pd.concat([df_urt, df_ots, df_mar], ignore_index=True)
+df_hiruhilekoa = pd.concat(df_list, ignore_index=True)
 df_hiruhilekoa["salmenta_osoa"] = df_hiruhilekoa["unitateak"] * df_hiruhilekoa["prezioa"]
 
 print("=== ARIKETA 2.2: PILATUTAKO SALMENTAK (Q1) ===")
