@@ -7,3 +7,4 @@ scikit-learn>=1.4.0
 dvc>=3.50.0
 ipykernel>=6.29.0
 nbclient>=0.10.0
+nbconvert>=7.16.0
