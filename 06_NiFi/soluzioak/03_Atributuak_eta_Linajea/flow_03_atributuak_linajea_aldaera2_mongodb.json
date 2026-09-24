@@ -3,7 +3,7 @@
     "identifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
     "instanceIdentifier": "b407e437-01a0-1000-ae8d-f56d429cfced",
     "name": "03_Atributuak_Linajea_Aldaera2_MongoDB",
-    "comments": "Apache NiFi 3. Kasua - 2. Aldaera: AttributesToJSON eta MongoDB Txertaketa",
+    "comments": "DF1.3: GenerateFlowFile (5s) \u2192 ReplaceText Append \u2192 ExtractText (datuak) \u2192 LogAttribute + AttributesToJSON \u2192 PutMongo.",
     "position": {
       "x": 700.0,
       "y": 350.0
@@ -15,7 +15,7 @@
         "identifier": "a8264c94-c45b-3bea-9b71-8e9464fdeec3",
         "instanceIdentifier": "b407e4bf-01a0-1000-1e65-10b5e2cfc80e",
         "name": "PutMongo",
-        "comments": "5. JSON dokumentua MongoDB 3kasua bilduman zuzenean txertatu.",
+        "comments": "DF1.3: JSON dokumentua MongoDB-ko nifi.datuak bilduman txertatu.",
         "position": {
           "x": 1900.0,
           "y": 180.0
@@ -135,7 +135,7 @@
         "identifier": "698392d8-108f-3285-9bcd-74457c89e065",
         "instanceIdentifier": "b407e47c-01a0-1000-bfa5-252a0febc276",
         "name": "ReplaceText",
-        "comments": "2. Informazio egituratua testuan gehitu.",
+        "comments": "DF1.3: aurreko edukia mantendu eta data-lerroa gehitu (Append).",
         "position": {
           "x": 550.0,
           "y": 180.0
@@ -147,7 +147,7 @@
           "version": "2.12.0"
         },
         "properties": {
-          "Replacement Value": " [[[ Data: ${now()} ]]]",
+          "Replacement Value": "[[[ Data: ${now()} ]]]",
           "Evaluation Mode": "Line-by-Line",
           "Text to Prepend": null,
           "Line-by-Line Evaluation Mode": "All",
@@ -246,7 +246,7 @@
         "identifier": "ef3db6a5-9a75-3004-880d-a67402f9cf0f",
         "instanceIdentifier": "b407e494-01a0-1000-7b44-424cca2c8bc8",
         "name": "ExtractText",
-        "comments": "3. Regex erabiliz balioak FlowFile atributu bihurtu.",
+        "comments": "DF1.3: FlowFile eduki osoa 'datuak' atributura erauzi.",
         "position": {
           "x": 1000.0,
           "y": 180.0
@@ -269,11 +269,11 @@
           "Enable Multiline Mode": "false",
           "Maximum Capture Group Length": "1024",
           "Enable Literal Parsing of the Pattern": "false",
-          "edukia": "(.*)",
           "Character Set": "UTF-8",
           "Include Capture Group 0": "false",
           "Enable repeating capture group": "false",
-          "Enable named group support": "false"
+          "Enable named group support": "false",
+          "datuak": "(.*)"
         },
         "propertyDescriptors": {
           "Enable Unicode Predefined Character Classes": {
@@ -413,7 +413,7 @@
         "identifier": "c05b18df-f6f6-3eeb-b541-28e573185a03",
         "instanceIdentifier": "b407e455-01a0-1000-acfb-c0947bca9d6d",
         "name": "GenerateFlowFile",
-        "comments": "1. Datu-korrontea simulatu 10 segundoro mezu testuarekin.",
+        "comments": "DF1.3: FlowFile bat sortu 5 segundoan behin.",
         "position": {
           "x": 100.0,
           "y": 180.0
@@ -485,7 +485,7 @@
           }
         },
         "style": {},
-        "schedulingPeriod": "1 sec",
+        "schedulingPeriod": "5 sec",
         "schedulingStrategy": "TIMER_DRIVEN",
         "executionNode": "ALL",
         "penaltyDuration": "30 sec",
@@ -506,7 +506,7 @@
         "identifier": "72b24c43-e1d4-331a-8cdc-895455007b01",
         "instanceIdentifier": "b407e4ab-01a0-1000-03d4-110fdf76fd7a",
         "name": "AttributesToJSON",
-        "comments": "4. Atributu hautatuak JSON dokumentu garbi bihurtu edukian.",
+        "comments": "DF1.3: 'datuak' atributua JSON eduki bihurtu.",
         "position": {
           "x": 1450.0,
           "y": 180.0
@@ -521,7 +521,7 @@
           "Attributes Regular Expression": null,
           "Destination": "flowfile-content",
           "Null Value": "false",
-          "Attributes List": "edukia",
+          "Attributes List": "datuak",
           "Pretty Print": "false",
           "Include Core Attributes": "false",
           "JSON Handling Strategy": "ESCAPED"
@@ -588,6 +588,126 @@
         "concurrentlySchedulableTaskCount": 1,
         "autoTerminatedRelationships": [
           "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      },
+      {
+        "identifier": "13f3ce4c-c104-4033-af2b-7b89f8a5f163",
+        "instanceIdentifier": "64a73d10-eb2f-4f84-ad5a-e64117be4ab0",
+        "name": "LogAttribute",
+        "comments": "DF1.3: 'datuak' atributua nifi-app.log-en erregistratu.",
+        "position": {
+          "x": 1330.0,
+          "y": 390.0
+        },
+        "type": "org.apache.nifi.processors.standard.LogAttribute",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Log FlowFile Properties": "true",
+          "Log Level": "info",
+          "Attributes to Ignore": null,
+          "Attributes to Log": "datuak",
+          "Attributes to Ignore Regular Expression": null,
+          "Output Format": "Line per Attribute",
+          "Log Payload": "false",
+          "Log Prefix": null,
+          "attributes-to-log-regex": null,
+          "character-set": "UTF-8",
+          "Attributes to Log Regular Expression": null
+        },
+        "propertyDescriptors": {
+          "Log FlowFile Properties": {
+            "name": "Log FlowFile Properties",
+            "displayName": "Log FlowFile Properties",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Log Level": {
+            "name": "Log Level",
+            "displayName": "Log Level",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Attributes to Ignore": {
+            "name": "Attributes to Ignore",
+            "displayName": "Attributes to Ignore",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Attributes to Log": {
+            "name": "Attributes to Log",
+            "displayName": "Attributes to Log",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Attributes to Ignore Regular Expression": {
+            "name": "Attributes to Ignore Regular Expression",
+            "displayName": "Attributes to Ignore Regular Expression",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Output Format": {
+            "name": "Output Format",
+            "displayName": "Output Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Log Payload": {
+            "name": "Log Payload",
+            "displayName": "Log Payload",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Log Prefix": {
+            "name": "Log Prefix",
+            "displayName": "Log Prefix",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Character Set": {
+            "name": "Character Set",
+            "displayName": "Character Set",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Attributes to Log Regular Expression": {
+            "name": "Attributes to Log Regular Expression",
+            "displayName": "Attributes to Log Regular Expression",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 25,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "success"
         ],
         "scheduledState": "ENABLED",
         "retryCount": 10,
@@ -730,6 +850,41 @@
         "zIndex": 0,
         "selectedRelationships": [
           "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee"
+      },
+      {
+        "identifier": "84399c18-7808-43c5-b102-a74ea6794c16",
+        "instanceIdentifier": "c9cbb11d-f502-44ab-a2be-a9a8d10086df",
+        "name": "ExtractText to LogAttribute",
+        "source": {
+          "id": "ef3db6a5-9a75-3004-880d-a67402f9cf0f",
+          "type": "PROCESSOR",
+          "groupId": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+          "name": "ExtractText",
+          "comments": "DF1.3: FlowFile eduki osoa 'datuak' atributura erauzi.",
+          "instanceIdentifier": "b407e494-01a0-1000-7b44-424cca2c8bc8"
+        },
+        "destination": {
+          "id": "13f3ce4c-c104-4033-af2b-7b89f8a5f163",
+          "type": "PROCESSOR",
+          "groupId": "7120ff8a-8b34-38b0-9c15-4cf38a8e80ee",
+          "name": "LogAttribute",
+          "comments": "DF1.3: 'datuak' atributua nifi-app.log-en erregistratu.",
+          "instanceIdentifier": "64a73d10-eb2f-4f84-ad5a-e64117be4ab0"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "matched"
         ],
         "backPressureObjectThreshold": 10000,
         "backPressureDataSizeThreshold": "1 GB",

@@ -3,7 +3,7 @@
     "identifier": "be2326fa-67cb-3a6c-8d9e-4db38e0349b7",
     "instanceIdentifier": "b40c8a32-01a0-1000-b021-5bf9a37a7594",
     "name": "5kasua_iabd",
-    "comments": "DF2.1 Ariketa: 5. Kasua - CSV JSON Bihurtu Prozesu-Taldean (ConvertRecord)",
+    "comments": "DF2.1: 5kasua_iabd. Lau prozesadoreko tokiko GetFile \u2192 ConvertRecord \u2192 UpdateAttribute \u2192 PutFile bidea eta sarrera/irteera muga-portuak. sarrera alternatiboa da ConvertRecord-era, GetFile-k ez baitu FlowFile-sarrerarik.",
     "position": {
       "x": 100.0,
       "y": 600.0
@@ -15,7 +15,7 @@
         "identifier": "18810869-b787-34b4-be51-5c94ff6687ee",
         "instanceIdentifier": "b40c8b18-01a0-1000-e348-ccc959d5e363",
         "name": "GetFile",
-        "comments": "1. Sarrerako bezeroen CSV fitxategia irakurri (/sarrera karpeta).",
+        "comments": "Tokiko CSV sarrera-karpeta irakurri; GetFile iturri denez ez du Input Port-etik sarrerarik onartzen.",
         "position": {
           "x": 100.0,
           "y": 180.0
@@ -148,7 +148,7 @@
         "identifier": "ae94be7c-d5ca-33e9-b9a1-120ef22490f6",
         "instanceIdentifier": "b40c8b2c-01a0-1000-99fb-e217388665ac",
         "name": "ConvertRecord",
-        "comments": "2. CSVReader -> JsonRecordSetWriter bihurketa azkarra memoriako streamingean.",
+        "comments": "CSVReader \u2192 JsonRecordSetWriter; GetFile edo taldeko sarrera-portutik jasotako FlowFileak bihurtu.",
         "position": {
           "x": 550.0,
           "y": 180.0
@@ -211,7 +211,7 @@
         "identifier": "c8aa8338-f3ea-3038-848a-c835efe913a4",
         "instanceIdentifier": "b40c8b56-01a0-1000-6395-216e768beb81",
         "name": "PutFile",
-        "comments": "4. Sortutako JSON fitxategia /irteera/json karpetan gorde.",
+        "comments": "JSON fitxategia irteera-karpetan idatzi; success FlowFile-a taldeko irteera-portura ere bidali.",
         "position": {
           "x": 1450.0,
           "y": 180.0
@@ -406,8 +406,42 @@
         "groupIdentifier": "be2326fa-67cb-3a6c-8d9e-4db38e0349b7"
       }
     ],
-    "inputPorts": [],
-    "outputPorts": [],
+    "inputPorts": [
+      {
+        "identifier": "585774c3-34df-4551-9767-d84d40cd2569",
+        "instanceIdentifier": "c63f2296-35c5-4624-9dda-cd16c1373a97",
+        "name": "sarrera",
+        "comments": "CSV FlowFile-en aukerako kanpo-sarrera ConvertRecord-era.",
+        "position": {
+          "x": 80.0,
+          "y": 430.0
+        },
+        "type": "INPUT_PORT",
+        "concurrentlySchedulableTaskCount": 1,
+        "scheduledState": "ENABLED",
+        "allowRemoteAccess": false,
+        "componentType": "INPUT_PORT",
+        "groupIdentifier": "be2326fa-67cb-3a6c-8d9e-4db38e0349b7"
+      }
+    ],
+    "outputPorts": [
+      {
+        "identifier": "34476726-4542-40f0-8ff7-0b47cb5d12a3",
+        "instanceIdentifier": "f366eb35-7960-434e-8a70-df0c4be80c9b",
+        "name": "irteera",
+        "comments": "PutFile-k idatzi ondorengo FlowFileak taldearen kanpora ateratzeko.",
+        "position": {
+          "x": 1600.0,
+          "y": 430.0
+        },
+        "type": "OUTPUT_PORT",
+        "concurrentlySchedulableTaskCount": 1,
+        "scheduledState": "ENABLED",
+        "allowRemoteAccess": false,
+        "componentType": "OUTPUT_PORT",
+        "groupIdentifier": "be2326fa-67cb-3a6c-8d9e-4db38e0349b7"
+      }
+    ],
     "connections": [
       {
         "identifier": "40528b6c-2f2d-3c35-83f5-947d2cba37fe",
@@ -498,6 +532,74 @@
           "name": "ConvertRecord",
           "comments": "",
           "instanceIdentifier": "b40c8b2c-01a0-1000-99fb-e217388665ac"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "be2326fa-67cb-3a6c-8d9e-4db38e0349b7"
+      },
+      {
+        "identifier": "4587e939-dfb9-4296-b6bf-ce647a2ceadf",
+        "instanceIdentifier": "74e334d3-d88d-4f09-a8da-4876ec726d7c",
+        "name": "sarrera to ConvertRecord",
+        "source": {
+          "id": "585774c3-34df-4551-9767-d84d40cd2569",
+          "type": "INPUT_PORT",
+          "groupId": "be2326fa-67cb-3a6c-8d9e-4db38e0349b7",
+          "name": "sarrera",
+          "comments": "CSV FlowFile-en aukerako kanpo-sarrera ConvertRecord-era.",
+          "instanceIdentifier": "c63f2296-35c5-4624-9dda-cd16c1373a97"
+        },
+        "destination": {
+          "id": "ae94be7c-d5ca-33e9-b9a1-120ef22490f6",
+          "type": "PROCESSOR",
+          "groupId": "be2326fa-67cb-3a6c-8d9e-4db38e0349b7",
+          "name": "ConvertRecord",
+          "comments": "CSVReader \u2192 JsonRecordSetWriter; GetFile edo taldeko sarrera-portutik jasotako FlowFileak bihurtu.",
+          "instanceIdentifier": "b40c8b2c-01a0-1000-99fb-e217388665ac"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "be2326fa-67cb-3a6c-8d9e-4db38e0349b7"
+      },
+      {
+        "identifier": "3eec023e-b180-4b10-a145-044c98a6f647",
+        "instanceIdentifier": "ce529916-e30c-4980-adf1-02a9201206ce",
+        "name": "PutFile to irteera",
+        "source": {
+          "id": "c8aa8338-f3ea-3038-848a-c835efe913a4",
+          "type": "PROCESSOR",
+          "groupId": "be2326fa-67cb-3a6c-8d9e-4db38e0349b7",
+          "name": "PutFile",
+          "comments": "JSON fitxategia irteera-karpetan idatzi; success FlowFile-a taldeko irteera-portura ere bidali.",
+          "instanceIdentifier": "b40c8b56-01a0-1000-6395-216e768beb81"
+        },
+        "destination": {
+          "id": "34476726-4542-40f0-8ff7-0b47cb5d12a3",
+          "type": "OUTPUT_PORT",
+          "groupId": "be2326fa-67cb-3a6c-8d9e-4db38e0349b7",
+          "name": "irteera",
+          "comments": "PutFile-k idatzi ondorengo FlowFileak taldearen kanpora ateratzeko.",
+          "instanceIdentifier": "f366eb35-7960-434e-8a70-df0c4be80c9b"
         },
         "labelIndex": 1,
         "zIndex": 0,
