@@ -136,7 +136,7 @@ Lehenik sortu duzun topic prefijatu eta bost erosketa horiek soilik badaude, osa
 1. **Partizio guztiek offset-kontagailu bera al dute?** Ez. Offset-ak partizio bakoitzeko dira; partizio bakoitzak bere sekuentzia dauka.
 2. **`Offset=0` behin baino gehiagotan ager daiteke?** Bai, partizio desberdinetan: adibidez, P0eko offset 0 eta P2ko offset 0 mezu desberdinak dira.
 3. **Offset-a bakarrik nahikoa da mezu bat identifikatzeko?** Ez; topic berean ere offset bera partizio askotan egon daiteke.
-4. **Zer datuk identifikatzen dute?** Topic izenak, partition IDak eta offset-ak.
+4. **Zer bi datu behar ditugu?** Galderan ari garen topic-a jada finkatuta dagoenez, `partition ID`a eta `offset`a dira behar diren bi datuak. Mezu baten identifikatzaile globala eman nahi bada —topic-a ere testuinguru ezezaguna denean—, hirukotea da: `topic + partition + offset`.
 
 Mezu bakoitza zein partiziotan amaitzen den **broker/producerren baldintzen araberakoa** da, batez ere key-rik gabeko producer-en banaketaren ondorioz. Offset zehatzak ere topic horretan aurretik idatzitako mezuen eta retention/compaction egoeraren araberakoak dira. Horregatik taula txantiloi hutsa da, ez emaitza asmatu bat. `print.partition` eta `print.offset` propietateak Kafka 3.7-ren [ConsoleConsumer iturburu ofizialean](https://github.com/apache/kafka/blob/3.7.0/core/src/main/scala/kafka/tools/ConsoleConsumer.scala) ageri dira; `print.offset` adibidea ere badago [tiered-storage operazioan](https://kafka.apache.org/37/operations/tiered-storage/). Offset-aren eta partizioen eragiketak azaltzen dira [Kafka operazio oinarrizkoen dokumentuan](https://kafka.apache.org/37/operations/basic-kafka-operations/).
 
