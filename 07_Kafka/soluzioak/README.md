@@ -17,6 +17,10 @@ docker exec -it iabd-kafka bash
 /opt/kafka/bin/kafka-console-consumer.sh --topic iabd-topic --from-beginning --bootstrap-server localhost:9092
 ```
 
+## PDFko 1–5 kontsola-ariketak
+
+Erantzunak, komandoak eta 4. ariketako partizio/offset taula betetzeko txantiloia: [ariketa_kontsola_topic_partizio_offset.md](ariketa_kontsola_topic_partizio_offset.md). `infra/docker-compose.yml`-ko Kafka 3.7.0 (`iabd-kafka`) zerbitzura egokituta dago. Komandoak berrikusi dira, baina ez dira brokerrean exekutatu: dokumentuak topic izen prefijatuak erabiltzen ditu zuzeneko proba baterako, eta ez ditu container, topic edo bolumen partekatuak aldatu. Partizio/offset zenbakiek brokerreko egoera erreal bat behar dute.
+
 ## 1. kasua (Python)
 ```bash
 pip install -r requirements.txt
