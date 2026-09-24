@@ -27,3 +27,4 @@ Thumbs.db
 
 # NOTA: no se ignora historial.bundle (evidencia del ejercicio Git 4.4),
 # ni SBOM/ (evidencia de cumplimiento), ni las evidencias bronze/silver/gold.
+moodle_sync.log
