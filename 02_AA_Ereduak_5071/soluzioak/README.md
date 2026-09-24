@@ -9,7 +9,7 @@ No duplicar: cualquier añadido específico 5071 va aquí y se referencia desde 
 
 ## Etika — jarduera osagarriak
 
-- [Etikako ariketa osagarriak](etikako_ariketa_osagarriak.md): fairness metrikak eta talde-argudioaren ereduak, GDPR 22. artikuluaren erabaki-fluxua, SHAP/LIME azalpena, mini EIA, tailerreko kameraren mehatxu- eta defentsa-azterketa, zehaztasuna/robustotasuna/pribatutasuna tentsioa eta protokolo pertsonal betegarria. 3.1, 12.0 eta 6.1 notebooken eskaera osoak checkout-ean falta dira; dokumentuak diapositiba ikusgaietan oinarritutako mugak adierazten ditu.
+- [Etikako ariketa osagarriak](etikako_ariketa_osagarriak.md): fairness metrikak eta talde-argudioaren ereduak, GDPR 22. artikuluaren fluxua C-203/22 benetako kasuari aplikatuta, SHAP/LIME azalpena, mini EIA, tailerreko kameraren mehatxu- eta defentsa-azterketa, zehaztasuna/gardentasuna/pribatutasuna tentsioa, ALTAIren zazpi dimentsioko ebaluazio-fitxa eta protokolo pertsonal betegarria. 3.1, 12.0 eta 6.1 notebooken eskaera osoak checkout-ean falta dira; fitxan ez dago egiaztatu gabeko puntuaziorik edo aurkikuntzarik.
 
 ## IE6 — Marko legala
 
