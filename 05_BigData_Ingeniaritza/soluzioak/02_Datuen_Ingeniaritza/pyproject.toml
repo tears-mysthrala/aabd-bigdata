@@ -1,0 +1,11 @@
+[project]
+name = "datuen-ingeniaritza-faker"
+version = "0.1.0"
+description = "Ariketa didaktikoetarako Faker bidezko datu sintetikoen sorgailua"
+requires-python = ">=3.13"
+dependencies = [
+    "faker>=37.0.0,<38.0.0",
+]
+
+[tool.uv]
+package = false
