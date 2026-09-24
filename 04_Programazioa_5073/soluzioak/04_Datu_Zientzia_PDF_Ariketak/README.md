@@ -38,3 +38,14 @@ Kopiatu fitxategi hori + `pilatu_csvak("data/*.csv", ...)` 3 lerro.
 ```bash
 python test_laguntzaileak.py   # 200 fixture zikin: 265 errenkada + 10 txar ✅
 ```
+
+
+## Ariketa 2.3 — CSV berria (2026)
+
+`data/bezeroak_zikinak.csv` aurreko adibideak komaz bereizita erabiltzen du. Enuntziatu honetako sarrera berria [datu_zikinak.csv](../../data/mock_datuak/Ariketa%202.3/datu_zikinak.csv) da: puntu eta komaz bereizita dago, eta ez da lehendik dagoen fitxategia ordezten.
+
+- [Python ebazpena](ariketa_2_3_datu_berria.py) eta [koaderno sinkronizatua](ariketa_2_3_datu_berria.ipynb)
+- [Garbiketa-emaitza](data/datu_zikinak_garbia.csv)
+- [Hasierako balio galduen eta prozesuaren laburpena](data/datu_zikinak_laburpena.json)
+
+Emaitzak berreraikitzeko, exekutatu `python ariketa_2_3_datu_berria.py` direktorio honetatik. Soldata hutsik mantentzen da, eta JSONak izen-bikoiztuak kentzeko eta adina betetzeko aukerak azaltzen ditu.

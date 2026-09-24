@@ -1,0 +1,32 @@
+{
+  "sarrera_fitxategia": "datu_zikinak.csv",
+  "zutabeak": [
+    "izena",
+    "adina",
+    "hiria",
+    "soldata"
+  ],
+  "hasierako_errenkadak": 7,
+  "amaierako_errenkadak": 6,
+  "ezabatutako_izen_bikoiztuak": 1,
+  "hasierako_balio_galduak": {
+    "izena": 0,
+    "adina": 2,
+    "hiria": 1,
+    "soldata": 1
+  },
+  "hasierako_balio_galduen_ehunekoak": {
+    "izena": 0.0,
+    "adina": 28.57,
+    "hiria": 14.29,
+    "soldata": 14.29
+  },
+  "adina_bete_da_batezbestekoarekin": 2,
+  "adina_batezbestekoa_bikoiztuak_kendu_ondoren": 29.5,
+  "hiria_bete_da_ezezaguna": 1,
+  "soldata_hutsak_gordeta": 1,
+  "soldata_zenbakitan": true,
+  "soldata_formatuaren_hipotesia": "Puntua milako-banatzailea da; € ikurra kendu da; koma hamartarrak puntu bihurtu dira.",
+  "bikoiztu_hipotesia": "Lehen errenkada mantendu da izena zuriuneak kendu ondoren casefold bidez parekatuta.",
+  "adina_hutsaren_hipotesia": "Batezbestekoa bikoiztuak kendutako errenkadetako adin ez-hutsekin kalkulatu da."
+}
