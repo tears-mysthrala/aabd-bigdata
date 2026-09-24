@@ -1,131 +1,45 @@
-# NiFi 7. Kasua / DF2.3 Ariketa: AEMET Datu-Lakua Osoa (Medallion: Bronze → Silver → Gold)
+# DF2.3 · AEMET Data Lake Medallion
 
-> **Modulua / Gai-arloa:** Big Data Aplikatua · 01 DataFlow · Apache NiFi Aurreratua  
-> **Ariketa Ofiziala:** **DF2.3**  
-> **Fitxategi Nagusia:** [`flow_07_aemet_datalake_medallion.json`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/07_AEMET_Datu_Lakua_Medallion_DF2.3/flow_07_aemet_datalake_medallion.json)  
-> **Iturria:** `01_02_ApacheNifi_aurreratua.pdf` (41–53 eta 62 orr.)
+Flow export estatikoa: [`flow_07_aemet_datalake_medallion.json`](flow_07_aemet_datalake_medallion.json). Iturri didaktikoa: [`01_02_ApacheNifi_aurreratua.pdf`](../../materialak/01_02_ApacheNifi_aurreratua.pdf), DF2.3 atala (41–53, 62. or.). NiFi irudia [Dockerfile.nifi](../06_MariaDB_MongoDB_Laborategia_DF2.2/Dockerfile.nifi)-n finkatuta dago: `apache/nifi:2.0.0`.
 
----
-
-## 1. Helburua eta Medallion Arkitektura (Objetivo)
-
-Datu-laku moderno baten arkitektura osoa (**Medallion Architecture: Bronze $\rightarrow$ Silver $\rightarrow$ Gold**) ezartzea estazio meteorologikoetako telemetria-neurketetarako (AEMET):
-
-1. **🥉 BRONZE GERUZA (Gordina / Raw Ingestion):**
-   - 30 segundoro neurketak jaso / simulatu (`GenerateFlowFile`).
-   - Fitxategi-izen bakarra eta jasotze-data gehitu (`UpdateAttribute`).
-   - Datu gordinak aldatu gabe gorde biltegi iraunkorrean (`PutFile` $\rightarrow$ `/bronze/`).
-2. **🥈 SILVER GERUZA (Garbiketa, Iragazketa eta Biltegiratze Bikoitza / Dual Storage):**
-   - JSON formatutik eremu nagusiak erauzi (`EvaluateJsonPath`: tenperatura, hezetasuna, presioa).
-   - Silver JSON estandarra sortu (`AttributesToJSON`).
-   - **Biltegiratze bikoitza paraleloan:**
-     - Fitxategi-sisteman gorde (`PutFile` $\rightarrow$ `/silver/`).
-     - Dokumentu-biltegian gorde (`PutMongo` $\rightarrow$ `7kasua-silver` bilduma).
-3. **🥇 GOLD GERUZA (Agregazio Analitikoa eta Record API Karga):**
-   - Silver neurketak lotean batu (`MergeContent`: 10 mezu edo 3 minutu).
-   - Metadatuak eta Parquet fitxategi-izena ezarri (`UpdateAttribute`).
-   - SQL bidezko agregazio estatistikoa (`QueryRecord`: bataz besteko tenperatura, max hezetasuna, min presioa).
-   - **Biltegiratze bikoitza:**
-     - Analitika fitxategia gorde (`PutFile` $\rightarrow$ `/gold/`).
-     - Bulk txertaketa MongoDB-n (`PutMongoRecord` $\rightarrow$ `7kasua-gold` bilduma).
-
----
-
-## 2. Arkitektura Orokorraren Diagrama (Mermaid - 3 Zutabe / 3 Column Layout)
+## Fluxuaren diseinua
 
 ```mermaid
-flowchart TD
-    subgraph Bronze["🥉 BRONZE GERUZA (Zutabea 1 / Col 1 - Raw Ingesta)"]
-        B1["InvokeHTTP REST AEMET<br/>(60s Open Data GET)"] -->|Response| B2["UpdateAttribute fecha / filename<br/>(timestamp metadatuak)"]
-        B2 -->|success| B3["PutFile Bronze / RAW<br/>(/opt/nifi/.../bronze)"]
-    end
-
-    subgraph Silver["🥈 SILVER GERUZA (Zutabea 2 / Col 2 - Curated & Dual Storage)"]
-        S1["EvaluateJsonPath<br/>($.municipio.NOMBRE, $.temperatura_actual, $.humedad)"] -->|matched| S2["AttributesToJSON<br/>(fecha, hiria, tenperatura, hezetasuna)"]
-        S2 -->|success| S3["PutFile Silver 1 min<br/>(/opt/nifi/.../silver)"]
-        S2 -->|success| S4["PutMongo 7-kasua Silver<br/>(iabd.7kasua-silver)"]
-    end
-
-    subgraph Gold["🥇 GOLD GERUZA (Zutabea 3 / Col 3 - SQL Agregazioa & Record API)"]
-        G1["MergeContent 10 FF<br/>(Bin-Packing, 10 entries)"] -->|merged| G2["UpdateAttribute<br/>(filename: .parquet)"]
-        G2 -->|success| G3["QueryRecord<br/>(SQL AVG / MAX / MIN -> tempMedia)"]
-        G3 -->|tempMedia| G4["PutFile Gold 10 Min<br/>(/opt/nifi/.../gold)"]
-        G3 -->|tempMedia| G5["PutMongoRecord 7-kasua Gold<br/>(iabd.7kasua-gold)"]
-    end
-
-    B2 -->|success| S1
-    S2 -->|success| G1
-
-    classDef bronze fill:#78350f,stroke:#f59e0b,stroke-width:2px,color:#fef3c7;
-    classDef silver fill:#334155,stroke:#94a3b8,stroke-width:2px,color:#f8fafc;
-    classDef gold fill:#854d0e,stroke:#eab308,stroke-width:2px,color:#fef08a;
-    class B1,B2,B3 bronze;
-    class S1,S2,S3,S4 silver;
-    class G1,G2,G3,G4,G5 gold;
+flowchart LR
+  A[InvokeHTTP · AEMET APIa, 30 s] -->|Response| B[EvaluateJsonPath · $.datos]
+  B -->|matched| C[InvokeHTTP · datos URL]
+  C -->|Response| D[UpdateAttribute · fecha/filename]
+  D --> E[PutS3Object · iabd-nifi/bronze]
+  D --> F[EvaluateJsonPath · Silver eremuak]
+  F --> G[AttributesToJSON]
+  G --> H[PutS3Object · iabd-nifi/silver]
+  G --> I[PutMongo · iabd.7kasua-silver]
+  G --> J[MergeContent · 10 mezu / 3 min]
+  J --> K[UpdateAttribute · .parquet]
+  K --> L[QueryRecord · Gold agregazioa]
+  L --> M[PutS3Object · iabd-nifi/gold, Parquet]
+  L --> N[PutMongoRecord · iabd.7kasua-gold]
 ```
 
----
+Lehen HTTP deiak AEMET OpenData-ren predikzio-endpoint dokumentatua erabiltzen du eta erantzuneko `datos` URL-a ateratzen du; bigarren deiak URL horretako edukia deskargatzeko diseinatuta dago. AEMET APIaren [OpenAPI espezifikazio ofizialak](https://opendata.aemet.es/AEMET_OpenData_specification.json) zein endpoint/parametro dauden dokumentatzen du. Bi urratsak flow-ean modelatuta daude; **ez da datu-API eskaerarik egin**.
 
-## 3. Geruzen Xehetasun Teknikoak
+Bronze-k erantzun gordina `s3://iabd-nifi/bronze/{filename}`-en idazten du. Silver-ek iturburu-PDFko `$.municipio.NOMBRE`, `$.temperatura_actual` eta `$.humedad` JSONPath adibideak mantentzen ditu, eta JSONa S3ra eta `iabd.7kasua-silver` Mongo bildumara bidaltzen du. Hala ere, PDFko bide horiek aurreko `api.el-tiempo.net` hornitzailearen erantzunari dagozkio; AEMET OpenData-k `datos`/`metadatos` erreferentziak itzultzen ditu lehen urratsean. Beraz, Silver-eko JSONPath-ak **AEMETen benetako payload-aren aurka mapatu eta egiaztatu behar dira fluxua aktibatu aurretik**. Ez da hemen erantzun edo datu errealik asmatu.
 
-### 1. 🥉 Bronze Geruza (Ezkerreko Zutabea / Col 1):
-- **`InvokeHTTP REST AEMET`:** Open Data AEMET REST API-ari GET kontsulta 60 segundoro (`https://api.el-tiempo.net/json/v3/provincias/03/municipios/03065`).
-  - Harremana: `Response` hurrengo prozesadorera.
-  - Auto-terminated: `Failure, No Retry, Original, Retry`.
-- **`UpdateAttribute fecha / filename`:** 
-  - `fecha` = `${now():format('yyyy-MM-dd_HH-mm-ss')}`
-  - `filename` = `${now():format('yyyy-MM-dd_HH-mm-ss')}.json`
-- **`PutFile Bronze / RAW`:** JSON gordina diskoan gorde aldatu gabe (`/opt/nifi/ariketak/07-ariketa-aemet-datalake/bronze`).
+Gold-ek 10 Silver erregistro edo 3 minutu arte elkartzen ditu, NDJSON erregistroen artean lerro-jauzia jarriz, hirika agregatzen du `QueryRecord` bidez eta Parquet emaitza paraleloan bidaltzen du S3ra eta `iabd.7kasua-gold` bildumara. `PutMongoRecord`-ek Gold-en Parquet edukia `ParquetReader` bidez irakurtzeko erreferentzia du.
 
-### 2. 🥈 Silver Geruza (Erdiko Zutabea / Col 2):
-- **`EvaluateJsonPath`:**
-  - `hiria` = `$.municipio.NOMBRE`
-  - `tenperatura` = `$.temperatura_actual`
-  - `hezetasuna` = `$.humedad`
-- **`AttributesToJSON`:** Atributuak JSON garbian bildu (`fecha,hiria,tenperatura,hezetasuna`) eta bi adar paraleloetara igorri (`Destination`: `flowfile-content`).
-- **Biltegiratze bikoitza paraleloan:**
-  - `PutFile Silver 1 min`: `/opt/nifi/ariketak/07-ariketa-aemet-datalake/silver`
-  - `PutMongo 7-kasua Silver`: `iabd.7kasua-silver` bilduman JSON gisa txertatu.
+## Operadoreak eman beharreko runtime konfigurazioa
 
-### 3. 🥇 Gold Geruza (Eskuineko Zutabea / Col 3):
-- **`MergeContent 10 FF`:**
-  - `Merge Strategy`: `Bin-Packing Algorithm`
-  - `Minimum Number of Entries`: `10`
-  - `Demarcator`: `\n` (lerrojauzia FlowFile-en artean)
-- **`UpdateAttribute`:** `filename` = `${filename:substringBeforeLast('.')}.parquet`
-- **`QueryRecord`:**
-  - Propietate dinamikoa (`tempMedia`):
-    ```sql
-    select hiria, 
-           max(fecha) as fecha, 
-           avg(cast(tenperatura as double)) as tenperatura, 
-           avg(cast(hezetasuna as double)) as hezetasuna 
-    from FLOWFILE 
-    group by hiria
-    ```
-  - Sortutako harremana: `tempMedia` bi helmuga paraleloetara bideratuta.
-- **Biltegiratze bikoitza:**
-  - `PutFile Gold 10 Min`: `/opt/nifi/ariketak/07-ariketa-aemet-datalake/gold`
-  - `PutMongoRecord 7-kasua Gold`: MongoDB-ko `7kasua-gold` bilduman txertatu `MongoDBControllerService` bidez.
+Flow-ak ez du kontu, gako, bucket-secret edo endpoint pribaturik gordetzen. Inportatu aurretik edo ondoren, konfiguratu eta izen berdineko zerbitzuekin lotu:
 
+- **AWS credentials provider**: `AWSCredentialsProviderControllerService` runtime-ko kredentzial-iturrira lotu eta `Use Default Credentials=true` ezarri (adibidez, NiFi exekutatzen duen inguruneko rol/credential chain); bestela, operadoreak kanpoko credentials file edo credential source bat eman behar du. S3 bucket izena ariketak eskatutako `iabd-nifi` da; `AWS_REGION` Parameter Context bidez eman behar da.
+- **AEMET API key**: `AEMET_API_KEY` izeneko parametro sentikorra sortu NiFi Parameter Context batean; lehen `InvokeHTTP`-ko `api_key` header-ak `#{AEMET_API_KEY}` erreferentzia dauka. Ez ezarri baliorik JSONean.
+- **MongoDBControllerService**: operadoreak bere konexioa eman behar du; bildumak `iabd.7kasua-silver` eta `iabd.7kasua-gold` dira.
+- **Record zerbitzuak**: `JsonTreeReader` NDJSON Silver-erako, `ParquetRecordSetWriter` QueryRecord-eko Gold irteerarako eta `ParquetReader` MongoDB Gold sink-erako.
 
----
+> Runtime-ko service/parameter erreferentziak JSONeko `externalControllerServices` eta `parameterContexts` atalean daude. Zerbitzu horiek ez daude esportazio honetan sortuta, eta NiFi-n balioztatu gabe daude. Osagaiak desgaituta daude ustekabeko exekuziorik ez gertatzeko; payload-eremuen mapaketa eta ingurune honetako zerbitzu izenak egiaztatu ondoren soilik aktibatu.
 
-## 4. Egiaztapen Probak (Datuak eta Datu-baseak)
+## Egiaztapen estatikoa eta mugak
 
-### Fitxategi-sistemako direktorioak (ebidentzia 2026-09-22, `simulatu_aemet_medallion.py`):
-```bash
-ls -la /home/tears/bigdata/06_NiFi/soluzioak/07_AEMET_Datu_Lakua_Medallion_DF2.3/bronze/  # 10 JSON gordin
-ls -la /home/tears/bigdata/06_NiFi/soluzioak/07_AEMET_Datu_Lakua_Medallion_DF2.3/silver/  # 10 JSON + silver_mongo.jsonl
-ls -la /home/tears/bigdata/06_NiFi/soluzioak/07_AEMET_Datu_Lakua_Medallion_DF2.3/gold/    # tempMedia.parquet + .json + gold_mongo.jsonl
-/home/tears/bigdata/01_Erronka1_CNC_Guard/proyecto_cnc_guard/.venv/bin/python simulatu_aemet_medallion.py
-```
+NiFi 2.0.0-rako osagaien/property izenak [Apache NiFi `rel/nifi-2.0.0` iturburuan](https://github.com/apache/nifi/tree/rel/nifi-2.0.0/nifi-extension-bundles) eta `Dockerfile.nifi`-ko oinarrizko irudiarekin alderatu dira: [PutS3Object](https://github.com/apache/nifi/blob/rel/nifi-2.0.0/nifi-extension-bundles/nifi-aws-bundle/nifi-aws-processors/src/main/java/org/apache/nifi/processors/aws/s3/PutS3Object.java), [AWS credentials provider](https://github.com/apache/nifi/blob/rel/nifi-2.0.0/nifi-extension-bundles/nifi-aws-bundle/nifi-aws-processors/src/main/java/org/apache/nifi/processors/aws/credentials/provider/service/AWSCredentialsProviderControllerService.java), [ParquetRecordSetWriter](https://github.com/apache/nifi/blob/rel/nifi-2.0.0/nifi-extension-bundles/nifi-parquet-bundle/nifi-parquet-processors/src/main/java/org/apache/nifi/parquet/ParquetRecordSetWriter.java), [ParquetReader](https://github.com/apache/nifi/blob/rel/nifi-2.0.0/nifi-extension-bundles/nifi-parquet-bundle/nifi-parquet-processors/src/main/java/org/apache/nifi/parquet/ParquetReader.java), [PutMongoRecord](https://github.com/apache/nifi/blob/rel/nifi-2.0.0/nifi-extension-bundles/nifi-mongodb-bundle/nifi-mongodb-processors/src/main/java/org/apache/nifi/processors/mongodb/PutMongoRecord.java) eta [MergeContent](https://github.com/apache/nifi/blob/rel/nifi-2.0.0/nifi-extension-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/MergeContent.java). `python -m json.tool flow_07_aemet_datalake_medallion.json` bidez sintaxia egiaztatu da; barne-konexioetako IDak, kanpo-zerbitzu erreferentziak, hiru S3 prefix-ak, Parquet/Mongo bideak eta README-ko fitxategi-loturak ere balioztatu dira.
 
-### MongoDB bildumak:
-```bash
-# Silver bilduma (dokumentu garbiak)
-docker exec -it iabd-mongodb-nifi mongosh iabd --eval 'db["7kasua-silver"].find().limit(3).pretty()'
-
-# Gold bilduma (agregazio analitikoak)
-docker exec -it iabd-mongodb-nifi mongosh iabd --eval 'db["7kasua-gold"].find().pretty()'
-```
+**Ez da NiFi abiarazi, flow-a inportatu edo exekutatu, ezta AEMETen datu-APIra, AWS/S3ra edo MongoDBra konektatu ere.** Hori dela eta, ez dago datu-bilketaren, S3 objektuen, Parquet irteeraren edo Mongo dokumentuen exekuzio-ebidentziarik; runtime konfigurazioa eta AEMET payload mapping-a pendiente daude.

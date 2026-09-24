@@ -3,7 +3,7 @@
     "identifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
     "instanceIdentifier": "b4118bed-01a0-1000-3727-637eb7e782de",
     "name": "7kasua_aemet",
-    "comments": "DF2.3 Ariketa: 7. Kasua - AEMET Datu-Lakua Osoa (Medallion: Bronze -> Silver -> Gold)",
+    "comments": "DF2.3: AEMET OpenData (2 HTTP pauso) -> Bronze S3 -> Silver JSON/S3 + MongoDB -> Gold NDJSON agregazioa/Parquet S3 + MongoDB. Definizio estatikoa; operator services/parameters falta dira.",
     "position": {
       "x": 1000.0,
       "y": 600.0
@@ -14,96 +14,73 @@
       {
         "identifier": "5ca2401f-ab4a-3ebb-8031-133773bededb",
         "instanceIdentifier": "b4118ce2-01a0-1000-137d-7423f1f15f05",
-        "name": "PutFile Gold 10 Min",
-        "comments": "10a. Datu agregatuak Gold karpetan gorde",
+        "name": "PutS3Object Gold Parquet",
+        "comments": "9a. Gold Parquet S3-n: s3://iabd-nifi/gold/{filename}",
         "position": {
-          "x": 1480.0,
+          "x": 1680.0,
           "y": 780.0
         },
-        "type": "org.apache.nifi.processors.standard.PutFile",
+        "type": "org.apache.nifi.processors.aws.s3.PutS3Object",
         "bundle": {
           "group": "org.apache.nifi",
-          "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "artifact": "nifi-aws-nar",
+          "version": "2.0.0"
         },
         "properties": {
-          "Group": null,
-          "Owner": null,
-          "Create Missing Directories": "true",
-          "Permissions": null,
-          "Maximum File Count": null,
-          "Last Modified Time": null,
-          "File Resource Service": null,
-          "Directory": "/opt/nifi/ariketak/07-ariketa-aemet-datalake/gold",
-          "Conflict Resolution Strategy": "replace"
+          "Bucket": "iabd-nifi",
+          "Object Key": "gold/${filename}",
+          "Region": "#{AWS_REGION}",
+          "AWS Credentials Provider service": "5c2c9ea6-e3f4-4cd8-a160-74728bb591ba",
+          "Storage Class": "Standard",
+          "Server Side Encryption": "None",
+          "Content Type": "application/vnd.apache.parquet"
         },
         "propertyDescriptors": {
-          "Group": {
-            "name": "Group",
-            "displayName": "Group",
+          "Bucket": {
+            "name": "Bucket",
+            "displayName": "Bucket",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Owner": {
-            "name": "Owner",
-            "displayName": "Owner",
+          "Object Key": {
+            "name": "Object Key",
+            "displayName": "Object Key",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Create Missing Directories": {
-            "name": "Create Missing Directories",
-            "displayName": "Create Missing Directories",
+          "Region": {
+            "name": "Region",
+            "displayName": "Region",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Permissions": {
-            "name": "Permissions",
-            "displayName": "Permissions",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "Resource Transfer Source": {
-            "name": "Resource Transfer Source",
-            "displayName": "Resource Transfer Source",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "Maximum File Count": {
-            "name": "Maximum File Count",
-            "displayName": "Maximum File Count",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "Last Modified Time": {
-            "name": "Last Modified Time",
-            "displayName": "Last Modified Time",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "File Resource Service": {
-            "name": "File Resource Service",
-            "displayName": "File Resource Service",
+          "AWS Credentials Provider service": {
+            "name": "AWS Credentials Provider service",
+            "displayName": "AWS Credentials Provider service",
             "identifiesControllerService": true,
             "sensitive": false,
             "dynamic": false
           },
-          "Directory": {
-            "name": "Directory",
-            "displayName": "Directory",
+          "Storage Class": {
+            "name": "Storage Class",
+            "displayName": "Storage Class",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Conflict Resolution Strategy": {
-            "name": "Conflict Resolution Strategy",
-            "displayName": "Conflict Resolution Strategy",
+          "Server Side Encryption": {
+            "name": "Server Side Encryption",
+            "displayName": "Server Side Encryption",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Content Type": {
+            "name": "Content Type",
+            "displayName": "Content Type",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
@@ -122,7 +99,7 @@
           "success",
           "failure"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -143,7 +120,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-mongodb-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Upsert": "false",
@@ -242,7 +219,7 @@
           "success",
           "failure"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -263,14 +240,14 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-mongodb-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Update Key Fields": null,
           "Mongo Collection Name": "7kasua-gold",
           "Mongo Database Name": "iabd",
           "mongo-client-service": "6f352988-b5e5-3e19-882e-66fca64f6ea1",
-          "record-reader": "f0cb7f47-a0e5-3e6e-8c48-c28b0792890c",
+          "record-reader": "5fb8ca9f-d624-49f2-87ce-4e2a16e82fc3",
           "insert_count": "100",
           "ordered": "False",
           "bypass-validation": "False",
@@ -354,7 +331,7 @@
           "success",
           "failure"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -365,8 +342,8 @@
       {
         "identifier": "fa4ad1dc-f3af-36e6-a497-5921e00adb26",
         "instanceIdentifier": "b4118cbe-01a0-1000-352f-30e75fbfa8de",
-        "name": "UpdateAttribute",
-        "comments": "8. Gold geruzarako fitxategi-izena (.parquet) esleitu",
+        "name": "UpdateAttribute Gold Parquet filename",
+        "comments": "6. Gold Parquet objektuaren izen bakarra.",
         "position": {
           "x": 1900.0,
           "y": 320.0
@@ -375,11 +352,11 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-update-attribute-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Delete Attributes Expression": null,
-          "filename": "${now():format('yyyy-MM-dd_HH-mm-00')}_gold.json",
+          "filename": "${now():format('yyyy-MM-dd_HH-mm-ss')}.parquet",
           "Store State": "Do not store state",
           "Cache Value Lookup Cache Size": "100",
           "Stateful Variables Initial Value": null
@@ -433,7 +410,7 @@
         "autoTerminatedRelationships": [
           "failure"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -444,96 +421,73 @@
       {
         "identifier": "ed39032a-2378-3e61-bf3a-dc86b67bcc2e",
         "instanceIdentifier": "b4118c84-01a0-1000-c9dd-69bbd5bab29e",
-        "name": "PutFile Silver 1 min",
-        "comments": "6a. Silver datuak tokiko fitxategi-sisteman gorde",
+        "name": "PutS3Object Silver JSON",
+        "comments": "5. Silver JSON S3-n: s3://iabd-nifi/silver/{filename}",
         "position": {
-          "x": 580.0,
-          "y": 780.0
+          "x": 1200.0,
+          "y": 620.0
         },
-        "type": "org.apache.nifi.processors.standard.PutFile",
+        "type": "org.apache.nifi.processors.aws.s3.PutS3Object",
         "bundle": {
           "group": "org.apache.nifi",
-          "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "artifact": "nifi-aws-nar",
+          "version": "2.0.0"
         },
         "properties": {
-          "Group": null,
-          "Owner": null,
-          "Create Missing Directories": "true",
-          "Permissions": null,
-          "Maximum File Count": null,
-          "Last Modified Time": null,
-          "File Resource Service": null,
-          "Directory": "/opt/nifi/ariketak/07-ariketa-aemet-datalake/silver",
-          "Conflict Resolution Strategy": "replace"
+          "Bucket": "iabd-nifi",
+          "Object Key": "silver/${filename}",
+          "Region": "#{AWS_REGION}",
+          "AWS Credentials Provider service": "5c2c9ea6-e3f4-4cd8-a160-74728bb591ba",
+          "Storage Class": "Standard",
+          "Server Side Encryption": "None",
+          "Content Type": "application/json"
         },
         "propertyDescriptors": {
-          "Group": {
-            "name": "Group",
-            "displayName": "Group",
+          "Bucket": {
+            "name": "Bucket",
+            "displayName": "Bucket",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Owner": {
-            "name": "Owner",
-            "displayName": "Owner",
+          "Object Key": {
+            "name": "Object Key",
+            "displayName": "Object Key",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Create Missing Directories": {
-            "name": "Create Missing Directories",
-            "displayName": "Create Missing Directories",
+          "Region": {
+            "name": "Region",
+            "displayName": "Region",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Permissions": {
-            "name": "Permissions",
-            "displayName": "Permissions",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "Resource Transfer Source": {
-            "name": "Resource Transfer Source",
-            "displayName": "Resource Transfer Source",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "Maximum File Count": {
-            "name": "Maximum File Count",
-            "displayName": "Maximum File Count",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "Last Modified Time": {
-            "name": "Last Modified Time",
-            "displayName": "Last Modified Time",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "File Resource Service": {
-            "name": "File Resource Service",
-            "displayName": "File Resource Service",
+          "AWS Credentials Provider service": {
+            "name": "AWS Credentials Provider service",
+            "displayName": "AWS Credentials Provider service",
             "identifiesControllerService": true,
             "sensitive": false,
             "dynamic": false
           },
-          "Directory": {
-            "name": "Directory",
-            "displayName": "Directory",
+          "Storage Class": {
+            "name": "Storage Class",
+            "displayName": "Storage Class",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Conflict Resolution Strategy": {
-            "name": "Conflict Resolution Strategy",
-            "displayName": "Conflict Resolution Strategy",
+          "Server Side Encryption": {
+            "name": "Server Side Encryption",
+            "displayName": "Server Side Encryption",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Content Type": {
+            "name": "Content Type",
+            "displayName": "Content Type",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
@@ -552,7 +506,7 @@
           "success",
           "failure"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -573,7 +527,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-update-attribute-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "fecha": "${now():format('yyyy-MM-dd HH:mm:ss')}",
@@ -639,7 +593,7 @@
         "autoTerminatedRelationships": [
           "failure"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -660,7 +614,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Attributes Regular Expression": null,
@@ -734,7 +688,7 @@
         "autoTerminatedRelationships": [
           "failure"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -755,7 +709,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Destination": "flowfile-attribute",
@@ -854,7 +808,7 @@
           "failure",
           "unmatched"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -865,8 +819,8 @@
       {
         "identifier": "3a6b09ef-e8f6-3f93-87f8-1c5526caeee3",
         "instanceIdentifier": "b4118c09-01a0-1000-4811-14b867a34f67",
-        "name": "InvokeHTTP REST AEMET",
-        "comments": "1. AEMET REST API-ari GET eskaria (60s) - api.el-tiempo.net",
+        "name": "InvokeHTTP AEMET OpenData locator",
+        "comments": "1a. AEMET OpenData endpoint dokumentatua; erantzuneko datos URL-a hurrengo InvokeHTTP-ra doa. api_key balioa NiFi Parameter Context sentikorretik bakarrik.",
         "position": {
           "x": 100.0,
           "y": 180.0
@@ -875,17 +829,18 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "HTTP Method": "GET",
-          "HTTP URL": "https://api.el-tiempo.net/json/v3/provincias/03/municipios/03065",
+          "HTTP URL": "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/todos",
           "Connection Timeout": "5 secs",
           "Socket Read Timeout": "15 secs",
           "Socket Write Timeout": "15 secs",
           "Response Cache Enabled": "false",
           "Response FlowFile Naming Strategy": "RANDOM",
-          "Response Cookie Strategy": "DISABLED"
+          "Response Cookie Strategy": "DISABLED",
+          "api_key": "#{AEMET_API_KEY}"
         },
         "propertyDescriptors": {
           "HTTP Method": {
@@ -943,10 +898,17 @@
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
+          },
+          "api_key": {
+            "name": "api_key",
+            "displayName": "api_key",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": true
           }
         },
         "style": {},
-        "schedulingPeriod": "60 sec",
+        "schedulingPeriod": "30 sec",
         "schedulingStrategy": "TIMER_DRIVEN",
         "executionNode": "ALL",
         "penaltyDuration": "30 sec",
@@ -960,7 +922,7 @@
           "Original",
           "Retry"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -971,96 +933,73 @@
       {
         "identifier": "ea6a2f5a-bba6-34d5-ae2c-636ede2e3cf9",
         "instanceIdentifier": "b4118c3d-01a0-1000-2563-58831e3d73dd",
-        "name": "PutFile Bronze / RAW",
-        "comments": "3. Bronze JSON gordina diskoan gorde aldatu gabe",
+        "name": "PutS3Object Bronze / RAW",
+        "comments": "2. Datu gordina S3-n: s3://iabd-nifi/bronze/{filename}",
         "position": {
-          "x": 100.0,
-          "y": 780.0
+          "x": 500.0,
+          "y": 420.0
         },
-        "type": "org.apache.nifi.processors.standard.PutFile",
+        "type": "org.apache.nifi.processors.aws.s3.PutS3Object",
         "bundle": {
           "group": "org.apache.nifi",
-          "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "artifact": "nifi-aws-nar",
+          "version": "2.0.0"
         },
         "properties": {
-          "Group": null,
-          "Owner": null,
-          "Create Missing Directories": "true",
-          "Permissions": null,
-          "Maximum File Count": null,
-          "Last Modified Time": null,
-          "File Resource Service": null,
-          "Directory": "/opt/nifi/ariketak/07-ariketa-aemet-datalake/bronze",
-          "Conflict Resolution Strategy": "replace"
+          "Bucket": "iabd-nifi",
+          "Object Key": "bronze/${filename}",
+          "Region": "#{AWS_REGION}",
+          "AWS Credentials Provider service": "5c2c9ea6-e3f4-4cd8-a160-74728bb591ba",
+          "Storage Class": "Standard",
+          "Server Side Encryption": "None",
+          "Content Type": "application/json"
         },
         "propertyDescriptors": {
-          "Group": {
-            "name": "Group",
-            "displayName": "Group",
+          "Bucket": {
+            "name": "Bucket",
+            "displayName": "Bucket",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Owner": {
-            "name": "Owner",
-            "displayName": "Owner",
+          "Object Key": {
+            "name": "Object Key",
+            "displayName": "Object Key",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Create Missing Directories": {
-            "name": "Create Missing Directories",
-            "displayName": "Create Missing Directories",
+          "Region": {
+            "name": "Region",
+            "displayName": "Region",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Permissions": {
-            "name": "Permissions",
-            "displayName": "Permissions",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "Resource Transfer Source": {
-            "name": "Resource Transfer Source",
-            "displayName": "Resource Transfer Source",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "Maximum File Count": {
-            "name": "Maximum File Count",
-            "displayName": "Maximum File Count",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "Last Modified Time": {
-            "name": "Last Modified Time",
-            "displayName": "Last Modified Time",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false
-          },
-          "File Resource Service": {
-            "name": "File Resource Service",
-            "displayName": "File Resource Service",
+          "AWS Credentials Provider service": {
+            "name": "AWS Credentials Provider service",
+            "displayName": "AWS Credentials Provider service",
             "identifiesControllerService": true,
             "sensitive": false,
             "dynamic": false
           },
-          "Directory": {
-            "name": "Directory",
-            "displayName": "Directory",
+          "Storage Class": {
+            "name": "Storage Class",
+            "displayName": "Storage Class",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
           },
-          "Conflict Resolution Strategy": {
-            "name": "Conflict Resolution Strategy",
-            "displayName": "Conflict Resolution Strategy",
+          "Server Side Encryption": {
+            "name": "Server Side Encryption",
+            "displayName": "Server Side Encryption",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Content Type": {
+            "name": "Content Type",
+            "displayName": "Content Type",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
@@ -1079,7 +1018,7 @@
           "success",
           "failure"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -1091,7 +1030,7 @@
         "identifier": "04d42a81-5273-301b-b86c-6d89683b14b6",
         "instanceIdentifier": "b4118cab-01a0-1000-8382-089e42249f56",
         "name": "MergeContent 10 FF",
-        "comments": "7. Silver FlowFile-ak loteetan multzokatu (10 mezu)",
+        "comments": "6. Silver NDJSON mezuak 10era edo 3 minutura multzokatu; newline demarkatzailea.",
         "position": {
           "x": 1480.0,
           "y": 180.0
@@ -1100,7 +1039,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Keep Path": "false",
@@ -1111,16 +1050,17 @@
           "Maximum Number of Entries": "10",
           "Minimum Group Size": "0 B",
           "Tar Modified Time": "${file.lastModifiedTime}",
-          "Delimiter Strategy": "Do Not Use Delimiters",
-          "Header": null,
+          "Delimiter Strategy": "Text",
           "Merge Format": "Binary Concatenation",
-          "Max Bin Age": "3 sec",
-          "Footer": null,
+          "Max Bin Age": "3 mins",
           "Correlation Attribute Name": null,
           "Bin Termination Check": null,
-          "Minimum Number of Entries": "2",
+          "Minimum Number of Entries": "10",
           "mergecontent-metadata-strategy": "Do Not Merge Uncommon Metadata",
-          "Maximum number of Bins": "5"
+          "Maximum number of Bins": "5",
+          "Header File": null,
+          "Footer File": null,
+          "Demarcator File": "\\n"
         },
         "propertyDescriptors": {
           "Metadata Strategy": {
@@ -1207,20 +1147,6 @@
             "sensitive": false,
             "dynamic": false
           },
-          "Header": {
-            "name": "Header",
-            "displayName": "Header",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false,
-            "resourceDefinition": {
-              "cardinality": "SINGLE",
-              "resourceTypes": [
-                "TEXT",
-                "FILE"
-              ]
-            }
-          },
           "Merge Format": {
             "name": "Merge Format",
             "displayName": "Merge Format",
@@ -1235,40 +1161,12 @@
             "sensitive": false,
             "dynamic": false
           },
-          "Footer": {
-            "name": "Footer",
-            "displayName": "Footer",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false,
-            "resourceDefinition": {
-              "cardinality": "SINGLE",
-              "resourceTypes": [
-                "TEXT",
-                "FILE"
-              ]
-            }
-          },
           "Correlation Attribute Name": {
             "name": "Correlation Attribute Name",
             "displayName": "Correlation Attribute Name",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
-          },
-          "Demarcator": {
-            "name": "Demarcator",
-            "displayName": "Demarcator",
-            "identifiesControllerService": false,
-            "sensitive": false,
-            "dynamic": false,
-            "resourceDefinition": {
-              "cardinality": "SINGLE",
-              "resourceTypes": [
-                "TEXT",
-                "FILE"
-              ]
-            }
           },
           "Bin Termination Check": {
             "name": "Bin Termination Check",
@@ -1283,6 +1181,48 @@
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": false
+          },
+          "Header File": {
+            "name": "Header File",
+            "displayName": "Header",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false,
+            "resourceDefinition": {
+              "cardinality": "SINGLE",
+              "resourceTypes": [
+                "TEXT",
+                "FILE"
+              ]
+            }
+          },
+          "Footer File": {
+            "name": "Footer File",
+            "displayName": "Footer",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false,
+            "resourceDefinition": {
+              "cardinality": "SINGLE",
+              "resourceTypes": [
+                "TEXT",
+                "FILE"
+              ]
+            }
+          },
+          "Demarcator File": {
+            "name": "Demarcator File",
+            "displayName": "Demarcator",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false,
+            "resourceDefinition": {
+              "cardinality": "SINGLE",
+              "resourceTypes": [
+                "TEXT",
+                "FILE"
+              ]
+            }
           }
         },
         "style": {},
@@ -1298,7 +1238,7 @@
           "original",
           "failure"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -1319,11 +1259,11 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "record-reader": "f0cb7f47-a0e5-3e6e-8c48-c28b0792890c",
-          "record-writer": "1e207816-ca56-38af-8d4f-4408c7fc579f",
+          "record-writer": "0f7ea9f8-1688-48a9-9462-721839dd116c",
           "include-zero-record-flowfiles": "false",
           "dbf-default-precision": "10",
           "dbf-default-scale": "0",
@@ -1386,7 +1326,201 @@
           "original",
           "failure"
         ],
-        "scheduledState": "ENABLED",
+        "scheduledState": "DISABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
+      },
+      {
+        "identifier": "bbf3037f-4a4a-480f-8d10-2be60851c788",
+        "instanceIdentifier": "fcb94bb1-42a3-4858-8698-cd789ad1ddd1",
+        "name": "EvaluateJsonPath AEMET datos URL",
+        "comments": "1b. OpenData API erantzunaren datos URL-a atera; ez da benetako erantzunik erabilita.",
+        "position": {
+          "x": 790.0,
+          "y": 180.0
+        },
+        "type": "org.apache.nifi.processors.standard.EvaluateJsonPath",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.0.0"
+        },
+        "properties": {
+          "Destination": "flowfile-attribute",
+          "datos": "$.datos",
+          "Max String Length": "20 MB",
+          "Return Type": "scalar",
+          "Null Value Representation": "empty string",
+          "Path Not Found Behavior": "ignore"
+        },
+        "propertyDescriptors": {
+          "Destination": {
+            "name": "Destination",
+            "displayName": "Destination",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Max String Length": {
+            "name": "Max String Length",
+            "displayName": "Max String Length",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Return Type": {
+            "name": "Return Type",
+            "displayName": "Return Type",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Null Value Representation": {
+            "name": "Null Value Representation",
+            "displayName": "Null Value Representation",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Path Not Found Behavior": {
+            "name": "Path Not Found Behavior",
+            "displayName": "Path Not Found Behavior",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "datos": {
+            "name": "datos",
+            "displayName": "datos",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": true
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "failure",
+          "unmatched"
+        ],
+        "scheduledState": "DISABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
+      },
+      {
+        "identifier": "2713f2c8-2518-4f9b-9907-3aa4cedb51a1",
+        "instanceIdentifier": "e523247a-fca0-4136-8579-63b2c4847e75",
+        "name": "InvokeHTTP AEMET data URL",
+        "comments": "1c. AEMETek itzultzen duen datos URL-a GET bidez deskargatu; erantzun gordinak Bronze-ra jarraitzen du.",
+        "position": {
+          "x": 280.0,
+          "y": 420.0
+        },
+        "type": "org.apache.nifi.processors.standard.InvokeHTTP",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.0.0"
+        },
+        "properties": {
+          "HTTP Method": "GET",
+          "HTTP URL": "${datos}",
+          "Connection Timeout": "5 secs",
+          "Socket Read Timeout": "15 secs",
+          "Socket Write Timeout": "15 secs",
+          "Response Cache Enabled": "false",
+          "Response FlowFile Naming Strategy": "RANDOM",
+          "Response Cookie Strategy": "DISABLED"
+        },
+        "propertyDescriptors": {
+          "HTTP Method": {
+            "name": "HTTP Method",
+            "displayName": "HTTP Method",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "HTTP URL": {
+            "name": "HTTP URL",
+            "displayName": "HTTP URL",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Connection Timeout": {
+            "name": "Connection Timeout",
+            "displayName": "Connection Timeout",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Socket Read Timeout": {
+            "name": "Socket Read Timeout",
+            "displayName": "Socket Read Timeout",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Socket Write Timeout": {
+            "name": "Socket Write Timeout",
+            "displayName": "Socket Write Timeout",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Response Cache Enabled": {
+            "name": "Response Cache Enabled",
+            "displayName": "Response Cache Enabled",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Response FlowFile Naming Strategy": {
+            "name": "Response FlowFile Naming Strategy",
+            "displayName": "Response FlowFile Naming Strategy",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Response Cookie Strategy": {
+            "name": "Response Cookie Strategy",
+            "displayName": "Response Cookie Strategy",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "Failure",
+          "No Retry",
+          "Original",
+          "Retry"
+        ],
+        "scheduledState": "DISABLED",
         "retryCount": 10,
         "retriedRelationships": [],
         "backoffMechanism": "PENALIZE_FLOWFILE",
@@ -1399,24 +1533,59 @@
     "outputPorts": [],
     "connections": [
       {
-        "identifier": "59e39c4c-c7c7-3464-b9ed-0fb76aba7e52",
-        "instanceIdentifier": "b4118d45-01a0-1000-c635-f95481883c86",
-        "name": "Eval to AttrJSON",
+        "identifier": "f47ba48d-49aa-46c2-8f48-31192a5d60e3",
+        "instanceIdentifier": "28ed8457-a7a4-46d0-9b19-c46d636cf051",
+        "name": "OpenData locator response",
         "source": {
-          "id": "4e6df6bd-800c-3465-8f8c-7a5a0ccebb7a",
+          "id": "3a6b09ef-e8f6-3f93-87f8-1c5526caeee3",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "EvaluateJsonPath_Silver",
-          "comments": "",
-          "instanceIdentifier": "b4118c52-01a0-1000-e8a2-ea48a34e5d2c"
+          "name": "InvokeHTTP AEMET OpenData locator",
+          "comments": "1a. AEMET OpenData endpoint dokumentatua; erantzuneko datos URL-a hurrengo InvokeHTTP-ra doa. api_key balioa NiFi Parameter Context sentikorretik bakarrik.",
+          "instanceIdentifier": "b4118c09-01a0-1000-4811-14b867a34f67"
         },
         "destination": {
-          "id": "f1dc22b3-50db-3d47-b249-0668cbf6b88c",
+          "id": "bbf3037f-4a4a-480f-8d10-2be60851c788",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "AttributesToJSON_Silver",
-          "comments": "",
-          "instanceIdentifier": "b4118c71-01a0-1000-73ff-032d7311fb4d"
+          "name": "EvaluateJsonPath AEMET datos URL",
+          "comments": "1b. OpenData API erantzunaren datos URL-a atera; ez da benetako erantzunik erabilita.",
+          "instanceIdentifier": "fcb94bb1-42a3-4858-8698-cd789ad1ddd1"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "Response"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
+      },
+      {
+        "identifier": "9bd095a2-e8cd-466a-b14c-b1265d378941",
+        "instanceIdentifier": "c4636b1d-2476-44dc-85b8-03a24ce25e5d",
+        "name": "AEMET datos URL",
+        "source": {
+          "id": "bbf3037f-4a4a-480f-8d10-2be60851c788",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "EvaluateJsonPath AEMET datos URL",
+          "comments": "1b. OpenData API erantzunaren datos URL-a atera; ez da benetako erantzunik erabilita.",
+          "instanceIdentifier": "fcb94bb1-42a3-4858-8698-cd789ad1ddd1"
+        },
+        "destination": {
+          "id": "2713f2c8-2518-4f9b-9907-3aa4cedb51a1",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "InvokeHTTP AEMET data URL",
+          "comments": "1c. AEMETek itzultzen duen datos URL-a GET bidez deskargatu; erantzun gordinak Bronze-ra jarraitzen du.",
+          "instanceIdentifier": "e523247a-fca0-4136-8579-63b2c4847e75"
         },
         "labelIndex": 1,
         "zIndex": 0,
@@ -1434,198 +1603,23 @@
         "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
       },
       {
-        "identifier": "82b3ce2f-4f25-3877-90c2-708cca556fcb",
-        "instanceIdentifier": "b4118d22-01a0-1000-5934-e1e40f9e6245",
-        "name": "UpBronze to PutBronze",
+        "identifier": "033d0683-015f-43e3-9bc8-5b97176cb269",
+        "instanceIdentifier": "4e382572-d1c4-4343-80ec-4f6fcbac2b27",
+        "name": "AEMET forecast payload",
         "source": {
-          "id": "f252faf8-7387-3ceb-9b92-afcc8905711a",
+          "id": "2713f2c8-2518-4f9b-9907-3aa4cedb51a1",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "UpdateAttribute_Bronze",
-          "comments": "",
-          "instanceIdentifier": "b4118c23-01a0-1000-c065-d3dc77975119"
-        },
-        "destination": {
-          "id": "ea6a2f5a-bba6-34d5-ae2c-636ede2e3cf9",
-          "type": "PROCESSOR",
-          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "PutFile_Bronze",
-          "comments": "",
-          "instanceIdentifier": "b4118c3d-01a0-1000-2563-58831e3d73dd"
-        },
-        "labelIndex": 1,
-        "zIndex": 0,
-        "selectedRelationships": [
-          "success"
-        ],
-        "backPressureObjectThreshold": 10000,
-        "backPressureDataSizeThreshold": "1 GB",
-        "flowFileExpiration": "0 sec",
-        "prioritizers": [],
-        "bends": [],
-        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
-        "loadBalanceCompression": "DO_NOT_COMPRESS",
-        "componentType": "CONNECTION",
-        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
-      },
-      {
-        "identifier": "89edb0d4-b87c-3d82-832d-0daf1c322991",
-        "instanceIdentifier": "b4118dab-01a0-1000-988d-2017efcb3d60",
-        "name": "Query to PutGold",
-        "source": {
-          "id": "1ea0eba4-d74b-3d3a-b459-a6e0aba9cbe3",
-          "type": "PROCESSOR",
-          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "QueryRecord_Gold",
-          "comments": "",
-          "instanceIdentifier": "b4118cd0-01a0-1000-7869-11253000d945"
-        },
-        "destination": {
-          "id": "5ca2401f-ab4a-3ebb-8031-133773bededb",
-          "type": "PROCESSOR",
-          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "PutFile_Gold",
-          "comments": "",
-          "instanceIdentifier": "b4118ce2-01a0-1000-137d-7423f1f15f05"
-        },
-        "labelIndex": 1,
-        "zIndex": 0,
-        "selectedRelationships": [
-          "tempMedia"
-        ],
-        "backPressureObjectThreshold": 10000,
-        "backPressureDataSizeThreshold": "1 GB",
-        "flowFileExpiration": "0 sec",
-        "prioritizers": [],
-        "bends": [],
-        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
-        "loadBalanceCompression": "DO_NOT_COMPRESS",
-        "componentType": "CONNECTION",
-        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
-      },
-      {
-        "identifier": "a95afb53-5ff2-3edb-835e-2979fc79aed2",
-        "instanceIdentifier": "b4118dbc-01a0-1000-18f2-4cf141c9629c",
-        "name": "Query to PutMongoGold",
-        "source": {
-          "id": "1ea0eba4-d74b-3d3a-b459-a6e0aba9cbe3",
-          "type": "PROCESSOR",
-          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "QueryRecord_Gold",
-          "comments": "",
-          "instanceIdentifier": "b4118cd0-01a0-1000-7869-11253000d945"
-        },
-        "destination": {
-          "id": "16234f14-086a-3395-8412-417acec4142a",
-          "type": "PROCESSOR",
-          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "PutMongoRecord_Gold",
-          "comments": "",
-          "instanceIdentifier": "b4118cf4-01a0-1000-e287-9f7937241951"
-        },
-        "labelIndex": 1,
-        "zIndex": 0,
-        "selectedRelationships": [
-          "tempMedia"
-        ],
-        "backPressureObjectThreshold": 10000,
-        "backPressureDataSizeThreshold": "1 GB",
-        "flowFileExpiration": "0 sec",
-        "prioritizers": [],
-        "bends": [],
-        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
-        "loadBalanceCompression": "DO_NOT_COMPRESS",
-        "componentType": "CONNECTION",
-        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
-      },
-      {
-        "identifier": "7a6aaee8-b9c7-3808-9f04-1954519eb628",
-        "instanceIdentifier": "b4118d68-01a0-1000-0d27-fbe82971cb27",
-        "name": "Silver to PutMongoSilver",
-        "source": {
-          "id": "f1dc22b3-50db-3d47-b249-0668cbf6b88c",
-          "type": "PROCESSOR",
-          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "AttributesToJSON_Silver",
-          "comments": "",
-          "instanceIdentifier": "b4118c71-01a0-1000-73ff-032d7311fb4d"
-        },
-        "destination": {
-          "id": "3b86dc6d-18bf-3831-b627-8916f6748661",
-          "type": "PROCESSOR",
-          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "PutMongo_Silver",
-          "comments": "",
-          "instanceIdentifier": "b4118c98-01a0-1000-0f2c-d46602d03c3f"
-        },
-        "labelIndex": 1,
-        "zIndex": 0,
-        "selectedRelationships": [
-          "success"
-        ],
-        "backPressureObjectThreshold": 10000,
-        "backPressureDataSizeThreshold": "1 GB",
-        "flowFileExpiration": "0 sec",
-        "prioritizers": [],
-        "bends": [],
-        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
-        "loadBalanceCompression": "DO_NOT_COMPRESS",
-        "componentType": "CONNECTION",
-        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
-      },
-      {
-        "identifier": "81233027-e90c-3c3d-accc-dd2fbe1ee007",
-        "instanceIdentifier": "b4118d7b-01a0-1000-0359-779187a4b8c4",
-        "name": "Silver to GoldMerge",
-        "source": {
-          "id": "f1dc22b3-50db-3d47-b249-0668cbf6b88c",
-          "type": "PROCESSOR",
-          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "AttributesToJSON_Silver",
-          "comments": "",
-          "instanceIdentifier": "b4118c71-01a0-1000-73ff-032d7311fb4d"
-        },
-        "destination": {
-          "id": "04d42a81-5273-301b-b86c-6d89683b14b6",
-          "type": "PROCESSOR",
-          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "MergeContent_Gold",
-          "comments": "",
-          "instanceIdentifier": "b4118cab-01a0-1000-8382-089e42249f56"
-        },
-        "labelIndex": 1,
-        "zIndex": 0,
-        "selectedRelationships": [
-          "success"
-        ],
-        "backPressureObjectThreshold": 10000,
-        "backPressureDataSizeThreshold": "1 GB",
-        "flowFileExpiration": "0 sec",
-        "prioritizers": [],
-        "bends": [],
-        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
-        "loadBalanceCompression": "DO_NOT_COMPRESS",
-        "componentType": "CONNECTION",
-        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
-      },
-      {
-        "identifier": "031af11d-5eb2-324a-a0a7-3497943dce81",
-        "instanceIdentifier": "b4118d0b-01a0-1000-900d-a157071b69e9",
-        "name": "Gen to UpBronze",
-        "source": {
-          "id": "3a6b09ef-e8f6-3f93-87f8-1c5526caeee3",
-          "type": "PROCESSOR",
-          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "Generate_AEMET_Feed",
-          "comments": "",
-          "instanceIdentifier": "b4118c09-01a0-1000-4811-14b867a34f67"
+          "name": "InvokeHTTP AEMET data URL",
+          "comments": "1c. AEMETek itzultzen duen datos URL-a GET bidez deskargatu; erantzun gordinak Bronze-ra jarraitzen du.",
+          "instanceIdentifier": "e523247a-fca0-4136-8579-63b2c4847e75"
         },
         "destination": {
           "id": "f252faf8-7387-3ceb-9b92-afcc8905711a",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "UpdateAttribute_Bronze",
-          "comments": "",
+          "name": "UpdateAttribute fecha / filename",
+          "comments": "2. Metadatuak gehitu: fecha eta filename timestamp-arekin",
           "instanceIdentifier": "b4118c23-01a0-1000-c065-d3dc77975119"
         },
         "labelIndex": 1,
@@ -1644,24 +1638,24 @@
         "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
       },
       {
-        "identifier": "4b15f63f-5f64-39d0-a420-4be00458dd6a",
-        "instanceIdentifier": "b4118d57-01a0-1000-2dc3-cbf63842ded8",
-        "name": "Silver to PutSilver",
+        "identifier": "fd870742-f8c3-43c3-b24c-6469f1a1c1a4",
+        "instanceIdentifier": "6b6456b5-9519-4a65-be1d-e416d6612c8f",
+        "name": "Bronze raw to S3",
         "source": {
-          "id": "f1dc22b3-50db-3d47-b249-0668cbf6b88c",
+          "id": "f252faf8-7387-3ceb-9b92-afcc8905711a",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "AttributesToJSON_Silver",
-          "comments": "",
-          "instanceIdentifier": "b4118c71-01a0-1000-73ff-032d7311fb4d"
+          "name": "UpdateAttribute fecha / filename",
+          "comments": "2. Metadatuak gehitu: fecha eta filename timestamp-arekin",
+          "instanceIdentifier": "b4118c23-01a0-1000-c065-d3dc77975119"
         },
         "destination": {
-          "id": "ed39032a-2378-3e61-bf3a-dc86b67bcc2e",
+          "id": "ea6a2f5a-bba6-34d5-ae2c-636ede2e3cf9",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "PutFile_Silver",
-          "comments": "",
-          "instanceIdentifier": "b4118c84-01a0-1000-c9dd-69bbd5bab29e"
+          "name": "PutS3Object Bronze / RAW",
+          "comments": "2. Datu gordina S3-n: s3://iabd-nifi/bronze/{filename}",
+          "instanceIdentifier": "b4118c3d-01a0-1000-2563-58831e3d73dd"
         },
         "labelIndex": 1,
         "zIndex": 0,
@@ -1679,23 +1673,23 @@
         "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
       },
       {
-        "identifier": "cd4651f7-da14-35dd-94b7-d6d839e7c45c",
-        "instanceIdentifier": "b4118d34-01a0-1000-1067-cfe56ef93f4d",
+        "identifier": "9d2373df-f78b-4d75-a53b-7fbf8b2e92aa",
+        "instanceIdentifier": "c761df46-7a12-4c4b-bbb6-8d473fb50b72",
         "name": "Bronze to Silver",
         "source": {
           "id": "f252faf8-7387-3ceb-9b92-afcc8905711a",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "UpdateAttribute_Bronze",
-          "comments": "",
+          "name": "UpdateAttribute fecha / filename",
+          "comments": "2. Metadatuak gehitu: fecha eta filename timestamp-arekin",
           "instanceIdentifier": "b4118c23-01a0-1000-c065-d3dc77975119"
         },
         "destination": {
           "id": "4e6df6bd-800c-3465-8f8c-7a5a0ccebb7a",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "EvaluateJsonPath_Silver",
-          "comments": "",
+          "name": "EvaluateJsonPath",
+          "comments": "4. Bronze JSONetik hiria, tenperatura eta hezetasuna erauzi",
           "instanceIdentifier": "b4118c52-01a0-1000-e8a2-ea48a34e5d2c"
         },
         "labelIndex": 1,
@@ -1714,23 +1708,128 @@
         "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
       },
       {
-        "identifier": "7d23ff94-fe8b-3a83-82ea-fc361a1cc663",
-        "instanceIdentifier": "b4118d8b-01a0-1000-6fdd-9bae46f96144",
-        "name": "Merge to UpGold",
+        "identifier": "5dc55f2e-6972-41a4-ae3a-1192f78193a6",
+        "instanceIdentifier": "41699cdb-25af-4863-ac96-c88a957a577e",
+        "name": "Silver JSON to S3",
+        "source": {
+          "id": "f1dc22b3-50db-3d47-b249-0668cbf6b88c",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "AttributesToJSON",
+          "comments": "5. Erauzitako atributuekin Silver JSON garbia sortu",
+          "instanceIdentifier": "b4118c71-01a0-1000-73ff-032d7311fb4d"
+        },
+        "destination": {
+          "id": "ed39032a-2378-3e61-bf3a-dc86b67bcc2e",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "PutS3Object Silver JSON",
+          "comments": "5. Silver JSON S3-n: s3://iabd-nifi/silver/{filename}",
+          "instanceIdentifier": "b4118c84-01a0-1000-c9dd-69bbd5bab29e"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
+      },
+      {
+        "identifier": "14acd500-9f7e-400e-a8ce-c6452f6ea89c",
+        "instanceIdentifier": "49d2d103-bf14-4e75-b9d1-1e99b00eeeec",
+        "name": "Silver JSON to Mongo",
+        "source": {
+          "id": "f1dc22b3-50db-3d47-b249-0668cbf6b88c",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "AttributesToJSON",
+          "comments": "5. Erauzitako atributuekin Silver JSON garbia sortu",
+          "instanceIdentifier": "b4118c71-01a0-1000-73ff-032d7311fb4d"
+        },
+        "destination": {
+          "id": "3b86dc6d-18bf-3831-b627-8916f6748661",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "PutMongo 7-kasua Silver",
+          "comments": "6b. Silver datuak MongoDB 7kasua-silver bilduman txertatu",
+          "instanceIdentifier": "b4118c98-01a0-1000-0f2c-d46602d03c3f"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
+      },
+      {
+        "identifier": "c538c6ea-df87-4c5c-b6f1-571a2dd78de9",
+        "instanceIdentifier": "77aca87e-fcaa-43f5-89b5-e02fb22ac910",
+        "name": "Silver to Gold batch",
+        "source": {
+          "id": "f1dc22b3-50db-3d47-b249-0668cbf6b88c",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "AttributesToJSON",
+          "comments": "5. Erauzitako atributuekin Silver JSON garbia sortu",
+          "instanceIdentifier": "b4118c71-01a0-1000-73ff-032d7311fb4d"
+        },
+        "destination": {
+          "id": "04d42a81-5273-301b-b86c-6d89683b14b6",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "MergeContent 10 FF",
+          "comments": "6. Silver NDJSON mezuak 10era edo 3 minutura multzokatu; newline demarkatzailea.",
+          "instanceIdentifier": "b4118cab-01a0-1000-8382-089e42249f56"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
+      },
+      {
+        "identifier": "7a808259-86b3-49fd-9c73-e102e9141cab",
+        "instanceIdentifier": "19ec9d14-5651-46e9-8fd4-5bb281673ed9",
+        "name": "Merged batch to Gold filename",
         "source": {
           "id": "04d42a81-5273-301b-b86c-6d89683b14b6",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "MergeContent_Gold",
-          "comments": "",
+          "name": "MergeContent 10 FF",
+          "comments": "6. Silver NDJSON mezuak 10era edo 3 minutura multzokatu; newline demarkatzailea.",
           "instanceIdentifier": "b4118cab-01a0-1000-8382-089e42249f56"
         },
         "destination": {
           "id": "fa4ad1dc-f3af-36e6-a497-5921e00adb26",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "UpdateAttribute_Gold",
-          "comments": "",
+          "name": "UpdateAttribute Gold Parquet filename",
+          "comments": "6. Gold Parquet objektuaren izen bakarra.",
           "instanceIdentifier": "b4118cbe-01a0-1000-352f-30e75fbfa8de"
         },
         "labelIndex": 1,
@@ -1749,23 +1848,93 @@
         "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
       },
       {
-        "identifier": "6c425988-5e81-324a-9737-72542104f6bf",
-        "instanceIdentifier": "b4118d9a-01a0-1000-612c-64481a333d69",
-        "name": "UpGold to QueryRecord",
+        "identifier": "f744e099-4cd0-4609-b609-462a7d35699e",
+        "instanceIdentifier": "2fa13c90-3553-4264-b0db-533bdfe0eaea",
+        "name": "Gold record query to S3",
+        "source": {
+          "id": "1ea0eba4-d74b-3d3a-b459-a6e0aba9cbe3",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "QueryRecord",
+          "comments": "9. SQL kontsulta analitikoa exekutatu eta tempMedia harremanera bideratu",
+          "instanceIdentifier": "b4118cd0-01a0-1000-7869-11253000d945"
+        },
+        "destination": {
+          "id": "5ca2401f-ab4a-3ebb-8031-133773bededb",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "PutS3Object Gold Parquet",
+          "comments": "9a. Gold Parquet S3-n: s3://iabd-nifi/gold/{filename}",
+          "instanceIdentifier": "b4118ce2-01a0-1000-137d-7423f1f15f05"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "tempMedia"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
+      },
+      {
+        "identifier": "180657d1-51d3-45a9-9467-29d35b84fcc7",
+        "instanceIdentifier": "f4f45a62-9252-40ab-b24a-533af92337cb",
+        "name": "Gold record query to Mongo",
+        "source": {
+          "id": "1ea0eba4-d74b-3d3a-b459-a6e0aba9cbe3",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "QueryRecord",
+          "comments": "9. SQL kontsulta analitikoa exekutatu eta tempMedia harremanera bideratu",
+          "instanceIdentifier": "b4118cd0-01a0-1000-7869-11253000d945"
+        },
+        "destination": {
+          "id": "16234f14-086a-3395-8412-417acec4142a",
+          "type": "PROCESSOR",
+          "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
+          "name": "PutMongoRecord 7-kasua Gold",
+          "comments": "10b. Datu agregatuak MongoDB 7kasua-gold bilduman gorde",
+          "instanceIdentifier": "b4118cf4-01a0-1000-e287-9f7937241951"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "tempMedia"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8"
+      },
+      {
+        "identifier": "d2e93623-04bc-45bd-94bd-2ba2de9fa8d1",
+        "instanceIdentifier": "e349f755-9906-4ce3-b95c-e8df34b0368b",
+        "name": "Gold filename to query",
         "source": {
           "id": "fa4ad1dc-f3af-36e6-a497-5921e00adb26",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "UpdateAttribute_Gold",
-          "comments": "",
+          "name": "UpdateAttribute Gold Parquet filename",
+          "comments": "6. Gold Parquet objektuaren izen bakarra.",
           "instanceIdentifier": "b4118cbe-01a0-1000-352f-30e75fbfa8de"
         },
         "destination": {
           "id": "1ea0eba4-d74b-3d3a-b459-a6e0aba9cbe3",
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
-          "name": "QueryRecord_Gold",
-          "comments": "",
+          "name": "QueryRecord",
+          "comments": "9. SQL kontsulta analitikoa exekutatu eta tempMedia harremanera bideratu",
           "instanceIdentifier": "b4118cd0-01a0-1000-7869-11253000d945"
         },
         "labelIndex": 1,
@@ -1787,7 +1956,7 @@
     "labels": [
       {
         "identifier": "e477a0a9-8544-45e0-8367-9a74fae94e2b",
-        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \ud83c\udfc5 LABORATEGIA 07: AEMET DATU-LAKUA - MEDALLION ARKITEKTURA (BRONZE \u2794 SILVER \u2794 GOLD)                          \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura: Open Data API Ingesta \u2794 Bronze (Raw JSON) \u2794 Silver (Curated JSONPath & Dual Storage) \u2794 Gold (SQL Agregazioa & Parquet Dual Storage)",
+        "label": "DF2.3 · AEMET OpenData (2 urrats) → Bronze/Silver/Gold · S3 + MongoDB",
         "position": {
           "x": 60.0,
           "y": 15.0
@@ -1801,7 +1970,7 @@
       },
       {
         "identifier": "c33e7fe7-df84-4718-8b9b-bc3443cd0a3d",
-        "label": "\ud83e\udd49 1. BRONZE GERUZA (RAW INGESTA)",
+        "label": "🥉 1. BRONZE GERUZA (RAW INGESTA)",
         "position": {
           "x": 80.0,
           "y": 105.0
@@ -1815,7 +1984,7 @@
       },
       {
         "identifier": "17774725-daf4-4629-bbfe-6dcf80b6be75",
-        "label": "\ud83e\udd48 2. SILVER GERUZA (CURATED & DUAL STORAGE)",
+        "label": "🥈 2. SILVER GERUZA (CURATED & DUAL STORAGE)",
         "position": {
           "x": 550.0,
           "y": 105.0
@@ -1829,7 +1998,7 @@
       },
       {
         "identifier": "f4e7ccd6-6114-4b79-a7ab-47017fed5e3d",
-        "label": "\ud83e\udd47 3. GOLD GERUZA (AGGREGATED & RECORD API)",
+        "label": "🥇 3. GOLD GERUZA (AGGREGATED & RECORD API)",
         "position": {
           "x": 1440.0,
           "y": 105.0
@@ -1847,7 +2016,7 @@
     "defaultFlowFileExpiration": "0 sec",
     "defaultBackPressureObjectThreshold": 10000,
     "defaultBackPressureDataSizeThreshold": "1 GB",
-    "scheduledState": "ENABLED",
+    "scheduledState": "DISABLED",
     "executionEngine": "INHERITED",
     "maxConcurrentTasks": 1,
     "statelessFlowTimeout": "1 min",
@@ -1856,17 +2025,25 @@
     "componentType": "PROCESS_GROUP"
   },
   "externalControllerServices": {
-    "1e207816-ca56-38af-8d4f-4408c7fc579f": {
-      "identifier": "1e207816-ca56-38af-8d4f-4408c7fc579f",
-      "name": "JsonRecordSetWriter_NDJSON"
-    },
     "6f352988-b5e5-3e19-882e-66fca64f6ea1": {
       "identifier": "6f352988-b5e5-3e19-882e-66fca64f6ea1",
       "name": "MongoDBControllerService"
     },
     "f0cb7f47-a0e5-3e6e-8c48-c28b0792890c": {
       "identifier": "f0cb7f47-a0e5-3e6e-8c48-c28b0792890c",
-      "name": "JsonTreeReader"
+      "name": "JsonTreeReader (Silver NDJSON)"
+    },
+    "5c2c9ea6-e3f4-4cd8-a160-74728bb591ba": {
+      "identifier": "5c2c9ea6-e3f4-4cd8-a160-74728bb591ba",
+      "name": "AWSCredentialsProviderControllerService (runtime credentials)"
+    },
+    "0f7ea9f8-1688-48a9-9462-721839dd116c": {
+      "identifier": "0f7ea9f8-1688-48a9-9462-721839dd116c",
+      "name": "ParquetRecordSetWriter"
+    },
+    "5fb8ca9f-d624-49f2-87ce-4e2a16e82fc3": {
+      "identifier": "5fb8ca9f-d624-49f2-87ce-4e2a16e82fc3",
+      "name": "ParquetReader"
     }
   },
   "parameterContexts": {},
