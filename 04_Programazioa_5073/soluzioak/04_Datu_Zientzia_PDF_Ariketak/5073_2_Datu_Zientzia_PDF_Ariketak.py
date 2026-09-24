@@ -570,50 +570,109 @@ ariketa_2_5()
 # """
 
 # %%
-IKASLEAK_3_1 = ["Ane", "Mikel", "Leire", "Jon", "Maite", "Kepa", "Nerea", "Gorka"]
-NOTAK_3_1 = [8.5, 4.0, 9.2, 5.5, 7.8, 3.5, 6.2, 8.0]
-ORDUAK_3_1 = [25, 10, 32, 18, 28, 8, 20, 26]
+IKASLEAK_CSV_3_1 = Path("data/ikasleak_notak_100.csv")
+MOCK_CSV_3_1 = Path("../../data/mock_datuak/Ariketa 3.1/ikasleak_notak_100.csv")
 GRAFIKOA_3_1_PNG = Path("grafikoak/grafikoa_3_1.png")
 GRAFIKOA_3_1_PDF = Path("grafikoak/grafikoa_3_1.pdf")
 
 
+def kargatu_ikasleak_3_1() -> pd.DataFrame:
+    """Kargatu Moodle-ko ikasleak_notak_100.csv fitxategi ofiziala (; bereizlea, , hamartarra)."""
+    for bidea in [IKASLEAK_CSV_3_1, MOCK_CSV_3_1]:
+        if bidea.exists():
+            return pd.read_csv(bidea, sep=";", decimal=",", encoding="utf-8")
+    # Fallback sintetikoa fitxategia ez badago
+    return pd.DataFrame({
+        "Ikaslea": ["Ane", "Mikel", "Leire", "Jon", "Maite", "Kepa", "Nerea", "Gorka"],
+        "Nota": [8.5, 4.0, 9.2, 5.5, 7.8, 3.5, 6.2, 8.0],
+        "Orduak": [25, 10, 32, 18, 28, 8, 20, 26],
+    })
+
+
 def ariketa_3_1() -> None:
-    """Matplotlib 2x2: barrak, scatter + joera, histograma, boxplot (PNG+PDF)."""
-    fig, axs = plt.subplots(2, 2, figsize=(12, 10))
+    """Matplotlib 2x2: barrak, scatter + joera, histograma, boxplot (Moodle datu ofizialekin)."""
+    df_ikasleak = kargatu_ikasleak_3_1()
+    print(f"Ikasleen datuak kargatuta: {len(df_ikasleak)} errenkada (iturria: ikasleak_notak_100.csv)")
+
+    fig, axs = plt.subplots(2, 2, figsize=(14, 11))
     fig.suptitle(
-        "Ikasleen Noten eta Ikasketa Orduen Analisia", fontsize=16, fontweight="bold"
+        f"Ikasleen Noten eta Ikasketa Orduen Analisia (N={len(df_ikasleak)})",
+        fontsize=16,
+        fontweight="bold",
     )
 
-    axs[0, 0].bar(IKASLEAK_3_1, NOTAK_3_1, color="#3498db", edgecolor="black")
-    axs[0, 0].axhline(5.0, color="red", linestyle="--", label="Muga (5.0)")
-    axs[0, 0].set_title("1. Ikasleen Notak")
-    axs[0, 0].set_ylabel("Nota")
-    axs[0, 0].tick_params(axis="x", rotation=30)
+    # 1. (0, 0) Barra-grafikoa (lehen 15 ikasleak lagin adierazgarri moduan)
+    lagina = df_ikasleak.head(15)
+    axs[0, 0].bar(lagina["Ikaslea"], lagina["Nota"], color="#3498db", edgecolor="black")
+    axs[0, 0].axhline(5.0, color="red", linestyle="--", label="Gainditua (5.0)")
+    axs[0, 0].set_title("1. Ikasleen Notak (Lehen 15 ikasle)")
+    axs[0, 0].set_ylabel("Nota (0-10)")
+    axs[0, 0].tick_params(axis="x", rotation=40)
     axs[0, 0].legend()
+    axs[0, 0].grid(axis="y", linestyle=":", alpha=0.6)
 
-    axs[0, 1].scatter(ORDUAK_3_1, NOTAK_3_1, color="#e74c3c", s=80, edgecolors="black")
-    m, b = np.polyfit(ORDUAK_3_1, NOTAK_3_1, 1)
-    x_lerroa = np.linspace(min(ORDUAK_3_1), max(ORDUAK_3_1), 50)
-    axs[0, 1].plot(x_lerroa, m * x_lerroa + b, color="navy", linestyle=":")
-    axs[0, 1].set_title("2. Ikasketa Orduak vs Nota")
-    axs[0, 1].set_xlabel("Orduak")
-    axs[0, 1].set_ylabel("Nota")
+    # 2. (0, 1) Orduak vs Nota sakabanaketa-grafikoa eta erregresio lerroa
+    axs[0, 1].scatter(
+        df_ikasleak["Orduak"],
+        df_ikasleak["Nota"],
+        color="#e74c3c",
+        alpha=0.75,
+        s=60,
+        edgecolors="black",
+    )
+    m, b = np.polyfit(df_ikasleak["Orduak"], df_ikasleak["Nota"], 1)
+    x_lerroa = np.linspace(df_ikasleak["Orduak"].min(), df_ikasleak["Orduak"].max(), 100)
+    axs[0, 1].plot(
+        x_lerroa,
+        m * x_lerroa + b,
+        color="darkblue",
+        linestyle="--",
+        linewidth=2,
+        label=f"Erregresioa (y = {m:.2f}x + {b:.2f})",
+    )
+    r = np.corrcoef(df_ikasleak["Orduak"], df_ikasleak["Nota"])[0, 1]
+    axs[0, 1].set_title(f"2. Ikasketa Orduak vs Nota (r = {r:.2f})")
+    axs[0, 1].set_xlabel("Ikasketa Orduak")
+    axs[0, 1].set_ylabel("Nota (0-10)")
+    axs[0, 1].legend()
+    axs[0, 1].grid(True, linestyle=":", alpha=0.6)
 
-    axs[1, 0].hist(NOTAK_3_1, bins=5, color="#2ecc71", edgecolor="black")
+    # 3. (1, 0) Noten maiztasun-banaketaren histograma
+    axs[1, 0].hist(
+        df_ikasleak["Nota"], bins=10, color="#2ecc71", edgecolor="black", range=(0, 10)
+    )
+    axs[1, 0].axvline(
+        df_ikasleak["Nota"].mean(),
+        color="black",
+        linestyle="-.",
+        linewidth=2,
+        label=f"Batez bestekoa: {df_ikasleak['Nota'].mean():.2f}",
+    )
     axs[1, 0].set_title("3. Noten Maiztasun-Banaketa")
     axs[1, 0].set_xlabel("Nota Tartea")
     axs[1, 0].set_ylabel("Ikasle Kopurua")
+    axs[1, 0].legend()
+    axs[1, 0].grid(axis="y", linestyle=":", alpha=0.6)
 
-    axs[1, 1].boxplot(NOTAK_3_1, patch_artist=True, boxprops=dict(facecolor="#f39c12"))
+    # 4. (1, 1) Noten boxplot-a
+    axs[1, 1].boxplot(
+        df_ikasleak["Nota"],
+        patch_artist=True,
+        tick_labels=["Notak"],
+        boxprops=dict(facecolor="#f39c12", color="black"),
+        medianprops=dict(color="red", linewidth=2),
+    )
     axs[1, 1].set_title("4. Noten Kaxa-Diagrama (Boxplot)")
     axs[1, 1].set_ylabel("Balioak")
+    axs[1, 1].grid(axis="y", linestyle=":", alpha=0.6)
 
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+    GRAFIKOA_3_1_PNG.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(GRAFIKOA_3_1_PNG, dpi=300, bbox_inches="tight")
     fig.savefig(GRAFIKOA_3_1_PDF, bbox_inches="tight")
     plt.show()
     print(
-        "✅ Grafikoa 'grafikoak/grafikoa_3_1.png' eta 'grafikoak/grafikoa_3_1.pdf' gorde da."
+        f"✅ Grafikoa '{GRAFIKOA_3_1_PNG}' eta '{GRAFIKOA_3_1_PDF}' gorde da."
     )
 
 
