@@ -100,7 +100,13 @@ def ariketa_2_2_csvak(
     beharrezkoak = {"data", "produktua", "kopurua", "prezioa"}
     zatiak: list[pd.DataFrame] = []
     for hilabetea, bidea in zip(HILABETEAK, bideak, strict=True):
-        taula = pd.read_csv(bidea, encoding="utf-8")
+        try:
+            taula = pd.read_csv(bidea, sep=";", encoding="utf-8")
+            if not beharrezkoak.issubset(taula.columns):
+                taula = pd.read_csv(bidea, encoding="utf-8")
+        except Exception:
+            taula = pd.read_csv(bidea, encoding="utf-8")
+
         falta = beharrezkoak.difference(taula.columns)
         if falta:
             raise ValueError(f"{bidea}: zutabe hauek falta dira: {sorted(falta)}")
@@ -155,6 +161,16 @@ def main() -> None:
     print("\n2.2 — fixture sintetikoak (ez dira tutorearen CSVak):")
     print(salmentak.to_string(index=False))
     print(f"guztira={len(salmentak)}; hilabeteka={errenkadak_hilabeteka}")
+
+    # 2.2 — Tutorearen CSV ofizialak (Moodle mock datuak)
+    tutore_dir = Path("/home/tears/bigdata/04_Programazioa_5073/data/mock_datuak/Ariketa 2.2")
+    if tutore_dir.is_dir():
+        tutore_bideak = [tutore_dir / f"{h}.csv" for h in HILABETEAK]
+        if all(p.is_file() for p in tutore_bideak):
+            salmentak_tutorea, hilabeteka_tutorea = ariketa_2_2_csvak(tutore_bideak)
+            print("\n2.2 — Tutorearen CSV ofizialak (mock datuak / Ariketa 2.2):")
+            print(f"guztira={len(salmentak_tutorea)}; hilabeteka={hilabeteka_tutorea}")
+            print(salmentak_tutorea.head(3).to_string(index=False))
 
     bi_hilabete = ariketa_2_5_concat(
         salmentak.loc[salmentak["iturria"] == "urtarrila"].drop(columns="iturria"),
