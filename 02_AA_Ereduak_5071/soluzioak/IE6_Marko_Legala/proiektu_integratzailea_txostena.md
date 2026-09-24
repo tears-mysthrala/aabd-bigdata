@@ -4,8 +4,8 @@
 
 **Adibide didaktiko fikziozkoa.** Txosten honek ez du benetako ikastetxe baten tratamendua aztertzen, ez du lege-aholkularitza ematen eta ez du araudia betetzen dela ziurtatzen. Erakunde, rol eta sistema guztiak hipotetikoak dira. Tokiko lege-oinarria, kontratuak, datu-fluxuak eta AI Acteko sailkapena benetako proiektu batean egiaztatu beharko lirateke, datuak erabili edo sistema erosi aurretik.
 
-**Kontsulta-data:** 2026-09-24.  
-**Hartzaileak:** fikziozko ikastetxeko zuzendaritza eta proiektuko arduradunak.  
+**Kontsulta-data:** 2026-09-24.
+**Hartzaileak:** fikziozko ikastetxeko zuzendaritza eta proiektuko arduradunak.
 **Erabaki-esparrua:** aukera tekniko eta antolakuntzazkoak aztertu; ez ezarri sistema automatikoki.
 
 ## Laburpen exekutiboa
