@@ -70,3 +70,25 @@ Atal hau ez da irakaslearen errubrika. Irakasleak bere errubrika eta ebidentzia 
 
 **Irakasleak bete beharreko emaitza edo feedback-eremua:** ez da txantiloi honetan aurrez bete behar.<br>
 **Kontrol-puntuetako irakasle-oharrak:** [irakasleak bete, benetako ebidentziarekin].
+
+## D. Zeharkako gaitasunen errubrika — 8. orriko pisuak
+
+Txostenaren 8. orriak zeharkako gaitasunen banaketa hau ematen du. Atal hau 11. orriko kalifikazio-egitura orokorretik bereizita dago; ez batu edo ordezkatu pisuak irakaslearen jarraibiderik gabe.
+
+| Irizpidea | Pisua | Ebaluatzailea (iturriaren arabera) | Iturriak zehaztutako ebidentzia edo erreferentzia | Ebaluatzaileak bete beharreko benetako ebidentzia/oharrak |
+|---|---:|---|---|---|
+| Talde-lana | %35 | Irakasleak | Koadernoaren zeharkako gaitasunetako Plangintza/Antolakuntza atala. | [...] |
+| Ahozko komunikazioa | %15 | Irakasleak | Aurkezpenak eta gelan erabilitako komunikazioa; koadernoaren Ahozko komunikazioa atala. | [...] |
+| Inplikazioa | %35 | Ikasleak eta irakasleak | Gelako prestutasuna, entrega ofizialak, besteei laguntzea, aurkezpen eta kontrol-puntuetara joatea, kontrol-puntuko informazio-transferentzia eta absentziak jakinaraztea. | [...] |
+| Autonomia | %15 | Irakasleak | Koadernoaren autonomia atala; iturriak ez du adierazle zehatzagorik ematen. | [...] |
+
+### Inplikazioaren eskala
+
+Txosteneko hiru aukera literalak dira: **Beti dago prest lanerako / Batzuetan / Inoiz ere ez**. Hautatu bat benetako behaketa eta ikastaroaren ebaluazio-prozeduraren arabera; ez da puntuazio numerikorik asmatzen.
+
+**Ebaluatutako ikaslea:** [...]<br>
+**Ebaluatzailea (ikaslea edo irakaslea):** [...]<br>
+**Aldia / data:** [...]<br>
+**Aukeratutako maila:** ☐ Beti dago prest lanerako &nbsp; ☐ Batzuetan &nbsp; ☐ Inoiz ere ez<br>
+**Behatutako adibidea eta data (aukerakoa / ebidentziaren arabera):** [...]<br>
+**Oharra edo hurrengo urratsa:** [...]

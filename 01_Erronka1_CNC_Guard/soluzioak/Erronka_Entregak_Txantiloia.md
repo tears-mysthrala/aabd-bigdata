@@ -107,7 +107,8 @@ Txostenaren 13. orriko egutegian agertzen diren mugarriak. Erabili orientazio gi
 
 | Data | Iturrian agertzen den jarduera edo mugarri |
 |---|---|
-| Irailak 9 | Erronka aurkeztu eta taldea martxan jarri; hasierako jarduerak eta Moodleko entrega/parametroen definizioa. |
+| Irailak 9 | Erronka 0. |
+| Irailak 10 | Erronka 1 aurkeztu; taldeak aurkeztu; Moodle ariketa; parametroak definitu. |
 | Urriak 13–16 | Klase-kontrola (egutegian lau egunetan markatua). |
 | Urriak 19 | Proposamenak sortu. |
 | Urriak 20 | Proposamenak aurkeztu eta aukeratu. |
@@ -118,6 +119,7 @@ Txostenaren 13. orriko egutegian agertzen diren mugarriak. Erabili orientazio gi
 | Azaroak 17 | Kontrol-puntua; jarduerak jarraitu. |
 | Azaroak 20 | Azken aurkezpena prestatzeko entrega. |
 | Azaroak 23 | Azken aurkezpena. |
+| Azaroak 24 | Egutegiko jarduera: «Erronkarekin bat egin / Parametroak». Ez dago entrega formal gisa markatuta. |
 
 Iturri-egutegiak informazioa biltzeko eta jarduerak egiteko tarteak ere erakusten ditu; ez du horien eguneroko emaitza edo benetako bertaratzerik frogatzen.
 
