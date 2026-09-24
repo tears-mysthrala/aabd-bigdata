@@ -7,19 +7,26 @@ Teoria: `../materialak/01_03_ApacheKafka.pdf` (1150 lerro testu: pub/sub, partiz
   Defaults desde entorno (`TOPIC`, `GROUP`, `BOOTSTRAP`; ver `.env.example`).
 - `test_kafka_mock.py` — roundtrip broker gabe (10 mezu).
 - `requirements.txt` — `kafka-python`, `pymongo`, `faker` (DF3.3).
-- **Broker**: vive en `infra/` (`docker compose up -d kafka` allí). Este lab es solo código.
+- **Broker compartido**: `infra/` define `iabd-kafka` y el volumen persistente `iabd-kafka-data`. No usarlo para practicar, borrar/recrear topic-ak, ni ejecutar los ejemplos siguientes: topic aurrizkiak ez du broker/volume hori isolatzen. Erabili soilik zure laborategirako esleitutako Kafka container independente bat. READMEko datu historikoak eta komandoak ez dira partekatutako brokerrean berriz exekutatzeko aginduak.
 
-## 0. kasua (kontsola, broker martxan: antes `cd ../../infra && docker compose up -d kafka`)
+## 0. kasua (kontsola — broker isolatu batean bakarrik)
+
+Ez erabili `infra/`ko Compose-a laborategi isolatu gisa eta ez abiarazi/gelditu zerbitzurik gida honengatik. Ezarri beheko balioak zure Kafka 3.7.0 labeko container eta broker-helbiderako; erabili `RUN_ID` berri bat 0. kasua berriz egiten duzun bakoitzean.
+
 ```bash
-docker exec -it iabd-kafka /opt/kafka/bin/kafka-topics.sh --create --topic iabd-topic --bootstrap-server localhost:9092
-docker exec -it iabd-kafka bash
-/opt/kafka/bin/kafka-console-producer.sh --topic iabd-topic --bootstrap-server localhost:9092
-/opt/kafka/bin/kafka-console-consumer.sh --topic iabd-topic --from-beginning --bootstrap-server localhost:9092
+export KAFKA_CONTAINER='LAB_ISOLATUKO_KAFKA_CONTAINERA'
+export KAFKA_BOOTSTRAP='brokerra-containerretik-iristeko:9092'
+export RUN_ID='RUN_BAKOITZERAKO_BERRIA'
+export TOPIC="codex-aabd-${RUN_ID}-hello"
+export GROUP="codex-aabd-${RUN_ID}-hello-read"
+docker exec "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-topics.sh --create --topic "$TOPIC" --bootstrap-server "$KAFKA_BOOTSTRAP"
+docker exec -it "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-producer.sh --topic "$TOPIC" --bootstrap-server "$KAFKA_BOOTSTRAP"
+docker exec -it "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-consumer.sh --topic "$TOPIC" --group "$GROUP" --from-beginning --bootstrap-server "$KAFKA_BOOTSTRAP"
 ```
 
 ## PDFko 1–5 kontsola-ariketak
 
-Erantzunak, komandoak eta 4. ariketako partizio/offset taula betetzeko txantiloia: [ariketa_kontsola_topic_partizio_offset.md](ariketa_kontsola_topic_partizio_offset.md). `infra/docker-compose.yml`-ko Kafka 3.7.0 (`iabd-kafka`) zerbitzura egokituta dago. Komandoak berrikusi dira, baina ez dira brokerrean exekutatu: dokumentuak topic izen prefijatuak erabiltzen ditu zuzeneko proba baterako, eta ez ditu container, topic edo bolumen partekatuak aldatu. Partizio/offset zenbakiek brokerreko egoera erreal bat behar dute.
+Erantzunak, komandoak eta 4. ariketako partizio/offset taula betetzeko txantiloia: [ariketa_kontsola_topic_partizio_offset.md](ariketa_kontsola_topic_partizio_offset.md). Kafka 3.7.0 CLI sintaxiarekin berrikusita dago. Komandoek `KAFKA_CONTAINER`, `KAFKA_BOOTSTRAP` eta exekuzio bakoitzeko `RUN_ID` berria behar dituzte; ez zuzendu `iabd-kafka` partekatura. Komandoak berrikusi dira, baina ez dira brokerrean exekutatu. Partizio/offset zenbakiek broker isolatu batean ariketa benetan exekutatzea behar dute.
 
 ## 1. kasua (Python)
 ```bash
