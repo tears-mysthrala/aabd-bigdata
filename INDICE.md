@@ -73,3 +73,7 @@ eta fluxuak NiFi UI-n inportatu (`06_NiFi/soluzioak/scripts/`).
 ## Regla futura
 
 Nuevo material → va a su `0X/materialak/`. Nueva solución → a su `0X/soluzioak/`. Nada en raíz salvo este índice. No revivir `data/`, `git/`, `erronka1/` sueltos.
+
+## Auditoría de ejercicios
+
+[Matriz de cobertura de ejercicios](00_Transversal/AUDITORIA_EJERCICIOS.md): enunciados, resultados, verificación, duplicados de archivo y dependencias pendientes.

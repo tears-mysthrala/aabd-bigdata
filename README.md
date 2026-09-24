@@ -4,6 +4,10 @@ Repositorio de estudio del ciclo **IA y Big Data**: apuntes, ejercicios resuelto
 y laboratorios Docker de todo el curso, organizados **por asignatura con sus
 soluciones dentro**. En euskera (material de clase) con resúmenes en español.
 
+Consulta la [auditoría de ejercicios](00_Transversal/AUDITORIA_EJERCICIOS.md)
+para localizar enunciados, soluciones y comprobaciones, incluidos los materiales
+de archivo y las tareas que aún dependen de evidencia humana o de laboratorio.
+
 > ⚠️ Material de estudio, no software de producción. MongoDB/Kafka van sin
 > autenticación y atados a `127.0.0.1`: apto para laboratorio, no para exponer.
 > Lee [SECURITY.md](SECURITY.md).
