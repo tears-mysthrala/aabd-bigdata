@@ -21,13 +21,13 @@ Este es un repositorio docente de IA y Big Data: combina teoría de clase, ejerc
 | Infraestructura Docker compartida | [infra/README.md](infra/README.md) |
 
 - `00_Transversal/`: `SECURITY.md`, `SBOM/`, `notebooklm/` (6 artefactos OK), `materialak_00_Orokorra/`
-- `01_Erronka1_CNC_Guard/`: `materialak/` (ANEXO1/4, tortilla PERT), `proyecto_cnc_guard/` (uv + tests), `soluzioak/Ebazpena_CNC_Guard_eta_AA_Ereduak.md` ✅
-- `02_AA_Ereduak_5071/`: `materialak/` (E1 pdfs + 5071 fuzzy + Etika/Legea + Marko legala + Alborapenak/COMPAS) ✅, `soluzioak/` → ver `01/.../Ebazpena` (stub)
-- `03_ML_5072/`: `materialak/` (5072 pdfs + 02_1 Erregresio Lineala) ✅, `soluzioak/` (ML praktika) ✅
-- `04_Programazioa_5073/`: `materialak/` (pdfs + notebooks canónicos 12 ficheros) ✅, `soluzioak/` (4 carpetas, asserts ✅), `data/` (katalogoa, git_ariketa_4_2, ariketa_1_1, mock_datuak + Ariketa 2.3/datu_zikinak.csv) ✅
+- `01_Erronka1_CNC_Guard/`: `materialak/` (ANEXO1/4 docx+md, tortilla PERT), `proyecto_cnc_guard/` (uv + tests), `soluzioak/Ebazpena_CNC_Guard_eta_AA_Ereduak.md` ✅
+- `02_AA_Ereduak_5071/`: `materialak/` (E1 pdfs + 5071 fuzzy + Etika/Legea + Marko legala + Alborapenak/COMPAS con dataset local) ✅, `soluzioak/` → ver `01/.../Ebazpena` (stub)
+- `03_ML_5072/`: `materialak/` (5072 pdfs + 02_1 Erregresio Lineala + 02_2 Erregresio Logistikoa ppt) ✅, `soluzioak/` (Orange workflows, regresión lineal/logística y prácticas) ✅
+- `04_Programazioa_5073/`: `materialak/` (pdfs + notebooks canónicos 12 ficheros) ✅, `soluzioak/` (4 carpetas, asserts ✅, ariketa 3.1 ejecutado con datos oficiales), `data/` (katalogoa, git_ariketa_4_2, ariketa_1_1, mock_datuak: Ariketa 2.2, Ariketa 2.3 datu_zikinak, Ariketa 3.1 ikasleak_notak_100.csv) ✅
 - `05_BigData_Ingeniaritza/`: `materialak/` (actualizados 01_02 y ariketak v2 con Faker/Parquet/formatos) + `soluzioak/` (7V Spotify, ETL/ELT, Smart Factory) ✅
 - `06_NiFi/`: `materialak/` (guías 1-7 actualizadas + salmentak.csv + docker) ✅, `soluzioak/` (7 casos, 11 archivos `flow_*.json`) ✅
-- `07_Kafka/`: `materialak/01_03_ApacheKafka.pdf` (actualizado) ✅, `soluzioak/` ✅
+- `07_Kafka/`: `materialak/01_03_ApacheKafka.pdf` (actualizado v2 con Producer Python) ✅, `soluzioak/` ✅
 - `_archivo_legacy/`: `notebooks_root_duplicado/`, `NiFi_duplicado_06_viejo/`, READMEs originales, `deskargatu_berriak/`
 
 ## Estado (2026-09-22, stacks reales levantados ✅)
