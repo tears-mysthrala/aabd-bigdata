@@ -1,0 +1,42 @@
+{
+  "creator": "Unai Urzainqui Perez",
+  "dataset": "UCI Breast Cancer Wisconsin (Diagnostic)",
+  "dataset_doi": "10.24432/C5DW2B",
+  "rows": 569,
+  "feature_count_in_model": 1,
+  "predictor": "texture_mean",
+  "predictor_definition": "standard deviation of gray-scale values in the cell nucleus image region",
+  "target": "diagnosis",
+  "classes": [
+    "B",
+    "M"
+  ],
+  "positive_class": "M (malignant)",
+  "class_counts": {
+    "B (benign)": 357,
+    "M (malignant)": 212
+  },
+  "texture_mean_by_class": {
+    "B": 17.914761904761903,
+    "M": 21.60490566037736
+  },
+  "full_data_threshold_texture_mean": 21.938195488721803,
+  "model": "Orange LogisticRegressionLearner; L2; C=1; one predictor texture_mean",
+  "evaluation": "10-fold stratified cross-validation; random_state=42; out-of-fold predictions",
+  "threshold_for_cv_classes": 0.5,
+  "accuracy": 0.7065026362038664,
+  "balanced_accuracy": 0.6511548015432589,
+  "roc_auc": 0.7744899846731146,
+  "precision_malignant": 0.6618705035971223,
+  "recall_malignant": 0.4339622641509434,
+  "f1_malignant": 0.5242165242165242,
+  "confusion_matrix": {
+    "tn_benign": 310,
+    "fp_benign_as_malignant": 47,
+    "fn_malignant_as_benign": 120,
+    "tp_malignant": 92
+  },
+  "predictions_file": "wdbc_cv_predicciones.csv",
+  "curve_file": "wdbc_sigmoide_ajuste_completo.csv",
+  "medical_use": "educational only; not for clinical decisions"
+}

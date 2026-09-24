@@ -357,7 +357,6 @@ print('✅ Zuzena!')
 # Zure kodea hemen:
 import seaborn as sns
 import matplotlib.pyplot as plt
-plt.switch_backend('Agg')
 
 # Balioztapena:
 assert 'sns' in locals(), "seaborn inportatu behar da sns izenarekin!"
@@ -373,6 +372,7 @@ print('✅ Zuzena!')
 # Zure kodea hemen:
 fig, ax = plt.subplots(figsize=(6, 4))
 sns.histplot(data=df_clean, x='tenperatura', ax=ax)
+plt.show()
 
 # Balioztapena:
 assert ax is not None, "Irudiaren ardatza ax aldagaian gorde behar da!"
@@ -387,6 +387,7 @@ print('✅ Zuzena!')
 # Zure kodea hemen:
 fig, ax_scatter = plt.subplots(figsize=(6, 4))
 sns.scatterplot(data=df_clean, x='tenperatura', y='bibrazioa', ax=ax_scatter)
+plt.show()
 
 # Balioztapena:
 assert ax_scatter is not None, "Gorde plot-a ax_scatter aldagaian!"
@@ -401,6 +402,7 @@ print('✅ Zuzena!')
 # Zure kodea hemen:
 fig, ax_box = plt.subplots(figsize=(6, 4))
 sns.boxplot(data=df_clean, x='makina_id', y='tenperatura', ax=ax_box)
+plt.show()
 
 # Balioztapena:
 assert ax_box is not None, "Gorde plot-a ax_box aldagaian!"
@@ -416,6 +418,7 @@ print('✅ Zuzena!')
 corr_matrix = df_clean.select_dtypes(include=[np.number]).corr()
 fig, ax_heat = plt.subplots(figsize=(6, 4))
 sns.heatmap(corr_matrix, annot=True, ax=ax_heat)
+plt.show()
 
 # Balioztapena:
 assert ax_heat is not None, "Gorde plot-a ax_heat aldagaian!"
