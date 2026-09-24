@@ -34,3 +34,8 @@ PDFko 1.1 NIF ariketaren sei ataleko paper-zirriborroa eta guard-aren azalpena,
 egiaztapen eta isolamendu-erantzunak [ariketa_pdf_aldaerak.md](ariketa_pdf_aldaerak.md)
 fitxategian daude. Taldekidearen benetako fitxategiak eta berrespena falta direla
 adierazten du; ez du taldeko lanaren ebidentzia asmatu.
+
+PDFko 2.5(a)rako 11 lerroko AGENTS.md adibidea
+[ariketa-entregaren karpetan](exercise_2_5_entrega/AGENTS.md) dago. Esparru txikikoa
+eta fikziozko ariketarako da; ez du karpeta honetako benetako
+[AGENTS.md](AGENTS.md) gida ordezkatzen edo aldatzen.

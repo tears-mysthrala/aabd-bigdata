@@ -48,14 +48,17 @@ Ondoko bi erantzunak konparazio didaktikorako **adibide ilustratiboak** dira; ez
 
 > `data/salmentak.csv` fitxategiak `produktua` (testua), `kopurua` (zenbaki osoa) eta `prezioa` (hamartarra) zutabeak ditu. Idatzi Python 3.10+ funtzio bat, Pandas erabiliz CSV UTF-8z irakurtzen duena eta JSONera serializa daitekeen dict bat itzultzen duena: errenkada-kopurua, unitate-kopuru osoa eta `kopurua * prezioa` guztizko salmenta bi hamartarrera biribildua. Kudeatu fitxategia ez egotea, beharrezko zutabeak falta izatea eta zenbakizko balio baliogabeak; eman errore-mezu erabilgarriak. Gehitu tipoak eta docstring-a, eta erakutsi exekuzio-adibide bat. Ez aldatu CSV iturria eta ez inprimatu bezero-datu pertsonalik.
 
-### Bi erantzun ilustratibo
+### Erantzun ilustratiboa — prompt lausoa
 
-| Prompt | Adibide-erantzuna | Muga ikusgarria |
-|---|---|---|
-| Lausoa | `pd.read_csv(path).describe()` itzultzen duen funtzio laburra. | Ez du espero den eskema, irteera JSONa edo fitxategi/zenbaki erroreen tratamendua argitzen. |
-| Zehatza | Pandas-en `read_csv` erabiliz fitxategia irakurri; egiaztatu hiru zutabeak; `kopurua` eta `prezioa` zenbakizko bihurtu, baliogabeak baztertzea erabaki gabe errorea eman; kalkulatu errenkadak, unitateak eta salmenta-guztira; itzuli Python mota arruntekin osatutako dict-a; bereizi fitxategi, eskema eta balio erroreak. | Eskakizunak argiagoak dira, baina kodeak proiektuaren CSV errealaren gaineko probak behar ditu, eta politika kontablea baieztatu behar da. |
+```python
+def laburpena(bidea):
+    df = pd.read_csv(bidea)
+    return df.describe()
+```
 
-Prompt zehatzaren egiteko nagusiak hobe estaltzen dituen lagin-kodea (13 kode-lerro, blank-ak kenduta):
+### Erantzun ilustratiboa — prompt zehatza
+
+Ondoko erantzunak eskemaren egiaztapena, balio motak eta errore-mezuak esplizitatzen ditu. Horren kode osoa beheko 2.5(c) atalean dago; konparazioa ez da benetako bi agentek emandako emaitza.
 
 ```python
 from pathlib import Path
@@ -63,15 +66,62 @@ import pandas as pd
 
 def laburpena_csv(bidea: Path) -> dict[str, int | float]:
     """Salmenta CSV baten laburpen agregatua JSONerako prest itzuli."""
-    df = pd.read_csv(bidea, encoding="utf-8")
+    try:
+        df = pd.read_csv(bidea, encoding="utf-8")
+    except FileNotFoundError as errorea:
+        raise FileNotFoundError(f"Ez da fitxategia aurkitu: {bidea}") from errorea
     beharrezkoak = {"produktua", "kopurua", "prezioa"}
     falta = beharrezkoak.difference(df.columns)
     if falta:
         raise ValueError(f"Zutabeak falta dira: {sorted(falta)}")
-    df["kopurua"] = pd.to_numeric(df["kopurua"], errors="raise")
-    df["prezioa"] = pd.to_numeric(df["prezioa"], errors="raise")
-    salmentak = df["kopurua"] * df["prezioa"]
-    return {"errenkadak": len(df), "unitateak": int(df["kopurua"].sum()), "salmentak": round(float(salmentak.sum()), 2)}
+    try:
+        kopuruak = pd.to_numeric(df["kopurua"], errors="raise")
+        prezioak = pd.to_numeric(df["prezioa"], errors="raise")
+    except (TypeError, ValueError) as errorea:
+        raise ValueError("kopurua eta prezioa zenbakizkoak izan behar dira") from errorea
+    if not (kopuruak % 1 == 0).all():
+        raise ValueError("kopurua balio osoa izan behar da errenkada guztietan")
+    salmentak = kopuruak * prezioak
+    return dict(
+        errenkadak=len(df),
+        unitateak=int(kopuruak.sum()),
+        salmentak=round(float(salmentak.sum()), 2),
+    )
+```
+
+**Lerro eta gaitasun konparaketa.** Lerro-kopuruak erantzun bakoitzaren Python kode-blokeetako lerro ez-hutsuak zenbatzen ditu, iruzkinik eta markdownik gabe; import-ak sartzen dira: erantzun lausoak 3 ditu, zehatzak 25. Lausoko erantzunak ez ditu argumentua edo itzulera mota tipatzen (`bidea`/`df.describe()`), eta ez du falta den fitxategia, eskema edo datu baliogabea berariaz tratatzen. Erantzun zehatzak `Path` argumentua eta `dict[str, int | float]` itzulera tipatzen ditu; falta den fitxategiari mezu argia ematen dio, eskema eta mota akatsak `ValueError` bihurtzen ditu, eta erosketa-kopuru ez-osoak baztertzen ditu. Bi kasuetan irteerak CSV erreal baten gaineko egiaztapena behar du; promptaren zehaztasunak ez du berez zuzentasuna bermatzen.
+
+### 2.5(c) — prompt zehatzaren kodea, egiaztapen-zikloan exekutatua
+
+Prompt zehatzaren erantzun osoa (25 kode-lerro, lerro hutsik gabe) kode bera da; beheko blokea fixturearekin exekutatu zen aldatu gabe:
+
+```python
+from pathlib import Path
+import pandas as pd
+
+def laburpena_csv(bidea: Path) -> dict[str, int | float]:
+    """Salmenta CSV baten laburpen agregatua JSONerako prest itzuli."""
+    try:
+        df = pd.read_csv(bidea, encoding="utf-8")
+    except FileNotFoundError as errorea:
+        raise FileNotFoundError(f"Ez da fitxategia aurkitu: {bidea}") from errorea
+    beharrezkoak = {"produktua", "kopurua", "prezioa"}
+    falta = beharrezkoak.difference(df.columns)
+    if falta:
+        raise ValueError(f"Zutabeak falta dira: {sorted(falta)}")
+    try:
+        kopuruak = pd.to_numeric(df["kopurua"], errors="raise")
+        prezioak = pd.to_numeric(df["prezioa"], errors="raise")
+    except (TypeError, ValueError) as errorea:
+        raise ValueError("kopurua eta prezioa zenbakizkoak izan behar dira") from errorea
+    if not (kopuruak % 1 == 0).all():
+        raise ValueError("kopurua balio osoa izan behar da errenkada guztietan")
+    salmentak = kopuruak * prezioak
+    return dict(
+        errenkadak=len(df),
+        unitateak=int(kopuruak.sum()),
+        salmentak=round(float(salmentak.sum()), 2),
+    )
 ```
 
 Exekuzioan fixture honek erabili zuen (adibide sintetikoa; ez du bezero pertsonalik):
@@ -82,7 +132,7 @@ koadernoa,2,3.20
 arkatza,5,0.80
 ```
 
-Emaitza exekutatua: `{'errenkadak': 2, 'unitateak': 7, 'salmentak': 10.40}`. `FileNotFoundError` Pandas-ek gorantz uzten du bidea falta bada; eskema/zenbaki akatsak `ValueError` gisa agertzen dira. `Path` tipo-aholkua badu ere, eskatutako docstring-a du, baina ez du egiaztatzen fitxategia existitzen denik exekutatu aurretik. Ez da `JSON` testu bihurtzen hemen, baina dict-eko balio guztiak JSON serializagarriak dira.
+Emaitza exekutatua: `{'errenkadak': 2, 'unitateak': 7, 'salmentak': 10.40}`. Falta den fitxategiak `FileNotFoundError` mezu erabilgarria ematen du; eskema eta datu mota okerrak `ValueError` dira. `kopurua` hamartar zatiduna bada, ez du unitate-kopurua `int()` bidez isilean mozten: errorea ematen du. Dict-eko balio guztiak JSON serializagarriak dira.
 
 **Egiaztapen-oharrak:** kode-bloke hori bere horretan probatu da aurreko bi errenkadako CSV fixturearekin, eta emaitza itxarondakoa izan da. Python konpilazio-egiaztapena ere egin da. Pylance ez dago ingurune honetan eskuragarri; beraz, ez dut haren diagnostikorik edo “lint garbi” emaitzarik aldarrikatzen. Realeko taldekidearen fitxategian exekuzioa eta bere IDEko Pylance/flake8 berrikuspena egiteke daude.
 
