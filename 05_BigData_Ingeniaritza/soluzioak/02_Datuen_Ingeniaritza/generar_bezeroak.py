@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import csv
 import json
+from datetime import date
 from pathlib import Path
+
 from faker import Faker
 
 
@@ -20,6 +22,8 @@ SALMENTA_ZUTABEAK = (
     "unitateak",
 )
 KATEGORIAK = ("Ordenagailuak", "Osagaiak", "Periferikoak", "Sareak")
+SALMENTA_DATA_HASIERA = date(2024, 9, 24)
+SALMENTA_DATA_AZKENA = date(2026, 9, 24)
 PRODUKTUAK = {
     "Ordenagailuak": ("Ordenagailu eramangarria", "Mahaigaineko ordenagailua", "Mini PC"),
     "Osagaiak": ("Prozesadorea", "RAM memoria", "SSD diskoa", "Txartel grafikoa"),
@@ -65,7 +69,10 @@ def generar_salmentak(kopurua: int = 10_000, seed: int | None = 42) -> list[dict
         salmentak.append(
             {
                 "id": i,
-                "data": fake.date_between(start_date="-2y", end_date="today").isoformat(),
+                "data": fake.date_between(
+                    start_date=SALMENTA_DATA_HASIERA,
+                    end_date=SALMENTA_DATA_AZKENA,
+                ).isoformat(),
                 "bezeroa": fake.name(),
                 "hiria": fake.city(),
                 "produktua": fake.random_element(elements=PRODUKTUAK[kategoria]),
@@ -156,6 +163,10 @@ def _egiaztatu_salmentak(salmentak: list[dict[str, object]], gutxienez: int) -> 
     assert all(5 <= float(salmenta["prezioa"]) <= 2000 for salmenta in salmentak)
     assert all(1 <= int(salmenta["unitateak"]) <= 10 for salmenta in salmentak)
     assert all(salmenta["kategoria"] in KATEGORIAK for salmenta in salmentak)
+    assert all(
+        SALMENTA_DATA_HASIERA.isoformat() <= str(salmenta["data"]) <= SALMENTA_DATA_AZKENA.isoformat()
+        for salmenta in salmentak
+    )
 
 
 def _egiaztatu_fitxategiak(data: Path) -> None:

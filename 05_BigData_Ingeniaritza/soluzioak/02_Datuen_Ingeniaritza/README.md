@@ -11,6 +11,7 @@ Python 3.13 edo berriagoa eta `uv` behar dira. Mendekotasunak modulu honetako in
 ```sh
 uv sync --locked
 uv run python generar_bezeroak.py
+uv run --locked python -m unittest discover -s tests -v
 ```
 
 `main()` exekutatzean CSV eta JSON fitxategiak berridazten dira `data/` karpetan. Bezeroentzako ariketak seed gabe sortzen dira, beraz izenak/atributuak exekuzioen artean alda daitezke; salmenten dataset-ak `seed=42` finkoa darabil, emaitza errepikatzeko. IDak dataset bakoitzean 1etik hasten dira.
@@ -25,11 +26,11 @@ uv run python generar_bezeroak.py
 | [salmentak_10000.csv](data/salmentak_10000.csv) | Enuntziatuko zortzi zutabeekin, 10.000 salmenta sintetiko |
 | [salmentak_10000.json](data/salmentak_10000.json) | Salmenta berak `{"salmentak": [...]}` objektuan |
 
-Bezeroen zutabeak `id, izena, emaila, hiria, adina` dira; adina 18 eta 80 urte artean dago. Salmenten goiburu zehatza `id,data,bezeroa,hiria,produktua,kategoria,prezioa,unitateak` da. Kategoriak enuntziatuko lau balioetara mugatzen dira; prezioa 5–2.000 € da eta unitateak 1–10.
+Bezeroen zutabeak `id, izena, emaila, hiria, adina` dira; adina 18 eta 80 urte artean dago. Salmenten goiburu zehatza `id,data,bezeroa,hiria,produktua,kategoria,prezioa,unitateak` da. Kategoriak enuntziatuko lau balioetara mugatzen dira; prezioa 5–2.000 € da eta unitateak 1–10. Dataset honetako salmenta-datak **2024-09-24tik 2026-09-24ra** sortzen dira. Muga finko hori nahita aukeratu da: `seed=42` duen emaitza egutegiaren uneko egunetik independentea da eta geroago berriz exekutatzean ere berdin geratzen da.
 
 ## Seed eta datu-formatua
 
-Scriptak seed gabe sortutako bezeroen lehen bostak bi exekuziotan erakusten ditu; ondoren `seed=42` erabilita beste bi exekuzio egiten ditu eta emaitzak berdinak direla egiaztatzen du. Test automatikoetan seed finkoak fixture errepikagarriak ahalbidetzen ditu; gelako guztiek seed bera erabiltzeak emaitzak alderatzea errazten du. Faker-en bertsioa aldatzeak seed berarekin sortutako eduki zehatza alda dezake; horregatik mendekotasun-muga eta `uv.lock` daude.
+Scriptak seed gabe sortutako bezeroen lehen bostak bi exekuziotan erakusten ditu; ondoren `seed=42` erabilita beste bi exekuzio egiten ditu eta emaitzak berdinak direla egiaztatzen du. Salmenta-datasetaren erreferentzia-data ere finkatuta dago, seed-a bakarrik ez baita nahikoa egutegi-egun erlatiboekin. Test automatikoetan seed finkoak fixture errepikagarriak ahalbidetzen ditu; gelako guztiek seed bera erabiltzeak emaitzak alderatzea errazten du. Faker-en bertsioa aldatzeak seed berarekin sortutako eduki zehatza alda dezake; horregatik mendekotasun-muga eta `uv.lock` daude.
 
 JSON objektuak argi erakusten du erregistroen bildumaren izena eta objektu bakoitzeko eremu-izenak, baina array osoa memorian eraiki eta kargatzea garestia izan daiteke. Ariketako 10 milioi erregistroko kasuan ez litzateke array bakar osoa memorian sortu behar: erregistroak zatika idatzi/irakurri, JSONL fluxu-prozesamendua erabili edo analisi zutabeetarako Parquet eta Spark aukeratu. Errepositorioan ez da 10 milioiko fitxategirik sortu.
 
@@ -39,3 +40,4 @@ JSON objektuak argi erakusten du erregistroen bildumaren izena eta objektu bakoi
 - [Jupyter koadernoa](generar_bezeroak.ipynb)
 - [Mendekotasunen deklarazioa](pyproject.toml)
 - [Erreprodukziorako lock-fitxategia](uv.lock)
+- [Erloju-simulazioaren errepikagarritasun-proba](tests/test_sales_seed_ignores_system_date.py)
