@@ -2,6 +2,8 @@
 
 Ariketak `retail_db`-ko `customers`, `orders` eta `order_items` taulak prozesatzea eskatzen du, bi NiFi fluxu-definizioetan, eta konplexutasunaren eta errendimenduaren arteko konparaketa. Iturria [Apache NiFi aurreratua PDFa](../../materialak/01_02_ApacheNifi_aurreratua.pdf), DF2.2 atala da.
 
+Konparaketa kualitatiboaren xehetasunak [DF2.2 konparaketa-oharrean](DF2.2_konparaketa_oharra.md) daude.
+
 ## Fluxu-definizioak
 
 - [Classic: ExecuteSQLRecord → SplitText (Line Split Count = 1) → PutMongo](flow_06_mariadb_mongodb_classic.json). Hiru SQL adarrak `6kasua-classic` bilduma berera doaz; dokumentu bakoitzak `source_table` eremua darama jatorrizko taula bereizteko.
@@ -18,4 +20,4 @@ Adar bakoitzak taula osoa hautatzen du eta ez du lagin-mugarik (`LIMIT`) ezartze
 | Errendimendu-itxaropena | Erregistro bakoitzeko FlowFile/insert eredua gainkarga handiagokoa izan daiteke, bereziki multzo handietan. | Batch portaerak FlowFile/txertaketa gainkarga txikiagoa eman dezake; benetako emaitza konfigurazioaren, tamainaren eta ingurunearen araberakoa da. |
 | Aukeratzeko irizpidea | Erregistro bakoitza banaka prozesatu edo bideratu behar denean erabilgarria izan daiteke. | Erregistro multzoa zuzenean prozesatzea nahi denean egokiagoa izan daiteke. |
 
-Hau egituraren araberako konparaketa da, ez exekuzio edo benchmark baten emaitza. Ez da saio honetan MariaDB/MongoDB konektatu, fluxurik exekutatu edo daturik zenbatu; beraz, ez dago hemen live-insert edo abiadura-neurketarik baieztatuta. Biltegiko aurreko konparaketa-oharrean ageri diren neurketa enpirikoak ez dira lan honetan egiaztatu.
+Hau egituraren araberako konparaketa da, ez exekuzio edo benchmark baten emaitza. Ez da saio honetan NiFi, MariaDB edo MongoDB konektatu edo exekutatu; ez dago hemen live-insert, datu-zenbaketa edo abiadura-neurketarik baieztatuta.
