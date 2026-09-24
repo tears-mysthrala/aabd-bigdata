@@ -15,7 +15,7 @@
         "identifier": "569e8a83-a0f2-372f-aac5-253a9cbb2746",
         "instanceIdentifier": "b40e33f3-01a0-1000-dd61-8ce5138deb37",
         "name": "PutMongo_Classic",
-        "comments": "3. FlowFile bakoitza banan-banan MongoDB customers_classic bilduman txertatu.",
+        "comments": "Banakako JSON FlowFile bakoitza iabd datu-baseko 6kasua-classic bilduman txertatu.",
         "position": {
           "x": 1000.0,
           "y": 180.0
@@ -135,7 +135,7 @@
         "identifier": "c854f58e-72b6-3982-bc5b-ae2d04f8c642",
         "instanceIdentifier": "b40e33c1-01a0-1000-8d7e-70bf58ab25a7",
         "name": "ExecuteSQLRecord_Customers",
-        "comments": "1. MariaDB datu-basetik 12.435 bezero atera SQL bidez.",
+        "comments": "MariaDBko customers taula osoa atera; source_table eremuak jatorria identifikatzen du.",
         "position": {
           "x": 100.0,
           "y": 180.0
@@ -149,7 +149,7 @@
         "properties": {
           "Set Auto Commit": "true",
           "Max Wait Time": "0 seconds",
-          "SQL Query": "SELECT * FROM customers LIMIT 100",
+          "SQL Query": "SELECT customers.*, 'customers' AS source_table FROM customers",
           "Normalize Table/Column Names": "false",
           "Database Connection Pooling Service": "74888e3f-4e6e-3a48-b543-c2162080cfa1",
           "SQL Post-Query": null,
@@ -361,6 +361,308 @@
         "maxBackoffPeriod": "10 mins",
         "componentType": "PROCESSOR",
         "groupIdentifier": "939edf16-f77a-39cc-8291-dfc61e986556"
+      },
+      {
+        "identifier": "b8077a6f-803b-4d2e-9d1d-8d857d8dccea",
+        "instanceIdentifier": "0ee50fcc-49ae-4676-a2f1-9394140efa91",
+        "name": "ExecuteSQLRecord_Orders",
+        "comments": "MariaDBko orders taula osoa atera; source_table eremuak jatorria identifikatzen du.",
+        "position": {
+          "x": 100.0,
+          "y": 390.0
+        },
+        "type": "org.apache.nifi.processors.standard.ExecuteSQLRecord",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Set Auto Commit": "true",
+          "Max Wait Time": "0 seconds",
+          "SQL Query": "SELECT orders.*, 'orders' AS source_table FROM orders",
+          "Normalize Table/Column Names": "false",
+          "Database Connection Pooling Service": "74888e3f-4e6e-3a48-b543-c2162080cfa1",
+          "SQL Post-Query": null,
+          "Fetch Size": "0",
+          "Output Batch Size": "0",
+          "Use Avro Logical Types": "false",
+          "SQL Pre-Query": null,
+          "Max Rows Per FlowFile": "0",
+          "esqlrecord-record-writer": "1e207816-ca56-38af-8d4f-4408c7fc579f",
+          "dbf-default-precision": "10",
+          "dbf-default-scale": "0"
+        },
+        "propertyDescriptors": {
+          "Set Auto Commit": {
+            "name": "Set Auto Commit",
+            "displayName": "Set Auto Commit",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Max Wait Time": {
+            "name": "Max Wait Time",
+            "displayName": "Max Wait Time",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Query": {
+            "name": "SQL Query",
+            "displayName": "SQL Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Normalize Table/Column Names": {
+            "name": "Normalize Table/Column Names",
+            "displayName": "Normalize Table/Column Names",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Database Connection Pooling Service": {
+            "name": "Database Connection Pooling Service",
+            "displayName": "Database Connection Pooling Service",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Default Decimal Scale": {
+            "name": "Default Decimal Scale",
+            "displayName": "Default Decimal Scale",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Post-Query": {
+            "name": "SQL Post-Query",
+            "displayName": "SQL Post-Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Fetch Size": {
+            "name": "Fetch Size",
+            "displayName": "Fetch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Output Batch Size": {
+            "name": "Output Batch Size",
+            "displayName": "Output Batch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Use Avro Logical Types": {
+            "name": "Use Avro Logical Types",
+            "displayName": "Use Avro Logical Types",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Record Writer": {
+            "name": "Record Writer",
+            "displayName": "Record Writer",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Pre-Query": {
+            "name": "SQL Pre-Query",
+            "displayName": "SQL Pre-Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Default Decimal Precision": {
+            "name": "Default Decimal Precision",
+            "displayName": "Default Decimal Precision",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Max Rows Per FlowFile": {
+            "name": "Max Rows Per FlowFile",
+            "displayName": "Max Rows Per FlowFile",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "939edf16-f77a-39cc-8291-dfc61e986556"
+      },
+      {
+        "identifier": "85d5c3d9-5c42-49a3-983f-89ad9d7a988e",
+        "instanceIdentifier": "ecfc244f-0192-44fd-9d6f-4d5fc20cb567",
+        "name": "ExecuteSQLRecord_OrderItems",
+        "comments": "MariaDBko order_items taula osoa atera; source_table eremuak jatorria identifikatzen du.",
+        "position": {
+          "x": 100.0,
+          "y": 600.0
+        },
+        "type": "org.apache.nifi.processors.standard.ExecuteSQLRecord",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Set Auto Commit": "true",
+          "Max Wait Time": "0 seconds",
+          "SQL Query": "SELECT order_items.*, 'order_items' AS source_table FROM order_items",
+          "Normalize Table/Column Names": "false",
+          "Database Connection Pooling Service": "74888e3f-4e6e-3a48-b543-c2162080cfa1",
+          "SQL Post-Query": null,
+          "Fetch Size": "0",
+          "Output Batch Size": "0",
+          "Use Avro Logical Types": "false",
+          "SQL Pre-Query": null,
+          "Max Rows Per FlowFile": "0",
+          "esqlrecord-record-writer": "1e207816-ca56-38af-8d4f-4408c7fc579f",
+          "dbf-default-precision": "10",
+          "dbf-default-scale": "0"
+        },
+        "propertyDescriptors": {
+          "Set Auto Commit": {
+            "name": "Set Auto Commit",
+            "displayName": "Set Auto Commit",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Max Wait Time": {
+            "name": "Max Wait Time",
+            "displayName": "Max Wait Time",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Query": {
+            "name": "SQL Query",
+            "displayName": "SQL Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Normalize Table/Column Names": {
+            "name": "Normalize Table/Column Names",
+            "displayName": "Normalize Table/Column Names",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Database Connection Pooling Service": {
+            "name": "Database Connection Pooling Service",
+            "displayName": "Database Connection Pooling Service",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Default Decimal Scale": {
+            "name": "Default Decimal Scale",
+            "displayName": "Default Decimal Scale",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Post-Query": {
+            "name": "SQL Post-Query",
+            "displayName": "SQL Post-Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Fetch Size": {
+            "name": "Fetch Size",
+            "displayName": "Fetch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Output Batch Size": {
+            "name": "Output Batch Size",
+            "displayName": "Output Batch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Use Avro Logical Types": {
+            "name": "Use Avro Logical Types",
+            "displayName": "Use Avro Logical Types",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Record Writer": {
+            "name": "Record Writer",
+            "displayName": "Record Writer",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SQL Pre-Query": {
+            "name": "SQL Pre-Query",
+            "displayName": "SQL Pre-Query",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Default Decimal Precision": {
+            "name": "Default Decimal Precision",
+            "displayName": "Default Decimal Precision",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Max Rows Per FlowFile": {
+            "name": "Max Rows Per FlowFile",
+            "displayName": "Max Rows Per FlowFile",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "939edf16-f77a-39cc-8291-dfc61e986556"
       }
     ],
     "inputPorts": [],
@@ -412,6 +714,76 @@
           "name": "ExecuteSQLRecord_Customers",
           "comments": "",
           "instanceIdentifier": "b40e33c1-01a0-1000-8d7e-70bf58ab25a7"
+        },
+        "destination": {
+          "id": "f4029037-9565-3ff0-a31b-729f4fbc565b",
+          "type": "PROCESSOR",
+          "groupId": "939edf16-f77a-39cc-8291-dfc61e986556",
+          "name": "SplitText_Lines",
+          "comments": "",
+          "instanceIdentifier": "b40e33da-01a0-1000-2af8-24f0dd735eec"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "939edf16-f77a-39cc-8291-dfc61e986556"
+      },
+      {
+        "identifier": "16921265-6d0f-434b-a457-d54335243f72",
+        "instanceIdentifier": "402111b3-d977-42d0-9977-53346b4378ed",
+        "name": "orders to SplitText_Lines",
+        "source": {
+          "id": "b8077a6f-803b-4d2e-9d1d-8d857d8dccea",
+          "type": "PROCESSOR",
+          "groupId": "939edf16-f77a-39cc-8291-dfc61e986556",
+          "name": "ExecuteSQLRecord_Orders",
+          "comments": "",
+          "instanceIdentifier": "0ee50fcc-49ae-4676-a2f1-9394140efa91"
+        },
+        "destination": {
+          "id": "f4029037-9565-3ff0-a31b-729f4fbc565b",
+          "type": "PROCESSOR",
+          "groupId": "939edf16-f77a-39cc-8291-dfc61e986556",
+          "name": "SplitText_Lines",
+          "comments": "",
+          "instanceIdentifier": "b40e33da-01a0-1000-2af8-24f0dd735eec"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "939edf16-f77a-39cc-8291-dfc61e986556"
+      },
+      {
+        "identifier": "c02f158c-e84a-4dc4-bc54-c438633a51c3",
+        "instanceIdentifier": "49684e50-15a4-4aea-a3e7-f2bb478341b6",
+        "name": "order_items to SplitText_Lines",
+        "source": {
+          "id": "85d5c3d9-5c42-49a3-983f-89ad9d7a988e",
+          "type": "PROCESSOR",
+          "groupId": "939edf16-f77a-39cc-8291-dfc61e986556",
+          "name": "ExecuteSQLRecord_OrderItems",
+          "comments": "",
+          "instanceIdentifier": "ecfc244f-0192-44fd-9d6f-4d5fc20cb567"
         },
         "destination": {
           "id": "f4029037-9565-3ff0-a31b-729f4fbc565b",
