@@ -22,11 +22,11 @@
     "soldata": 14.29
   },
   "adina_bete_da_batezbestekoarekin": 2,
-  "adina_batezbestekoa_bikoiztuak_kendu_ondoren": 29.5,
+  "adina_batezbestekoa_bikoiztuak_kendu_aurretik": 28.6,
   "hiria_bete_da_ezezaguna": 1,
   "soldata_hutsak_gordeta": 1,
   "soldata_zenbakitan": true,
   "soldata_formatuaren_hipotesia": "Puntua milako-banatzailea da; € ikurra kendu da; koma hamartarrak puntu bihurtu dira.",
   "bikoiztu_hipotesia": "Lehen errenkada mantendu da izena zuriuneak kendu ondoren casefold bidez parekatuta.",
-  "adina_hutsaren_hipotesia": "Batezbestekoa bikoiztuak kendutako errenkadetako adin ez-hutsekin kalkulatu da."
+  "adina_hutsaren_hipotesia": "PDFko ordenari jarraituz, adin ez-hutsen batezbestekoa izen-bikoiztuak kendu aurretik kalkulatu da."
 }

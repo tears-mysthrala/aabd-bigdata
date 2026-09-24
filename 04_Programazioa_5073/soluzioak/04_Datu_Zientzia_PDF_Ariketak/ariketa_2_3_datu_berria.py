@@ -43,16 +43,8 @@ def garbitu_datuak(entrada: Path) -> tuple[pd.DataFrame, dict[str, object]]:
     rows_before = int(len(jatorrizkoa))
 
     garbia = jatorrizkoa.copy()
-    izen_zuriuneak_kenduta = garbia["izena"].str.strip()
-    garbia["izena"] = izen_zuriuneak_kenduta.str.title()
-    garbia["hiria"] = garbia["hiria"].str.strip().str.title()
 
-    # Casefold-ek maiuskula/minuskula eta Unicode kasu-aldaerak bateratzen ditu.
-    izen_gakoa = izen_zuriuneak_kenduta.str.casefold()
-    bikoiztua = izen_gakoa.duplicated(keep="first")
-    duplicate_rows = int(bikoiztua.sum())
-    garbia = garbia.loc[~bikoiztua].copy()
-
+    # PDFko ordena: adina eta hiria bete, eta ondoren izen bikoiztuak kendu.
     adinak = pd.to_numeric(garbia["adina"], errors="raise")
     adin_hutsak = int(adinak.isna().sum())
     if adinak.notna().any():
@@ -63,8 +55,17 @@ def garbitu_datuak(entrada: Path) -> tuple[pd.DataFrame, dict[str, object]]:
     else:
         adin_batezbestekoa = None
 
+    garbia["hiria"] = garbia["hiria"].str.strip().str.title()
     hiri_hutsak = int(garbia["hiria"].isna().sum())
     garbia["hiria"] = garbia["hiria"].fillna("Ezezaguna")
+
+    # Bikoiztuak izen garbituaren casefold bidez aurkitzen dira; lehenengoa mantendu.
+    izen_zuriuneak_kenduta = garbia["izena"].str.strip()
+    izen_gakoa = izen_zuriuneak_kenduta.str.casefold()
+    bikoiztua = izen_gakoa.duplicated(keep="first")
+    duplicate_rows = int(bikoiztua.sum())
+    garbia = garbia.loc[~bikoiztua].copy()
+    garbia["izena"] = izen_zuriuneak_kenduta.loc[~bikoiztua].str.title()
 
     soldata_jatorrizkoa = garbia["soldata"]
     soldata_testua = (
@@ -95,13 +96,13 @@ def garbitu_datuak(entrada: Path) -> tuple[pd.DataFrame, dict[str, object]]:
             str(k): float(v) for k, v in missing_percentages.items()
         },
         "adina_bete_da_batezbestekoarekin": adin_hutsak,
-        "adina_batezbestekoa_bikoiztuak_kendu_ondoren": adin_batezbestekoa,
+        "adina_batezbestekoa_bikoiztuak_kendu_aurretik": adin_batezbestekoa,
         "hiria_bete_da_ezezaguna": hiri_hutsak,
         "soldata_hutsak_gordeta": int(garbia["soldata"].isna().sum()),
         "soldata_zenbakitan": True,
         "soldata_formatuaren_hipotesia": "Puntua milako-banatzailea da; € ikurra kendu da; koma hamartarrak puntu bihurtu dira.",
         "bikoiztu_hipotesia": "Lehen errenkada mantendu da izena zuriuneak kendu ondoren casefold bidez parekatuta.",
-        "adina_hutsaren_hipotesia": "Batezbestekoa bikoiztuak kendutako errenkadetako adin ez-hutsekin kalkulatu da.",
+        "adina_hutsaren_hipotesia": "PDFko ordenari jarraituz, adin ez-hutsen batezbestekoa izen-bikoiztuak kendu aurretik kalkulatu da.",
     }
     assert list(garbia.columns) == BEHARREZKO_ZUTABEAK
     return garbia.reset_index(drop=True), summary
@@ -121,5 +122,6 @@ def main() -> None:
     print(f"CSV garbia: {CSV_GARBIA}")
 
 
+# %%
 if __name__ == "__main__":
     main()
