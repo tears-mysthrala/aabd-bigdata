@@ -6,3 +6,6 @@ No duplicar: cualquier añadido específico 5071 va aquí y se referencia desde 
 ## IE6 — Marko legala
 
 - [Ariketen eta amaierako jardueren erantzun-ereduak](IE6_Marko_Legala/ariketak_eta_jarduerak.md): GDPR 1.1, AI Act 2.1, 911ko EEEa eta bost jarduera. Iturri juridiko ofizialak 2026-09-24an egiaztatuta; ikasgelako kasuak hipotetikoak dira.
+- [Proiektu integratzailearen txosten teknikoa](IE6_Marko_Legala/proiektu_integratzailea_txostena.md): hezkuntza-laguntzako tresna fikziozkoaren GDPR/AI Act azterketa, EEE, arrisku-kontrolak eta «aldatu» gomendioa.
+- [Ikasleentzako gardentasun-orriaren zirriborroa](IE6_Marko_Legala/gardentasun_orria.md) eta [barneko gainbegiratze-protokoloa](IE6_Marko_Legala/protokolo_barnekoa.md): kontaktu eta datu errealak bete beharreko eredu didaktikoak.
+- [15 minutuko aurkezpenaren gidoia](IE6_Marko_Legala/aurkezpena_esquema.md): 11 diapositibako edukia, denborak eta speaker-notes aipamenak. PPTX fitxategia ez dago sortuta saio honetan ezin izan delako Artifact Tool-en beharrezko runtime-a kargatu; gidoia ez da PPTXren ordezkoa.
