@@ -26,3 +26,11 @@ jupyter lab 5073_1_Lengoaiak_PDF_Ariketak.ipynb
 # Edo Python fitxategi interaktiboa exekutatu
 python 5073_1_Lengoaiak_PDF_Ariketak.py
 ```
+
+## PDFko aldaera eta talde-ariketak
+
+PDFko 1.1 NIF ariketaren sei ataleko paper-zirriborroa eta guard-aren azalpena,
+2.4ko lankidearen ingurunea birsortzeko urratsak, eta 2.5eko prompt/erantzun ilustratibo,
+egiaztapen eta isolamendu-erantzunak [ariketa_pdf_aldaerak.md](ariketa_pdf_aldaerak.md)
+fitxategian daude. Taldekidearen benetako fitxategiak eta berrespena falta direla
+adierazten du; ez du taldeko lanaren ebidentzia asmatu.

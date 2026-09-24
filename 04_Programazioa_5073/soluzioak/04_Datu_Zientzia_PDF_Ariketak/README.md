@@ -49,3 +49,12 @@ python test_laguntzaileak.py   # 200 fixture zikin: 265 errenkada + 10 txar ✅
 - [Hasierako balio galduen eta prozesuaren laburpena](data/datu_zikinak_laburpena.json)
 
 Emaitzak berreraikitzeko, exekutatu `python ariketa_2_3_datu_berria.py` direktorio honetatik. Soldata hutsik mantentzen da, eta JSONak izen-bikoiztuak kentzeko eta adina betetzeko aukerak azaltzen ditu.
+
+## PDFko datu-ariketen aldaera osagarriak
+
+PDFko ariketa zehatzen beste berrikuspen bat dago [ariketa_pdf_aldaerak.py](ariketa_pdf_aldaerak.py)
+fitxategian eta [koaderno sinkronizatuan](ariketa_pdf_aldaerak.ipynb): seed=42 matrizea,
+PDFko prezio/stock balioak, eta Pandas concat. Hura exekutatzeko, erabili
+`python ariketa_pdf_aldaerak.py` direktorio honetatik. Z-score adibideko 5x4 datuak eta
+`data/pdf_ariketa_2_2_fixtures/`-eko sei salmenta-errenkadak sintetikoak dira; tutoreak
+emandako CSV zehatzak ez dira aurkitu, eta ez dituzte lehendik dauden datasetak ordezten.
