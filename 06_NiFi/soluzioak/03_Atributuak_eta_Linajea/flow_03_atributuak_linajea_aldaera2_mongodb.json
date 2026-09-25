@@ -24,7 +24,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-mongodb-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Upsert": "false",
@@ -144,7 +144,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Replacement Value": "[[[ Data: ${now()} ]]]",
@@ -255,7 +255,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Enable Unicode Predefined Character Classes": "false",
@@ -422,7 +422,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "File Size": "10B",
@@ -515,7 +515,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Attributes Regular Expression": null,
@@ -610,7 +610,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Log FlowFile Properties": "true",

@@ -820,7 +820,7 @@
         "identifier": "3a6b09ef-e8f6-3f93-87f8-1c5526caeee3",
         "instanceIdentifier": "b4118c09-01a0-1000-4811-14b867a34f67",
         "name": "InvokeHTTP AEMET OpenData locator",
-        "comments": "1a. AEMET OpenData endpoint dokumentatua; erantzuneko datos URL-a hurrengo InvokeHTTP-ra doa. api_key balioa NiFi Parameter Context sentikorretik bakarrik.",
+        "comments": "1a. AEMET udalerri bakarreko endpointa; AEMET_MUNICIPIO eta AEMET_API_KEY parametroak behar dira. Silver/Gold mapaketa balioztatu gabe dago.",
         "position": {
           "x": 100.0,
           "y": 180.0
@@ -833,7 +833,7 @@
         },
         "properties": {
           "HTTP Method": "GET",
-          "HTTP URL": "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/todos",
+          "HTTP URL": "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/#{AEMET_MUNICIPIO}",
           "Connection Timeout": "5 secs",
           "Socket Read Timeout": "15 secs",
           "Socket Write Timeout": "15 secs",
@@ -1060,7 +1060,7 @@
           "Maximum number of Bins": "5",
           "Header File": null,
           "Footer File": null,
-          "Demarcator File": "\\n"
+          "Demarcator File": "\n"
         },
         "propertyDescriptors": {
           "Metadata Strategy": {
@@ -1541,7 +1541,7 @@
           "type": "PROCESSOR",
           "groupId": "51f0ae90-7d6c-38f9-bad0-e2a79209ada8",
           "name": "InvokeHTTP AEMET OpenData locator",
-          "comments": "1a. AEMET OpenData endpoint dokumentatua; erantzuneko datos URL-a hurrengo InvokeHTTP-ra doa. api_key balioa NiFi Parameter Context sentikorretik bakarrik.",
+          "comments": "1a. AEMET udalerri bakarreko endpointa; AEMET_MUNICIPIO eta AEMET_API_KEY parametroak behar dira. Silver/Gold mapaketa balioztatu gabe dago.",
           "instanceIdentifier": "b4118c09-01a0-1000-4811-14b867a34f67"
         },
         "destination": {

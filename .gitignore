@@ -22,6 +22,7 @@ moodle-sync.env
 # Restos locales pesados / personales
 04_Programazioa_5073/data/_legacy_root/
 04_Programazioa_5073/data/cnc_10M.csv
+04_Programazioa_5073/soluzioak/05_Frameworkak_PDF_Ariketak/salmentak_pipeline.joblib
 **/test_env/
 mock_log.jsonl
 .DS_Store

@@ -7,11 +7,11 @@ Generado: 2026-09-21 · Herramienta: `syft 1.51.0` · Fuente: directorio `/home/
 - `sbom-release.sh <version> [ruta]`: SBOM versionada por release en `releases/<version>/` + `INDICE.csv`. Una release no se sobrescribe.
 - `SOPORTE.md`: periodo de soporte declarado por módulo (todo en `lab — sin soporte` hasta reutilizar).
 - `FICHA-TECNICA.md`: plantilla de ficha por módulo reutilizado (Anexo VII).
-- Política de vulnerabilidades: `/home/tears/bigdata/SECURITY.md` (detalle CNC en `erronka1/cnc_guard_setup/SECURITY.md`).
-- Regenerar base: `syft /home/tears/bigdata -o cyclonedx-json=SBOM/sbom.cyclonedx.json -o spdx-json=SBOM/sbom.spdx.json`
-- Imágenes de laboratorio (declaradas en `soluzioak/03_DataFlow_Apache_NiFi/06_MariaDB_MongoDB_Laborategia/docker-compose.yml`,
+- Política de vulnerabilidades: `/home/tears/bigdata/SECURITY.md` (detalle CNC en `01_Erronka1_CNC_Guard/proyecto_cnc_guard/SECURITY.md`).
+- Regenerar base, desde la raíz: `syft . -o cyclonedx-json=00_Transversal/SBOM/sbom.cyclonedx.json -o spdx-json=00_Transversal/SBOM/sbom.spdx.json`
+- Imágenes de laboratorio (declaradas en `06_NiFi/soluzioak/06_MariaDB_MongoDB_Laborategia_DF2.2/docker-compose.yml`,
   no descargadas aquí): `apache/nifi:2.0.0`, `mysql:8.4`, `mongo:7.0`, más `mysql-connector-j-8.0.31.jar`.
-  Tras `docker pull`, generar su SBOM por imagen: `syft mysql:8.4 -o cyclonedx-json=SBOM/sbom-mysql.cyclonedx.json`.
+  Tras `docker pull`, generar su SBOM por imagen: `syft mysql:8.4 -o cyclonedx-json=00_Transversal/SBOM/sbom-mysql.cyclonedx.json`.
 
 ## Estado normativo UE (consultado hoy, 2026-09-21)
 

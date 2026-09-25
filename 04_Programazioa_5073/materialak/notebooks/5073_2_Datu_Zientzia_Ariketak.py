@@ -159,8 +159,8 @@ print('✅ Zuzena!')
 # arr6[...] = ...
 
 # Balioztapena:
-assert np.sum(arr6 < 5) == 0, "Ez dira 5 baino txikiagoak diren balioak egon behar!"
-assert np.sum(arr6 == 0) == 4, "Lau zero egon behar dira (1, 2, 3, 4) ordezkatzean!"
+assert np.array_equal(arr6[:4], np.zeros(4, dtype=int)), "Lehen lau balioak zero izan behar dira!"
+assert np.array_equal(arr6[4:], np.arange(5, 21)), "Gainerako balioak ez dira aldatu behar!"
 print('✅ Zuzena!')
 
 

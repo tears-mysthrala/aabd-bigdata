@@ -26,6 +26,7 @@ df = pd.DataFrame(X, columns=[f'feature_{i}' for i in range(20)])
 df['target'] = y
 df.to_csv('data/dataset.csv', index=False)
 print("✅ Datuak ondo sortu eta 'data/dataset.csv' fitxategian gorde dira!")
+del X, y, df  # 1.1 eta 1.2 ariketek aldagai hauek berriro sortu behar dituzte.
 
 
 # %% [markdown] Cell 4
@@ -223,7 +224,8 @@ print("✅ Zuzena!")
 # Zure kodea hemen:
 
 # Balioztatzea
-assert rec_balanced > rec, "Normalean recall-ak hobea izan beharko luke orekatzerakoan!"
+assert 0 <= rec_balanced <= 1, "Recall balioa ez da zuzena"
+# class_weight='balanced' ez da recall handiagoaren bermea; konparatu emaitzak.
 print(f"✅ Zuzena! Aurrekoa: {rec:.4f} -> Orekatu ondoren: {rec_balanced:.4f}")
 
 

@@ -21,7 +21,7 @@ flowchart LR
   L --> N[PutMongoRecord · iabd.7kasua-gold]
 ```
 
-Lehen HTTP deiak AEMET OpenData-ren predikzio-endpoint dokumentatua erabiltzen du eta erantzuneko `datos` URL-a ateratzen du; bigarren deiak URL horretako edukia deskargatzeko diseinatuta dago. AEMET APIaren [OpenAPI espezifikazio ofizialak](https://opendata.aemet.es/AEMET_OpenData_specification.json) zein endpoint/parametro dauden dokumentatzen du. Bi urratsak flow-ean modelatuta daude; **ez da datu-API eskaerarik egin**.
+Lehen HTTP deiak AEMET OpenData-ren udalerri **bakarreko** predikzio-endpoint dokumentatua erabiltzen du (`/horaria/{municipio}`) eta erantzuneko `datos` URL-a ateratzen du; bigarren deiak URL horretako edukia deskargatzeko diseinatuta dago. Jatorrizko `/horaria/todos` eskaerak udalerri guztiak 30 segundoz behin ekartzeko arriskua zuen; orain `#{AEMET_MUNICIPIO}` parametro ez-sentikorra NiFi-ko Parameter Context-ean bete behar da, `AEMET_API_KEY` gako sentikorrarekin batera. [AEMETen OpenAPI espezifikazio ofizialak](https://opendata.aemet.es/AEMET_OpenData_specification.json) bi endpointak bereizten ditu. Bi urratsak flow-ean modelatuta daude; **ez da datu-API eskaerarik egin**.
 
 Bronze-k erantzun gordina `s3://iabd-nifi/bronze/{filename}`-en idazten du. Silver-ek iturburu-PDFko `$.municipio.NOMBRE`, `$.temperatura_actual` eta `$.humedad` JSONPath adibideak mantentzen ditu, eta JSONa S3ra eta `iabd.7kasua-silver` Mongo bildumara bidaltzen du. Hala ere, PDFko bide horiek aurreko `api.el-tiempo.net` hornitzailearen erantzunari dagozkio; AEMET OpenData-k `datos`/`metadatos` erreferentziak itzultzen ditu lehen urratsean. Beraz, Silver-eko JSONPath-ak **AEMETen benetako payload-aren aurka mapatu eta egiaztatu behar dira fluxua aktibatu aurretik**. Ez da hemen erantzun edo datu errealik asmatu.
 
@@ -33,6 +33,7 @@ Flow-ak ez du kontu, gako, bucket-secret edo endpoint pribaturik gordetzen. Inpo
 
 - **AWS credentials provider**: `AWSCredentialsProviderControllerService` runtime-ko kredentzial-iturrira lotu eta `Use Default Credentials=true` ezarri (adibidez, NiFi exekutatzen duen inguruneko rol/credential chain); bestela, operadoreak kanpoko credentials file edo credential source bat eman behar du. S3 bucket izena ariketak eskatutako `iabd-nifi` da; `AWS_REGION` Parameter Context bidez eman behar da.
 - **AEMET API key**: `AEMET_API_KEY` izeneko parametro sentikorra sortu NiFi Parameter Context batean; lehen `InvokeHTTP`-ko `api_key` header-ak `#{AEMET_API_KEY}` erreferentzia dauka. Ez ezarri baliorik JSONean.
+- **Udalerria**: `AEMET_MUNICIPIO` izeneko parametro ez-sentikorra sortu, AEMETek eskatzen duen udalerri-kode baliodunarekin; ez erabili `todos` baliotik. Fluxuaren eremu-mapaketa benetako `datos` payload batean berrikusi arte ez aktibatu Silver/Gold.
 - **MongoDBControllerService**: operadoreak bere konexioa eman behar du; bildumak `iabd.7kasua-silver` eta `iabd.7kasua-gold` dira.
 - **Record zerbitzuak**: `JsonTreeReader` NDJSON Silver-erako, `ParquetRecordSetWriter` QueryRecord-eko Gold irteerarako eta `ParquetReader` MongoDB Gold sink-erako.
 

@@ -18,19 +18,19 @@ DEFAULT_GROUP = os.environ.get("GROUP", "iabd-taldea-1")
 DEFAULT_BOOTSTRAP = os.environ.get("BOOTSTRAP", "localhost:9092")
 
 
-def run_mock(mock_file: Path, max_msgs: int, quiet: bool = False) -> list[dict]:
-    out = []
+def run_mock(mock_file: Path, max_msgs: int, quiet: bool = False) -> int:
+    count = 0
     with mock_file.open(encoding="utf-8") as fh:
         for line in fh:
             line = line.strip()
             if line:
-                out.append(json.loads(line))
-            if len(out) >= max_msgs:
-                break
-    if not quiet:
-        for m in out:
-            print(m)
-    return out
+                message = json.loads(line)
+                if not quiet:
+                    print(message)
+                count += 1
+                if count >= max_msgs:
+                    break
+    return count
 
 
 def run_kafka(
@@ -43,7 +43,7 @@ def run_kafka(
     consumer = KafkaConsumer(
         topic,
         auto_offset_reset="earliest",
-        enable_auto_commit=True,
+        enable_auto_commit=False,
         group_id=group,
         value_deserializer=lambda m: loads(m.decode("utf-8")),
         bootstrap_servers=[bootstrap],
@@ -57,7 +57,9 @@ def run_kafka(
             n += 1
             if n >= max_msgs:
                 break
-        print(f"kafka: {n} mezu irakurrita ({topic}/{group})")
+        if n:
+            consumer.commit()
+        print(f"kafka: {n} mezu irakurrita eta offsetak konfirmatuta ({topic}/{group})")
     finally:
         consumer.close()
 
@@ -74,9 +76,11 @@ def main() -> None:
     ap.add_argument("--mock", action="store_true")
     ap.add_argument("--mock-file", default="mock_log.jsonl")
     args = ap.parse_args()
+    if args.max <= 0:
+        ap.error("--max zero baino handiagoa izan behar da")
     if args.mock:
-        out = run_mock(Path(args.mock_file), args.max, args.quiet)
-        print(f"mock: {len(out)} mezu irakurrita")
+        count = run_mock(Path(args.mock_file), args.max, args.quiet)
+        print(f"mock: {count} mezu irakurrita")
     else:
         run_kafka(args.topic, args.group, args.bootstrap, args.max, args.quiet)
 

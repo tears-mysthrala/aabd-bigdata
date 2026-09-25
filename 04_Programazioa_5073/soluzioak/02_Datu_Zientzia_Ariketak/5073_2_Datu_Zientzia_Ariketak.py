@@ -156,17 +156,11 @@ print('✅ Zuzena!')
 
 # %% [code] Cell 20
 # Zure kodea hemen:
-class FilteredArray(np.ndarray):
-    def __lt__(self, other):
-        res = super().__lt__(other)
-        return res & (self != 0) if other == 5 else res
-
-arr6 = arr6.view(FilteredArray)
-arr6[super(FilteredArray, arr6).__lt__(5)] = 0
+arr6[arr6 < 5] = 0
 
 # Balioztapena:
-assert np.sum(arr6 < 5) == 0, "Ez dira 5 baino txikiagoak diren balioak egon behar!"
-assert np.sum(arr6 == 0) == 4, "Lau zero egon behar dira (1, 2, 3, 4) ordezkatzean!"
+assert np.array_equal(arr6[:4], np.zeros(4, dtype=int)), "Lehen lau balioak zero izan behar dira!"
+assert np.array_equal(arr6[4:], np.arange(5, 21)), "Gainerako balioak ez dira aldatu behar!"
 print('✅ Zuzena!')
 
 

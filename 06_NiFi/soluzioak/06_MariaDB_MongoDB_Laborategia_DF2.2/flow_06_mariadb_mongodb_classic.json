@@ -24,7 +24,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-mongodb-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Upsert": "false",
@@ -144,7 +144,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Set Auto Commit": "true",
@@ -286,7 +286,7 @@
         "identifier": "f4029037-9565-3ff0-a31b-729f4fbc565b",
         "instanceIdentifier": "b40e33da-01a0-1000-2af8-24f0dd735eec",
         "name": "SplitText_Lines",
-        "comments": "2. Fitxategia lerroz lerro zatitu (12.435 FlowFile sortzen dira ilaran!).",
+        "comments": "2. Fitxategia lerroz lerro zatitu; FlowFile kopurua datuen araberakoa da.",
         "position": {
           "x": 550.0,
           "y": 180.0
@@ -295,7 +295,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Remove Trailing Newlines": "true",
@@ -375,7 +375,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Set Auto Commit": "true",
@@ -526,7 +526,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Set Auto Commit": "true",
@@ -812,7 +812,7 @@
     "labels": [
       {
         "identifier": "master-flow_06_mariadb_mongodb_classic.json",
-        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \ud83d\uddc4\ufe0f LABORATEGIA 06: MARIADB (SQL) \u2794 MONGODB (NOSQL) - KASU 6: KLASIKOA (DF 2.2)                          \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura Klasikoa: SQL kontsulta \u2794 12.435 FlowFile sortu SplitText bidez \u2794 Banan-banan MongoDB-n txertatu (I/O eta CPU astuna)",
+        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \ud83d\uddc4\ufe0f LABORATEGIA 06: MARIADB (SQL) \u2794 MONGODB (NOSQL) - KASU 6: KLASIKOA (DF 2.2)                          \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura Klasikoa: SQL kontsulta \u2794 FlowFile txikiak sortu SplitText bidez \u2794 Banan-banan MongoDB-n txertatu (I/O eta CPU astuna)",
         "position": {
           "x": 60.0,
           "y": 15.0
@@ -840,7 +840,7 @@
       },
       {
         "identifier": "stage-1-flow_06_mariadb_mongodb_classic.json",
-        "label": "\u2702\ufe0f 2. TESTU ZATIKETA (12.435 FLOWFILE ILARAN)",
+        "label": "\u2702\ufe0f 2. TESTU ZATIKETA (FLOWFILE ASKO ILARAN)",
         "position": {
           "x": 530.0,
           "y": 105.0

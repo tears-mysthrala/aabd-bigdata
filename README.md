@@ -20,10 +20,10 @@ de archivo y las tareas que aún dependen de evidencia humana o de laboratorio.
 | `01_Erronka1_CNC_Guard/` | Reto 1: `materialak/`, `proyecto_cnc_guard/` (uv + tests), `soluzioak/` | ✅ |
 | `02_AA_Ereduak_5071/` | Paradigmas IA + Lógica difusa | ✅ |
 | `03_ML_5072/` | ML: EDA, preprocesado, regresión, clasificación | ✅ |
-| `04_Programazioa_5073/` | Python, `materialak/` + `soluzioak/` (4 bloques), `data/`, ejercicio Git 4.4 | ✅ |
+| `04_Programazioa_5073/` | Python, `materialak/` + `soluzioak/` (5 bloques), `data/`, ejercicio Git 4.4 | Material mixto |
 | `05_BigData_Ingeniaritza/` | 7V, ciclo de vida, ETL/ELT, Lakehouse | ✅ |
-| `06_NiFi/` | 7 casos NiFi (11 flujos), labs MariaDB→MongoDB y AEMET Medallion | ✅ |
-| `07_Kafka/` | Pub/sub, consumer groups, lab Python + `docker-compose` | ✅ |
+| `06_NiFi/` | 7 casos NiFi (11 flujos), labs MariaDB→MongoDB y AEMET Medallion | Flujos sujetos a validación real |
+| `07_Kafka/` | Pub/sub, consumer groups, lab Python y broker compartido en `infra/` | Prácticas en broker aislado |
 | `horario/` | Calendarios y horarios del curso | ✅ |
 | `infra/` | nginx frontal + Kafka compartidos (red `iabd-infra-net`) | ✅ |
 | `_archivo_legacy/` | Duplicados antiguos (no usar) | 🗄️ |
@@ -38,25 +38,19 @@ Compatibilidad: `materialak/`, `soluzioak/`, `notebooks_compat/`, `SBOM_compat/`
 # 1. Clonar (pesa ~230 MB por los vídeos y PDFs del curso)
 git clone <url> && cd bigdata
 
-# 2. Proyecto CNC Guard (tests)
-cd 01_Erronka1_CNC_Guard/proyecto_cnc_guard
-uv sync && uv run pytest -v
+# 2. Proyecto CNC Guard (desde la raíz del repositorio)
+(cd 01_Erronka1_CNC_Guard/proyecto_cnc_guard && uv sync)
 
 # 3. Práctica ML 5072
 01_Erronka1_CNC_Guard/proyecto_cnc_guard/.venv/bin/python \
   03_ML_5072/soluzioak/5072_ML_praktika.py
 
-# 4. Infra compartida (primero) + lab Kafka
-cd infra && cp .env.example .env && docker compose up -d && cd ..
-cd 07_Kafka/soluzioak
-python kafka_producer.py --n 10   #usa BOOTSTRAP de infra (localhost:9092)
-python kafka_consumer.py --max 10
+# 4. Kafka: seguir la guía del módulo y usar un broker de laboratorio aislado
+#    07_Kafka/soluzioak/README.md
 
 # 5. Lab NiFi + MariaDB + MongoDB (con infra ya arriba)
-cd 06_NiFi/soluzioak/06_MariaDB_MongoDB_Laborategia_DF2.2
-cp .env.example .env   # ¡cambia las contraseñas!
-./redeploy.sh
-# Frontal: https://nifi.bigdata.local/nifi (nginx en infra/)
+#    06_NiFi/soluzioak/06_MariaDB_MongoDB_Laborategia_DF2.2/README.md
+#    Revisar .env.example y configurar secretos locales antes de desplegar.
 ```
 
 Requisitos: Python 3.13 + [`uv`](https://docs.astral.sh/uv/), Docker con grupo
@@ -73,5 +67,4 @@ Tras `notebooklm login`, las novedades se suben con
 
 - Para añadir soluciones: [CONTRIBUTING.md](CONTRIBUTING.md).
 - Para avisar de vulnerabilidades o secretos filtrados: [SECURITY.md](SECURITY.md).
-- Sin GitHub Actions a propósito: este repo es material de estudio, no un servicio
-  (sin CI en cada push, sin despliegues).
+- GitHub Actions valida las PR; no hay CI ni despliegues en cada push.

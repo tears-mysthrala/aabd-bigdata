@@ -1,6 +1,6 @@
 # Kafka kontsolako ariketak: topic-ak, mezuak, partizioak eta offset-ak
 
-Iturria: [Apache Kafka 3.7 PDFa](../materialak/01_03_ApacheKafka.pdf), 23–27. orrialdeak (ariketak 1–5). CLI sintaxia `infra/docker-compose.yml`-ko `apache/kafka:3.7.0` irudiaren `/opt/kafka/bin/` bidearekin alderatu da, baina adibideek **isolatutako labeko container eta broker baten ordezko-balioak** erabiltzen dituzte. Azalpen hau **komandoak berrikusiak** egoeran dago; ez dira brokerrean exekutatu. Ez da zerbitzurik abiarazi/gelditu, topic-ik sortu edo aldatu, ezta bolumena ukitu ere.
+Iturria: [Apache Kafka 3.7 PDFa](../materialak/01_03_ApacheKafka.pdf), 23–27. orrialdeak (ariketak 1–5). CLI sintaxia `apache/kafka:3.7.0` irudiarekin alderatu da. Beheko aginduak **broker isolatu baterako txantiloiak** dira; 2026-09-25ean beste container efimero batean benetan egindako exekuzioaren emaitzak [hemen](kafka_exekuzio_isolatua_2026-09-25.md) daude. Repoaren broker partekatua ez da ukitu.
 
 ## Segurtasunez nola erabili
 
@@ -158,7 +158,7 @@ Ondoren, PDFak eskatutako jaitsiera saiatzeko komandoa hau da:
 docker exec "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-topics.sh --alter --topic "$SENSORS" --partitions 2 --bootstrap-server "$KAFKA_BOOTSTRAP"
 ```
 
-**Ez exekutatu gida honetako lanaren baitan**: topic egoera ez da aldatu behar. Kafka 3.7 dokumentazioaren arabera, partition kopurua gehitzea onartzen da, baina murriztea ez; beraz, komandoko eskaera baztertua izatea espero da. Ez dago hemen benetako stderr/error transkriptorik, komandoa ez baita exekutatu. Erreferentzia: [Kafka 3.7 — Modifying topics](https://kafka.apache.org/37/operations/basic-kafka-operations/).
+Broker partekatuan ez exekutatu. 2026-09-25eko broker isolatuan saiakera egin zen; benetako stderr/exit code [exekuzio-erregistroan](kafka_exekuzio_isolatua_2026-09-25.md) daude. Kafka 3.7 dokumentazioak handitzea onartzen du eta murriztea ez: [Modifying topics](https://kafka.apache.org/37/operations/basic-kafka-operations/).
 
 ## Egiaztapen-erregistroa
 
@@ -167,5 +167,5 @@ docker exec "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-topics.sh --alter --topic "$
 | Iturriaren 5 ariketak eta eskatutako mezu-sekuentziak (23–27. orrialdeak) | PDFko testuarekin berrikusia |
 | CLI sintaxia eta irudi ofizialaren CLI bidea | Kafka 3.7.0 Compose irudiari buruz irakurrita; ez da container abiarazi edo eskatu |
 | Topic komandoak, `--from-beginning`, `--alter` eta partizio-jaitsieraren portaera | Kafka 3.7 dokumentazio ofizialarekin berrikusia |
-| Consumer/producer edo brokerrarekin zuzeneko exekuzioa | **Ez da egin**; komandoak berrikusiak bakarrik |
-| Partizio/offset taulako benetako balioak | Ez dira asmatu; ariketako exekuzioan bete |
+| Consumer/producer edo brokerrarekin zuzeneko exekuzioa | Broker efimero isolatuan 2026-09-25ean egin da; ikus [erregistroa](kafka_exekuzio_isolatua_2026-09-25.md) |
+| Partizio/offset taulako benetako balioak | Exekuzio isolatuko balioak erregistroan; goiko taula berrerabiltzeko txantiloia da |

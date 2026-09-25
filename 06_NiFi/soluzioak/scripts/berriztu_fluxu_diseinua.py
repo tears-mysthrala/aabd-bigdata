@@ -102,11 +102,11 @@ def main():
     # =========================================================================
     # 02. CSV DATUAK IRAGAZI (3 ALDAERA)
     # =========================================================================
-    # Aldaera 1: SplitText (1 lerro)
+    # Aldaera 1: SplitRecord (erregistro 1)
     update_flow(
         rel_path="02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera1.json",
-        master_title="⚡ LABORATEGIA 02: CSV DATUAK IRAGAZI - ALDAERA 1: SPLITRECORD (1 LERRO/FLOWFILE)",
-        master_desc="Arkitektura Klasikoa: CSV osoa lerroz lerro zatitu FlowFile indibidualetan ➔ SQL bidez adina >= 18 iragazi ➔ Diskoan gorde",
+        master_title="⚡ LABORATEGIA 02: CSV DATUAK IRAGAZI - ALDAERA 1: SPLITRECORD (ERREGISTRO 1/FLOWFILE)",
+        master_desc="CSV erregistro bakoitza FlowFile batean ➔ France eta Units > 1 iragazi QueryRecord bidez ➔ Diskoan gorde",
         master_bg="#fcf3cf",
         stages=[
             {"title": "📥 1. INGESTA", "x": 80.0, "y": 105.0, "width": 390.0, "bg": "#d6eaf8"},
@@ -117,18 +117,18 @@ def main():
         ],
         procs_layout={
             "CSVFitxategiaEskuratu": (100.0, 180.0, "1. Sarrerako CSV fitxategia irakurri (/sarrera karpeta)."),
-            "CSVtikFFra": (550.0, 180.0, "2. Lerro bakoitzeko FlowFile bana sortu (Records Per Split = 1)."),
-            "SQLkontsulta": (1000.0, 180.0, "3. Calcite SQL kontsulta: SELECT * FROM FLOWFILE WHERE CAST(adina AS INT) >= 18."),
-            "FitxategiaBerrizendatu": (1450.0, 180.0, "4. Metadatuak ezarri: fitxategi izena ${filename:substringBeforeLast('.')}_nagusiak.csv."),
-            "FitxategiaJarri": (1900.0, 180.0, "5. Iragazitako FlowFile-ak /irteera/aldaera1 karpetan gorde.")
+            "CSVtikFFra": (550.0, 180.0, "2. Erregistro bakoitzeko FlowFile bana sortu (Records Per Split = 1)."),
+            "SQLkontsulta": (1000.0, 180.0, "3. QueryRecord: COUNTRY = 'France' AND Units > 1."),
+            "FitxategiaBerrizendatu": (1450.0, 180.0, "4. Fitxategi-izenean UUID eta uneko denbora gehitu."),
+            "FitxategiaJarri": (1900.0, 180.0, "5. Iragazitako FlowFile-ak /irteera karpetan gorde.")
         }
     )
 
-    # Aldaera 2: SplitText (10 lerro)
+    # Aldaera 2: SplitRecord (10 erregistro)
     update_flow(
         rel_path="02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera2.json",
-        master_title="⚡ LABORATEGIA 02: CSV DATUAK IRAGAZI - ALDAERA 2: SPLITRECORD (10 LERROKO LOTEAK)",
-        master_desc="Lote Txikiak: CSV fitxategia 10 lerroko mikroloteetan zatitu ➔ FlowFile kopurua %90 murriztu ➔ I/O eraginkortasuna",
+        master_title="⚡ LABORATEGIA 02: CSV DATUAK IRAGAZI - ALDAERA 2: SPLITRECORD (10 ERREGISTROKO LOTEAK)",
+        master_desc="Lote txikiak: CSV fitxategia 10 erregistroko multzoetan zatitu ➔ FlowFile gutxiago. Errendimendua neurtzeko dago.",
         master_bg="#fcf3cf",
         stages=[
             {"title": "📥 1. INGESTA", "x": 80.0, "y": 105.0, "width": 390.0, "bg": "#d6eaf8"},
@@ -139,18 +139,18 @@ def main():
         ],
         procs_layout={
             "CSVFitxategiaEskuratu": (100.0, 180.0, "1. Sarrerako CSV fitxategia irakurri (/sarrera karpeta)."),
-            "CSVtikFFra": (550.0, 180.0, "2. 10 lerroko loteak sortu FlowFile bakoitzean (Records Per Split = 10)."),
-            "SQLkontsulta": (1000.0, 180.0, "3. Calcite SQL kontsulta: SELECT * FROM FLOWFILE WHERE CAST(adina AS INT) >= 18."),
-            "FitxategiaBerrizendatu": (1450.0, 180.0, "4. Metadatuak ezarri: fitxategi izena ${filename:substringBeforeLast('.')}_loteak.csv."),
-            "FitxategiaJarri": (1900.0, 180.0, "5. Iragazitako FlowFile-ak /irteera/aldaera2 karpetan gorde.")
+            "CSVtikFFra": (550.0, 180.0, "2. 10 erregistroko loteak sortu (Records Per Split = 10)."),
+            "SQLkontsulta": (1000.0, 180.0, "3. QueryRecord: COUNTRY = 'France' AND Units > 1."),
+            "FitxategiaBerrizendatu": (1450.0, 180.0, "4. Fitxategi-izenean UUID eta uneko denbora gehitu."),
+            "FitxategiaJarri": (1900.0, 180.0, "5. Iragazitako FlowFile-ak /irteera karpetan gorde.")
         }
     )
 
-    # Aldaera 3: Optimizatua (PartitionRecord / QueryRecord direct)
+    # Aldaera 3: QueryRecord zuzenean
     update_flow(
         rel_path="02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json",
         master_title="⚡ LABORATEGIA 02: CSV DATUAK IRAGAZI - ALDAERA 3: RECORD-ORIENTED OPTIMIZATUA",
-        master_desc="Arkitektura Aurreratua: Fitxategia ZATITU GABE streamingean prozesatu ➔ RAM eta CPU eraginkortasun gorena (FlowFile bakarra!)",
+        master_desc="CSV fitxategia aurretik zatitu gabe QueryRecord-era bidali. RAM eta CPU portaera neurtzeko dago.",
         master_bg="#e8f8f5",
         stages=[
             {"title": "📥 1. INGESTA", "x": 80.0, "y": 105.0, "width": 390.0, "bg": "#d6eaf8"},
@@ -160,9 +160,9 @@ def main():
         ],
         procs_layout={
             "CSVFitxategiaEskuratu": (100.0, 180.0, "1. Sarrerako CSV fitxategia irakurri (/sarrera karpeta)."),
-            "SQLkontsulta": (550.0, 180.0, "2. QueryRecord streaming zuzena (fitxategia zatitu gabe): SELECT * WHERE adina >= 18."),
-            "FitxategiaBerrizendatu": (1000.0, 180.0, "3. Metadatuak ezarri: fitxategi izena ${filename:substringBeforeLast('.')}_optimizatua.csv."),
-            "FitxategiaJarri": (1450.0, 180.0, "4. Emaitza /irteera/aldaera3 karpetan gorde FlowFile bakar batean.")
+            "SQLkontsulta": (550.0, 180.0, "2. QueryRecord zuzenean: COUNTRY = 'France' AND Units > 1."),
+            "FitxategiaBerrizendatu": (1000.0, 180.0, "3. Fitxategi-izenean UUID eta uneko denbora gehitu."),
+            "FitxategiaJarri": (1450.0, 180.0, "4. Emaitza /irteera karpetan gorde.")
         }
     )
 
@@ -265,16 +265,16 @@ def main():
     update_flow(
         rel_path="06_MariaDB_MongoDB_Laborategia_DF2.2/flow_06_mariadb_mongodb_classic.json",
         master_title="🗄️ LABORATEGIA 06: MARIADB (SQL) ➔ MONGODB (NOSQL) - KASU 6: KLASIKOA (DF 2.2)",
-        master_desc="Arkitektura Klasikoa: SQL kontsulta ➔ 12.435 FlowFile sortu SplitText bidez ➔ Banan-banan MongoDB-n txertatu (I/O eta CPU astuna)",
+        master_desc="Arkitektura klasikoa: SQL kontsulta ➔ SplitText bidez FlowFile txikiak ➔ banan-banan MongoDB-n txertatu. Kopurua eta kostua neurtzeko daude.",
         master_bg="#fadbd8",
         stages=[
             {"title": "🐬 1. MARIADB SQL (DBCP POOL)", "x": 80.0, "y": 105.0, "width": 390.0, "bg": "#d6eaf8"},
-            {"title": "✂️ 2. TESTU ZATIKETA (12.435 FLOWFILE ILARAN)", "x": 530.0, "y": 105.0, "width": 390.0, "bg": "#fadbd8"},
+            {"title": "✂️ 2. TESTU ZATIKETA (FLOWFILE ASKO)", "x": 530.0, "y": 105.0, "width": 390.0, "bg": "#fadbd8"},
             {"title": "🍃 3. MONGODB TXERTAKETA BANAN-BANAN", "x": 980.0, "y": 105.0, "width": 390.0, "bg": "#f9ebea"}
         ],
         procs_layout={
-            "ExecuteSQLRecord_Customers": (100.0, 180.0, "1. MariaDB datu-basetik 12.435 bezero atera SQL bidez."),
-            "SplitText_Lines": (550.0, 180.0, "2. Fitxategia lerroz lerro zatitu (12.435 FlowFile sortzen dira ilaran!)."),
+            "ExecuteSQLRecord_Customers": (100.0, 180.0, "1. MariaDB datu-basetik bezeroak atera SQL bidez; kopurua kontsultaren araberakoa da."),
+            "SplitText_Lines": (550.0, 180.0, "2. Fitxategia lerroz lerro zatitu; FlowFile kopurua datuen araberakoa da."),
             "PutMongo_Classic": (1000.0, 180.0, "3. FlowFile bakoitza banan-banan MongoDB customers_classic bilduman txertatu.")
         }
     )
@@ -283,7 +283,7 @@ def main():
     update_flow(
         rel_path="06_MariaDB_MongoDB_Laborategia_DF2.2/flow_06_mariadb_mongodb_record.json",
         master_title="🗄️ LABORATEGIA 06: MARIADB (SQL) ➔ MONGODB (NOSQL) - KASU 6: RECORD-ORIENTED (DF 2.2)",
-        master_desc="Arkitektura Aurreratua: SQL kontsulta ➔ FlowFile BAKARRA ➔ PutMongoRecord bidez bulk streaming zuzena (%90 azkarragoa!)",
+        master_desc="Record API aldaera: SQL kontsulta ➔ erregistroak dituen FlowFile-a ➔ PutMongoRecord. Errendimendua neurtzeko dago.",
         master_bg="#d5f5e3",
         stages=[
             {"title": "🐬 1. MARIADB SQL (DBCP POOL)", "x": 80.0, "y": 105.0, "width": 390.0, "bg": "#d6eaf8"},
@@ -291,7 +291,7 @@ def main():
         ],
         procs_layout={
             "ExecuteSQLRecord_Customers": (100.0, 180.0, "1. MariaDB datu-basetik bezeroak atera DBCP konexio-igerilekuaren bidez."),
-            "PutMongoRecord_Direct": (650.0, 180.0, "2. FlowFile bakarrean 12.435 erregistroak zuzenean MongoDB-ra kargatu Record API bidez.")
+            "PutMongoRecord_Direct": (650.0, 180.0, "2. FlowFile-eko erregistroak MongoDB-ra kargatu Record API bidez; kopurua ez dago aurrez egiaztatuta.")
         }
     )
 

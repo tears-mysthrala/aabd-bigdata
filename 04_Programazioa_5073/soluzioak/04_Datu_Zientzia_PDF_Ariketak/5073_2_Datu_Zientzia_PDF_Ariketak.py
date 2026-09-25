@@ -8,6 +8,9 @@ exekutatzen da). `main()` denak ordenan exekutatzen ditu.
 
 # %%
 import subprocess
+import shutil
+import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -691,15 +694,12 @@ ariketa_3_1()
 # """
 
 # %%
-TIPS_CSV = Path("data/tips.csv")
+TIPS_CSV = Path(__file__).resolve().parents[2] / "data" / "tips.csv"
 
 
 def kargatu_tips() -> pd.DataFrame:
-    """Lehentasuna lokaleko kopiari, bestela Seaborn-eko dataseta."""
-    try:
-        return pd.read_csv(TIPS_CSV)
-    except Exception:
-        return sns.load_dataset("tips")
+    """Errepikagarria: repository-ko tips.csv txikia, sare-deirik gabe."""
+    return pd.read_csv(TIPS_CSV)
 
 
 def ariketa_3_2() -> pd.DataFrame:
@@ -717,7 +717,8 @@ def ariketa_3_2() -> pd.DataFrame:
     )
     axes[0, 0].set_title("1. Propinak Egunaren Arabera (Histogram)")
 
-    sns.boxplot(data=tips, x="day", y="total_bill", ax=axes[0, 1], palette="pastel")
+    sns.boxplot(data=tips, x="day", y="total_bill", hue="day", legend=False,
+                ax=axes[0, 1], palette="pastel")
     axes[0, 1].set_title("2. Faktura Egunaren Arabera (Boxplot)")
 
     sns.scatterplot(
@@ -824,34 +825,33 @@ ariketa_3_3()
 # 1. Git eta DVC hasieratzea (`git init`, `dvc init`).
 # 2. Jarri `notak.csv` DVC kontrolpean (`dvc add data/notak.csv`).
 # 3. Ireki `data/notak.csv.dvc` fitxategia: zer dago barruan? Zer da MD5 hash-a?
-# 4. Konfiguratu biltegi lokal bat (`dvc remote add -d lokala /tmp/dvc-biltegia`) eta egin `dvc push`.
+# 4. Konfiguratu biltegi lokal bat (`dvc remote add -d lokala <biltegi-lokalaren-bidea>`) eta egin `dvc push`.
 # 5. Eztabaidatu: *Zergatik dago `notak.csv` `.gitignore`-n baina ez `notak.csv.dvc`?*
 # """
 
 # %%
-DVC_BIN = Path(".venv/bin/dvc")
-DVC_REMOTE_DIR = Path("/tmp/dvc-biltegia")
+DVC_BIN = shutil.which("dvc") or str(Path(sys.executable).with_name("dvc"))
 
 
 def _dvc(*args: str, cwd: Path) -> subprocess.CompletedProcess:
-    """dvc proiektuko venv-etik (shebang zuzena duen `.venv` behar du)."""
+    """Exekutatu DVC ingurune aktibotik eta erakutsi akatsak."""
     return subprocess.run(
-        [str(DVC_BIN), *args], cwd=cwd, capture_output=True, text=True
+        [DVC_BIN, *args], cwd=cwd, capture_output=True, text=True, check=True
     )
 
 
 def ariketa_4_1(repo_dir: Path | None = None) -> Path:
     """Git + DVC: init, add notak.csv, remote lokala, push. Puntero-fitxategia itzultzen du."""
-    repo_dir = repo_dir or Path.cwd()
+    repo_dir = repo_dir or Path(tempfile.mkdtemp(prefix="dvc-ariketa-"))
+    repo_dir.mkdir(parents=True, exist_ok=True)
+    if any(repo_dir.iterdir()):
+        raise ValueError("DVC ariketak laborategi huts bat behar du")
     data_file = repo_dir / "data" / "notak.csv"
+    data_file.parent.mkdir()
+    data_file.write_text("ikaslea,nota\nAne,8\nIker,7\n", encoding="utf-8")
 
-    subprocess.run(["git", "init"], cwd=repo_dir, capture_output=True, text=True)
-    subprocess.run(
-        [str(DVC_BIN), "init", "--no-scm" if not (repo_dir / ".git").exists() else ""],
-        cwd=repo_dir,
-        capture_output=True,
-        text=True,
-    )
+    subprocess.run(["git", "init"], cwd=repo_dir, capture_output=True, text=True, check=True)
+    _dvc("init", cwd=repo_dir)
     _dvc("add", "data/notak.csv", cwd=repo_dir)
 
     dvc_file = repo_dir / "data" / "notak.csv.dvc"
@@ -860,13 +860,14 @@ def ariketa_4_1(repo_dir: Path | None = None) -> Path:
         with open(dvc_file) as f:
             print(f.read())
     else:
-        print("DVC fitxategia prestatu da.")
+        raise FileNotFoundError(f"DVC punteroa ez da sortu: {dvc_file}")
 
-    DVC_REMOTE_DIR.mkdir(parents=True, exist_ok=True)
-    _dvc("remote", "add", "-f", "-d", "lokala", str(DVC_REMOTE_DIR), cwd=repo_dir)
-    cmd_push = _dvc("push", cwd=repo_dir)
-    print("DVC Push egoera:", cmd_push.returncode, "(Arrakastatsua)")
-    print("Biltegi lokalean dauden fitxategiak:", list(DVC_REMOTE_DIR.glob("**/*"))[:3])
+    remote_dir = repo_dir.with_name(repo_dir.name + "-remote")
+    remote_dir.mkdir(parents=True, exist_ok=True)
+    _dvc("remote", "add", "-d", "lokala", str(remote_dir), cwd=repo_dir)
+    _dvc("push", cwd=repo_dir)
+    print("DVC push osatuta. Laborategia:", repo_dir)
+    print("Biltegi lokalean dauden fitxategiak:", list(remote_dir.glob("**/*"))[:3])
     assert data_file.exists(), "notak.csv falta"
     return dvc_file
 
@@ -877,8 +878,8 @@ ariketa_4_1()
 # ### 💡 Eztabaida: Zergatik dago `notak.csv` `.gitignore`-n baina ez `notak.csv.dvc`?
 # 1. **Datu handien arazoa Git-en**: Git fitxategien testu-aldaketak lerroz lerro gordetzeko dago diseinatuta. Datu-fitxategi handiak (GBak/TBak) Git-era igotzen badira, biltegia astundu, klonazioak mantsotu eta zerbitzariak blokeatu egiten dira.
 # 2. **DVC-ren konponbide hibridoa**:
-#    - `notak.csv` datu erreala kanpoko biltegian gordetzen da (S3, GCS edo `/tmp/dvc-biltegia`). Horregatik gehitzen da automatikoki `.gitignore`-ra.
-#    - `notak.csv.dvc` ordea, **puntero txiki bat** da (kilobyte gutxi batzuk), fitxategiaren **MD5 hash unibertsala** eta tamaina gordetzen dituena. Puntero hau Git-era igotzen da.
+#    - `notak.csv` datu erreala kanpoko biltegian gordetzen da (S3, GCS edo laborategiko biltegi lokala). Horregatik gehitzen da automatikoki `.gitignore`-ra.
+#    - `notak.csv.dvc` **puntero txiki bat** da: bertsioaren edukia identifikatzeko hash-a eta bestelako metadatuak jasotzen ditu. Hash mota biltegiratze-sistemaren araberakoa izan daiteke. Puntero hau Git-era igotzen da.
 #    - Horrela, kodearen commit bakoitzak zehazki zein datu-bertsiorekin lan egin zuen erreproduzi daiteke uneoro (`dvc checkout`).
 # """
 

@@ -8,9 +8,6 @@ Exekuzioa:
     /home/tears/.local/share/uv/tools/orange3/bin/python 03_ML_5072/soluzioak/orange_bihotza_ereduak.py
 """
 
-import warnings
-warnings.filterwarnings("ignore")
-
 import Orange
 from Orange.evaluation import CrossValidation, CA, AUC, F1, Precision, Recall
 from Orange.classification import (
@@ -79,7 +76,7 @@ def main():
         print(f"Benetan: 1 (Gaixo)       {cm[1, 0]:<14}  {cm[1, 1]:<14} (FN={cm[1, 0]})")
 
     # 5. Erabaki-Zuhaitzaren Arau Nagusiak
-    print("\n[5] ERABAKI-ZUHAITZAREN ARAU KLINIKOAK (Tree Viewer-en baliokidea):")
+    print("\n[5] EREDUAREN ARAUAK (demo akademikoa; ez dira gomendio klinikoak):")
     tree_model = TreeLearner(max_depth=3)(data)
     print(tree_model.print_tree())
 

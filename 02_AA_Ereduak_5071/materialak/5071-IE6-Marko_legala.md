@@ -4,6 +4,14 @@ Adimen Artifizialaren Marko Legala
 
 # GDPR + AI Act marko legala
 
+> **2026-09-25eko zuzenketa didaktikoa:** 2026/1744 Erregelamenduak
+> III. eranskineko arrisku handiko sistemetarako III. kapituluko 1–3 atalen
+> aplikazioa 2027-12-02ra eta I. eranskineko produktuei lotutakoena
+> 2028-08-02ra atzeratu du. Beheko adibideak ez dira sistema zehatz baten
+> legezkotasunari buruzko ebazpenak. Iturriak:
+> https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R1744
+> eta https://eur-lex.europa.eu/eli/reg/2024/1689/oj/spa
+
 ## 10.1 0. Sarrera: Zergatik du garrantzia legeak lan-munduan?
 
 OHARRA
@@ -196,21 +204,24 @@ Hau lagungarriagoa da "sistema honek zure profila ez du aukeratzen" baino.
 
 ### 2.3. GDPR VS AI ACT: AZALPENAREN ESKUBIDEAREN BILAKAERA
 
-4. Irudia: Azalpen-eskubidearen bilakaera 2018tik 2026ra — irismenaren zabaltzea eta betebehardunaren aldaketa
+4. Irudia: GDPRren eta AI Act-eko 86. artikuluaren azalpen-betebeharren alderaketa. 86. artikulua 2026-08-02tik aplikatzen da; III. kapituluko 1–3 ataletako arrisku handiko sistemen betebeharrak, ordea, 2026/1744k geroratu ditu.
 
-GDPR (2018)                         AI Act (2026)
+GDPR (2018)                         AI Act (86. art.)
 ────────────────────────            ────────────────────────
 NOR?: Datu-arduraduna               NOR?: Hedatzailea (sistema
       (enpresa/erakundea)                 erabiltzen duena)
 
-NOIZ?: Erabakia SOILIK              NOIZ?: AA sistemak EDOZEIN
-       automatizatua denean                paper esanguratsu duenean
+NOIZ?: 22. artikuluko erabaki       NOIZ?: III. eranskineko arrisku
+       automatizatuetan                    handiko sistema baten irteeran
+                                          oinarritutako erabakiak ondorio
+                                          juridiko edo antzeko eragin
+                                          nabarmena duenean; III. eranskineko
+                                          2. puntuko sistemak salbu
 
 ZER?: "Logikari buruzko             ZER?: "Azalpen ARGI eta
        informazio esanguratsua"            ESANGURATSUAK"
 
-ONDORIOA: Mugatua, zaila            ONDORIOA: Zabalagoa, praktikoagoa
-          aplikatzea                          eta sendoagoa
+ONDORIOA: Bi arauen baldintzak eta aplikazio-datak kasuz kasu aztertu behar dira.
 ────────────────────────            ────────────────────────
 
 Zein da aldea praktikan?
@@ -324,11 +335,11 @@ ADIBIDEA
 
 Kasu errela: ClearView AI.
 
-ClearView AI enpresa amerikarrak 30.000 milioi aurpegi-argazki baino gehiago bildu zituen Internetetik (Instagram, Facebook, LinkedIn...) baimenik gabe. Sistema polizia-departamentuei saldu zien. Europako hainbat herrialdek isun handiak jarri dizkiote eta EB-n erabat debekatua dago. Ikaspen nagusia: "aurpegien scraping" edozein arrazoirekin debekatua dago AI Act-en arabera.
+Clearview AIren aurpegi-irudien bilketa eta erabilera eztabaida eta zehapen errealen gaia izan dira. AI Act-eko 5. artikuluak aurpegi-ezagutzako datu-baseak sortzea edo zabaltzea debekatzen du Internetetik edo CCTVtik aurpegi-irudiak bereizketarik gabe scraping bidez ateraz; ez du edozein motatako aurpegi-irudien bilketa oro debekatzen. Kasu zehatzaren GDPR/AI Act ondorioak erabileraren eta datuen araberakoak dira.
 
 2. maila: Arrisku Altua — Betebehar Zorrotzak
 
-Arrisku altuko sistemek ez dute debekurik, baina betebehar zorrotz asko dituzte bete behar. Aplikazio-data: 2026ko abuztuaren 2tik.
+Arrisku altuko sistemek ez dute debekurik, baina betebehar zorrotzak izan ditzakete. III. eranskineko sistementzako III. kapituluko 1–3 atalen aplikazio-data 2027ko abenduaren 2a da (2026/1744 Erregelamendua); I. eranskineko produktuetarako 2028ko abuztuaren 2a.
 
 Zein sektoretan daude arrisku altuko sistemak?
 
@@ -346,7 +357,7 @@ Osasun-zentro batek AA sistema bat erosi du urgentzietan pazienteak lehentasunez
 - Erregistroa (12. art.): sistema honek zer erabaki hartu duen eta zergatik gorde behar da
 - Giza gainbegiraketa (14. art.): mediku/erizainak erabakia ALDATU dezake sistemaren gomendioaren aurka
 
-Aplikazio-data: 2026ko abuztuaren 2tik aurrera.
+Aplikazio-data erabilera eta sailkapen zehatzaren araberakoa da; III. eranskineko betebehar nagusietarako, 2027ko abenduaren 2a.
 
 ADIBIDEA
 
@@ -428,17 +439,15 @@ AI Act-ek aplikazio graduala du. Garrantzitsua da jakitea, zeren betebehar batzu
    └─ GPAI ereduen arauak (ChatGPT, Claude, Gemini...)
    └─ Europako AA Bulegoa martxan
 
-2026ko abuztuaren 2a  ← HURRENGO MUGARRI NAGUSIA
-   └─ Arrisku altuko sistemak bete behar dute
-   └─ Gobernantza osoa aktibatu
+2027ko abenduaren 2a
+   └─ III. eranskineko arrisku handiko sistemetarako III. kapituluko 1–3 atalak
 
-2027ko abuztuaren 2a
-   └─ Produktu erregulatuetan integratutako sistemak
-      (mediku-gailuak, autoak...)
+2028ko abuztuaren 2a
+   └─ I. eranskineko produktuekin lotutako arrisku handiko sistemak
 
 OHARRA
 
-Hausnartzeko. FP zentro bateko irakasle gisa, ikasleen errendimendua ebaluatzeko AA sistema bat erosten baduzu, 2026ko abuztuaren 2tik aurrera arrisku altuko sistema bat izango da. Zer betebehar ditu?
+Hausnartzeko. FP zentro bateko irakasle gisa, ikasleen errendimendua ebaluatzeko AA sistema bat erosten baduzu, zein erabilera zehatz sartuko litzateke III. eranskinean eta noiz aplikatuko lirateke haren betebeharrak?
 
 Erantzuna: datuak kalitatezkoak izan behar dira (segasurik gabe), sistemak dokumentazioa behar du, irakasleak erabakia aldatu dezake, eta ikasleei esan behar zaie sistemak ebaluatzen duela.
 
@@ -898,7 +907,7 @@ ADIBIDEA
 
 Zigor-sistema batean berrerortze-iragarpena.
 
-COMPAS sistemak (AEBetan) sare neuronal komplexu bat erabiltzen du (zehaztasun altua). Baina ProPublica-ren azterketak erakutsi zuen arraza arteko akats-tasa desberdintasunak zeudela. Legezko arazo nagusia: sistemak ezin du azaldu zergatik sailkatzen duen pertsona bat arrisku altuan, eta azalpenik gabe, pertsonak ezin du erabakia aurkaratu. Europan sistema honek AI Act eta GDPR 22. art. urratuko lituzke.
+COMPASen barne-ereduaren arkitektura ezin da dataset publikotik baieztatu; ez dago oinarririk sare neuronal gisa aurkezteko. ProPublicaren azterketak talde arteko akats-tasa desberdintasunak erakutsi zituen. Europako erabilera hipotetikoaren legezkotasuna ezin da datu horietatik bakarrik erabaki: erabilera zehatza, tratamenduaren oinarri juridikoa, gardentasuna eta giza esku-hartzea aztertu beharko lirateke.
 
 ## 10.5 9. Eragin Etikoko Ebaluazioa (EEE)
 
@@ -1149,7 +1158,7 @@ Lanbide Heziketa ikasle eta irakasleentzat prestatua. Eduki hau hezkuntza-helbur
 
 | Azalpenaren Eskubidea | Erabaki automatizatuen azalpena jasotzeko eskubidea | GDPR-rekin batera (2018); AI Act-ekin indartu (2026) |
 
-| EU AI Act | AA sistema motak eta betebeharrak | 2024ko abuztuaren 1ean indarrean; gradualki aplikatzen (debekuak 2025/02, GPAI 2025/08, arrisku altua 2026/08, produktu erregulatuak 2027/08) |
+| EU AI Act | AA sistema motak eta betebeharrak | 2024ko abuztuaren 1ean indarrean; gradualki aplikatzen (debekuak 2025/02, GPAI 2025/08, III. eranskineko betebehar nagusiak 2027/12, I. eranskinekoak 2028/08) |
 
 | Atala | Galdera nagusia | Zer egingo duzu |
 
@@ -1199,23 +1208,23 @@ Lanbide Heziketa ikasle eta irakasleentzat prestatua. Eduki hau hezkuntza-helbur
 
 | Osagaia | Zer esan nahi du? | Non dago jasota? |
 
-| Logika ulergarria | Faktore nagusiak eta erabakiaren oinarria ezagutzeko eskubidea | GDPR 22. art. |
+| Logika ulergarria | Tratamendu automatizatuaren logikari buruzko informazio esanguratsua eskuratzeko eskubidea, baldintzak betez gero | GDPR 13(2)(f), 14(2)(g), 15(1)(h) art. |
 
-| Giza esku-hartzea | Pertsona erreal bati erabaki automatizatua berrikusteko eskatzeko eskubidea | GDPR 22. art. |
+| Giza esku-hartzea | 22(2)(a)/(c) salbuespenetan berme gisa giza esku-hartzea eskatzeko eskubidea | GDPR 22(3) art. |
 
-| Ikuspuntua adierazteko | Erabakiaren aurka argudiatzeko eta testuinguru gehiago aurkezteko aukera | GDPR 22. art. + AI Act 86. art. |
+| Ikuspuntua adierazteko | 22(2)(a)/(c) salbuespenetan ikuspuntua adierazi eta erabakia aurkaratzeko bermea | GDPR 22(3) art. |
 
 | Iturria | Artikulua | Zer esaten du? |
 
 | GDPR | 13, 14, 15 art. | Erabaki automatizatuei buruzko informazioa eskatzeko eskubidea |
 
-| GDPR | 22 art. | Logikari buruzko informazio "esanguratsua" jasotzeko eskubidea |
+| GDPR | 22 art. | Ondorio juridiko edo antzeko eragin nabarmena duen erabaki soilik automatizatu baten menpe ez egoteko printzipioa; salbuespenetan bermeak (22(3)). Logikari buruzko informazioa 13–15. artikuluetan dago. |
 
-| EU AI Act | 86 art. | "Azalpen argi eta esanguratsuak" jasotzeko eskubidea (2026tik) |
+| EU AI Act | 86 art. | III. eranskineko arrisku handiko sistemaren irteeran oinarritutako eta ondorio juridiko edo antzeko eragin nabarmena duen erabakiaren azalpena eskatzeko eskubidea, 2. puntuko sistemak salbu eta artikuluaren gainerako baldintzekin; 2026-08-02tik aplikatzen da. |
 
 | Metodoa | Nola funtzionatzen du? | Adibidea |
 
-| SHAP | Aldagai bakoitzaren ekarpen "zehatza" kalkulatzen du | "Kreditua ukatu da: diru-sarrerak (-%40), lana (%+20), zorra (-%35)..." |
+| SHAP | Aukeratutako joko-teoriako azalpen-ereduaren arabera aldagai bakoitzari ekarpen bat esleitzen dio; hurbilketa eta oinarri-balioa metodoaren araberakoak dira | "Aldagai honek aurreikuspena oinarri-balioaren aldean igo edo jaitsi du"; ez du berez kausalitatea edo ehuneko unibertsalik frogatzen. |
 
 | LIME | Kasu konkretu baten azalpen sinple bat sortzen du | "Zure kasuan, lan-egonkortasuna izan da faktorerik garrantzitsuena" |
 

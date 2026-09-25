@@ -17,6 +17,7 @@ from sklearn.metrics import (
     accuracy_score,
     confusion_matrix,
     f1_score,
+    r2_score,
     mean_squared_error,
 )
 from sklearn.model_selection import train_test_split
@@ -31,9 +32,8 @@ DATA = (
     .resolve()
 )
 # Cuando se ejecuta desde 03_ML_5072/soluzioak/, DATA apunta a 04_Programazioa_5073/data/.
-# Fallback a ruta absoluta del lab:
 if not DATA.is_file():
-    DATA = Path("/home/tears/bigdata/04_Programazioa_5073/data/cnc_mock.csv")
+    raise FileNotFoundError(f"Falta el dataset de la práctica: {DATA}")
 
 # %% 1. Karga + tipologia X/y
 df = pd.read_csv(DATA)
@@ -92,9 +92,7 @@ pre = ColumnTransformer(
     ]
 )
 X = df[["makina_id", "tenperatura", "bibrazioa"]]
-Xtr = pre.fit_transform(X)
-assert Xtr.shape[0] == 100 and Xtr.shape[1] >= 3, Xtr.shape
-print("X preprocessed shape:", Xtr.shape)
+# La imputación y el escalado se ajustan dentro del pipeline con train.
 
 # %% 4. Erregresioa: tenperatura ~ bibrazioa (+ makina)
 # Helburuak NaN badu, errenkada hori ezin da entrenatu (X-ko NaN-ak pipeline-ak inputatzen ditu).
@@ -109,7 +107,11 @@ lin.fit(Xr_tr, yr_tr)
 beta1 = lin.named_steps["mdl"].coef_[0]
 mse_tr = mean_squared_error(yr_tr, lin.predict(Xr_tr))
 mse_te = mean_squared_error(yr_te, lin.predict(Xr_te))
-print(f"lineal sinplea: MSE train={mse_tr:.2f} test={mse_te:.2f} beta1={beta1:.3f}")
+r2_te = r2_score(yr_te, lin.predict(Xr_te))
+baseline_mse = mean_squared_error(yr_te, np.full_like(yr_te, yr_tr.mean()))
+print(f"lineal sinplea: MSE train={mse_tr:.2f} test={mse_te:.2f} R² test={r2_te:.3f} beta1={beta1:.3f}")
+print(f"baseline media train: MSE test={baseline_mse:.2f}; correlación total={df_reg[['tenperatura', 'bibrazioa']].corr().iloc[0, 1]:.3f}")
+print("Este ajuste ilustra la API; una correlación casi nula no respalda una relación lineal útil.")
 assert np.isfinite(mse_te) and mse_te > 0
 
 # 4b. Anizkoitza + Ridge/Lasso konparaketa (pipeline osoa):
@@ -164,6 +166,7 @@ Xc_tr, Xc_te, yc_tr, yc_te = train_test_split(
 )
 clf = Pipeline([("pre", pre), ("mdl", LogisticRegression(max_iter=2000))])
 clf.fit(Xc_tr, yc_tr)
+print("X train preprocesado:", clf.named_steps["pre"].transform(Xc_tr).shape)
 acc_tr = accuracy_score(yc_tr, clf.predict(Xc_tr))
 acc_te = accuracy_score(yc_te, clf.predict(Xc_te))
 f1 = f1_score(yc_te, clf.predict(Xc_te), zero_division=0)
@@ -173,7 +176,8 @@ print("confusion matrix:\n", cm)
 assert 0.0 <= acc_te <= 1.0
 # Overfitting seinalea: train >> test aldea handia bada, regularizatu (C txikiagoa) edo datu gehiago.
 print(f"overfitting aldea (train-test)={acc_tr - acc_te:+.3f}")
-# Klase-desoreka (95/5): F1=0 → ereduak dena 0 iragartzen du. Konponbidea: class_weight='balanced'.
+# Klase-desoreka (95/5): testean 1-2 positibo soilik daude; F1 oso ezegonkorra.
+# class_weight='balanced' aukera bat da, baina ezin da hobekuntza ziurtatu lagin honekin.
 clf_bal = Pipeline(
     [("pre", pre), ("mdl", LogisticRegression(max_iter=2000, class_weight="balanced"))]
 )

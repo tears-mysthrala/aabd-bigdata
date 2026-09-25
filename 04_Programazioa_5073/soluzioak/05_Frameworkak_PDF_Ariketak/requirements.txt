@@ -1,18 +1,25 @@
 # Frameworks ML (scikit-learn, HF, FastAPI, Streamlit, LangChain, RAG)
 scikit-learn>=1.3
+scipy>=1.10
 joblib>=1.3
 pandas>=2.0
 # Hugging Face + LLM
-transformers>=4.30
+transformers>=4.30,<5
 datasets>=2.14
-sentence-transformers>=2.2
-langchain>=0.1
-google-generativeai>=0.3
-chromadb>=0.4.0
+huggingface-hub>=0.25
+torch>=2.0
+# API usada en 5073_3_Programazioa: stack LangChain 0.3 (la 1.x cambió imports).
+langchain>=0.3.27,<1
+langchain-core>=0.3.77,<1
+langchain-community>=0.3.31,<0.4
+langchain-text-splitters>=0.3,<1
+langchain-google-genai>=2.1.12,<3
+faiss-cpu>=1.9
+python-dotenv>=1.0
 # API + frontend
 fastapi>=0.100
 uvicorn>=0.23
 pydantic>=2.0
+python-multipart>=0.0.9
 streamlit>=1.28
-# Dev
-pytest>=8.0
+requests>=2.31

@@ -38,17 +38,17 @@ Dokumentu honek Apache NiFi moduluko ariketa, fluxu eta laborategi guztiak biltz
 ├── 📁 06_MariaDB_MongoDB_Laborategia_DF2.2/       # 6. Kasua / DF2.2: RDBMS -> NoSQL (Bi aldaera)
 │   ├── flow_06_mariadb_mongodb_classic.json       #   Aldaera 1: SplitText + PutMongo
 │   ├── flow_06_mariadb_mongodb_record.json        #   Aldaera 2: PutMongoRecord (Direct Bulk)
-│   ├── DF2.2_konparaketa_oharra.md                #   Errendimendu txostena (>64x azkarrago)
+│   ├── DF2.2_konparaketa_oharra.md                #   Diseinu-konparaketa; benchmark live balioztatu gabe
 │   ├── docker-compose.yml, Dockerfile.nifi, create_db.sql, redeploy.sh...
 │   └── README.md
 ├── 📁 07_AEMET_Datu_Lakua_Medallion_DF2.3/        # 7. Kasua / DF2.3: Medallion Data Lake
-│   ├── flow_07_aemet_datalake_medallion.json      #   Bronze -> Silver -> Gold (FS + Mongo)
+│   ├── flow_07_aemet_datalake_medallion.json      #   Bronze S3, Silver/Gold diseinua; exekuzioa balioztatu gabe
 │   └── README.md
 └── 📁 scripts/                                    # Automatizazio eta laguntza script-ak
     ├── inportatu_fluxuak.py                       #   REST API bidezko inportatzailea
     ├── nifi_api_helper.sh                         #   CLI laguntzailea (token, start, stop)
     ├── reset_samples.sh                           #   Lagin fitxategiak berrezartzeko scripta
-    └── test_environment.sh                       #   Ingurunearen auto-egiaztapen osoa
+    └── test_environment.sh                       #   Oinarrizko konektibitate eta lagin-egiaztapena
 ```
 
 ---
@@ -76,6 +76,13 @@ Dokumentu honek Apache NiFi moduluko ariketa, fluxu eta laborategi guztiak biltz
 2. **Prozesadoreen Iruzkinak (Comments):**
    - Prozesadore bakoitzak bere funtzioa deskribatzen duen testu argigarria du NiFi-ren barruan.
 3. **Prozesu-taldeen Kapsulazioa:**
-   - NiFi 2.0 formatuko JSON fitxategietan Controller Service guztiak txertatuta daude, inportazioa 100% autonomoa izan dadin.
+   - JSONek Controller Serviceen kanpo-erreferentziak izan ditzakete. Inportatzaileak loturak egokitzen saiatzen da; NiFi GUIan zerbitzuen egoera eta processor bakoitzaren baliozkotasuna egiaztatu behar dira.
+   - Flow JSONen osagaien bundle bertsioak laborategiko `apache/nifi:2.0.0`
+     irudiarekin lerrokatuta daude. Lerrokatze estatiko horrek ez du egiaztatzen
+     NiFi-k propietate guztiak onartzen dituenik; inportazioa eta processor-en
+     baliozkotasuna benetako instantzian egiaztatu behar dira.
+
 4. **Scripts eta Automatizazioa:**
    - `scripts/inportatu_fluxuak.py` tresnarekin NiFi REST API-ra konektatu eta edozein fluxu aztertu edo inportatu daiteke komando bidez.
+
+`scripts/nifi_api_helper.sh` eta `scripts/test_environment.sh`-ek TLS ziurtagiria egiaztatzen dute. NiFi-ren ziurtagiri autofirmatua erabiltzean ezarri `NIFI_CA_CERT` balioan konfiantzazko CA edo zerbitzariaren ziurtagiriaren bidea; ziurtagiria egiaztatu ezin bada, script-ak huts egingo du. Konektibitate-egiaztapenak ez du flow baten exekuzioa frogatzen.

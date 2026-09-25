@@ -15,7 +15,7 @@
         "identifier": "912dc18b-660a-3ff2-a37b-556b89d302d9",
         "instanceIdentifier": "b40547a1-01a0-1000-3127-635124e71032",
         "name": "FitxategiaBerrizendatu",
-        "comments": "3. Metadatuak ezarri: fitxategi izena ${filename:substringBeforeLast('.')}_optimizatua.csv.",
+        "comments": "3. Fitxategi-izenean UUID eta uneko denbora gehitu.",
         "position": {
           "x": 1000.0,
           "y": 180.0
@@ -24,7 +24,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-update-attribute-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Delete Attributes Expression": null,
@@ -94,7 +94,7 @@
         "identifier": "9c2c51bd-ecd5-334d-a7b2-82a7bc2dff24",
         "instanceIdentifier": "b4054743-01a0-1000-fbd3-3b8703bfbcf0",
         "name": "SQLkontsulta",
-        "comments": "2. QueryRecord streaming zuzena (fitxategia zatitu gabe): SELECT * WHERE adina >= 18.",
+        "comments": "2. QueryRecord zuzenean: COUNTRY = 'France' AND Units > 1.",
         "position": {
           "x": 550.0,
           "y": 180.0
@@ -103,7 +103,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "FrantziaGehiago1": "SELECT * FROM FLOWFILE WHERE COUNTRY = 'France' and Units > 1",
@@ -191,7 +191,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Keep Source File": "false",
@@ -315,7 +315,7 @@
         "identifier": "9a5ff6bd-5f6b-3c4d-9afe-68fb3c2d6498",
         "instanceIdentifier": "b40547c9-01a0-1000-f0ec-36ad7c078322",
         "name": "FitxategiaJarri",
-        "comments": "4. Emaitza /irteera/aldaera3 karpetan gorde FlowFile bakar batean.",
+        "comments": "4. Emaitza /irteera karpetan gorde.",
         "position": {
           "x": 1450.0,
           "y": 180.0
@@ -324,7 +324,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Group": null,
@@ -543,7 +543,7 @@
     "labels": [
       {
         "identifier": "master-flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json",
-        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \u26a1 LABORATEGIA 02: CSV DATUAK IRAGAZI - ALDAERA 3: RECORD-ORIENTED OPTIMIZATUA                           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura Aurreratua: Fitxategia ZATITU GABE streamingean prozesatu \u2794 RAM eta CPU eraginkortasun gorena (FlowFile bakarra!)",
+        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \u26a1 LABORATEGIA 02: CSV DATUAK IRAGAZI - ALDAERA 3: RECORD-ORIENTED OPTIMIZATUA                           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura Aurreratua: Fitxategia aurretik zatitu gabe QueryRecord-era bidali; RAM eta CPU portaera neurtzeko dago",
         "position": {
           "x": 60.0,
           "y": 15.0
@@ -623,7 +623,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-record-serialization-services-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "CSV Format": "custom",
@@ -838,7 +838,7 @@
             "bundle": {
               "group": "org.apache.nifi",
               "artifact": "nifi-standard-services-api-nar",
-              "version": "2.12.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -856,7 +856,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-record-serialization-services-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Schema Branch": null,
@@ -1051,7 +1051,7 @@
             "bundle": {
               "group": "org.apache.nifi",
               "artifact": "nifi-standard-services-api-nar",
-              "version": "2.12.0"
+              "version": "2.0.0"
             }
           }
         ],

@@ -1049,7 +1049,8 @@ print(chain_memoriarekin.invoke(
 #
 # LLM-ari Python funtzioak "tresna" gisa eskaintzen zaizkio. Agentziak erabakitzen du noiz eta zein erabili.
 #
-# > **Kontuz**: `eval()` arriskutsua da sarrera ez-fidagarriekin — adibide didaktikoa baino ez.
+# Kalkulagailuak ASTko eragiketa aritmetiko gutxi batzuk soilik onartzen ditu.
+# LLM batek emandako testua ez da inoiz `eval()` bidez exekutatu behar.
 #
 
 
@@ -1060,14 +1061,51 @@ from langchain.tools import tool
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from datetime import datetime
 import math
+import ast
+import operator
 
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+
+_ERAGIKETAK = {ast.Add: operator.add, ast.Sub: operator.sub,
+               ast.Mult: operator.mul, ast.Div: operator.truediv,
+               ast.Pow: operator.pow}
+_UNARIOAK = {ast.UAdd: operator.pos, ast.USub: operator.neg}
+
+def kalkulu_seguru(expr: str) -> float:
+    """Zenbakiak, + - * / ** eta math.sqrt soilik; tamaina mugatua."""
+    if len(expr) > 100:
+        raise ValueError("Adierazpen luzeegia")
+    tree = ast.parse(expr, mode="eval")
+    if sum(1 for _ in ast.walk(tree)) > 25:
+        raise ValueError("Adierazpen konplexuegia")
+
+    def zenbatu(node):
+        if isinstance(node, ast.Constant) and type(node.value) in (int, float):
+            value = node.value
+        elif isinstance(node, ast.UnaryOp) and type(node.op) in _UNARIOAK:
+            value = _UNARIOAK[type(node.op)](zenbatu(node.operand))
+        elif isinstance(node, ast.BinOp) and type(node.op) in _ERAGIKETAK:
+            left, right = zenbatu(node.left), zenbatu(node.right)
+            if isinstance(node.op, ast.Pow) and (abs(right) > 10 or abs(left) > 1e6):
+                raise ValueError("Berretura handiegia")
+            value = _ERAGIKETAK[type(node.op)](left, right)
+        elif (isinstance(node, ast.Call) and len(node.args) == 1 and not node.keywords
+              and isinstance(node.func, ast.Attribute) and node.func.attr == "sqrt"
+              and isinstance(node.func.value, ast.Name) and node.func.value.id == "math"):
+            value = math.sqrt(zenbatu(node.args[0]))
+        else:
+            raise ValueError("Eragiketa ez dago baimenduta")
+        if not math.isfinite(value) or abs(value) > 1e12:
+            raise ValueError("Emaitza handiegia")
+        return value
+
+    return zenbatu(tree.body)
 
 @tool
 def kalkulatu(eragiketa: str) -> str:
     """Matematikako eragiketa bat kalkulatu. Adibidez: '2**10', 'math.sqrt(16)'."""
     try:
-        return f"Emaitza: {eval(eragiketa, {'math': math, '__builtins__': {}})}"
+        return f"Emaitza: {kalkulu_seguru(eragiketa)}"
     except Exception as e:
         return f"Errorea: {e}"
 
@@ -1286,11 +1324,14 @@ for galdera in galderak:
 # >
 # > ```bash
 # > # 1. terminala: backend-a
-# > uvicorn rag_api:app --reload --port 8000
+# > uvicorn rag_api:app --reload --host 127.0.0.1 --port 8000
 # >
 # > # 2. terminala: frontend-a
 # > streamlit run rag_streamlit.py
 # > ```
+# > Demo local de un solo usuario: no tiene autenticación ni aislamiento entre usuarios.
+# > El texto de los documentos y las preguntas se envía al proveedor externo
+# > de embeddings/LLM. No subas datos privados ni expongas el servidor a la red.
 #
 
 
@@ -1304,7 +1345,7 @@ for galdera in galderak:
 # %% [code] Cell 75
 # rag_api.py
 from fastapi import FastAPI, HTTPException, UploadFile, File
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -1321,8 +1362,8 @@ embedding_eredua = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
 
 class GalderaEskaera(BaseModel):
-    galdera: str
-    k_dokumentu: int = 3
+    galdera: str = Field(min_length=1, max_length=1000)
+    k_dokumentu: int = Field(default=3, ge=1, le=10)
 
 class GalderaErantzuna(BaseModel):
     erantzuna: str
@@ -1332,12 +1373,19 @@ class GalderaErantzuna(BaseModel):
 @app.post("/dokumentuak/kargatu")
 async def dokumentuak_kargatu(fitxategiak: list[UploadFile] = File(...)):
     global bektore_denda
+    if not 1 <= len(fitxategiak) <= 5:
+        raise HTTPException(status_code=413, detail="Gehienez 5 fitxategi igo daitezke.")
     dokumentuak = []
     for f in fitxategiak:
-        edukia = (await f.read()).decode("utf-8", errors="ignore")
+        raw = await f.read(1_000_001)
+        if len(raw) > 1_000_000:
+            raise HTTPException(status_code=413, detail="Fitxategi bakoitzak gehienez 1 MB izan dezake.")
+        edukia = raw.decode("utf-8", errors="ignore")
         dokumentuak.append(Document(page_content=edukia, metadata={"iturria": f.filename}))
     zatiak = RecursiveCharacterTextSplitter(
         chunk_size=1000, chunk_overlap=200).split_documents(dokumentuak)
+    if not zatiak:
+        raise HTTPException(status_code=400, detail="Dokumentuak hutsik daude.")
     if bektore_denda is None:
         bektore_denda = FAISS.from_documents(zatiak, embedding_eredua)
     else:

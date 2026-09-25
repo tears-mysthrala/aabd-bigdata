@@ -1,7 +1,8 @@
+import base64
 import pickle
 import orangecanvas.scheme.readwrite as rw
-from orangecanvas.scheme import Scheme, SchemeNode, SchemeLink
-from orangecanvas.registry import global_registry
+from pathlib import Path
+from orangewidget.utils.filedialogs import RecentPath
 
 ows_content = """<?xml version='1.0' encoding='utf-8'?>
 <scheme version="2.0" title="Bihotzeko Gaixotasunen Sailkapena - 5072 ML" description="Orange Data Mining lan-fluxua: Heart Disease datu-multzoa, aurreprozesamendua, ereduak (Logistic Regression, Random Forest, Decision Tree, k-NN), 10-Fold Cross-Validation ebaluazioa, Confusion Matrix, ROC analisia eta Tree Viewer.">
@@ -21,7 +22,7 @@ ows_content = """<?xml version='1.0' encoding='utf-8'?>
 	<links>
 		<link id="0" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
 		<link id="1" source_node_id="0" sink_node_id="2" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
-		<link id="2" source_node_id="2" sink_node_id="7" source_channel="Preprocessed Data" sink_channel="Data" enabled="true" source_channel_id="preprocessed_data" sink_channel_id="train_data" />
+		<link id="2" source_node_id="0" sink_node_id="7" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="train_data" />
 		<link id="3" source_node_id="3" sink_node_id="7" source_channel="Learner" sink_channel="Learner" enabled="true" source_channel_id="learner" sink_channel_id="learner" />
 		<link id="4" source_node_id="4" sink_node_id="7" source_channel="Learner" sink_channel="Learner" enabled="true" source_channel_id="learner" sink_channel_id="learner" />
 		<link id="5" source_node_id="5" sink_node_id="7" source_channel="Learner" sink_channel="Learner" enabled="true" source_channel_id="learner" sink_channel_id="learner" />
@@ -30,6 +31,7 @@ ows_content = """<?xml version='1.0' encoding='utf-8'?>
 		<link id="8" source_node_id="7" sink_node_id="9" source_channel="Evaluation Results" sink_channel="Evaluation Results" enabled="true" source_channel_id="evaluations_results" sink_channel_id="evaluation_results" />
 		<link id="9" source_node_id="2" sink_node_id="5" source_channel="Preprocessed Data" sink_channel="Data" enabled="true" source_channel_id="preprocessed_data" sink_channel_id="data" />
 		<link id="10" source_node_id="5" sink_node_id="10" source_channel="Model" sink_channel="Tree" enabled="true" source_channel_id="model" sink_channel_id="tree" />
+		<link id="11" source_node_id="2" sink_node_id="7" source_channel="Preprocessor" sink_channel="Preprocessor" enabled="true" source_channel_id="preprocessor" sink_channel_id="preprocessor" />
 	</links>
 	<annotations>
 		<text id="0" type="text/plain" rect="(40.0, 140.0, 180.0, 60.0)" font-family="Helvetica" font-size="12">1. Bihotzeko gaixotasunen datu-multzoa (heart_disease.tab)</text>
@@ -40,15 +42,27 @@ ows_content = """<?xml version='1.0' encoding='utf-8'?>
 	</annotations>
 	<thumbnail />
 	<node_properties>
+		<properties node_id="0" format="pickle">{file_settings}</properties>
+		<properties node_id="2" format="literal">{'storedsettings': {'name': '', 'preprocessors': [('orange.preprocess.impute', {'method': 2}), ('orange.preprocess.scale', {'method': 2})]}, 'autocommit': True, '__version__': 2}</properties>
 		<properties node_id="3" format="literal">{'C_index': 61, 'auto_apply': True, 'class_weight': False, 'controlAreaVisible': True, 'learner_name': 'Logistic Regression', 'penalty_type': 1, 'savedWidgetGeometry': None, '__version__': 2}</properties>
 		<properties node_id="4" format="literal">{'auto_apply': True, 'class_weight': False, 'controlAreaVisible': True, 'index_output': 0, 'learner_name': 'Random Forest', 'max_depth': 5, 'max_features': 5, 'min_samples_split': 5, 'n_estimators': 100, 'savedWidgetGeometry': None, 'use_max_depth': True, 'use_max_features': False, 'use_min_samples_split': True, 'use_random_state': True, 'random_state': 42, '__version__': 1}</properties>
 		<properties node_id="5" format="literal">{'auto_apply': True, 'binarize': False, 'controlAreaVisible': True, 'filter_nodes': True, 'limit_depth': True, 'limit_min_leaf': True, 'limit_min_parent': True, 'max_depth': 5, 'min_internal': 5, 'min_leaf': 2, 'savedWidgetGeometry': None, '__version__': 1}</properties>
 		<properties node_id="6" format="literal">{'auto_apply': True, 'controlAreaVisible': True, 'metrics_idx': 0, 'n_neighbors': 5, 'weights_idx': 0, '__version__': 1}</properties>
+		<properties node_id="7" format="literal">{'controlAreaVisible': True, 'resampling': 0, 'n_folds': 3, 'cv_stratified': True, '__version__': 1}</properties>
 	</node_properties>
 </scheme>
 """
 
-out_path = "/home/tears/bigdata/03_ML_5072/soluzioak/Orange_Bihotza_Ereduak.ows"
+file_settings = base64.b64encode(pickle.dumps({
+    "controlAreaVisible": True,
+    "recent_paths": [RecentPath("", "sample-datasets", "heart_disease.tab")],
+    "recent_urls": [], "savedWidgetGeometry": None, "sheet_names": {},
+    "source": 0, "url": "", "domain_editor": {}, "__version__": 1,
+    "context_settings": [],
+}, protocol=4)).decode("ascii")
+ows_content = ows_content.replace("{file_settings}", file_settings)
+
+out_path = Path(__file__).with_name("Orange_Bihotza_Ereduak.ows")
 with open(out_path, "w", encoding="utf-8") as f:
     f.write(ows_content)
 
