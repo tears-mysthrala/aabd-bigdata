@@ -69,6 +69,13 @@ def lortu_saioa() -> requests.Session:
     session = requests.Session()
     for c in cookies:
         session.cookies.set(c["name"], c["value"], domain=c["domain"], path=c["path"])
+
+    # Verificar autenticación real: sin sesión válida Moodle devuelve el
+    # formulario de login (HTTP 200) y el escaneo vería 0 actividades,
+    # informando "sin novedades" en falso. Fallar ruidoso en ese caso.
+    probe = session.get(f"{BASE_URL}/course/view.php?id={COURSE_ID}", timeout=15)
+    if 'id="username"' in probe.text or "login/index.php" in probe.url:
+        raise RuntimeError("Login Moodle fallido: sesión no autenticada (¿contraseña cambiada?).")
     return session
 
 
