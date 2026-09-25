@@ -148,6 +148,13 @@ def sinkronizatu() -> list[str]:
     """Exekutatu Moodle-ko eskaneatze eta deskarga prozesu osoa."""
     session = lortu_saioa()
     deskargatutakoak: list[str] = []
+    erregistratutako_urlak: dict[str, list[tuple[str, str, str]]] = {}
+
+    def erregistratu_url(sec_id: int, izena: str, kanpoko_url: str) -> None:
+        dest_dir = helburu_direktorioa(sec_id, izena)
+        erregistratutako_urlak.setdefault(str(dest_dir), []).append(
+            (izena, act_url, kanpoko_url)
+        )
 
     log("Moodle atalak aztertzen...")
     for sec_id in range(0, 13):
@@ -289,10 +296,91 @@ def sinkronizatu() -> list[str]:
                 except Exception as e:
                     log(f"Errorea zeregina aztertzean ({act_url}): {e}")
 
+            # 4. Kanpo-estekak (mod/url: Colab, Drive, artikuluak...)
+            # Anatomia: view.php orriak kanpoko URLa erakusten du (ez du
+            # birbideratzen). Erregistroan jasotzen da beti; Drive publikoa
+            # bada, zuzenean deskargatzen saiatzen da.
+            elif "mod/url" in act_url:
+                try:
+                    r_u = session.get(act_url, timeout=15)
+                    u_soup = BeautifulSoup(r_u.text, "html.parser")
+                    kanpoko = None
+                    for a in u_soup.find_all("a", href=True):
+                        h = a["href"]
+                        if h.startswith("http") and "hezkuntza.net" not in h \
+                                and "moodle.org" not in h and "moodle.com" not in h:
+                            kanpoko = h
+                            break
+                    if not kanpoko:
+                        log(f"URL jarduerak kanpoko estekarik gabe: {act_izena}")
+                        continue
+                    erregistratu_url(sec_id, act_izena, kanpoko)
+                    drive_id = None
+                    m = re.search(r"drive\.google\.com/(?:file/d/|drive/)([-\w]+)", kanpoko)
+                    if m:
+                        drive_id = m.group(1)
+                    else:
+                        m = re.search(r"colab\.research\.google\.com/drive/([-\w]+)", kanpoko)
+                        if m:
+                            drive_id = m.group(1)
+                    if drive_id:
+                        dest_dir = helburu_direktorioa(sec_id, act_izena)
+                        slug = re.sub(r"[^\w\-]+", "_", act_izena).strip("_")[:60]
+                        dest_path = dest_dir / f"{slug}.ipynb"
+                        if not dest_path.exists():
+                            exp = session.get(
+                                f"https://drive.google.com/uc?export=download&id={drive_id}",
+                                timeout=60,
+                            )
+                            ctype = exp.headers.get("Content-Type", "")
+                            if exp.status_code == 200 and "text/html" not in ctype \
+                                    and exp.content.lstrip().startswith(b"{"):
+                                dest_dir.mkdir(parents=True, exist_ok=True)
+                                with open(dest_path, "wb") as f:
+                                    f.write(exp.content)
+                                deskargatutakoak.append(str(dest_path.relative_to(REPO_ROOT)))
+                                log(f"Drive-tik deskargatuta: {act_izena} -> {dest_path.name}")
+                            else:
+                                log(f"Drive-k Google login eskatzen du (eskatu erabiltzaileari): {act_izena}")
+                except Exception as e:
+                    log(f"Errorea URLa aztertzean ({act_url}): {e}")
+
+    idatzi_url_erregistroak(erregistratutako_urlak)
     return deskargatutakoak
 
 
-SAIAKERA_MAX = 3
+def idatzi_url_erregistroak(erregistroak: dict) -> None:
+    """Idatzi MOODLE_URLs.md helburu-karpeta bakoitzean (determinista).
+
+    Kanpo-estekak (Colab/Drive/artikuluak) ez dira `mod/resource` eta
+    isilean galduko: erregistroak Moodle izena, jarduera-URL eta kanpoko
+    URLa jasotzen ditu, hurrengo sync-ean berridatzita.
+    """
+    for dest_s, zerrenda in sorted(erregistroak.items()):
+        dest_dir = Path(dest_s)
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        lerroak = [
+            "# Moodle kanpo-estekak (AUTO-GENERATED — ez editatu)",
+            "",
+            f"Atalaren `{dest_dir.name}` karpetako `mod/url` jarduerak. Sync bakoitzean berridazten da.",
+            "",
+            "| Moodle izena | Jarduera | Kanpoko URLa | Egoera |",
+            "|---|---|---|---|",
+        ]
+        ikusitakoak = set()
+        for izena, jarduera, kanpoko in sorted(zerrenda):
+            if (izena, kanpoko) in ikusitakoak:
+                continue
+            ikusitakoak.add((izena, kanpoko))
+            if "colab.research.google.com" in kanpoko or "drive.google.com" in kanpoko:
+                egoera = "Google login behar du deskargatzeko"
+            else:
+                egoera = "erreferentzia (web)"
+            lerroak.append(f"| {izena} | {jarduera} | {kanpoko} | {egoera} |")
+        (dest_dir / "MOODLE_URLs.md").write_text("\n".join(lerroak) + "\n", encoding="utf-8")
+
+
+SAIAKERA_MAX = 5
 SAIAKERA_ATSEDENA_S = 30
 
 
