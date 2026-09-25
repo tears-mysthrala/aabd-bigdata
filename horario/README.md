@@ -12,12 +12,12 @@ Todos los documentos e imágenes se han extraído directamente de la sesión ofi
 
 | Archivo | Formato | Descripción |
 | :--- | :---: | :--- |
-| [`calendario_escolar_2026_2027.pdf`](file:///home/tears/bigdata/horario/calendario_escolar_2026_2027.pdf) | PDF | Calendario oficial anual completo del centro (2026-2027) con festivos y jornadas especiales |
-| [`calendario_escolar_2026_2027.png`](file:///home/tears/bigdata/horario/calendario_escolar_2026_2027.png) | Imagen (PNG Alta Resolución) | Captura visual del calendario mensual detallado |
-| [`horario_clases_AABD.pdf`](file:///home/tears/bigdata/horario/horario_clases_AABD.pdf) | PDF | Extracto de la sección *Cuadro Horario* de Ikasgunea |
-| [`horario_clases_AABD.png`](file:///home/tears/bigdata/horario/horario_clases_AABD.png) | Imagen (PNG) | Captura de la consulta de cuadrante semanal en Ikasgunea |
-| [`materias_y_docentes.pdf`](file:///home/tears/bigdata/horario/materias_y_docentes.pdf) | PDF | Listado oficial del equipo directivo y contactos del centro |
-| [`materias_y_docentes.png`](file:///home/tears/bigdata/horario/materias_y_docentes.png) | Imagen (PNG) | Captura visual del directorio de profesorado y dirección |
+| [`calendario_escolar_2026_2027.pdf`](calendario_escolar_2026_2027.pdf) | PDF | Calendario oficial anual completo del centro (2026-2027) con festivos y jornadas especiales |
+| [`calendario_escolar_2026_2027.png`](calendario_escolar_2026_2027.png) | Imagen (PNG Alta Resolución) | Captura visual del calendario mensual detallado |
+| [`horario_clases_AABD.pdf`](horario_clases_AABD.pdf) | PDF | ⚠️ Vacío: Ikasgunea devuelve *"No existe cuadro horario para la persona seleccionada"*. Se conserva como evidencia de la consulta, no como horario usable |
+| [`horario_clases_AABD.png`](horario_clases_AABD.png) | Imagen (PNG) | Captura de la consulta de cuadrante semanal en Ikasgunea (mismo mensaje vacío) |
+| [`materias_y_docentes.pdf`](materias_y_docentes.pdf) | PDF | ⚠️ Parcial (1 pág., solo cabecera *"No existe información de las materias..."*). No contiene el directorio; para el equipo directivo usar el PNG |
+| [`materias_y_docentes.png`](materias_y_docentes.png) | Imagen (PNG) | ✅ Fuente canónica del directorio de profesorado y dirección (10 personas con emails) |
 
 ---
 

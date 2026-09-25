@@ -1,6 +1,6 @@
 # Aurkezpen exekutiboa · 15 minutuko gidoia
 
-> **PPTXren ordezkoa ez da.** Artifact Tool-en beharrezko runtime loader-a saio honetan erabilgarri ez dagoenez, ez da diapositiba-fitxategirik sortu. Dokumentu hau 11 diapositibako gidoi editagarria da: aurkezpen bat egiteko edukia, ideia nagusia, denborak eta speaker notes-etan sartzeko iturriak zehazten ditu. Diapositiba bakoitzeko 60–90 segundo inguruko esposizioa da helburua. Erabilera hipotetikoari buruzkoa da eta ez du benetako erakunde baten betetze-ebaluaziorik adierazten.
+> **PPTX editagarria:** [`aurkezpena_15min.pptx`](aurkezpena_15min.pptx) (12 diapositiba: portada + 11, generatua 2026-09-25 gidoi honetatik). Dokumentu hau gidoi editagarria da: aurkezpen bat egiteko edukia, ideia nagusia, denborak eta speaker notes-etan sartzeko iturriak zehazten ditu. Diapositiba bakoitzeko 60–90 segundo inguruko esposizioa da helburua. Erabilera hipotetikoari buruzkoa da eta ez du benetako erakunde baten betetze-ebaluaziorik adierazten.
 
 | # / denbora | Izenburua | Diapositibako ideia nagusia | Ahozko oharretarako iturriak |
 |---|---|---|---|

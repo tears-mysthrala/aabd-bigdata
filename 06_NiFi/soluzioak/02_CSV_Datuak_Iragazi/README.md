@@ -2,10 +2,10 @@
 
 > **Modulua / Gai-arloa:** Big Data Aplikatua · 01 DataFlow · Apache NiFi  
 > **Fitxategi Nagusiak:**
-> - [`flow_02_csv_datuak_iragazi_aldaera1.json`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera1.json) (1. Aldaera: SplitRecord 1)
-> - [`flow_02_csv_datuak_iragazi_aldaera2.json`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera2.json) (2. Aldaera: SplitRecord 10)
-> - [`flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json) (3. Aldaera: Optimizatua)
-> - **Simulazio Scripta:** [`simulatu_kasu_2_salmentak.py`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/02_CSV_Datuak_Iragazi/simulatu_kasu_2_salmentak.py)  
+> - [`flow_02_csv_datuak_iragazi_aldaera1.json`](flow_02_csv_datuak_iragazi_aldaera1.json) (1. Aldaera: SplitRecord 1)
+> - [`flow_02_csv_datuak_iragazi_aldaera2.json`](flow_02_csv_datuak_iragazi_aldaera2.json) (2. Aldaera: SplitRecord 10)
+> - [`flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json`](flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json) (3. Aldaera: Optimizatua)
+> - **Simulazio Scripta:** [`simulatu_kasu_2_salmentak.py`](simulatu_kasu_2_salmentak.py)  
 > **Iturria:** `GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf` (13–26 orr.)
 
 ---

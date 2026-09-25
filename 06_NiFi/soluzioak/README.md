@@ -11,7 +11,7 @@ Dokumentu honek Apache NiFi moduluko ariketa, fluxu eta laborategi guztiak biltz
 ## 📂 Direktorioen Egitura Estandarizatua
 
 ```
-soluzioak/03_DataFlow_Apache_NiFi/
+06_NiFi/soluzioak/
 ├── 📁 01_Fitxategiak_Mugitu_Gatazkak/             # 1. Kasua: Sarrera -> Irteera + Gatazkak kudeatu
 │   ├── flow_01_fitxategiak_mugitu.json
 │   ├── README.md
@@ -57,13 +57,13 @@ soluzioak/03_DataFlow_Apache_NiFi/
 
 | Kasua | Izena eta Fitxategia | Ariketa Kodea | Helburua | Prozesadore Nagusiak | Kontroladore Zerbitzuak |
 | :---: | :--- | :---: | :--- | :--- | :--- |
-| **1** | [**01_Fitxategiak_Mugitu_Gatazkak**](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/01_Fitxategiak_Mugitu_Gatazkak/README.md) | Kasu 1 | Fitxategiak mugitu eta gatazkak timestamp bidez kudeatu | `GetFile`, `PutFile`, `UpdateAttribute` | - |
-| **2** | [**02_CSV_Datuak_Iragazi**](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/02_CSV_Datuak_Iragazi/README.md) | Kasu 2 | Salmentak iragazi (`France` eta `Units > 1`) 3 arkitekturatan | `GetFile`, `SplitRecord`, `QueryRecord`, `UpdateAttribute`, `PutFile` | `CSVReader`, `CSVRecordSetWriter` |
-| **3** | [**03_Atributuak_eta_Linajea**](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/03_Atributuak_eta_Linajea/README.md) | Kasu 3 | Edukitik atributuak erauztea, log-ak, datuen linajea eta MongoDB karga | `GenerateFlowFile`, `ReplaceText`, `ExtractText`, `LogAttribute`, `AttributesToJSON`, `PutMongo` | `MongoDBControllerService` |
-| **4** | [**04_HTTP_Ingesta_eta_MongoDB**](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/04_HTTP_Ingesta_eta_MongoDB/README.md) | Kasu 4 | Webhook HTTP bidezko sarrera, errore-bideraketa eta lote-karga | `ListenHTTP`, `RouteOnContent`, `MergeContent`, `ExtractText`, `AttributesToJSON`, `PutMongo` | `MongoDBControllerService` |
-| **5** | [**05_CSV_JSON_ConvertRecord**](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/05_CSV_JSON_ConvertRecord_DF2.1/README.md) | **DF2.1** | CSV JSON bihurtzea prozesu-talde modular batean (`Input/Output Port`) | `GetFile`, `ConvertRecord`, `UpdateAttribute`, `PutFile` | `CSVReader`, `JsonRecordSetWriter` |
-| **6** | [**06_MariaDB_MongoDB_Laborategia**](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/06_MariaDB_MongoDB_Laborategia_DF2.2/README.md) | **DF2.2** | RDBMS-tik NoSQL-ra: Klasikoa (`SplitText`) vs Modernoa (`Record API`) | `ExecuteSQLRecord`, `SplitText`, `PutMongo`, `PutMongoRecord` | `DBCPConnectionPool`, `JsonRecordSetWriter`, `JsonTreeReader`, `MongoDBControllerService` |
-| **7** | [**07_AEMET_Datu_Lakua_Medallion**](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/07_AEMET_Datu_Lakua_Medallion_DF2.3/README.md) | **DF2.3** | AEMET telemetria datu-lakua (Bronze $\rightarrow$ Silver $\rightarrow$ Gold) | `GenerateFlowFile`, `UpdateAttribute`, `EvaluateJsonPath`, `AttributesToJSON`, `MergeContent`, `QueryRecord`, `PutFile`, `PutMongo`, `PutMongoRecord` | `MongoDBControllerService`, `ParquetReader`, `ParquetRecordSetWriter` |
+| **1** | [**01_Fitxategiak_Mugitu_Gatazkak**](01_Fitxategiak_Mugitu_Gatazkak/README.md) | Kasu 1 | Fitxategiak mugitu eta gatazkak timestamp bidez kudeatu | `GetFile`, `PutFile`, `UpdateAttribute` | - |
+| **2** | [**02_CSV_Datuak_Iragazi**](02_CSV_Datuak_Iragazi/README.md) | Kasu 2 | Salmentak iragazi (`France` eta `Units > 1`) 3 arkitekturatan | `GetFile`, `SplitRecord`, `QueryRecord`, `UpdateAttribute`, `PutFile` | `CSVReader`, `CSVRecordSetWriter` |
+| **3** | [**03_Atributuak_eta_Linajea**](03_Atributuak_eta_Linajea/README.md) | Kasu 3 | Edukitik atributuak erauztea, log-ak, datuen linajea eta MongoDB karga | `GenerateFlowFile`, `ReplaceText`, `ExtractText`, `LogAttribute`, `AttributesToJSON`, `PutMongo` | `MongoDBControllerService` |
+| **4** | [**04_HTTP_Ingesta_eta_MongoDB**](04_HTTP_Ingesta_eta_MongoDB/README.md) | Kasu 4 | Webhook HTTP bidezko sarrera, errore-bideraketa eta lote-karga | `ListenHTTP`, `RouteOnContent`, `MergeContent`, `ExtractText`, `AttributesToJSON`, `PutMongo` | `MongoDBControllerService` |
+| **5** | [**05_CSV_JSON_ConvertRecord**](05_CSV_JSON_ConvertRecord_DF2.1/README.md) | **DF2.1** | CSV JSON bihurtzea prozesu-talde modular batean (`Input/Output Port`) | `GetFile`, `ConvertRecord`, `UpdateAttribute`, `PutFile` | `CSVReader`, `JsonRecordSetWriter` |
+| **6** | [**06_MariaDB_MongoDB_Laborategia**](06_MariaDB_MongoDB_Laborategia_DF2.2/README.md) | **DF2.2** | RDBMS-tik NoSQL-ra: Klasikoa (`SplitText`) vs Modernoa (`Record API`) | `ExecuteSQLRecord`, `SplitText`, `PutMongo`, `PutMongoRecord` | `DBCPConnectionPool`, `JsonRecordSetWriter`, `JsonTreeReader`, `MongoDBControllerService` |
+| **7** | [**07_AEMET_Datu_Lakua_Medallion**](07_AEMET_Datu_Lakua_Medallion_DF2.3/README.md) | **DF2.3** | AEMET telemetria datu-lakua (Bronze $\rightarrow$ Silver $\rightarrow$ Gold) | `GenerateFlowFile`, `UpdateAttribute`, `EvaluateJsonPath`, `AttributesToJSON`, `MergeContent`, `QueryRecord`, `PutFile`, `PutMongo`, `PutMongoRecord` | `MongoDBControllerService`, `ParquetReader`, `ParquetRecordSetWriter` |
 
 ---
 

@@ -23,8 +23,8 @@ from bs4 import BeautifulSoup
 REPO_ROOT = Path("/home/tears/bigdata")
 LOG_FILE = REPO_ROOT / "moodle_sync.log"
 
-USERNAME = os.environ.get("MOODLE_USER", "urzainqui.unai")
-PASSWORD = os.environ.get("MOODLE_PASS", "***ELIMINADO***")
+USERNAME = os.environ.get("MOODLE_USER", "")
+PASSWORD = os.environ.get("MOODLE_PASS", "")
 BASE_URL = "https://elearning20.hezkuntza.net/012053"
 COURSE_ID = "535"
 
@@ -46,6 +46,8 @@ def notify(title: str, msg: str) -> None:
 
 def lortu_saioa() -> requests.Session:
     """Chromium bidez saioa hasi eta cookies-ak eskuratu."""
+    if not USERNAME or not PASSWORD:
+        raise SystemExit("Falta MOODLE_USER/MOODLE_PASS en el entorno (nunca en código).")
     from playwright.sync_api import sync_playwright
 
     with sync_playwright() as p:

@@ -16,7 +16,7 @@ Este es un repositorio docente de IA y Big Data: combina teoría de clase, ejerc
 | Límites y prácticas seguras del repositorio | [SECURITY.md](SECURITY.md) y [00_Transversal/SECURITY.md](00_Transversal/SECURITY.md) |
 | CNC Guard, instalación y validación | [README de CNC Guard](01_Erronka1_CNC_Guard/proyecto_cnc_guard/README.md) |
 | Soluciones de Big Data e ingeniería de datos | `05_BigData_Ingeniaritza/soluzioak/` |
-| Laboratorios NiFi por caso | Los `README.md` dentro de `06_NiFi/soluzioak/`; el README general de esa carpeta conserva rutas de una estructura anterior |
+| Laboratorios NiFi por caso | Los `README.md` dentro de `06_NiFi/soluzioak/` (rutas relativas canónicas desde 2026-09-25) |
 | Kafka y sus pruebas sin broker | [README de Kafka](07_Kafka/soluzioak/README.md) |
 | Infraestructura Docker compartida | [infra/README.md](infra/README.md) |
 

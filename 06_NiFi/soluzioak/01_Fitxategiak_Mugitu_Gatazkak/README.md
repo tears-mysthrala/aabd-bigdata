@@ -1,7 +1,7 @@
 # NiFi 1. Kasua: Fitxategiak Mugitu eta Gatazkak Kudeatu (Caso 1)
 
 > **Modulua / Gai-arloa:** Big Data Aplikatua · 01 DataFlow · Apache NiFi  
-> **Fluxuaren Definizioa:** [`flow_01_fitxategiak_mugitu.json`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/01_Fitxategiak_Mugitu_Gatazkak/flow_01_fitxategiak_mugitu.json)  
+> **Fluxuaren Definizioa:** [`flow_01_fitxategiak_mugitu.json`](flow_01_fitxategiak_mugitu.json)  
 > **Iturria:** `GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf` (3–12 orr.)
 
 ---

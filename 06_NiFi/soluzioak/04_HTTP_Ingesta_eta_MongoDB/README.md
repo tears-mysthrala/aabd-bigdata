@@ -1,7 +1,7 @@
 # NiFi 4. Kasua: HTTP bidezko Ingesta eta MongoDB (Caso 4)
 
 > **Modulua / Gai-arloa:** Big Data Aplikatua · 01 DataFlow · Apache NiFi  
-> **Fitxategi Nagusia:** [`flow_04_mongodb_http.json`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/04_HTTP_Ingesta_eta_MongoDB/flow_04_mongodb_http.json)  
+> **Fitxategi Nagusia:** [`flow_04_mongodb_http.json`](flow_04_mongodb_http.json)  
 > **Iturria:** `GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf` (42–45 orr.)
 
 ---
