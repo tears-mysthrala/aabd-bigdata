@@ -12,6 +12,8 @@ dist/
 
 # Secretos: NUNCA se versionan (ver SECURITY.md)
 .env
+*.env
+moodle-sync.env
 *.key
 *.srl
 *.p12
