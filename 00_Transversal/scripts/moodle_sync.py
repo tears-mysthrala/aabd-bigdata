@@ -13,6 +13,7 @@ Orduro exekutatzen da (systemd timer bidez):
 import os
 import re
 import sys
+import time
 import subprocess
 import urllib.parse
 from datetime import datetime
@@ -196,6 +197,7 @@ def sinkronizatu() -> list[str]:
                         if fname.lower().endswith(".docx"):
                             md_path = dest_path.with_suffix(".md")
                             docx_to_md(dest_path, md_path)
+                            deskargatutakoak.append(str(md_path.relative_to(REPO_ROOT)))
 
                 except Exception as e:
                     log(f"Errorea baliabidea aztertzean ({act_url}): {e}")
@@ -234,7 +236,9 @@ def sinkronizatu() -> list[str]:
                                 deskargatutakoak.append(str(dest_path.relative_to(REPO_ROOT)))
 
                                 if dest_path.name.lower().endswith(".docx"):
-                                    docx_to_md(dest_path, dest_path.with_suffix(".md"))
+                                    md_path = dest_path.with_suffix(".md")
+                                    docx_to_md(dest_path, md_path)
+                                    deskargatutakoak.append(str(md_path.relative_to(REPO_ROOT)))
 
                 except Exception as e:
                     log(f"Errorea karpeta aztertzean ({act_url}): {e}")
@@ -272,17 +276,32 @@ def sinkronizatu() -> list[str]:
                                 deskargatutakoak.append(str(dest_path.relative_to(REPO_ROOT)))
 
                                 if fname.lower().endswith(".docx"):
-                                    docx_to_md(dest_path, dest_path.with_suffix(".md"))
+                                    md_path = dest_path.with_suffix(".md")
+                                    docx_to_md(dest_path, md_path)
+                                    deskargatutakoak.append(str(md_path.relative_to(REPO_ROOT)))
                 except Exception as e:
                     log(f"Errorea zeregina aztertzean ({act_url}): {e}")
 
     return deskargatutakoak
 
 
+SAIAKERA_MAX = 3
+SAIAKERA_ATSEDENA_S = 30
+
+
 def main() -> None:
     log("=== Sinkronizazio zikloa hasita ===")
+    berriak: list[str] = []
     try:
-        berriak = sinkronizatu()
+        for saiakera in range(1, SAIAKERA_MAX + 1):
+            try:
+                berriak = sinkronizatu()
+                break
+            except Exception as e:
+                log(f"{saiakera}. saiakera huts: {e}")
+                if saiakera >= SAIAKERA_MAX:
+                    raise
+                time.sleep(SAIAKERA_ATSEDENA_S)
         if berriak:
             log(f"Deskargatutako fitxategiak ({len(berriak)}): {', '.join(berriak)}")
             notify(
@@ -290,12 +309,21 @@ def main() -> None:
                 f"{len(berriak)} fitxategi berri deskargatu dira:\n" + "\n".join(berriak[:3]),
             )
 
-            # Git commit eta push
-            subprocess.run(["git", "add", "-A"], cwd=REPO_ROOT, check=True)
-            msg = f"Auto-sync Moodle: {len(berriak)} fitxategi deskargatuta\n\n" + "\n".join(f"- {b}" for b in berriak)
-            subprocess.run(["git", "commit", "-m", msg], cwd=REPO_ROOT, check=True)
-            subprocess.run(["git", "push", "origin", "master"], cwd=REPO_ROOT, check=True)
-            log("Git push ondo osatu da.")
+            # Git: bidea ematen dugu deskargatutako fitxategiei soilik.
+            # Ez erabili `git add -A`: lan-arloko aldaketa ajenoak ez dira
+            # inoiz "Auto-sync" commit batean sartu behar.
+            subprocess.run(["git", "add", "--", *berriak], cwd=REPO_ROOT, check=True)
+            staged = subprocess.run(
+                ["git", "diff", "--cached", "--quiet"],
+                cwd=REPO_ROOT,
+            )
+            if staged.returncode != 0:
+                msg = f"Auto-sync Moodle: {len(berriak)} fitxategi deskargatuta\n\n" + "\n".join(f"- {b}" for b in berriak)
+                subprocess.run(["git", "commit", "-m", msg], cwd=REPO_ROOT, check=True)
+                subprocess.run(["git", "push", "origin", "master"], cwd=REPO_ROOT, check=True)
+                log("Git push ondo osatu da.")
+            else:
+                log("Aldaketarik ez stage-an: commit/push ez da egin.")
         else:
             log("Ez dago fitxategi berririk Moodle-n.")
 
