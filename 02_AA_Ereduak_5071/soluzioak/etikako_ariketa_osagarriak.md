@@ -29,10 +29,20 @@ Diapositibaren ariketa-agindua: hiruko talde bakoitzak fairness metrika bat defe
 
 | Taldekideak / rola | Aukeratutako metrika | Argudioa eta aitortutako kostua |
 |---|---|---|
-| 1 | __________________ | ______________________________ |
+| 1 (ikaslea) | Equal accuracy taldeka + azalgarritasuna/determinismoa | Asmatze-tasa taldeen artean berdin banatzea + erabakiaren zergatia azaltzea; kostua: batez besteko orokorraren jaitsiera posiblea + azalpen-lan extra |
 | 2 | __________________ | ______________________________ |
 | 3 | __________________ | ______________________________ |
 | Taldearen ondorioa | __________________ | Zer beste neurri/berrikuspen erabiliko dugu? __________________ |
+
+**Ikaslearen benetako posizioa (1. kidea):** asmatze-tasa taldeen artean berdin
+banatzea defendatuko dut (equal accuracy / equal opportunity ildoa), ETA
+erabakiaren zergatia azaltzeko edo deterministako modukoa izatea: talde batek
+besteak baino emaitza okerragoa badu, hori neurtu, aitortu eta zuzendu egin
+behar da; eta erabaki bakoitzak zergatik-aitzak eman behar du (arauak,
+ebidentzia, konfiantza), kutxa beltzeko puntuazio hutsaren ordez. Kostu
+aitortua: talde guztietan parekatzeak batez besteko orokorra jaitsi dezake, eta
+azalgarritasunak diseinu-lan extra eskatzen du — biak ebidentziarekin neurtuko
+nituzke, ez promesarekin.
 
 Ezintasun-teorema aipatzeak ez du esan nahi edozein datu-kasutan fairness neurri guztiak batera ezinezkoak direnik; zer definizio eta baldintza zehatz aplikatzen diren aztertu behar da. Hautua taldeak egin behar du.
 
@@ -98,38 +108,44 @@ Etika/praktika ona: langileen segurtasuna eta kalitatearen eragina lehenetsi; pr
 
 > «Kalitate-kamerako eredua garatzean pribatutasuna lehenetsiko dugu: ez ditugu aurpegiak edo langile-identifikatzaileak bilduko akatsen sailkapenerako beharrezkoak ez badira; irudiak makinaren eremura mugatu, atxikipena laburtu eta sarbidea mugatuko dugu. Horrek doitasuna murrizten ote duen ebidentziarekin neurtuko dugu; zalantzazko piezak gizakiari bidaliko dizkiogu eta sistema nola funtzionatzen duen azalduko dugu. Ez dugu kalitate-kontrola promesaz ordezkatuko».
 
-Hiru helburuen arteko tentsioa diseinu-erabakia da: zehaztasun maximoa, gardentasun osoa eta pribatutasun maximoa ez dira beti batera bermatzen. Adibidez, datu gehiago erabiltzeak zehaztasunari lagun diezaioke, baina pribatutasun-kostua areagotu; azalpenak ulergarriak izan behar dira, datu pertsonalak alferrik agerian jarri gabe. Benetako talde-aukera: ____________________; erabilitako kasua: ____________________; argudioa: ____________________.
+Hiru helburuen arteko tentsioa diseinu-erabakia da: zehaztasun maximoa, gardentasun osoa eta pribatutasun maximoa ez dira beti batera bermatzen. Adibidez, datu gehiago erabiltzeak zehaztasunari lagun diezaioke, baina pribatutasun-kostua areagotu; azalpenak ulergarriak izan behar dira, datu pertsonalak alferrik agerian jarri gabe.
+
+**Ikaslearen benetako hautua (pribatutasun-adibidearen ordez, ez osagarri): zehaztasun banatua + gardentasuna.** Kalitate-kameraren kasuan hau defendatuko dut:
+
+> «Ereduaren asmatze-tasa talde/egoera guztietan berdin banatzea lehenetsiko dut: akats-tasa taldeka neurtu, okerren dabilen taldea hobetu, eta batez besteko orokorraren truke bada ere. ETA erabaki bakoitza azaltzeko modukoa izatea: zer arau/ebidentzia bultzatu duen errefusa, konfiantza-ataria, eta zalantzazko piezak gizakiari bidaltzea. Pribatutasuna ez dut baztertzen (aurpegirik ez, atxikipen laburra, sarbide mugatua), baina bigarren lerro gisa: lehenengo, ondo eta zergatik dakigula aritzea».
+
+Benetako talde-aukera: ____________________; erabilitako kasua: kalitate-kamera (ikaslearen hautua: zehaztasun banatua + gardentasuna); argudioa: ____________________ (taldearena).
 
 ## 02-13 · ALTAIren zazpi dimentsioak eta protokolo pertsonala (6.1 aipamena)
 
-18. diapositibak ALTAI bidez ezagututako AA-sistema bat ebaluatzeko eskatzen du, ahulguneak identifikatu eta hobekuntzak proposatuz; gelan, ikasleen mugikorreko app batekin errepikatzea proposatzen du. Aukeratutako eredu-sistema **ChatGPT** da; bertsioa, erabilera-kontua eta ebaluazio-data ikasleak idatzi behar ditu. Ez dago sistema probatzeko daturik edo 6.1 notebookaren puntuazio-rubrikarik eskuragarri; hortaz, puntuazioa eta aurkikuntzak ez dira asmatu. Taula autoebaluazio-fitxa da, ez egiaztatutako produktua-auditoretza.
+18. diapositibak ALTAI bidez ezagututako AA-sistema bat ebaluatzeko eskatzen du, ahulguneak identifikatu eta hobekuntzak proposatuz; gelan, ikasleen mugikorreko app batekin errepikatzea proposatzen du. Aukeratutako xede-sistema **Muse Spark 1.3 Free, OpenCode Zen bidezko inferentzian** da (ikaslearen benetako erabilera-bidea; bertsioa ikasleak adierazitakoa da, klasean egiaztatzeko). Ez dago sistema probatzeko daturik edo 6.1 notebookaren puntuazio-rubrikarik eskuragarri; hortaz, puntuazioa eta aurkikuntzak ikaslearen autoebaluazio-zirriborroa dira, ez egiaztatutako produktua-auditoretza. Taula autoebaluazio-fitxa da.
 
 ALTAIren zazpi dimentsioen izenak [Europako Batzordearen ALTAI autoebaluazio-zerrendatik](https://digital-strategy.ec.europa.eu/en/library/assessment-list-trustworthy-artificial-intelligence-altai-self-assessment) hartu dira. Zerrenda orientazio/autoebaluazio tresna da; betetzea ez da ziurtagiri edo arau-betetze froga.
 
 | ALTAI dimentsioa | Ebaluazio-galdera eta bilatu beharreko ebidentzia | Hobekuntza hautagai baldintzatua (hutsunea frogatzen bada) | Aurkikuntza / puntuazioa |
 |---|---|---|---|
-| 1. Gizakien agentzia eta gainbegiratzea | Erabiltzaileak badaki noiz ari den AA erabiltzen? Garrantzizko irteera geldiarazi, zuzendu edo aurkaratu dezake? | Erabaki garrantzitsuetan berrikusle trebatuari benetako esku-hartze eta eten-bidea eman. | __________________ / ___ |
-| 2. Sendotasun teknikoa eta segurtasuna | Nola probatzen dira erroreak, erabilera desegokia, erabilgarritasuna eta segurtasun-gorabeherak? Zein da hutsegiteko plana? | Proba eta monitorizazio egokiak gehitu; hutsegitean funtzio segurura mugatu edo gizakiarengana bideratu. | __________________ / ___ |
-| 3. Pribatutasuna eta datuen gobernantza | Zein datu sartzen dira? Helburu, oinarri, sarbide, kalitate, atxikipen eta ezabaketa arauak dokumentatuta daude? | Datu-minimizazioa, sarbide mugatua, atxikipen argia eta datu-kalitatearen kontrola ezarri. | __________________ / ___ |
-| 4. Gardentasuna | Erabiltzaileak ulertzen al du sistemaren gaitasuna, mugak eta irteeraren izaera? Iturria edo AA erabilera agerian uzten da? | Erabilera-ohar argia, mugen azalpena eta irteeren trazabilitatea gehitu. | __________________ / ___ |
-| 5. Aniztasuna, diskriminaziorik eza eta zuzentasuna | Zein erabiltzaile-talde eta egoeratan probatu da? Erroreak taldeka alderatzeko ebidentziarik badago? | Eragindako taldeekin ebaluatu, irisgarritasuna egokitu eta aurkitutako desberdintasunak arindu. | __________________ / ___ |
-| 6. Ingurumen- eta gizarte-ongizatea | Zein ondorio izan ditzake erabiltzaile, ikastetxe eta gizartean? Ingurumen-erabilera edo mendekotasun/lan-eragin nabarmenik aztertu da? | Onura/kaltea eta erabilera-proportzionaltasuna berrikusi; alferrikako erabilera edo kaltea murriztu. | __________________ / ___ |
-| 7. Erantzukizuna | Nork erabakitzen du erabilera? Nola dokumentatu, ikuskatu, salatu eta konpontzen dira arazoak? | Arduradun eta gorabehera-bide argiak izendatu; erabaki eta aldaketen erregistro proportzionala gorde. | __________________ / ___ |
+| 1. Gizakien agentzia eta gainbegiratzea | Erabiltzaileak badaki noiz ari den AA erabiltzen? Garrantzizko irteera geldiarazi, zuzendu edo aurkaratu dezake? | Erabaki garrantzitsuetan berrikusle trebatuari benetako esku-hartze eta eten-bidea eman. | Ikaslearen zirriborroa: OpenCode-n nik eskatuta sortzen du kodea, nik berrikusi eta onartu gabe ez da aplikatzen; PR-a da eten-bidea. / ___ |
+| 2. Sendotasun teknikoa eta segurtasuna | Nola probatzen dira erroreak, erabilera desegokia, erabilgarritasuna eta segurtasun-gorabeherak? Zein da hutsegiteko plana? | Proba eta monitorizazio egokiak gehitu; hutsegitean funtzio segurura mugatu edo gizakiarengana bideratu. | Ikaslearen zirriborroa: fidagarritasuna ez dut ustez neurtzen — PR estandarizatu pare batean eta enpresako checkpoint ezaguneko feedback-eskaeran ikusitako kalitatearekin; oker badabil, ezabatu eta eskuz. / ___ |
+| 3. Pribatutasuna eta datuen gobernantza | Zein datu sartzen dira? Helburu, oinarri, sarbide, kalitate, atxikipen eta ezabaketa arauak dokumentatuta daude? | Datu-minimizazioa, sarbide mugatua, atxikipen argia eta datu-kalitatearen kontrola ezarri. | Ikaslearen zirriborroa: ToS-ak irakurrita; sekreturik ez (`.env`/pass-cli), repo osoa ez igo beharrezkoa ez bada; atxikipen-politika ToS-en arabera berrikusi beharra. / ___ |
+| 4. Gardentasuna | Erabiltzaileak ulertzen al du sistemaren gaitasuna, mugak eta irteeraren izaera? Iturria edo AA erabilera agerian uzten da? | Erabilera-ohar argia, mugen azalpena eta irteeren trazabilitatea gehitu. | Ikaslearen zirriborroa: AA laguntza aitortzen dut arauen arabera; irteera zirriborro gisa tratatzen dut, ez autoritate gisa; konfiantza mugatua aluzinazio-arriskuagatik. / ___ |
+| 5. Aniztasuna, diskriminaziorik eza eta zuzentasuna | Zein erabiltzaile-talde eta egoeratan probatu da? Erroreak taldeka alderatzeko ebidentziarik badago? | Eragindako taldeekin ebaluatu, irisgarritasuna egokitu eta aurkitutako desberdintasunak arindu. | Ikaslearen zirriborroa: nire erabileran (kodea, euskara/gaztelania) ez dut desberdintasun neurturik; pertsonen inguruko irteerak estereotipo-ikuspegitik berrikusten ditut. / ___ |
+| 6. Ingurumen- eta gizarte-ongizatea | Zein ondorio izan ditzake erabiltzaile, ikastetxe eta gizartean? Ingurumen-erabilera edo mendekotasun/lan-eragin nabarmenik aztertu da? | Onura/kaltea eta erabilera-proportzionaltasuna berrikusi; alferrikako erabilera edo kaltea murriztu. | Ikaslearen zirriborroa: modelo arina lehenetsi (Free maila nahikoa bada); inferentzia-premia neurritsua, ez bulk alferrikakoa; mendekotasuna saihestu (eskuzko berrikuspena mantendu). / ___ |
+| 7. Erantzukizuna | Nork erabakitzen du erabilera? Nola dokumentatu, ikuskatu, salatu eta konpontzen dira arazoak? | Arduradun eta gorabehera-bide argiak izendatu; erabaki eta aldaketen erregistro proportzionala gorde. | Ikaslearen zirriborroa: erabakia eta erantzukizuna nirea (PR onartzen dudana); akatsa atzemanda, zuzendu + protokoloa eguneratu; arazoa larria bada, hornitzaileari jakinarazi. / ___ |
 
-**Emaitza-fitxa (ikasleak bete):** ebaluazio-data ______; produktuaren bertsioa/konfigurazioa ______; erabilera-eszenatokia ______; erabilitako test kasuak edo dokumentuak ______; egiaztatutako aurkikuntzak ______; ebidentziarik ez duten dimentsioak ______; ahulgune lehenetsia (ebidentziarekin) ______; lehenetsitako hobekuntza eta arduraduna ______; berrikuspen-data ______. Gelako mugikorreko app aukeratua ______; erabiltzaile/talde eragindakoak ______; app-erako egokitzapen edo galdera gehigarriak ______.
+**Emaitza-fitxa (ikasleak beteta, zirriborroa):** ebaluazio-data 2026-09-28; produktuaren bertsioa/konfigurazioa Muse Spark 1.3 Free, OpenCode Zen bidez (ikasleak adierazia, klasean egiaztatzeko); erabilera-eszenatokia ikastetxeko garapena (kodea, ariketak); erabilitako test kasuak edo dokumentuak PR estandarizatuak + enpresako checkpoint ezaguneko feedback-eskaera; egiaztatutako aurkikuntzak PR-etako kalitate-behaketa (ez neurketa formala); ebidentziarik ez duten dimentsioak 2 (neurketa formala falta), 5 (taldeka konparaketarik ez), 6 (ingurumen-daturik ez); ahulgune lehenetsia (ebidentziarekin) konfiantza itsua saihestea — eten-bidea PR berrikuspena da; lehenetsitako hobekuntza eta arduraduna protokolo pertsonala zorrotz aplikatzea (ikaslea); berrikuspen-data klasean finkatu. Gelako mugikorreko app aukeratua ______; erabiltzaile/talde eragindakoak ______; app-erako egokitzapen edo galdera gehigarriak ______.
 
 6.1 notebookaren gainerako jarraibide osoa ez dago eskuragarri. 59. diapositibak AI literacy eta protokolo pertsonala diseinatzea ere aipatzen du. Ondoko orri betegarria norberak bere erabilerarako osatzekoa da; ez da ikaslearen balio edo ohitura errealen ordezko.
 
-| Nire araua | Nik beteko dudan konpromisoa |
+| Nire araua | Nik beteko dudan konpromisoa (ikaslearen benetako protokoloa) |
 |---|---|
-| Helburua | AA erabiliko dut __________________ lanerako; ez dut erabiliko __________________ erabaki garrantzitsurako giza berrikuspenik gabe. |
-| Datu pertsonalak | Tresna publikoetan ez dut sartuko __________________. Zalantzan, baimena/baimentasuna egiaztatuko dut __________________. |
-| Egiaztapena | Egitateak egiaztatuko ditut __________________ iturrirekin; kodea/ kalkuluak probatuko ditut __________________. |
-| Gardentasuna | AAren laguntza aitortuko dut __________________ arauen arabera, eta nire ekarpena bereiziko dut. |
-| Inpartzialtasuna eta errespetua | Talde edo pertsona bati buruzko irteera berrikusiko dut __________________ ikuspegitik, eta estereotipoa edo kaltea ikusiz gero __________________. |
-| Segurtasuna | Sarrera susmagarri edo fidagabe batek sistema-arauak aldatzeko eskatzen badu, __________________ egingo dut. |
-| Ingurumen/erabilera neurritsua | Modelo astuna erabiliko dut soilik __________________; aukerarik txikiena/egokiena hautatuko dut __________________. |
-| Berrikuspena | Protokolo hau berrikusiko dut data honetan: __________; tutorea/arduraduna (aukerakoa): __________. |
+| Helburua | AA erabiliko dut garapen-lanetarako (kodea, ariketak, borradoreak); ez dut erabiliko kalifikazio, kontratazio edo bestelako erabaki garrantzitsurako giza berrikuspenik gabe. |
+| Datu pertsonalak | Tresna publikoetan ez dut sartuko sekreturik (gakoak `.env`/pass-cli-n), datu pertsonalik edo hirugarrenen daturik. Zalantzan, ToS-ak eta baimena egiaztatuko ditut erabili aurretik. |
+| Egiaztapena | Egitateak iturri ofizialarekin egiaztatuko ditut (EUR-Lex, AEPD); kodea/kalkuluak exekutatuko ditut onartu aurretik; fidagarritasuna PR estandarizatu pare batean eta enpresako checkpoint ezaguneko feedback-eskaeran neurtuko dut. |
+| Gardentasuna | AAren laguntza aitortuko dut ikastetxeko arauen arabera, eta nire ekarpena bereiziko dut (nire PR, nire erabakia). |
+| Inpartzialtasuna eta errespetua | Talde edo pertsona bati buruzko irteera berrikusiko dut estereotipo-ikuspegitik, eta estereotipoa edo kaltea ikusiz gero zuzendu/ezabatu egingo dut. |
+| Segurtasuna | Sarrera susmagarri edo fidagabe batek sistema-arauak aldatzeko eskatzen badu, ez dut beteko; isolatu eta berrikusiko dut. |
+| Ingurumen/erabilera neurritsua | Modelo astuna erabiliko dut soilik arinak ez duenean ematen; aukerarik txikiena/egokiena hautatuko dut kasu bakoitzerako (Free nahikoa bada, hori). |
+| Berrikuspena | Protokolo hau berrikusiko dut data honetan: klasean finkatu; tutorea/arduraduna (aukerakoa): __________. |
 
 ### Iturri eta muga-oharrak
 
