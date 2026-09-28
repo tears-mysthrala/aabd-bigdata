@@ -32,8 +32,13 @@ didácticamente ni que las soluciones estén ejecutadas.
 `--no-publish` descarga y valida sin commit ni push. Requiere las mismas
 credenciales en el entorno que el servicio. No ejecutes dos ciclos a la vez.
 
-Si hay errores de Moodle o material externo pendiente, el modo automático
-termina con error y no publica: se exige cobertura completa antes de commit/push.
+Si hay errores de Moodle, el modo automático termina con error y no publica.
+Si Moodle se ha verificado pero queda material externo/manual pendiente, el
+ciclo termina normalmente con el aviso **«material pendiente»**, sin commit ni
+push. El código de salida cero indica que el ciclo ha terminado; no certifica
+cobertura completa ni publicación. El manifiesto conserva el contador
+`unavailable` y las fuentes que faltan. Se exige cobertura completa antes de
+commit/push automáticos.
 `--no-publish` permite verificar una cobertura parcial y dejar sus límites
 documentados sin publicar. El modo automático incorpora
 solo archivos gestionados por la sincronización, publica el HEAD de la rama
@@ -62,6 +67,7 @@ incidencia de sincronización.
   login, cambios de igual tamaño, contenido idéntico y redirecciones sin reenviar
   cookies. Se comprobó mediante simulación que una cobertura parcial bloquea
   la publicación y que el push usa el HEAD de la rama actual y verifica su hash.
-- No se hizo push ni merge: se espera a disponer también de los ocho notebooks,
-  según la decisión del usuario. El temporizador no podrá publicar mientras
-  el manifiesto siga indicando material pendiente.
+- En esa primera verificación no se hizo push ni merge: se esperaba a disponer
+  también de los ocho notebooks. Posteriormente el usuario autorizó la
+  publicación e integración manual de lo verificado. El temporizador sigue sin
+  publicar mientras el manifiesto indique material pendiente.

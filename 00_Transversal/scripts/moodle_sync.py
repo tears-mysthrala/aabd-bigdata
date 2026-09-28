@@ -571,7 +571,14 @@ def main() -> None:
             log(f"Egiaztapena amaituta: {len(berriak)} fitxategi aldatu; commit/push gabe")
             return
         if SYNC_REPORT.get("unavailable"):
-            raise RuntimeError("Kanpo/manual materiala falta da; ez da commit/push egiten estaldura osoa izan arte")
+            pending = SYNC_REPORT["unavailable"]
+            log(f"Publicación pendiente: {pending} fuentes externas/manuales sin descargar; ciclo terminado sin commit/push")
+            notify(
+                "Moodle Sync: material pendiente",
+                f"Descarga de Moodle verificada. Faltan {pending} fuentes externas/manuales. "
+                "Publicación automática bloqueada; consulta MOODLE_SYNC_ESTADO.json.",
+            )
+            return
         if berriak:
             log(f"Deskargatutako fitxategiak ({len(berriak)}): {', '.join(berriak)}")
             notify(
