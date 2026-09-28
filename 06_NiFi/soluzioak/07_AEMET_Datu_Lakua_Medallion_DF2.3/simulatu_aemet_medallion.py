@@ -1,6 +1,6 @@
-"""DF2.3 AEMET Medallion simulazioa (NiFi fluxuaren parekoa, broker gabe).
+"""DF2.3 Medallion simulazioa sintetikoki; ez da NiFi/AEMET exekuzioaren froga.
 
-Bronze: JSON gordinak (AEMET Open Data formatua) -> bronze/
+Bronze: JSON sintetikoak (AEMETen payload erreala ez da hemen erabiltzen) -> bronze/
 Silver: EvaluateJsonPath + AttributesToJSON -> silver/*.json + silver_mongo.jsonl
 Gold: MergeContent(10) + QueryRecord (AVG/MAX/MIN per hiria) -> gold/*.parquet + gold_mongo.jsonl
 """

@@ -9,9 +9,11 @@ Broker gabe (test/didáktika):
 from __future__ import annotations
 
 import argparse
+import csv as csvlib
 import json
 import os
 import time
+from itertools import islice
 from pathlib import Path
 
 DEFAULT_TOPIC = os.environ.get("TOPIC", "iabd-topic")
@@ -22,12 +24,11 @@ def build_message(i: int) -> dict:
     return {"izena": f"ekoizlea {i}"}
 
 
-def run_mock(n: int, mock_file: Path) -> list[dict]:
-    msgs = [build_message(i) for i in range(n)]
+def run_mock(n: int, mock_file: Path) -> int:
     with mock_file.open("w", encoding="utf-8") as fh:
-        for m in msgs:
-            fh.write(json.dumps(m, ensure_ascii=False) + "\n")
-    return msgs
+        for i in range(n):
+            fh.write(json.dumps(build_message(i), ensure_ascii=False) + "\n")
+    return n
 
 
 def run_kafka(
@@ -49,37 +50,37 @@ def run_kafka(
         bootstrap_servers=[bootstrap],
         linger_ms=20,
         batch_size=64 * 1024,
+        acks="all",
     )
-    rows = None
-    if csv:
-        import csv as csvlib
-        from itertools import islice
 
-        fh = open(csv, encoding="utf-8")
-        reader = csvlib.DictReader(fh)
-        rows = islice(reader, skip, None if n <= 0 else skip + n)
-    sent = 0
-    try:
-        if rows is not None:
-            for r in rows:
-                key = r.get("makina_id", "") if keys else None
-                producer.send(topic, value=r, key=key)
-                sent += 1
-                if interval > 0:
-                    time.sleep(interval)
-            fh.close()
+    def messages():
+        if csv:
+            with open(csv, encoding="utf-8", newline="") as fh:
+                reader = csvlib.DictReader(fh)
+                yield from islice(reader, skip, None if n <= 0 else skip + n)
         else:
             for i in range(n):
-                mezua = build_message(i)
-                key = f"gakoa{i % 2}" if keys else None
-                producer.send(topic, value=mezua, key=key)
-                sent += 1
-                if interval > 0:
-                    time.sleep(interval)
-        producer.flush()
+                yield build_message(i)
+
+    confirmed = 0
+    pending = []
+    try:
+        for i, message in enumerate(messages()):
+            key = (message.get("makina_id", "") if csv else f"gakoa{i % 2}") if keys else None
+            pending.append(producer.send(topic, value=message, key=key))
+            if len(pending) == 1000:
+                for future in pending:
+                    future.get(timeout=30)
+                confirmed += len(pending)
+                pending.clear()
+            if interval > 0:
+                time.sleep(interval)
+        for future in pending:
+            future.get(timeout=30)
+        confirmed += len(pending)
     finally:
         producer.close()
-    return sent
+    return confirmed
 
 
 def main() -> None:
@@ -104,9 +105,11 @@ def main() -> None:
     ap.add_argument("--mock", action="store_true")
     ap.add_argument("--mock-file", default="mock_log.jsonl")
     args = ap.parse_args()
+    if args.n < 0 or args.skip < 0 or args.interval < 0:
+        ap.error("--n, --skip eta --interval ezin dira negatiboak izan")
     if args.mock:
-        msgs = run_mock(args.n, Path(args.mock_file))
-        print(f"mock: {len(msgs)} mezu {args.mock_file}-n")
+        sent = run_mock(args.n, Path(args.mock_file))
+        print(f"mock: {sent} mezu {args.mock_file}-n")
     else:
         t0 = time.time()
         sent = run_kafka(
@@ -119,7 +122,7 @@ def main() -> None:
             args.skip,
         )
         dt = time.time() - t0
-        print(f"kafka: {sent} mezu -> {args.topic} ({dt:.1f}s, {sent / dt:.0f}/s)")
+        print(f"kafka: {sent} ACK mezu -> {args.topic} ({dt:.1f}s, {sent / dt:.0f}/s)")
 
 
 if __name__ == "__main__":

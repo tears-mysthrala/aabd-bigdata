@@ -635,24 +635,29 @@ print(df_tamainak.to_string(index=False))
 # 1. Git eta DVC hasieratzea (`git init`, `dvc init`).
 # 2. Jarri `notak.csv` DVC kontrolpean (`dvc add data/notak.csv`).
 # 3. Ireki `data/notak.csv.dvc` fitxategia: zer dago barruan? Zer da MD5 hash-a?
-# 4. Konfiguratu biltegi lokal bat (`dvc remote add -d lokala /tmp/dvc-biltegia`) eta egin `dvc push`.
+# 4. Konfiguratu biltegi lokal bat (`dvc remote add -d lokala <biltegi-lokalaren-bidea>`) eta egin `dvc push`.
 # 5. Eztabaidatu: *Zergatik dago `notak.csv` `.gitignore`-n baina ez `notak.csv.dvc`?*
 # """
 
 # %%
 import subprocess
 import shutil
+import sys
+import tempfile
 from pathlib import Path
 
-repo_dir = Path.cwd()
+repo_dir = Path(tempfile.mkdtemp(prefix="dvc-ariketa-"))
 data_file = repo_dir / "data" / "notak.csv"
+data_file.parent.mkdir()
+data_file.write_text("ikaslea,nota\nAne,8\nIker,7\n", encoding="utf-8")
+dvc_bin = shutil.which("dvc") or str(Path(sys.executable).with_name("dvc"))
 
-# 1. Egiaztatu Git eta DVC biltegia
-subprocess.run(["git", "init"], cwd=repo_dir, capture_output=True, text=True)
-subprocess.run([".venv/bin/dvc", "init", "--no-scm" if not (repo_dir / ".git").exists() else ""], cwd=repo_dir, capture_output=True, text=True)
+# 1. Laborategi isolatuan Git eta DVC hasieratu
+subprocess.run(["git", "init"], cwd=repo_dir, check=True, capture_output=True)
+subprocess.run([dvc_bin, "init"], cwd=repo_dir, check=True, capture_output=True)
 
 # 2. dvc add data/notak.csv
-cmd_add = subprocess.run([".venv/bin/dvc", "add", "data/notak.csv"], cwd=repo_dir, capture_output=True, text=True)
+subprocess.run([dvc_bin, "add", "data/notak.csv"], cwd=repo_dir, check=True, capture_output=True)
 
 dvc_file = repo_dir / "data" / "notak.csv.dvc"
 print("=== ARIKETA 4.1: DVC FITXATEGIAREN EDUKIA ===")
@@ -660,16 +665,16 @@ if dvc_file.exists():
     with open(dvc_file) as f:
         print(f.read())
 else:
-    print("DVC fitxategia prestatu da.")
+    raise FileNotFoundError(f"DVC punteroa ez da sortu: {dvc_file}")
 
 # 3. Urruneko biltegi lokala konfiguratu
-remote_dir = Path("/tmp/dvc-biltegia")
+remote_dir = repo_dir.with_name(repo_dir.name + "-remote")
 remote_dir.mkdir(parents=True, exist_ok=True)
-subprocess.run([".venv/bin/dvc", "remote", "add", "-f", "-d", "lokala", str(remote_dir)], cwd=repo_dir, capture_output=True, text=True)
+subprocess.run([dvc_bin, "remote", "add", "-d", "lokala", str(remote_dir)], cwd=repo_dir, check=True, capture_output=True)
 
 # 4. dvc push
-cmd_push = subprocess.run([".venv/bin/dvc", "push"], cwd=repo_dir, capture_output=True, text=True)
-print("DVC Push egoera:", cmd_push.returncode, "(Arrakastatsua)")
+subprocess.run([dvc_bin, "push"], cwd=repo_dir, check=True, capture_output=True)
+print("DVC push osatuta. Laborategia:", repo_dir)
 print("Biltegi lokalean dauden fitxategiak:", list(remote_dir.glob("**/*"))[:3])
 
 # %%
@@ -677,8 +682,8 @@ print("Biltegi lokalean dauden fitxategiak:", list(remote_dir.glob("**/*"))[:3])
 # ### 💡 Eztabaida: Zergatik dago `notak.csv` `.gitignore`-n baina ez `notak.csv.dvc`?
 # 1. **Datu handien arazoa Git-en**: Git fitxategien testu-aldaketak lerroz lerro gordetzeko dago diseinatuta. Datu-fitxategi handiak (GBak/TBak) Git-era igotzen badira, biltegia astundu, klonazioak mantsotu eta zerbitzariak blokeatu egiten dira.
 # 2. **DVC-ren konponbide hibridoa**:
-#    - `notak.csv` datu erreala kanpoko biltegian gordetzen da (S3, GCS edo `/tmp/dvc-biltegia`). Horregatik gehitzen da automatikoki `.gitignore`-ra.
-#    - `notak.csv.dvc` ordea, **puntero txiki bat** da (kilobyte gutxi batzuk), fitxategiaren **MD5 hash unibertsala** eta tamaina gordetzen dituena. Puntero hau Git-era igotzen da.
+#    - `notak.csv` datu erreala kanpoko biltegian gordetzen da (S3, GCS edo laborategiko biltegi lokala). Horregatik gehitzen da automatikoki `.gitignore`-ra.
+#    - `notak.csv.dvc` **puntero txiki bat** da: bertsioaren edukia identifikatzeko hash-a eta bestelako metadatuak jasotzen ditu. Hash mota biltegiratze-sistemaren araberakoa izan daiteke. Puntero hau Git-era igotzen da.
 #    - Horrela, kodearen commit bakoitzak zehazki zein datu-bertsiorekin lan egin zuen erreproduzi daiteke uneoro (`dvc checkout`).
 # """
 

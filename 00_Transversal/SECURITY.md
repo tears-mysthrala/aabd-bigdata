@@ -9,7 +9,7 @@ No publiques vulnerabilidades, credenciales, tokens ni datos sensibles
 en issues o PRs. Aviso privado a quien mantenga el módulo afectado,
 incluyendo: descripción reproducible y versión/commit, impacto,
 pasos mínimos sin datos reales, logs saneados y mitigación si la hay.
-Detalle por proyecto en `erronka1/cnc_guard_setup/SECURITY.md`.
+Detalle por proyecto en `01_Erronka1_CNC_Guard/proyecto_cnc_guard/SECURITY.md`.
 
 ## Reglas del lab
 
@@ -20,9 +20,9 @@ Detalle por proyecto en `erronka1/cnc_guard_setup/SECURITY.md`.
 - Secretos solo en `.env` (nunca en repo, notebooks, capturas ni logs).
 - `pickle`/`joblib` solo de procedencia propia y verificada.
 - Docker: sin `chmod 666` al socket; cada persona en el grupo `docker`.
-- SBOM: `SBOM/` (base) + `SBOM/releases/<version>/` por release
-  (`sbom-release.sh`); soporte declarado en `SBOM/SOPORTE.md`;
-  ficha por módulo reutilizado según `SBOM/FICHA-TECNICA.md`.
+- SBOM: `00_Transversal/SBOM/` (base) + `00_Transversal/SBOM/releases/<version>/` por release
+  (`sbom-release.sh`); soporte declarado en `00_Transversal/SBOM/SOPORTE.md`;
+  ficha por módulo reutilizado según `00_Transversal/SBOM/FICHA-TECNICA.md`.
 
 ## Qué NO cubre esto
 

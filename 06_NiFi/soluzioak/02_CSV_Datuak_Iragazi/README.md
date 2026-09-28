@@ -2,10 +2,10 @@
 
 > **Modulua / Gai-arloa:** Big Data Aplikatua · 01 DataFlow · Apache NiFi  
 > **Fitxategi Nagusiak:**
-> - [`flow_02_csv_datuak_iragazi_aldaera1.json`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera1.json) (1. Aldaera: SplitRecord 1)
-> - [`flow_02_csv_datuak_iragazi_aldaera2.json`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera2.json) (2. Aldaera: SplitRecord 10)
-> - [`flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json) (3. Aldaera: Optimizatua)
-> - **Simulazio Scripta:** [`simulatu_kasu_2_salmentak.py`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/02_CSV_Datuak_Iragazi/simulatu_kasu_2_salmentak.py)  
+> - [`flow_02_csv_datuak_iragazi_aldaera1.json`](flow_02_csv_datuak_iragazi_aldaera1.json) (1. Aldaera: SplitRecord 1)
+> - [`flow_02_csv_datuak_iragazi_aldaera2.json`](flow_02_csv_datuak_iragazi_aldaera2.json) (2. Aldaera: SplitRecord 10)
+> - [`flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json`](flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json) (3. Aldaera: Optimizatua)
+> - **Simulazio Scripta:** [`simulatu_kasu_2_salmentak.py`](simulatu_kasu_2_salmentak.py)  
 > **Iturria:** `GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf` (13–26 orr.)
 
 ---
@@ -48,7 +48,7 @@ flowchart TD
     end
 
     subgraph V3["3. Aldaera Optimizatua: SplitRecord GABE (Gomendatua)"]
-        A3["GetFile<br/>(salmentak.csv)"] --> C3["QueryRecord<br/>(CSV osoa in-memory)"]
+        A3["GetFile<br/>(salmentak.csv)"] --> C3["QueryRecord<br/>(aurretiko zatiketarik gabe)"]
         C3 -->|FrantziaGehiago1| D3["UpdateAttribute<br/>(Fitxategi izena)"]
         D3 --> E3["PutFile<br/>(Fitxategi bakarrean gordeta)"]
     end
@@ -59,9 +59,9 @@ flowchart TD
 | Ezaugarria | 1. Aldaera (SplitRecord 1) | 2. Aldaera (SplitRecord 10) | 3. Aldaera Optimizatua (SplitRecord gabe) |
 | :--- | :--- | :--- | :--- |
 | **Sortutako FlowFile kopurua** | $N$ FlowFile (errenkada bakoitzeko 1) | $\lceil N/10 \rceil$ FlowFile | **FlowFile bakarra** |
-| **Errendimendua / CPU** | Baxua (gainkarga handia ilaretan) | Ertaina | **Oso handia** (in-memory streaming) |
+| **Errendimendua / CPU** | Ez neurtua; FlowFile gehiago | Ez neurtua | Ez neurtua; FlowFile gutxiago |
 | **Irteerako fitxategiak** | Fitxategi txiki bat emaitza bakoitzeko | Multzokatutako fitxategiak | **CSV fitxategi bakar garbia** |
-| **Produkzioko baliozkotasuna** | Ez da gomendagarria datu handiekin | Erabilgarria mikro-batching-ean | **Estandar profesionala (Record API)** |
+| **Erabilera didaktikoa** | Banakako erregistroak ikusteko | Loteen eragina aztertzeko | Record APIrekin aurretiko zatiketa saihesteko |
 
 ---
 
@@ -103,6 +103,6 @@ Bi zerbitzu hauek prozesu-taldearen barruan txertatuta daude fluxu-fitxategietan
 
 Fluxua exekutatu aurretik edo NiFi gabe egiaztatzeko, Python bidezko simulazio-scripta exekutatu daiteke:
 ```bash
-python3 /home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/02_CSV_Datuak_Iragazi/simulatu_kasu_2_salmentak.py
+python3 06_NiFi/soluzioak/02_CSV_Datuak_Iragazi/simulatu_kasu_2_salmentak.py
 ```
 Output-a zuzenean sortuko da `irteera/salmentak_iragaziak.csv` bidean.

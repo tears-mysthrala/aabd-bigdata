@@ -2,32 +2,33 @@ services:
     nifi:
         container_name: iabd-nifi
         ports:
-            - "8443:8443"
+            - "127.0.0.1:8443:8443"
         volumes:
             - ./mysql-connector-j-8.0.31.jar:/opt/mysql-connector-j-8.0.31.jar
-            - C:/nifi/ariketak:/opt/nifi/ariketak
-        image: apache/nifi:latest
+            - ./ariketak:/opt/nifi/ariketak
+        image: apache/nifi:2.0.0
         environment:
-            SINGLE_USER_CREDENTIALS_USERNAME: nifi
-            SINGLE_USER_CREDENTIALS_PASSWORD: nifinifinifi
+            SINGLE_USER_CREDENTIALS_USERNAME: "${NIFI_USER:-nifi}"
+            SINGLE_USER_CREDENTIALS_PASSWORD: "${NIFI_PASSWORD:?define NIFI_PASSWORD en .env}"
+            NIFI_SENSITIVE_PROPS_KEY: "${NIFI_SENSITIVE_PROPS_KEY:?define NIFI_SENSITIVE_PROPS_KEY en .env}"
             NIFI_JVM_HEAP_MAX: 2g
-        links:
+        depends_on:
             - mongodb
             - mysql
     mysql:
-        image: mysql:latest
+        image: mysql:8.4
         container_name: iabd-mysql-nifi
         restart: always
         ports:
-            - "3306:3306"
+            - "127.0.0.1:3306:3306"
         environment:
             TZ: Europe/Madrid
-            MYSQL_ROOT_PASSWORD: iabd
+            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:?define MYSQL_ROOT_PASSWORD en .env}"
             MYSQL_DATABASE: retail_db
             MYSQL_USER: iabd
-            MYSQL_PASSWORD: iabd
+            MYSQL_PASSWORD: "${MYSQL_PASSWORD:?define MYSQL_PASSWORD en .env}"
     mongodb:
         container_name: iabd-mongodb-nifi
         ports:
-            - "27017:27017"
-        image: mongo:latest
+            - "127.0.0.1:27017:27017"
+        image: mongo:7.0

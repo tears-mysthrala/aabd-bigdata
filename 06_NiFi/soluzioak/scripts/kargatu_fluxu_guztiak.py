@@ -6,20 +6,15 @@ antolatzen ditu, etiketekin, koloreekin eta azalpen argiekin.
 """
 
 import os
-import sys
 import json
 import uuid
 import urllib.request
 import urllib.error
+import urllib.parse
 import ssl
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENV_FILE = os.path.join(BASE_DIR, "06_MariaDB_MongoDB_Laborategia_DF2.2", ".env")
-
-# SSL testuingurua tokiko zerbitzarirako
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
 
 def load_env():
     creds = {
@@ -35,11 +30,15 @@ def load_env():
                 line = line.strip()
                 if "=" in line and not line.startswith("#"):
                     k, v = line.split("=", 1)
-                    creds[k] = v
+                    creds[k] = v.strip().strip('"').strip("'")
+    creds.update({key: os.environ[key] for key in creds if key in os.environ})
     return creds
 
 CREDS = load_env()
 NIFI_URL = os.environ.get("NIFI_URL", CREDS.get("NIFI_URL", "https://localhost:8443"))
+if urllib.parse.urlparse(NIFI_URL).scheme != "https":
+    raise ValueError("NIFI_URL HTTPS helbidea izan behar da")
+ctx = ssl.create_default_context(cafile=os.environ.get("NIFI_CA_CERT") or None)
 
 def api_call(endpoint, method="GET", data=None, token=None, content_type="application/json"):
     url = f"{NIFI_URL}/nifi-api{endpoint}"
@@ -58,22 +57,22 @@ def api_call(endpoint, method="GET", data=None, token=None, content_type="applic
 
     req = urllib.request.Request(url, data=body, headers=headers, method=method)
     try:
-        with urllib.request.urlopen(req, context=ctx) as res:
+        with urllib.request.urlopen(req, context=ctx, timeout=30) as res:
             res_data = res.read().decode("utf-8")
             try:
                 return json.loads(res_data)
             except Exception:
                 return res_data
     except urllib.error.HTTPError as e:
-        err = e.read().decode("utf-8")
-        print(f"❌ HTTP Error ({e.code}) {endpoint}: {err[:300]}", file=sys.stderr)
-        return None
+        raise RuntimeError(f"NiFi API HTTP {e.code}: {endpoint}") from e
     except Exception as e:
-        print(f"❌ Connection Error {endpoint}: {e}", file=sys.stderr)
-        return None
+        raise RuntimeError(f"NiFi API connection error: {endpoint}") from e
 
 def get_token():
-    payload = f"username={CREDS['NIFI_USER']}&password={CREDS['NIFI_PASSWORD']}"
+    payload = urllib.parse.urlencode({
+        "username": CREDS["NIFI_USER"],
+        "password": CREDS["NIFI_PASSWORD"],
+    })
     res = api_call("/access/token", method="POST", data=payload, content_type="application/x-www-form-urlencoded")
     if res and isinstance(res, str) and res.startswith("ey"):
         return res
@@ -83,41 +82,19 @@ def get_root_id(token):
     res = api_call("/flow/process-groups/root", token=token)
     return res["processGroupFlow"]["breadcrumb"]["breadcrumb"]["id"]
 
-def disable_services_in_group_recursive(token, gid):
-    """Gelditu prozesadoreak eta desgaitu kontrolagailu-zerbitzuak talde barruan."""
-    api_call(f"/flow/process-groups/{gid}", method="PUT", token=token,
-             data={"id": gid, "state": "STOPPED"})
-    cs_data = api_call(f"/flow/process-groups/{gid}/controller-services", token=token)
-    for cs in cs_data.get("controllerServices", []):
-        cid = cs["id"]
-        ver = cs["revision"]["version"]
-        if cs["component"].get("state") != "DISABLED":
-            api_call(f"/controller-services/{cid}/run-status", method="PUT", token=token,
-                     data={"revision": {"version": ver, "clientId": str(uuid.uuid4())}, "state": "DISABLED"})
-    
-    flow = api_call(f"/flow/process-groups/{gid}", token=token)
-    for child in flow.get("processGroupFlow", {}).get("flow", {}).get("processGroups", []):
-        disable_services_in_group_recursive(token, child["id"])
-
-def clear_root_canvas(token, root_id):
-    """Garbitu root-eko prozesu-taldeak eta etiketak berriz antolatzeko."""
+def ensure_root_canvas_empty(token, root_id):
+    """Ez ukitu dagoen fluxurik: inportatu canvas huts batean bakarrik."""
     flow = api_call(f"/flow/process-groups/{root_id}", token=token)
-    pgs = flow.get("processGroupFlow", {}).get("flow", {}).get("processGroups", [])
-    labels = flow.get("processGroupFlow", {}).get("flow", {}).get("labels", [])
-    
-    for pg in pgs:
-        disable_services_in_group_recursive(token, pg["id"])
-    
-    flow_fresh = api_call(f"/flow/process-groups/{root_id}", token=token)
-    for pg in flow_fresh.get("processGroupFlow", {}).get("flow", {}).get("processGroups", []):
-        gid = pg["id"]
-        ver = pg["revision"]["version"]
-        api_call(f"/process-groups/{gid}?version={ver}", method="DELETE", token=token)
-    
-    for lbl in labels:
-        lid = lbl["id"]
-        ver = lbl["revision"]["version"]
-        api_call(f"/labels/{lid}?version={ver}", method="DELETE", token=token)
+    if not isinstance(flow, dict):
+        raise RuntimeError("Ezin izan da NiFi canvas-a irakurri")
+    items = flow["processGroupFlow"]["flow"]
+    for kind in ("processGroups", "processors", "connections", "labels",
+                 "inputPorts", "outputPorts", "remoteProcessGroups", "funnels"):
+        if items.get(kind):
+            raise RuntimeError(
+                f"NiFi root canvas-ak {kind} dauzka; ez da ezer ezabatu. "
+                "Erabili laborategi huts bat."
+            )
 
 def create_process_group(token, parent_id, name, x, y, comments=""):
     payload = {
@@ -145,8 +122,7 @@ def enable_controller_services_in_group(token, pg_id):
 def import_flow(token, parent_id, flow_rel_path, name, x, y, comments="", cs_ids=None):
     full_path = os.path.join(BASE_DIR, flow_rel_path)
     if not os.path.isfile(full_path):
-        print(f"⚠️ Ez da fitxategia aurkitu: {full_path}")
-        return None
+        raise FileNotFoundError(f"NiFi fluxu-fitxategia falta da: {full_path}")
     
     with open(full_path, "r", encoding="utf-8") as f:
         snapshot_str = f.read()
@@ -174,14 +150,13 @@ def import_flow(token, parent_id, flow_rel_path, name, x, y, comments="", cs_ids
         "disconnectedNodeAcknowledged": False
     }
     res = api_call(f"/process-groups/{parent_id}/process-groups/import", method="POST", data=payload, token=token)
-    if res and "id" in res:
+    if isinstance(res, dict) and "id" in res:
         new_id = res["id"]
         print(f"   ✅ Kargatua: {name} (ID: {new_id[:8]}...)")
         enable_controller_services_in_group(token, new_id)
         return new_id
     else:
-        print(f"   ❌ Errorea kargatzean: {name}")
-        return None
+        raise RuntimeError(f"NiFi-k ez du taldearen IDa itzuli: {name}")
 
 def create_label(token, parent_id, text, x, y, width, height, bg_color="#ffffff", font_size="12pt"):
     payload = {
@@ -260,6 +235,9 @@ def ensure_controller_services(token, root_id):
             }
         }
         res = api_call(f"/process-groups/{root_id}/controller-services", method="POST", data=payload, token=token)
+        if res:
+            api_call(f"/controller-services/{res['id']}/run-status", method="PUT", token=token,
+                     data={"revision": {"version": res["revision"]["version"], "clientId": str(uuid.uuid4())}, "state": "ENABLED"})
     # 4. JsonTreeReader
     if "JsonTreeReader" not in existing:
         payload = {
@@ -279,15 +257,21 @@ def ensure_controller_services(token, root_id):
     else:
         print("   ℹ️ JsonTreeReader lehendik sortua")
 
+    # Existing services may also have been left disabled by a previous import.
+    enable_controller_services_in_group(token, root_id)
     # Fetch updated list to get IDs
     cs_list_updated = api_call(f"/flow/process-groups/{root_id}/controller-services", token=token)
     name_to_id = {c["component"]["name"]: c["id"] for c in cs_list_updated.get("controllerServices", [])}
-    return {
+    ids = {
         "mongo_id": name_to_id.get("MongoDBControllerService"),
         "dbcp_id": name_to_id.get("DBCPConnectionPool_MariaDB"),
         "writer_id": name_to_id.get("JsonRecordSetWriter_NDJSON"),
         "reader_id": name_to_id.get("JsonTreeReader")
     }
+    missing = [name for name, identifier in ids.items() if not identifier]
+    if missing:
+        raise RuntimeError(f"NiFi Controller Services falta dira: {', '.join(missing)}")
+    return ids
 
 def main():
     print("=================================================================")
@@ -298,11 +282,9 @@ def main():
     root_id = get_root_id(token)
     print(f"📌 Root Process Group ID: {root_id}")
 
+    ensure_root_canvas_empty(token, root_id)
     print("\n1. Kontrolagailu-zerbitzu orokorrak ziurtatzen...")
     cs_ids = ensure_controller_services(token, root_id)
-
-    print("\n2. Canvas nagusia garbitzen...")
-    clear_root_canvas(token, root_id)
 
     print("\n3. Master Header Label sortzen...")
     header_text = (
@@ -311,7 +293,7 @@ def main():
         "║                                 📌 IABD: Ariketa eta Proiektu Guztiak (01etik 07ra) Garbi Antolatuta                                      ║\n"
         "╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n\n"
         "• Lab 01: Fitxategiak Mugitu & Gatazkak (GetFile, PutFile, UpdateAttribute, ignore/replace/fail)\n"
-        "• Lab 02: CSV Datuak Iragazi (3 Aldaera: SplitText 1 vs SplitText 10 vs PartitionRecord optimizatua)\n"
+        "• Lab 02: CSV Datuak Iragazi (3 Aldaera: SplitRecord 1 vs SplitRecord 10 vs QueryRecord zuzenean)\n"
         "• Lab 03: Atributuak & Datu-Linajea (Fitxategi-sistema lokala vs MongoDB NoSQL integrazioa)\n"
         "• Lab 04: HTTP Ingesta & MongoDB (ListenHTTP bidezko REST sarrera eta JSON dokumentu biltegiratzea)\n"
         "• Lab 05: CSV -> JSON ConvertRecord DF2.1 (Record-oriented prozesamendua: CSVReader & JsonRecordSetWriter)\n"
@@ -336,33 +318,33 @@ def main():
     pg02_id = create_process_group(token, root_id, 
                                    "⚡ 02. CSV Datuak Iragazi (3 Aldaera)", 
                                    x=620, y=290,
-                                   comments="CSV lerroen iragazketa eta transformazioa: SplitText(1), SplitText(10) eta PartitionRecord.")
+                                   comments="CSV erregistroen iragazketa eta transformazioa: SplitRecord(1), SplitRecord(10) eta QueryRecord zuzenean.")
     
     lbl02_text = (
         "📊 CSV DATUAK IRAGAZTEKO ERRENDIMENDU KONPARAKETA (3 ALDAERA)\n\n"
-        "• Aldaera 1: SplitText (lerro 1) -> FlowFile bat lerro bakoitzeko. I/O eta Provenance overhead handia.\n"
-        "• Aldaera 2: SplitText (10 lerro) -> Lote txikiak, FlowFile kopurua %90 murrizten da.\n"
-        "• Aldaera 3: Optimizatua (PartitionRecord) -> Erregistro-bidezko prozesamendua memoriako streamingean. RAM eta CPU eraginkorrena!"
+        "• Aldaera 1: SplitRecord (erregistro 1) -> FlowFile bat erregistro bakoitzeko.\n"
+        "• Aldaera 2: SplitRecord (10 erregistro) -> FlowFile gutxiago; errendimendua neurtzeke.\n"
+        "• Aldaera 3: QueryRecord zuzenean, aurretiko zatiketarik gabe; RAM eta CPU aldea neurtzeke."
     )
     create_label(token, pg02_id, lbl02_text, x=80, y=40, width=1380, height=100, bg_color="#fcf3cf", font_size="12pt")
     
     import_flow(token, pg02_id,
                 "02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera1.json",
-                "Aldaera 1: SplitText (1 lerro)",
+                "Aldaera 1: SplitRecord (erregistro 1)",
                 x=80, y=170,
-                comments="FlowFile bana sortzen du CSV lerro bakoitzeko.",
+                comments="FlowFile bana sortzen du CSV erregistro bakoitzeko.",
                 cs_ids=cs_ids)
     import_flow(token, pg02_id,
                 "02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera2.json",
-                "Aldaera 2: SplitText (10 lerro)",
+                "Aldaera 2: SplitRecord (10 erregistro)",
                 x=560, y=170,
-                comments="10 lerroko loteak sortzen ditu FlowFile bakoitzean.",
+                comments="10 erregistroko loteak sortzen ditu FlowFile bakoitzean.",
                 cs_ids=cs_ids)
     import_flow(token, pg02_id,
                 "02_CSV_Datuak_Iragazi/flow_02_csv_datuak_iragazi_aldaera3_optimizazioa.json",
-                "Aldaera 3: Optimizatua (PartitionRecord)",
+                "Aldaera 3: QueryRecord zuzenean",
                 x=1040, y=170,
-                comments="PartitionRecord erabiliz fitxategia zatitu gabe iragazten du.",
+                comments="QueryRecord erabiliz fitxategia aurretik zatitu gabe iragazten du.",
                 cs_ids=cs_ids)
 
     # --- 03. Lab (Container with 2 variants) ---
@@ -419,8 +401,8 @@ def main():
     
     lbl06_text = (
         "🗄️ DF 2.2: MARIADB (SQL) -> MONGODB (NOSQL) MIGRAZIOA\n\n"
-        "• Klasikoa: SplitText + ExtractText -> 12.435 FlowFile sortzen dira ilaran. Baliabide asko kontsumitzen ditu.\n"
-        "• Record-Oriented: PutMongoRecord zuzena -> FlowFile bakarra streamingean, %90 azkarrago eta Heap memoria askoz egonkorrago!"
+        "• Klasikoa: SplitText + ExtractText -> erregistro bakoitzeko FlowFile bat sor dezake; kopurua datuen araberakoa da.\n"
+        "• Record-Oriented: PutMongoRecord bidea; throughput eta heap portaera esperimentalki neurtu behar dira."
     )
     create_label(token, pg06_id, lbl06_text, x=80, y=40, width=1040, height=90, bg_color="#fadbd8", font_size="12pt")
 
@@ -448,14 +430,14 @@ def main():
 
     lbl07_text = (
         "🏅 MEDALLION DATA LAKE ARKITEKTURA (DF 2.3)\n\n"
-        "• 🥉 Bronze Geruza: AEMET-etik jasotako JSON gordinak (Raw Data) fitxategi lokalean gorde jatorrizko egoeran.\n"
-        "• 🥈 Silver Geruza: Datu garbituak, egituratuak eta normalizatuak MongoDB NoSQL bilduman indexatuta.\n"
-        "• 🥇 Gold Geruza: Kontsulta analitikoetarako datu agregatu eta estatistikoak (QueryRecord / MergeContent)."
+        "• 🥉 Bronze Geruza: AEMET erantzun gordina S3 bucket-ean gordetzeko diseinua.\n"
+        "• 🥈 Silver Geruza: eremu-mapaketa benetako AEMET payload-arekin balioztatzeke.\n"
+        "• 🥇 Gold Geruza: QueryRecord/Parquet/Mongo bidea diseinatuta, runtime-an balioztatzeke."
     )
     create_label(token, root_id, lbl07_text, x=620, y=790, width=940, height=175, bg_color="#f9ebea", font_size="12pt")
 
     print("\n=================================================================")
-    print("🎉 GUZTIA ONGI KARGATU DA! NI-FI CANVAS-A PREST DAGO!")
+    print("Fluxuak API bidez inportatu dira; processor, zerbitzu eta datu-bideak runtime-an balioztatu behar dira.")
     print(f"👉 Sartu hemen ikusteko: {NIFI_URL}/nifi/")
     print("=================================================================")
 

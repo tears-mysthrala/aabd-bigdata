@@ -24,7 +24,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Keep Path": "false",
@@ -35,14 +35,15 @@
           "Maximum Number of Entries": "1000",
           "Minimum Group Size": "0 B",
           "Tar Modified Time": "${file.lastModifiedTime}",
-          "Delimiter Strategy": "Do Not Use Delimiters",
+          "Delimiter Strategy": "Text",
           "Header": null,
           "Merge Format": "Binary Concatenation",
-          "Max Bin Age": "2 sec",
+          "Max Bin Age": "30 sec",
           "Footer": null,
           "Correlation Attribute Name": null,
           "Bin Termination Check": null,
-          "Minimum Number of Entries": "1",
+          "Minimum Number of Entries": "5",
+          "Demarcator File": "\n",
           "mergecontent-metadata-strategy": "Do Not Merge Uncommon Metadata",
           "Maximum number of Bins": "5"
         },
@@ -243,20 +244,20 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Enable Unicode Predefined Character Classes": "false",
           "Permit Whitespace and Comments in Pattern": "false",
           "mezua": "(.*)",
           "Enable Unicode-aware Case Folding": "false",
-          "Enable DOTALL Mode": "false",
+          "Enable DOTALL Mode": "true",
           "Enable Unix Lines Mode": "false",
           "Maximum Buffer Size": "1 MB",
           "Enable Canonical Equivalence": "false",
           "Enable Case-insensitive Matching": "false",
           "Enable Multiline Mode": "false",
-          "Maximum Capture Group Length": "1024",
+          "Maximum Capture Group Length": "65536",
           "Enable Literal Parsing of the Pattern": "false",
           "Character Set": "UTF-8",
           "Include Capture Group 0": "false",
@@ -410,13 +411,13 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Attributes Regular Expression": null,
           "Destination": "flowfile-content",
           "Null Value": "false",
-          "Attributes List": "mezua,mota,data",
+          "Attributes List": "mezua,mota,fecha",
           "Pretty Print": "false",
           "Include Core Attributes": "false",
           "JSON Handling Strategy": "ESCAPED"
@@ -496,7 +497,7 @@
         "identifier": "08db6d6a-51f3-3145-95cb-3f66e30c74b9",
         "instanceIdentifier": "b40ab75f-01a0-1000-cd87-f9ead501519b",
         "name": "UpdateAttribute",
-        "comments": "5. Metadatuak erantsi: ingesta_data eta larritasuna = 'KRITIKOA'.",
+        "comments": "5. Metadatuak erantsi: fecha eta mota.",
         "position": {
           "x": 1450.0,
           "y": 460.0
@@ -505,11 +506,11 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-update-attribute-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Delete Attributes Expression": null,
-          "data": "${now():format(\"yyyy-MM-dd HH:mm:ss\")}",
+          "fecha": "${now():format(\"yyyy-MM-dd HH:mm:ss\")}",
           "Store State": "Do not store state",
           "Cache Value Lookup Cache Size": "100",
           "Stateful Variables Initial Value": null,
@@ -523,9 +524,9 @@
             "sensitive": false,
             "dynamic": false
           },
-          "data": {
-            "name": "data",
-            "displayName": "data",
+          "fecha": {
+            "name": "fecha",
+            "displayName": "fecha",
             "identifiesControllerService": false,
             "sensitive": false,
             "dynamic": true
@@ -592,7 +593,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-mongodb-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Upsert": "false",
@@ -712,7 +713,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "HTTP Headers for Attributes": null,
@@ -899,7 +900,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Content Buffer Size": "1 MB",

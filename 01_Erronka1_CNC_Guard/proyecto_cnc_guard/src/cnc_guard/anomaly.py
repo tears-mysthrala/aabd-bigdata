@@ -45,8 +45,3 @@ def anomaly_score(
     dec = model.decision_function(scaler.transform(X))
     norm = (dec - dmin) / (dmax - dmin) if dmax > dmin else np.zeros_like(dec)
     return np.clip(1.0 - norm, 0.0, 1.0)
-
-
-def riesgo_final(fuzzy01: float, anomaly01: float) -> float:
-    """Fusioa: max (alarma bietako batek piztuz gero). [0, 1]."""
-    return float(max(min(fuzzy01, 1.0), min(anomaly01, 1.0)))

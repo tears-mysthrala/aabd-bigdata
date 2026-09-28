@@ -15,7 +15,7 @@
         "identifier": "912dc18b-660a-3ff2-a37b-556b89d302d9",
         "instanceIdentifier": "b40547a1-01a0-1000-3127-635124e71032",
         "name": "FitxategiaBerrizendatu",
-        "comments": "4. Metadatuak ezarri: fitxategi izena ${filename:substringBeforeLast('.')}_nagusiak.csv.",
+        "comments": "4. Fitxategi-izenean UUID eta uneko denbora gehitu.",
         "position": {
           "x": 1450.0,
           "y": 180.0
@@ -24,7 +24,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-update-attribute-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Delete Attributes Expression": null,
@@ -94,7 +94,7 @@
         "identifier": "9c2c51bd-ecd5-334d-a7b2-82a7bc2dff24",
         "instanceIdentifier": "b4054743-01a0-1000-fbd3-3b8703bfbcf0",
         "name": "SQLkontsulta",
-        "comments": "3. Calcite SQL kontsulta: SELECT * FROM FLOWFILE WHERE CAST(adina AS INT) >= 18.",
+        "comments": "3. QueryRecord: COUNTRY = 'France' AND Units > 1.",
         "position": {
           "x": 1000.0,
           "y": 180.0
@@ -103,7 +103,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "FrantziaGehiago1": "SELECT * FROM FLOWFILE WHERE COUNTRY = 'France' and Units > 1",
@@ -191,7 +191,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Keep Source File": "false",
@@ -315,7 +315,7 @@
         "identifier": "1e7b2f87-349a-3d1a-b4a9-7870f4462126",
         "instanceIdentifier": "b40546b6-01a0-1000-1d1f-41b68601e4d4",
         "name": "CSVtikFFra",
-        "comments": "2. Lerro bakoitzeko FlowFile bana sortu (Records Per Split = 1).",
+        "comments": "2. Erregistro bakoitzeko FlowFile bana sortu (Records Per Split = 1).",
         "position": {
           "x": 550.0,
           "y": 180.0
@@ -324,7 +324,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Record Writer": "e4b1c04c-a99d-3ac0-bc4e-53ad35ee4f2f",
@@ -379,7 +379,7 @@
         "identifier": "9a5ff6bd-5f6b-3c4d-9afe-68fb3c2d6498",
         "instanceIdentifier": "b40547c9-01a0-1000-f0ec-36ad7c078322",
         "name": "FitxategiaJarri",
-        "comments": "5. Iragazitako FlowFile-ak /irteera/aldaera1 karpetan gorde.",
+        "comments": "5. Iragazitako FlowFile-ak /irteera karpetan gorde.",
         "position": {
           "x": 1900.0,
           "y": 180.0
@@ -388,7 +388,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-standard-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Group": null,
@@ -642,7 +642,7 @@
     "labels": [
       {
         "identifier": "master-flow_02_csv_datuak_iragazi_aldaera1.json",
-        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \u26a1 LABORATEGIA 02: CSV DATUAK IRAGAZI - ALDAERA 1: SPLITRECORD (1 LERRO/FLOWFILE)                        \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura Klasikoa: CSV osoa lerroz lerro zatitu FlowFile indibidualetan \u2794 SQL bidez adina >= 18 iragazi \u2794 Diskoan gorde",
+        "label": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                                \u26a1 LABORATEGIA 02: CSV DATUAK IRAGAZI - ALDAERA 1: SPLITRECORD (ERREGISTRO 1/FLOWFILE)                        \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\u2022 Arkitektura Klasikoa: CSV erregistro bakoitza FlowFile batean \u2794 France eta Units > 1 iragazi \u2794 Diskoan gorde",
         "position": {
           "x": 60.0,
           "y": 15.0
@@ -736,7 +736,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-record-serialization-services-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "CSV Format": "custom",
@@ -951,7 +951,7 @@
             "bundle": {
               "group": "org.apache.nifi",
               "artifact": "nifi-standard-services-api-nar",
-              "version": "2.12.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -969,7 +969,7 @@
         "bundle": {
           "group": "org.apache.nifi",
           "artifact": "nifi-record-serialization-services-nar",
-          "version": "2.12.0"
+          "version": "2.0.0"
         },
         "properties": {
           "Schema Branch": null,
@@ -1164,7 +1164,7 @@
             "bundle": {
               "group": "org.apache.nifi",
               "artifact": "nifi-standard-services-api-nar",
-              "version": "2.12.0"
+              "version": "2.0.0"
             }
           }
         ],

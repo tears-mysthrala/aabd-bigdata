@@ -4,8 +4,9 @@ Diseinua `soluzioak/Ebazpena_CNC_Guard_eta_AA_Ereduak.md` 3. atalean.
 Inplementazio propioa numpy-rekin (ez dakar menpekotasun berririk):
 trian/trapezio kide-funtzioak, MIN t-norma, MAX agregazioa, zentroide defuzzifikazioa.
 
-Higadura ez dator dataset-ean: proxy gisa `txv = tenperatura*bibrazioa` normalizatua
-(estres termo-mekaniko metagarriaren adierazle), [0, 1] tartean.
+Higadura ez dator dataset-ean: `txv = tenperatura*bibrazioa` normalizatua
+erabiltzen da proxy gisa. Une bereko bi neurrietatik eratorria da;
+ez du higadura metatua neurtzen eta bi adarren arteko independentzia mugatzen du.
 """
 
 from __future__ import annotations
@@ -34,7 +35,7 @@ def _tri(x: float, a: float, b: float, c: float) -> float:
 def _trap(x: float, a: float, b: float, c: float, d: float) -> float:
     """Trapezoidala: 0 a-tik behera, 1 [b, c]-n, 0 d-tik gora."""
     x = float(x)
-    if x <= a or x >= d:
+    if x < a or x > d:
         return 0.0
     if b <= x <= c:
         return 1.0

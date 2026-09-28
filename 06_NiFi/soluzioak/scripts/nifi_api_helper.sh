@@ -2,16 +2,22 @@
 # Apache NiFi REST API Helper Script
 # Based on Section 06 of 01_02_ApacheNifi_aurreratua.pdf
 
-set -e
+set -euo pipefail
 
 NIFI_URL="${NIFI_URL:-https://localhost:8443}"
-USER="${NIFI_USER:-nifi}"
 # Sin contraseña por defecto: NIFI_PASS en entorno/.env (SECURITY.md).
 if [ -z "${NIFI_PASS:-}" ]; then
     echo "Falta NIFI_PASS en entorno (cárgala desde .env)." >&2
     exit 1
 fi
-PASS="$NIFI_PASS"
+if [[ "$NIFI_URL" != https://* ]]; then
+    echo "NIFI_URL debe usar HTTPS." >&2
+    exit 1
+fi
+CURL_TLS=()
+if [[ -n "${NIFI_CA_CERT:-}" ]]; then
+    CURL_TLS=(--cacert "$NIFI_CA_CERT")
+fi
 
 usage() {
     echo "Usage: $0 {token | list-pg | start <UUID> | stop <UUID> | status <UUID>}"
@@ -26,11 +32,13 @@ usage() {
 }
 
 get_token() {
-    curl -sk -X POST "$NIFI_URL/nifi-api/access/token" \
-        -d "username=$USER&password=$PASS"
+    python3 -c 'import os, urllib.parse; print(urllib.parse.urlencode({"username": os.environ.get("NIFI_USER", "nifi"), "password": os.environ["NIFI_PASS"]}), end="")' |
+        curl --fail-with-body --silent --show-error "${CURL_TLS[@]}" \
+            -X POST "$NIFI_URL/nifi-api/access/token" \
+            -H "Content-Type: application/x-www-form-urlencoded" --data-binary @-
 }
 
-CMD="$1"
+CMD="${1:-}"
 case "$CMD" in
     token)
         TOKEN=$(get_token)
@@ -39,7 +47,7 @@ case "$CMD" in
     list-pg)
         TOKEN=$(get_token)
         echo "Retrieving process groups..."
-        curl -sk -H "Authorization: Bearer $TOKEN" "$NIFI_URL/nifi-api/flow/process-groups/root" | \
+        curl --fail-with-body --silent --show-error "${CURL_TLS[@]}" -H "Authorization: Bearer $TOKEN" "$NIFI_URL/nifi-api/flow/process-groups/root" | \
             python3 -c "
 import sys, json
 try:
@@ -63,41 +71,41 @@ except Exception as e:
 "
         ;;
     start)
-        PG_UUID="$2"
+        PG_UUID="${2:-}"
         [ -z "$PG_UUID" ] && usage
         TOKEN=$(get_token)
         echo "Starting process group $PG_UUID..."
-        curl --tlsv1.2 -sk \
+        curl --fail-with-body --silent --show-error "${CURL_TLS[@]}" \
             -H "Authorization: Bearer $TOKEN" \
             -H "Content-Type: application/json" \
             -X PUT \
             -d "{\"id\":\"$PG_UUID\",\"state\":\"RUNNING\"}" \
             "$NIFI_URL/nifi-api/flow/process-groups/$PG_UUID" | \
-            python3 -m json.tool || true
+            python3 -m json.tool
         echo ""
         ;;
     stop)
-        PG_UUID="$2"
+        PG_UUID="${2:-}"
         [ -z "$PG_UUID" ] && usage
         TOKEN=$(get_token)
         echo "Stopping process group $PG_UUID..."
-        curl --tlsv1.2 -sk \
+        curl --fail-with-body --silent --show-error "${CURL_TLS[@]}" \
             -H "Authorization: Bearer $TOKEN" \
             -H "Content-Type: application/json" \
             -X PUT \
             -d "{\"id\":\"$PG_UUID\",\"state\":\"STOPPED\"}" \
             "$NIFI_URL/nifi-api/flow/process-groups/$PG_UUID" | \
-            python3 -m json.tool || true
+            python3 -m json.tool
         echo ""
         ;;
     status)
-        PG_UUID="$2"
+        PG_UUID="${2:-}"
         [ -z "$PG_UUID" ] && usage
         TOKEN=$(get_token)
-        curl -sk \
+        curl --fail-with-body --silent --show-error "${CURL_TLS[@]}" \
             -H "Authorization: Bearer $TOKEN" \
             "$NIFI_URL/nifi-api/flow/process-groups/$PG_UUID/status" | \
-            python3 -m json.tool || true
+            python3 -m json.tool
         ;;
     *)
         usage

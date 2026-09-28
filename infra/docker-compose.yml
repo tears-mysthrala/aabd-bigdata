@@ -4,7 +4,7 @@
 #   1. aquí:            docker compose up -d        (crea la red + kafka + nginx)
 #   2. cada lab:        docker compose up -d        (se enchufan a la red externa)
 # UI NiFi: https://nifi.bigdata.local/nifi (vía nginx) o https://localhost:8443/nifi (directo)
-# Kafka: localhost:${KAFKA_PORT:-9092} (texto plano, sin auth, SOLO-LAB, solo loopback)
+# Kafka: host localhost:${KAFKA_PORT:-9092}; red Docker kafka:9092 (texto plano, sin auth).
 name: iabd-infra
 
 services:
@@ -16,16 +16,17 @@ services:
       kafka:
         condition: service_started
     ports:
-      - "${NGINX_HTTP_PORT:-80}:80"
-      - "${NGINX_HTTPS_PORT:-443}:443"
+      - "127.0.0.1:${NGINX_HTTP_PORT:-80}:80"
+      - "127.0.0.1:${NGINX_HTTPS_PORT:-443}:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/bigdata.conf:ro
       - ./certs/bigdata.local.crt:/etc/nginx/certs/bigdata.local.crt:ro
       - ./certs/bigdata.local.key:/etc/nginx/certs/bigdata.local.key:ro
+      - ./certs/ca.crt:/etc/nginx/certs/ca.crt:ro
     networks:
       - iabd-infra
     healthcheck:
-      test: ["CMD-SHELL", "curl -kf -L -H 'Host: nifi.bigdata.local' https://127.0.0.1/ || exit 1"]
+      test: ["CMD-SHELL", "curl -fL --cacert /etc/nginx/certs/ca.crt --resolve nifi.bigdata.local:443:127.0.0.1 https://nifi.bigdata.local/nifi/ || exit 1"]
       interval: 15s
       timeout: 5s
       retries: 6
@@ -37,15 +38,16 @@ services:
     restart: unless-stopped
     ports:
       # Solo loopback: Kafka en texto plano sin auth es solo-lab.
-      - "127.0.0.1:${KAFKA_PORT:-9092}:9092"
+      - "127.0.0.1:${KAFKA_PORT:-9092}:29092"
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
-      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENERS: INTERNAL://:9092,EXTERNAL://:29092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://localhost:${KAFKA_PORT:-9092}
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1

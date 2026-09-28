@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enpresan Gehien Erabiltzen diren 9 ML Ereduak</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #fff; padding: 20px; color: #333; margin: 0; }
+        .container { max-width: 1300px; margin: 0 auto; position: relative; }
+        
+        /* Top Question Node */
+        .question-node { background: #111b3d; color: #fff; text-align: center; border-radius: 12px; padding: 15px 30px; font-size: 18px; font-weight: bold; width: max-content; margin: 0 auto 30px auto; position: relative; z-index: 10; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .question-node i { display: block; font-size: 32px; margin-top: 10px; color: #ccc; }
+        
+        /* Central Node */
+        .center-node { background: #0c1a3b; color: white; text-align: center; border-radius: 12px; padding: 20px; width: 320px; position: absolute; left: 50%; top: 180px; transform: translateX(-50%); z-index: 10; border: 3px solid #1c356b; box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+        .center-node h2 { font-size: 16px; margin: 0 0 5px 0; color: #fff; font-weight: normal; }
+        .center-node h1 { font-size: 38px; margin: 0 0 5px 0; line-height: 1.1; color: #fff; }
+        .center-node .highlight { color: #f4b000; font-size: 15px; font-weight: bold; margin-bottom: 15px; display: block; text-transform: uppercase; }
+        .center-node p { font-size: 14px; color: #d0d5df; margin: 0; border-top: 1px dashed #334; padding-top: 10px; }
+        .center-node p i { margin-right: 5px; font-size: 18px; }
+        
+        /* Main Layout */
+        .columns { display: flex; justify-content: space-between; position: relative; z-index: 5; }
+        .col-left { width: 44%; display: flex; flex-direction: column; gap: 20px; padding-right: 50px; }
+        .col-right { width: 44%; display: flex; flex-direction: column; gap: 20px; padding-left: 50px; }
+        
+        /* Box Styles */
+        .box { border: 2px solid; border-radius: 12px; background: #fff; overflow: hidden; }
+        .box-header { padding: 10px 15px; font-weight: bold; color: #fff; display: flex; align-items: center; font-size: 16px; text-transform: uppercase; }
+        .box-header .num { background: #fff; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px; font-size: 14px; font-weight: bold; }
+        .box-header i { margin-left: auto; font-size: 20px; }
+        
+        .blue { border-color: #275696; } .blue .box-header { background: #275696; } .blue .num { color: #275696; }
+        .purple { border-color: #63328e; } .purple .box-header { background: #63328e; } .purple .num { color: #63328e; }
+        .orange { border-color: #df7b3e; } .orange .box-header { background: #df7b3e; } .orange .num { color: #df7b3e; } .orange .box-header i { margin-right: 10px; margin-left: 0; }
+        .green { border-color: #2b7c31; } .green .box-header { background: #2b7c31; } .green .num { color: #2b7c31; }
+        .navy { border-color: #17355e; } .navy .box-header { background: #17355e; } .navy .num { color: #17355e; }
+        
+        .box-content { padding: 15px; background: #fff; }
+        
+        /* Model Card Styles */
+        .model-card { border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 15px; background: #fff; }
+        .model-card:last-child { margin-bottom: 0; }
+        .model-header { padding: 8px 15px; font-weight: bold; font-size: 15px; display: flex; align-items: center; border-bottom: 1px solid #e0e0e0; text-transform: uppercase; }
+        .model-header .num { color: #fff; border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px; font-size: 13px; }
+        .blue .model-header .num { background: #275696; }
+        .purple .model-header .num { background: #63328e; }
+        .orange .model-header .num { background: #df7b3e; }
+        .green .model-header .num { background: #2b7c31; }
+        .navy .model-header .num { background: #17355e; }
+        
+        .model-body { display: flex; padding: 12px; gap: 15px; align-items: center; }
+        .model-icon { width: 80px; text-align: center; font-size: 45px; color: #555; display: flex; justify-content: center; align-items: center; }
+        .model-info { flex: 1; font-size: 13px; line-height: 1.4; }
+        .info-item { margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
+        .info-item:last-child { margin-bottom: 0; }
+        .info-item i { margin-top: 2px; }
+        .fa-star { color: #17355e; }
+        .fa-thumbs-up { color: #2b7c31; }
+        .fa-exclamation-triangle { color: #f4b000; }
+        
+        .model-class { border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px; text-align: center; width: 150px; background: #fdfdfd; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: inset 0 0 5px rgba(0,0,0,0.02); }
+        .model-class .tag { color: #275696; font-weight: bold; font-size: 13px; margin-bottom: 5px; }
+        .model-class code { font-family: Consolas, Monaco, monospace; font-size: 11px; word-break: break-all; color: #222; }
+        .model-class .note { font-size: 10px; color: #666; margin-top: 5px; line-height: 1.2; }
+        
+        /* Bottom Sections */
+        .bottom-section { margin-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+        
+        .rules { border: 2px solid #df7b3e; border-radius: 12px; padding: 15px 25px; }
+        .rules-title { color: #df7b3e; font-weight: bold; font-size: 16px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
+        .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 40px; font-size: 13px; }
+        .rule { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f0f0f0; padding-bottom: 6px; }
+        .rule-q { display: flex; align-items: center; gap: 8px; color: #333; }
+        .rule-q i { width: 16px; text-align: center; color: #666; }
+        .rule-a { font-weight: bold; color: #275696; display: flex; align-items: center; gap: 5px; }
+        
+        .use-cases { border: 2px solid #17355e; border-radius: 12px; padding: 15px 25px; margin-bottom: 20px;}
+        .uc-title { color: #17355e; font-weight: bold; text-align: center; font-size: 16px; margin-bottom: 20px; text-transform: uppercase; }
+        .uc-grid { display: flex; justify-content: space-between; text-align: center; }
+        .uc-item { flex: 1; display: flex; flex-direction: column; align-items: center; font-size: 13px; font-weight: bold; color: #17355e; }
+        .uc-item i { font-size: 36px; margin-bottom: 10px; color: #17355e; }
+        .uc-item.red i { color: #d32f2f; }
+        .uc-item.yellow i { color: #f4b000; }
+        
+        .footer { background: #0c1a3b; color: white; padding: 15px 20px; font-size: 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+        
+        /* Connections/Arrows Placeholder */
+        /* To keep the implementation clean and fully responsive, SVG lines could be added, but standard layout is sufficient to convey the structure. */
+        
+        @media (max-width: 1100px) {
+            .center-node { position: relative; left: auto; top: auto; transform: none; margin: 0 auto 30px auto; width: 80%; }
+            .col-left { padding-right: 0; }
+            .col-right { padding-left: 0; }
+            .columns { flex-direction: column; }
+            .col-left, .col-right { width: 100%; }
+            .rules-grid { grid-template-columns: 1fr; }
+            .uc-grid { flex-wrap: wrap; gap: 20px; }
+            .uc-item { min-width: 30%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="question-node">
+        Zer ebatzi nahi duzu?
+        <i class="fa-solid fa-brain"></i>
+    </div>
+    
+    <div class="center-node">
+        <h2>ENPRESAN GEHIEN ERABILTZEN DIREN</h2>
+        <h1>MACHINE LEARNING</h1>
+        <span class="highlight">-EKO 9 EREDUAK</span>
+        <p><i class="fa-regular fa-building"></i> Zein algoritmo eta zein klase erabili jakiteko mapa mental praktikoa</p>
+    </div>
+
+    <div class="columns">
+        
+        <!-- LEFT COLUMN -->
+        <div class="col-left">
+            <!-- Box 1 -->
+            <div class="box blue">
+                <div class="box-header"><span class="num">1</span> ZENBAKI BAT AURREIKUSI <i class="fa-solid fa-chart-line"></i></div>
+                <div class="box-content">
+                    <div class="model-card">
+                        <div class="model-header"><span class="num">1</span> ERREGRESIO LINEALA</div>
+                        <div class="model-body">
+                            <div class="model-icon"><i class="fa-solid fa-chart-line"></i></div>
+                            <div class="model-info">
+                                <div class="info-item"><i class="fa-solid fa-star"></i> <span><strong>Erabilera-kasua:</strong> salmenten, prezioen eta eskariaren forecasting-a.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-thumbs-up"></i> <span><strong>Gune indartsuak:</strong> sinplea, azkarra, interpretagarria.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-exclamation-triangle"></i> <span><strong>Muga:</strong> erlazio linealak suposatzen ditu.</span></div>
+                            </div>
+                            <div class="model-class">
+                                <div class="tag">&lt;/&gt; Klasea</div>
+                                <code>sklearn.linear_model.<br>LinearRegression</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box 3 -->
+            <div class="box purple">
+                <div class="box-header"><span class="num">3</span> TESTUAREKIN LAN EGIN <i class="fa-regular fa-comment-dots"></i></div>
+                <div class="box-content">
+                    <div class="model-card">
+                        <div class="model-header"><span class="num">4</span> NAIVE BAYES</div>
+                        <div class="model-body">
+                            <div class="model-icon"><i class="fa-regular fa-envelope"></i></div>
+                            <div class="model-info">
+                                <div class="info-item"><i class="fa-solid fa-star"></i> <span><strong>Erabilera-kasua:</strong> spama, sentimendua, iritziak.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-thumbs-up"></i> <span><strong>Gune indartsuak:</strong> azkarra eta erabilgarria testuekin.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-exclamation-triangle"></i> <span><strong>Muga:</strong> hitzen arteko independentzia suposatzen du.</span></div>
+                            </div>
+                            <div class="model-class">
+                                <div class="tag">&lt;/&gt; Klasea</div>
+                                <code>sklearn.naive_bayes.<br>MultinomialNB</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="height: 50px;"></div> <!-- Spacer for center node -->
+
+            <!-- Box Segment -->
+            <div class="box orange">
+                <div class="box-header"><i class="fa-solid fa-users"></i> ETIKETARIK GABE SEGMENTATU</div>
+                <div class="box-content">
+                    <div class="model-card">
+                        <div class="model-header"><span class="num">5</span> K-MEANS</div>
+                        <div class="model-body">
+                            <div class="model-icon"><i class="fa-solid fa-circle-nodes"></i></div>
+                            <div class="model-info">
+                                <div class="info-item"><i class="fa-solid fa-star"></i> <span><strong>Erabilera-kasua:</strong> bezeroen eta talde naturalen segmentazioa.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-thumbs-up"></i> <span><strong>Gune indartsuak:</strong> sinplea, azkarra, oso erabilia.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-exclamation-triangle"></i> <span><strong>Muga:</strong> K aukeratu behar da; sentikorra outlier-ekiko.</span></div>
+                            </div>
+                            <div class="model-class">
+                                <div class="tag">&lt;/&gt; Klasea</div>
+                                <code>sklearn.cluster.<br>KMeans</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="col-right">
+            <!-- Box 2 -->
+            <div class="box green">
+                <div class="box-header"><span class="num">2</span> BAI/EZ EDO KATEGORIAK SAILKATU <i class="fa-solid fa-bullseye"></i></div>
+                <div class="box-content">
+                    <div class="model-card">
+                        <div class="model-header"><span class="num">2</span> ERREGRESIO LOGISTIKOA</div>
+                        <div class="model-body">
+                            <div class="model-icon"><i class="fa-solid fa-wave-square"></i></div>
+                            <div class="model-info">
+                                <div class="info-item"><i class="fa-solid fa-star"></i> <span><strong>Erabilera-kasua:</strong> churn-a, iruzurra, joera.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-thumbs-up"></i> <span><strong>Gune indartsuak:</strong> probabilitate interpretagarriak, eskalagarria.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-exclamation-triangle"></i> <span><strong>Muga:</strong> muga lineala.</span></div>
+                            </div>
+                            <div class="model-class">
+                                <div class="tag">&lt;/&gt; Klasea</div>
+                                <code>sklearn.linear_model.<br>LogisticRegression</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card">
+                        <div class="model-header"><span class="num">3</span> KNN</div>
+                        <div class="model-body">
+                            <div class="model-icon"><i class="fa-solid fa-bullseye"></i></div>
+                            <div class="model-info">
+                                <div class="info-item"><i class="fa-solid fa-star"></i> <span><strong>Erabilera-kasua:</strong> antzekotasun bidezko sailkapena, oinarrizko gomendioa.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-thumbs-up"></i> <span><strong>Gune indartsuak:</strong> intuitiboa, ulertzeko erraza.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-exclamation-triangle"></i> <span><strong>Muga:</strong> motela bolumen handietan eta eskalarekiko sentikorra.</span></div>
+                            </div>
+                            <div class="model-class">
+                                <div class="tag">&lt;/&gt; Klasea</div>
+                                <code>sklearn.neighbors.<br>KNeighborsClassifier</code>
+                                <div class="note">Oharra: aukeran KNeighborsRegressor ere badago.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box 5 -->
+            <div class="box navy">
+                <div class="box-header"><span class="num">5</span> POTENTZIA GEHIAGO BEHAR DUZUNEAN <i class="fa-solid fa-rocket"></i></div>
+                <div class="box-content">
+                    
+                    <div class="model-card">
+                        <div class="model-header"><span class="num">6</span> ERABAKI-ZUHAITZA</div>
+                        <div class="model-body">
+                            <div class="model-icon"><i class="fa-solid fa-sitemap"></i></div>
+                            <div class="model-info">
+                                <div class="info-item"><i class="fa-solid fa-star"></i> <span><strong>Erabilera-kasua:</strong> negozio-arauak, scoring-a, aurreikuspen interpretagarria.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-thumbs-up"></i> <span><strong>Gune indartsuak:</strong> oso azalgarria, ez-linealtasunak jasotzen ditu.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-exclamation-triangle"></i> <span><strong>Muga:</strong> hauskorra / gaindoikuntza (overfitting).</span></div>
+                            </div>
+                            <div class="model-class">
+                                <div class="tag">&lt;/&gt; Klasea</div>
+                                <code>sklearn.tree.<br>DecisionTreeClassifier<br>/ DecisionTreeRegressor</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card">
+                        <div class="model-header"><span class="num">7</span> RANDOM FOREST</div>
+                        <div class="model-body">
+                            <div class="model-icon"><i class="fa-solid fa-network-wired"></i></div>
+                            <div class="model-info">
+                                <div class="info-item"><i class="fa-solid fa-star"></i> <span><strong>Erabilera-kasua:</strong> aurreikuspen sendoa eta egonkorra.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-thumbs-up"></i> <span><strong>Gune indartsuak:</strong> gaindoikuntza murrizten du, errendimendu ona.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-exclamation-triangle"></i> <span><strong>Muga:</strong> ez da hain interpretagarria.</span></div>
+                            </div>
+                            <div class="model-class">
+                                <div class="tag">&lt;/&gt; Klasea</div>
+                                <code>sklearn.ensemble.<br>RandomForestClassifier<br>/ RandomForestRegressor</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card">
+                        <div class="model-header"><span class="num">8</span> XGBOOST</div>
+                        <div class="model-body">
+                            <div class="model-icon"><i class="fa-solid fa-chart-simple" style="color: #4CAF50;"></i></div>
+                            <div class="model-info">
+                                <div class="info-item"><i class="fa-solid fa-star"></i> <span><strong>Erabilera-kasua:</strong> zehaztasun maximoa datu tabularretan.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-thumbs-up"></i> <span><strong>Gune indartsuak:</strong> oso ahaltsua, errendimendu handia.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-exclamation-triangle"></i> <span><strong>Muga:</strong> tuning (doikuntza) gehiago eta azalgarritasun txikiagoa.</span></div>
+                            </div>
+                            <div class="model-class">
+                                <div class="tag">&lt;/&gt; Klasea</div>
+                                <code>xgboost.<br>XGBClassifier<br>/ XGBRegressor</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card">
+                        <div class="model-header"><span class="num">9</span> LIGHTGBM</div>
+                        <div class="model-body">
+                            <div class="model-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                            <div class="model-info">
+                                <div class="info-item"><i class="fa-solid fa-star"></i> <span><strong>Erabilera-kasua:</strong> bolumen handiak eta abiadura.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-thumbs-up"></i> <span><strong>Gune indartsuak:</strong> azkarra, efizientea, eskalagarria.</span></div>
+                                <div class="info-item"><i class="fa-solid fa-exclamation-triangle"></i> <span><strong>Muga:</strong> ez da hain interpretagarria eta tuning-a eskatzen du.</span></div>
+                            </div>
+                            <div class="model-class">
+                                <div class="tag">&lt;/&gt; Klasea</div>
+                                <code>lightgbm.<br>LGBMClassifier<br>/ LGBMRegressor</code>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Bottom Rules and Use Cases -->
+    <div class="bottom-section">
+        
+        <div class="rules">
+            <div class="rules-title"><i class="fa-solid fa-bolt"></i> HAUTAKETA-ARAU AZKARRA</div>
+            <div class="rules-grid">
+                <div class="rule">
+                    <div class="rule-q"><i class="fa-solid fa-chart-line"></i> Irteera zenbaki bat da?</div>
+                    <div class="rule-a"><i class="fa-solid fa-arrow-right"></i> Erregresio Lineala</div>
+                </div>
+                <div class="rule">
+                    <div class="rule-q"><i class="fa-solid fa-sitemap"></i> Azalgarritasuna behar duzu?</div>
+                    <div class="rule-a"><i class="fa-solid fa-arrow-right"></i> Erabaki-Zuhaitza</div>
+                </div>
+                <div class="rule">
+                    <div class="rule-q"><i class="fa-regular fa-circle-check"></i> Irteera bai/ez da?</div>
+                    <div class="rule-a"><i class="fa-solid fa-arrow-right"></i> Erregresio Logistikoa</div>
+                </div>
+                <div class="rule">
+                    <div class="rule-q"><i class="fa-solid fa-shield-halved"></i> Sendotasuna behar duzu?</div>
+                    <div class="rule-a"><i class="fa-solid fa-arrow-right"></i> Random Forest</div>
+                </div>
+                <div class="rule">
+                    <div class="rule-q"><i class="fa-solid fa-user-group"></i> Antzekotasunagatik konparatu nahi duzu?</div>
+                    <div class="rule-a"><i class="fa-solid fa-arrow-right"></i> KNN</div>
+                </div>
+                <div class="rule">
+                    <div class="rule-q"><i class="fa-solid fa-bullseye"></i> Zehaztasun maximoa bilatzen duzu tabularrean?</div>
+                    <div class="rule-a"><i class="fa-solid fa-arrow-right"></i> XGBoost</div>
+                </div>
+                <div class="rule">
+                    <div class="rule-q"><i class="fa-solid fa-font"></i> Zure datu nagusia testua da?</div>
+                    <div class="rule-a"><i class="fa-solid fa-arrow-right"></i> Naive Bayes</div>
+                </div>
+                <div class="rule">
+                    <div class="rule-q"><i class="fa-solid fa-gauge-high"></i> Antzeko zehaztasuna bilatzen duzu abiadura eta eskala handiagoarekin?</div>
+                    <div class="rule-a"><i class="fa-solid fa-arrow-right"></i> LightGBM</div>
+                </div>
+                <div class="rule">
+                    <div class="rule-q"><i class="fa-solid fa-tags"></i> Ez duzu etiketarik?</div>
+                    <div class="rule-a"><i class="fa-solid fa-arrow-right"></i> K-Means</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="use-cases">
+            <div class="uc-title">OHIKO ERABILERA-KASUAK</div>
+            <div class="uc-grid">
+                <div class="uc-item"><i class="fa-solid fa-chart-column"></i> Salmentak /<br>forecasting-a</div>
+                <div class="uc-item"><i class="fa-solid fa-tag"></i> Prezioak</div>
+                <div class="uc-item"><i class="fa-solid fa-user-minus"></i> Churn-a eta<br>joera</div>
+                <div class="uc-item red"><i class="fa-solid fa-circle-exclamation"></i> Iruzurra eta<br>arriskua</div>
+                <div class="uc-item yellow"><i class="fa-solid fa-star"></i> Oinarrizko<br>gomendioa</div>
+                <div class="uc-item"><i class="fa-solid fa-envelope-open-text"></i> Spama eta<br>sentimendua</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <i class="fa-solid fa-star"></i> XGBoost eta LightGBM ez dira scikit-learn-ekoak, baina oso antzeko interfaze batekin erabiltzen dira.
+        </div>
+        
+    </div>
+</div>
+
+</body>
+</html>

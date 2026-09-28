@@ -28,3 +28,33 @@ jupyter lab 5073_2_Datu_Zientzia_PDF_Ariketak.ipynb
 # Edo Python fitxategi interaktiboa exekutatu
 python 5073_2_Datu_Zientzia_PDF_Ariketak.py
 ```
+
+## Azterketarako gogortua (`laguntzaileak.py`, menpekotasun berririk gabe)
+
+`laguntzaileak.py` (stdlib + pandas) CSV tranpak jasaten ditu: encoding okerrak,
+lerro malformituak, zutabe okerrak/hutsak, fitxategi hutsak, ehunka fitxategi,
+koma-dezimalak (`1.234,56 €` → 1234.56; komarik gabe puntua dezimala da).
+Kopiatu fitxategi hori + `pilatu_csvak("data/*.csv", ...)` 3 lerro.
+```bash
+python test_laguntzaileak.py   # 200 fixture zikin: 265 errenkada + 10 txar ✅
+```
+
+
+## Ariketa 2.3 — CSV berria (2026)
+
+`data/bezeroak_zikinak.csv` aurreko adibideak komaz bereizita erabiltzen du. Enuntziatu honetako sarrera berria [datu_zikinak.csv](../../data/mock_datuak/Ariketa%202.3/datu_zikinak.csv) da: puntu eta komaz bereizita dago, eta ez da lehendik dagoen fitxategia ordezten.
+
+- [Python ebazpena](ariketa_2_3_datu_berria.py) eta [koaderno sinkronizatua](ariketa_2_3_datu_berria.ipynb)
+- [Garbiketa-emaitza](data/datu_zikinak_garbia.csv)
+- [Hasierako balio galduen eta prozesuaren laburpena](data/datu_zikinak_laburpena.json)
+
+Emaitzak berreraikitzeko, exekutatu `python ariketa_2_3_datu_berria.py` direktorio honetatik. Soldata hutsik mantentzen da, eta JSONak izen-bikoiztuak kentzeko eta adina betetzeko aukerak azaltzen ditu.
+
+## PDFko datu-ariketen aldaera osagarriak
+
+PDFko ariketa zehatzen beste berrikuspen bat dago [ariketa_pdf_aldaerak.py](ariketa_pdf_aldaerak.py)
+fitxategian eta [koaderno sinkronizatuan](ariketa_pdf_aldaerak.ipynb): seed=42 matrizea,
+PDFko prezio/stock balioak, eta Pandas concat. Hura exekutatzeko, erabili
+`python ariketa_pdf_aldaerak.py` direktorio honetatik. Z-score adibideko 5x4 datuak eta
+`data/pdf_ariketa_2_2_fixtures/`-eko sei salmenta-errenkadak sintetikoak dira; tutoreak
+emandako CSV zehatzak ez dira aurkitu, eta ez dituzte lehendik dauden datasetak ordezten.

@@ -5,14 +5,29 @@ Compat legacy: `materialak/`, `soluzioak/`, `notebooks_compat`, `SBOM_compat`, `
 
 ## Mapa
 
+### Orientación rápida
+
+Este es un repositorio docente de IA y Big Data: combina teoría de clase, ejercicios resueltos, notebooks y laboratorios reproducibles. El material está principalmente en euskera y algunos resúmenes operativos en castellano. Los ejemplos de CNC usan datos sintéticos; los servicios Docker son para laboratorio local, no para producción.
+
+| Para encontrar... | Empieza por... |
+|---|---|
+| La estructura y el arranque general | [README.md](README.md) |
+| Dónde añadir materiales o soluciones | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| Límites y prácticas seguras del repositorio | [SECURITY.md](SECURITY.md) y [00_Transversal/SECURITY.md](00_Transversal/SECURITY.md) |
+| CNC Guard, instalación y validación | [README de CNC Guard](01_Erronka1_CNC_Guard/proyecto_cnc_guard/README.md) |
+| Soluciones de Big Data e ingeniería de datos | `05_BigData_Ingeniaritza/soluzioak/` |
+| Laboratorios NiFi por caso | Los `README.md` dentro de `06_NiFi/soluzioak/` (rutas relativas canónicas desde 2026-09-25) |
+| Kafka y sus pruebas sin broker | [README de Kafka](07_Kafka/soluzioak/README.md) |
+| Infraestructura Docker compartida | [infra/README.md](infra/README.md) |
+
 - `00_Transversal/`: `SECURITY.md`, `SBOM/`, `notebooklm/` (6 artefactos OK), `materialak_00_Orokorra/`
-- `01_Erronka1_CNC_Guard/`: `materialak/` (ANEXO1/4, tortilla PERT), `proyecto_cnc_guard/` (uv + tests), `soluzioak/Ebazpena_CNC_Guard_eta_AA_Ereduak.md` ✅
-- `02_AA_Ereduak_5071/`: `materialak/` (E1 pdfs + 5071 fuzzy) ✅, `soluzioak/` → ver `01/.../Ebazpena` (stub)
-- `03_ML_5072/`: `materialak/` (5072 pdfs) ✅, `soluzioak/` ⏳ PENDIENTE
-- `04_Programazioa_5073/`: `materialak/` (pdfs + notebooks canónicos 12 ficheros) ✅, `soluzioak/` (4 carpetas, asserts ✅), `data/` (katalogoa, git_ariketa_4_2, ariketa_1_1, mock_datuak) ✅
-- `05_BigData_Ingeniaritza/`: `materialak/` + `soluzioak/` (7V Spotify, ETL/ELT, Smart Factory) ✅
-- `06_NiFi/`: `materialak/` (guías 1-7 + salmentak.csv + docker) ✅, `soluzioak/` (7 casos, 13 flows JSON OK) ✅
-- `07_Kafka/`: `materialak/01_03_ApacheKafka.pdf` ✅, `soluzioak/` ⏳ PENDIENTE
+- `01_Erronka1_CNC_Guard/`: `materialak/` (ANEXO1/4 docx+md, tortilla PERT), `proyecto_cnc_guard/` (uv + tests), `soluzioak/Ebazpena_CNC_Guard_eta_AA_Ereduak.md` ✅
+- `02_AA_Ereduak_5071/`: `materialak/` (E1 pdfs + 5071 fuzzy + Etika/Legea + Marko legala + Alborapenak/COMPAS con dataset local) ✅, `soluzioak/` → ver `01/.../Ebazpena` (stub)
+- `03_ML_5072/`: `materialak/` (5072 pdfs + 02_1 Erregresio Lineala + 02_2 Erregresio Logistikoa ppt) ✅, `soluzioak/` (Orange workflows, regresión lineal/logística y prácticas) ✅
+- `04_Programazioa_5073/`: `materialak/` (8 pares `.py/.ipynb`, 16 ficheros); `soluzioak/` (26 ejercicios del PDF de frameworks con código preparado, pendientes de validación runtime/GUI/API, y 25 del cuaderno de Programazioa con solución de referencia sin ejecutar); `data/` (katalogoa, git_ariketa_4_2, ariketa_1_1, mock_datuak y ariketa 3.1).
+- `05_BigData_Ingeniaritza/`: `materialak/` (actualizados 01_02 y ariketak v2 con Faker/Parquet/formatos) + `soluzioak/` (7V Spotify, ETL/ELT, Smart Factory) ✅
+- `06_NiFi/`: `materialak/` (guías 1-7 actualizadas + salmentak.csv + docker) ✅, `soluzioak/` (7 casos, 11 archivos `flow_*.json`) ✅
+- `07_Kafka/`: `materialak/01_03_ApacheKafka.pdf` (actualizado v2 con Producer Python) ✅, `soluzioak/` ✅
 - `_archivo_legacy/`: `notebooks_root_duplicado/`, `NiFi_duplicado_06_viejo/`, READMEs originales, `deskargatu_berriak/`
 
 ## Estado (2026-09-22, stacks reales levantados ✅)
@@ -73,3 +88,7 @@ eta fluxuak NiFi UI-n inportatu (`06_NiFi/soluzioak/scripts/`).
 ## Regla futura
 
 Nuevo material → va a su `0X/materialak/`. Nueva solución → a su `0X/soluzioak/`. Nada en raíz salvo este índice. No revivir `data/`, `git/`, `erronka1/` sueltos.
+
+## Auditoría de ejercicios
+
+[Matriz de cobertura de ejercicios](00_Transversal/AUDITORIA_EJERCICIOS.md): enunciados, resultados, verificación, duplicados de archivo y dependencias pendientes.

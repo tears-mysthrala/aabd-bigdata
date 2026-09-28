@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ENV_FILE="$DIR/../06_MariaDB_MongoDB_Laborategia_DF2.2/.env"
 [ -f "$ENV_FILE" ] && set -a && . "$ENV_FILE" && set +a
 
 echo "=== Testing Apache NiFi Advanced (Aurreratua) Environment ==="
+CURL_TLS=()
+if [ -n "${NIFI_CA_CERT:-}" ]; then
+    CURL_TLS=(--cacert "$NIFI_CA_CERT")
+fi
 
 echo -n "1. Checking Docker containers: "
 nifi_name="iabd-nifi"
@@ -26,7 +30,7 @@ else
 fi
 
 echo -n "2. Checking NiFi Web UI (https://localhost:8443/nifi/): "
-http_code=$(curl -k -s -o /dev/null -w "%{http_code}" https://localhost:8443/nifi/ || curl -k -s -o /dev/null -w "%{http_code}" https://127.0.0.1:8443/nifi/)
+http_code=$(curl --silent --show-error "${CURL_TLS[@]}" -o /dev/null -w "%{http_code}" https://localhost:8443/nifi/)
 if [ "$http_code" = "200" ] || [ "$http_code" = "302" ]; then
     echo "OK (HTTP $http_code)"
 else
@@ -41,9 +45,11 @@ if [ -z "${NIFI_PASSWORD:-}" ]; then
     echo "FAIL (falta NIFI_PASSWORD en entorno)"
     exit 1
 fi
-N_PASS="$NIFI_PASSWORD"
-token=$(curl -k -s -X POST https://localhost:8443/nifi-api/access/token --data "username=$N_USER&password=$N_PASS" || true)
-if echo "$token" | grep -q "eyJ"; then
+export N_USER NIFI_PASSWORD
+token=$(python3 -c 'import os, urllib.parse; print(urllib.parse.urlencode({"username": os.environ["N_USER"], "password": os.environ["NIFI_PASSWORD"]}), end="")' |
+    curl --fail --silent --show-error "${CURL_TLS[@]}" -X POST https://localhost:8443/nifi-api/access/token \
+        -H 'Content-Type: application/x-www-form-urlencoded' --data-binary @-)
+if [ -n "$token" ]; then
     echo "OK (Bearer token generated)"
 else
     echo "FAIL (Authentication error)"
@@ -57,8 +63,7 @@ if [ -z "${MYSQL_PASSWORD:-}" ]; then
     echo "FAIL (falta MYSQL_PASSWORD en entorno)"
     exit 1
 fi
-M_PASS="$MYSQL_PASSWORD"
-cust_count=$(docker exec "$mysql_name" mysql -u"$M_USER" -p"$M_PASS" -e "select count(*) from retail_db.customers;" -s -N 2>/dev/null || true)
+cust_count=$(printf '%s\n' "$MYSQL_PASSWORD" | docker exec -i "$mysql_name" sh -c 'IFS= read -r MYSQL_PWD; export MYSQL_PWD; exec mysql -u "$1" -e "select count(*) from retail_db.customers;" -s -N' sh "$M_USER" 2>/dev/null || true)
 if [ "$cust_count" -gt 0 ] 2>/dev/null; then
     echo "OK (retail_db contains $cust_count customers)"
 else
@@ -91,12 +96,12 @@ else
 fi
 
 echo -n "8. Checking exercise directories and sample data: "
-if [ -d "$DIR/../05_CSV_JSON_ConvertRecord_DF2.1/sarrera" ] || [ -d "/home/tears/nifi/ariketak/05-ariketa-csv-json/sarrera" ]; then
-    echo "OK (All directories and files present)"
+if [ -d "$DIR/../05_CSV_JSON_ConvertRecord_DF2.1/sarrera" ]; then
+    echo "OK (sample input directory present)"
 else
     echo "FAIL (Files missing)"
     exit 1
 fi
 
 echo ""
-echo "=== All checks PASSED! Advanced environment is fully operational. ==="
+echo "=== Basic connectivity and sample-data checks passed; NiFi flows still require runtime validation. ==="

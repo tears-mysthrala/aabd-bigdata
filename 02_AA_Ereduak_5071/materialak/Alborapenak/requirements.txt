@@ -1,0 +1,39 @@
+# Pertzepzioa moduluko notebook guztien mendekotasun bateratuak
+# Setup: pip install -r requirements.txt
+
+# Oinarrizkoak (modulu guztiek behar dituzte)
+numpy>=1.24,<2
+pandas>=2.0
+matplotlib>=3.9
+scipy>=1.10
+scikit-learn>=1.3
+seaborn>=0.12
+Pillow>=10.0
+opencv-python>=4.8
+requests>=2.31
+
+# Jupyter
+jupyter>=1.0
+jupyterlab>=4.0
+notebook>=7.0
+ipywidgets>=8.0
+
+# NLP (01_NLP)
+tiktoken>=0.5.0
+transformers>=4.30
+sentence-transformers>=2.2
+chromadb>=0.4.0
+nltk>=3.8
+datasets>=2.14
+
+# Ikusmen Artifiziala (02)
+torch>=2.0
+torchvision>=0.15
+albumentations>=1.3
+ultralytics>=8.0
+pytesseract>=0.3.10
+
+# Etika (04, 05)
+fairlearn>=0.10
+shap>=0.43
+lime>=0.2

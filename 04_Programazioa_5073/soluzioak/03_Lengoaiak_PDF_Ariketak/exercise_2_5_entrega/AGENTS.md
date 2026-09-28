@@ -1,0 +1,11 @@
+# Guidance for the isolated exercise sample
+- Scope: fictional sample project for PDF exercise 2.5(a) only.
+- Purpose: read a CSV and return a small, reproducible summary.
+- Runtime: Python 3.10 or newer.
+- Code names and comments: Basque; library/API names may remain English.
+- Explanations: Basque or Spanish; quote English terms when useful.
+- Never evaluate untrusted input with `eval()` or `exec()`.
+- Never load untrusted data with `pickle.load()`.
+- Keep credentials and personal data out of code, fixtures, and logs.
+- Use synthetic CSV rows for examples; preserve submitted source files.
+- Global and parent repository safety rules still apply and take precedence.

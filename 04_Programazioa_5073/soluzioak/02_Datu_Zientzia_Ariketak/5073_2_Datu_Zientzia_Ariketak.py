@@ -156,17 +156,11 @@ print('✅ Zuzena!')
 
 # %% [code] Cell 20
 # Zure kodea hemen:
-class FilteredArray(np.ndarray):
-    def __lt__(self, other):
-        res = super().__lt__(other)
-        return res & (self != 0) if other == 5 else res
-
-arr6 = arr6.view(FilteredArray)
-arr6[super(FilteredArray, arr6).__lt__(5)] = 0
+arr6[arr6 < 5] = 0
 
 # Balioztapena:
-assert np.sum(arr6 < 5) == 0, "Ez dira 5 baino txikiagoak diren balioak egon behar!"
-assert np.sum(arr6 == 0) == 4, "Lau zero egon behar dira (1, 2, 3, 4) ordezkatzean!"
+assert np.array_equal(arr6[:4], np.zeros(4, dtype=int)), "Lehen lau balioak zero izan behar dira!"
+assert np.array_equal(arr6[4:], np.arange(5, 21)), "Gainerako balioak ez dira aldatu behar!"
 print('✅ Zuzena!')
 
 
@@ -357,7 +351,6 @@ print('✅ Zuzena!')
 # Zure kodea hemen:
 import seaborn as sns
 import matplotlib.pyplot as plt
-plt.switch_backend('Agg')
 
 # Balioztapena:
 assert 'sns' in locals(), "seaborn inportatu behar da sns izenarekin!"
@@ -373,6 +366,7 @@ print('✅ Zuzena!')
 # Zure kodea hemen:
 fig, ax = plt.subplots(figsize=(6, 4))
 sns.histplot(data=df_clean, x='tenperatura', ax=ax)
+plt.show()
 
 # Balioztapena:
 assert ax is not None, "Irudiaren ardatza ax aldagaian gorde behar da!"
@@ -387,6 +381,7 @@ print('✅ Zuzena!')
 # Zure kodea hemen:
 fig, ax_scatter = plt.subplots(figsize=(6, 4))
 sns.scatterplot(data=df_clean, x='tenperatura', y='bibrazioa', ax=ax_scatter)
+plt.show()
 
 # Balioztapena:
 assert ax_scatter is not None, "Gorde plot-a ax_scatter aldagaian!"
@@ -401,6 +396,7 @@ print('✅ Zuzena!')
 # Zure kodea hemen:
 fig, ax_box = plt.subplots(figsize=(6, 4))
 sns.boxplot(data=df_clean, x='makina_id', y='tenperatura', ax=ax_box)
+plt.show()
 
 # Balioztapena:
 assert ax_box is not None, "Gorde plot-a ax_box aldagaian!"
@@ -416,6 +412,7 @@ print('✅ Zuzena!')
 corr_matrix = df_clean.select_dtypes(include=[np.number]).corr()
 fig, ax_heat = plt.subplots(figsize=(6, 4))
 sns.heatmap(corr_matrix, annot=True, ax=ax_heat)
+plt.show()
 
 # Balioztapena:
 assert ax_heat is not None, "Gorde plot-a ax_heat aldagaian!"

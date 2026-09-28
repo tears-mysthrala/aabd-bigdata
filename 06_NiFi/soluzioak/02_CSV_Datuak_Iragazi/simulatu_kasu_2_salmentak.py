@@ -5,7 +5,7 @@ def main():
     cur_dir = os.path.dirname(os.path.abspath(__file__))
     src_csv = os.path.join(cur_dir, "sarrera", "salmentak.csv")
     if not os.path.exists(src_csv):
-        src_csv = os.path.expanduser("~/bigdata/materialak/06_Apache_NiFi/salmentak.csv")
+        raise FileNotFoundError(f"Falta el CSV de entrada: {src_csv}")
     out_csv = os.path.join(cur_dir, "irteera", "salmentak_iragaziak.csv")
     os.makedirs(os.path.dirname(out_csv), exist_ok=True)
     

@@ -20,4 +20,4 @@ add 04_Programazioa_5073/data/README_10M.md
 add 01_Erronka1_CNC_Guard/proyecto_cnc_guard/CNC_Guard.py
 add INDICE.md
 
-echo "OK: 8 fuentes enviadas. Revisa duplicados con: notebooklm source list"
+echo "OK: 10 fuentes enviadas. Revisa duplicados con: notebooklm source list"

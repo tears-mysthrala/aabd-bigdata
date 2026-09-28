@@ -1,40 +1,34 @@
 # DF2.2 Ariketa: 6. Kasua — MariaDB → MongoDB Konparaketa-Oharra
 
-## 1. Testuingurua eta Helburua
-Ariketa honetan `retail_db` erlazionaleko (`customers` taula) datuak MariaDB/MySQLtik MongoDB dokumentu-datu-basera transferitu dira Apache NiFi bidez, bi arkitektura eta aldaera desberdin erabiliz:
-1. **1. Aldaera (Klasikoa):** `ExecuteSQLRecord` → `SplitText` → `PutMongo` (Bilduma: `6kasua-classic`)
-2. **2. Aldaera (Modernoa / Record API):** `ExecuteSQLRecord` → `PutMongoRecord` (Bilduma: `6kasua-record`)
+## 1. Testuingurua eta helburua
 
----
+DF2.2 ariketak `retail_db`-ko hiru taulak —`customers`, `orders` eta `order_items`— MariaDBtik MongoDBra eramateko bi NiFi aldaera eskatzen ditu. Fluxu bakoitzak hiru `ExecuteSQLRecord` adar ditu. SELECT bakoitzak `source_table` eremua eransten du, taula bereko dokumentuak bereizteko bilduma bateratuan. Ez da taula-laginketarik aplikatzen.
 
-## 2. Arkitektura eta Diseinuaren Konparaketa
+- **Classic:** hiru SQL adarrak `SplitText`-era lotzen dira (`Line Split Count = 1`), eta ondoren `PutMongo`-ra; xedea `iabd.6kasua-classic` bilduma da.
+- **Record API:** hiru SQL adarrak `PutMongoRecord`-era lotzen dira, `JsonTreeReader` erabiliz; xedea `iabd.6kasua-record` bilduma da.
 
-| Ezaugarria | 1. Aldaera: Klasikoa (`SplitText` + `PutMongo`) | 2. Aldaera: Record API (`PutMongoRecord`) |
-| :--- | :--- | :--- |
-| **Prozesadore kopurua** | 3 (`ExecuteSQLRecord`, `SplitText`, `PutMongo`) | 2 (`ExecuteSQLRecord`, `PutMongoRecord`) |
-| **Bitarteko FlowFile kopurua** | $N$ FlowFile (errenkada bakoitzeko FlowFile bat) | FlowFile **bakarra** (NDJSON formatuan) |
-| **Kontroladore Zerbitzuak** | `DBCPConnectionPool`, `JsonRecordSetWriter`, `MongoDBControllerService` | `DBCPConnectionPool`, `JsonRecordSetWriter`, `JsonTreeReader`, `MongoDBControllerService` |
-| **Diseinuaren konplexutasuna** | Handiagoa (banaketa-etapa gehigarria eta ilara-kudeaketa) | Txikiagoa eta garbiagoa (datu-korronte jarraitua) |
-| **MongoDB eragiketa mota** | Banakako dokumentu txertaketa (`insert` per FlowFile) | Bulk / Batch txertaketa efizientea |
+Fluxu-definizioak: [Classic JSON](flow_06_mariadb_mongodb_classic.json), [Record API JSON](flow_06_mariadb_mongodb_record.json). Zerbitzuen IDak kanpoko controller-service erreferentziak dira eta inportatutako NiFi inguruneak ebatzi behar ditu.
 
----
+## 2. Arkitektura eta diseinuaren konparaketa
 
-## 3. Errendimenduaren eta Baliabideen Analisia
+| Ezaugarria | Classic (`SplitText` + `PutMongo`) | Record API (`PutMongoRecord`) |
+| --- | --- | --- |
+| Prozesadoreak | 3 `ExecuteSQLRecord` adar, `SplitText` partekatua eta `PutMongo` partekatua | 3 `ExecuteSQLRecord` adar eta `PutMongoRecord` partekatua |
+| Erregistroen banaketa | `SplitText`-ek JSON lerro bakoitzeko FlowFile bereizia sortzen du | Record irakurleak erregistroak prozesadoreari record multzo gisa ematen dizkio; ez dago `SplitText`-en urratsik |
+| Konplexutasuna | Banaketa- eta ilara-etapa gehigarria konfiguratu eta zaindu behar da | Prozesadore gutxiago, baina Record reader-aren eskema/formatua eta batch konfigurazioa egiaztatu behar dira |
+| Errendimendu-itxaropena | Erregistro bakoitzeko FlowFile gehiagok I/O eta ilara-kudeaketa gainkarga sor dezakete | Record multzoak batch portaera erabil dezake; abantaila zehatza konfigurazioaren eta datu-bolumenaren araberakoa da |
+| Erabilera-irizpidea | Erregistroak banaka bideratu edo eraldatu behar direnean izan daiteke egokia | Multzoa record gisa zuzenean idaztea nahi denean izan daiteke egokia |
 
-### 1. Aldaera: SplitText bidezko eragina
-* **FlowFile Gainkarga (Overhead):** Errenkada bakoitzeko FlowFile berri bat sortzen denez, FlowFile Repository eta Provenance Repository biltegietan I/O eragiketa kopuru izugarria sortzen da.
-* **Memoria eta Garbiketa (GC):** Milaka FlowFile aldi berean ilaran egoteak JVM Heap memorian presio handia sortzen du eta Garbage Collector-ak denbora-tarte luzeagoak behar izaten ditu.
-* **Latentzia:** MongoDB-ra doazen eskaerak indibidualki edo lote txikitan egiten direnez, sare-eragiketen latentzia handiagoa da.
+Taulak egituran oinarritutako konparazio kualitatiboa egiten du; ez du abiadura, memoria edo txertaketa-ratioen neurketa adierazten.
 
-### 2. Aldaera: Record API bidezko hobekuntza
-* **Eraginkortasun Handia:** Datu guztiak FlowFile bakar baten barruan bidaiatzen dute errekor-egitura moduan (`JsonTreeReader`).
-* **Batch Insertion:** `PutMongoRecord`-ek lote bidezko txertaketa masiboa (`bulk insert`) egiten du MongoDB-n, sare-eskaeren kopurua magnitude-ordenetan murriztuz.
-* **Gure probetako emaitza enpirikoa:** 
-  * `6kasua-classic`: Proba-tarte berean 2.508 dokumentu txertatu ditu banan-banan.
-  * `6kasua-record`: Proba-tarte berean 160.600 dokumentu txertatu ditu lote masiboetan errore gabe.
+## 3. Errendimenduaren eta baliabideen inguruko oharrak
 
----
+Classic aldaeran `SplitText`-ek SQL irteerako lerro bakoitzerako FlowFile bana sortzen du. Horrek FlowFile kopurua eta ilarako erregistroak handitzen ditu; datu-bolumen handietan biltegi- eta kudeaketa-gainkarga gehigarria izan dezake. Banakako dokumentuen txertatze-ereduak sareko eragiketa gehiago ere sor ditzake, konfigurazioaren arabera.
 
-## 4. Ondorioak eta Gomendioak
-* **Produkzioko gomendioa:** Datu-base integrazio masiboetan (RDBMS → NoSQL / DWH), **Record API (`PutMongoRecord`)** da aukera egokiena eta profesionalena, baliabideen kontsumoa murrizten duelako eta abiadura esponentzialki handitzen duelako.
-* **Noiz erabili SplitText:** Soilik errenkada bakoitzak fluxu-adar independente bat behar duenean (adibidez, bideraketa konplexuak edota kanpoko API bidezko aberaste indibiduala behar duenean).
+Record API aldaerak ez du erregistro bakoitzerako FlowFile banaketarik egiten. `PutMongoRecord`-ek batch bidezko idazketa erabil dezake eta horrek eskaera/FlowFile gainkarga murrizteko aukera ematen du. Emaitza batch tamainak, datu-bolumenak, zerbitzuen konfigurazioak, MongoDBren egoerak eta inguruneko baliabideek baldintzatzen dute; ezin da abiadura-ratio jakin bat ondorioztatu egitura hutsetik.
+
+**Egiaztapen-egoera:** ohar hau eta bi JSONak estatikoan berrikusi dira. Lan honetan ez dira NiFi, MariaDB edo MongoDB exekutatu edo konektatu, eta ez dira `find()`/zenbaketa egiaztapenak, insertak edo benchmarkak egin. Dokumentu honen aurreko bertsioan agertzen ziren 2.508 eta 160.600 dokumentuko kopuruak kendu dira, ez baitago hemen haiek berresteko exekuzio-ebidentziarik. Beraz, ez da zuzeneko kargarik edo errendimendu-emaitzarik baieztatzen.
+
+## 4. Ondorioa
+
+Bi diseinuek hiru iturburu-taulak jomuga-bilduma berean gordetzea ahalbidetzen dute, eta `source_table`-ek dokumentuen jatorria mantentzen du. Classic aldaerak FlowFile banaketa esplizitua eskaintzen du, konfigurazio eta ilara-operazio gehigarrien truke. Record API-k zuzeneko record bidea eskaintzen du, reader eta batch konfigurazioa behar bezala egiaztatzearen truke. Aukera ingurunean egindako proba neurgarriek gidatu behar dute; ohar honetako konparaketa kualitatiboa da.

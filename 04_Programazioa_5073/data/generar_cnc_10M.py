@@ -12,6 +12,7 @@ import argparse
 import sys
 import time
 from pathlib import Path
+from typing import Iterator
 
 import numpy as np
 
@@ -22,7 +23,7 @@ MAKINAK = np.array(["M1", "M2", "M3", "M4", "M5"])
 OFFSET = np.array([0.0, 1.5, -1.0, 2.5, -2.0])  # deriva por máquina
 
 
-def chunk_to_lines(rng: np.random.Generator, n: int, t0: int) -> list[str]:
+def chunk_to_lines(rng: np.random.Generator, n: int, t0: int) -> Iterator[str]:
     midx = rng.integers(0, 5, size=n)
     drift = rng.normal(0, 0.4, size=n)
     temp = 65.0 + OFFSET[midx] + drift + rng.normal(0, 4.0, size=n)
@@ -31,12 +32,10 @@ def chunk_to_lines(rng: np.random.Generator, n: int, t0: int) -> list[str]:
     # Fallo ~5%: umbral físico + 1% aleatorio (desgaste)
     err = ((temp > 76.0) & (vib > 4.2)) | (rng.random(n) < 0.01)
     ts = t0 + np.arange(n) * 30  # 30 s entre medidas
-    out = []
     for i in range(n):
-        out.append(
+        yield (
             f"{ts[i]},{MAKINAK[midx[i]]},{temp[i]:.2f},{vib[i]:.2f},{pres[i]:.2f},{int(err[i])}\n"
         )
-    return out
 
 
 def main() -> None:
@@ -45,6 +44,8 @@ def main() -> None:
     ap.add_argument("--chunk", type=int, default=1_000_000)
     ap.add_argument("--out", default=str(OUT_DEFAULT))
     args = ap.parse_args()
+    if args.n <= 0 or args.chunk <= 0:
+        ap.error("--n eta --chunk zero baino handiagoak izan behar dira")
     rng = np.random.default_rng(42)
     out = Path(args.out)
     t0 = 1700000000

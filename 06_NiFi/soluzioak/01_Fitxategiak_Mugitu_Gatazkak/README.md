@@ -1,7 +1,7 @@
 # NiFi 1. Kasua: Fitxategiak Mugitu eta Gatazkak Kudeatu (Caso 1)
 
 > **Modulua / Gai-arloa:** Big Data Aplikatua · 01 DataFlow · Apache NiFi  
-> **Fluxuaren Definizioa:** [`flow_01_fitxategiak_mugitu.json`](file:///home/tears/bigdata/soluzioak/03_DataFlow_Apache_NiFi/01_Fitxategiak_Mugitu_Gatazkak/flow_01_fitxategiak_mugitu.json)  
+> **Fluxuaren Definizioa:** [`flow_01_fitxategiak_mugitu.json`](flow_01_fitxategiak_mugitu.json)  
 > **Iturria:** `GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf` (3–12 orr.)
 
 ---
@@ -60,11 +60,11 @@ flowchart LR
 
 1. **Sarrerako laginak sortu:**
    ```bash
-   mkdir -p /home/tears/nifi/ariketak/01-ariketa-getfile-putfile/sarrera
-   mkdir -p /home/tears/nifi/ariketak/01-ariketa-getfile-putfile/irteera/gatazkak
-   echo "Proba 01 edukia" > /home/tears/nifi/ariketak/01-ariketa-getfile-putfile/sarrera/proba_01.txt
-   echo "Proba 02 edukia" > /home/tears/nifi/ariketak/01-ariketa-getfile-putfile/sarrera/proba_02.txt
+   # Biltegiaren erroan:
+   bash 06_NiFi/soluzioak/scripts/reset_samples.sh
    ```
+   Scriptak Composeko `06_MariaDB_MongoDB_Laborategia_DF2.2/ariketak/`
+   muntatzean idazten du eta lehendik dauden lagin sarrerak ordezkatzen ditu.
 
 2. **Fluxua abiarazi:**
    - Egiaztatu `sarrera/` karpeta hustu dela eta `irteera/` karpetan `proba_01.txt` eta `proba_02.txt` agertu direla.
@@ -72,6 +72,6 @@ flowchart LR
 3. **Gatazka simulatu:**
    - Sortu berriro `proba_01.txt` fitxategia `sarrera/` karpetan:
      ```bash
-     echo "Proba 01 berria (gatazka sortuko du)" > /home/tears/nifi/ariketak/01-ariketa-getfile-putfile/sarrera/proba_01.txt
+     echo "Proba 01 berria (gatazka sortuko du)" > 06_NiFi/soluzioak/06_MariaDB_MongoDB_Laborategia_DF2.2/ariketak/01-ariketa-getfile-putfile/sarrera/proba_01.txt
      ```
    - Egiaztatu `irteera/` karpetako jatorrizkoa ez dela ukitu, eta `irteera/gatazkak/` karpetan `<epoch_timestamp>-proba_01.txt` izenarekin gorde dela!

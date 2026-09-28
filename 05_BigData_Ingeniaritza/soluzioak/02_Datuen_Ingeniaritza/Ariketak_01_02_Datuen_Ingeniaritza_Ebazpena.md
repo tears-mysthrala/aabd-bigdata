@@ -161,6 +161,12 @@ Hiru arrazoi nagusiengatik:
 4. **Zer aldatuko litzateke prozesua ELT izango balitz?**  
    Datuak iturburutik atera bezain laster (E), zuzenean helmugako biltegira idatziko lirateke (L) formatu gordinean (*raw data*). Ondoren, datu-base analitikoaren barruko prozesuek (adib. dbt ereduak edo SQL prozedurak) egingo lukete transformazioa (T).
 
+5. **DOCXeko prozesu-irudiko urratsak:**
+   - **Extract (E):** `salmentak.csv` fitxategia irakurri eta, JOINerako behar den bezero-taula ere iturburutik eskuratu (`bezero.csv`, irudiak ematen dion izena).
+   - **Transform (T):** balio nuluak kendu, data-formatua bateratu, salmentak eta bezeroak JOIN egin eta 2026ko salmentak bakarrik iragazi.
+   - **Load (L):** emaitza `emaitza.parquet` fitxategian gorde.
+   - Irudian bezero-fitxategiaren izena `bezero.csv` da; DOCXeko beste ariketako fitxategi-izena `bezeroak.csv` da. Bi ariketak bereizita mantendu dira, iturburuko izena isilean zuzendu gabe.
+
 ---
 
 ## 9. ETL prozesua diseinatu: Eibarko bezeroen salmentak
@@ -190,3 +196,48 @@ Hiru arrazoi nagusiengatik:
 #### 3. L – Load (Karga eta emaitza):
 - Emaitza txosten edo fitxategi egituratu batean gorde (adibidez: `data/eibarko_salmentak_laburpena.csv` edo json batean: `{"herria": "Eibar", "salmenta_zenbateko_totala": totala}`).
 - Zuzendaritzaren datu-base analitikora edo Power BI-ren taula agregatura txertatu.
+
+---
+
+## 10. Zein fitxategi-formatu aukeratu?
+
+1. **Excel/Calc-en ireki beharreko 500 bezeroen zerrenda — CSV.** Datuak lauak eta txikiak dira; goiburu-lerroa kalkulu-orrian zuzenean ireki daiteke. Kontuan hartu bereizlea eta kodeketa (adibidez, UTF-8) behar bezala aukeratzea.
+2. **API batek erabiltzaile baten informazioa bidaltzea — JSON.** Gako-balio egitura esplizituak objektu bakarrean irudika ditzake eremuak eta egitura habiaratuak; APIen ohiko truke-formatua da.
+3. **Etengabeko logak banan-banan prozesatzea — JSONL.** Erregistro bakoitza lerro independente batean kodetzen da; hartzaileak lerroz lerro irakurri eta prozesatu dezake, fitxategi osoa objektu bakar gisa kargatu gabe.
+4. **500 milioi salmentako Spark Data Lake-a — Parquet.** Zutabe-formatua da, konprimitu daiteke eta Spark-ek behar dituen zutabeak bakarrik irakur ditzake; banatutako analitika handi horretarako eraginkorragoa da.
+5. **Beste enpresa bati tresna askotan irekitzeko taula sinplea bidaltzea — CSV.** Taula lauak eta erraz trukatzeko formatu arrunta da, kalkulu-orri eta datu-tresna askok irakurtzen dutena. Eskemari buruzko adostasunik ez badago, zutabe-izenak eta kodetzea dokumentatu behar dira.
+6. **200 GB-ko datu-multzoan `prezioa` eta `produktua` soilik aztertzea — Parquet.** Zutabe-hautaketak bi zutabe horiek soilik irakurtzea ahalbidetzen du; CSV batean, berriz, lerro osoak parseatu behar dira normalean.
+
+## 11. Errenkadaka ala zutabeka?
+
+Dataset-eko erregistro bakar osoa azkar eskuratu behar denean, errenkadetara orientatutako antolaketa da egokiagoa; erregistro askotatik eremu gutxi batzuk agregatu behar direnean, zutabeetara orientatutako antolaketa da eraginkorragoa.
+
+| Kontsulta | Aukera | Arrazoia |
+|---|---|---|
+| `bezero_id=4387` duen erosketaren informazio osoa eskuratzea | Errenkadaka | Bilaketa batek erregistroaren eremu guztiak behar ditu; errenkada bateko eremuak batera daude. |
+| Salmenta guztien batez besteko prezioa kalkulatzea | Zutabeka | `prezioa` zutabea soilik eskaneatzea nahikoa da. |
+| Produktu jakin baten erregistro osoa irakurtzea | Errenkadaka | Baldintza betetzen duten erregistroetako eremu guztiak behar dira. |
+| Hiri bakoitzeko salmenta kopurua kalkulatzea | Zutabeka | `hiria` zutabea irakurri eta balioak zenbatzea aski da; ez dira gainerako eremuak behar. |
+| Milioika erregistrotatik `hiria` eta `prezioa` soilik analizatzea | Zutabeka | Bi zutabe horiek bakarrik irakurrita I/Oa eta parseatze-lana murrizten dira. |
+
+## 12. Faker-ekin lehen dataset-a: erregistro kopurua
+
+100 erregistrotik 10.000ra pasatzeko, sortze-begiztako kopurua `100`-etik `10_000`-era aldatu behar da (edo kopurua aldagai/argumentu batean jarri). Zutabeak, balioak sortzeko logika, `Faker('es_ES')` locale-a, CSV goiburua eta adinaren `18–80` muga bere horretan mantentzen dira. Horrek erregistro kopurua aldatzen du, ez CSVren eskema. CSV fitxategiak benetan sortu eta egiaztatzea ariketako kode/irteera zatia da; hemen aldaketa kontzeptuala azaltzen da.
+
+## 13. Zer egiten du seed-ak?
+
+- **Seed gabe:** programa bi aldiz exekutatuta, lehen bost pertsonak normalean desberdinak izango dira, Faker-en ausazko egoera exekuzio batetik bestera aldatzen delako.
+- **Seed 42 erabilita:** exekuzio bakoitzaren hasieran `Faker.seed(42)` ezarri, Faker instantzia berria sortu, eta faker dei berak ordena berean egin behar dira. Baldintza horietan, lehen bost pertsonak (eta sekuentzia osoa) berdinak izango dira exekuzioetan.
+- **Test automatizatuak:** seed finko batek sarrera sintetiko errepikagarriak ematen ditu; horrela, huts egindako proba berriz erreproduzitu eta espero zen emaitzarekin alderatu daiteke.
+- **Irakasle eta ikasle guztiak `seed=42` erabilita:** kodeak, Faker bertsioak, locale-ak eta dei-ordenak ere berdinak badira, denek datu-sekuentzia bera sortzen dute eta ariketaren emaitzak alderatzea errazagoa da. Baldintza horietako bat desberdina bada, seed bera ez da berez nahikoa emaitza berak bermatzeko.
+
+## 14. CSV eta JSON alderaketa
+
+- **Gizakiarentzat irakurgarritasuna:** CSVko taula sinple bat labur-laburra da eta kalkulu-orrian erraz irekitzen da. JSON irakurgarria da egitura txikietan, baina giltza, komatxo eta kortxete gehiago ditu.
+- **Egitura esplizitua:** JSONek objektu/array egitura eta gako-balio harremana adierazten ditu. CSVk lerro eta zutabeak ditu; zutabe-izenak goiburuan daude, eta mota/eskema ez dira formatuak berak esplizituki deskribatzen.
+- **Eremu-izenak:** JSON adibideko erregistro bakoitzean (`{"id": 1, "izena": "..."}`) gakoek adierazten dituzte eremu-izenak. CSVn zutabe-izenak goiburuko lehen lerroan agertzen dira, ez errenkada bakoitzean.
+- **10 milioi erregistro:** ez da komeni JSON array osoa memoria nagusian eraikitzea, datu guztiek batera memoria handia kontsumitzen baitute. Erregistroak streaming bidez/idazketa inkrementalaz prozesatu daitezke; mezu banakako JSON egokia denean, JSONLk lerroz lerro irakurtzeko aukera ematen du. JSON arrayaren eskema zehatza nahitaezkoa bada, idazketa inkrementala erabili, array osoa RAMen sortu beharrean.
+
+## 15. 500 milioi salmenta: kategoria eta prezioa
+
+**Parquet erabiliko nuke.** Spark-ek zutabe-formatua irakur dezake eta `kategoria` eta `prezioa` zutabeak bakarrik hauta ditzake. Horrek ez du bermatzen lan guztiak berehalakoak direnik: fitxategiak zatitzea, konpresioa, partizio egokiak eta klusterraren baliabideak ere kontuan hartu behar dira. Baina CSV edo JSON osoak eskaneatzea baino hobeto egokitzen da zutabe gutxiko analisi banatura.

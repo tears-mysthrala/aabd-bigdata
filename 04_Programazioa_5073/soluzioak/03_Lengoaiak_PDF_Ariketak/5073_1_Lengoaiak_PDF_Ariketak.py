@@ -83,7 +83,7 @@ for nif_test, espero_balioa in test_kasuak:
 # ---
 # ## 🧩 Ariketa 1.2 · Lengoaien Aukeraketa (Enpresen Ebaluazioa)
 # **Egoera:** 4 enpresatan praktikak egiteko aukera duzu:
-# 1. **Glovo (Bartzelona)** — *Python + Go*
+# 1. **Glovo (Bartzelona)** — *Python + JavaScript* (PDFko bikotea)
 # 2. **BBVA (Madril)** — *Java + Python*
 # 3. **Roche (Basilea)** — *R + Python*
 # 4. **Vodafone (Madril)** — *Java + NodeJS*
@@ -97,10 +97,10 @@ import pandas as pd
 enpresak_datuak = [
     {
         "Enpresa": "Glovo (Bartzelona)",
-        "Lengoaiak": "Python + Go",
+        "Lengoaiak": "Python + JavaScript",
         "Arkitektura & Xedea": "Eskaerak denbora errealean kudeatu, entrega-ibilbideak optimizatu eta mezularitza arina.",
-        "Zergatik konbinazio hau?": "Go: konkurrentzia itzela (goroutines), latenzia minimoa mikrozerbitzuetan. Python: ML ereduak ibilbideen kalkulurako eta datu-analisia.",
-        "Ikasi beharreko liburutegiak": "Python (FastAPI, Scikit-learn, Celery) | Go (Gin/Fiber, Goroutines, gRPC)"
+        "Zergatik konbinazio hau?": "Python: datu-analisia eta ibilbideen ereduak; JavaScript: bezeroen eta banatzaileen web-interfaze interaktiboak. Hau ariketarako hautu hipotetikoa da, ez Glovoren benetako stackaren baieztapena.",
+        "Ikasi beharreko liburutegiak": "Python (pandas, scikit-learn, FastAPI) | JavaScript (React, Fetch API)"
     },
     {
         "Enpresa": "BBVA (Madril)",
@@ -190,8 +190,8 @@ print(f"XML tamaina:  {len(xml_irteera.encode('utf-8'))} bytes")
 # %%
 # """
 # ### 💡 Galderaren Erantzuna: Zergatik du JSON-ek abantaila XML-ren aldean?
-# 1. **Lerrorik eta etiketa bikoitzik gabea**: XML-k etiketa ireki eta itxiak behar ditu (`<izena>Ane</izena>`), datuen tamaina artifizialki handituz (%30-%50 gehiago sarean).
-# 2. **Serializazio naturala**: JSON zuzenean mapatzen da programazio-lengoaia modernoen funtsezko datu-egituretara (Python `dict`/`list`, JavaScript `Object`/`Array`). XML-k ordea parseatzaile bereziak behar ditu (DOM/SAX) eta zuhaitz-egitura konplexuak sortzen ditu.
+# 1. **Sintaxi trinkoa**: JSON askotan laburragoa da XML baino datu lauetan, baina aldea eskemaren, formatatzearen eta konpresioaren araberakoa da; ez dago % finkorik.
+# 2. **Egitura desberdina**: JSON objektuak/listak eta XML elementuak/atributuak biak parseatu behar dira. Pythonen `json` eta `xml.etree.ElementTree` daude; egokiena datuen eskemaren eta sistemaren araberakoa da.
 # 3. **Erabilera eremua**:
 #    - **JSON**: Web APIak, mikrotraferak, REST zerbitzuak.
 #    - **YAML**: Giza irakurlearentzako konfigurazio fitxategiak (Docker compose, Kubernetes, GitHub Actions).
@@ -218,13 +218,13 @@ print("Ariketa 2.1 emaitza:")
 print(sortu_agur_osoa("Ane", 24, "Donostia"))
 
 # Ariketa 2.2 & 2.3: Dependentzien analisia
-dependentzia_analisia = {
+dependentzia_analisia = {  # 2026-09-25eko Python 3.13 laborategiko adibidea; bertsioen arabera aldatzen da.
     "requests": ["urllib3", "certifi", "charset-normalizer", "idna"],
-    "pandas": ["numpy", "python-dateutil", "pytz", "tzdata"],
-    "scikit-learn": ["numpy", "scipy", "joblib", "threadpoolctl"]
+    "pandas": ["numpy", "python-dateutil", "six"],
+    "scikit-learn": ["scipy", "joblib", "threadpoolctl", "narwhals", "cloudpickle"]
 }
 
-print("\nAriketa 2.3: Zergatik gehitzen dira hainbeste pakete 'pip install' egitean?")
+print("\nAriketa 2.3: Zergatik gehitzen dira hainbeste pakete 'pip install' egitean? (adibidea; egiaztatu pip list)")
 print("Trantsitibotasunaren printzipioa: pakete nagusi bakoitzak bere lanerako behar dituen azpi-liburutegiak ekartzen ditu:")
 for paketea, azpipaketeak in dependentzia_analisia.items():
     print(f"📦 {paketea:12} -> gehitutako dependentziak: {', '.join(azpipaketeak)}")
@@ -250,7 +250,7 @@ prompt_konparaketa = {
             "Baldintzak: 1) FileNotFoundError kudeatu mezua emanez. 2) Batezbestekoa, mediana eta batura kalkulatu. "
             "3) PEP 8 eta tipo-oharpen zorrotzak erabili. 4) Debekatuta dago eval() edo kanpoko mendekotasun arraroak erabiltzea."
         ),
-        "Abantailak": "Emaitza determinista, segurua, ekoizpenerako prest dagoena eta proiektuaren AGENTS.md arauekin %100 bat datorrena lortzen da."
+        "Abantailak": "Eskakizunak argiago adierazten ditu eta erantzuna berrikustea errazten du; hala ere, sortutako kodearen zuzentasuna eta segurtasuna egiaztatu behar dira."
     }
 }
 

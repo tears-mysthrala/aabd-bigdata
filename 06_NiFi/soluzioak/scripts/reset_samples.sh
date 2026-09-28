@@ -2,7 +2,7 @@
 set -e
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ARIKETAK="$DIR/ariketak"
+ARIKETAK="$DIR/../06_MariaDB_MongoDB_Laborategia_DF2.2/ariketak"
 
 echo "Restoring sample files for exercises..."
 
@@ -49,5 +49,5 @@ mkdir -p "$ARIKETAK/06-ariketa-mariadb-mongodb"
 # 07-ariketa-aemet-datalake
 mkdir -p "$ARIKETAK/07-ariketa-aemet-datalake"
 
-chmod -R 777 "$ARIKETAK"
+chmod -R u+rwX,go+rX "$ARIKETAK"
 echo "Sample files successfully restored in $ARIKETAK!"

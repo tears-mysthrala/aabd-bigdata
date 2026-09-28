@@ -5,26 +5,26 @@
 
 # %% [markdown] Cell 1
 # # 2. Gaia · Datu Zientziaren Stack-a — Python adibideak
-# 
-# 
+#
+#
 # ---
-# 
+#
 # Notebook hau dokumentu didaktikoaren **osagarria** da.
 # Bertan agertzen diren kode-adibide guztiak hemen exekutagarri bilakatu dira, ariketak banaka edo gelan ariketa praktiko gisa ebatzi ahal izateko.
-# 
+#
 # **Edukiak:**
 # 1. NumPy — array-ak, broadcasting, indexazioa, estatistika eta algebra lineala
 # 2. Pandas — Series/DataFrame, kargatzea, garbiketa, agregazioa, taulen batzea
 # 3. Matplotlib eta Seaborn — bistaratzea
 # 4. DVC — datuen bertsio-kontrola (bash komandoak)
 # 5. Plataforma komertzialak — kontzeptuak
-# 
+#
 # > Notebook hau exekutatzeko: `numpy`, `pandas`, `matplotlib` eta `seaborn` instalatuta egon behar dute. Zelulak goitik behera exekuta daitezke ordenan.
 
 
 # %% [markdown] Cell 2
 # ## Setup
-# 
+#
 # Notebook osoan zehar erabiliko diren liburutegi nagusiak. Gelaxka hau **lehenik exekutatu behar da**.
 
 
@@ -54,15 +54,15 @@ print(f"  seaborn    = {sns.__version__}")
 
 # %% [markdown] Cell 4
 # ---
-# 
+#
 # # 1. NumPy: Array-ak eta Eragiketa Bektorialak
-# 
+#
 # NumPy datu-zientziaren ekosistema osoaren zutabe nagusia da. Atal honetan array-ak nola sortu, broadcasting nola erabili, indexazioa eta estatistika oinarrizkoak ikusiko ditugu.
 
 
 # %% [markdown] Cell 5
 # ## 1.1 NumPy zer da eta zergatik erabili
-# 
+#
 # Python zerrenden eta NumPy array-en abiadura-konparaketa.
 
 
@@ -94,7 +94,7 @@ for i in iterazioak:
 
 # %% [markdown] Cell 7
 # ## 1.2 Array-ak sortu eta manipulatu
-# 
+#
 # Array bat NumPy-ren oinarrizko datu-egitura da: tamaina finkoko eta mota homogeneoko elementu-bilduma.
 
 
@@ -122,6 +122,7 @@ zeros = np.zeros((3, 4))        # 3x4 matrizea, denok 0
 ones = np.ones((2, 3))          # 2x3 matrizea, denok 1
 beteak = np.full((3, 3), 7.5)   # 3x3 matrizea, denok 7.5
 I = np.eye(4)                   # 4x4 identitate-matrizea (diagonalean 1)
+#I = np.eye(4).astype(int)
 
 print("zeros =\n", zeros)
 print("\nones =\n", ones)
@@ -161,7 +162,7 @@ print("\nlaua:", laua)
 
 # %% [markdown] Cell 12
 # ## 1.3 Eragiketa bektorialak eta broadcasting
-# 
+#
 # NumPy-n eragiketa aritmetikoak elementuz elementu aplikatzen dira, `for`-begiztarik gabe.
 
 
@@ -213,7 +214,7 @@ print("\nNormalizatua (Z-score):\n", normalizatua)
 
 # %% [markdown] Cell 16
 # ## 1.4 Indexazioa eta zatiketa
-# 
+#
 # Indizeak, slicing eta boolean maskak: datu-zientziaren eguneroko teknikak.
 
 
@@ -263,7 +264,7 @@ print("Batezbestekoa NaN gabe:", np.mean(datuak[baliodunak]))
 
 # %% [markdown] Cell 20
 # ## 1.5 Estatistika eta algebra linealaren oinarriak
-# 
+#
 # Estatistika deskribatzaileko funtzioak eta algebra linealeko eragiketa nagusiak.
 
 
@@ -324,6 +325,7 @@ print(f"Determinantea: {det:.4f}")
 print(f"\nAlderantzizkoa:\n{A_inv}")
 print(f"\nBalio propioak: {balioak}")
 print(f"\nBektore propioak:\n{bektoreak}")
+print(f"\nIdentitatea:\n{np.round(A@A_inv).astype(int)}") # biribilketa + castinga
 
 # Egiaztapena: A @ A_inv = I
 print(f"\nA @ A_inv =\n{A @ A_inv}")
@@ -331,15 +333,15 @@ print(f"\nA @ A_inv =\n{A @ A_inv}")
 
 # %% [markdown] Cell 25
 # ---
-# 
+#
 # # 2. Pandas: Datu-taulen Kudeaketa
-# 
+#
 # Pandas-ek bi datu-egitura nagusi ditu: Series eta DataFrame. Excel/SQL bezala lan egiteko aukera ematen du, baina askoz aukera gehiagorekin.
 
 
 # %% [markdown] Cell 26
 # ## 2.1 Series eta DataFrame
-# 
+#
 # Series = zutabe bakarra; DataFrame = taula osoa.
 
 
@@ -351,9 +353,12 @@ populazioa = pd.Series({
     "Gasteiz": 252_427,
 })
 print(populazioa)
-print("\npopulazioa['Bilbo'] =", populazioa["Bilbo"])               # 346843
+print("\npopulazioa['Bilbo'] =", populazioa["Bilbo"]) # 346843
+print("\npopulazioa.Bilbo =", populazioa.Bilbo)
+
 print("\nHiri handiak (>200.000):")
 print(populazioa[populazioa > 200_000])  # Boolean indexazioa
+
 
 
 # %% [code] Cell 28
@@ -378,7 +383,10 @@ print("df.head(3) =\n", df.head(3))
 
 # Zutabe bat (Series)
 print("\ndf['izena'] (Series):")
-print(df["izena"])
+print(df["izena"])            # print(df.izena)
+# Zutabe bat (DataFrame) KONTUZ!!
+print("\ndf.izena (DataFrame):")
+print(df[["izena"]])
 
 # Hainbat zutabe (DataFrame)
 print("\ndf[['izena','adina']] (DataFrame):")
@@ -398,13 +406,17 @@ print("\niloc[0] (lehen errenkada, posizioz):")
 print(df.iloc[0])
 print("\nloc[0] (lehen errenkada, etiketaz):")
 print(df.loc[0])
+print("\niloc[0:2] (lehen BI errenkadak, posizioz):")
+print(df.iloc[0:2])
+print("\nloc[0:2] (lehen HIRU errenkadak, etiketaz):")
+print(df.loc[0:2])
 
 
 # %% [markdown] Cell 31
 # ## 2.2 Datuak kargatu iturri anizkoitzetatik
-# 
-# Errealean datuak CSV, Excel, JSON edo SQL-tik datoz. Notebook honetan, autoreproduzigarritasunerako, Seaborn-en barneko datu-multzoak erabiliko ditugu.
-# 
+#
+# Egoera errealetan datuak CSV, Excel, JSON edo SQL formatuan etorri ohi dira (Nifi). Notebook honetan, erreproduzigarritasun propiorako ez baldin bada ere, Seabornen barneko datu-multzoak erabiliko ditugu.
+#
 # > **Oharra:** MD dokumentuko `read_csv("datuak.csv")` adibideak fitxategi-arruntak suposatzen ditu. Hemen `sns.load_dataset(...)` erabiltzen dugu kanpoko fitxategirik gabe lan egiteko.
 
 
@@ -458,7 +470,7 @@ print("Bateratutako DataFrame:\n", df_osoa)
 
 # %% [markdown] Cell 35
 # ## 2.3 Datu-garbiketa: fillna, dropna eta beste
-# 
+#
 # Datu-garbiketa edozein ML proiektuaren denboraren %60-80 hartzen du.
 
 
@@ -487,7 +499,7 @@ print("dropna() (errenkada osoak):\n", df_garbia_1)
 df_garbia_2 = df_zikina.dropna(subset=["adina", "soldata"])
 print("\ndropna(subset=['adina','soldata']):\n", df_garbia_2)
 
-df_garbia_3 = df_zikina.dropna(thresh=3)  # Gutxienez 3 balio baliodun
+df_garbia_3 = df_zikina.dropna(thresh=3)  # Gutxienez 3 balio baliodun (beteta)
 print("\ndropna(thresh=3):\n", df_garbia_3)
 
 
@@ -534,7 +546,7 @@ df_string["soldata"] = (
 )
 
 # Data-formatua eta kate-garbiketa
-df_string["data"] = pd.to_datetime(df_string["data"])
+df_string["data"] = pd.to_datetime(df_string["data"])   # fitxategietatik kargatzean "parses_date" eginez gero, BEHARRIK EZ
 df_string["izena"] = df_string["izena"].str.strip().str.capitalize()
 
 print("\nGarbituta:\n", df_string)
@@ -543,7 +555,7 @@ print("\nMotak:\n", df_string.dtypes)
 
 # %% [markdown] Cell 41
 # ## 2.4 Agregazioa: groupby eta pivot
-# 
+#
 # `groupby` = "split-apply-combine" (SQL-eko GROUP BY-en baliokidea).
 
 
@@ -594,7 +606,7 @@ print("Pivot-taula (departamentua x hiria):\n", taula)
 
 # %% [markdown] Cell 46
 # ## 2.5 Taulen batzea: merge eta concat
-# 
+#
 # `concat` = taulak pilatu; `merge` = SQL-eko JOIN-en baliokidea.
 
 
@@ -652,31 +664,31 @@ print("concat bertikala (axis=0, bi aldiz pilatuta):\n", df_bateratua)
 
 # %% [markdown] Cell 51
 # ---
-# 
+#
 # # 3. Bistaratzea: Matplotlib eta Seaborn
-# 
+#
 # Datuen bistaratzea analisi exploratzailearen funtsezko zatia da.
 
 
 # %% [markdown] Cell 52
 # ## 3.1 Matplotlib: oinarriak
-# 
+#
 # `fig, ax = plt.subplots()` da Matplotlib-en gako-egitura.
 
 
 # %% [code] Cell 53
-# Lerro-grafiko bakuna: sinu eta kosinua
+# Lerro-grafiko bakuna: sinua eta kosinua
 fig, ax = plt.subplots(figsize=(8, 5))
 
 x = np.linspace(0, 2 * np.pi, 100)
 ax.plot(x, np.sin(x), label="sin(x)", color="blue", linewidth=2)
 ax.plot(x, np.cos(x), label="cos(x)", color="red", linestyle="--")
 
-ax.set_title("Sinu eta kosinua", fontsize=14)
+ax.set_title("Sinua eta kosinua", fontsize=14)
 ax.set_xlabel("x (erradianetan)")
 ax.set_ylabel("Balioa")
 ax.legend()
-ax.grid(True, alpha=0.3)
+ax.grid(False)
 
 plt.tight_layout()
 plt.show()
@@ -684,7 +696,7 @@ plt.show()
 
 # %% [code] Cell 54
 # Lau grafiko mota subplot batean (2x2)
-fig, axs = plt.subplots(2, 2, figsize=(12, 8))
+fig, axs = plt.subplots(2, 2, figsize=(10, 8))
 
 x = np.linspace(0, 10, 100)
 axs[0, 0].plot(x, np.sin(x), "b-")            # Lerro-grafikoa
@@ -707,7 +719,7 @@ plt.show()
 
 # %% [markdown] Cell 55
 # ## 3.2 Seaborn: grafiko estatistikoak
-# 
+#
 # Seaborn Matplotlib-en gainean dago eta DataFrames-ekin zuzenean lan egiten du.
 
 
@@ -757,7 +769,7 @@ plt.show()
 
 # %% [markdown] Cell 61
 # ## 3.3 Konfigurazioa eta esportazioa
-# 
+#
 # Estiloa proiektu-mailan zehaztea eta grafikoak hainbat formatutan esportatzea.
 
 
@@ -799,70 +811,70 @@ for fmt in ["png", "pdf", "svg"]:
 
 # %% [markdown] Cell 64
 # ---
-# 
+#
 # # 4. Datuen Bertsio-Kontrola: DVC
-# 
+#
 # DVC bash komandoekin lan egiten du nagusiki. Atal honetan **ez dago Python koderik**: shell komandoak markdown gelaxketan erakusten dira, eta nahi izanez gero `!komando` magia-zelulekin notebook-etik bertan exekuta daitezke (DVC instalatuta egonez gero).
-# 
+#
 # ## 4.1 DVC zer da
-# 
+#
 # Git kodearentzat da; DVC datu eta eredu handientzat. Datu-fitxategi handiak kanpoko biltegian (S3, GCS, lokala) gordetzen ditu, eta Git-en **puntero txiki bat** (`.dvc` fitxategia, hash bat) baino ez du jartzen.
-# 
+#
 # **Ohiko fluxua DVC-rekin:**
-# 
+#
 # ```bash
 # dvc add datuak.csv      # datuak.csv.dvc sortzen da (puntero txikia)
 # git add datuak.csv.dvc  # Puntero txikia Git-era (ez datu-fitxategia)
 # dvc push                # Datu handiak kanpoko biltegira
 # ```
-# 
+#
 # ## 4.2 Instalazioa
-# 
+#
 # ```bash
 # pip install dvc
 # pip install "dvc[s3]"      # Amazon S3
 # pip install "dvc[gs]"      # Google Cloud Storage
 # ```
-# 
+#
 # ## 4.3 Proiektua hasieratzea
-# 
+#
 # ```bash
 # # Proiektua hasieratu
 # git init
 # dvc init
 # git commit -m "chore: DVC hasieratu"
-# 
+#
 # # Datu-fitxategi bat DVC kontrolpean jarri
 # dvc add data/train.csv      # train.csv.dvc puntero-fitxategia sortzen da
-# 
+#
 # # Puntero-fitxategia Git-era (datu-fitxategia EZ)
 # git add data/train.csv.dvc data/.gitignore
 # git commit -m "data: entrenamenduko datu-multzoa gehitu"
 # ```
-# 
+#
 # ## 4.4 Urruneko biltegia eta sinkronizazioa
-# 
+#
 # ```bash
 # # Urruneko biltegia konfiguratu
 # dvc remote add -d biltegia s3://nire-bucket/dvc
-# 
+#
 # # Datuak igo/jaitsi
 # dvc push     # Datuak biltegira (git push bezala, baina datuentzat)
 # dvc pull     # Datuak biltegitik (git pull bezala)
 # ```
-# 
+#
 # > **Gogoratu:** `.dvc` puntero-fitxategiak Git-en doaz; datu-fitxategi handiak ez. Git eta DVC elkarrekin lan egiten dute, ez bata bestearen ordez.
 
 
 # %% [markdown] Cell 65
 # ---
-# 
+#
 # # 5. Plataforma Komertzialak
-# 
+#
 # Atal hau **kontzeptuala** da: ez dago Python koderik. Plataforma komertzial nagusien laburpen bisuala dakar.
-# 
+#
 # ## 5.1 Open source vs SaaS
-# 
+#
 # | Eredua | **Open source** (Python) | **SaaS / Plataforma komertziala** |
 # |---|---|---|
 # | Adibideak | NumPy, Pandas, scikit-learn | Azure ML, IBM Watson, Knime, SPSS |
@@ -871,41 +883,41 @@ for fmt in ["png", "pdf", "svg"]:
 # | Pertsonalizazioa | Erabatekoa | Plataformaren mugen barruan |
 # | Ikasketa-kurba | Aldapatsua (kodea) | Errazagoa (bisuala) |
 # | Erabiltzaile-profila | Datu-zientzialaria, ingeniaria | Negozio-analista, citizen data scientist |
-# 
+#
 # ## 5.2 Plataforma nagusiak
-# 
+#
 # - **Azure ML Studio** (Microsoft) — kodea + Designer (no-code) + AutoML; Microsoft ekosistema duten enpresentzat aukera naturala.
 # - **IBM Watson Studio** — enpresa handi eta sektore arautuetarako (banku, aseguru, osasun); governance eta GDPR-ren indargunea.
 # - **Knime Analytics Platform** — drag-and-drop nodoak; 4000+ nodo, Python/R integratua; doakoa (oinarrizko bertsioa).
 # - **SPSS Modeler / SAS / DataRobot / Dataiku / RapidMiner / Alteryx** — plataforma klasikoak, banku-aseguru-osasun sektoreetan oraindik oso presente.
-# 
+#
 # ## 5.3 Erabaki-irizpideak
-# 
+#
 # | Irizpidea | Python | Azure ML | IBM Watson | Knime | SPSS |
 # |---|---|---|---|---|---|
 # | Profila | Garatzailea | Hibridoa | Enpresa-analista | Citizen DS | Estatistika klasikoa |
 # | Kostua | Doan | Hodeia | Hodeia + lizentzia | Doan oinarriz. | Lizentzia handia |
 # | Programatzea | Bai | Aukeran | Aukeran | Ez | Ez |
 # | Governance | Eskuz | Natiboa | Bikaina | Ertaina | Ona |
-# 
+#
 # > **Ideia nagusia:** Ez dago plataforma onenik abstraktuan; testuingurura egokitzen dena da egokiena. Tekniko on batek **bietan moldatzen** jakin behar du: lan-merkatuan biak topatuko ditu.
 
 
 # %% [markdown] Cell 66
 # ---
-# 
+#
 # # 6. Laburpena
-# 
+#
 # Notebook honetan **2. gaiaren bost zutabeak** ikusi ditugu kode bidez:
-# 
+#
 # 1. **NumPy** — array-ak, broadcasting, indexazioa, estatistika eta algebra lineala.
 # 2. **Pandas** — Series/DataFrame, datu-kargatzea, garbiketa (`fillna`, `dropna`), agregazioa (`groupby`, `pivot_table`) eta taulen batzea (`merge`, `concat`).
 # 3. **Matplotlib eta Seaborn** — Figure/Axes, grafiko-mota egokia datuari, `hue` parametroa, korrelazio-heatmap-ak eta esportazioa.
 # 4. **DVC** — bash komandoak (`dvc add`, `dvc push`); Git kodearentzat, DVC datuentzat.
 # 5. **Plataforma komertzialak** — Azure ML, IBM Watson, Knime, SPSS; open source eta SaaS osagarriak.
-# 
+#
 # **Gako-kontzeptuak gogoratzeko:**
-# 
+#
 # - **NumPy array** = mota homogeneoko bloke trinkoa, 10-100 aldiz azkarragoa zerrendak baino.
 # - **Broadcasting** = forma desberdineko array-en arteko eragiketa begiztarik gabe.
 # - **Boolean maska** = baldintza bat -> True/False -> datuak iragazi.
@@ -919,3 +931,4 @@ for fmt in ["png", "pdf", "svg"]:
 
 
 # %% [markdown] Cell 67
+#

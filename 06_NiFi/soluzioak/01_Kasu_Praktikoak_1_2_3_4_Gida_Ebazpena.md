@@ -106,13 +106,18 @@ flowchart TD
 ## 4. Kasua: HTTP bidezko sarrera eta MongoDB biltegiratzea
 
 ### Helburua
-HTTP POST bidez JSON mezuak jaso (`ListenHTTP`) eta MongoDB datu-baseko bilduma batean gorde (`PutMongo`).
+HTTP POST bidez mezuak jaso eta erroreak MongoDBn gorde. Beheko eskema
+**aldaera kontzeptual bat** da; biltegiko benetako
+[`flow_04_mongodb_http.json`](04_HTTP_Ingesta_eta_MongoDB/flow_04_mongodb_http.json)
+fluxuak `RouteOnContent`, `MergeContent`, `ExtractText`, `UpdateAttribute` eta
+`AttributesToJSON` erabiltzen ditu. Bere konfigurazio eta muga zehatzak
+[`README`](04_HTTP_Ingesta_eta_MongoDB/README.md) horretan daude.
 
 ```mermaid
 flowchart LR
-    A["Web / Client<br/>(curl POST :8081)"] --> B["ListenHTTP<br/>(Base Path: sarrera, Port: 8081)"]
+    A["Bezeroa<br/>(POST :8081)"] --> B["ListenHTTP<br/>(Base Path: sarrera, Port: 8081)"]
     B --> C["ValidateJson"]
-    C -- "valid" --> D["PutMongo<br/>(URI: mongodb://..., db: bigdata)"]
+    C -- "valid" --> D["PutMongo<br/>(MongoDB Controller Service)"]
     C -- "invalid" --> E["PutFile (/data/erroreak)"]
 ```
 
@@ -122,14 +127,18 @@ flowchart LR
    - `Listening Port`: `8081`
 2. **`ValidateJson`:**
    - Egiaztatu FlowFile-aren edukia JSON baliagarria dela.
-3. **`PutMongo`:**
-   - `Mongo URI`: `mongodb://admin:admin123@mongodb:27017`
-   - `Mongo Database Name`: `bigdata`
-   - `Mongo Collection Name`: `kasua4`
-   - `Mode`: `insert`
-4. **Proba komandoa:**
+3. **`PutMongo` (aldaera kontzeptuala):**
+   - MongoDB Controller Service: laborategiko MongoDB konexioa; kredentzialak
+     `.env`-etik, inoiz ez dokumentuan finkatuta.
+   - `Mongo Database Name` eta `Mongo Collection Name`: erabiltzen den fluxuaren
+     balioekin bat etorri behar dute. Biltegiko fluxuak `iabd` / `4kasua` darabil.
+   - `Mode`: `insert`; berriro bidalitako mezuak bikoiztu daitezke.
+4. **Proba komandoa (aldaera hau martxan eta 8081 ataka irisgarri bada soilik):**
    ```bash
-   curl -X POST -H "Content-Type: application/json" \
+   docker exec iabd-nifi curl -sS -X POST -H "Content-Type: application/json" \
         -d '{"erabiltzailea": "unai", "ekintza": "login", "data": "2026-09-21"}' \
         http://localhost:8081/sarrera
    ```
+   `8081` ataka ez dago hostean argitaratuta. Komando honek ez du biltegiko
+   benetako fluxua frogatzen: hark `/iabd` bidea eta `ERROR` edukia behar ditu,
+   eta ondorioa MongoDBn egiaztatu behar da. Ikus kasuaren READMEa.

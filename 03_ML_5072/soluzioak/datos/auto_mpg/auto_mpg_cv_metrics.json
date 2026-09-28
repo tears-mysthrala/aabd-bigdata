@@ -1,0 +1,23 @@
+{
+  "creator": "Unai Urzainqui Perez",
+  "dataset": "UCI Auto MPG",
+  "dataset_doi": "10.24432/C5859H",
+  "rows": 398,
+  "predictor": "weight",
+  "predictor_unit": "pounds",
+  "target": "mpg",
+  "target_unit": "miles per US gallon, city-cycle",
+  "model": "Orange LinearRegressionLearner (ordinary least squares)",
+  "evaluation": "10-fold cross-validation; random_state=42",
+  "cv_r2": 0.6901496378692122,
+  "cv_mse": 18.881078628825644,
+  "cv_rmse": 4.34523631449725,
+  "cv_mae": 3.2960811387379993,
+  "full_data_slope_mpg_per_pound": -0.007676610063926465,
+  "full_data_intercept_mpg": 46.31736442026563,
+  "pearson_r_weight_mpg": -0.8317409332443352,
+  "cv_residual_mean_mpg": 0.001593341325769499,
+  "cv_residual_median_mpg": -0.2957282695229715,
+  "cv_residual_95th_percentile_abs_mpg": 8.681147189907461,
+  "cv_predictions_file": "auto_mpg_cv_iragarpenak.csv"
+}
