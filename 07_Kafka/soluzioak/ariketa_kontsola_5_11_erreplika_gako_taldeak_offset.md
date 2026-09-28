@@ -70,6 +70,9 @@ Transkripzioa: [6. atala](kafka_exekuzio_isolatua_2026-09-28_5_11.md#6-gakoak).
 docker exec "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-topics.sh --create --topic "$ORDERS" --partitions 3 --bootstrap-server "$KAFKA_BOOTSTRAP"
 # Bi terminaletan, TALDE BEREAN, mezuak bidali AURRETIK abiarazi:
 docker exec -it "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-consumer.sh --topic "$ORDERS" --group "codex-aabd-${RUN_ID}-denda" --property print.partition=true --bootstrap-server "$KAFKA_BOOTSTRAP"
+# Hirugarren terminaletik, 12 mezu gakodun bidali (gakoa: partizio-banaketa):
+docker exec -i "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-producer.sh --topic "$ORDERS" --bootstrap-server "$KAFKA_BOOTSTRAP" --property parse.key=true --property key.separator=:
+# Lerroak: k01:eskaera-01 ... k12:eskaera-12 (k<i>:eskaera-<i>)
 ```
 
 **Erantzuna:** ez, bi consumer-ek ez dituzte mezu guztiak jasotzen; lana
@@ -101,7 +104,9 @@ froga. Transkripzioa: [8. atala](kafka_exekuzio_isolatua_2026-09-28_5_11.md#8-er
 
 ```bash
 docker exec "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-topics.sh --create --topic "codex-aabd-${RUN_ID}-eskaerak-2p" --partitions 2 --bootstrap-server "$KAFKA_BOOTSTRAP"
-# Hiru consumer TALDE BEREAN abiarazi, gero 6 mezu bidali.
+# Hiru consumer TALDE BEREAN abiarazi (consumer.sh ... --group "codex-aabd-${RUN_ID}-denda5"), gero producer-etik 6 mezu gakodun:
+docker exec -i "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-producer.sh --topic "codex-aabd-${RUN_ID}-eskaerak-2p" --bootstrap-server "$KAFKA_BOOTSTRAP" --property parse.key=true --property key.separator=:
+# Lerroak: k1:mezu-1 ... k6:mezu-6
 ```
 
 **Erantzuna:** 2 partizio + 3 consumer = consumer bat geldirik (inaktibo).
@@ -113,8 +118,11 @@ lan egiteko, topic-ak gutxienez 3 partizio izan behar ditu (`--alter
 ## 10. ariketa — bi consumer group independente
 
 ```bash
+docker exec "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-topics.sh --create --topic "codex-aabd-${RUN_ID}-salmentak" --partitions 2 --bootstrap-server "$KAFKA_BOOTSTRAP"
 docker exec -it "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-consumer.sh --topic "codex-aabd-${RUN_ID}-salmentak" --group "codex-aabd-${RUN_ID}-analitika" --from-beginning --bootstrap-server "$KAFKA_BOOTSTRAP"
 docker exec -it "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-consumer.sh --topic "codex-aabd-${RUN_ID}-salmentak" --group "codex-aabd-${RUN_ID}-alertak" --from-beginning --bootstrap-server "$KAFKA_BOOTSTRAP"
+# Producer-etik (hirugarren terminala), lerro banan-banan:
+docker exec -it "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-producer.sh --topic "codex-aabd-${RUN_ID}-salmentak" --bootstrap-server "$KAFKA_BOOTSTRAP"
 ```
 
 Producer-etik: `salmenta-001` … `salmenta-004`.
@@ -127,6 +135,9 @@ eredua. Transkripzioa: [10. atala](kafka_exekuzio_isolatua_2026-09-28_5_11.md#10
 ## 11. ariketa — offset-a praktikan
 
 ```bash
+docker exec "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-topics.sh --create --topic "codex-aabd-${RUN_ID}-offset-proba" --partitions 1 --bootstrap-server "$KAFKA_BOOTSTRAP"
+# 10 mezu bidali (m01...m10), taldearekin irakurri, 5 berri (m11...m15), talde BEREAN berriro:
+docker exec -it "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-producer.sh --topic "codex-aabd-${RUN_ID}-offset-proba" --bootstrap-server "$KAFKA_BOOTSTRAP"
 docker exec -it "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-consumer.sh --topic "codex-aabd-${RUN_ID}-offset-proba" --group "codex-aabd-${RUN_ID}-offset-taldea" --property print.offset=true --bootstrap-server "$KAFKA_BOOTSTRAP"
 ```
 

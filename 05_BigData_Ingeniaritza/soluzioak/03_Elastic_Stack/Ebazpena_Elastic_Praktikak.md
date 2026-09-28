@@ -19,7 +19,8 @@ baliokidearekin egiaztatuta dago (Dev Tools REST bezero bat da).
 
 [`compose.yaml`](compose.yaml) PDFkoaren baliokidea da, bi egokitzapenekin:
 portuak `127.0.0.1`-ra atxikita (repoaren SECURITY araua; PDFak `9200:9200`
-dakar interfaze guztietan) eta ES heap-a esplizitua (`-Xms1g -Xmx1g`).
+dakar interfaze guztietan) eta heap minimoak esplizituak (ES `-Xms512m -Xmx512m`,
+Kibana `NODE_OPTIONS=--max-old-space-size=1024`).
 
 ```bash
 docker compose up -d

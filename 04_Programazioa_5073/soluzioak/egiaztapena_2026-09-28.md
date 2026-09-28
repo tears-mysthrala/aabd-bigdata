@@ -14,6 +14,7 @@ dituzte eta auto-sufizienteak dira).
 | `03_Lengoaiak_PDF_Ariketak/5073_1_Lengoaiak_PDF_Ariketak.py` | 0 | JSON/YAML roundtrip assert; `.gitignore`/`.env.example`/PR-txantiloia `True`; `katalogoa.*` berridatzi eta berdinak (git garbi) |
 | `04_Datu_Zientzia_PDF_Ariketak/5073_2_Datu_Zientzia_PDF_Ariketak.py` | 0 | Benchmark, garbiketa, JOIN/concat, grafikoak (3.1/3.2/3.3), DVC /tmp isolatuan; birsortutako CSV/grafikoak revertitu (`git checkout`, denborak makina-dependenteak) |
 | `06_Programazioa_Ariketak/5073_3_Programazioa_Ariketak.py` (25 ariketa) | 0 | Pipeline accuracy 0.927, RF recall 0.634, Pydantic ValidationError espero bezala |
+| `05_Frameworkak_PDF_Ariketak/5073_3_Frameworkak_PDF_Ariketak.py` | EZ exekutatua | Esparrutik kanpo: `transformers`/`torch` (HF sentiment, tokenizazioa), Gemini/RAG API deiak eta Streamlit/uvicorn GUIak behar ditu; auditorian jaso bezala zati batzuk 2026-09-25ean lokalki egiaztatuta (T3-1.x, T3-2.x CPU, T3-3.x TestClient, T3-6.2), gainontzekoak kode prest baina exekuzio errealaren zain |
 
 **Estaltzen ditu:** 04-LN (25), 04-DN (25), 04-LP/04-DP exekutagarriak,
 04-T3-NB (25). Ez ditu estaltzen: 04-LP-1.2/2.1/2.2/2.4/2.5/4.3/4.4

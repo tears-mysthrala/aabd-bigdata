@@ -36,6 +36,14 @@ check() { # check <hits-espero> <json>
 }
 
 echo "== 2. praktika: indizea garbitu + 4 dokumentu =="
+# Segurtasuna: DELETE suntsitzailea loopback-ean bakarrik, bestela BERREZARRI=1 eskatu.
+case "$ES" in
+  *127.0.0.1*|*localhost*) ;;
+  *) if [ "${BERREZARRI:-0}" != "1" ]; then
+       echo "ABORT: $ES ez da loopback — ez dut produktuak ezabatuko. BERREZARRI=1 ezarri laborategi botagarria dela berresteko." >&2
+       exit 1
+     fi ;;
+esac
 curl -fsS -X DELETE "$ES/produktuak" > /dev/null 2>&1 || true # ez badago, berdin
 q p2-1 POST /produktuak/_doc '{"izena":"Koaderno urdina","kategoria":"Papergintza","prezioa":4.50,"stock":25}' > /dev/null
 q p2-2 POST /produktuak/_doc '{"izena":"Koaderno handia","kategoria":"Papergintza","prezioa":8.50,"stock":10}' > /dev/null
