@@ -11,7 +11,10 @@ Orduro exekutatzen da (systemd timer bidez):
 """
 
 import os
+import argparse
 import html
+import hashlib
+import json
 import re
 import sys
 import time
@@ -20,6 +23,8 @@ import tempfile
 import urllib.parse
 from datetime import datetime
 from pathlib import Path
+from email.message import Message
+from collections import Counter
 from zipfile import ZipFile
 import requests
 from bs4 import BeautifulSoup
@@ -34,9 +39,16 @@ COURSE_ID = "535"
 MAX_DOWNLOAD_BYTES = 100 * 1024 * 1024
 
 
+def redact_sensitive(text: str) -> str:
+    for value in (USERNAME, PASSWORD):
+        if value:
+            text = text.replace(value, "[redacted]")
+    return text
+
+
 def log(msg: str) -> None:
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    entry = f"[{now}] {msg}"
+    entry = f"[{now}] {redact_sensitive(msg)}"
     print(entry)
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(entry + "\n")
@@ -44,7 +56,7 @@ def log(msg: str) -> None:
 
 def notify(title: str, msg: str) -> None:
     try:
-        subprocess.run(["notify-send", "-a", "Moodle Sync", title, msg], check=False)
+        subprocess.run(["notify-send", "-a", "Moodle Sync", title, redact_sensitive(msg)], check=False)
     except Exception as e:
         log(f"Ezin izan da notify-send exekutatu: {e}")
 
@@ -80,7 +92,7 @@ def lortu_saioa() -> requests.Session:
     probe = moodle_request(session, "GET", f"{BASE_URL}/course/view.php?id={COURSE_ID}", timeout=15)
     probe.raise_for_status()
     if 'id="username"' in probe.text or "login/index.php" in probe.url:
-        raise RuntimeError("Login Moodle fallido: sesión no autenticada (¿contraseña cambiada?).")
+        raise RuntimeError("Login Moodle fallido: sesión autenticada no confirmada")
     return session
 
 
@@ -167,44 +179,56 @@ def safe_download_path(dest_dir: Path, remote_name: str, *, nested: bool = False
     name = urllib.parse.unquote(remote_name).replace("\\", "/")
     parts = name.split("/")
     if (not name or name.startswith("/") or re.match(r"^[A-Za-z]:", name)
-            or any(part in ("", ".", "..") for part in parts)
+            or any(part in ("", ".", "..", ".git") for part in parts)
             or (not nested and len(parts) != 1)):
         raise ValueError(f"Moodle izen ez-segurua: {remote_name!r}")
     root = REPO_ROOT.resolve()
     base = dest_dir.resolve()
     candidate = (base / name).resolve()
-    if (base != dest_dir.absolute() or candidate != base / name
-            or not base.is_relative_to(root) or not candidate.is_relative_to(base)):
+    if (not base.is_relative_to(root) or not candidate.is_relative_to(root)
+            or ".git" in candidate.relative_to(root).parts):
         raise ValueError("Moodle deskarga-bidea baimendutako direktoriotik kanpo")
     return candidate
 
 
 def moodle_request(
     session: requests.Session, method: str, url: str,
-    allowed_hosts: set[str] | None = None, **kwargs
+    allowed_hosts: set[str] | None = None, *, stop_at_external: bool = False, **kwargs
 ) -> requests.Response:
     """Jarraitu soilik baimendutako HTTPS hostetako birbideratzeei."""
     current = urllib.parse.urljoin(BASE_URL + "/", url)
     hosts = allowed_hosts or {urllib.parse.urlparse(BASE_URL).hostname}
     for _ in range(6):
         parsed = urllib.parse.urlparse(current)
-        if parsed.scheme != "https" or parsed.hostname not in hosts:
+        if parsed.scheme != "https" or parsed.hostname not in hosts or parsed.username or parsed.password:
             raise ValueError("Deskarga esteka/birbideratzea baimendutako hostetik kanpo")
-        response = session.request(method, current, allow_redirects=False, **kwargs)
+        for attempt in range(3):
+            try:
+                response = session.request(method, current, allow_redirects=False, **kwargs)
+                break
+            except (requests.ConnectionError, requests.Timeout):
+                if attempt == 2:
+                    raise
+                time.sleep(attempt + 1)
         if response.status_code not in (301, 302, 303, 307, 308):
             return response
         location = response.headers.get("Location")
-        response.close()
         if not location:
+            response.close()
             raise ValueError("Moodle birbideratzeak ez du Location goibururik")
-        current = urllib.parse.urljoin(current, location)
+        target = urllib.parse.urljoin(current, location)
+        parsed_target = urllib.parse.urlparse(target)
+        if stop_at_external and (parsed_target.scheme != "https" or parsed_target.hostname not in hosts):
+            return response
+        response.close()
+        current = target
     raise ValueError("Moodle birbideratze gehiegi")
 
 
 def download_file(
     session: requests.Session, url: str, dest_path: Path,
     *, allowed_hosts: set[str] | None = None, notebook: bool = False
-) -> None:
+) -> bool:
     """Deskargatu muga batekin eta ordezkatu fitxategia deskarga osoa denean."""
     dest_path.parent.mkdir(parents=True, exist_ok=True)
     temp_path = None
@@ -213,6 +237,10 @@ def download_file(
             session, "GET", url, allowed_hosts=allowed_hosts, stream=True, timeout=(10, 30)
         ) as response:
             response.raise_for_status()
+            html_content = "text/html" in response.headers.get("Content-Type", "")
+            if html_content and (dest_path.suffix.lower() not in (".html", ".htm")
+                                 or "pluginfile.php" not in urllib.parse.urlparse(response.url).path):
+                raise ValueError("Moodle HTML orria ez da deskargatzeko fitxategia")
             if notebook and "text/html" in response.headers.get("Content-Type", ""):
                 raise ValueError("Drive-k HTML/login orria itzuli du, ez notebook bat")
             if int(response.headers.get("Content-Length") or 0) > MAX_DOWNLOAD_BYTES:
@@ -226,211 +254,260 @@ def download_file(
                         raise ValueError("Moodle fitxategiak tamaina-muga gainditzen du")
                     output.write(chunk)
         if notebook:
-            with temp_path.open("rb") as source:
-                if not source.read(1024).lstrip().startswith(b"{"):
-                    raise ValueError("Drive deskarga ez da notebook JSON bat")
+            data = json.loads(temp_path.read_text(encoding="utf-8"))
+            if not isinstance(data, dict) or not isinstance(data.get("cells"), list) or not data.get("nbformat"):
+                raise ValueError("Drive deskarga ez da notebook JSON bat")
+        with temp_path.open("rb") as source:
+            prefix = source.read(512).lstrip().lower()
+        if dest_path.suffix.lower() not in (".html", ".htm") and prefix.startswith((b"<!doctype html", b"<html")):
+            raise ValueError("HTML/login orria ezin da material gisa gorde")
+        if dest_path.suffix.lower() in (".html", ".htm") and b"sesskey" in temp_path.read_bytes().lower():
+            raise ValueError("HTMLak Moodle saio-datuak ditu")
+        if dest_path.suffix.lower() == ".pdf" and not prefix.startswith(b"%pdf-"):
+            raise ValueError("PDF fitxategiak ez du PDF goibururik")
+        if dest_path.is_file() and file_hash(dest_path) == file_hash(temp_path):
+            return False
         os.replace(temp_path, dest_path)
+        return True
     finally:
         if temp_path is not None:
             temp_path.unlink(missing_ok=True)
 
 
+SYNC_REPORT: dict = {}
+
+
+def file_hash(path: Path) -> str:
+    with path.open("rb") as source:
+        return hashlib.file_digest(source, "sha256").hexdigest()
+
+
+def response_filename(response: requests.Response) -> str:
+    header = Message()
+    header["Content-Disposition"] = response.headers.get("Content-Disposition", "")
+    return header.get_filename() or urllib.parse.urlparse(response.url).path.rsplit("/", 1)[-1]
+
+
+def fetch_file(*args, **kwargs) -> bool:
+    """Berriro saiatu sare-etenetan; ez ezkutatu formatu edo baimen akatsak."""
+    for attempt in range(3):
+        try:
+            return download_file(*args, **kwargs)
+        except (requests.ConnectionError, requests.Timeout, requests.exceptions.ChunkedEncodingError):
+            if attempt == 2:
+                raise
+            time.sleep(attempt + 1)
+
+
+def public_url(url: str) -> str:
+    """Gorde erreferentzia publikoa, saio-parametrorik eta userinfo gabe."""
+    parsed = urllib.parse.urlsplit(url)
+    query = urllib.parse.urlencode([(key, value) for key, value in urllib.parse.parse_qsl(parsed.query)
+                                   if key in {"id", "section", "forcedownload", "export", "usp", "chapterid"}])
+    return urllib.parse.urlunsplit((parsed.scheme, parsed.netloc.rsplit("@", 1)[-1], parsed.path, query, ""))
+
+
 def sinkronizatu() -> list[str]:
-    """Exekutatu Moodle-ko eskaneatze eta deskarga prozesu osoa."""
+    """Egiaztatu Moodle materiala; erroreak eta kanpo-mugak esplizituak dira."""
+    global SYNC_REPORT
     session = lortu_saioa()
-    deskargatutakoak: list[str] = []
-    erregistratutako_urlak: dict[str, list[tuple[str, str, str]]] = {}
+    downloaded: list[str] = []
+    entries: list[dict] = []
+    registries: dict[str, list[tuple[str, str, str, str]]] = {}
+    seen_activities: set[str] = set()
+    seen_files: set[tuple[str, str]] = set()
+    activity_types: Counter = Counter()
 
-    def erregistratu_url(sec_id: int, izena: str, kanpoko_url: str) -> None:
-        dest_dir = helburu_direktorioa(sec_id, izena)
-        erregistratutako_urlak.setdefault(str(dest_dir), []).append(
-            (izena, act_url, kanpoko_url)
-        )
+    def error(kind: str, url: str, exc: Exception) -> None:
+        # Ez idatzi HTML, cookies edo autentifikazio-erantzunen edukia.
+        detail = re.sub(r"""https?://[^\s'"]+""", lambda match: public_url(match.group()), str(exc))[:400]
+        reason = redact_sensitive(f"{type(exc).__name__}: {detail}")
+        entries.append({"kind": kind, "source": public_url(url), "status": "error", "reason": reason})
+        log(f"Sinkronizazio errorea ({kind}): {reason}")
 
-    log("Moodle atalak aztertzen...")
-    for sec_id in range(0, 13):
-        url = f"{BASE_URL}/course/view.php?id={COURSE_ID}&section={sec_id}"
-        resp = moodle_request(session, "GET", url, timeout=15)
-        if resp.status_code != 200:
+    def sync_file(sec: int, url: str, folder: str = "", relative: str | None = None) -> None:
+        with moodle_request(session, "HEAD", url, timeout=20) as head:
+            head.raise_for_status()
+            name = relative or response_filename(head)
+        if Path(urllib.parse.unquote(name)).suffix.lower() in (".php", ""):
+            raise ValueError("Ez dago benetako fitxategi-izenik")
+        dest = helburu_direktorioa(sec, name, karpeta_izena=folder)
+        target = safe_download_path(dest, name, nested=bool(relative))
+        key = (url, str(target))
+        if key in seen_files:
+            return
+        seen_files.add(key)
+        changed = fetch_file(session, url, target, notebook=target.suffix.lower() == ".ipynb")
+        if changed:
+            downloaded.append(str(target.relative_to(REPO_ROOT.resolve())))
+        entries.append({"kind": "file", "source": public_url(url),
+                        "path": str(target.relative_to(REPO_ROOT.resolve())),
+                        "status": "verified", "sha256": file_hash(target)})
+        if target.suffix.lower() == ".docx" and (changed or not target.with_suffix(".md").is_file()):
+            md = target.with_suffix(".md")
+            previous = file_hash(md) if md.is_file() else None
+            docx_to_md(target, md)
+            if previous != file_hash(md):
+                downloaded.append(str(md.relative_to(REPO_ROOT.resolve())))
+
+    index_url = f"{BASE_URL}/course/view.php?id={COURSE_ID}"
+    with moodle_request(session, "GET", index_url, timeout=25) as response:
+        response.raise_for_status()
+        course = BeautifulSoup(response.text, "html.parser")
+    sections = set(range(13))
+    for element in course.select('[id^="section-"]'):
+        value = element.get("id", "").removeprefix("section-")
+        if value.isdigit():
+            sections.add(int(value))
+    for link in course.select('a[href*="section="]'):
+        query = urllib.parse.parse_qs(urllib.parse.urlparse(link["href"]).query)
+        for value in query.get("section", []):
+            if value.isdigit():
+                sections.add(int(value))
+    log(f"Moodle atalak egiaztatzen: {len(sections)}")
+    for sec in sorted(sections):
+        section_url = f"{index_url}&section={sec}"
+        try:
+            with moodle_request(session, "GET", section_url, timeout=25) as response:
+                response.raise_for_status()
+                if 'id="username"' in response.text:
+                    raise ValueError("Moodle saioa galdu da")
+                soup = BeautifulSoup(response.text, "html.parser")
+        except Exception as exc:
+            error("section", section_url, exc)
             continue
-
-        soup = BeautifulSoup(resp.text, "html.parser")
-        activities = soup.select(".activity")
-
-        for act in activities:
-            link = act.select_one("a")
-            if not link or not link.get("href"):
+        for activity in soup.select(".activity"):
+            link = activity.select_one('a.aalink[href], .activityname a[href]') or activity.select_one('a[href]')
+            if link is None:
                 continue
-
-            act_url = link["href"]
-            inst_el = act.select_one(".instancename") or link
-            act_izena = inst_el.text.strip().split("\n")[0].strip()
-
-            # 1. Baliabide zuzenak (mod/resource)
-            if "mod/resource" in act_url:
-                try:
-                    head = moodle_request(session, "HEAD", act_url, timeout=10)
-                    cd = head.headers.get("Content-Disposition", "")
-                    fname = None
-                    if "filename=" in cd:
-                        fname = cd.split("filename=")[1].strip("\"' ")
-                    elif "/" in head.url:
-                        fname = head.url.split("/")[-1].split("?")[0]
-
-                    if not fname:
-                        head.close()
-                        continue
-
-                    remote_size = int(head.headers.get("Content-Length") or 0)
-                    head.close()
-                    dest_dir = helburu_direktorioa(sec_id, fname)
-                    dest_path = safe_download_path(dest_dir, fname)
-
-                    behar_da = False
-                    if not dest_path.exists():
-                        behar_da = True
-                    elif remote_size > 0 and dest_path.stat().st_size != remote_size:
-                        behar_da = True
-
-                    if behar_da:
-                        log(f"Deskargatzen: [Sec {sec_id}] {fname} ({remote_size} bytes)...")
-                        download_file(session, act_url, dest_path)
-                        deskargatutakoak.append(str(dest_path.relative_to(REPO_ROOT)))
-
-                        if fname.lower().endswith(".docx"):
-                            md_path = dest_path.with_suffix(".md")
-                            docx_to_md(dest_path, md_path)
-                            deskargatutakoak.append(str(md_path.relative_to(REPO_ROOT)))
-
-                except Exception as e:
-                    log(f"Errorea baliabidea aztertzean ({act_url}): {e}")
-
-            # 2. Karpetak (mod/folder)
-            elif "mod/folder" in act_url:
-                try:
-                    r_fld = moodle_request(session, "GET", act_url, timeout=15)
-                    r_fld.raise_for_status()
-                    f_soup = BeautifulSoup(r_fld.text, "html.parser")
-                    base_dest = helburu_direktorioa(sec_id, "", karpeta_izena=act_izena)
-
-                    for a in f_soup.find_all("a"):
-                        fhref = a.get("href", "")
-                        if "pluginfile.php" in fhref:
-                            # Estrakzio bidea URL-tik (adib. Ariketa%203.1/ikasleak_notak_100.csv)
-                            match = re.search(r"content/\d+/(.+?)\?", fhref)
-                            erlatiboa = match.group(1) if match else a.text.strip()
-                            dest_path = safe_download_path(base_dest, erlatiboa, nested=True)
-
-                            head = moodle_request(session, "HEAD", fhref, timeout=10)
-                            remote_size = int(head.headers.get("Content-Length") or 0)
-                            head.close()
-
-                            behar_da = False
-                            if not dest_path.exists():
-                                behar_da = True
-                            elif remote_size > 0 and dest_path.stat().st_size != remote_size:
-                                behar_da = True
-
-                            if behar_da:
-                                log(f"Deskargatzen karpetatik: {erlatiboa} ({remote_size} bytes)...")
-                                download_file(session, fhref, dest_path)
-                                deskargatutakoak.append(str(dest_path.relative_to(REPO_ROOT)))
-
-                                if dest_path.name.lower().endswith(".docx"):
-                                    md_path = dest_path.with_suffix(".md")
-                                    docx_to_md(dest_path, md_path)
-                                    deskargatutakoak.append(str(md_path.relative_to(REPO_ROOT)))
-
-                except Exception as e:
-                    log(f"Errorea karpeta aztertzean ({act_url}): {e}")
-
-            # 3. Zereginen eranskinak (mod/assign)
-            elif "mod/assign" in act_url:
-                try:
-                    r_asg = moodle_request(session, "GET", act_url, timeout=15)
-                    r_asg.raise_for_status()
-                    asg_soup = BeautifulSoup(r_asg.text, "html.parser")
-                    for a in asg_soup.select("#intro a, .introattachment a, .fileuploadsubmission a"):
-                        ahref = a.get("href", "")
-                        if "pluginfile.php" in ahref and "forcedownload=1" in ahref:
-                            fname = a.text.strip()
-                            if not fname:
-                                continue
-                            dest_dir = helburu_direktorioa(sec_id, fname)
-                            dest_path = safe_download_path(dest_dir, fname)
-
-                            head = moodle_request(session, "HEAD", ahref, timeout=10)
-                            remote_size = int(head.headers.get("Content-Length") or 0)
-                            head.close()
-
-                            behar_da = False
-                            if not dest_path.exists():
-                                behar_da = True
-                            elif remote_size > 0 and dest_path.stat().st_size != remote_size:
-                                behar_da = True
-
-                            if behar_da:
-                                log(f"Deskargatzen zereginetik: {fname} ({remote_size} bytes)...")
-                                download_file(session, ahref, dest_path)
-                                deskargatutakoak.append(str(dest_path.relative_to(REPO_ROOT)))
-
-                                if fname.lower().endswith(".docx"):
-                                    md_path = dest_path.with_suffix(".md")
-                                    docx_to_md(dest_path, md_path)
-                                    deskargatutakoak.append(str(md_path.relative_to(REPO_ROOT)))
-                except Exception as e:
-                    log(f"Errorea zeregina aztertzean ({act_url}): {e}")
-
-            # 4. Kanpo-estekak (mod/url: Colab, Drive, artikuluak...)
-            # Anatomia: view.php orriak kanpoko URLa erakusten du (ez du
-            # birbideratzen). Erregistroan jasotzen da beti; Drive publikoa
-            # bada, zuzenean deskargatzen saiatzen da.
-            elif "mod/url" in act_url:
-                try:
-                    r_u = moodle_request(session, "GET", act_url, timeout=15)
-                    r_u.raise_for_status()
-                    u_soup = BeautifulSoup(r_u.text, "html.parser")
-                    kanpoko = None
-                    for a in u_soup.find_all("a", href=True):
-                        h = a["href"]
-                        if h.startswith("http") and "hezkuntza.net" not in h \
-                                and "moodle.org" not in h and "moodle.com" not in h:
-                            kanpoko = h
-                            break
-                    if not kanpoko:
-                        log(f"URL jarduerak kanpoko estekarik gabe: {act_izena}")
-                        continue
-                    erregistratu_url(sec_id, act_izena, kanpoko)
-                    drive_id = None
-                    m = re.search(r"drive\.google\.com/(?:file/d/|drive/)([-\w]+)", kanpoko)
-                    if m:
-                        drive_id = m.group(1)
+            url = urllib.parse.urljoin(BASE_URL + "/", link["href"])
+            if url in seen_activities:
+                continue
+            seen_activities.add(url)
+            title = (activity.select_one(".instancename") or link).get_text(" ", strip=True)
+            kind_match = re.search(r"/mod/([^/]+)/", urllib.parse.urlparse(url).path)
+            if not kind_match:
+                continue
+            kind = kind_match.group(1)
+            activity_types[kind] += 1
+            try:
+                if kind == "resource":
+                    with moodle_request(session, "HEAD", url, timeout=20) as head:
+                        head.raise_for_status()
+                        direct = "pluginfile.php" in urllib.parse.urlparse(head.url).path
+                        filename = response_filename(head)
+                    if direct and Path(urllib.parse.unquote(filename)).suffix.lower() != ".php":
+                        sync_file(sec, url)
                     else:
-                        m = re.search(r"colab\.research\.google\.com/drive/([-\w]+)", kanpoko)
-                        if m:
-                            drive_id = m.group(1)
-                    if drive_id:
-                        dest_dir = helburu_direktorioa(sec_id, act_izena)
-                        slug = re.sub(r"[^\w\-]+", "_", act_izena).strip("_")[:60]
-                        dest_path = safe_download_path(dest_dir, f"{slug}.ipynb")
-                        if not dest_path.exists():
-                            download_file(
-                                session,
-                                f"https://drive.google.com/uc?export=download&id={drive_id}",
-                                dest_path,
-                                allowed_hosts={"drive.google.com", "drive.usercontent.google.com"},
-                                notebook=True,
-                            )
-                            deskargatutakoak.append(str(dest_path.relative_to(REPO_ROOT)))
-                            log(f"Drive-tik deskargatuta: {act_izena} -> {dest_path.name}")
-                except Exception as e:
-                    log(f"Errorea URLa aztertzean ({act_url}): {e}")
+                        with moodle_request(session, "GET", url, timeout=25) as response:
+                            response.raise_for_status()
+                            page = BeautifulSoup(response.text, "html.parser")
+                        main = page.select_one("#region-main") or page
+                        links = [a["href"] for a in main.select('a[href*="pluginfile.php"]')]
+                        links += [tag.get("src") or tag.get("data") for tag in main.select('iframe[src*="pluginfile.php"], object[data*="pluginfile.php"], embed[src*="pluginfile.php"]')]
+                        if not links:
+                            raise ValueError("Baliabidearen HTML orrian ez da eranskinik aurkitu")
+                        for attachment in dict.fromkeys(links):
+                            sync_file(sec, urllib.parse.urljoin(url, attachment))
+                elif kind in ("folder", "assign"):
+                    with moodle_request(session, "GET", url, timeout=25) as response:
+                        response.raise_for_status()
+                        page = BeautifulSoup(response.text, "html.parser")
+                    selector = '#region-main a[href*="pluginfile.php"]' if kind == "folder" else '#intro a[href*="pluginfile.php"], .introattachment a[href*="pluginfile.php"]'
+                    for attachment in page.select(selector):
+                        href = urllib.parse.urljoin(url, attachment["href"])
+                        relative = None
+                        if kind == "folder":
+                            match = re.search(r"/content/\d+/(.+)$", urllib.parse.urlparse(href).path)
+                            relative = match.group(1) if match else urllib.parse.urlparse(href).path.rsplit("/", 1)[-1]
+                        try:
+                            sync_file(sec, href, title if kind == "folder" else "", relative)
+                        except Exception as exc:
+                            error(kind, href, exc)
+                elif kind == "url":
+                    with moodle_request(session, "GET", url, stop_at_external=True, timeout=25) as response:
+                        external = urllib.parse.urljoin(response.url, response.headers["Location"]) if response.is_redirect else None
+                        if not external:
+                            response.raise_for_status()
+                            page = BeautifulSoup(response.text, "html.parser")
+                            main = page.select_one("#region-main") or page
+                            for candidate in main.select('a[href]'):
+                                href = candidate["href"]
+                                host = urllib.parse.urlparse(href).hostname
+                                if href.startswith("https://") and host and host not in {urllib.parse.urlparse(BASE_URL).hostname, "moodle.org", "moodle.com"}:
+                                    external = href
+                                    break
+                    if not external:
+                        raise ValueError("URL jarduerak ez du kanpoko estekarik")
+                    external_parts = urllib.parse.urlsplit(external)
+                    if (external_parts.scheme != "https" or not external_parts.hostname
+                            or external_parts.username or external_parts.password):
+                        raise ValueError("Kanpo-estekak HTTPS eta userinfo gabe izan behar du")
+                    status = "web reference"
+                    match = re.search(r"(?:drive\.google\.com/(?:file/d/|drive/)|colab\.research\.google\.com/drive/)([-\w]+)", external)
+                    if match:
+                        slug = re.sub(r"[^\w\-]+", "_", title).strip("_")[:60]
+                        target = safe_download_path(helburu_direktorioa(sec, title), f"{slug}.ipynb")
+                        try:
+                            # Ez bidali Moodle cookies-ak Google-ra.
+                            with requests.Session() as public_session:
+                                changed = fetch_file(public_session, f"https://drive.google.com/uc?export=download&id={match.group(1)}", target,
+                                    allowed_hosts={"drive.google.com", "drive.usercontent.google.com"}, notebook=True)
+                            if changed:
+                                downloaded.append(str(target.relative_to(REPO_ROOT.resolve())))
+                            entries.append({"kind": "external notebook", "source": public_url(external), "path": str(target.relative_to(REPO_ROOT.resolve())), "status": "verified", "sha256": file_hash(target)})
+                            status = "downloaded and verified"
+                        except (requests.RequestException, ValueError, json.JSONDecodeError):
+                            status = "not downloaded: Google access or download unavailable"
+                    dest = helburu_direktorioa(sec, title)
+                    registries.setdefault(str(dest), []).append((title, public_url(url), public_url(external), status))
+                    entries.append({"kind": "external link", "source": public_url(external), "activity": public_url(url), "status": status})
+                elif kind in ("page", "book", "lesson", "scorm", "wiki"):
+                    # Hauek ez dira fitxategiak. Ez aldarrikatu deskarga osoa.
+                    entries.append({"kind": kind, "source": public_url(url), "status": "manual review required"})
+                else:
+                    entries.append({"kind": kind, "source": public_url(url), "status": "interactive activity (not mirrored)"})
+            except Exception as exc:
+                error(kind, url, exc)
+    for name in idatzi_url_erregistroak(registries):
+        downloaded.append(name)
+    if not seen_activities or not seen_files:
+        error("course", index_url, ValueError("Ez da jarduera edo fitxategirik aurkitu; ezin da arrakasta aldarrikatu"))
+    for entry in entries:
+        if entry.get("status") == "verified" and entry.get("path"):
+            target = REPO_ROOT / entry["path"]
+            if not target.is_file() or file_hash(target) != entry["sha256"]:
+                entry["status"] = "error"
+                entry["reason"] = "Saved hash mismatch: possible filename collision or concurrent edit"
+    errors = sum(entry["status"] == "error" for entry in entries)
+    unavailable = sum(entry["status"].startswith("not downloaded") or entry["status"] == "manual review required" for entry in entries)
+    SYNC_REPORT = {"verified_on": datetime.now().date().isoformat(),
+                   "scope": "Moodle resources, folders and assignment statements; external/interactive limitations explicit",
+                   "sections": sorted(sections), "activities": len(seen_activities),
+                   "activity_types": dict(sorted(activity_types.items())),
+                   "errors": errors, "unavailable": unavailable, "entries": entries}
+    report_path = REPO_ROOT / "00_Transversal" / "MOODLE_SYNC_ESTADO.json"
+    payload = json.dumps(SYNC_REPORT, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    if not report_path.exists() or report_path.read_text() != payload:
+        report_path.write_text(payload)
+        downloaded.append(str(report_path.relative_to(REPO_ROOT)))
+    # Recupera descargas pendientes de un ciclo parcial anterior, sin incluir
+    # cambios ajenos en scripts, soluciones o documentos que no gestiona Moodle.
+    managed = {entry["path"] for entry in entries if entry.get("status") == "verified" and entry.get("path")}
+    managed.update(str(safe_download_path(Path(dest), "MOODLE_URLs.md").relative_to(REPO_ROOT.resolve())) for dest in registries)
+    managed.add(str(report_path.relative_to(REPO_ROOT)))
+    managed.update(str(Path(name).with_suffix(".md")) for name in list(managed)
+                   if Path(name).suffix.lower() == ".docx" and (REPO_ROOT / Path(name).with_suffix(".md")).is_file())
+    for command in (["git", "diff", "--name-only", "-z", "HEAD", "--"],
+                    ["git", "ls-files", "--others", "--exclude-standard", "-z", "--"]):
+        pending = subprocess.check_output([*command, *sorted(managed)], cwd=REPO_ROOT)
+        downloaded.extend(os.fsdecode(name) for name in pending.split(b"\0") if name)
+    log(f"Cobertura: {len(sections)} atal, {len(seen_activities)} jarduera, {errors} errore, {unavailable} kanpo/manual muga")
+    session.close()
+    return sorted(set(downloaded))
 
-    idatzi_url_erregistroak(erregistratutako_urlak)
-    return deskargatutakoak
 
-
-def idatzi_url_erregistroak(erregistroak: dict) -> None:
+def idatzi_url_erregistroak(erregistroak: dict) -> list[str]:
     """Idatzi MOODLE_URLs.md helburu-karpeta bakoitzean (determinista).
 
     Kanpo-estekak (Colab/Drive/artikuluak) ez dira `mod/resource` eta
@@ -440,6 +517,7 @@ def idatzi_url_erregistroak(erregistroak: dict) -> None:
     def cell(value: str) -> str:
         return html.escape(value).replace("|", "\\|").replace("\r", " ").replace("\n", " ")
 
+    changed = []
     for dest_s, zerrenda in sorted(erregistroak.items()):
         dest_dir = Path(dest_s)
         registry_path = safe_download_path(dest_dir, "MOODLE_URLs.md")
@@ -453,16 +531,16 @@ def idatzi_url_erregistroak(erregistroak: dict) -> None:
             "|---|---|---|---|",
         ]
         ikusitakoak = set()
-        for izena, jarduera, kanpoko in sorted(zerrenda):
+        for izena, jarduera, kanpoko, egoera in sorted(zerrenda):
             if (izena, kanpoko) in ikusitakoak:
                 continue
             ikusitakoak.add((izena, kanpoko))
-            if "colab.research.google.com" in kanpoko or "drive.google.com" in kanpoko:
-                egoera = "Google login behar du deskargatzeko"
-            else:
-                egoera = "erreferentzia (web)"
             lerroak.append(f"| {cell(izena)} | {cell(jarduera)} | {cell(kanpoko)} | {egoera} |")
-        registry_path.write_text("\n".join(lerroak) + "\n", encoding="utf-8")
+        payload = "\n".join(lerroak) + "\n"
+        if not registry_path.exists() or registry_path.read_text() != payload:
+            registry_path.write_text(payload, encoding="utf-8")
+            changed.append(str(registry_path.relative_to(REPO_ROOT.resolve())))
+    return changed
 
 
 SAIAKERA_MAX = 5
@@ -470,6 +548,9 @@ SAIAKERA_ATSEDENA_S = 30
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--no-publish", action="store_true", help="Deskargatu/egiaztatu soilik; Git commit/push gabe")
+    args = parser.parse_args()
     log("=== Sinkronizazio zikloa hasita ===")
     berriak: list[str] = []
     try:
@@ -482,6 +563,15 @@ def main() -> None:
                 if saiakera >= SAIAKERA_MAX:
                     raise
                 time.sleep(SAIAKERA_ATSEDENA_S)
+        if SYNC_REPORT.get("errors"):
+            raise RuntimeError(f"Moodle sinkronizazioa osatu gabe: {SYNC_REPORT['errors']} errore; ez da argitaratu")
+        if SYNC_REPORT.get("unavailable"):
+            log(f"Moodle fitxategiak egiaztatuta; {SYNC_REPORT['unavailable']} kanpo/manual jarduera ez da deskargatu")
+        if args.no_publish:
+            log(f"Egiaztapena amaituta: {len(berriak)} fitxategi aldatu; commit/push gabe")
+            return
+        if SYNC_REPORT.get("unavailable"):
+            raise RuntimeError("Kanpo/manual materiala falta da; ez da commit/push egiten estaldura osoa izan arte")
         if berriak:
             log(f"Deskargatutako fitxategiak ({len(berriak)}): {', '.join(berriak)}")
             notify(
@@ -500,8 +590,15 @@ def main() -> None:
             if staged.returncode != 0:
                 msg = f"Auto-sync Moodle: {len(berriak)} fitxategi deskargatuta\n\n" + "\n".join(f"- {b}" for b in berriak)
                 subprocess.run(["git", "commit", "--only", "-m", msg, "--", *berriak], cwd=REPO_ROOT, check=True)
-                subprocess.run(["git", "push", "origin", "master"], cwd=REPO_ROOT, check=True)
-                log("Git push ondo osatu da.")
+                branch = subprocess.check_output(["git", "branch", "--show-current"], cwd=REPO_ROOT, text=True).strip()
+                if not branch:
+                    raise RuntimeError("Detached HEAD: ez da automatikoki argitaratzen")
+                subprocess.run(["git", "push", "origin", f"HEAD:refs/heads/{branch}"], cwd=REPO_ROOT, check=True)
+                local = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True).strip()
+                remote = subprocess.check_output(["git", "ls-remote", "--heads", "origin", branch], cwd=REPO_ROOT, text=True).split()
+                if not remote or remote[0] != local:
+                    raise RuntimeError("Push ondoren urruneko commit-a ez dator HEADekin bat")
+                log(f"Git push egiaztatuta: {branch} {local[:12]}")
             else:
                 log("Aldaketarik ez stage-an: commit/push ez da egin.")
         else:
