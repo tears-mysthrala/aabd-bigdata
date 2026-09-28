@@ -29,20 +29,25 @@ Diapositibaren ariketa-agindua: hiruko talde bakoitzak fairness metrika bat defe
 
 | Taldekideak / rola | Aukeratutako metrika | Argudioa eta aitortutako kostua |
 |---|---|---|
-| 1 (ikaslea) | Equal accuracy taldeka + azalgarritasuna/determinismoa | Asmatze-tasa taldeen artean berdin banatzea + erabakiaren zergatia azaltzea; kostua: batez besteko orokorraren jaitsiera posiblea + azalpen-lan extra |
+| 1 (ikaslea) | Equal accuracy taldeka (zehaztasun orokorra parekatuta) + azalgarritasuna/determinismoa | Asmatze-tasa orokorra taldeen artean berdin banatzea + erabakiaren zergatia azaltzea; kostua: batez besteko orokorraren jaitsiera posiblea + azalpen-lan extra |
 | 2 | __________________ | ______________________________ |
 | 3 | __________________ | ______________________________ |
 | Taldearen ondorioa | __________________ | Zer beste neurri/berrikuspen erabiliko dugu? __________________ |
 
-**Ikaslearen benetako posizioa (1. kidea):** asmatze-tasa taldeen artean berdin
-banatzea defendatuko dut (equal accuracy / equal opportunity ildoa), ETA
-erabakiaren zergatia azaltzeko edo deterministako modukoa izatea: talde batek
-besteak baino emaitza okerragoa badu, hori neurtu, aitortu eta zuzendu egin
-behar da; eta erabaki bakoitzak zergatik-aitzak eman behar du (arauak,
-ebidentzia, konfiantza), kutxa beltzeko puntuazio hutsaren ordez. Kostu
-aitortua: talde guztietan parekatzeak batez besteko orokorra jaitsi dezake, eta
-azalgarritasunak diseinu-lan extra eskatzen du — biak ebidentziarekin neurtuko
-nituzke, ez promesarekin.
+**Ikaslearen benetako posizioa (1. kidea):** asmatze-tasa orokorra taldeen artean
+berdin banatzea defendatuko dut (**equal accuracy**: talde bakoitzean zuzen
+asmatutako proportzio bera), ETA erabakiaren zergatia azaltzeko edo
+deterministako modukoa izatea. Kontu terminologikoa (ez nahastu): hau EZ da
+**equal opportunity** — horrek benetan arriskuan dauden pazienteen arteko
+detekzio-tasa (TPR) parekatzea eskatzen du, eta zehaztasun orokor berdinak
+TPR desberdinak ezkuta ditzake. Ospitaleko kasuan kalte larria pazientea
+galdu izana denez, nire equal accuracy neurriari **osagarri gisa TPR
+parekotasuna** gehituko nioke arrisku-taldeetan (biak neurtu, TPR-a
+lehentasunez zainduz). Erabaki bakoitzak zergatik-aitzak eman behar du
+(arauak, ebidentzia, konfiantza), kutxa beltzeko puntuazio hutsaren ordez.
+Kostu aitortua: talde guztietan parekatzeak batez besteko orokorra jaitsi
+dezake, eta azalgarritasunak diseinu-lan extra eskatzen du — biak
+ebidentziarekin neurtuko nituzke, ez promesarekin.
 
 Ezintasun-teorema aipatzeak ez du esan nahi edozein datu-kasutan fairness neurri guztiak batera ezinezkoak direnik; zer definizio eta baldintza zehatz aplikatzen diren aztertu behar da. Hautua taldeak egin behar du.
 

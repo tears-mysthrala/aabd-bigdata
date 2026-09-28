@@ -73,10 +73,14 @@ docker exec -it "$KAFKA_CONTAINER" /opt/kafka/bin/kafka-console-consumer.sh --to
 ```
 
 **Erantzuna:** ez, bi consumer-ek ez dituzte mezu guztiak jasotzen; lana
-partizioen arabera banatzen da eta mezu bakoitza behin kontsumitzen da
-taldearen barruan. Behatuta (12 mezu gakodun, 3 partiziotan): Consumer A 9
-(P0+P1), Consumer B 3 (P2), guztira 12/12 bikoizketarik gabe. Partizio
-kopuruak mugatzen du paraleloan lan egin dezakeen consumer kopurua.
+partizioen arabera banatzen da: une bakoitzean partizio bakoitza taldeko kide
+bakar bati esleituta dago. Behatutako exekuzioan ez zen bikoizketarik izan
+(12 mezu gakodun: Consumer A 9 (P0+P1), Consumer B 3 (P2), guztira 12/12),
+baina hori ez da berme orokorra: erorketa edo rebalance batek erregistro bat
+prozesatu ONDOREN baina offset-a commit egin AURRETIK harrapatzen badu,
+taldekide batek mezu bera berriro jaso dezake (at-least-once console-consumer
+fluxu estandarrarekin). Partizio kopuruak mugatzen du paraleloan lan egin
+dezakeen consumer kopurua.
 Transkripzioa: [7. atala](kafka_exekuzio_isolatua_2026-09-28_5_11.md#7-consumer-group).
 
 ## 8. ariketa — consumer bat erortzen bada

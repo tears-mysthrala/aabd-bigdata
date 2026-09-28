@@ -2,15 +2,24 @@
 # Elastic Stack 1–4 praktikak + ariketa gehigarriak (curl bidez).
 # Kibana Dev Tools kontsulta bakoitzaren REST baliokidea da.
 # Erabilera: ES=http://127.0.0.1:9200 ./elastic_praktikak.sh
+# Berrerabilgarria: hasieran `produktuak` indizea ezabatzen du (ez badago,
+# errorea ezabatzen da), beraz bigarren exekuzioak ez ditu dokumentuak bikoizten.
 set -euo pipefail
 ES="${ES:-http://127.0.0.1:9200}"
 
-q() { # q <izena> <metodo> <path> [body]
+echo "== ES prest egon arte itxaron (gehienez ~2 min) =="
+for _ in $(seq 1 24); do
+  if curl -fsS --max-time 5 "$ES" > /dev/null 2>&1; then echo "ES prest"; break; fi
+  sleep 5
+done
+curl -fsS --max-time 10 "$ES" > /dev/null # huts egiten badu, hemen gelditu
+
+q() { # q <izena> <metodo> <path> [body] — curl -f: HTTP erroreak ezkutatu gabe
   local name="$1" method="$2" path="$3" body="${4:-}"
   if [ -n "$body" ]; then
-    curl -s -X "$method" "$ES$path" -H 'Content-Type: application/json' -d "$body"
+    curl -fsS -X "$method" "$ES$path" -H 'Content-Type: application/json' -d "$body"
   else
-    curl -s -X "$method" "$ES$path"
+    curl -fsS -X "$method" "$ES$path"
   fi
   echo
 }
@@ -26,7 +35,8 @@ check() { # check <hits-espero> <json>
   echo "OK ($hits hits)"
 }
 
-echo "== 2. praktika: 4 dokumentu =="
+echo "== 2. praktika: indizea garbitu + 4 dokumentu =="
+curl -fsS -X DELETE "$ES/produktuak" > /dev/null 2>&1 || true # ez badago, berdin
 q p2-1 POST /produktuak/_doc '{"izena":"Koaderno urdina","kategoria":"Papergintza","prezioa":4.50,"stock":25}' > /dev/null
 q p2-2 POST /produktuak/_doc '{"izena":"Koaderno handia","kategoria":"Papergintza","prezioa":8.50,"stock":10}' > /dev/null
 q p2-3 POST /produktuak/_doc '{"izena":"Sagu optikoa","kategoria":"Informatika","prezioa":19.99,"stock":15}' > /dev/null

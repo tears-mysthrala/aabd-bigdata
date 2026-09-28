@@ -88,6 +88,6 @@ cacheatzen da — zenbaki/data/balio zehatzetarako (iragazketa).
 |---|---|
 | P2–P4 + 5 gehigarriak (assert-ekin, `DENAK OK`) | ES 9.5.4 errealean exekutatuta 2026-09-28 |
 | Yellow/unassigned, mapping, term-vs-keyword portaera | Irteera erreala transkribatuta |
-| Kibana GUI `:5601` | Host honetan OOM — ez exekutatua; compose-ak dakar; Dev Tools = REST, dena curl bidez egiaztatuta |
+| Kibana `:5601` | Bigarren exekuzioan egiaztatuta (ikus goiko ohartxo eta erregistroa): `/api/status overall: available`; GUIa nabigatzailean irekitzen da ikaslearen makinarako |
 | Beats/Logstash (34–41. or.) | Teoria + grok pipeline azalpena; ez dago eskuzko ariketa zenbakidunik PDFan — ez da lan berririk |
 | Kibana Discover/Dashboard/ILM/Alerting (28–33. or.) | Teoria; ez dago urrats exekutagarririk PDFan — ez da lan berririk |

@@ -1,6 +1,15 @@
 # Elastic exekuzio-erregistroa (2026-09-28)
 
-**Ingurunea:** `docker.elastic.co/elasticsearch/elasticsearch:9.5.4`, container efimero `codex-aabd-elastic-lab`, `discovery.type=single-node`, `xpack.security.enabled=false`, `127.0.0.1:19200:9200`. Kibana ez da host honetan exekutatu (ikus Ebazpeneko oharra); Dev Tools kontsulta guztiak REST bidez egiaztatuta.
+**Ingurunea:** `docker.elastic.co/elasticsearch/elasticsearch:9.5.4`, container efimero `codex-aabd-elastic-lab`, `discovery.type=single-node`, `xpack.security.enabled=false`, `127.0.0.1:19200:9200`. Dev Tools kontsulta guztiak REST bidez egiaztatuta (script-ak `DENAK OK`).
+
+**Kibana bigarren exekuzioa (egun berean):** container efimeroak
+`codex-aabd-es-min` (ES, heap 512m) + `codex-aabd-kibana-min`
+(`docker.elastic.co/kibana/kibana:9.5.4`,
+`NODE_OPTIONS=--max-old-space-size=1024`, `ELASTICSEARCH_HOSTS` ESren barne
+IPra). Behatuta: `GET /api/status` → `overall: available` (ES `:9200` →
+`9.5.4`, `You Know, for Search`); RSS neurtua ES ~770 MB + Kibana ~750 MB.
+Oharra: Kibana 512m heap-ekin abortatzen du (exit 134, V8 — ez host OOM),
+horregatik 1g da minimoa 9.5.4-n; lehen saiakeran ez zen lortu, bigarrenean bai.
 
 ## / (1. praktika)
 {
