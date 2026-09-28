@@ -35,6 +35,24 @@ def token_path() -> Path:
     return Path(os.environ.get("GOOGLE_DRIVE_TOKEN_FILE", str(DEFAULT_TOKEN)))
 
 
+def save_credentials(credentials, target: Path) -> None:
+    """Guardar también las renovaciones, de forma privada y atómica."""
+    target = private_path(target, existing=False)
+    target.parent.mkdir(parents=True, mode=0o700, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", dir=target.parent, delete=False
+        ) as output:
+            temporary = Path(output.name)
+            os.chmod(temporary, 0o600)
+            output.write(credentials.to_json())
+        os.replace(temporary, target)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
 def authenticated_session():
     """No iniciar login interactivo desde el servicio; renovar OAuth si existe."""
     path = token_path()
@@ -56,10 +74,11 @@ def authenticated_session():
     if not credentials.valid:
         try:
             credentials.refresh(Request())
-        except Exception:
+        except Exception:  # noqa: BLE001 -- no exponer respuestas OAuth con secretos
             raise RuntimeError(
                 "No se pudo renovar Google OAuth; vuelve a autorizar la cuenta del centro"
             ) from None
+        save_credentials(credentials, path)
     return AuthorizedSession(credentials)
 
 
@@ -101,7 +120,7 @@ def main() -> None:
             authorization_prompt_message="Autoriza con la cuenta del centro en el navegador:\n{url}",
             success_message="Autorización recibida. Puedes cerrar esta pestaña.",
         )
-    except Exception:
+    except Exception:  # noqa: BLE001 -- no exponer códigos ni respuestas de autorización
         raise RuntimeError(
             "No se completó la autorización de Google; comprueba la cuenta y la política del centro"
         ) from None
@@ -111,19 +130,7 @@ def main() -> None:
         SCOPE
     }:
         raise ValueError("Google no concedió el scope drive.readonly solicitado")
-    target.parent.mkdir(parents=True, mode=0o700, exist_ok=True)
-    temporary = None
-    try:
-        with tempfile.NamedTemporaryFile(
-            mode="w", dir=target.parent, delete=False
-        ) as output:
-            temporary = Path(output.name)
-            os.chmod(temporary, 0o600)
-            output.write(credentials.to_json())
-        os.replace(temporary, target)
-    finally:
-        if temporary is not None:
-            temporary.unlink(missing_ok=True)
+    save_credentials(credentials, target)
     print(f"Autorización de lectura guardada en {target}; no compartas este archivo.")
 
 

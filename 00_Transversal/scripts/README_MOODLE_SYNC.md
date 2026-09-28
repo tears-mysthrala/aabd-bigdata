@@ -67,17 +67,27 @@ enlazados desde Moodle. Revisa ese alcance al autorizar.
    el servicio. Comprueba los estados y hashes del manifiesto. Autorizar OAuth
    no demuestra por sí solo que los ocho archivos permitan descarga.
 
-El servicio renueva tokens sin login interactivo cuando Google lo permite. Si
+El servicio renueva y guarda los tokens de forma atómica sin login interactivo cuando Google lo permite. Si
 la autorización caduca o se revoca, hay que repetir el paso de autorización;
-no se convierte el fallo en una descarga válida. Los mensajes del manifiesto
+no se convierte el fallo en una descarga válida. Un fallo al cargar o renovar
+OAuth permite continuar las descargas de Moodle y probar los enlaces públicos;
+el manifiesto registra el aviso y cualquier cuaderno que siga sin descargarse.
+Si falla la descarga autenticada también se intenta la pública, con una sesión
+separada que no recibe credenciales. Los mensajes del manifiesto
 distinguen falta de OAuth local de errores HTTP de la API. Sin OAuth se conserva
 el intento de descarga pública y el bloqueo de publicación de material pendiente.
 
-**Estado actual:** la implementación de OAuth está preparada; todavía no hay
-cliente ni autorización de la cuenta del centro configurados localmente.
-La descarga privada real sigue pendiente de ese paso humano. Que el usuario
-abra un cuaderno con su cuenta del centro confirma el acceso de esa cuenta a
-ese cuaderno, no el de la cuenta del conector ni el de los otros siete.
+**Estado verificado el 28 de septiembre de 2026:** cliente Desktop y autorización
+de la cuenta del centro configurados fuera de Git, con permisos 600. Los ocho
+cuadernos se descargaron realmente mediante Drive API y se contrastaron sus
+SHA-256. El ciclo completo registró 52 archivos verificados, 55 actividades,
+0 errores y 0 fuentes pendientes. Esto verifica la descarga, no la ejecución
+ni la corrección didáctica de los cuadernos.
+
+En una app externa en modo **En pruebas**, Google limita normalmente la
+autorización renovable a siete días para este scope: puede ser necesario repetir
+el consentimiento. Véase la [caducidad oficial de tokens](https://developers.google.com/identity/protocols/oauth2#expiration).
+No se ha publicado la app ni cambiado su público para evitar esa limitación.
 
 La cobertura y los hashes quedan en
 [`MOODLE_SYNC_ESTADO.json`](../MOODLE_SYNC_ESTADO.json). El campo `errors`
@@ -111,13 +121,19 @@ incidencia de sincronización.
 
 ## Verificación manual del 28 de septiembre de 2026
 
-- Ciclo real con `--no-publish`: 13 secciones, 55 actividades, 44 archivos
-  verificados y **0 errores de Moodle**. Los 44 SHA-256 del manifiesto se
+- Último ciclo real con `--no-publish` y OAuth: 13 secciones, 55 actividades, 52 archivos
+  verificados, **0 errores y 0 fuentes pendientes**. Los 52 SHA-256 del manifiesto se
   contrastaron de nuevo con los archivos guardados.
-- Se registraron cuatro referencias web y ocho notebooks externos sin descargar.
-  La consulta de metadatos de esos ocho IDs con el conector de Drive devolvió
+- Se registraron cuatro referencias web y ocho notebooks externos descargados.
+  Antes de configurar OAuth, la consulta de esos IDs con el conector de Drive devolvió
   HTTP 404 en todos: no permite distinguir archivos retirados de falta de acceso
-  de la cuenta conectada. No se afirma que sus copias locales sean las últimas.
+  de la cuenta conectada. La autorización local independiente devolvió HTTP 200
+  y permiso de descarga para los ocho, y permitió guardar copias verificadas.
+- Los ocho cuadernos cumplen el esquema `nbformat` 4, sin ejecutar sus celdas.
+  Se comprobó una renovación real del token con Google, su guardado privado
+  y una lectura posterior de metadatos. Gitleaks no detectó secretos en el
+  material de Programación. Las ramas de fallo de OAuth y descarga pública
+  alternativa no se han provocado contra servicios reales.
 - La guía original `ML_ereduak_euskaraz.html` se descargó desde `pluginfile.php`.
   La página envolvente `view.php`, con datos de sesión, se retiró del árbol y del
   historial publicable. Su evidencia se conserva fuera del repositorio con
