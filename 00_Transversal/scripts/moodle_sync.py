@@ -10,22 +10,23 @@ Orduro exekutatzen da (systemd timer bidez):
 6. Mahaigaineko jakinarazpena bidaltzen du (notify-send).
 """
 
-import os
 import argparse
-import html
 import hashlib
+import html
 import json
+import os
 import re
-import sys
-import time
 import subprocess
+import sys
 import tempfile
+import time
 import urllib.parse
-from datetime import datetime
-from pathlib import Path
-from email.message import Message
 from collections import Counter
+from datetime import datetime
+from email.message import Message
+from pathlib import Path
 from zipfile import ZipFile
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -311,6 +312,16 @@ def sinkronizatu() -> list[str]:
     """Egiaztatu Moodle materiala; erroreak eta kanpo-mugak esplizituak dira."""
     global SYNC_REPORT
     session = lortu_saioa()
+    # Google tiene su propia autorización; nunca reutilizar cookies de Moodle.
+    from google_drive_auth import authenticated_session
+    google_auth_error = None
+    try:
+        google_session = authenticated_session()
+    except Exception as exc:
+        # No publicar el contenido de excepciones de credenciales.
+        google_session = None
+        google_auth_error = f"Google OAuth initialization failed ({type(exc).__name__}); reauthorize the account"
+        log(google_auth_error)
     downloaded: list[str] = []
     entries: list[dict] = []
     registries: dict[str, list[tuple[str, str, str, str]]] = {}
@@ -444,24 +455,59 @@ def sinkronizatu() -> list[str]:
                             or external_parts.username or external_parts.password):
                         raise ValueError("Kanpo-estekak HTTPS eta userinfo gabe izan behar du")
                     status = "web reference"
-                    match = re.search(r"(?:drive\.google\.com/(?:file/d/|drive/)|colab\.research\.google\.com/drive/)([-\w]+)", external)
+                    google_reason = None
+                    google_api_reason = None
+                    match = None
+                    if external_parts.hostname in {"drive.google.com", "colab.research.google.com"}:
+                        match = re.search(r"/(?:file/d/|drive/)([A-Za-z0-9_-]+)", external_parts.path)
                     if match:
                         slug = re.sub(r"[^\w\-]+", "_", title).strip("_")[:60]
                         target = safe_download_path(helburu_direktorioa(sec, title), f"{slug}.ipynb")
                         try:
-                            # Ez bidali Moodle cookies-ak Google-ra.
-                            with requests.Session() as public_session:
-                                changed = fetch_file(public_session, f"https://drive.google.com/uc?export=download&id={match.group(1)}", target,
-                                    allowed_hosts={"drive.google.com", "drive.usercontent.google.com"}, notebook=True)
+                            if google_session is not None:
+                                google_url = (
+                                    f"https://www.googleapis.com/drive/v3/files/{match.group(1)}"
+                                    "?alt=media&supportsAllDrives=true"
+                                )
+                                try:
+                                    changed = fetch_file(google_session, google_url, target,
+                                        allowed_hosts={"www.googleapis.com"}, notebook=True)
+                                except (requests.RequestException, ValueError) as api_exc:
+                                    if isinstance(api_exc, requests.HTTPError) and api_exc.response is not None:
+                                        google_api_reason = f"Google Drive API HTTP {api_exc.response.status_code}"
+                                    else:
+                                        google_api_reason = f"Google API download failed ({type(api_exc).__name__})"
+                                    # Una autorización no elimina el acceso público original.
+                                    with requests.Session() as public_session:
+                                        changed = fetch_file(public_session, f"https://drive.google.com/uc?export=download&id={match.group(1)}", target,
+                                            allowed_hosts={"drive.google.com", "drive.usercontent.google.com"}, notebook=True)
+                            else:
+                                # Ez bidali Moodle cookies-ak Google-ra.
+                                with requests.Session() as public_session:
+                                    changed = fetch_file(public_session, f"https://drive.google.com/uc?export=download&id={match.group(1)}", target,
+                                        allowed_hosts={"drive.google.com", "drive.usercontent.google.com"}, notebook=True)
                             if changed:
                                 downloaded.append(str(target.relative_to(REPO_ROOT.resolve())))
                             entries.append({"kind": "external notebook", "source": public_url(external), "path": str(target.relative_to(REPO_ROOT.resolve())), "status": "verified", "sha256": file_hash(target)})
                             status = "downloaded and verified"
-                        except (requests.RequestException, ValueError, json.JSONDecodeError):
+                        except (requests.RequestException, ValueError, json.JSONDecodeError) as exc:
                             status = "not downloaded: Google access or download unavailable"
+                            if google_session is None:
+                                google_reason = (google_auth_error or "Google OAuth is not configured for the synchronizer") + "; public download unavailable"
+                            elif google_api_reason:
+                                google_reason = google_api_reason + f"; public download unavailable ({type(exc).__name__})"
+                            elif isinstance(exc, requests.HTTPError) and exc.response is not None:
+                                google_reason = f"Google Drive API HTTP {exc.response.status_code}; check account access, API activation and download permission"
+                            else:
+                                google_reason = f"Google download or notebook validation failed ({type(exc).__name__})"
                     dest = helburu_direktorioa(sec, title)
                     registries.setdefault(str(dest), []).append((title, public_url(url), public_url(external), status))
-                    entries.append({"kind": "external link", "source": public_url(external), "activity": public_url(url), "status": status})
+                    entry = {"kind": "external link", "source": public_url(external), "activity": public_url(url), "status": status}
+                    if google_reason:
+                        entry["reason"] = google_reason
+                    if match and google_auth_error:
+                        entry["oauth_warning"] = google_auth_error
+                    entries.append(entry)
                 elif kind in ("page", "book", "lesson", "scorm", "wiki"):
                     # Hauek ez dira fitxategiak. Ez aldarrikatu deskarga osoa.
                     entries.append({"kind": kind, "source": public_url(url), "status": "manual review required"})
@@ -504,6 +550,8 @@ def sinkronizatu() -> list[str]:
         downloaded.extend(os.fsdecode(name) for name in pending.split(b"\0") if name)
     log(f"Cobertura: {len(sections)} atal, {len(seen_activities)} jarduera, {errors} errore, {unavailable} kanpo/manual muga")
     session.close()
+    if google_session is not None:
+        google_session.close()
     return sorted(set(downloaded))
 
 
