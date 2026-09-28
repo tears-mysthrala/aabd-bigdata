@@ -7,8 +7,8 @@ exekutatzen da). `main()` denak ordenan exekutatzen ditu.
 """
 
 # %%
-import subprocess
 import shutil
+import subprocess
 import sys
 import tempfile
 import time
@@ -585,17 +585,30 @@ def kargatu_ikasleak_3_1() -> pd.DataFrame:
         if bidea.exists():
             return pd.read_csv(bidea, sep=";", decimal=",", encoding="utf-8")
     # Fallback sintetikoa fitxategia ez badago
-    return pd.DataFrame({
-        "Ikaslea": ["Ane", "Mikel", "Leire", "Jon", "Maite", "Kepa", "Nerea", "Gorka"],
-        "Nota": [8.5, 4.0, 9.2, 5.5, 7.8, 3.5, 6.2, 8.0],
-        "Orduak": [25, 10, 32, 18, 28, 8, 20, 26],
-    })
+    return pd.DataFrame(
+        {
+            "Ikaslea": [
+                "Ane",
+                "Mikel",
+                "Leire",
+                "Jon",
+                "Maite",
+                "Kepa",
+                "Nerea",
+                "Gorka",
+            ],
+            "Nota": [8.5, 4.0, 9.2, 5.5, 7.8, 3.5, 6.2, 8.0],
+            "Orduak": [25, 10, 32, 18, 28, 8, 20, 26],
+        }
+    )
 
 
 def ariketa_3_1() -> None:
     """Matplotlib 2x2: barrak, scatter + joera, histograma, boxplot (Moodle datu ofizialekin)."""
     df_ikasleak = kargatu_ikasleak_3_1()
-    print(f"Ikasleen datuak kargatuta: {len(df_ikasleak)} errenkada (iturria: ikasleak_notak_100.csv)")
+    print(
+        f"Ikasleen datuak kargatuta: {len(df_ikasleak)} errenkada (iturria: ikasleak_notak_100.csv)"
+    )
 
     fig, axs = plt.subplots(2, 2, figsize=(14, 11))
     fig.suptitle(
@@ -624,7 +637,9 @@ def ariketa_3_1() -> None:
         edgecolors="black",
     )
     m, b = np.polyfit(df_ikasleak["Orduak"], df_ikasleak["Nota"], 1)
-    x_lerroa = np.linspace(df_ikasleak["Orduak"].min(), df_ikasleak["Orduak"].max(), 100)
+    x_lerroa = np.linspace(
+        df_ikasleak["Orduak"].min(), df_ikasleak["Orduak"].max(), 100
+    )
     axs[0, 1].plot(
         x_lerroa,
         m * x_lerroa + b,
@@ -674,9 +689,7 @@ def ariketa_3_1() -> None:
     fig.savefig(GRAFIKOA_3_1_PNG, dpi=300, bbox_inches="tight")
     fig.savefig(GRAFIKOA_3_1_PDF, bbox_inches="tight")
     plt.show()
-    print(
-        f"✅ Grafikoa '{GRAFIKOA_3_1_PNG}' eta '{GRAFIKOA_3_1_PDF}' gorde da."
-    )
+    print(f"✅ Grafikoa '{GRAFIKOA_3_1_PNG}' eta '{GRAFIKOA_3_1_PDF}' gorde da.")
 
 
 ariketa_3_1()
@@ -717,8 +730,15 @@ def ariketa_3_2() -> pd.DataFrame:
     )
     axes[0, 0].set_title("1. Propinak Egunaren Arabera (Histogram)")
 
-    sns.boxplot(data=tips, x="day", y="total_bill", hue="day", legend=False,
-                ax=axes[0, 1], palette="pastel")
+    sns.boxplot(
+        data=tips,
+        x="day",
+        y="total_bill",
+        hue="day",
+        legend=False,
+        ax=axes[0, 1],
+        palette="pastel",
+    )
     axes[0, 1].set_title("2. Faktura Egunaren Arabera (Boxplot)")
 
     sns.scatterplot(
@@ -850,7 +870,9 @@ def ariketa_4_1(repo_dir: Path | None = None) -> Path:
     data_file.parent.mkdir()
     data_file.write_text("ikaslea,nota\nAne,8\nIker,7\n", encoding="utf-8")
 
-    subprocess.run(["git", "init"], cwd=repo_dir, capture_output=True, text=True, check=True)
+    subprocess.run(
+        ["git", "init"], cwd=repo_dir, capture_output=True, text=True, check=True
+    )
     _dvc("init", cwd=repo_dir)
     _dvc("add", "data/notak.csv", cwd=repo_dir)
 
