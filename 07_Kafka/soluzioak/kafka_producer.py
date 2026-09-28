@@ -66,7 +66,11 @@ def run_kafka(
     pending = []
     try:
         for i, message in enumerate(messages()):
-            key = (message.get("makina_id", "") if csv else f"gakoa{i % 2}") if keys else None
+            key = (
+                (message.get("makina_id", "") if csv else f"gakoa{i % 2}")
+                if keys
+                else None
+            )
             pending.append(producer.send(topic, value=message, key=key))
             if len(pending) == 1000:
                 for future in pending:

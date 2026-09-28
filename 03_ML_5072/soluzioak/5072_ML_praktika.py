@@ -17,8 +17,8 @@ from sklearn.metrics import (
     accuracy_score,
     confusion_matrix,
     f1_score,
-    r2_score,
     mean_squared_error,
+    r2_score,
 )
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
@@ -109,9 +109,15 @@ mse_tr = mean_squared_error(yr_tr, lin.predict(Xr_tr))
 mse_te = mean_squared_error(yr_te, lin.predict(Xr_te))
 r2_te = r2_score(yr_te, lin.predict(Xr_te))
 baseline_mse = mean_squared_error(yr_te, np.full_like(yr_te, yr_tr.mean()))
-print(f"lineal sinplea: MSE train={mse_tr:.2f} test={mse_te:.2f} R² test={r2_te:.3f} beta1={beta1:.3f}")
-print(f"baseline media train: MSE test={baseline_mse:.2f}; correlación total={df_reg[['tenperatura', 'bibrazioa']].corr().iloc[0, 1]:.3f}")
-print("Este ajuste ilustra la API; una correlación casi nula no respalda una relación lineal útil.")
+print(
+    f"lineal sinplea: MSE train={mse_tr:.2f} test={mse_te:.2f} R² test={r2_te:.3f} beta1={beta1:.3f}"
+)
+print(
+    f"baseline media train: MSE test={baseline_mse:.2f}; correlación total={df_reg[['tenperatura', 'bibrazioa']].corr().iloc[0, 1]:.3f}"
+)
+print(
+    "Este ajuste ilustra la API; una correlación casi nula no respalda una relación lineal útil."
+)
 assert np.isfinite(mse_te) and mse_te > 0
 
 # 4b. Anizkoitza + Ridge/Lasso konparaketa (pipeline osoa):

@@ -1,0 +1,14 @@
+title = "AABD: default rules with a verified NiFi service reference exception"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+
+[[rules.allowlists]]
+description = "Public NiFi Controller Service UUID; not an AWS credential"
+condition = "AND"
+regexTarget = "line"
+paths = ['''(^|/)06_NiFi/soluzioak/07_AEMET_Datu_Lakua_Medallion_DF2\.3/flow_07_aemet_datalake_medallion\.json$''']
+regexes = ['''^\s*"AWS Credentials Provider service":\s*"5c2c9ea6-e3f4-4cd8-a160-74728bb591ba",?\s*$''']

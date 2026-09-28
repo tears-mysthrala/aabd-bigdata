@@ -25,6 +25,28 @@ mínimos sin datos reales y mitigación si la hay.
 
 ## Alcance
 
+### Comprobaciones de secretos y datos personales
+
+El workflow de PR ejecuta Gitleaks sobre el historial alcanzable del checkout
+y TruffleHog sobre los SHA de base y cabecera de la PR. Una ejecución que falla
+antes de escanear no constituye una comprobación limpia.
+
+Para repetir Gitleaks localmente sin imprimir secretos:
+
+```bash
+gitleaks git --log-opts=HEAD --config .gitleaks.toml --redact=100
+```
+
+La configuración conserva las reglas predeterminadas y exceptúa únicamente
+un UUID verificado de Controller Service, en una propiedad y un archivo de NiFi
+concretos. No se excluyen flujos completos ni la detección de claves AWS.
+
+Los CSV docentes se conservan intencionalmente. En particular, COMPAS contiene
+identificadores personales e información judicial del dataset público original;
+no es un dataset anonimizado. Los ejemplos de clientes de ingeniería de datos
+proceden de Faker. Los escáneres de secretos no verifican anonimización ni
+revisan el contenido visual de PDFs, capturas y vídeos.
+
 La SBOM (`00_Transversal/SBOM/`) documenta dependencias, **no certifica** la
 seguridad del host, red ni integraciones industriales. Al reutilizar un módulo
 fuera del lab, declara soporte y contacto de vulnerabilidades (plantilla en

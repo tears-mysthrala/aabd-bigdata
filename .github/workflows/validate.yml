@@ -1,5 +1,5 @@
 # Validación solo en PR (nunca en push a master): material de estudio, sin despliegues.
-# - leaks: secretos en el diff (trufflehog OSS)
+# - leaks: historial de la PR (Gitleaks) y diff por SHA (TruffleHog OSS)
 # - quality: ruff (mismo listón que proyecto_cnc_guard) + compileall
 # - tests: unitarios rápidos sin broker ni dataset 10M (eso es local)
 name: validate
@@ -22,11 +22,19 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: trufflesecurity/trufflehog@main
+      - name: Gitleaks (full reachable history, redacted output)
+        run: |
+          docker run --rm --network none --user "$(id -u):$(id -g)" \
+            -v "$GITHUB_WORKSPACE:/repo:ro" \
+            ghcr.io/gitleaks/gitleaks@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f \
+            git /repo --config /repo/.gitleaks.toml --redact=100 --no-banner
+      # Gitleaks image: v8.30.1; TruffleHog action pinned by commit.
+      - uses: trufflesecurity/trufflehog@74d1c44c2b4e6612c5d248b0e50fc40c0ecfa165
         with:
           path: ./
-          base: ${{ github.event.repository.default_branch }}
-          head: HEAD
+          version: "3.97.9"
+          base: ${{ github.event.pull_request.base.sha }}
+          head: ${{ github.event.pull_request.head.sha }}
 
   quality:
     runs-on: ubuntu-24.04

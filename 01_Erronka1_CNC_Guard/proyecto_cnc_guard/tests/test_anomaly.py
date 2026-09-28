@@ -1,9 +1,9 @@
-"""Tests: anomalia-detektzioa (determinismoa, tasa, monotonia) + fusioa."""
+"""Tests: anomalia-detektzioa (determinismoa, tasa, monotonia)."""
 
 import numpy as np
 import pandas as pd
 
-from cnc_guard.anomaly import anomaly_score, build_features, fit_anomaly, riesgo_final
+from cnc_guard.anomaly import anomaly_score, build_features, fit_anomaly
 
 
 def _toy(n: int = 2000, seed: int = 7) -> pd.DataFrame:
@@ -61,7 +61,11 @@ def test_score_acotado():
     assert float(s.min()) >= 0.0 and float(s.max()) <= 1.0
 
 
-def test_fusion_max_y_cotas():
-    assert riesgo_final(0.2, 0.8) == 0.8
-    assert riesgo_final(0.9, 0.1) == 0.9
-    assert 0.0 <= riesgo_final(0.0, 0.0) <= 1.0
+def test_score_clips_unseen_extremes():
+    df = _toy()
+    model, scaler, dmin, dmax = fit_anomaly(build_features(df))
+    extreme = pd.DataFrame({"tenperatura": [1000.0], "bibrazioa": [1000.0], "presioa": [-1000.0]})
+    s = anomaly_score(model, scaler, build_features(extreme), dmin, dmax)
+    assert s.shape == (1,)
+    assert np.isfinite(s).all()
+    assert 0.0 <= s[0] <= 1.0
