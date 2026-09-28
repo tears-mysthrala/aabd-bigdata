@@ -1,9 +1,9 @@
 {
-  "activities": 55,
+  "activities": 56,
   "activity_types": {
     "assign": 6,
     "folder": 3,
-    "resource": 34,
+    "resource": 35,
     "url": 12
   },
   "entries": [
@@ -441,6 +441,13 @@
       "path": "07_Kafka/materialak/01_03_ApacheKafka.pdf",
       "sha256": "a0bc8381e79e95dff5002391cdd227b34621ae3d483bb719e5f8a97a375323d1",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=63900",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
+      "sha256": "8ff87c6c2ed9f440b24b8928274f19df29c465dbd061519f0440e6e41cf08815",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64150",
       "status": "verified"
     }
   ],
