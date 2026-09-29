@@ -22,9 +22,9 @@ Aipu-zenbakiek ondoko iturri ofizialetara daramate. Erregelamenduen artikulu eta
 
 | Tresna erabili dudana | Noiz/zer egiteko | Tratatu litzakeen datu motak (egiaztatu zerbitzuaren oharrak) | Zer galdetu nahi dut? |
 |---|---|---|---|
-| 1. __________________ | __________________ | kontu/saio-datuak, galdera edo edukia, gailu/erabilera metadatuak | __________________ |
-| 2. __________________ | __________________ | kokapena edo entzute/ikuste baimenak, erabilera-historia, hobespenak | __________________ |
-| 3. __________________ | __________________ | argazkia edo bideoa; iragazkiak aurpegia prozesatzen duen aztertu | __________________ |
+| 1. Opencode (garapen-agentea, IDE/CLI) | Eguneroko garapena: repoetako kodea idatzi, probak, refactoring | Repoetako kodea (ikasgelakoa barne), terminaleko aginduak, kontu/erabilera metadatuak; sekretuak agentearen prozesuaren eskura EZ jarri — `.gitignore`-ak (Git trackinga bakarrik) eta `pass-cli`-k ez dute isolamendu hori bermatzen | Zer kode bidaltzen da zerbitzarira vs. lokal exekutatzen dena? |
+| 2. agy (CLI agentea) | Zeregin puntualak terminaletik | Laneko fitxategiak, aginduen irteera, kontu/erabilera metadatuak; sekretuak testuan ez idatzi eta prozesuaren eskura ez jarri (`.env`/pass-cli ez da isolamendu-froga) | Zein da datuen atxikipen-politika eta log-epea? |
+| 3. ChatGPT (web) | Kontzeptuak, zalantzak, testu-borradoreak | Galdera-testua, kontuaren identifikatzaileak, erabilera-datu teknikoak; ez igo sekreturik, daturik pertsonalik edo hirugarrenen daturik | Entrenamendurako erabiltzen al da nire edukia? Nola desaktibatu? |
 
 **Adibide fikziozkoa, ez ikasle baten esperientzia:** ikasle batek chatbot bati kontzeptu bat azaltzeko eskatu dio; zerbitzuak galdera-testua, kontuaren identifikatzaileak eta erabilera-datu teknikoak prozesatu litzake. Musika-aplikazio batek entzute-historia erabil lezake gomendioak egiteko. Argazki-iragazki batek irudia gailuan edo zerbitzarian prozesatzen duen egiaztatu behar da. Aukera horiek ez dute egiaztatzen tresna jakin batek datu horiek benetan biltzen dituenik.
 
