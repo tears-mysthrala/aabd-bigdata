@@ -1,9 +1,9 @@
 {
-  "activities": 57,
+  "activities": 62,
   "activity_types": {
-    "assign": 6,
+    "assign": 7,
     "folder": 3,
-    "resource": 35,
+    "resource": 39,
     "url": 13
   },
   "entries": [
@@ -162,6 +162,20 @@
     },
     {
       "kind": "file",
+      "path": "03_ML_5072/materialak/5072_2_03_KNN.pdf",
+      "sha256": "a1051b129d6d1258b587067b5a1972562a177ef59f0d2f1f6bb7e7deb522ae76",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=63303",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+      "sha256": "854425d7bdbe5388d16ba0761655186a487a8329f7415a9b773800e8adf24c95",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=63545",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
       "path": "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf",
       "sha256": "0525208bc7a90f774f565d1cd4e212c7ffbfc5be9502041e0eb669a995bee04e",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=61534",
@@ -304,6 +318,13 @@
       "kind": "external link",
       "source": "https://drive.google.com/file/d/1A8odZkhTki3J5-znNgTErJ55P_DtF9gd/view?usp=sharing",
       "status": "downloaded and verified"
+    },
+    {
+      "kind": "file",
+      "path": "04_Programazioa_5073/materialak/Sailkapen Ebaluazio-metrikak.png",
+      "sha256": "b8bdb584e8faa28a7a48b06d0d4b4743641959360e3e889771d1cd62e4b10af8",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89145/mod_resource/content/1/Sailkapen%20Ebaluazio-metrikak.png",
+      "status": "verified"
     },
     {
       "kind": "file",
@@ -459,8 +480,15 @@
     {
       "kind": "file",
       "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
-      "sha256": "32b67c5117d849e95e28be3d1ea7d2884affc21297638a46cabb90f55d750264",
+      "sha256": "3de9a3edbdb5e48bafd92c5a4b90c4bb2ff1e0c95ceb5f81c5c4f24b39cc0a83",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64150",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "06_NiFi/materialak/compose.yaml",
+      "sha256": "47981fa66008c5a7fecad6a9f8b5538876d2e17f62bf54ae615ac37f0c04f29e",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64236",
       "status": "verified"
     }
   ],
