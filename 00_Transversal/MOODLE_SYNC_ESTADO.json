@@ -1,10 +1,10 @@
 {
-  "activities": 56,
+  "activities": 57,
   "activity_types": {
     "assign": 6,
     "folder": 3,
     "resource": 35,
-    "url": 12
+    "url": 13
   },
   "entries": [
     {
@@ -293,6 +293,19 @@
       "status": "verified"
     },
     {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/Eredu_guztiak_testuinguru_berdina_ADIBIDE_OSODUN_Koadernoa_U.ipynb",
+      "sha256": "a3eb735f785ce70c291ac6e1d402e13a5775cf1aabb04663f2cefcfab7564e44",
+      "source": "https://drive.google.com/file/d/1A8odZkhTki3J5-znNgTErJ55P_DtF9gd/view?usp=sharing",
+      "status": "verified"
+    },
+    {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64222",
+      "kind": "external link",
+      "source": "https://drive.google.com/file/d/1A8odZkhTki3J5-znNgTErJ55P_DtF9gd/view?usp=sharing",
+      "status": "downloaded and verified"
+    },
+    {
       "kind": "file",
       "path": "04_Programazioa_5073/materialak/01_Programazioa.pptx",
       "sha256": "531fdabbeed2eada8a56513c5eedeeaa0661e8d0d5e73a54699f8891edd3d2b6",
@@ -446,7 +459,7 @@
     {
       "kind": "file",
       "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
-      "sha256": "8ff87c6c2ed9f440b24b8928274f19df29c465dbd061519f0440e6e41cf08815",
+      "sha256": "32b67c5117d849e95e28be3d1ea7d2884affc21297638a46cabb90f55d750264",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64150",
       "status": "verified"
     }
@@ -469,5 +482,5 @@
     12
   ],
   "unavailable": 0,
-  "verified_on": "2026-09-28"
+  "verified_on": "2026-09-29"
 }
