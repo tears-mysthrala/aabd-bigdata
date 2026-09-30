@@ -1,0 +1,15 @@
+# broker template (kopiatu broker-N.properties-era, N=1..3)
+broker.id=N
+listeners=PLAINTEXT://:9092,EXTERNAL://:1909M
+advertised.listeners=PLAINTEXT://kafkaN:9092,EXTERNAL://127.0.0.1:1909M
+listener.security.protocol.map=PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+zookeeper.connect=zoo1:2181
+offsets.topic.replication.factor=3
+transaction.state.log.replication.factor=3
+transaction.state.log.min.isr=2
+default.replication.factor=2
+auto.create.topics.enable=true
+log.dirs=/tmp/kafka-logs
+# N: broker.id (1/2/3). kafkaN: zerbitzu-izena (kafka1..3). M: host portua (2/3/4).
+# NiFi DF2.2 stack-etik kontsumitzeko, brokerrak haren sarera konektatu eta
+# PLAINTEXT iragarki-helbidea NiFi-tik iristekoa izan behar da (ikus ebazpena).
