@@ -27,7 +27,7 @@ Este es un repositorio docente de IA y Big Data: combina teoría de clase, ejerc
 - `04_Programazioa_5073/`: `materialak/` (8 pares `.py/.ipynb` y 8 cuadernos originales de Drive descargados mediante OAuth el 2026-09-28; ver [registro de fuentes](04_Programazioa_5073/materialak/MOODLE_URLs.md)); `soluzioak/` (26 ejercicios del PDF de frameworks con código preparado, pendientes de validación runtime/GUI/API, y 25 del cuaderno de Programazioa con solución de referencia sin ejecutar); `data/` (katalogoa, git_ariketa_4_2, ariketa_1_1, mock_datuak y ariketa 3.1).
 - `05_BigData_Ingeniaritza/`: `materialak/` (actualizados 01_02 y ariketak v2 con Faker/Parquet/formatos, + `02_elastic_stack.pdf` 9.5.4) + `soluzioak/` (7V Spotify, ETL/ELT, Smart Factory, + `03_Elastic_Stack/` P1–P4 y 5 adicionales con evidencia real 2026-09-28, Kibana verificado con mínimos ES 512m/Kibana 1g) ✅
 - `06_NiFi/`: `materialak/` (guías 1-7 actualizadas + salmentak.csv + docker) ✅, `soluzioak/` (7 casos, 11 archivos `flow_*.json`) ✅
-- `07_Kafka/`: `materialak/01_03_ApacheKafka.pdf` (66 or., ariketak 1–11) ✅, `soluzioak/` (1–5 2026-09-25 + 5–11 erreplika/gakoak/group-ak/offset 2026-09-28, broker efimero) ✅
+- `07_Kafka/`: `materialak/01_03_ApacheKafka.pdf` (66 or., ariketak 1–11) + `01_04_ApacheKafka_aurreratua.pdf` (31 or.: 2. kasua klusterra, Connect) ✅, `soluzioak/` (1–5 2026-09-25 + 5–11 2026-09-28 + 2. kasua 07-K2-1–6 2026-09-29 + Connect 07-C kode prest) ✅
 - `_archivo_legacy/`: `notebooks_root_duplicado/`, `NiFi_duplicado_06_viejo/`, READMEs originales, `deskargatu_berriak/`
 
 ## Estado (2026-09-22, stacks reales levantados ✅)

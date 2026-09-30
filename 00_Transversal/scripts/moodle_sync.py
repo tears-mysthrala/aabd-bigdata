@@ -415,7 +415,7 @@ def sinkronizatu() -> list[str]:
                             page = BeautifulSoup(response.text, "html.parser")
                         main = page.select_one("#region-main") or page
                         links = [a["href"] for a in main.select('a[href*="pluginfile.php"]')]
-                        links += [tag.get("src") or tag.get("data") for tag in main.select('iframe[src*="pluginfile.php"], object[data*="pluginfile.php"], embed[src*="pluginfile.php"]')]
+                        links += [tag.get("src") or tag.get("data") for tag in main.select('iframe[src*="pluginfile.php"], object[data*="pluginfile.php"], embed[src*="pluginfile.php"], img[src*="pluginfile.php"]')]
                         if not links:
                             raise ValueError("Baliabidearen HTML orrian ez da eranskinik aurkitu")
                         for attachment in dict.fromkeys(links):

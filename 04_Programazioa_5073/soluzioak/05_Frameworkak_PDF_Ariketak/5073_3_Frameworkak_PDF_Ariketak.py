@@ -40,6 +40,26 @@ def salmentak():
     return pd.DataFrame(rows)
 
 
+def salmentak_arbela():
+    """APUNTEETAKO ARIKETAK (arbela, 2026-09-28): irakaslearen datu-sorkuntza
+    zehatza — seed(0), 200 errenkada, stock-en 25 NaN (~%12)."""
+    import numpy as np
+    import pandas as pd
+
+    np.random.seed(0)
+    df = pd.DataFrame({
+        "produktua": np.random.choice(["A", "B", "C", "D"], 200),
+        "prezioa": np.random.uniform(5, 500, 200),
+        "eskualdea": np.random.choice(["Bilbo", "Donostia", "Gasteiz",
+                                       "Iruña"], 200),
+        "stock": np.random.randint(0, 200, 200).astype(float),
+    })
+    altua = ((df["prezioa"] < 250) & (df["stock"] > 100)).astype(int)
+    df.loc[np.random.choice(df.index, 25), "stock"] = np.nan  # %12 falta
+    df["salmenta_altua"] = altua
+    return df
+
+
 def salmenta_pipeline():
     from sklearn.compose import ColumnTransformer
     from sklearn.impute import SimpleImputer
@@ -87,6 +107,30 @@ def ariketa_1_2():
     model.fit(X_train, y_train)
     return {"pipeline": model, "X_test": X_test, "y_test": y_test,
             "zergatik": "Mediana eta moda train multzoan bakarrik kalkulatzen dira."}
+
+
+def ariketa_1_2_arbela():
+    """1.2 arbelako datuekin: ColumnTransformer + LogReg, holdout ebaluazioa."""
+    from sklearn.metrics import accuracy_score
+    from sklearn.model_selection import train_test_split
+
+    df = salmentak_arbela()
+    # Arbelako kode zehatza: choice ordezkapenarekin → 25 aukeretatik batzuk
+    # errepika daitezke ("%12" gutxi gorabehera da; seed(0)-rekin 23).
+    # Determinismoa egiaztatzen da, ez kopuru magiko bat.
+    assert len(df) == 200
+    nan = int(df["stock"].isna().sum())
+    assert 20 <= nan <= 25, nan
+    assert int(salmentak_arbela()["stock"].isna().sum()) == nan
+    X = df[["prezioa", "stock", "produktua", "eskualdea"]]
+    y = df["salmenta_altua"]
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.25, random_state=42, stratify=y)
+    model = salmenta_pipeline()
+    model.fit(X_train, y_train)
+    acc = accuracy_score(y_test, model.predict(X_test))
+    return {"accuracy_test": acc, "n_train": len(y_train),
+            "n_test": len(y_test), "nan_stock": nan}
 
 
 def ariketa_1_4():

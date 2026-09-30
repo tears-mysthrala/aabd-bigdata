@@ -1,0 +1,38 @@
+# 2. kasua: 3 brokerreko Kafka klusterra (ZK + 3 broker, lab-erako)
+# Lehenik: ./sortu_broker_config.sh  (broker-1/2/3.properties sortzen ditu)
+# Erabilera: docker compose up -d   (beheko oharra irakurri NiFi-rako)
+services:
+  zoo1:
+    image: apache/kafka:3.7.0
+    container_name: iabd-zk
+    command: /opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties
+  kafka1:
+    image: apache/kafka:3.7.0
+    container_name: iabd-kafka1
+    depends_on: [zoo1]
+    environment:
+      KAFKA_HEAP_OPTS: "-Xmx512M -Xms512M"
+    ports: ["127.0.0.1:19092:19092"]
+    volumes:
+      - ./broker-1.properties:/etc/kafka/broker.properties:ro
+    command: /opt/kafka/bin/kafka-server-start.sh /etc/kafka/broker.properties
+  kafka2:
+    image: apache/kafka:3.7.0
+    container_name: iabd-kafka2
+    depends_on: [zoo1]
+    environment:
+      KAFKA_HEAP_OPTS: "-Xmx512M -Xms512M"
+    ports: ["127.0.0.1:19093:19093"]
+    volumes:
+      - ./broker-2.properties:/etc/kafka/broker.properties:ro
+    command: /opt/kafka/bin/kafka-server-start.sh /etc/kafka/broker.properties
+  kafka3:
+    image: apache/kafka:3.7.0
+    container_name: iabd-kafka3
+    depends_on: [zoo1]
+    environment:
+      KAFKA_HEAP_OPTS: "-Xmx512M -Xms512M"
+    ports: ["127.0.0.1:19094:19094"]
+    volumes:
+      - ./broker-3.properties:/etc/kafka/broker.properties:ro
+    command: /opt/kafka/bin/kafka-server-start.sh /etc/kafka/broker.properties
