@@ -1,0 +1,501 @@
+id,data,hiria,kanala,kategoria,produktua,prezioa,unitateak,deskontua_pct,diru_sarrera
+16,2026-01-01,Bilbo,Denda,Periferikoak,Teklatua,34.32,5,5,163.02
+393,2026-01-01,Eibar,Denda,Periferikoak,Teklatua,32.15,2,10,57.87
+271,2026-01-02,Bilbo,Web,Ordenagailuak,Ordenagailu eramangarria,744.93,3,0,2234.79
+307,2026-01-02,Gasteiz,Web,Periferikoak,Teklatua,36.67,8,0,293.36
+15,2026-01-03,Eibar,Web,Sareak,Switch-a,121.05,8,10,871.56
+306,2026-01-03,Ermua,Web,Sareak,Routerra,82.69,4,0,330.76
+466,2026-01-03,Donostia,Denda,Osagaiak,RAM 16GB,65.26,7,15,388.3
+495,2026-01-04,Eibar,Denda,Sareak,Routerra,90.17,8,0,721.36
+18,2026-01-05,Eibar,Web,Periferikoak,Teklatua,36.04,1,5,34.24
+308,2026-01-05,Gasteiz,Web,Ordenagailuak,Ordenagailu eramangarria,758.04,5,0,3790.2
+22,2026-01-06,Gasteiz,Denda,Sareak,Routerra,87.15,4,0,348.6
+174,2026-01-06,Bilbo,Denda,Sareak,WiFi sarbide-puntua,135.84,7,5,903.34
+72,2026-01-07,Donostia,Denda,Osagaiak,RAM 16GB,74.37,3,10,200.8
+399,2026-01-07,Ermua,Web,Osagaiak,Txartel grafikoa,384.92,4,5,1462.7
+409,2026-01-08,Donostia,Web,Ordenagailuak,Chromebook,389.78,5,0,1948.9
+311,2026-01-09,Eibar,Web,Osagaiak,RAM 16GB,68.0,2,15,115.6
+415,2026-01-09,Gasteiz,Denda,Osagaiak,RAM 16GB,63.95,5,0,319.75
+436,2026-01-09,Bilbo,Denda,Sareak,WiFi sarbide-puntua,130.33,4,0,521.32
+448,2026-01-09,Gasteiz,Denda,Sareak,Switch-a,116.21,2,15,197.56
+181,2026-01-10,Eibar,Web,Ordenagailuak,PC mahaigainekoa,848.81,2,5,1612.74
+210,2026-01-10,Bilbo,Denda,Osagaiak,SSD 1TB,90.51,2,5,171.97
+247,2026-01-10,Ermua,Web,Osagaiak,Txartel grafikoa,430.01,7,0,3010.07
+265,2026-01-10,Ermua,Web,Ordenagailuak,Chromebook,424.43,4,15,1443.06
+384,2026-01-11,Eibar,Web,Ordenagailuak,Chromebook,358.74,2,0,717.48
+42,2026-01-12,Eibar,Web,Periferikoak,Teklatua,36.41,2,0,72.82
+337,2026-01-12,Gasteiz,Web,Ordenagailuak,Ordenagailu eramangarria,674.93,6,10,3644.62
+396,2026-01-12,Donostia,Denda,Periferikoak,Teklatua,31.63,1,10,28.47
+444,2026-01-12,Bilbo,Web,Osagaiak,RAM 16GB,62.45,7,5,415.29
+203,2026-01-13,Ermua,Web,Sareak,Routerra,87.52,5,0,437.6
+490,2026-01-13,Eibar,Web,Ordenagailuak,Chromebook,439.35,2,0,878.7
+26,2026-01-14,Eibar,Denda,Periferikoak,Sagua,21.78,7,15,129.59
+75,2026-01-14,Bilbo,Denda,Periferikoak,Teklatua,29.95,8,10,215.64
+199,2026-01-14,Donostia,Web,Osagaiak,RAM 16GB,73.39,6,5,418.32
+170,2026-01-15,Eibar,Denda,Periferikoak,Teklatua,33.9,4,10,122.04
+388,2026-01-15,Bilbo,Denda,Ordenagailuak,PC mahaigainekoa,887.41,2,10,1597.34
+461,2026-01-15,Ermua,Denda,Ordenagailuak,Ordenagailu eramangarria,834.42,4,0,3337.68
+68,2026-01-16,Ermua,Web,Sareak,Switch-a,121.53,6,5,692.72
+361,2026-01-16,Gasteiz,Web,Sareak,Routerra,103.12,3,0,309.36
+403,2026-01-16,Donostia,Denda,Osagaiak,Txartel grafikoa,375.15,7,10,2363.44
+416,2026-01-16,Eibar,Web,Periferikoak,Sagua,24.53,7,5,163.12
+445,2026-01-16,Ermua,Denda,Sareak,Switch-a,132.13,4,10,475.67
+151,2026-01-17,Donostia,Web,Osagaiak,Txartel grafikoa,433.37,7,15,2578.55
+227,2026-01-17,Bilbo,Web,Periferikoak,Sagua,22.74,3,0,68.22
+206,2026-01-18,Gasteiz,Denda,Sareak,Routerra,95.67,2,0,191.34
+101,2026-01-19,Ermua,Web,Periferikoak,Monitorea,222.79,5,5,1058.25
+228,2026-01-19,Ermua,Web,Sareak,WiFi sarbide-puntua,156.71,7,10,987.27
+173,2026-01-20,Bilbo,Web,Ordenagailuak,PC mahaigainekoa,882.78,1,5,838.64
+327,2026-01-20,Bilbo,Web,Osagaiak,RAM 16GB,63.46,5,5,301.44
+19,2026-01-21,Eibar,Web,Periferikoak,Teklatua,32.28,1,10,29.05
+317,2026-01-21,Gasteiz,Web,Sareak,WiFi sarbide-puntua,157.64,3,15,401.98
+340,2026-01-22,Eibar,Denda,Periferikoak,Teklatua,30.85,8,5,234.46
+371,2026-01-22,Bilbo,Denda,Osagaiak,RAM 16GB,68.01,2,0,136.02
+385,2026-01-22,Gasteiz,Denda,Periferikoak,Monitorea,205.19,7,5,1364.51
+224,2026-01-23,Bilbo,Web,Ordenagailuak,PC mahaigainekoa,1007.64,3,5,2871.77
+407,2026-01-24,Ermua,Web,Osagaiak,RAM 16GB,64.29,5,0,321.45
+25,2026-01-25,Eibar,Web,Sareak,Routerra,103.76,8,0,830.08
+498,2026-01-25,Eibar,Denda,Periferikoak,Monitorea,205.34,6,0,1232.04
+37,2026-01-26,Eibar,Denda,Periferikoak,Teklatua,34.56,1,10,31.1
+98,2026-01-26,Ermua,Denda,Periferikoak,Monitorea,216.91,1,15,184.37
+121,2026-01-26,Gasteiz,Web,Ordenagailuak,Ordenagailu eramangarria,833.18,6,5,4749.13
+262,2026-01-26,Donostia,Web,Ordenagailuak,Chromebook,437.38,4,0,1749.52
+287,2026-01-26,Gasteiz,Denda,Sareak,WiFi sarbide-puntua,133.72,1,0,133.72
+496,2026-01-26,Bilbo,Denda,Sareak,Routerra,102.97,2,0,205.94
+1,2026-01-27,Gasteiz,Denda,Ordenagailuak,Ordenagailu eramangarria,692.6,5,0,3463.0
+4,2026-01-27,Eibar,Web,Sareak,Switch-a,107.6,5,0,538.0
+197,2026-01-27,Gasteiz,Denda,Periferikoak,Teklatua,38.93,8,10,280.3
+208,2026-01-27,Gasteiz,Web,Ordenagailuak,PC mahaigainekoa,962.89,4,15,3273.83
+215,2026-01-27,Eibar,Web,Ordenagailuak,PC mahaigainekoa,912.28,3,0,2736.84
+375,2026-01-27,Bilbo,Web,Ordenagailuak,Ordenagailu eramangarria,657.6,7,0,4603.2
+149,2026-01-29,Eibar,Denda,Periferikoak,Teklatua,35.42,3,0,106.26
+250,2026-01-29,Donostia,Web,Periferikoak,Sagua,21.13,1,15,17.96
+277,2026-01-29,Eibar,Denda,Sareak,WiFi sarbide-puntua,126.65,6,10,683.91
+156,2026-01-30,Gasteiz,Denda,Periferikoak,Sagua,19.35,7,15,115.13
+221,2026-01-30,Eibar,Denda,Periferikoak,Sagua,22.99,6,0,137.94
+278,2026-01-30,Ermua,Web,Osagaiak,SSD 1TB,94.04,6,5,536.03
+80,2026-01-31,Gasteiz,Denda,Ordenagailuak,Chromebook,464.14,5,10,2088.63
+96,2026-01-31,Gasteiz,Web,Osagaiak,SSD 1TB,74.42,5,0,372.1
+390,2026-01-31,Eibar,Web,Osagaiak,RAM 16GB,69.87,3,0,209.61
+238,2026-02-01,Bilbo,Web,Osagaiak,RAM 16GB,61.47,2,5,116.79
+378,2026-02-01,Gasteiz,Web,Sareak,Routerra,106.3,2,0,212.6
+410,2026-02-01,Eibar,Denda,Osagaiak,SSD 1TB,74.85,8,0,598.8
+93,2026-02-02,Donostia,Denda,Periferikoak,Teklatua,35.56,1,15,30.23
+229,2026-02-02,Gasteiz,Denda,Ordenagailuak,PC mahaigainekoa,948.63,8,0,7589.04
+475,2026-02-02,Bilbo,Denda,Osagaiak,Txartel grafikoa,403.4,3,5,1149.69
+36,2026-02-03,Bilbo,Web,Periferikoak,Teklatua,32.26,6,5,183.88
+135,2026-02-03,Eibar,Web,Ordenagailuak,PC mahaigainekoa,774.01,8,0,6192.08
+192,2026-02-03,Gasteiz,Web,Ordenagailuak,Chromebook,440.4,1,10,396.36
+279,2026-02-03,Gasteiz,Web,Ordenagailuak,Chromebook,458.9,8,5,3487.64
+425,2026-02-03,Bilbo,Denda,Sareak,Routerra,106.91,6,0,641.46
+116,2026-02-04,Eibar,Web,Osagaiak,RAM 16GB,73.23,4,10,263.63
+243,2026-02-04,Bilbo,Web,Periferikoak,Monitorea,231.87,1,5,220.28
+405,2026-02-04,Gasteiz,Denda,Sareak,Switch-a,104.69,4,0,418.76
+248,2026-02-05,Bilbo,Web,Sareak,WiFi sarbide-puntua,129.73,8,10,934.06
+315,2026-02-06,Donostia,Denda,Osagaiak,RAM 16GB,74.0,1,10,66.6
+426,2026-02-06,Eibar,Web,Periferikoak,Teklatua,31.3,1,15,26.61
+198,2026-02-07,Donostia,Denda,Periferikoak,Teklatua,32.61,3,10,88.05
+102,2026-02-08,Bilbo,Denda,Osagaiak,RAM 16GB,65.87,2,15,111.98
+46,2026-02-09,Ermua,Denda,Ordenagailuak,PC mahaigainekoa,1027.94,7,15,6116.24
+67,2026-02-09,Ermua,Denda,Ordenagailuak,Ordenagailu eramangarria,689.53,3,15,1758.3
+122,2026-02-09,Eibar,Web,Ordenagailuak,Chromebook,408.66,3,15,1042.08
+158,2026-02-09,Donostia,Denda,Periferikoak,Sagua,23.09,6,0,138.54
+161,2026-02-09,Donostia,Denda,Periferikoak,Sagua,22.51,2,0,45.02
+178,2026-02-09,Eibar,Denda,Ordenagailuak,Ordenagailu eramangarria,681.89,5,10,3068.51
+191,2026-02-09,Eibar,Web,Osagaiak,RAM 16GB,58.99,8,0,471.92
+230,2026-02-09,Bilbo,Denda,Osagaiak,RAM 16GB,71.46,1,10,64.31
+386,2026-02-09,Gasteiz,Web,Periferikoak,Teklatua,30.58,5,0,152.9
+33,2026-02-10,Eibar,Denda,Ordenagailuak,Ordenagailu eramangarria,750.64,8,10,5404.61
+263,2026-02-10,Donostia,Web,Sareak,Routerra,80.9,3,10,218.43
+420,2026-02-10,Eibar,Denda,Ordenagailuak,PC mahaigainekoa,972.05,6,0,5832.3
+196,2026-02-11,Ermua,Denda,Sareak,Switch-a,120.1,7,5,798.66
+29,2026-02-12,Donostia,Web,Ordenagailuak,Ordenagailu eramangarria,855.52,1,0,855.52
+193,2026-02-12,Donostia,Denda,Osagaiak,SSD 1TB,93.45,3,10,252.32
+216,2026-02-12,Donostia,Web,Periferikoak,Sagua,22.68,8,5,172.37
+392,2026-02-12,Bilbo,Denda,Sareak,WiFi sarbide-puntua,125.66,6,10,678.56
+485,2026-02-12,Eibar,Denda,Osagaiak,SSD 1TB,85.09,7,0,595.63
+487,2026-02-12,Donostia,Denda,Osagaiak,RAM 16GB,62.26,8,0,498.08
+413,2026-02-13,Gasteiz,Web,Periferikoak,Teklatua,39.64,1,0,39.64
+150,2026-02-14,Bilbo,Denda,Ordenagailuak,PC mahaigainekoa,923.99,4,0,3695.96
+209,2026-02-14,Donostia,Web,Osagaiak,SSD 1TB,86.17,6,15,439.47
+291,2026-02-14,Donostia,Web,Periferikoak,Sagua,22.37,1,10,20.13
+383,2026-02-14,Donostia,Denda,Sareak,WiFi sarbide-puntua,139.15,7,15,827.94
+414,2026-02-14,Bilbo,Denda,Sareak,Switch-a,115.78,1,5,109.99
+497,2026-02-14,Eibar,Web,Sareak,Switch-a,118.71,5,0,593.55
+51,2026-02-15,Gasteiz,Web,Periferikoak,Teklatua,38.96,2,0,77.92
+394,2026-02-15,Eibar,Web,Osagaiak,SSD 1TB,81.53,8,0,652.24
+73,2026-02-16,Eibar,Web,Ordenagailuak,Chromebook,374.1,7,5,2487.77
+282,2026-02-16,Ermua,Web,Ordenagailuak,Ordenagailu eramangarria,644.64,8,5,4899.26
+347,2026-02-17,Bilbo,Web,Ordenagailuak,Chromebook,457.74,2,10,823.93
+286,2026-02-18,Eibar,Denda,Osagaiak,SSD 1TB,81.08,8,0,648.64
+90,2026-02-19,Bilbo,Denda,Sareak,Switch-a,111.05,5,0,555.25
+309,2026-02-19,Gasteiz,Web,Osagaiak,SSD 1TB,85.62,2,0,171.24
+79,2026-02-20,Eibar,Denda,Periferikoak,Monitorea,203.49,7,15,1210.77
+76,2026-02-21,Eibar,Denda,Ordenagailuak,Chromebook,452.03,1,0,452.03
+223,2026-02-21,Eibar,Denda,Osagaiak,Txartel grafikoa,455.02,5,5,2161.34
+370,2026-02-21,Ermua,Web,Osagaiak,RAM 16GB,55.26,8,5,419.98
+450,2026-02-21,Ermua,Web,Ordenagailuak,PC mahaigainekoa,1031.84,2,5,1960.5
+8,2026-02-23,Bilbo,Denda,Periferikoak,Sagua,19.77,6,0,118.62
+333,2026-02-23,Donostia,Web,Osagaiak,Txartel grafikoa,488.44,1,5,464.02
+360,2026-02-23,Gasteiz,Web,Ordenagailuak,PC mahaigainekoa,974.42,2,0,1948.84
+433,2026-02-23,Ermua,Denda,Ordenagailuak,Chromebook,413.28,6,0,2479.68
+24,2026-02-24,Gasteiz,Denda,Periferikoak,Teklatua,32.67,4,5,124.15
+346,2026-02-24,Ermua,Web,Osagaiak,RAM 16GB,62.83,7,15,373.84
+377,2026-02-24,Ermua,Web,Ordenagailuak,Chromebook,412.45,3,15,1051.75
+449,2026-02-24,Ermua,Denda,Ordenagailuak,PC mahaigainekoa,1021.25,3,0,3063.75
+465,2026-02-24,Ermua,Denda,Ordenagailuak,PC mahaigainekoa,808.98,1,10,728.08
+77,2026-02-25,Donostia,Web,Osagaiak,SSD 1TB,89.32,8,10,643.1
+165,2026-02-25,Donostia,Web,Osagaiak,Txartel grafikoa,377.34,1,10,339.61
+276,2026-02-25,Ermua,Denda,Periferikoak,Sagua,23.7,8,15,161.16
+338,2026-02-26,Gasteiz,Denda,Periferikoak,Sagua,18.77,2,0,37.54
+419,2026-02-26,Eibar,Web,Sareak,Switch-a,102.94,3,10,277.94
+431,2026-02-26,Gasteiz,Denda,Osagaiak,Txartel grafikoa,484.31,6,10,2615.27
+49,2026-02-27,Eibar,Denda,Sareak,Switch-a,131.54,5,0,657.7
+373,2026-02-27,Gasteiz,Web,Ordenagailuak,Ordenagailu eramangarria,655.04,8,10,4716.29
+484,2026-02-27,Bilbo,Web,Ordenagailuak,Chromebook,435.96,1,0,435.96
+23,2026-02-28,Eibar,Denda,Osagaiak,SSD 1TB,90.3,2,0,180.6
+7,2026-03-01,Eibar,Web,Ordenagailuak,Ordenagailu eramangarria,811.44,4,0,3245.76
+289,2026-03-01,Gasteiz,Web,Osagaiak,SSD 1TB,85.1,3,0,255.3
+334,2026-03-03,Bilbo,Denda,Ordenagailuak,PC mahaigainekoa,802.58,8,0,6420.64
+387,2026-03-03,Eibar,Denda,Sareak,WiFi sarbide-puntua,136.74,2,5,259.81
+471,2026-03-03,Eibar,Web,Periferikoak,Monitorea,190.37,5,10,856.67
+175,2026-03-04,Donostia,Web,Sareak,WiFi sarbide-puntua,127.08,6,0,762.48
+298,2026-03-04,Gasteiz,Denda,Osagaiak,Txartel grafikoa,461.85,2,5,877.51
+27,2026-03-05,Ermua,Denda,Sareak,WiFi sarbide-puntua,158.08,6,0,948.48
+28,2026-03-05,Eibar,Web,Sareak,Routerra,85.98,7,5,571.77
+408,2026-03-05,Bilbo,Web,Ordenagailuak,Ordenagailu eramangarria,670.87,6,15,3421.44
+417,2026-03-05,Gasteiz,Denda,Sareak,Routerra,86.43,7,10,544.51
+207,2026-03-06,Eibar,Web,Sareak,Switch-a,124.88,1,0,124.88
+129,2026-03-07,Eibar,Web,Osagaiak,SSD 1TB,88.52,8,5,672.75
+202,2026-03-07,Ermua,Denda,Sareak,WiFi sarbide-puntua,162.65,1,0,162.65
+489,2026-03-07,Gasteiz,Denda,Ordenagailuak,PC mahaigainekoa,866.3,1,15,736.35
+12,2026-03-09,Gasteiz,Web,Periferikoak,Teklatua,37.57,4,10,135.25
+222,2026-03-09,Bilbo,Web,Sareak,WiFi sarbide-puntua,162.99,7,0,1140.93
+234,2026-03-09,Ermua,Web,Ordenagailuak,Ordenagailu eramangarria,850.92,1,10,765.83
+443,2026-03-09,Eibar,Web,Ordenagailuak,PC mahaigainekoa,892.16,7,15,5308.35
+214,2026-03-10,Eibar,Web,Osagaiak,RAM 16GB,62.41,8,10,449.35
+456,2026-03-10,Bilbo,Denda,Sareak,Switch-a,103.77,4,5,394.33
+458,2026-03-10,Donostia,Denda,Osagaiak,RAM 16GB,70.34,8,0,562.72
+9,2026-03-11,Gasteiz,Denda,Osagaiak,Txartel grafikoa,386.58,4,5,1469.0
+66,2026-03-11,Bilbo,Web,Periferikoak,Sagua,23.41,2,0,46.82
+217,2026-03-12,Eibar,Denda,Sareak,Routerra,98.27,6,5,560.14
+258,2026-03-12,Bilbo,Denda,Sareak,Switch-a,114.56,8,15,779.01
+379,2026-03-12,Eibar,Denda,Periferikoak,Sagua,23.92,6,0,143.52
+3,2026-03-13,Eibar,Denda,Osagaiak,Txartel grafikoa,393.94,7,10,2481.82
+84,2026-03-13,Donostia,Denda,Periferikoak,Sagua,24.18,4,0,96.72
+107,2026-03-13,Ermua,Web,Ordenagailuak,Ordenagailu eramangarria,754.27,8,5,5732.45
+245,2026-03-13,Gasteiz,Denda,Periferikoak,Teklatua,35.04,7,10,220.75
+401,2026-03-13,Eibar,Denda,Osagaiak,RAM 16GB,73.99,8,0,591.92
+194,2026-03-14,Donostia,Denda,Sareak,Switch-a,136.91,4,10,492.88
+231,2026-03-14,Eibar,Web,Osagaiak,RAM 16GB,62.0,4,10,223.2
+267,2026-03-14,Donostia,Web,Periferikoak,Monitorea,236.99,2,0,473.98
+368,2026-03-14,Bilbo,Denda,Osagaiak,RAM 16GB,64.9,4,0,259.6
+100,2026-03-16,Eibar,Denda,Ordenagailuak,PC mahaigainekoa,951.13,8,5,7228.59
+259,2026-03-16,Eibar,Web,Sareak,Switch-a,136.37,6,0,818.22
+266,2026-03-16,Eibar,Denda,Osagaiak,SSD 1TB,92.34,7,0,646.38
+362,2026-03-16,Bilbo,Web,Periferikoak,Monitorea,198.89,3,15,507.17
+442,2026-03-16,Eibar,Web,Osagaiak,SSD 1TB,77.53,1,15,65.9
+132,2026-03-17,Eibar,Web,Sareak,WiFi sarbide-puntua,148.25,6,15,756.07
+269,2026-03-17,Gasteiz,Denda,Periferikoak,Monitorea,179.39,3,0,538.17
+441,2026-03-17,Gasteiz,Web,Osagaiak,SSD 1TB,72.35,6,0,434.1
+494,2026-03-17,Ermua,Denda,Periferikoak,Monitorea,201.05,4,5,763.99
+97,2026-03-18,Gasteiz,Web,Osagaiak,Txartel grafikoa,423.62,7,5,2817.07
+117,2026-03-18,Gasteiz,Web,Sareak,Switch-a,131.54,5,0,657.7
+257,2026-03-18,Bilbo,Denda,Osagaiak,SSD 1TB,86.48,5,0,432.4
+92,2026-03-19,Eibar,Denda,Ordenagailuak,Ordenagailu eramangarria,688.68,5,0,3443.4
+297,2026-03-19,Eibar,Denda,Ordenagailuak,Ordenagailu eramangarria,745.36,4,0,2981.44
+380,2026-03-19,Ermua,Denda,Periferikoak,Monitorea,231.92,1,15,197.13
+427,2026-03-19,Bilbo,Denda,Ordenagailuak,PC mahaigainekoa,923.22,7,0,6462.54
+468,2026-03-19,Gasteiz,Web,Sareak,Switch-a,111.07,8,5,844.13
+280,2026-03-20,Eibar,Web,Sareak,WiFi sarbide-puntua,147.56,1,15,125.43
+350,2026-03-20,Eibar,Denda,Ordenagailuak,Chromebook,396.46,3,0,1189.38
+400,2026-03-20,Eibar,Denda,Ordenagailuak,PC mahaigainekoa,969.91,1,5,921.41
+467,2026-03-20,Bilbo,Web,Osagaiak,Txartel grafikoa,394.37,1,10,354.93
+476,2026-03-20,Donostia,Web,Periferikoak,Monitorea,192.5,2,0,385.0
+78,2026-03-21,Eibar,Denda,Periferikoak,Teklatua,37.92,2,0,75.84
+274,2026-03-21,Eibar,Web,Periferikoak,Teklatua,36.95,7,15,219.85
+253,2026-03-22,Donostia,Denda,Osagaiak,SSD 1TB,77.12,2,5,146.53
+200,2026-03-23,Eibar,Web,Osagaiak,RAM 16GB,62.56,2,0,125.12
+237,2026-03-23,Bilbo,Web,Sareak,Routerra,98.04,6,0,588.24
+342,2026-03-23,Eibar,Web,Sareak,Routerra,101.33,8,5,770.11
+395,2026-03-23,Bilbo,Denda,Osagaiak,RAM 16GB,63.37,4,15,215.46
+105,2026-03-24,Gasteiz,Web,Sareak,Routerra,106.1,1,15,90.18
+108,2026-03-24,Eibar,Denda,Sareak,Routerra,90.67,8,0,725.36
+154,2026-03-24,Gasteiz,Denda,Sareak,WiFi sarbide-puntua,126.45,8,0,1011.6
+264,2026-03-24,Bilbo,Denda,Sareak,WiFi sarbide-puntua,156.13,4,0,624.52
+483,2026-03-24,Gasteiz,Denda,Ordenagailuak,Ordenagailu eramangarria,801.9,4,0,3207.6
+85,2026-03-25,Ermua,Web,Sareak,WiFi sarbide-puntua,137.88,7,5,916.9
+126,2026-03-25,Eibar,Web,Osagaiak,Txartel grafikoa,482.04,5,0,2410.2
+166,2026-03-25,Gasteiz,Denda,Sareak,Switch-a,115.32,3,15,294.07
+171,2026-03-25,Eibar,Denda,Periferikoak,Teklatua,37.77,3,0,113.31
+270,2026-03-25,Eibar,Web,Osagaiak,Txartel grafikoa,472.18,7,10,2974.73
+366,2026-03-25,Gasteiz,Denda,Periferikoak,Monitorea,207.15,6,5,1180.76
+148,2026-03-26,Ermua,Denda,Osagaiak,Txartel grafikoa,470.38,4,0,1881.52
+268,2026-03-26,Ermua,Web,Osagaiak,Txartel grafikoa,400.7,8,0,3205.6
+302,2026-03-26,Ermua,Web,Ordenagailuak,PC mahaigainekoa,844.7,7,0,5912.9
+176,2026-03-27,Ermua,Denda,Ordenagailuak,PC mahaigainekoa,966.37,5,0,4831.85
+480,2026-03-27,Ermua,Web,Osagaiak,RAM 16GB,70.44,3,5,200.75
+137,2026-03-28,Eibar,Web,Osagaiak,RAM 16GB,74.11,8,0,592.88
+94,2026-03-29,Ermua,Denda,Ordenagailuak,Chromebook,416.14,5,5,1976.66
+318,2026-03-29,Gasteiz,Web,Ordenagailuak,Ordenagailu eramangarria,689.73,7,0,4828.11
+418,2026-03-30,Gasteiz,Web,Sareak,WiFi sarbide-puntua,144.12,6,5,821.48
+432,2026-03-30,Bilbo,Denda,Sareak,Routerra,101.99,6,0,611.94
+50,2026-03-31,Gasteiz,Web,Sareak,Switch-a,133.12,5,0,665.6
+177,2026-03-31,Ermua,Denda,Ordenagailuak,Chromebook,471.15,4,0,1884.6
+188,2026-03-31,Bilbo,Web,Osagaiak,RAM 16GB,66.61,2,0,133.22
+45,2026-04-02,Ermua,Denda,Sareak,Routerra,89.54,1,0,89.54
+367,2026-04-02,Eibar,Web,Ordenagailuak,Chromebook,436.99,8,15,2971.53
+474,2026-04-02,Gasteiz,Web,Osagaiak,Txartel grafikoa,482.44,8,15,3280.59
+6,2026-04-03,Gasteiz,Denda,Sareak,Routerra,104.39,5,10,469.76
+145,2026-04-03,Eibar,Web,Periferikoak,Teklatua,34.42,8,0,275.36
+190,2026-04-03,Bilbo,Denda,Ordenagailuak,Chromebook,421.07,7,0,2947.49
+219,2026-04-03,Donostia,Denda,Osagaiak,SSD 1TB,92.1,4,0,368.4
+382,2026-04-03,Bilbo,Denda,Osagaiak,RAM 16GB,65.55,2,0,131.1
+332,2026-04-04,Eibar,Denda,Periferikoak,Sagua,24.09,5,5,114.43
+38,2026-04-05,Bilbo,Denda,Periferikoak,Teklatua,39.0,6,0,234.0
+195,2026-04-05,Gasteiz,Web,Osagaiak,RAM 16GB,72.88,8,0,583.04
+462,2026-04-05,Donostia,Web,Sareak,Routerra,100.83,6,0,604.98
+159,2026-04-06,Ermua,Denda,Ordenagailuak,Ordenagailu eramangarria,734.67,2,15,1248.94
+283,2026-04-07,Eibar,Denda,Periferikoak,Sagua,24.44,8,5,185.74
+437,2026-04-07,Ermua,Denda,Periferikoak,Sagua,19.19,2,0,38.38
+30,2026-04-08,Eibar,Web,Sareak,Routerra,106.47,7,0,745.29
+69,2026-04-08,Donostia,Denda,Sareak,WiFi sarbide-puntua,160.52,1,10,144.47
+74,2026-04-08,Bilbo,Web,Sareak,Switch-a,118.37,4,0,473.48
+320,2026-04-08,Eibar,Web,Sareak,Switch-a,126.47,3,15,322.5
+321,2026-04-08,Ermua,Web,Osagaiak,Txartel grafikoa,376.08,2,0,752.16
+329,2026-04-08,Bilbo,Web,Periferikoak,Teklatua,33.24,7,10,209.41
+182,2026-04-09,Donostia,Denda,Periferikoak,Teklatua,36.21,2,10,65.18
+187,2026-04-09,Bilbo,Web,Periferikoak,Teklatua,30.74,6,15,156.77
+434,2026-04-09,Donostia,Web,Periferikoak,Sagua,23.45,2,0,46.9
+454,2026-04-09,Donostia,Web,Ordenagailuak,PC mahaigainekoa,1002.03,6,0,6012.18
+71,2026-04-10,Bilbo,Web,Sareak,Routerra,93.17,5,0,465.85
+364,2026-04-11,Donostia,Denda,Osagaiak,SSD 1TB,93.38,6,15,476.24
+430,2026-04-11,Gasteiz,Denda,Osagaiak,Txartel grafikoa,487.89,1,10,439.1
+11,2026-04-12,Donostia,Denda,Osagaiak,Txartel grafikoa,392.93,6,5,2239.7
+451,2026-04-12,Gasteiz,Web,Periferikoak,Monitorea,183.98,2,10,331.16
+10,2026-04-13,Bilbo,Denda,Periferikoak,Teklatua,38.38,4,0,153.52
+153,2026-04-13,Donostia,Denda,Sareak,WiFi sarbide-puntua,125.9,1,5,119.61
+157,2026-04-13,Donostia,Denda,Sareak,Switch-a,116.9,4,5,444.22
+288,2026-04-13,Donostia,Denda,Sareak,WiFi sarbide-puntua,133.9,1,0,133.9
+34,2026-04-14,Eibar,Denda,Osagaiak,SSD 1TB,89.47,2,0,178.94
+55,2026-04-14,Bilbo,Denda,Periferikoak,Monitorea,220.51,5,0,1102.55
+88,2026-04-14,Ermua,Web,Sareak,Switch-a,105.35,1,0,105.35
+144,2026-04-15,Bilbo,Denda,Osagaiak,RAM 16GB,71.51,2,10,128.72
+406,2026-04-15,Eibar,Web,Osagaiak,SSD 1TB,83.71,3,0,251.13
+439,2026-04-15,Gasteiz,Web,Osagaiak,SSD 1TB,80.69,2,0,161.38
+479,2026-04-15,Gasteiz,Web,Ordenagailuak,Ordenagailu eramangarria,860.78,3,0,2582.34
+47,2026-04-16,Ermua,Web,Osagaiak,RAM 16GB,58.75,1,0,58.75
+119,2026-04-16,Eibar,Web,Periferikoak,Teklatua,35.75,4,0,143.0
+127,2026-04-16,Gasteiz,Denda,Periferikoak,Sagua,19.66,7,10,123.86
+168,2026-04-17,Bilbo,Denda,Sareak,WiFi sarbide-puntua,144.38,7,5,960.13
+14,2026-04-19,Gasteiz,Denda,Ordenagailuak,Ordenagailu eramangarria,778.68,3,15,1985.63
+62,2026-04-19,Ermua,Denda,Osagaiak,Txartel grafikoa,480.65,1,0,480.65
+160,2026-04-19,Eibar,Web,Periferikoak,Monitorea,204.38,2,15,347.45
+281,2026-04-19,Bilbo,Denda,Periferikoak,Teklatua,35.82,4,0,143.28
+372,2026-04-20,Eibar,Denda,Ordenagailuak,PC mahaigainekoa,961.02,5,0,4805.1
+482,2026-04-20,Donostia,Web,Ordenagailuak,Ordenagailu eramangarria,780.03,7,5,5187.2
+57,2026-04-21,Gasteiz,Web,Sareak,WiFi sarbide-puntua,136.47,1,0,136.47
+345,2026-04-21,Donostia,Denda,Osagaiak,RAM 16GB,58.88,3,15,150.14
+52,2026-04-22,Gasteiz,Denda,Ordenagailuak,Ordenagailu eramangarria,715.28,7,0,5006.96
+53,2026-04-22,Eibar,Denda,Sareak,WiFi sarbide-puntua,134.33,4,15,456.72
+213,2026-04-23,Donostia,Web,Ordenagailuak,PC mahaigainekoa,1005.16,7,15,5980.7
+236,2026-04-23,Donostia,Web,Periferikoak,Sagua,23.24,2,0,46.48
+220,2026-04-24,Eibar,Denda,Osagaiak,Txartel grafikoa,487.9,8,0,3903.2
+322,2026-04-24,Bilbo,Web,Periferikoak,Sagua,19.3,2,0,38.6
+412,2026-04-24,Ermua,Denda,Ordenagailuak,Ordenagailu eramangarria,681.99,2,15,1159.38
+64,2026-04-25,Ermua,Web,Periferikoak,Sagua,24.18,7,10,152.33
+359,2026-04-26,Bilbo,Web,Ordenagailuak,Chromebook,394.51,4,0,1578.04
+63,2026-04-27,Ermua,Web,Sareak,Routerra,106.9,4,0,427.6
+139,2026-04-27,Bilbo,Web,Ordenagailuak,PC mahaigainekoa,836.4,1,0,836.4
+146,2026-04-27,Eibar,Denda,Periferikoak,Teklatua,32.65,7,0,228.55
+397,2026-04-27,Eibar,Web,Sareak,Switch-a,113.78,5,10,512.01
+500,2026-04-27,Bilbo,Web,Periferikoak,Sagua,19.45,3,5,55.43
+5,2026-04-28,Gasteiz,Denda,Ordenagailuak,PC mahaigainekoa,928.01,6,0,5568.06
+310,2026-04-28,Gasteiz,Denda,Periferikoak,Sagua,19.22,7,5,127.81
+328,2026-04-28,Eibar,Denda,Osagaiak,Txartel grafikoa,442.1,8,0,3536.8
+369,2026-04-28,Eibar,Denda,Sareak,Switch-a,103.65,1,15,88.1
+402,2026-04-28,Eibar,Denda,Osagaiak,Txartel grafikoa,455.91,7,0,3191.37
+398,2026-04-29,Bilbo,Web,Osagaiak,RAM 16GB,69.67,5,0,348.35
+299,2026-04-30,Gasteiz,Web,Sareak,Routerra,102.85,6,5,586.24
+300,2026-04-30,Eibar,Web,Periferikoak,Sagua,22.08,6,5,125.86
+48,2026-05-01,Ermua,Denda,Osagaiak,Txartel grafikoa,414.85,2,0,829.7
+115,2026-05-01,Ermua,Web,Periferikoak,Monitorea,204.68,5,5,972.23
+140,2026-05-01,Eibar,Web,Sareak,WiFi sarbide-puntua,127.96,6,0,767.76
+254,2026-05-01,Eibar,Denda,Sareak,WiFi sarbide-puntua,141.1,4,10,507.96
+477,2026-05-01,Eibar,Denda,Periferikoak,Sagua,21.76,5,0,108.8
+58,2026-05-02,Ermua,Denda,Sareak,Switch-a,126.32,8,10,909.5
+293,2026-05-02,Ermua,Denda,Osagaiak,RAM 16GB,58.84,7,10,370.69
+447,2026-05-02,Gasteiz,Denda,Sareak,WiFi sarbide-puntua,165.25,7,15,983.24
+260,2026-05-03,Ermua,Denda,Ordenagailuak,PC mahaigainekoa,942.11,8,15,6406.35
+275,2026-05-03,Ermua,Web,Periferikoak,Monitorea,192.31,4,0,769.24
+335,2026-05-03,Gasteiz,Web,Sareak,Switch-a,118.17,2,10,212.71
+83,2026-05-04,Donostia,Web,Sareak,Routerra,98.3,5,10,442.35
+131,2026-05-04,Eibar,Denda,Periferikoak,Sagua,20.01,5,5,95.05
+235,2026-05-04,Ermua,Web,Ordenagailuak,PC mahaigainekoa,938.31,5,0,4691.55
+459,2026-05-05,Gasteiz,Web,Osagaiak,RAM 16GB,73.06,4,5,277.63
+95,2026-05-06,Eibar,Denda,Periferikoak,Sagua,24.13,2,5,45.85
+319,2026-05-06,Ermua,Web,Periferikoak,Teklatua,37.98,5,5,180.4
+355,2026-05-06,Ermua,Denda,Sareak,WiFi sarbide-puntua,141.33,8,5,1074.11
+61,2026-05-07,Donostia,Denda,Sareak,WiFi sarbide-puntua,154.5,4,5,587.1
+142,2026-05-07,Eibar,Denda,Ordenagailuak,Ordenagailu eramangarria,850.41,1,0,850.41
+226,2026-05-07,Eibar,Web,Osagaiak,SSD 1TB,92.45,4,0,369.8
+242,2026-05-07,Gasteiz,Web,Osagaiak,Txartel grafikoa,371.78,6,0,2230.68
+326,2026-05-07,Ermua,Denda,Sareak,Routerra,88.41,3,0,265.23
+381,2026-05-07,Donostia,Denda,Sareak,Switch-a,130.22,1,0,130.22
+423,2026-05-07,Gasteiz,Web,Periferikoak,Monitorea,213.98,3,0,641.94
+111,2026-05-08,Donostia,Denda,Sareak,Routerra,95.53,4,10,343.91
+133,2026-05-08,Bilbo,Denda,Periferikoak,Teklatua,39.31,1,15,33.41
+240,2026-05-08,Gasteiz,Web,Osagaiak,RAM 16GB,58.95,6,0,353.7
+389,2026-05-08,Bilbo,Web,Ordenagailuak,Ordenagailu eramangarria,795.34,3,0,2386.02
+472,2026-05-08,Bilbo,Web,Periferikoak,Monitorea,223.94,3,15,571.05
+493,2026-05-08,Ermua,Denda,Sareak,Routerra,88.81,2,0,177.62
+104,2026-05-09,Gasteiz,Web,Ordenagailuak,PC mahaigainekoa,953.93,5,0,4769.65
+183,2026-05-09,Ermua,Denda,Sareak,WiFi sarbide-puntua,137.24,4,5,521.51
+2,2026-05-10,Gasteiz,Denda,Sareak,Routerra,83.42,1,0,83.42
+81,2026-05-10,Bilbo,Denda,Periferikoak,Monitorea,220.18,7,0,1541.26
+184,2026-05-10,Ermua,Denda,Sareak,Routerra,108.75,6,0,652.5
+241,2026-05-10,Donostia,Denda,Sareak,Switch-a,102.83,8,5,781.51
+460,2026-05-10,Donostia,Denda,Ordenagailuak,Chromebook,365.27,3,15,931.44
+13,2026-05-11,Donostia,Denda,Sareak,Switch-a,137.9,4,0,551.6
+249,2026-05-11,Gasteiz,Web,Osagaiak,RAM 16GB,66.83,5,10,300.74
+110,2026-05-12,Eibar,Web,Ordenagailuak,PC mahaigainekoa,852.28,5,5,4048.33
+211,2026-05-12,Donostia,Web,Ordenagailuak,Ordenagailu eramangarria,708.51,1,0,708.51
+65,2026-05-14,Donostia,Denda,Sareak,Switch-a,132.24,4,0,528.96
+185,2026-05-14,Gasteiz,Denda,Osagaiak,Txartel grafikoa,493.34,8,10,3552.05
+290,2026-05-14,Ermua,Web,Periferikoak,Teklatua,38.95,5,15,165.54
+341,2026-05-14,Donostia,Web,Periferikoak,Sagua,21.71,6,0,130.26
+492,2026-05-14,Bilbo,Denda,Ordenagailuak,PC mahaigainekoa,943.65,7,15,5614.72
+255,2026-05-15,Donostia,Web,Osagaiak,Txartel grafikoa,494.26,6,5,2817.28
+486,2026-05-15,Bilbo,Web,Periferikoak,Sagua,23.5,8,10,169.2
+39,2026-05-16,Eibar,Web,Sareak,WiFi sarbide-puntua,149.86,5,15,636.91
+284,2026-05-16,Ermua,Denda,Periferikoak,Teklatua,40.17,3,5,114.48
+313,2026-05-16,Eibar,Denda,Sareak,Switch-a,122.37,6,0,734.22
+348,2026-05-16,Bilbo,Web,Osagaiak,RAM 16GB,60.37,2,5,114.7
+478,2026-05-16,Bilbo,Web,Sareak,Routerra,105.47,2,5,200.39
+172,2026-05-17,Ermua,Web,Sareak,WiFi sarbide-puntua,130.89,7,5,870.42
+70,2026-05-18,Gasteiz,Denda,Periferikoak,Sagua,24.33,7,5,161.79
+356,2026-05-18,Bilbo,Denda,Ordenagailuak,Ordenagailu eramangarria,644.86,5,0,3224.3
+32,2026-05-19,Eibar,Web,Osagaiak,RAM 16GB,74.14,4,10,266.9
+136,2026-05-19,Bilbo,Web,Periferikoak,Monitorea,189.57,7,0,1326.99
+118,2026-05-20,Donostia,Web,Osagaiak,RAM 16GB,61.98,8,10,446.26
+285,2026-05-20,Donostia,Web,Ordenagailuak,Ordenagailu eramangarria,741.68,5,15,3152.14
+304,2026-05-20,Donostia,Denda,Osagaiak,Txartel grafikoa,387.34,6,15,1975.43
+358,2026-05-20,Ermua,Web,Periferikoak,Monitorea,226.38,1,5,215.06
+435,2026-05-20,Donostia,Denda,Osagaiak,RAM 16GB,72.44,8,0,579.52
+20,2026-05-21,Ermua,Web,Ordenagailuak,Chromebook,373.18,3,5,1063.56
+89,2026-05-21,Bilbo,Web,Periferikoak,Sagua,21.51,6,15,109.7
+109,2026-05-21,Eibar,Web,Periferikoak,Sagua,20.6,8,5,156.56
+155,2026-05-21,Bilbo,Web,Ordenagailuak,Ordenagailu eramangarria,777.97,5,10,3500.87
+40,2026-05-22,Ermua,Web,Ordenagailuak,Ordenagailu eramangarria,663.47,5,0,3317.35
+43,2026-05-22,Donostia,Denda,Osagaiak,Txartel grafikoa,386.34,5,5,1835.11
+99,2026-05-22,Eibar,Denda,Periferikoak,Monitorea,188.39,2,0,376.78
+113,2026-05-22,Eibar,Web,Ordenagailuak,Chromebook,446.43,4,0,1785.72
+31,2026-05-23,Donostia,Denda,Periferikoak,Sagua,21.49,5,15,91.33
+87,2026-05-23,Ermua,Web,Osagaiak,SSD 1TB,90.61,4,5,344.32
+246,2026-05-23,Bilbo,Denda,Osagaiak,SSD 1TB,81.77,7,0,572.39
+323,2026-05-23,Gasteiz,Web,Ordenagailuak,Ordenagailu eramangarria,679.66,2,5,1291.35
+244,2026-05-24,Ermua,Web,Sareak,Switch-a,116.42,1,10,104.78
+294,2026-05-24,Donostia,Web,Periferikoak,Monitorea,229.26,3,0,687.78
+325,2026-05-24,Ermua,Denda,Sareak,Routerra,92.54,5,0,462.7
+344,2026-05-24,Donostia,Web,Osagaiak,Txartel grafikoa,436.7,3,0,1310.1
+354,2026-05-24,Gasteiz,Web,Ordenagailuak,PC mahaigainekoa,817.68,3,5,2330.39
+35,2026-05-25,Gasteiz,Web,Ordenagailuak,Chromebook,409.82,2,10,737.68
+147,2026-05-25,Ermua,Denda,Ordenagailuak,Ordenagailu eramangarria,692.3,6,0,4153.8
+301,2026-05-25,Ermua,Denda,Periferikoak,Teklatua,33.04,6,0,198.24
+103,2026-05-26,Bilbo,Web,Ordenagailuak,Ordenagailu eramangarria,815.84,3,10,2202.77
+162,2026-05-27,Ermua,Web,Ordenagailuak,PC mahaigainekoa,796.02,6,0,4776.12
+357,2026-05-27,Eibar,Web,Sareak,WiFi sarbide-puntua,147.16,8,0,1177.28
+440,2026-05-27,Gasteiz,Web,Periferikoak,Sagua,19.33,4,5,73.45
+473,2026-05-27,Ermua,Web,Sareak,Switch-a,128.52,7,10,809.68
+421,2026-05-28,Donostia,Web,Osagaiak,RAM 16GB,70.15,1,0,70.15
+481,2026-05-28,Ermua,Web,Ordenagailuak,Ordenagailu eramangarria,699.04,8,0,5592.32
+251,2026-05-29,Gasteiz,Denda,Ordenagailuak,Chromebook,390.46,8,15,2655.13
+44,2026-05-30,Gasteiz,Denda,Ordenagailuak,Ordenagailu eramangarria,760.26,3,0,2280.78
+272,2026-05-30,Gasteiz,Denda,Osagaiak,RAM 16GB,73.85,5,0,369.25
+453,2026-05-30,Eibar,Denda,Ordenagailuak,PC mahaigainekoa,805.01,3,10,2173.53
+91,2026-05-31,Gasteiz,Web,Osagaiak,SSD 1TB,91.08,4,0,364.32
+106,2026-05-31,Eibar,Web,Ordenagailuak,Ordenagailu eramangarria,853.93,4,10,3074.15
+130,2026-05-31,Bilbo,Web,Periferikoak,Monitorea,183.15,3,0,549.45
+261,2026-05-31,Ermua,Denda,Periferikoak,Monitorea,187.15,5,10,842.18
+339,2026-05-31,Gasteiz,Denda,Sareak,Switch-a,118.67,7,15,706.09
+446,2026-05-31,Ermua,Denda,Ordenagailuak,Chromebook,458.83,6,5,2615.33
+488,2026-05-31,Gasteiz,Denda,Osagaiak,SSD 1TB,77.64,3,0,232.92
+204,2026-06-02,Gasteiz,Denda,Sareak,Routerra,104.6,2,5,198.74
+324,2026-06-02,Gasteiz,Web,Ordenagailuak,Ordenagailu eramangarria,717.13,2,0,1434.26
+351,2026-06-02,Ermua,Web,Periferikoak,Monitorea,210.68,3,5,600.44
+463,2026-06-02,Donostia,Denda,Ordenagailuak,Chromebook,387.48,1,5,368.11
+233,2026-06-04,Bilbo,Denda,Osagaiak,Txartel grafikoa,387.58,3,10,1046.47
+424,2026-06-04,Ermua,Denda,Osagaiak,RAM 16GB,57.01,1,0,57.01
+17,2026-06-05,Ermua,Denda,Ordenagailuak,Chromebook,463.05,5,10,2083.72
+218,2026-06-05,Donostia,Denda,Sareak,Switch-a,136.3,3,0,408.9
+455,2026-06-05,Donostia,Denda,Ordenagailuak,Ordenagailu eramangarria,728.17,5,10,3276.76
+469,2026-06-05,Bilbo,Web,Ordenagailuak,Ordenagailu eramangarria,763.83,6,10,4124.68
+60,2026-06-06,Eibar,Web,Osagaiak,SSD 1TB,73.43,1,5,69.76
+56,2026-06-07,Gasteiz,Web,Osagaiak,RAM 16GB,68.46,7,0,479.22
+152,2026-06-07,Eibar,Web,Periferikoak,Monitorea,206.98,2,0,413.96
+205,2026-06-07,Bilbo,Denda,Osagaiak,Txartel grafikoa,403.07,3,0,1209.21
+232,2026-06-07,Gasteiz,Denda,Osagaiak,Txartel grafikoa,381.65,5,0,1908.25
+239,2026-06-07,Donostia,Denda,Osagaiak,SSD 1TB,73.54,2,5,139.73
+124,2026-06-08,Eibar,Denda,Periferikoak,Monitorea,233.46,8,0,1867.68
+128,2026-06-08,Ermua,Web,Osagaiak,SSD 1TB,87.79,2,5,166.8
+252,2026-06-08,Donostia,Denda,Ordenagailuak,Chromebook,378.48,8,15,2573.66
+349,2026-06-08,Ermua,Web,Sareak,WiFi sarbide-puntua,138.38,2,5,262.92
+353,2026-06-08,Eibar,Web,Sareak,Switch-a,108.74,3,5,309.91
+54,2026-06-09,Bilbo,Denda,Periferikoak,Sagua,24.96,2,0,49.92
+499,2026-06-09,Bilbo,Denda,Osagaiak,Txartel grafikoa,407.9,3,5,1162.51
+391,2026-06-10,Eibar,Web,Sareak,Switch-a,111.47,2,10,200.65
+180,2026-06-11,Bilbo,Web,Periferikoak,Teklatua,30.47,8,5,231.57
+82,2026-06-12,Donostia,Denda,Sareak,Switch-a,117.61,2,0,235.22
+125,2026-06-12,Eibar,Web,Periferikoak,Teklatua,34.31,2,0,68.62
+365,2026-06-12,Eibar,Web,Periferikoak,Monitorea,202.14,7,0,1414.98
+470,2026-06-13,Bilbo,Web,Ordenagailuak,PC mahaigainekoa,855.8,2,0,1711.6
+179,2026-06-14,Gasteiz,Web,Sareak,Switch-a,126.52,8,10,910.94
+189,2026-06-14,Bilbo,Denda,Osagaiak,Txartel grafikoa,405.44,2,5,770.34
+303,2026-06-14,Donostia,Web,Osagaiak,RAM 16GB,60.27,6,5,343.54
+376,2026-06-14,Ermua,Denda,Periferikoak,Teklatua,37.87,7,0,265.09
+114,2026-06-15,Ermua,Web,Ordenagailuak,Ordenagailu eramangarria,741.33,2,0,1482.66
+295,2026-06-15,Eibar,Web,Osagaiak,RAM 16GB,60.22,4,0,240.88
+343,2026-06-15,Eibar,Denda,Ordenagailuak,Chromebook,359.85,2,0,719.7
+352,2026-06-15,Ermua,Denda,Sareak,Routerra,98.86,8,15,672.25
+120,2026-06-16,Ermua,Web,Sareak,WiFi sarbide-puntua,140.04,7,15,833.24
+428,2026-06-16,Bilbo,Denda,Osagaiak,Txartel grafikoa,467.65,7,5,3109.87
+212,2026-06-17,Bilbo,Web,Periferikoak,Teklatua,32.75,4,0,131.0
+363,2026-06-17,Ermua,Denda,Ordenagailuak,Ordenagailu eramangarria,844.22,7,0,5909.54
+438,2026-06-17,Ermua,Web,Ordenagailuak,PC mahaigainekoa,955.22,8,5,7259.67
+134,2026-06-18,Ermua,Denda,Periferikoak,Teklatua,36.27,4,15,123.32
+164,2026-06-18,Donostia,Denda,Periferikoak,Teklatua,38.88,3,10,104.98
+273,2026-06-20,Eibar,Web,Periferikoak,Monitorea,222.14,6,0,1332.84
+21,2026-06-21,Bilbo,Web,Sareak,Routerra,101.07,4,5,384.07
+143,2026-06-21,Gasteiz,Web,Osagaiak,Txartel grafikoa,415.64,3,0,1246.92
+305,2026-06-21,Eibar,Denda,Ordenagailuak,Chromebook,462.72,1,0,462.72
+59,2026-06-22,Bilbo,Denda,Periferikoak,Monitorea,184.38,6,0,1106.28
+123,2026-06-22,Gasteiz,Web,Periferikoak,Sagua,22.99,7,0,160.93
+138,2026-06-22,Donostia,Web,Ordenagailuak,Ordenagailu eramangarria,831.03,4,15,2825.5
+167,2026-06-22,Eibar,Web,Ordenagailuak,Ordenagailu eramangarria,807.25,3,0,2421.75
+296,2026-06-22,Gasteiz,Denda,Periferikoak,Teklatua,30.29,4,5,115.1
+169,2026-06-23,Gasteiz,Web,Ordenagailuak,PC mahaigainekoa,794.94,7,15,4729.89
+186,2026-06-23,Gasteiz,Denda,Periferikoak,Sagua,21.26,5,0,106.3
+316,2026-06-23,Gasteiz,Web,Periferikoak,Teklatua,35.7,4,5,135.66
+256,2026-06-24,Bilbo,Web,Osagaiak,RAM 16GB,65.9,6,15,336.09
+41,2026-06-25,Bilbo,Web,Periferikoak,Monitorea,223.71,4,0,894.84
+314,2026-06-25,Bilbo,Denda,Osagaiak,Txartel grafikoa,400.47,8,0,3203.76
+411,2026-06-25,Eibar,Web,Osagaiak,SSD 1TB,93.25,4,0,373.0
+429,2026-06-26,Bilbo,Denda,Periferikoak,Teklatua,33.72,3,15,85.99
+464,2026-06-26,Eibar,Web,Sareak,WiFi sarbide-puntua,138.22,6,0,829.32
+330,2026-06-27,Ermua,Web,Periferikoak,Sagua,20.68,3,10,55.84
+331,2026-06-27,Donostia,Denda,Periferikoak,Teklatua,39.92,7,0,279.44
+374,2026-06-27,Ermua,Web,Ordenagailuak,Ordenagailu eramangarria,821.35,6,5,4681.69
+112,2026-06-28,Donostia,Denda,Osagaiak,RAM 16GB,73.34,3,5,209.02
+201,2026-06-28,Ermua,Web,Osagaiak,SSD 1TB,79.57,1,5,75.59
+292,2026-06-28,Donostia,Web,Ordenagailuak,PC mahaigainekoa,977.17,7,0,6840.19
+422,2026-06-28,Bilbo,Denda,Osagaiak,SSD 1TB,87.36,4,15,297.02
+457,2026-06-28,Eibar,Denda,Periferikoak,Sagua,20.55,5,5,97.61
+86,2026-06-29,Bilbo,Denda,Osagaiak,RAM 16GB,61.89,5,10,278.5
+141,2026-06-29,Bilbo,Web,Osagaiak,Txartel grafikoa,447.47,2,5,850.19
+163,2026-06-29,Bilbo,Web,Ordenagailuak,Chromebook,360.65,5,0,1803.25
+225,2026-06-29,Ermua,Web,Ordenagailuak,Chromebook,469.31,5,0,2346.55
+312,2026-06-29,Ermua,Denda,Sareak,Switch-a,104.02,8,0,832.16
+336,2026-06-29,Gasteiz,Denda,Sareak,WiFi sarbide-puntua,157.65,1,0,157.65
+404,2026-06-29,Bilbo,Web,Osagaiak,RAM 16GB,71.84,5,5,341.24
+452,2026-06-29,Gasteiz,Web,Periferikoak,Monitorea,236.28,8,0,1890.24
+491,2026-06-29,Ermua,Denda,Sareak,Switch-a,121.7,2,5,231.23

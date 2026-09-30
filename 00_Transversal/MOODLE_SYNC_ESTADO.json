@@ -1,9 +1,9 @@
 {
-  "activities": 62,
+  "activities": 63,
   "activity_types": {
     "assign": 7,
     "folder": 3,
-    "resource": 39,
+    "resource": 40,
     "url": 13
   },
   "entries": [
@@ -417,8 +417,15 @@
     {
       "kind": "file",
       "path": "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
-      "sha256": "3f60da8e126b925bd037af7f67589a437883e49fc98630a4941e11818446716f",
+      "sha256": "933dfdf10e5c003d8310fd61c8252fea00ded936e6165289a17932bb14a3d257",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64159",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "05_BigData_Ingeniaritza/materialak/salmentak_kibana.csv",
+      "sha256": "0bbfc4ca836a05bcff227a127f37bec12830da4459b8f798e9ee1cf615313735",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64293",
       "status": "verified"
     },
     {
@@ -480,7 +487,7 @@
     {
       "kind": "file",
       "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
-      "sha256": "47c2606e5c706e2794c74c663793bb07ede1a0ed43036f30dfb79fb08478a198",
+      "sha256": "b94fdc9f2eb5a551f3e6589a6d28644b91421ac1e2dfb97798045aa00ff07289",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64150",
       "status": "verified"
     },
