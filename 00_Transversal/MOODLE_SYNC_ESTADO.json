@@ -269,14 +269,14 @@
     {
       "kind": "file",
       "path": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
-      "sha256": "6d04bba8ae88e05e6ab7d20723e3a9776cb88c07d369e75c344aef715bcf6899",
+      "sha256": "db8e1ca2a41fb17d6150f979655faf3d55c6aedb9d8fd0f341e3da804445292d",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=61497",
       "status": "verified"
     },
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
-      "sha256": "4dda4636a41b3b426a804d37a0c3a12787045cd71bcafe2abaade57e29eef291",
+      "sha256": "8123b03a502fbc8eec3e304318d24770f10873b57345155b0227b6cab1709b9b",
       "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
       "status": "verified"
     },
@@ -289,14 +289,14 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Ariketa_koadernoa_URLa.ipynb",
-      "sha256": "9fc41c194788f495d3d6ce21bdcca9acab7ee06609e739a38ce400d013a55b20",
-      "source": "https://drive.google.com/file/d/19o_CDNSKanQSS4K9YbMSGKqyghqCJCsc/view?usp=sharing",
+      "sha256": "f6aa2447a755d6970d5cf942be7f5b9cf3abd4085a34d84b6eb15f33b48f80ef",
+      "source": "https://drive.google.com/file/d/1Jj8TV5T2nAqMfA-I40g1I5NQhJ8PYrEz/view?usp=sharing",
       "status": "verified"
     },
     {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64095",
       "kind": "external link",
-      "source": "https://drive.google.com/file/d/19o_CDNSKanQSS4K9YbMSGKqyghqCJCsc/view?usp=sharing",
+      "source": "https://drive.google.com/file/d/1Jj8TV5T2nAqMfA-I40g1I5NQhJ8PYrEz/view?usp=sharing",
       "status": "downloaded and verified"
     },
     {
@@ -323,7 +323,7 @@
       "kind": "file",
       "path": "04_Programazioa_5073/materialak/Sailkapen Ebaluazio-metrikak.png",
       "sha256": "b8bdb584e8faa28a7a48b06d0d4b4743641959360e3e889771d1cd62e4b10af8",
-      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89145/mod_resource/content/1/Sailkapen%20Ebaluazio-metrikak.png",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89145/mod_resource/content/3/Sailkapen%20Ebaluazio-metrikak.png",
       "status": "verified"
     },
     {
@@ -510,5 +510,5 @@
     12
   ],
   "unavailable": 0,
-  "verified_on": "2026-09-29"
+  "verified_on": "2026-09-30"
 }
