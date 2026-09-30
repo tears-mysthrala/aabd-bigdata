@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    /* Custom scrollbar for webkit */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
+    
+    .timeline-line {
+      position: absolute;
+      left: 1.25rem;
+      top: 2rem;
+      bottom: 2rem;
+      width: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-family: monospace;
+      font-weight: 600;
+      background-color: var(--secondary);
+      color: var(--secondary-foreground);
+      margin: 0.125rem;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-8 font-sans">
+  
+  <div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-3xl font-bold mb-3 text-[var(--primary)]">Machine Learning Ziklo Osoa</h1>
+      <p class="text-[var(--muted-foreground)] text-lg">Datu gordinetatik API batera: 5073 Moduluaren (AABD) 6 pauso nagusiak</p>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="relative relative">
+      <!-- The central line -->
+      <div class="timeline-line hidden md:block" style="left: 50%; transform: translateX(-50%);"></div>
+      
+      <!-- Step 1 -->
+      <div class="relative flex flex-col md:flex-row justify-between items-center mb-8 z-10 w-full">
+        <div class="order-1 w-full md:w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-[var(--primary)] shadow-xl w-12 h-12 rounded-full mb-4 md:mb-0 border-4 border-[var(--background)]">
+          <h1 class="mx-auto font-bold text-lg text-[var(--primary-foreground)]">1</h1>
+        </div>
+        <div class="order-1 bg-[var(--card)] border border-[var(--border)] shadow-md rounded-xl p-5 w-full md:w-5/12">
+          <h3 class="font-bold text-lg mb-2 flex items-center">📊 Datuen Karga eta Banaketa</h3>
+          <p class="text-sm text-[var(--muted-foreground)] mb-3">Datuak eskuratu eta bitan banatu behar dira Data Leakage (datu isuria) saihesteko.</p>
+          <div>
+            <span class="badge">train_test_split()</span>
+            <span class="badge">stratify=y</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative flex flex-col md:flex-row-reverse justify-between items-center mb-8 z-10 w-full">
+        <div class="order-1 w-full md:w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-[var(--primary)] shadow-xl w-12 h-12 rounded-full mb-4 md:mb-0 border-4 border-[var(--background)]">
+          <h1 class="mx-auto font-bold text-lg text-[var(--primary-foreground)]">2</h1>
+        </div>
+        <div class="order-1 bg-[var(--card)] border border-[var(--border)] shadow-md rounded-xl p-5 w-full md:w-5/12">
+          <h3 class="font-bold text-lg mb-2 flex items-center">⚙️ Aurreprozesatzea</h3>
+          <p class="text-sm text-[var(--muted-foreground)] mb-3">Datuak ereduentzat ulergarri bihurtu. <strong>Gogoratu:</strong> <code>fit_transform</code> Train-en eta soilik <code>transform</code> Test-en.</p>
+          <div class="grid grid-cols-1 gap-2">
+            <div>
+              <span class="text-xs uppercase tracking-wider text-[var(--muted-foreground)] font-bold">Faltadunak:</span>
+              <span class="badge">SimpleImputer()</span>
+            </div>
+            <div>
+              <span class="text-xs uppercase tracking-wider text-[var(--muted-foreground)] font-bold">Zenbakizkoak:</span>
+              <span class="badge">StandardScaler()</span>
+              <span class="badge">MinMaxScaler()</span>
+              <span class="badge">RobustScaler()</span>
+            </div>
+            <div>
+              <span class="text-xs uppercase tracking-wider text-[var(--muted-foreground)] font-bold">Kategorikoak:</span>
+              <span class="badge">LabelEncoder()</span>
+              <span class="badge">OrdinalEncoder()</span>
+              <span class="badge">OneHotEncoder()</span>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[var(--border)]">
+              <span class="badge text-[var(--accent)] bg-transparent border-[var(--accent)]">ColumnTransformer()</span>
+              <span class="badge text-[var(--accent)] bg-transparent border-[var(--accent)]">Pipeline()</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative flex flex-col md:flex-row justify-between items-center mb-8 z-10 w-full">
+        <div class="order-1 w-full md:w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-[var(--primary)] shadow-xl w-12 h-12 rounded-full mb-4 md:mb-0 border-4 border-[var(--background)]">
+          <h1 class="mx-auto font-bold text-lg text-[var(--primary-foreground)]">3</h1>
+        </div>
+        <div class="order-1 bg-[var(--card)] border border-[var(--border)] shadow-md rounded-xl p-5 w-full md:w-5/12">
+          <h3 class="font-bold text-lg mb-2 flex items-center">🤖 Entrenamendua eta Desoreka</h3>
+          <p class="text-sm text-[var(--muted-foreground)] mb-3">Eredu egokia aukeratu eta klaseen arteko desorekak tratatu behar dira iragarpen justuak izateko.</p>
+          <div class="mb-3">
+            <span class="text-xs uppercase tracking-wider text-[var(--muted-foreground)] font-bold block mb-1">Desoreka Tratamendua:</span>
+            <span class="badge">class_weight='balanced'</span>
+            <span class="badge">SMOTE()</span>
+          </div>
+          <div>
+            <span class="text-xs uppercase tracking-wider text-[var(--muted-foreground)] font-bold block mb-1">Algoritmoak:</span>
+            <span class="badge">LogisticRegression()</span>
+            <span class="badge">RandomForestClassifier()</span>
+            <span class="badge">KNeighborsClassifier()</span>
+            <span class="badge">LinearRegression()</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="relative flex flex-col md:flex-row-reverse justify-between items-center mb-8 z-10 w-full">
+        <div class="order-1 w-full md:w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-[var(--primary)] shadow-xl w-12 h-12 rounded-full mb-4 md:mb-0 border-4 border-[var(--background)]">
+          <h1 class="mx-auto font-bold text-lg text-[var(--primary-foreground)]">4</h1>
+        </div>
+        <div class="order-1 bg-[var(--card)] border border-[var(--border)] shadow-md rounded-xl p-5 w-full md:w-5/12">
+          <h3 class="font-bold text-lg mb-2 flex items-center">🔧 Hiperparametroen Doiketa</h3>
+          <p class="text-sm text-[var(--muted-foreground)] mb-3">Ereduaren barne-konfigurazio onena bilatzea (Cross-Validation erabiliz).</p>
+          <div>
+            <span class="badge">GridSearchCV()</span>
+            <span class="badge">RandomizedSearchCV()</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="relative flex flex-col md:flex-row justify-between items-center mb-8 z-10 w-full">
+        <div class="order-1 w-full md:w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-[var(--accent)] shadow-xl w-12 h-12 rounded-full mb-4 md:mb-0 border-4 border-[var(--background)]">
+          <h1 class="mx-auto font-bold text-lg text-[var(--primary-foreground)]">5</h1>
+        </div>
+        <div class="order-1 bg-[var(--card)] border border-[var(--border)] shadow-md rounded-xl p-5 w-full md:w-5/12 relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-[var(--accent)] text-[var(--primary-foreground)] text-xs font-bold px-3 py-1 rounded-bl-lg">Kritikoa!</div>
+          <h3 class="font-bold text-lg mb-2 flex items-center mt-2">🎯 Ebaluazioa eta Atalasea</h3>
+          <p class="text-sm text-[var(--muted-foreground)] mb-3">Eredua modu zorrotzean neurtu eta negozio-arriskuetara egokitu ("Geldialdi Aseguratuaren Paradoxa" saihesteko).</p>
+          <div class="mb-3">
+            <span class="text-xs uppercase tracking-wider text-[var(--muted-foreground)] font-bold block mb-1">Ebaluazio Metrikak:</span>
+            <span class="badge">confusion_matrix()</span>
+            <span class="badge">classification_report()</span>
+          </div>
+          <div>
+            <span class="text-xs uppercase tracking-wider text-[var(--accent)] font-bold block mb-1">Threshold Tuning (Atalasea):</span>
+            <span class="badge">predict_proba()</span>
+            <span class="badge">precision_recall_curve()</span>
+            <span class="badge">PrecisionRecallDisplay()</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="relative flex flex-col md:flex-row-reverse justify-between items-center z-10 w-full">
+        <div class="order-1 w-full md:w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-[var(--primary)] shadow-xl w-12 h-12 rounded-full mb-4 md:mb-0 border-4 border-[var(--background)]">
+          <h1 class="mx-auto font-bold text-lg text-[var(--primary-foreground)]">6</h1>
+        </div>
+        <div class="order-1 bg-[var(--card)] border border-[var(--border)] shadow-md rounded-xl p-5 w-full md:w-5/12">
+          <h3 class="font-bold text-lg mb-2 flex items-center">🚀 Ekoizpena eta APIa</h3>
+          <p class="text-sm text-[var(--muted-foreground)] mb-3">Eredua "izozkailuan" sartu eta beste sistemekin komunikatzeko API egitura prestatu.</p>
+          <div class="mb-3">
+            <span class="text-xs uppercase tracking-wider text-[var(--muted-foreground)] font-bold block mb-1">Gordetzea (Serializazioa):</span>
+            <span class="badge">joblib.dump()</span>
+            <span class="badge">joblib.load()</span>
+          </div>
+          <div>
+            <span class="text-xs uppercase tracking-wider text-[var(--muted-foreground)] font-bold block mb-1">API Eskemak:</span>
+            <span class="badge">pydantic.BaseModel</span>
+            <span class="badge">@field_validator</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

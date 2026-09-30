@@ -1,9 +1,9 @@
 {
-  "activities": 63,
+  "activities": 64,
   "activity_types": {
     "assign": 7,
     "folder": 3,
-    "resource": 40,
+    "resource": 41,
     "url": 13
   },
   "entries": [
@@ -289,14 +289,14 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Ariketa_koadernoa_URLa.ipynb",
-      "sha256": "8dedf7cda40c9e7138b3905815c5724d7d74d24c8a20f3262959e0c23d575325",
-      "source": "https://drive.google.com/file/d/1Jj8TV5T2nAqMfA-I40g1I5NQhJ8PYrEz/view?usp=sharing",
+      "sha256": "393172db98ffc97f6f08f74f042d6cce26d8a55e01629dcb38f5dc656599887e",
+      "source": "https://drive.google.com/file/d/1ly5JO5DIGhkNOgE0fuWU9COGUvLOz3Yi/view?usp=sharing",
       "status": "verified"
     },
     {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64095",
       "kind": "external link",
-      "source": "https://drive.google.com/file/d/1Jj8TV5T2nAqMfA-I40g1I5NQhJ8PYrEz/view?usp=sharing",
+      "source": "https://drive.google.com/file/d/1ly5JO5DIGhkNOgE0fuWU9COGUvLOz3Yi/view?usp=sharing",
       "status": "downloaded and verified"
     },
     {
@@ -318,6 +318,13 @@
       "kind": "external link",
       "source": "https://drive.google.com/file/d/1A8odZkhTki3J5-znNgTErJ55P_DtF9gd/view?usp=sharing",
       "status": "downloaded and verified"
+    },
+    {
+      "kind": "file",
+      "path": "04_Programazioa_5073/materialak/ml_infografia_6_pausotan.html",
+      "sha256": "e0d5bda9a63516c35a2a19c92085f53cf93f7ba5cbdffefdc2491f764fe90d49",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89255/mod_resource/content/3/ml_infografia_6_pausotan.html",
+      "status": "verified"
     },
     {
       "kind": "file",
@@ -417,7 +424,7 @@
     {
       "kind": "file",
       "path": "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
-      "sha256": "933dfdf10e5c003d8310fd61c8252fea00ded936e6165289a17932bb14a3d257",
+      "sha256": "180953215521eb0cc15fc7b12dd2edc2e15e1944db007aea7ba37bded413739e",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64159",
       "status": "verified"
     },
@@ -487,7 +494,7 @@
     {
       "kind": "file",
       "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
-      "sha256": "b94fdc9f2eb5a551f3e6589a6d28644b91421ac1e2dfb97798045aa00ff07289",
+      "sha256": "860377342e996b28ff5d1ea50cb759e59060fcaf84d089bffd571adaf5ab1773",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64150",
       "status": "verified"
     },
