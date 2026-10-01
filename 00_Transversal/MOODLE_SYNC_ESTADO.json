@@ -1,10 +1,10 @@
 {
-  "activities": 64,
+  "activities": 65,
   "activity_types": {
     "assign": 7,
     "folder": 3,
     "resource": 41,
-    "url": 13
+    "url": 14
   },
   "entries": [
     {
@@ -274,6 +274,12 @@
       "status": "verified"
     },
     {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64316",
+      "kind": "external link",
+      "source": "https://scikit-learn.org/stable/api/sklearn.html",
+      "status": "web reference"
+    },
+    {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
       "sha256": "24b61b3de75c345623c6d38712ce2c6c2bf7bbc3c762a32ee58341a3ded9eee6",
@@ -289,7 +295,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Ariketa_koadernoa_URLa.ipynb",
-      "sha256": "393172db98ffc97f6f08f74f042d6cce26d8a55e01629dcb38f5dc656599887e",
+      "sha256": "70238c779bbb4f83f081114525179733dd022610c1218f84f796a5d79594c085",
       "source": "https://drive.google.com/file/d/1ly5JO5DIGhkNOgE0fuWU9COGUvLOz3Yi/view?usp=sharing",
       "status": "verified"
     },

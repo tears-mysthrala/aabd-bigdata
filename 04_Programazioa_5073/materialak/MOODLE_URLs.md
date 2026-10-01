@@ -16,3 +16,4 @@ Atalaren `materialak` karpetako `mod/url` jarduerak. Sync bakoitzean berridazten
 | GitHub Flow - dokumentazio ofiziala URLa | https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=63703 | https://docs.github.com/en/get-started/using-github/github-flow | web reference |
 | Gitflow vs GitHub Flow URLa | https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=63702 | https://www.geeksforgeeks.org/git/git-flow-vs-github-flow/ | web reference |
 | MLOps: DVC + Github + MLFlow URLa | https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64158 | https://medium.com/@suyashverma61/the-ultimate-guide-to-mlops-tools-dvc-dagshub-mlflow-bentoml-github-explained-simply-8f033af1b880 | web reference |
+| SciKit-Learn API dokumentazioa URLa | https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64316 | https://scikit-learn.org/stable/api/sklearn.html | web reference |
