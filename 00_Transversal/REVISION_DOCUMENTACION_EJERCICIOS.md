@@ -20,7 +20,7 @@ se han conservado.
 | CNC Guard: prototipo, resumen y anexos | El resumen mezclaba objetivos y componentes propuestos con el prototipo. Se distingue Mamdani/Isolation Forest implementados de LSTM/RAG/conectores propuestos y se explican límites de datos sintéticos. Las plantillas ya identifican campos humanos pendientes. | [Guía de soluciones](../01_Erronka1_CNC_Guard/soluzioak/README.md) y [proyecto ejecutable](../01_Erronka1_CNC_Guard/proyecto_cnc_guard/README.md). |
 | PERT/Gantt de tortilla | La solución ya desarrolla supuestos, precedencias, tablas y respuestas. Se añade un recorrido para comprobar el camino crítico y recursos. | [Solución](../01_Erronka1_CNC_Guard/soluzioak/Patata_Tortila_PERT_Gantt_Ebazpena.md). |
 | 5071: IE1, ética, IE6 y presentación | Respuestas extensas con hipótesis y fuentes. Se añade orden de lectura/comprobación y se corrige la afirmación de PPTX ausente: el archivo existe. No se renuevan fuentes jurídicas ni se inventa entrega personal. | [Guía 5071](../02_AA_Ereduak_5071/soluzioak/README.md). |
-| COMPAS en `materialak/` | La versión actual descarga por HTTPS y usa umbral 7; no coincide con la descripción antigua de CSV local/umbral 5. Se añade contexto junto al notebook y guía de métricas, denominadores y límites. **Resultados pendientes de reconciliar.** | [Guía COMPAS](../02_AA_Ereduak_5071/materialak/Alborapenak/README.md). |
+| COMPAS en `materialak/` | La versión actual descarga por HTTPS y usa umbral 7; no coincide con la descripción antigua de CSV local/umbral 5. Se añade una guía junto al notebook con fuente, umbral, métricas, denominadores y límites. El notebook docente conserva la versión sincronizada de Moodle. **Resultados pendientes de reconciliar.** | [Guía COMPAS](../02_AA_Ereduak_5071/materialak/Alborapenak/README.md). |
 | AI Act, notebook de tabla | El título «SOLUZIOA» no significa tabla rellenada. Se dirige al desarrollo de IE6 y se deja visible su carácter incompleto. | [Guía 5071](../02_AA_Ereduak_5071/soluzioak/README.md). |
 | ML básico sobre CNC | Solo había una celda de texto para seis bloques de código. Se explican entradas, preprocesamiento, baseline, MSE/R², desbalance y F1 junto a cada bloque y en los comentarios del `.py`. Se corrige el comentario que negaba los NaN. | [Notebook](../03_ML_5072/soluzioak/5072_ML_praktika.ipynb) y [guía ML](../03_ML_5072/soluzioak/README.md). |
 | Orange: Auto MPG, Heart Disease y WDBC | Se añade entorno independiente de CNC, forma de abrir File/workflows, salidas regeneradas, métricas/unidades y distinción ajuste completo/CV. Las guías de datos conservan procedencia y metodología. | [Guía ML](../03_ML_5072/soluzioak/README.md), [Auto MPG](../03_ML_5072/soluzioak/datos/auto_mpg/README.md), [WDBC](../03_ML_5072/soluzioak/datos/breast_cancer_wisconsin/README.md). |
@@ -103,3 +103,9 @@ El script ampliado de Programación se ejecutó en esa copia: SMOTE en train
 equilibró 1434/1434 ejemplos; recall RF pasó de 0.7317 a 0.8293 al bajar el
 umbral a 0.30. Esta ejecución del script no valida las celdas del notebook
 ni los workflows Orange o el estado actual de los servicios externos.
+
+La sincronización automática posterior restauró el notebook docente de
+COMPAS desde Moodle. Su explicación se conserva en `Alborapenak/README.md`,
+fuera del archivo administrado por la sincronización. El conteo anterior de
+nueve validaciones/exportaciones describe la revisión local previa; ocho
+notebooks de soluciones mantienen cambios narrativos en la PR final.
