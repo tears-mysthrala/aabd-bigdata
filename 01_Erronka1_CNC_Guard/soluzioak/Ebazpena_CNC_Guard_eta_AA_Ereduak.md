@@ -1,7 +1,16 @@
 # Erronka 1 (CNC Guard) eta AA Ereduak (5071) - Laburpen eta Ebazpen Teknikoa
 
 Moduluak: **Adimen Artifizialaren Ereduak (5071)** eta **Erronka 1: CNC Guard**  
-Kokatuta: `04_Erronka1_CNC_Guard_eta_AA_Ereduak`
+Kokatuta: `01_Erronka1_CNC_Guard/soluzioak/`
+
+> **Cómo leer este resumen:** los apartados siguientes describen la propuesta
+> docente. El prototipo implementado se documenta en el
+> [README del proyecto](../proyecto_cnc_guard/README.md): Mamdani en NumPy e
+> Isolation Forest con datos sintéticos y decisión por consenso AND. Random
+> Forest/XGBoost/LSTM, RAG y los conectores industriales de esta propuesta no
+> se presentan aquí como componentes ejecutados. El objetivo de anticipar
+> averías es una aspiración del reto, no una capacidad demostrada por el código.
+> [Plantillas y comprobaciones de entregas](README.md).
 
 ---
 

@@ -23,3 +23,17 @@ Prozesu-taldeak `5kasua_iabd` izena mantentzen du. Tokiko bide nagusia `GetFile 
 ## Egiaztapen-egoera
 
 JSONa lokalean parsatu da eta lau prozesadoreak, bi Controller Service-en ID erreferentziak, bi muga-portuen izenak eta konexio-muturrak estatistikoki balioztatu dira. **Ez da NiFi abiarazi, flow-a inportatu edo exekutatu, CSVtik JSON fitxategirik sortu, ezta irteera-fitxategi zerrendarik egiaztatu ere.** JSON definizio estatikoa da; PDFko exekuzio-proba eta irteera-ebidentzia ez dira faltsuki baieztatzen.
+
+## Cómo verificar la conversión
+
+1. Importa el flow parado en el laboratorio de [caso 6](../06_MariaDB_MongoDB_Laborategia_DF2.2/README.md)
+   y comprueba los paths de GetFile/PutFile en el contenedor.
+2. Habilita CSVReader y JsonRecordSetWriter y verifica el separador `;` y cabecera.
+3. Introduce la muestra por **una** de las dos entradas, para no duplicar el dato.
+4. Compara CSV y JSON: misma cantidad de registros y mismos campos/valores según
+   el esquema del Reader. El escritor produce un array, no JSONL.
+5. Comprueba el archivo y la salida del puerto: cambiar `.csv` por `.json` solo
+   cambia un atributo; es ConvertRecord quien transforma el contenido.
+
+Si ves `invalid`, revisa servicios y propiedades; si el contenido no se parsea,
+comprueba delimitador y esquema. No se ha realizado aquí esta prueba runtime.

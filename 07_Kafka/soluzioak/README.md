@@ -73,3 +73,33 @@ offsets al final de cada ejecución, tras procesar los mensajes impresos.
   talde-barruan banaketa, talde-artean denek mezu berak (offset independenteak). `kafka-consumer-groups.sh --describe`.
 - **DF3.3 — MongoDB sink**: consumer batetik `pymongo`-rekin txertatu (`faker` datuekin);
   patroia `06_NiFi/.../06_MariaDB_MongoDB_Laborategia_DF2.2`-ko Record API bulk-aren bera.
+
+## Recorrido completo y conceptos para leer los resultados
+
+| Guía | Qué resuelve | Qué debes comprobar |
+|---|---|---|
+| [Consola 1–5](ariketa_kontsola_topic_partizio_offset.md) | Topics, particiones, mensajes y offsets. | `describe`, valores recibidos y offset **por partición**. |
+| [Consola 5–11](ariketa_kontsola_5_11_erreplika_gako_taldeak_offset.md) | Réplicas, claves, grupos, rebalanceo y offsets confirmados. | Asignaciones de consumidores, reparto entre miembros y lecturas independientes entre grupos. [Registro](kafka_exekuzio_isolatua_2026-09-28_5_11.md). |
+| [Caso avanzado 2](kafka_aurreratua_2_kasua/Ebazpena_2_Kasua.md) | Tres brokers, personas sintéticas y consumidores Python/NiFi. | Cuatro particiones, RF=2 y equivalencia de mensajes entre grupos diferentes. [Registro](kafka_aurreratua_2_kasua/exekuzioa_2026-09-29_2_kasua.md). |
+| [Connect](kafka_aurreratua_connect/Ebazpena_Connect.md) | MySQL → Kafka → MongoDB con conectores. | Estado de tareas, contenido del topic y documento final; REST accesible no demuestra todo el recorrido. [Registro](kafka_aurreratua_connect/exekuzioa_2026-09-29_connect.md). |
+
+**Topic** es la colección lógica de mensajes; **partición** es un log ordenado.
+El **offset** identifica una posición dentro de una partición, no un ID global.
+Un grupo distribuye particiones entre sus miembros; dos grupos tienen progreso
+independiente. Más consumidores que particiones deja miembros sin asignación.
+La clave dirige mensajes relacionados a una partición bajo la configuración de
+particionado; aumentar particiones puede cambiar esa asignación, por lo que no
+prometas orden global o histórico solo por mantener la misma clave.
+
+Un producer ACK acredita recepción según `acks`; no prueba procesamiento del
+consumer ni inserción Mongo. Confirmar offsets y escribir en Mongo son pasos
+diferentes: si no hay coordinación, repetir puede producir duplicados. En las
+prácticas compara mensajes/contenidos, no solo número de líneas impresas.
+El modo `--mock` y sus tests verifican una simulación local, no un broker.
+
+Los comandos de Python y pytest anteriores parten de esta carpeta. Activa su
+`.venv` o usa explícitamente sus ejecutables; para el test necesitas pytest
+además de `requirements.txt`. Las guías avanzadas tienen configuración propia:
+no sustituyas sus direcciones por las del broker compartido de `infra/`.
+Estos criterios documentan las pruebas; esta revisión no vuelve a ejecutar
+los laboratorios ni actualiza sus mediciones históricas.

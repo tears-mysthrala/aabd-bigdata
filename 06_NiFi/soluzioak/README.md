@@ -86,3 +86,39 @@ Dokumentu honek Apache NiFi moduluko ariketa, fluxu eta laborategi guztiak biltz
    - `scripts/inportatu_fluxuak.py` tresnarekin NiFi REST API-ra konektatu eta edozein fluxu aztertu edo inportatu daiteke komando bidez.
 
 `scripts/nifi_api_helper.sh` eta `scripts/test_environment.sh`-ek TLS ziurtagiria egiaztatzen dute. NiFi-ren ziurtagiri autofirmatua erabiltzean ezarri `NIFI_CA_CERT` balioan konfiantzazko CA edo zerbitzariaren ziurtagiriaren bidea; ziurtagiria egiaztatu ezin bada, script-ak huts egingo du. Konektibitate-egiaztapenak ez du flow baten exekuzioa frogatzen.
+
+## Antes de importar: vocabulario y orden de trabajo
+
+Un **FlowFile** transporta contenido y atributos. Un **record** es un registro
+que un Reader extrae de ese contenido; un FlowFile puede contener muchos records.
+Un **Controller Service** proporciona conexiones o lectores/escritores; debe
+estar configurado y habilitado para que el processor pueda utilizarlo.
+Las **relationships** indican por dónde sigue un resultado (`success`, `failure`,
+etc.). **Provenance** permite seguir su recorrido, no sustituye comprobar el
+contenido finalmente guardado.
+
+Lee la guía del caso y entra en un laboratorio preparado siguiendo su Compose
+y [infraestructura](../../infra/README.md). Importa el JSON con los processors
+parados, resuelve los servicios externos, comprueba rutas **dentro del contenedor**
+y suministra los parámetros locales. Habilita servicios y comprueba que los
+processors sean válidos antes de arrancar una muestra acotada. El README de
+[caso 6](06_MariaDB_MongoDB_Laborategia_DF2.2/README.md) y su Compose describen
+el laboratorio compartido; los JSON no crean por sí mismos todos esos servicios.
+
+## Criterios de aceptación por caso
+
+| Caso | Qué comparar | Qué debes guardar como evidencia |
+|---|---|---|
+| 1 | Contenido de entrada y salida; repetir nombre sin sobrescribir el original. | Nombres/contenidos de ambas salidas y provenance; si una escritura falla, examina el bulletin. |
+| 2 | Unión de registros de las variantes = CSV filtrado por France y Units >1. | Filas, cabecera y ausencia de registros rechazados. La simulación Python no acredita ejecución NiFi. |
+| 3 | Contenido extraído → atributo `datuak` → documento Mongo. | LogAttribute/provenance y JSON persistido; diferencia contenido y atributo. |
+| 4 | Enviar ERROR e INFO y esperar la condición de lote. | ERROR en `mezua`, INFO excluido; documentos por lote, no necesariamente por POST. |
+| 5 | Leer CSV con `;` y producir un array JSON con sus registros. | Igual número de registros y mismos campos/valores; no solo cambio de extensión. |
+| 6 | Cada tabla SQL frente a Mongo, separando `source_table`. | Conteos, muestra de campos y límites de repetición; más FlowFiles no prueban peor throughput sin medirlo. |
+| 7 | Payload de origen, campos Silver y agregados Gold sobre la misma ventana. | Mapeo real, S3/Mongo y Parquet legible. El flow actual requiere adaptar JSONPath a AEMET; las muestras locales son simulaciones. |
+
+`test_environment.sh` prueba conectividad/preparación; no certifica los siete
+flujos. Una cola vacía puede significar éxito, descarte o auto-terminate de un
+fallo: revisa relationships, bulletins y destino. Los `README.md` de cada caso
+separan sus verificaciones estáticas de las pruebas que requieren el laboratorio.
+En esta revisión documental no se han arrancado servicios ni hecho importaciones.

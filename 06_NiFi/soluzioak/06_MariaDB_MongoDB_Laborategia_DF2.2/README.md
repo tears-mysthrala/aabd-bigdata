@@ -21,3 +21,21 @@ Adar bakoitzak taula osoa hautatzen du eta ez du lagin-mugarik (`LIMIT`) ezartze
 | Aukeratzeko irizpidea | Erregistro bakoitza banaka prozesatu edo bideratu behar denean erabilgarria izan daiteke. | Erregistro multzoa zuzenean prozesatzea nahi denean egokiagoa izan daiteke. |
 
 Hau egituraren araberako konparaketa da, ez exekuzio edo benchmark baten emaitza. Ez da saio honetan NiFi, MariaDB edo MongoDB konektatu edo exekutatu; ez dago hemen live-insert, datu-zenbaketa edo abiadura-neurketarik baieztatuta.
+
+## Preparación del laboratorio y lectura de la comparación
+
+[Compose](docker-compose.yml) y [guía operativa](Ebazpena_Kasu_6.md) describen
+red, puertos, SQL inicial y servicios. Lee la configuración local y `.env.example`
+antes de arrancar; las credenciales reales se suministran fuera de Git. Las
+rutas del contenedor no son las rutas del host. Usa las guías generales de
+[infra](../../../infra/README.md) y [NiFi](../README.md) para resolver montajes y
+servicios antes de importar los dos JSON parados.
+
+Classic crea un FlowFile por línea y Record conserva conjuntos de registros.
+Para comprobar equivalencia compara conteos por `source_table` y una muestra de
+campos de `customers`, `orders` y `order_items`. No compares solo el conteo total.
+Las consultas leen tablas completas; repetir processors puede insertar de nuevo
+los mismos registros: cuenta por ejecución y revisa la estrategia de IDs/modo
+antes de concluir que un aumento significa datos nuevos. Una comparación de
+velocidad necesita el mismo dato, entorno y límites de lote, con tiempos
+medidos; el menor número de processors no basta para certificarla.

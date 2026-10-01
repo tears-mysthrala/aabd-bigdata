@@ -18,6 +18,30 @@ La regla completa está en [INDICE.md](INDICE.md).
 - **Notebooks docentes** (`materialak/`): no convertir sus `!pip install`
   de ejemplo en costumbre; ejecútalos solo en venv desechable.
 
+## Documentación de un ejercicio
+
+Una solución debe poder estudiarse sin esta conversación. Incluye junto al código:
+
+- Enlace al enunciado y edición/variante: un número reutilizado no identifica
+  por sí solo el mismo ejercicio.
+- Objetivo y razonamiento de la solución, entradas con procedencia/esquema y
+  supuestos de los ejemplos sintéticos.
+- Dependencias y comandos desde una carpeta explícita; explica cómo crear el
+  entorno sin presuponer que `.venv` se incluye en Git.
+- Salidas y efectos de ejecutar: archivos sobrescritos, servicios modificados,
+  descargas o llamadas externas. Distingue imprimir comandos de ejecutarlos.
+- Comprobación e interpretación: qué condición verifica el assert, qué mide
+  la métrica y qué no demuestra. Separa resultados esperados e históricos de
+  una ejecución actual.
+- Limitaciones pendientes: datos/GUI/cuentas ausentes, entregas humanas y
+  diferencias entre `.py`, notebook y PDF derivado.
+
+En un notebook coloca la explicación antes de la celda; en su `.py`, conserva
+la explicación como comentarios o docstrings. Al regenerar una pareja, comprueba
+que no se pierda la narrativa y que las celdas sigan en orden. Usa el
+[informe documental](00_Transversal/REVISION_DOCUMENTACION_EJERCICIOS.md) para
+localizar ejemplos y las incidencias que todavía requieren validación de resultados.
+
 ## Commits y PR
 
 - [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `docs:`…

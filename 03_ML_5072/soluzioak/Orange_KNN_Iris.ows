@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="Orange Data Mining - KNN Iris" description="Sortzailea: Unai Urzainqui Perez. Iris: KNN k=3, 10-fold CV estratifikatua.">
+	<nodes>
+		<node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="Iris · 150 lagin" position="(70.0, 210.0)" />
+		<node id="1" name="kNN" qualified_name="Orange.widgets.model.owknn.OWKNN" project_name="Orange3" version="" title="kNN · k=3" position="(350.0, 150.0)" />
+		<node id="2" name="Test &amp; Score" qualified_name="Orange.widgets.evaluate.owtestandscore.OWTestAndScore" project_name="Orange3" version="" title="CV estratifikatua · 10 folds" position="(630.0, 235.0)" />
+		<node id="3" name="Confusion Matrix" qualified_name="Orange.widgets.evaluate.owconfusionmatrix.OWConfusionMatrix" project_name="Orange3" version="" title="Matriz de confusión" position="(900.0, 155.0)" />
+		<node id="4" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWTable" project_name="Orange3" version="" title="Predicciones out-of-fold" position="(900.0, 325.0)" />
+	</nodes>
+	<links>
+		<link id="0" source_node_id="0" sink_node_id="2" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="train_data" />
+		<link id="1" source_node_id="1" sink_node_id="2" source_channel="Learner" sink_channel="Learner" enabled="true" source_channel_id="learner" sink_channel_id="learner" />
+		<link id="2" source_node_id="2" sink_node_id="3" source_channel="Evaluation Results" sink_channel="Evaluation Results" enabled="true" source_channel_id="evaluations_results" sink_channel_id="evaluation_results" />
+		<link id="3" source_node_id="2" sink_node_id="4" source_channel="Predictions" sink_channel="Data" enabled="true" source_channel_id="predictions" sink_channel_id="data" />
+	</links>
+	<annotations>
+		<text id="0" type="text/plain" rect="(25.0, 15.0, 240.0, 55.0)" font-family="Helvetica" font-size="12">Iris · 150 laginak
+Sortzailea: Unai Urzainqui Perez</text>
+		<text id="1" type="text/plain" rect="(245.0, 12.0, 360.0, 58.0)" font-family="Helvetica" font-size="12">KNN k=3 metrikoa: euklidearra
+Target: iris (setosa/versicolor/virginica)
+CV estratifikatua, 10 folds, CA 0.9533</text>
+	</annotations>
+	<thumbnail />
+	<node_properties>
+		<properties node_id="0" format="pickle">gASVSQEAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjAxyZWNlbnRfcGF0aHOUXZSMHm9yYW5nZXdpZGdldC51dGlscy5maWxlZGlhbG9nc5SMClJlY2VudFBhdGiUk5QpgZR9lCiMB2Fic3BhdGiUjACUjAZwcmVmaXiUjAdiYXNlZGlylIwHcmVscGF0aJSME2RhdG9zL2lyaXMvaXJpcy5jc3aUjAV0aXRsZZRoCowFc2hlZXSUaAqMC2ZpbGVfZm9ybWF0lE51YmGMC3JlY2VudF91cmxzlF2UjBNzYXZlZFdpZGdldEdlb21ldHJ5lE6MC3NoZWV0X25hbWVzlH2UjAZzb3VyY2WUSwCMA3VybJRoCowNZG9tYWluX2VkaXRvcpR9lIwLX192ZXJzaW9uX1+USwGMEGNvbnRleHRfc2V0dGluZ3OUXZR1Lg==</properties>
+		<properties node_id="1" format="literal">{'learner_name': 'kNN', 'n_neighbors': 3, 'metric_index': 0, 'weight_index': 0, 'controlAreaVisible': True, 'auto_apply': True, '__version__': 1}</properties>
+		<properties node_id="2" format="literal">{'controlAreaVisible': True, 'resampling': 0, 'n_folds': 10, 'cv_stratified': True, '__version__': 1}</properties>
+		<properties node_id="3" format="literal">{'auto_commit': True, 'controlAreaVisible': True, 'show_class_distributions': True, '__version__': 1}</properties>
+		<properties node_id="4" format="literal">{'auto_commit': True, 'controlAreaVisible': True, 'color_by_class': True, '__version__': 1}</properties>
+	</node_properties>
+	<session_state />
+</scheme>

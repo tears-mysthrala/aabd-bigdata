@@ -1,9 +1,16 @@
 # %% [markdown]
-# 5072 Ikasketa Automatikoa — Praktika (ML1+ML2)
-# EDA + aurreprozesamendua + ikasketa gainbegiratua (erregresioa + sailkapena).
-# Teoria: 03_ML_5072/materialak (1. atala: X/y, EDA, missing, outlier, kodetze, eskalatze;
-# 2. atala: MSE, erregresio lineala/anizkoitza, Ridge/Lasso, train/test, overfitting).
-# Datuak: ../../04_Programazioa_5073/data/cnc_mock.csv (makina_id, tenperatura, bibrazioa, errorea)
+# # Práctica ML 5072: del dato a la evaluación
+#
+# **Objetivo:** reconocer datos faltantes/extremos y comparar regresión y clasificación con preprocesamiento aprendido solo de train.
+# **Entrada:** `../../04_Programazioa_5073/data/cnc_mock.csv`, 100 filas sintéticas. [Preparación, ejecución e interpretación](README.md).
+# **Salida:** tablas y métricas impresas; no se guarda un modelo ni se exportan gráficos. La evaluación ilustra el método, no acredita un detector industrial.
+#
+# Ejecuta el script con el entorno indicado en el README. El notebook contiene código que usa `__file__`, variable propia de scripts que normalmente no existe en un kernel Jupyter: para ejecutar esa copia, adapta la celda de rutas a tu carpeta de trabajo o usa el `.py`. Esta revisión conserva las celdas de cálculo; no certifica una ejecución Jupyter de esta versión.
+
+# %% [markdown]
+# ## Preparar dependencias y localizar el CSV
+#
+# Se importan NumPy, Pandas y scikit-learn; `Path` construye la ruta al CSV. El control `is_file()` detiene la práctica si falta el dato. Tener el archivo evita descargas, pero no garantiza que su esquema sea correcto.
 
 # %% imports
 from pathlib import Path
@@ -35,6 +42,11 @@ DATA = (
 if not DATA.is_file():
     raise FileNotFoundError(f"Falta el dataset de la práctica: {DATA}")
 
+# %% [markdown]
+# ## 1. Identificar atributos y objetivo
+#
+# Se comprueba el esquema y las 100 filas. `makina_id` es categórico; temperatura y vibración son medidas; `errorea` es una etiqueta 0/1. Para regresión se predecirá temperatura y para clasificación, error: son dos preguntas diferentes.
+
 # %% 1. Karga + tipologia X/y
 df = pd.read_csv(DATA)
 assert list(df.columns) == ["makina_id", "tenperatura", "bibrazioa", "errorea"], (
@@ -44,6 +56,11 @@ assert len(df) == 100, len(df)
 print(f"n={len(df)}, p=3 ezaugarri + 1 etiketa")
 print(df.dtypes.to_string())
 # Tipologia: makina_id nominala, tenperatura/bibrazioa kuantitatibo jarraiak, errorea bitarra.
+
+# %% [markdown]
+# ## 2. Explorar antes de entrenar
+#
+# `describe`, conteos de NaN, frecuencias y correlación revelan calidad y desbalance. El CSV tiene ausencias y extremos introducidos. Una correlación lineal pequeña no respalda un predictor lineal útil; una clase mayoritaria permite accuracy alta incluso sin detectar errores.
 
 # %% 2. EDA laburra
 desc = df[["tenperatura", "bibrazioa"]].describe()
@@ -58,8 +75,13 @@ corr = df[["tenperatura", "bibrazioa"]].corr(numeric_only=True)
 assert corr.shape == (2, 2)
 print("korrelazioa:\n", corr.to_string())
 
+# %% [markdown]
+# ## 3. Construir el preprocesamiento
+#
+# El IQR marca extremos para inspección; no los elimina. Hay **NaN reales** en el dato. Las variables numéricas se imputan con mediana y escalan; la máquina se codifica con one-hot. El ajuste efectivo del preprocesador ocurre al hacer `fit` sobre train dentro de cada Pipeline. El EDA global es descriptivo, no debe usarse para seleccionar parámetros con conocimiento de test.
+
 # %% 3. Aurreprozesamendua: missing + outlier IQR + kodetze + eskalatze
-# (Datu hauetan ez dago NaN; pipeline-ak NaN hipotetikoak kudeatzen ditu.)
+# Datu hauetan NaN errealak daude; pipeline-ak train-eko estatistikekin inputatzen ditu.
 num_cols = ["tenperatura", "bibrazioa"]
 cat_cols = ["makina_id"]
 
@@ -93,6 +115,11 @@ pre = ColumnTransformer(
 )
 X = df[["makina_id", "tenperatura", "bibrazioa"]]
 # La imputación y el escalado se ajustan dentro del pipeline con train.
+
+# %% [markdown]
+# ## 4. Regresión: comparar con una referencia sencilla
+#
+# Se retira la fila sin temperatura objetivo: no se puede entrenar con y ausente. Primero se predice temperatura desde vibración y luego se añade la máquina para comparar OLS, Ridge y Lasso con la misma separación. MSE mide error cuadrático (menor es mejor); R² puede ser negativo. Compara con predecir siempre la media de train y recuerda que el extremo 999 influye mucho en MSE. Finito no significa buen modelo.
 
 # %% 4. Erregresioa: tenperatura ~ bibrazioa (+ makina)
 # Helburuak NaN badu, errenkada hori ezin da entrenatu (X-ko NaN-ak pipeline-ak inputatzen ditu).
@@ -164,6 +191,11 @@ for nombre, modelo in [
 assert all(np.isfinite(v) for v in resultados.values())
 # Ridge-k koefizienteak mugatzen ditu, Lasso-k zero-ra eraman ditzake (hautaketa):
 print("ridge/lasso MSE-ak:", {k: round(v, 2) for k, v in resultados.items()})
+
+# %% [markdown]
+# ## 5. Clasificación: leer la matriz y F1 junto a accuracy
+#
+# El split estratificado reserva 30 filas para test. La matriz usa filas de clase real y columnas predichas; F1 se refiere a la clase 1. Solo hay muy pocos errores positivos en test, así que un acierto cambia mucho las métricas. `balanced` cambia el peso durante el entrenamiento, sin garantizar mejora. El hueco train/test ayuda a detectar sobreajuste, pero un solo split pequeño no demuestra generalización.
 
 # %% 5. Sailkapena: errorea (0/1) — train/test + overfitting kontrola
 y_clf = df["errorea"].to_numpy()

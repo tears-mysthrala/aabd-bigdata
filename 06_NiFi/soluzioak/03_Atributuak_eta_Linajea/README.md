@@ -25,3 +25,16 @@ MongoDB zerbitzu-erreferentzia eta datu-base/bilduma izenak JSON esportazioan ag
 Bi JSONak lokalean parsatu eta osagaien, harremanen eta erreferentzia-IDen egitura estatikoa egiaztatu da. **Ez da NiFi edo MongoDB zerbitzurik abiarazi, fluxua inportatu edo exekutatu, ezta log, provenance edo MongoDB emaitzarik egiaztatu ere.** Hortaz, fluxuaren exekuzio-emaitzak ez daude egiaztatuta; fitxategia definizio estatikoa da.
 
 DF1.3 PDFak LogAttribute/nifi-app.log egiaztatzea eta MongoDB-n gordetzea eskatzen ditu; egiaztapen horiek ingurune baimendu batean egin behar dira.
+
+## Cómo comprobar la práctica
+
+En un laboratorio configurado, importa el flow parado, enlaza el Controller
+Service de MongoDB y valida los processors. Arranca una muestra corta; por cada
+FlowFile revisa en provenance el contenido después de ReplaceText y el atributo
+`datuak` después de ExtractText. `AttributesToJSON` cambia el **contenido** a
+JSON con ese campo. Busca un documento equivalente en `nifi.datuak`.
+
+Un log muestra que el atributo llegó a LogAttribute; no demuestra que Mongo lo
+haya guardado. Si falta el documento, revisa el estado del servicio, bulletins y
+la relationship de fallo de PutMongo. Estas instrucciones son un criterio de
+prueba, no una ejecución realizada en la revisión documental.

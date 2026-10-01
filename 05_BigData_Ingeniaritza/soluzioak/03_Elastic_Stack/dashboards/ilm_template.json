@@ -1,0 +1,11 @@
+{
+  "index_patterns": [
+    "web-logs-*"
+  ],
+  "priority": 200,
+  "template": {
+    "settings": {
+      "index.lifecycle.name": "web-logs-policy"
+    }
+  }
+}

@@ -1,5 +1,15 @@
 # AABD ETHAZI - Materialak eta Baliabideak
 
+> **Archivo histórico:** las rutas y comandos del texto original que sigue
+> describen una estructura anterior. Para estudiar y ejecutar usa las
+> [soluciones actuales de programación](../04_Programazioa_5073/soluzioak/README.md),
+> [NiFi](../06_NiFi/soluzioak/README.md) y
+> [Kafka](../07_Kafka/soluzioak/README.md). Los notebooks de
+> `notebooks_root_duplicado/` son copias conservadas, no nuevas entregas ni
+> versiones recomendadas. El [mapa de cobertura](../00_Transversal/AUDITORIA_EJERCICIOS.md)
+> relaciona el legado con sus destinos canónicos. Las correcciones y
+> explicaciones docentes se mantienen allí, sin reactivar prácticas antiguas.
+
 Deskargatutako fitxategiak, koadernoak eta baliabide exekutagarriak.
 
 ## 📓 Koadernoak eta Kode Exekutagarria (VS Code / Jupyter)
