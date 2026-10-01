@@ -1,0 +1,22 @@
+[
+  {
+    "id": "aabd-p5-0",
+    "query": ""
+  },
+  {
+    "id": "aabd-p5-1",
+    "query": "kategoria: \"Informatika\""
+  },
+  {
+    "id": "aabd-p5-2",
+    "query": "prezioa > 100"
+  },
+  {
+    "id": "aabd-p5-3",
+    "query": "kategoria: \"Informatika\" AND prezioa < 500"
+  },
+  {
+    "id": "aabd-p5-4",
+    "query": "NOT kategoria: \"Papergintza\""
+  }
+]

@@ -1,7 +1,7 @@
-# Elastic Stack praktikak: ebazpena (P1–P4 + gehigarriak)
+# Elastic Stack praktikak: ebazpena (P1–P14)
 
 Iturria: [`02_elastic_stack.pdf`](../../materialak/02_elastic_stack.pdf)
-(43 or., 9.5.4). Exekuzio erreala:
+(61 or., uneko PDFa 2026-10-01ean egiaztatuta). P1–P4 aurreko exekuzioa:
 [exekuzioa_2026-09-28.md](exekuzioa_2026-09-28.md). Script berrerabilgarria:
 [elastic_praktikak.sh](elastic_praktikak.sh) (`ES=... ./elastic_praktikak.sh`;
 assert-ak ditu, `DENAK OK` ematen du). Dev Tools kontsulta bakoitza REST
@@ -85,10 +85,231 @@ cacheatzen da — zenbaki/data/balio zehatzetarako (iragazketa).
 
 ## Egiaztapen-erregistroa
 
-| Egiaztapena | Egoera |
+P5–P8 eta P14 **Kibana 9.5.4 errealean egiaztatuta, 2026-10-01**:
+[exekuzioa_2026-10-01.md](exekuzioa_2026-10-01.md).
+[Entregaren gida](dashboards/README.md),
+[16 saved object-en esportazioa](dashboards/kibana_praktikak.ndjson),
+[GUIaren erregistroa](dashboards/gui_verification.json).
+P1–P4ren aurreko emaitzak 2026-09-28ko erregistroan daude.
+
+## 5. praktika — Discover eta KQL
+
+PDF: 35. orria. `produktuak` Data View-ak ez du denbora-eremurik.
+Discover-en `izena`, `kategoria`, `prezioa` zutabeak prestatuta daude;
+dokumentu guztien bilaketa eta lau KQL bilaketak gordeta daude.
+GUIan ireki eta egiaztatu dira, ez soilik REST baliokideak.
+
+| KQL | Discover-en emaitza |
 |---|---|
-| P2–P4 + 5 gehigarriak (assert-ekin, `DENAK OK`) | ES 9.5.4 errealean exekutatuta 2026-09-28 |
-| Yellow/unassigned, mapping, term-vs-keyword portaera | Irteera erreala transkribatuta |
-| Kibana `:5601` | Bigarren exekuzioan egiaztatuta (ikus goiko ohartxo eta erregistroa): `/api/status overall: available`; GUIa nabigatzailean irekitzen da ikaslearen makinarako |
-| Beats/Logstash (34–41. or.) | Teoria + grok pipeline azalpena; ez dago eskuzko ariketa zenbakidunik PDFan — ez da lan berririk |
-| Kibana Discover/Dashboard/ILM/Alerting (28–33. or.) | Teoria; ez dago urrats exekutagarririk PDFan — ez da lan berririk |
+| (hutsik) | 4 dokumentuak |
+| `kategoria: "Informatika"` | 2: Sagu optikoa (19.99), Teklatu mekanikoa (59.99) |
+| `prezioa > 100` | 0: No results; maximoa 59.99 da |
+| `kategoria: "Informatika" AND prezioa < 500` | 2: Sagu optikoa, Teklatu mekanikoa |
+| `NOT kategoria: "Papergintza"` | 2: Sagu optikoa, Teklatu mekanikoa |
+
+KQL eta Query DSL: baldintza baliokideekin dokumentu multzo bera lortzen da.
+KQL iragazteko hizkuntza da; Kibana-k Query DSL bihurtzen du. DSLk, gainera,
+agregazioak eta garrantziaren araberako bilaketak adieraz ditzake.
+`kategoria.keyword` erabil daiteke balio oso zehatza iragazteko;
+`kategoria` text eremua analizatuta dago.
+
+## 6. praktika — Lens + Dashboard
+
+PDF: 38. orria. **Produktuen Dashboard-a**, bi Lens barra-grafikorekin:
+
+| Kategoria | Produktu kopurua (Count) | Batez besteko prezioa (Average) |
+|---|---:|---:|
+| Informatika | 2 | 39.99 € |
+| Papergintza | 2 | 6.50 € |
+
+Taldekatzea: `kategoria.keyword`; prezioaren metrika: `Average(prezioa)`.
+Grafikoko Informatika barran klik egitean `kategoria.keyword: Informatika`
+iragazkia sortzen da: beste panelak Informatika soilik erakusten du (39.99 €).
+Iragazkia kenduta bi kategoriak berreskuratzen dira. GUIan probatuta.
+
+[Dashboard-a ireki](http://localhost:15601/app/dashboards#/view/aabd-28ab1f59255f6d99).
+Grafikoak: [kopuruak](dashboards/irudiak/p6_1.png),
+[prezioak](dashboards/irudiak/p6_2.png).
+
+## 7. praktika — Salmenten Dashboard-a
+
+PDF: 39–40. orriak. CSVaren **500 errenkadak** Elasticsearch-eko dokumentu
+GUZTIEKIN alderatu dira. `salmentak` Data View-ak `data` date eremua darabil.
+Inportazioa API bidez egin da; ez da Data Visualizer-eko upload klik gisa
+aurkezten. Emaitza: indizea, eremu zuzenak eta Data View iraunkorra.
+
+**Salmenten Dashboard-a**: bost Lens panel, bi zutabetan; azken panelak
+12 produktu guztiak erakusten ditu, barra horizontalekin eta zabalera
+osoan produktuen izenak irakurtzeko. Denbora-tartea gordeta dago:
+2026-01-01 → 2026-07-01, urtarrila–ekaina barne. `now-15m`-k ez luke
+CSV honetako dokumenturik erakutsiko.
+
+| Panela | Taldekatzea | Metrika | Mota |
+|---|---|---|---|
+| Salmentak kategoriaren arabera | `kategoria.keyword` | Sum(`unitateak`) | Barrak |
+| Diru-sarrerak hirika | `hiria.keyword` | Sum(`diru_sarrera`) | Barrak |
+| Salmenta-kanalen banaketa | `kanala.keyword` | Count of records | Donut |
+| Diru-sarreren bilakaera denboran | `data`, hileko | Sum(`diru_sarrera`) | Lerroa |
+| Produktuen batez besteko prezioa | `produktua.keyword`, 12 balio | Average(`prezioa`) | Barrak |
+
+### Azken analisia: bost erantzunak
+
+1. **Osagaiak**: 594 unitate; Periferikoak 566, Sareak 552, Ordenagailuak 547.
+2. **Ermua**: 143389.45 €; Eibar 137141.19 €, Gasteiz 128419.96 €,
+   Bilbo 102690.59 €, Donostia 75440.31 €.
+3. **Web**: 256 eragiketa (51.2%); Denda 244 (48.8%). Hemen salmentak
+   eragiketak dira (Count), ez unitateak.
+4. **PC mahaigainekoa**: 914.15 € batez beste.
+5. **Ermua iragazkiarekin**: 96 eragiketa, 438 unitate, 143389.45 €;
+   Web 50 eta Denda 46. Kategoria nagusia **Ordenagailuak** da (155 unitate),
+   ondoren Sareak 131, Periferikoak 79, Osagaiak 73. Beraz, orokorrean
+   Osagaiak nagusi diren arren, Ermuan Ordenagailuak dira nagusi.
+   Diru-sarreren %24.42 sortzen du Ermua-k, eragiketen %19.2rekin:
+   eragiketa bakoitzeko sarrera handiagoa du batez besteko orokorrak baino.
+
+Grafikoko Ermua barran klik → `hiria.keyword: Ermua` → gainerako panelak
+iragazten dira. Inspector-en Ordenagailuak 155 eta Web/Denda 50/46 egiaztatu
+ dira; iragazkia kenduta kanalak 256/244 izatera itzultzen dira.
+Kanalaren `kanala.keyword: "Web"` KQL iragazkia ere probatu da (256
+eragiketa soilik), baita `kategoria.keyword: "Osagaiak"` ere (594 unitate
+soilik). Biak kendu ondoren ikuspegi orokorra berreskuratu da.
+
+| Hilabetea | Diru-sarrerak (€) |
+|---|---:|
+| 2026-01 | 76823.36 |
+| 2026-02 | 93558.29 |
+| 2026-03 | 117997.61 |
+| 2026-04 | 80261.98 |
+| 2026-05 | 125469.61 |
+| 2026-06 | 92970.65 |
+
+[Dashboard-a ireki](http://localhost:15601/app/dashboards#/view/aabd-1fab5517b75a73ff).
+[Grafikoen PNGak](dashboards/irudiak/), [zenbakiak](dashboards/emaitzak.json).
+
+## 8. praktika — ILM politika eta Index Template-a
+
+PDF: 44. orria. Politika: **web-logs-policy**.
+
+| Fasea | Gutxieneko adina | Ekintzak |
+|---|---|---|
+| Hot | 0ms | Lehentasuna 100 |
+| Warm | 7d | Lehentasuna 50; ILMren migrazio lehenetsia |
+| Cold | 30d | Lehentasuna 0; ILMren migrazio lehenetsia |
+| Delete | 90d | Indizea ezabatu |
+
+[Politika JSON](dashboards/ilm_policy.json).
+**web-logs-template**: `index_patterns: ["web-logs-*"]`,
+`index.lifecycle.name: web-logs-policy`, **data stream gabe**.
+[Template JSON](dashboards/ilm_template.json).
+
+`POST /_index_template/_simulate_index/web-logs-2026.10.02` bidez politika
+berriari automatikoki lotuko zaiola egiaztatu da, indizea sortu gabe.
+Kibana-n politika ireki da: Warm 7, Cold 30, Delete 90 eta lotutako template 1.
+
+4. **Ez**, biharko indizeari ez zaio politika eskuz esleitu behar:
+   `web-logs-*` eredua betetzen du eta template-ak ezarpena aplikatzen dio.
+   Aurretik sortutako indizeei template berriak ez die atzeraeraginez eragiten.
+5. **Ez dena Hot**: datu zaharren irakurketa gutxiago da; hardware azkarra eta
+   garestia datu berrientzat uzten da, Warm/Cold merkeagoak erabiliz.
+6. **Delete gabe**, datuak eta disko-kostua mugagabe haziko lirateke.
+
+Eguneko izena duten indizeentzat ez da rollover ekintzarik gehitu:
+PDFak ez du alias/data stream bidezko rolloverrik eskatzen. Adina indizea
+sortu denetik neurtzen da. Benetako warm/cold hardware-migrazioa tier horien
+nodoen araberakoa da; nodo bakarreko labak ez du hiru hardware-maila frogatzen.
+90 eguneko ezabaketa ez da denbora azkartuz exekutatu.
+
+## 9. praktika — Beat egokia aukeratu
+
+| Kasua | Beat | Zergatik |
+|---|---|---|
+| 1. NGINX access.log (Linux) | Filebeat | Log-fitxategiak biltzeko agente arina |
+| 2. CPU/RAM monitorizazioa | Metricbeat | Sistema-metrikak (CPU, memoria, diskoa, sarea) |
+| 3. Windows Event Viewer | Winlogbeat | Windows gertaera-erregistroetarako |
+| 4. Webgunea erabilgarri (kanpotik) | Heartbeat | Uptime/probe aktiboak (ICMP/TCP/HTTP) |
+| 5. Sareko trafikoa | Packetbeat | Pakete-analisia (protokoloak, fluxuak) |
+| 6. Segurtasun-auditoretza (Linux) | Auditbeat | Audit framework-eko gertaerak (fitxategi-osotasuna, prozesuak) |
+
+## 10. praktika — ingesta diseinatu (20 web + NGINX + CPU/RAM + uptime)
+
+1. Web zerbitzarietan (logak): **Filebeat** (filestream, `/var/log/nginx/*.log`).
+2. CPU/RAM: **Metricbeat** (system modulua).
+3. Erabilgarritasuna kanpotik: **Heartbeat** (monitor HTTP monitore-nodo batetik).
+4. Helmugak: Beats-ek **Elasticsearch-era zuzenean** edo **Logstash-era**
+   (eraldaketa behar bada) bidal dezakete; handik ES-era.
+
+## 11. praktika — filebeat.yml interpretatu
+
+```yaml
+filebeat.inputs:
+  - type: filestream
+    id: nginx-logs
+    paths:
+      - /var/log/nginx/*.log
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+```
+
+1. NGINX web-logak (testu-lerroak). 2. `/var/log/nginx/` karpetatik.
+3. `*.log`: extensio hori duten fitxategi guztiak (wildcard).
+4. Elasticsearch-era zuzenean (`http://elasticsearch:9200`).
+5. Ez — `output.elasticsearch` dago, ez `output.logstash`.
+
+## 12. praktika — output-a Logstash-era aldatu
+
+```yaml
+output.logstash:
+  hosts: ["logstash:5044"]
+```
+
+- Aldatutako zatia: `output.*` blokea (`output.elasticsearch` → `output.logstash`).
+- Filebeat-ek EZ ditu datuak zuzenean ES-era bidaltzen; hurrengo osagaia Logstash da (Beats input, 5044 portuan entzuten).
+
+## 13. praktika — lehen Logstash pipeline-a (exekutatuta)
+
+```bash
+echo "Kaixo Logstash" | docker run --rm -i \
+  -e LS_JAVA_OPTS='-Xms256m -Xmx512m' \
+  docker.elastic.co/logstash/logstash:9.5.4 \
+  -e 'input { stdin { } } output { stdout { codec => rubydebug } }'
+```
+
+Behatutako eventua:
+
+```text
+{
+       "message" => "Kaixo Logstash",
+          "host" => { "hostname" => "4abdec77cc50" },
+    "@timestamp" => 2026-10-01T06:43:30.502673754Z,
+         "event" => { "original" => "Kaixo Logstash" },
+      "@version" => "1"
+}
+```
+
+- Input-a: `stdin` (teklatua). Output-a: `stdout` (`rubydebug`).
+- Ez dago filter blokerik: ez da derrigorrezkoa; eraldaketarik gabe pasatzen da.
+- `message` = `Kaixo Logstash`; `@timestamp` Logstash-ek sartutako uneko ordua.
+
+## 14. praktika — Grok Debugger
+
+PDF: 56. orria. **Kibana → Dev Tools → Grok Debugger → Simulate** bidez
+bi laginak exekutatu eta bost eremuak egiaztatu dira (2026-10-01).
+
+```text
+^%{IP:bezero_ip} %{WORD:metodoa} %{URIPATH:request} %{NUMBER:status_code} %{NUMBER:bytes}$
+```
+
+| Lagina | bezero_ip | metodoa | request | status_code | bytes |
+|---|---|---|---|---|---|
+| `192.168.1.105 GET /api 500 1234` | 192.168.1.105 | GET | /api | "500" | "1234" |
+| `10.0.0.25 POST /login 200 856` | 10.0.0.25 | POST | /login | "200" | "856" |
+
+1. Goiko patroia: `^` eta `$` aingurek lerro osoa egiaztatzen dute.
+2. Bai, patroi bera balio du: IP + metodoa + bidea + bi zenbaki egitura bera.
+3. Egitura aldatuta, patroia egokitu behar da. Bigarren laginari `EXTRA`
+   gehituta, GUIak **Provided Grok patterns do not match data in the input**
+   eman du. Grok Debugger-en hau da errorea; Logstash grok filter-ean
+   `_grokparsefailure` etiketa gehitzen da lehenespenez.
+
+Motak: NUMBER-ek hemen kateak sortzen ditu. Zenbakizko motak nahi badira,
+`%{NUMBER:status_code:int}` eta `%{NUMBER:bytes:int}` erabil daitezke.

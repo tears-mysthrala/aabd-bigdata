@@ -76,6 +76,8 @@ def salmenta_pipeline():
     return Pipeline([("preprocess", pre), ("model", LogisticRegression(max_iter=1000))])
 
 
+# Cómo leer el ejercicio 1.1:
+# **Método y comprobación:** carga datos, separa train/test y entrena solo con train. Accuracy cuenta aciertos sobre el holdout; lee también cuántos casos se evalúan. Un resultado de un único split no es validación universal.
 def ariketa_1_1():
     """Bost urrats: kargatu, banatu, sortu eredua, entrenatu, ebaluatu."""
     from sklearn.datasets import load_wine
@@ -94,6 +96,8 @@ def ariketa_1_1():
             "n_train": len(y_train), "n_test": len(y_test)}
 
 
+# Cómo leer el ejercicio 1.2:
+# **Método y comprobación:** ColumnTransformer distingue columnas numéricas y categóricas; Pipeline ajusta imputación/codificación con train. Compara forma y nombres de entrada, categorías desconocidas y score del test. No hagas `fit_transform` del dataset completo antes del split.
 def ariketa_1_2():
     """ColumnTransformer: imputazio eta kodetzeak fit barruan, train bakarrik."""
     from sklearn.model_selection import train_test_split
@@ -133,6 +137,8 @@ def ariketa_1_2_arbela():
             "n_test": len(y_test), "nan_stock": nan}
 
 
+# Cómo leer el ejercicio 1.4:
+# **Método y comprobación:** compara modelos con la misma separación y objetivo. R²=1 representa ajuste perfecto; R² negativo puede indicar rendimiento peor que una referencia constante. Comparar varias opciones con un test no deja ese test independiente para una selección posterior.
 def ariketa_1_4():
     """Diabetes: R² testean, eredu guztiak banaketa berean."""
     from sklearn.datasets import load_diabetes
@@ -157,6 +163,8 @@ def ariketa_1_4():
             "r2_negatiboa": "Testeko y-ren batez bestekoa etengabe aurreikustea baino okerragoa."}
 
 
+# Cómo leer el ejercicio 1.5:
+# **Método y comprobación:** guarda un Pipeline propio, recárgalo y verifica la igualdad de una predicción. El archivo persiste transformaciones y modelo; es la entrada necesaria para 3.4/3.5. Solo deserializa el artefacto que acabas de generar.
 def ariketa_1_5(path: Path = MODEL_PATH):
     """Pipeline osoa serializatu eta berriz kargatu; joblib fitxategia fidagarria izan behar da."""
     import joblib
@@ -175,6 +183,8 @@ def ariketa_1_5(path: Path = MODEL_PATH):
             "berdina": original == restored, "test_accuracy": loaded.score(X_test, y_test)}
 
 
+# Cómo leer el ejercicio 1.6:
+# **Método y comprobación:** GridSearch explora la rejilla y RandomizedSearch una muestra de opciones. Los scores CV seleccionan candidatos; el holdout evalúa después. El tiempo medido es de tu ejecución, no un benchmark general.
 def ariketa_1_6():
     """Grid vs random: CV train multzoan; test amaieran behin bakarrik."""
     from scipy.stats import loguniform
@@ -207,6 +217,8 @@ def ariketa_1_6():
     return result
 
 
+# Cómo leer el ejercicio 2.1:
+# **Método y comprobación:** consulta el catálogo de Hugging Face y registra filtro/fecha. El número de modelos etiquetados cambia y una etiqueta de idioma no prueba calidad. La llamada está comentada para evitar acceso externo al ejecutar todo el notebook.
 def ariketa_2_1():
     """Hubeko bilaketa bizia; emaitza-kopurua unean unekoa da."""
     from huggingface_hub import HfApi
@@ -226,6 +238,8 @@ def ariketa_2_1():
             "adibideak": [{"id": m.id, "url": f"https://huggingface.co/{m.id}"} for m in models[:5]]}
 
 
+# Cómo leer el ejercicio 2.2:
+# **Método y comprobación:** el pipeline descarga un modelo de sentimiento y etiqueta frases ilustrativas. Lee etiqueta y score junto a idioma/contexto; score alto no prueba calibración ni verdad de una opinión. La llamada está comentada.
 def ariketa_2_2():
     """Bederatzi iritzi fikziozko; score-a ereduaren konfiantza da, ez egia."""
     import pandas as pd
@@ -246,6 +260,8 @@ def ariketa_2_2():
             "kontuz": "Konfiantza txikia edo iritzi anbiguoak eskuz aztertu."}
 
 
+# Cómo leer el ejercicio 2.3:
+# **Método y comprobación:** el tokenizer convierte texto en tokens/subtokens. Compara fragmentos y IDs de las tres frases; `##` indica continuación en el tokenizer usado, no una palabra nueva. La llamada está comentada y puede descargar datos.
 def ariketa_2_3():
     """Hiru euskarazko esaldi WordPiece tokenizadorearekin."""
     from transformers import AutoTokenizer
@@ -260,6 +276,8 @@ def ariketa_2_3():
                        "banatzen ditu; ## markak hitz barruko jarraipena adierazten du."}
 
 
+# Cómo leer el ejercicio 2.4:
+# **Método y comprobación:** carga IMDb, filtra/selecciona y convierte una muestra a tabla. Cinco primeras filas positivas no describen el balance del dataset entero. La llamada está comentada y requiere descarga.
 def ariketa_2_4():
     """IMDb train multzoko lehen 100 iritzi positiboak eta lehen bostak Pandasen."""
     from datasets import load_dataset
@@ -269,18 +287,24 @@ def ariketa_2_4():
     return positives.to_pandas().head(5)
 
 
+# Cómo leer el ejercicio 3.1:
+# **Método y comprobación:** la función devuelve la entrada de ejecución de FastAPI; no arranca el servidor. Usa el comando indicado con localhost y comprueba GET y cuerpo de respuesta, además del 200.
 def ariketa_3_1():
     """Exekutatu: uvicorn api_ariketak:app_3_1 --reload; ikus /docs."""
     from api_ariketak import app_3_1
     return app_3_1
 
 
+# Cómo leer el ejercicio 3.2:
+# **Método y comprobación:** inicia `app_3_2` según el README y prueba crear, consultar, borrar y consultar un ID ausente. Los libros viven en memoria y desaparecen al reiniciar; una respuesta 201 no demuestra persistencia en disco.
 def ariketa_3_2():
     """Liburuen CRUD: api_ariketak:app_3_2."""
     from api_ariketak import app_3_2
     return app_3_2
 
 
+# Cómo leer el ejercicio 3.3:
+# **Método y comprobación:** Pydantic verifica tipos y restricciones de entradas ilustrativas. Comprueba que casos inválidos se rechacen y explica cada campo; validar estructura no prueba que el dato sea verdadero.
 def ariketa_3_3():
     """Pydantic balidazioaren eredu eta adibide baliogabeak."""
     from api_ariketak import Erabiltzailea
@@ -290,33 +314,45 @@ def ariketa_3_3():
                             {"izena": "Ane", "adina": 25, "email": "oker"}]}
 
 
+# Cómo leer el ejercicio 3.4:
+# **Método y comprobación:** genera antes el modelo de 1.5, inicia `app_3_4` y compara petición/respuesta. Preserva el orden de features y revisa entradas inválidas; en esta celda se obtiene la instrucción de ejecución, no una predicción HTTP real.
 def ariketa_3_4():
     """ML API: uvicorn api_ariketak:app_3_4 --reload; lehenik 1.5 exekutatu."""
     from api_ariketak import app_3_4
     return app_3_4
 
 
+# Cómo leer el ejercicio 3.5:
+# **Método y comprobación:** `app_3_5` exige el token local indicado en el README. Prueba 401 sin token y éxito con el token correcto, además de esquema/cuerpo de respuesta. No escribas el token en el notebook; obtener el comando no verifica la API.
 def ariketa_3_5():
     """Bearer babestutako ML API: uvicorn api_ariketak:app_3_5 --reload."""
     from api_ariketak import app_3_5
     return app_3_5
 
 
+# Cómo leer el ejercicio 4.1:
+# **Método y comprobación:** ejecuta la app Streamlit indicada con dirección 127.0.0.1 y observa los elementos en el navegador. Esta función entrega el comando; no ejecuta la GUI.
 def ariketa_4_1():
     """Exekutatu: streamlit run streamlit_4_1.py."""
     return HERE / "streamlit_4_1.py"
 
 
+# Cómo leer el ejercicio 4.2:
+# **Método y comprobación:** cambia widgets y comprueba que el resultado visible se actualice. Una app que importa correctamente puede todavía tener fallos de interacción; la función de esta celda solo indica cómo arrancarla.
 def ariketa_4_2():
     """Exekutatu: streamlit run streamlit_4_2.py."""
     return HERE / "streamlit_4_2.py"
 
 
+# Cómo leer el ejercicio 4.4:
+# **Método y comprobación:** la app entrena sobre train y muestra métricas de holdout sintético. Revisa matriz y clase positiva junto a precision/recall; variar parámetros viendo test equivale a usarlo en la selección. Esta celda no abre la app.
 def ariketa_4_4():
     """Exekutatu: streamlit run streamlit_4_4.py."""
     return HERE / "streamlit_4_4.py"
 
 
+# Cómo leer el ejercicio 5.1:
+# **Método y comprobación:** se comprueba únicamente la presencia de configuración local para Gemini. Tener una variable definida no demuestra que la clave, cuota o modelo funcionen; no imprimas su valor.
 def ariketa_5_1():
     """Gako pertsonala eskuz AI Studio-n sortu; balioa ez da inoiz itzultzen."""
     from dotenv import load_dotenv
@@ -336,6 +372,8 @@ def _gemini():
     return ChatGoogleGenerativeAI(model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"), temperature=0)
 
 
+# Cómo leer el ejercicio 5.2:
+# **Método y comprobación:** la llamada real usa el modelo/configuración de tu entorno. Examina respuesta, posibles errores y fuentes si afirma hechos. La celda está comentada: no hay un resultado API implícito al ejecutar el notebook entero.
 def ariketa_5_2():
     """Hiru produktu batch bidez; temperature=0 errepikagarritasuna hobesteko."""
     from langchain_core.prompts import ChatPromptTemplate
@@ -350,6 +388,8 @@ def ariketa_5_2():
     return [message.content for message in chain.batch(products)]
 
 
+# Cómo leer el ejercicio 5.3:
+# **Método y comprobación:** distingue prompt, contexto y respuesta del modelo; cambiar instrucciones puede cambiar formato/contenido, sin garantizar corrección. Usa datos autorizados para envío externo; la llamada está comentada.
 def ariketa_5_3():
     """Saio bakarreko txata, RunnableWithMessageHistory erabiliz."""
     from langchain_core.chat_history import InMemoryChatMessageHistory
@@ -398,6 +438,8 @@ def kalkulatu_seguru(expr: str) -> float:
     return float(walk(ast.parse(expr, mode="eval").body))
 
 
+# Cómo leer el ejercicio 5.4:
+# **Método y comprobación:** el flujo limita el cálculo a operadores AST permitidos, en vez de `eval`. Comprueba operación válida y rechazo de expresiones ajenas a la lista permitida. La llamada Gemini está comentada; no presupongas que el modelo invocará la herramienta correctamente.
 def ariketa_5_4():
     """Gemini-k bi tresna aukeratzen ditu; kalkulagailua AST mugatuarekin."""
     from langchain_core.tools import tool
@@ -432,6 +474,8 @@ def ariketa_5_4():
             "oharra": "Egiaztatu bi tresnak deitu direla; LLM-ak ez du beti hala egiten."}
 
 
+# Cómo leer el ejercicio 6.1:
+# **Método y comprobación:** la función proporciona una guía para NotebookLM; no realiza la actividad GUI. Conserva evidencias de fuentes cargadas y revisa manualmente que las respuestas estén apoyadas en ellas.
 def ariketa_6_1():
     """NotebookLM lanaren fitxa; benetako igoera eta aipuak eskuz egiaztatu."""
     return {"url": "https://notebooklm.google.com/",
@@ -442,6 +486,8 @@ def ariketa_6_1():
             "egoera": "Giza kontua/GUI behar da; ez dago igoera edo aipuen frogarik."}
 
 
+# Cómo leer el ejercicio 6.2:
+# **Método y comprobación:** compara número y contenido de chunks al cambiar overlap. Más overlap repite texto y aumenta fragmentos; no demuestra por sí solo mejor recuperación. Es una comparación local, sin llamada LLM.
 def ariketa_6_2():
     """500 karaktereko chunkak overlap 0/100/200rekin alderatu."""
     from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -469,6 +515,8 @@ def _index(documents):
     return FAISS.from_documents(documents, GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001"))
 
 
+# Cómo leer el ejercicio 6.3:
+# **Método y comprobación:** embeddings representan texto y FAISS recupera vecinos. Comprueba el fragmento/source recuperado para la pregunta y si sostiene su respuesta. La llamada está comentada y necesita el servicio de embeddings.
 def ariketa_6_3():
     """Zortzi fitxa: embedding + FAISS; sinonimo bidezko bilaketa."""
     docs = _documents()
@@ -478,6 +526,8 @@ def ariketa_6_3():
     return [{"source": d.metadata["source"], "text": d.page_content} for d in found]
 
 
+# Cómo leer el ejercicio 6.4:
+# **Método y comprobación:** contrasta pregunta respondible y pregunta fuera del contexto. La instrucción «Ez dakit» pide abstención, pero debes verificar que el modelo la cumpla. Fuentes recuperadas no prueban que todas las frases generadas estén respaldadas. La llamada está comentada.
 def ariketa_6_4():
     """Lau fitxako RAG; kanpoko galderari Ez dakit eskatzen dio, egiaztatu behar da."""
     docs = _documents()[:4]
@@ -495,6 +545,8 @@ def ariketa_6_4():
     return answers
 
 
+# Cómo leer el ejercicio 7.1:
+# **Método y comprobación:** ejecuta backend y frontend en dos terminales según el README, sube los TXT ilustrativos y prueba consulta válida, fuera de contexto y carga inválida. Esta función devuelve los comandos; no ejecuta la aplicación ni llama Gemini.
 def ariketa_7_1():
     """FastAPI + Streamlit RAG proiektuaren bi sarrera-puntuak."""
     return {"backend": "uvicorn rag_api:app --host 127.0.0.1 --port 8000",

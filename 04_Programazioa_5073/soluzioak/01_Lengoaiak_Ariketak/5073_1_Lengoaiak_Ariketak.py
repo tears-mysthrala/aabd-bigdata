@@ -5,8 +5,12 @@
 
 # %% [markdown] Cell 1
 # # 01 Lengoaiak Ariketak
-# 
+#
 # Helburua: Python oinarriak, JSON, Terminala/Git, List Comprehensions, eta Funtzio Funtzionalak lantzea.
+#
+# ## Antes de empezar
+#
+# [Guía de ejecución, archivos generados y resultados](README.md). Requiere Python, Git y `uv`. Ejecuta desde esta carpeta, de arriba abajo: el setup sobrescribe datos de ejemplo y 2.3 reemplaza `data/test_env`. Las explicaciones siguientes indican el razonamiento de cada solución; los asserts verifican condiciones concretas, sin usar Python `-O`.
 
 
 # %% [markdown] Cell 2
@@ -36,6 +40,8 @@ print("✅ Ingurunea prest! data/ karpeta eta fitxategiak sortu dira.")
 # %% [markdown] Cell 5
 # ### Ariketa 1.1
 # Bihurtu hurrengo JSON katea Python hiztegi batean `json.loads` erabiliz.
+#
+# **Cómo se resuelve y qué comprobar:** `json.loads` interpreta texto JSON y devuelve un objeto Python. Comprueba el tipo `dict` y el valor de `izena`; no confundirlo con `load`, que recibe un archivo.
 
 
 # %% [code] Cell 6
@@ -54,6 +60,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 7
 # ### Ariketa 1.2
 # Hiztegi batetik JSON kate bat sortu `json.dumps` erabiliz.
+#
+# **Cómo se resuelve y qué comprobar:** `json.dumps` serializa el diccionario como texto. El resultado es una cadena, no un archivo; `biztanleak` sigue siendo un número dentro de su representación JSON.
 
 
 # %% [code] Cell 8
@@ -71,6 +79,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 9
 # ### Ariketa 1.3
 # Irakurri `data/test.json` fitxategia eta gorde edukia `datuak_json` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** `with open` gestiona el cierre del archivo; `json.load` lee y decodifica su contenido. Depende del setup y debe recuperar `erabiltzailea=ikasle1`.
 
 
 # %% [code] Cell 10
@@ -86,6 +96,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 11
 # ### Ariketa 1.4
 # Gehitu 'aktiboa': True gako-balioa `datuak_json` hiztegian eta gorde `data/berria.json` fitxategian.
+#
+# **Cómo se resuelve y qué comprobar:** Se modifica el diccionario de 1.3 y se escribe un archivo nuevo. Al releerlo se comprueba la persistencia de `aktiboa`; Python `True` se representa como `true` en JSON.
 
 
 # %% [code] Cell 12
@@ -105,6 +117,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 13
 # ### Ariketa 1.5
 # Sortu JSON kate bat, formatu polita emanez (indent=4 erabiliz).
+#
+# **Cómo se resuelve y qué comprobar:** La indentación cambia la presentación, no los datos. Saltos de línea y cuatro espacios hacen legible la estructura; al decodificarla debe recuperar los mismos valores.
 
 
 # %% [code] Cell 14
@@ -126,6 +140,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 16
 # ### Ariketa 2.1
 # Erabili terminaleko komando bat uneko karpeta zein den ikusteko eta gorde irteera `uneko_karpeta` aldagaian (Adib: `uneko_karpeta = !pwd` edo `!cd` windows-en). Oharra: OS bidez egiaztatuko dugu.
+#
+# **Cómo se resuelve y qué comprobar:** `os.getcwd()` obtiene el directorio de trabajo del proceso. Las rutas `data/...` se resuelven desde ahí: debe ser la carpeta de esta solución, aunque el script esté guardado en otra ruta.
 
 
 # %% [code] Cell 17
@@ -141,6 +157,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 18
 # ### Ariketa 2.2
 # Sortu `data/karpeta_berria` direktorioa Python edo `!mkdir` erabiliz.
+#
+# **Cómo se resuelve y qué comprobar:** `exist_ok=True` permite repetir la creación sin fallar si la carpeta ya existe. El assert comprueba su existencia; todavía no es un repositorio Git.
 
 
 # %% [code] Cell 19
@@ -155,6 +173,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 20
 # ### Ariketa 2.3
 # Sortu ingurune birtual bat `data/test_env` izenarekin. (Oharra: `!python -m venv data/test_env` erabili dezakezu)
+#
+# **Cómo se resuelve y qué comprobar:** El entorno virtual aísla intérprete y paquetes. Se necesita el ejecutable `uv` en PATH. **`--clear` reemplaza `data/test_env` si existe**; reserva esa ruta para este ejercicio y no guardes trabajo propio dentro.
 
 
 # %% [code] Cell 21
@@ -170,6 +190,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 22
 # ### Ariketa 2.4
 # Hasieratu Git biltegi bat `data/karpeta_berria` karpetan. (`!git init data/karpeta_berria`)
+#
+# **Cómo se resuelve y qué comprobar:** Git se inicializa únicamente dentro de `data/karpeta_berria`; aparece su carpeta `.git`. Crear un repositorio no crea todavía commits ni lo publica.
 
 
 # %% [code] Cell 23
@@ -184,6 +206,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 24
 # ### Ariketa 2.5
 # Idatzi 'Erantzuna' testua `data/karpeta_berria/readme.md` fitxategian, gero gehitu Git-era (add). `!git -C data/karpeta_berria add readme.md`
+#
+# **Cómo se resuelve y qué comprobar:** Se escribe `readme.md` y se añade al staging con `git -C ... add`. El estado muestra el archivo preparado; no se realiza ningún commit o push. Este paso depende de 2.4.
 
 
 # %% [code] Cell 25
@@ -206,6 +230,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 27
 # ### Ariketa 3.1
 # Sortu 1-etik 10-era bitarteko zenbakien karratuen zerrenda `karratuak` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** `range(1,11)` incluye 1 y excluye 11. La expresión `x**2` transforma cada elemento; el resultado son diez cuadrados, desde 1 hasta 100.
 
 
 # %% [code] Cell 28
@@ -220,6 +246,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 29
 # ### Ariketa 3.2
 # Eman zerrenda honetako zenbaki bikoitiak bakarrik: `zenbakiak = [1,2,3,4,5,6,7,8]`
+#
+# **Cómo se resuelve y qué comprobar:** La condición `x % 2 == 0` selecciona pares manteniendo el orden de entrada. Deben quedar `[2,4,6,8]`, sin cambiar la lista original.
 
 
 # %% [code] Cell 30
@@ -236,6 +264,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 31
 # ### Ariketa 3.3
 # Bihurtu hitz guztiak maiuskulara: `hitzak = ['kaixo', 'mundua', 'python']`
+#
+# **Cómo se resuelve y qué comprobar:** `upper()` devuelve una cadena nueva por palabra. La comprehension construye otra lista; no modifica las cadenas originales, que son inmutables.
 
 
 # %% [code] Cell 32
@@ -252,6 +282,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 33
 # ### Ariketa 3.4
 # Atera hitz bakoitzaren lehenengo letra: `hitzak = ['sagarra', 'madaria', 'laranja']`
+#
+# **Cómo se resuelve y qué comprobar:** El índice 0 selecciona la primera letra de cada palabra. El ejemplo usa cadenas no vacías; con una cadena vacía, `h[0]` produciría `IndexError`.
 
 
 # %% [code] Cell 34
@@ -268,6 +300,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 35
 # ### Ariketa 3.5
 # Bihurtu matrize hau 1D zerrenda batean (flatten): `matrizea = [[1,2], [3,4], [5,6]]`
+#
+# **Cómo se resuelve y qué comprobar:** Los dos `for` recorren primero cada fila y después sus elementos. Se aplana una matriz de dos niveles conservando el orden: `[1,2,3,4,5,6]`.
 
 
 # %% [code] Cell 36
@@ -288,6 +322,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 38
 # ### Ariketa 4.1
 # Sortu `biderkatu` izeneko lambda funtzio bat bi zenbaki jasotzen dituena eta haien biderkadura itzultzen duena.
+#
+# **Cómo se resuelve y qué comprobar:** La lambda recibe dos argumentos y devuelve su producto. Los asserts prueban tanto un caso positivo como uno negativo; una función más compleja sería más legible con `def`.
 
 
 # %% [code] Cell 39
@@ -303,6 +339,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 40
 # ### Ariketa 4.2
 # Erabili `map` zerrendako zenbaki bakoitza bikoizteko. `zenbakiak = [1, 2, 3, 4]`
+#
+# **Cómo se resuelve y qué comprobar:** `map` aplica la misma operación a cada número y devuelve un iterador. `list(...)` lo materializa para ver y comparar sus cuatro resultados.
 
 
 # %% [code] Cell 41
@@ -319,6 +357,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 42
 # ### Ariketa 4.3
 # Erabili `filter` zerrendatik bokalekin hasten diren hitzak uzteko. `hitzak = ['ana', 'peru', 'iker', 'jon', 'elene']`
+#
+# **Cómo se resuelve y qué comprobar:** `filter` conserva palabras que cumplen el predicado. `lower()` permite comprobar la vocal inicial sin depender de mayúsculas. El ejemplo presupone nombres no vacíos.
 
 
 # %% [code] Cell 43
@@ -335,6 +375,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 44
 # ### Ariketa 4.4
 # Ordenatu ikasleen zerrenda (tuplak) haien notaren arabera (bigarren elementua) lambda erabiliz txikienetik handienera. `ikasleak = [('Ane', 8), ('Jon', 5), ('Mikel', 9)]`
+#
+# **Cómo se resuelve y qué comprobar:** `key=lambda x: x[1]` ordena por la nota de cada tupla, no por el nombre. `sorted` devuelve otra lista: Jon, Ane y Mikel en orden ascendente de nota.
 
 
 # %% [code] Cell 45
@@ -351,6 +393,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 46
 # ### Ariketa 4.5
 # Konbinatu `map` eta `filter`: Lehenik iragazi 5 baino handiagoak diren zenbakiak, eta gero bikoiztu. `zenbakiak = [2, 8, 4, 7, 1]`
+#
+# **Cómo se resuelve y qué comprobar:** Primero se seleccionan 8 y 7, luego se duplican para obtener `[16,14]`. Invertir transformación y filtrado puede cambiar el resultado; el orden expresa la intención.
 
 
 # %% [code] Cell 47
@@ -371,6 +415,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 49
 # ### Ariketa 5.1
 # Idatzi 'Epa!' testua `data/agurra.txt` fitxategian.
+#
+# **Cómo se resuelve y qué comprobar:** El modo `w` crea o sobrescribe texto. Se guarda un salto de línea después del saludo y se relee el archivo para comprobar su contenido, no solo su existencia.
 
 
 # %% [code] Cell 50
@@ -388,6 +434,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 51
 # ### Ariketa 5.2
 # Irakurri `data/test.txt` fitxategiaren lerro guztiak zerrenda batean `lerroak` izeneko aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** `readlines()` devuelve una lista y conserva los saltos de línea. El archivo fue creado por el setup; la primera línea contiene `Kaixo mundua!`.
 
 
 # %% [code] Cell 52
@@ -404,6 +452,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 53
 # ### Ariketa 5.3
 # Gorde `nire_hiztegia` pickle erabiliz `data/datuak.pkl` fitxategian.
+#
+# **Cómo se resuelve y qué comprobar:** Pickle serializa objetos Python en binario (`wb`). Este paso crea el único archivo que se cargará en 5.4; no intercambies pickles con fuentes desconocidas.
 
 
 # %% [code] Cell 54
@@ -422,6 +472,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 55
 # ### Ariketa 5.4
 # Irakurri `data/datuak.pkl` pickle fitxategitik eta gorde `kargatutakoa` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** `rb` abre el archivo binario generado en 5.3. La igualdad verifica el roundtrip del diccionario. **No cargues un pickle ajeno: deserializarlo puede ejecutar código.**
 
 
 # %% [code] Cell 56
@@ -437,6 +489,8 @@ print("✅ Zuzena!")
 # %% [markdown] Cell 57
 # ### Ariketa 5.5
 # Irakurri `data/test.json`, aldatu 'puntuazioa' 100-era, eta gorde berriz izen berarekin (`data/test.json`).
+#
+# **Cómo se resuelve y qué comprobar:** La secuencia es leer, modificar en memoria y reescribir. El resultado persistente es `puntuazioa=100`; repetir el setup vuelve a 95. Abrir en `w` reemplaza el contenido anterior.
 
 
 # %% [code] Cell 58

@@ -84,7 +84,7 @@ python -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python 5073_3_Frameworkak_PDF_Ariketak.py
 .venv/bin/python -m uvicorn api_ariketak:app_3_2 --host 127.0.0.1 --port 8000
-.venv/bin/python -m streamlit run streamlit_4_1.py
+.venv/bin/python -m streamlit run streamlit_4_1.py --server.address 127.0.0.1
 ```
 
 1.5: `importlib.import_module("5073_3_Frameworkak_PDF_Ariketak").ariketa_1_5()`.
@@ -97,7 +97,7 @@ ez da versionatu behar. `GEMINI_MODEL` aukerakoa da. 7.1erako:
 
 ```bash
 .venv/bin/python -m uvicorn rag_api:app --host 127.0.0.1 --port 8000
-.venv/bin/python -m streamlit run rag_streamlit.py
+.venv/bin/python -m streamlit run rag_streamlit.py --server.address 127.0.0.1
 ```
 
 Erabili baimendutako TXT fitxategiak soilik: embeddings eta galderak Google-ren
@@ -119,3 +119,29 @@ Gemini ereduen egungo kodeak [Google-ren dokumentazioan](https://ai.google.dev/g
 eta [embedding-ereduak](https://ai.google.dev/gemini-api/docs/embeddings)
 kontsultatu dira; APIaren erabilgarritasuna eta kontuaren kuotak exekuzioan
 egiaztatu behar dira.
+
+## Qué ejecuta realmente cada entrada
+
+Desde la raíz, entra primero en
+`04_Programazioa_5073/soluzioak/05_Frameworkak_PDF_Ariketak`.
+El comando `python 5073_3_Frameworkak_PDF_Ariketak.py` **solo imprime el
+inventario de 26 ejercicios**: no entrena los modelos ni llama las APIs.
+En el notebook, varias celdas muestran qué función ejecutar; no todas la llaman.
+Para realizar una función local concreta, después de preparar el entorno:
+
+```bash
+.venv/bin/python -c 'from importlib import import_module; m = import_module("5073_3_Frameworkak_PDF_Ariketak"); print(m.ariketa_1_1())'
+```
+
+Lee la función antes de sustituir su nombre: 2.x puede descargar modelos/datos;
+5.x, 6.3/6.4 y RAG pueden llamar servicios externos con tu cuenta.
+1.5 debe generar el artefacto que necesitan las APIs 3.4/3.5. Para comprobar una
+API, además del código HTTP revisa el cuerpo, datos de entrada y caso inválido.
+Para una aplicación Streamlit, usa widgets y comprueba la salida visible.
+Para RAG, revisa que el fragmento recuperado sostenga la respuesta; una lista
+de fuentes y un HTTP 200 no verifican por sí solos su corrección.
+
+Los esquemas de FastAPI validan peticiones, no convierten automáticamente un
+modelo en fiable. Una puntuación de sentimiento no es una probabilidad
+calibrada; un R² no es accuracy. Los bloques de ejecución histórica de esta
+guía especifican qué se probó: las prácticas externas pendientes siguen pendientes.

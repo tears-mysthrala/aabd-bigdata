@@ -1,0 +1,26 @@
+{
+  "csv_rows": 500,
+  "monthly_revenue": {
+    "2026-01": 76823.36,
+    "2026-02": 93558.29,
+    "2026-03": 117997.61,
+    "2026-04": 80261.98,
+    "2026-05": 125469.61,
+    "2026-06": 92970.65
+  },
+  "Ermua": {
+    "operations": 96,
+    "units": 438,
+    "revenue": 143389.45,
+    "channels": {
+      "Web": 50,
+      "Denda": 46
+    },
+    "categories": {
+      "Ordenagailuak": 155,
+      "Osagaiak": 73,
+      "Periferikoak": 79,
+      "Sareak": 131
+    }
+  }
+}

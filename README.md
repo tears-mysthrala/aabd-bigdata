@@ -8,6 +8,11 @@ Consulta la [auditoría de ejercicios](00_Transversal/AUDITORIA_EJERCICIOS.md)
 para localizar enunciados, soluciones y comprobaciones, incluidos los materiales
 de archivo y las tareas que aún dependen de evidencia humana o de laboratorio.
 
+La [revisión documental](00_Transversal/REVISION_DOCUMENTACION_EJERCICIOS.md)
+recoge las mejoras de explicación, guías de uso y problemas de resultados aún
+pendientes. Para Python empieza por el
+[recorrido de programación](04_Programazioa_5073/soluzioak/README.md).
+
 > ⚠️ Material de estudio, no software de producción. MongoDB/Kafka van sin
 > autenticación y atados a `127.0.0.1`: apto para laboratorio, no para exponer.
 > Lee [SECURITY.md](SECURITY.md).
@@ -24,7 +29,6 @@ de archivo y las tareas que aún dependen de evidencia humana o de laboratorio.
 | `05_BigData_Ingeniaritza/` | 7V, ciclo de vida, ETL/ELT, Lakehouse | ✅ |
 | `06_NiFi/` | 7 casos NiFi (11 flujos), labs MariaDB→MongoDB y AEMET Medallion | Flujos sujetos a validación real |
 | `07_Kafka/` | Pub/sub, consumer groups, lab Python y broker compartido en `infra/` | Prácticas en broker aislado |
-| `horario/` | Calendarios y horarios del curso | ✅ |
 | `infra/` | nginx frontal + Kafka compartidos (red `iabd-infra-net`) | ✅ |
 | `_archivo_legacy/` | Duplicados antiguos (no usar) | 🗄️ |
 | `INDICE.md` | Mapa detallado + auditoría de seguridad 2026-09-22 | 📖 |

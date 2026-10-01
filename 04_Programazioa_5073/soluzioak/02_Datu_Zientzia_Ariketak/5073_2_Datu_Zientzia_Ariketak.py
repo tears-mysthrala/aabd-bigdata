@@ -6,9 +6,13 @@
 # %% [markdown] Cell 1
 # # 02 Datu Zientzia Ariketak
 # Helburua: NumPy, Pandas eta Seaborn lantzea.
-# 
+#
 # ## Setup (Datuen sorkuntza)
 # Lehenik, exekutatu hurrengo gelaxka datuak prestatzeko.
+#
+# ## Antes de empezar
+#
+# [Guía de entorno, datos y resultados](README.md). Requiere NumPy, Pandas, Matplotlib y Seaborn. Ejecuta desde esta carpeta y reinicia el kernel antes de hacer todo el recorrido. El setup sobrescribe `data/cnc_mock.csv` con datos sintéticos; la limpieza queda en memoria. Los gráficos se muestran, no se exportan automáticamente. Los asserts verifican condiciones concretas, sin Python `-O`.
 
 
 # %% [code] Cell 2
@@ -46,6 +50,8 @@ print('✅ data/cnc_mock.csv fitxategia sortu da anomalia eta NaNekin!')
 
 # %% [markdown] Cell 4
 # **Ariketa 1.1:** Inportatu `numpy` eta sortu `arr1` izeneko 1D array bat 1etik 10era bitarteko zenbakiekin.
+#
+# **Cómo se resuelve y qué comprobar:** `np.arange(1,11)` excluye el límite final: genera diez enteros del 1 al 10. Un array permite operaciones vectoriales sobre todos sus elementos.
 
 
 # %% [code] Cell 5
@@ -62,6 +68,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 6
 # **Ariketa 1.2:** Sortu `arr2` izeneko 3x3 matrize bat, zeroz betea (`np.zeros`).
+#
+# **Cómo se resuelve y qué comprobar:** La tupla `(3,3)` define filas y columnas. `np.zeros` crea nueve ceros; sus valores son de tipo flotante por defecto.
 
 
 # %% [code] Cell 7
@@ -76,6 +84,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 8
 # **Ariketa 1.3:** Sortu `arr3` izeneko 10 balio aleatorioko array bat (`np.random.rand`) eta gorde bere balio maximoa `max_val` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** Se generan diez valores en [0,1) y se obtiene su máximo. El setup fija el generador aleatorio; ejecutar antes otras celdas aleatorias cambia el estado y puede cambiar estos valores.
 
 
 # %% [code] Cell 9
@@ -91,6 +101,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 10
 # **Ariketa 1.4:** Sortu `arr4` non `arr1`-eko elementu guztiak 2rekin biderkatuta dauden.
+#
+# **Cómo se resuelve y qué comprobar:** Multiplicar un array por 2 transforma cada elemento. Una lista Python multiplicada por 2 se repetiría: son operaciones con semánticas diferentes.
 
 
 # %% [code] Cell 11
@@ -104,6 +116,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 12
 # **Ariketa 1.5:** Sortu `arr5` izeneko array bat 0tik 11ra bitarteko balioekin (12 elementu). Gero, bihurtu 3x4 matrize batean eta gorde `mat1` aldagaian (`reshape`).
+#
+# **Cómo se resuelve y qué comprobar:** `reshape(3,4)` reorganiza doce valores sin cambiar su cantidad ni su orden. Una forma cuyo producto no sea doce provocaría `ValueError`.
 
 
 # %% [code] Cell 13
@@ -123,6 +137,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 15
 # **Ariketa 2.1:** Erabili `arr1` eta sortu `arr_bikoitiak` array bat bakarrik zenbaki bikoitiekin.
+#
+# **Cómo se resuelve y qué comprobar:** `arr1 % 2 == 0` crea una máscara booleana; usarla como índice conserva los pares `[2,4,6,8,10]`.
 
 
 # %% [code] Cell 16
@@ -137,6 +153,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 17
 # **Ariketa 2.2:** Sortu `arr6` 1etik 20ra. Lortu 15 baino handiagoak diren elementuak eta gorde `arr_handiak` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** La máscara `arr6 > 15` conserva 16–20. Aún no modifica el array; los cambios sobre `arr6` se hacen en 2.3.
 
 
 # %% [code] Cell 18
@@ -152,6 +170,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 19
 # **Ariketa 2.3:** `arr6` erabiliz, ordezkatu 5 baino txikiagoak diren balioak 0-rekin. Gorde aldaketa array berdinean.
+#
+# **Cómo se resuelve y qué comprobar:** La asignación con máscara modifica **el mismo array**: los valores 1–4 pasan a cero y 5–20 se conservan. Las siguientes celdas usan esta versión modificada.
 
 
 # %% [code] Cell 20
@@ -166,6 +186,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 21
 # **Ariketa 2.4:** `arr6`-tik (aldatu ondoren), atera 10 eta 15 bitarteko balioak (biak barne) `arr_tartea` izenarekin.
+#
+# **Cómo se resuelve y qué comprobar:** Los paréntesis delimitan cada comparación y `&` combina máscaras elemento a elemento. `and` no sirve para combinar arrays. Deben quedar seis valores: 10–15.
 
 
 # %% [code] Cell 22
@@ -180,6 +202,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 23
 # **Ariketa 2.5:** Zenbatu zenbat elementu diren 3ren multiploak `arr6`-n. Gorde kopurua `kop_multiplo_3` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** Sumar una máscara cuenta sus `True`. Tras 2.3 hay cuatro ceros y cinco múltiplos no nulos (6,9,12,15,18): **el resultado es 9**, porque el cero también cumple `% 3 == 0`.
 
 
 # %% [code] Cell 24
@@ -197,6 +221,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 26
 # **Ariketa 3.1:** Inportatu `pandas` eta kargatu `data/cnc_mock.csv` fitxategia `df` izeneko DataFrame batean.
+#
+# **Cómo se resuelve y qué comprobar:** El setup genera el CSV con coma como separador. `read_csv` recupera 100 filas y cuatro columnas; aquí se carga el dato original, incluidos sus NaN y extremos.
 
 
 # %% [code] Cell 27
@@ -212,6 +238,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 28
 # **Ariketa 3.2:** Gorde `df`-ren lehen 5 errenkadak `df_head` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** `head(5)` permite inspeccionar una muestra sin perder el DataFrame completo. No equivale a una muestra aleatoria ni garantiza que veas todos los problemas de calidad.
 
 
 # %% [code] Cell 29
@@ -225,6 +253,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 30
 # **Ariketa 3.3:** Gorde `df`-ren zutabeen izenak list edo array batean `zutabeak` izenarekin.
+#
+# **Cómo se resuelve y qué comprobar:** `columns.tolist()` obtiene los nombres y su orden. Son el esquema de la tabla; no son los valores de la primera fila.
 
 
 # %% [code] Cell 31
@@ -238,6 +268,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 32
 # **Ariketa 3.4:** Lortu `makina_id` zutabeko balio unikoak eta gorde `makinak_unikoak` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** `unique()` identifica categorías distintas: M1, M2 y M3. No cuenta cuántas filas pertenecen a cada una; para eso se usarían frecuencias.
 
 
 # %% [code] Cell 33
@@ -252,6 +284,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 34
 # **Ariketa 3.5:** Zenbatu zenbat errenkada diren `errorea == 1` baldintza betetzen dutenak eta gorde `errore_kop` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** La comparación con 1 produce una máscara y su suma cuenta las filas etiquetadas como error. Los datos son sintéticos; el conteo no mide averías reales.
 
 
 # %% [code] Cell 35
@@ -269,6 +303,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 37
 # **Ariketa 4.1:** Zenbatu zenbat NaN balio dauden zutabe bakoitzean eta gorde `nan_kopuruak` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** `isna().sum()` cuenta valores ausentes por columna: un NaN en temperatura y otro en vibración. Los extremos 999 y −50 son números presentes, no NaN.
 
 
 # %% [code] Cell 38
@@ -283,6 +319,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 39
 # **Ariketa 4.2:** Ezabatu NaN dituzten errenkadak (`.dropna()`) eta gorde bertsio garbia `df_clean` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** `dropna()` elimina las dos filas incompletas; `.copy()` deja una tabla independiente para editarla. Quedan 98 filas. El CSV original no se modifica.
 
 
 # %% [code] Cell 40
@@ -297,6 +335,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 41
 # **Ariketa 4.3:** `df_clean`-en, `tenperatura` > 150 den kasuetan, ordezkatu balio hori `df_clean['tenperatura'].median()`-rekin (mediana).
+#
+# **Cómo se resuelve y qué comprobar:** Se calcula la mediana y se reemplazan temperaturas mayores de 150. Es una regla ilustrativa para el valor 999, no un umbral universal de sensor.
 
 
 # %% [code] Cell 42
@@ -311,6 +351,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 43
 # **Ariketa 4.4:** `df_clean`-en, `bibrazioa` < 0 den kasuetan, ordezkatu balio hori 0-rekin.
+#
+# **Cómo se resuelve y qué comprobar:** Con `.loc` se asigna 0 solo donde la vibración es negativa. Se conserva la fila; documentar esta decisión es necesario porque recortar un valor no equivale a conocer su medida real.
 
 
 # %% [code] Cell 44
@@ -324,6 +366,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 45
 # **Ariketa 4.5:** Bihurtu `errorea` zutabea boolean motara (True 1 bada, False 0 bada) astype erabiliz. Gorde aldaketa `df_clean`-en bertan.
+#
+# **Cómo se resuelve y qué comprobar:** `astype(bool)` convierte 0/1 en False/True. Se cambia el tipo de la etiqueta; esto también afecta a qué columnas selecciona el heatmap de 5.5.
 
 
 # %% [code] Cell 46
@@ -345,6 +389,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 49
 # **Ariketa 5.1:** Inportatu `seaborn` (`sns` bezala) eta `matplotlib.pyplot` (`plt` bezala).
+#
+# **Cómo se resuelve y qué comprobar:** Seaborn ofrece gráficos estadísticos y Matplotlib gestiona figuras/ejes. Los aliases `sns` y `plt` se reutilizan en las siguientes celdas.
 
 
 # %% [code] Cell 50
@@ -360,6 +406,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 51
 # **Ariketa 5.2:** Egin `df_clean`-en `tenperatura` zutabearen histograma bat `sns.histplot` erabiliz. Gorde emaitza `ax` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** El histograma muestra frecuencias por intervalo de temperatura en las 98 filas limpias. `ax` permite identificar el eje; revisa la distribución después de sustituir el extremo.
 
 
 # %% [code] Cell 52
@@ -375,6 +423,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 53
 # **Ariketa 5.3:** Egin scatter plot bat `sns.scatterplot` erabiliz, x-ardatzean `tenperatura` eta y-ardatzean `bibrazioa` jarriz. Datuak `df_clean` izan behar dira. Gorde emaitza `ax_scatter` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** Cada punto representa una fila; X es temperatura e Y vibración. La nube permite estudiar asociación, pero no demuestra una relación causal entre sensores.
 
 
 # %% [code] Cell 54
@@ -390,6 +440,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 55
 # **Ariketa 5.4:** Egin boxplot bat `sns.boxplot` erabiliz. x-ardatzean `makina_id` jarri eta y-ardatzean `tenperatura`. Gorde `ax_box` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** El boxplot compara mediana, cuartiles y puntos extremos de temperatura entre máquinas. Sus puntos fuera de los bigotes no son automáticamente fallos de máquina.
 
 
 # %% [code] Cell 56
@@ -405,6 +457,8 @@ print('✅ Zuzena!')
 
 # %% [markdown] Cell 57
 # **Ariketa 5.5:** Sortu korrelazio matrize bat `df_clean`-en zutabe numerikoekin, eta egin heatmap bat `sns.heatmap` erabiliz. Gorde heatmap-a `ax_heat` aldagaian.
+#
+# **Cómo se resuelve y qué comprobar:** La selección numérica excluye `makina_id` y también `errorea`, ya convertido a bool. Pearson mide asociación lineal entre temperatura y vibración; no causalidad. El assert solo comprueba que existe el eje, no la interpretación del gráfico.
 
 
 # %% [code] Cell 58

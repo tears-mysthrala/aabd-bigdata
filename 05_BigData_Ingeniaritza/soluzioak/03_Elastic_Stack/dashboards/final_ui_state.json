@@ -1,0 +1,32 @@
+{
+  "filters": [],
+  "panels": [
+    {
+      "canvas": true,
+      "error": false,
+      "title": "Salmentak kategoriaren arabera"
+    },
+    {
+      "canvas": true,
+      "error": false,
+      "title": "Diru-sarrerak hirika"
+    },
+    {
+      "canvas": true,
+      "error": false,
+      "title": "Salmenta-kanalen banaketa"
+    },
+    {
+      "canvas": true,
+      "error": false,
+      "title": "Diru-sarreren bilakaera denboran"
+    },
+    {
+      "canvas": true,
+      "error": false,
+      "title": "Produktuen batez besteko prezioa"
+    }
+  ],
+  "query": "",
+  "url": "http://localhost:15601/app/dashboards#/view/aabd-1fab5517b75a73ff?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:'2026-01-01T00:00:00.000Z',to:'2026-07-01T00:00:00.000Z'))"
+}

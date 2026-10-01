@@ -1,0 +1,183 @@
+{
+  "successCount": 16,
+  "success": true,
+  "warnings": [],
+  "successResults": [
+    {
+      "type": "index-pattern",
+      "id": "997fb2ec-60b1-4fb9-80dd-ff19ce92fbb3",
+      "meta": {
+        "title": "produktuak",
+        "icon": "indexPatternApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "b5b2eda9-9337-4a74-98ef-a3ba7a20102f"
+    },
+    {
+      "type": "lens",
+      "id": "aabd-0d712e49a49c96f7",
+      "meta": {
+        "title": "Produktuak kategoriaren arabera",
+        "icon": "lensApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "d0fe2b1f-9ea9-454e-9cd4-62d43ef3a045"
+    },
+    {
+      "type": "lens",
+      "id": "aabd-ff669fd697d61191",
+      "meta": {
+        "title": "Batez besteko prezioa kategoriaren arabera",
+        "icon": "lensApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "3f702fad-33bd-4751-80c2-4d644b83b72e"
+    },
+    {
+      "type": "dashboard",
+      "id": "aabd-28ab1f59255f6d99",
+      "meta": {
+        "title": "Produktuen Dashboard-a",
+        "icon": "dashboardApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "8749d499-a564-4f77-99d6-89edb566ff3b"
+    },
+    {
+      "type": "index-pattern",
+      "id": "16e909d6-b026-4c06-a453-a463286ee956",
+      "meta": {
+        "title": "salmentak",
+        "icon": "indexPatternApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "54bf4103-73cd-4aa0-b6d4-3568d63e6429"
+    },
+    {
+      "type": "lens",
+      "id": "aabd-d63d931530db20f3",
+      "meta": {
+        "title": "Salmentak kategoriaren arabera",
+        "icon": "lensApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "97faa2dd-9a4a-4df0-98d2-361aad0f88bb"
+    },
+    {
+      "type": "lens",
+      "id": "aabd-66c9c0c8a7c828bc",
+      "meta": {
+        "title": "Diru-sarrerak hirika",
+        "icon": "lensApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "89faa51c-0bf1-4ba5-bcab-7e14d6136f29"
+    },
+    {
+      "type": "lens",
+      "id": "aabd-bd4de2ca5cc66846",
+      "meta": {
+        "title": "Salmenta-kanalen banaketa",
+        "icon": "lensApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "3a0bd0a5-7d40-4839-872f-6a1fc41b56a3"
+    },
+    {
+      "type": "lens",
+      "id": "aabd-ad0dab14892b2e8f",
+      "meta": {
+        "title": "Diru-sarreren bilakaera denboran",
+        "icon": "lensApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "b8e40bc8-6c26-45a0-a311-63a628b708be"
+    },
+    {
+      "type": "lens",
+      "id": "aabd-2e4f17fff3044353",
+      "meta": {
+        "title": "Produktuen batez besteko prezioa",
+        "icon": "lensApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "0a9ef267-87d2-42b5-adfb-1141521c36b7"
+    },
+    {
+      "type": "dashboard",
+      "id": "aabd-1fab5517b75a73ff",
+      "meta": {
+        "title": "Salmenten Dashboard-a",
+        "icon": "dashboardApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "c564514c-5564-4506-94a1-12e4d76038ba"
+    },
+    {
+      "type": "search",
+      "id": "aabd-p5-0",
+      "meta": {
+        "title": "P5 \u00b7 Produktuak \u00b7 dokumentu guztiak",
+        "icon": "discoverApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "ae857058-ab00-4674-b42b-69d25dd53a64"
+    },
+    {
+      "type": "search",
+      "id": "aabd-p5-1",
+      "meta": {
+        "title": "P5 \u00b7 Produktuak \u00b7 kategoria: \"Informatika\"",
+        "icon": "discoverApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "8fe36ed4-131c-447c-a66e-004376d88375"
+    },
+    {
+      "type": "search",
+      "id": "aabd-p5-2",
+      "meta": {
+        "title": "P5 \u00b7 Produktuak \u00b7 prezioa > 100",
+        "icon": "discoverApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "fc4f31c2-849e-44d6-b485-cbc6af7686a8"
+    },
+    {
+      "type": "search",
+      "id": "aabd-p5-3",
+      "meta": {
+        "title": "P5 \u00b7 Produktuak \u00b7 kategoria: \"Informatika\" AND prezioa < 500",
+        "icon": "discoverApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "44fadd25-465e-46d1-9607-0df24b41defd"
+    },
+    {
+      "type": "search",
+      "id": "aabd-p5-4",
+      "meta": {
+        "title": "P5 \u00b7 Produktuak \u00b7 NOT kategoria: \"Papergintza\"",
+        "icon": "discoverApp"
+      },
+      "managed": false,
+      "overwrite": true,
+      "destinationId": "88063cfd-3cde-4657-816c-3078fd1f455a"
+    }
+  ]
+}

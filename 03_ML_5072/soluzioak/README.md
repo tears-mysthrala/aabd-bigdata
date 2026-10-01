@@ -36,3 +36,50 @@ Datu multzo sintetikoko aurkikuntzak (`cnc_mock.csv`, 100 errenkada):
 - `orange_erregresio_logistica.py`, `sortu_erregresio_logistica_ows.py`, `sortu_erregresio_logistica_pdf.py` eta `irudiak/sortu_logistica_irudiak.py`: datuak berreraiki, Orange eredua ebaluatu eta entregagarriak sortzen dituzte. [Iturri ofiziala: UCI Breast Cancer Wisconsin Diagnostic](https://archive.ics.uci.edu/dataset/17/breast%2Bcancer).
 - [Benigno/maligno datuak eta sigmoide logistikoa](irudiak/logistica_sigmoide_clasificacion.png). X ardatza puntuazio logistikoa da (z=β₀+β₁·texture_mean), Y ardatza P(M) estimatua; laginak beren benetako 0/1 diagnostikoetan ageri dira, jitterrik gabe, eta itzalek erabaki-eremuak erakusten dituzte. Ariketa didaktikoa da, ez erabilera klinikorako.
 - Irekitzeko: `orange-canvas 03_ML_5072/soluzioak/Orange_Regresion_Logistica.ows`
+
+## Entorno y recorrido de lectura
+
+La práctica Python básica usa NumPy, Pandas y scikit-learn. Su comando inicial
+reutiliza el entorno de CNC Guard: créalo antes con `uv sync --locked` dentro
+de `01_Erronka1_CNC_Guard/proyecto_cnc_guard` si no existe. Para Jupyter,
+lee la nota de rutas del notebook: su código usa `__file__` y necesita adaptación
+al directorio del kernel; el comando `.py` es la entrada directa documentada.
+
+Orange es **otro entorno**: no está incluido en las dependencias base de CNC
+Guard. Puedes usar una instalación de Orange existente o preparar un entorno
+local desde esta carpeta, con Python compatible con sus paquetes:
+
+```bash
+uv venv .venv-orange
+uv pip install --python .venv-orange/bin/python Orange3 matplotlib
+.venv-orange/bin/python orange_erregresio_lineala.py
+.venv-orange/bin/python orange_erregresio_logistica.py
+.venv-orange/bin/python orange_bihotza_ereduak.py
+.venv-orange/bin/orange-canvas Orange_Erregresio_Lineala.ows
+```
+
+Se usan rangos resueltos por el instalador, no un lock propio del bloque.
+Los scripts de regresión **sobrescriben** métricas/predicciones locales; el de
+Heart Disease imprime resultados y puede requerir acceso al dataset de Orange.
+Los generadores `sortu_*` y `irudiak/sortu_*` regeneran workflows, PDF o figuras:
+consulta sus entradas antes de ejecutarlos, para conservar entregas propias.
+No hace falta regenerar esos artefactos para estudiar los existentes.
+
+| Práctica | Pregunta y método | Cómo interpretar la entrega |
+|---|---|---|
+| CNC, práctica básica | ¿Cómo tratar NaN y categorías antes de regresión/clasificación? | Compara MSE con la media de train y F1/matriz con accuracy. El dato pequeño y desbalanceado limita conclusiones. |
+| Auto MPG | ¿Qué relación hay entre peso (`weight`, libras) y consumo (`mpg`, millas/galón)? | Diferencia recta ajustada con todos los coches de errores **out-of-fold**. R² no es un porcentaje genérico de aciertos; RMSE/MAE están en mpg. |
+| Heart Disease | ¿Cómo comparar cuatro clasificadores bajo CV? | Lee métricas de la clase objetivo, matriz y ROC; el workflow y el script pueden tener preprocesamientos distintos, así que no exijas igualdad sin comparar la configuración. |
+| WDBC | ¿Cómo la textura media produce P(maligno) con regresión logística? | Los puntos del scatter son diagnósticos 0/1 y la sigmoide es probabilidad de un ajuste completo. Para evaluar usa las predicciones CV, no la curva completa. |
+| [Iris, fronteras 2D](Iris_LogReg_KNN/README.md) | LogReg/KNN con dos atributos y ajuste sobre todas las flores. | La accuracy es de entrenamiento, no de generalización. |
+| [Iris en Orange](Orange_KNN_Iris.md) | KNN con cuatro atributos y CV de 10 folds. | Comprueba File/CV/matriz; el export de predicciones presenta 90 etiquetas desalineadas, documentadas en su guía. No está validado por muestra. |
+
+En Orange abre File primero y, si necesita una ruta nueva, selecciona el `.tab`
+o CSV local indicado en su guía de datos. Comprueba atributos/target y después
+Test & Score, ROC y Confusion Matrix. El número de clase positiva y el orden de
+clases importan al interpretar probabilidades. Los datasets de salud son
+material docente; sus métricas no representan validación clínica.
+
+Las figuras y PDF son entregas derivadas. Los scripts, tablas y JSON guardados
+permiten seguir sus cálculos; la presencia de una figura no certifica que el
+workflow GUI se haya ejecutado con la configuración actual.
