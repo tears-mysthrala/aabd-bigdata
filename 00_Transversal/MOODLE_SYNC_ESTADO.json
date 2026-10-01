@@ -424,7 +424,7 @@
     {
       "kind": "file",
       "path": "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
-      "sha256": "180953215521eb0cc15fc7b12dd2edc2e15e1944db007aea7ba37bded413739e",
+      "sha256": "b9a9842ddd443240cf0781eaf388563ee07d2908d0e121a6d218a053d40d321d",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64159",
       "status": "verified"
     },
@@ -493,8 +493,8 @@
     },
     {
       "kind": "file",
-      "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
-      "sha256": "860377342e996b28ff5d1ea50cb759e59060fcaf84d089bffd571adaf5ab1773",
+      "path": "06_NiFi/materialak/02_elastic_stack.pdf",
+      "sha256": "4a00f8077a3d1107c6f4de2b2eae76bda6fbd71aaec8b84fc8259f4b718edfe1",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64150",
       "status": "verified"
     },
@@ -524,5 +524,5 @@
     12
   ],
   "unavailable": 0,
-  "verified_on": "2026-09-30"
+  "verified_on": "2026-10-01"
 }
