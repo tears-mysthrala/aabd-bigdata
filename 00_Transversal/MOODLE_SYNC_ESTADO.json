@@ -1,9 +1,9 @@
 {
-  "activities": 65,
+  "activities": 70,
   "activity_types": {
-    "assign": 7,
+    "assign": 10,
     "folder": 3,
-    "resource": 41,
+    "resource": 43,
     "url": 14
   },
   "entries": [
@@ -169,6 +169,34 @@
     },
     {
       "kind": "file",
+      "path": "03_ML_5072/materialak/ikaskuntza_gainbegiratua_ikaslea.ipynb",
+      "sha256": "afbb7c5dc74044c3ee907ec4a18579c2f009fb915d96c5fcd7c181fee8412d48",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/87341/mod_assign/introattachment/0/ikaskuntza_gainbegiratua_ikaslea.ipynb?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "03_ML_5072/materialak/txostena_ikaslea.md",
+      "sha256": "d9868ee22cdc7a0135676e9e52768849008428471888fc8747813563d8b32e2d",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/87341/mod_assign/introattachment/0/txostena_ikaslea.md?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "03_ML_5072/materialak/5072_2_04_Decision_Tree.pdf",
+      "sha256": "fce9b6f1eeba6e35f6104f32de5cfd647d3bf9c8073fda08909218a8f6449d3c",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=63543",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "03_ML_5072/materialak/5072_2_06_Random_Forest.pdf",
+      "sha256": "b9b7a16c7d3b778fc4e097e4c66b4abe25e9c348b406feda5bdc9827e36ed9bb",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=63385",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
       "path": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
       "sha256": "854425d7bdbe5388d16ba0761655186a487a8329f7415a9b773800e8adf24c95",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=63545",
@@ -274,12 +302,6 @@
       "status": "verified"
     },
     {
-      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64316",
-      "kind": "external link",
-      "source": "https://scikit-learn.org/stable/api/sklearn.html",
-      "status": "web reference"
-    },
-    {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
       "sha256": "24b61b3de75c345623c6d38712ce2c6c2bf7bbc3c762a32ee58341a3ded9eee6",
@@ -380,6 +402,12 @@
       "sha256": "e0d7532192305825baa417e93b345fd38993a5970c6a054d4b0f53173d5aa017",
       "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.1/ikasleak_notak_100.csv?forcedownload=1",
       "status": "verified"
+    },
+    {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64316",
+      "kind": "external link",
+      "source": "https://scikit-learn.org/stable/api/sklearn.html",
+      "status": "web reference"
     },
     {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=63702",
