@@ -527,8 +527,8 @@
     },
     {
       "kind": "file",
-      "path": "06_NiFi/materialak/02_elastic_stack.pdf",
-      "sha256": "4a00f8077a3d1107c6f4de2b2eae76bda6fbd71aaec8b84fc8259f4b718edfe1",
+      "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
+      "sha256": "4e1a7b4e8563d971777a0fb03e6a97994d6c0795159b4945740fa24894af158c",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64150",
       "status": "verified"
     },
@@ -558,5 +558,5 @@
     12
   ],
   "unavailable": 0,
-  "verified_on": "2026-10-01"
+  "verified_on": "2026-10-02"
 }
