@@ -1,9 +1,9 @@
 {
-  "activities": 70,
+  "activities": 72,
   "activity_types": {
-    "assign": 10,
+    "assign": 11,
     "folder": 3,
-    "resource": 43,
+    "resource": 44,
     "url": 14
   },
   "entries": [
@@ -193,6 +193,13 @@
       "path": "03_ML_5072/materialak/5072_2_06_Random_Forest.pdf",
       "sha256": "b9b7a16c7d3b778fc4e097e4c66b4abe25e9c348b406feda5bdc9827e36ed9bb",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=63385",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "03_ML_5072/materialak/5072_2_05_SVM.pdf",
+      "sha256": "ed7e2f38cb10d432273a56d9ba95e422c1a904e9dacf650cf46a646db5c93a72",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=63378",
       "status": "verified"
     },
     {
