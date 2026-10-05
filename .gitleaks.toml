@@ -12,3 +12,10 @@ condition = "AND"
 regexTarget = "line"
 paths = ['''(^|/)06_NiFi/soluzioak/07_AEMET_Datu_Lakua_Medallion_DF2\.3/flow_07_aemet_datalake_medallion\.json$''']
 regexes = ['''^\s*"AWS Credentials Provider service":\s*"5c2c9ea6-e3f4-4cd8-a160-74728bb591ba",?\s*$''']
+
+[[rules.allowlists]]
+description = "Open-Meteo NiFi Controller Service UUID; verified internal reference"
+condition = "AND"
+regexTarget = "line"
+paths = ['''(^|/)06_NiFi/soluzioak/07_AEMET_Datu_Lakua_Medallion_DF2\.3/flow_07_open_meteo_medallion\.json$''']
+regexes = ['''^\s*"AWS Credentials Provider service":\s*"d535f5f4-1e54-3d86-824f-b94899a0c690",?\s*$''']
