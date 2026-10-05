@@ -1,0 +1,4 @@
+# Entorno local de reproducción del notebook
+.venv-notebook/
+# CSV y modelo sintéticos regenerados por el notebook
+data/

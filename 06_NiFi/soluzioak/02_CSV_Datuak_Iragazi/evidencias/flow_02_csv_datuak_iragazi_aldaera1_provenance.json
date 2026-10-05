@@ -1,0 +1,3182 @@
+{
+  "query_limit_per_processor": 100,
+  "events": [
+    {
+      "id": "507201",
+      "eventId": 507201,
+      "eventTime": "10/02/2026 07:21:42.825 UTC",
+      "eventDuration": 11,
+      "lineageDuration": 20,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "4d73dc39-9116-415b-995f-57effaa7873e",
+      "fileSize": "252 bytes",
+      "fileSizeBytes": 252,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "44a54706-d751-348a-2e7f-f988a48aa124",
+      "componentType": "GetFile",
+      "componentName": "CSVFitxategiaEskuratu",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv"
+        },
+        {
+          "name": "path",
+          "value": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "4d73dc39-9116-415b-995f-57effaa7873e"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/salmentak.csv",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 6051,
+      "outputContentClaimFileSize": "252 bytes",
+      "outputContentClaimFileSizeBytes": 252,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "507224",
+      "eventId": 507224,
+      "eventTime": "10/02/2026 07:21:46.714 UTC",
+      "eventDuration": 16,
+      "lineageDuration": 3909,
+      "eventType": "DROP",
+      "flowFileUuid": "29332575-31ac-4a47-93be-35019533d256",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "29332575-31ac-4a47-93be-35019533d256",
+          "previousValue": "29332575-31ac-4a47-93be-35019533d256"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1114,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1114,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507223",
+      "eventId": 507223,
+      "eventTime": "10/02/2026 07:21:46.714 UTC",
+      "eventDuration": 6,
+      "lineageDuration": 3909,
+      "eventType": "ROUTE",
+      "flowFileUuid": "fa536dc4-0748-4490-b10c-4115e2736ec6",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "5"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "fa536dc4-0748-4490-b10c-4115e2736ec6"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "relationship": "FrantziaGehiago1",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1342,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "507222",
+      "eventId": 507222,
+      "eventTime": "10/02/2026 07:21:46.713 UTC",
+      "eventDuration": 15,
+      "lineageDuration": 3908,
+      "eventType": "FORK",
+      "flowFileUuid": "29332575-31ac-4a47-93be-35019533d256",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "29332575-31ac-4a47-93be-35019533d256",
+          "previousValue": "29332575-31ac-4a47-93be-35019533d256"
+        }
+      ],
+      "parentUuids": [
+        "29332575-31ac-4a47-93be-35019533d256"
+      ],
+      "childUuids": [
+        "fa536dc4-0748-4490-b10c-4115e2736ec6"
+      ],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1114,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1114,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507219",
+      "eventId": 507219,
+      "eventTime": "10/02/2026 07:21:46.696 UTC",
+      "eventDuration": 10,
+      "lineageDuration": 3891,
+      "eventType": "DROP",
+      "flowFileUuid": "dd45851f-09a9-4626-a468-a78f0829c496",
+      "fileSize": "77 bytes",
+      "fileSizeBytes": 77,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "4",
+          "previousValue": "4"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "dd45851f-09a9-4626-a468-a78f0829c496",
+          "previousValue": "dd45851f-09a9-4626-a468-a78f0829c496"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1037,
+      "inputContentClaimFileSize": "77 bytes",
+      "inputContentClaimFileSizeBytes": 77,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1037,
+      "outputContentClaimFileSize": "77 bytes",
+      "outputContentClaimFileSizeBytes": 77,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507218",
+      "eventId": 507218,
+      "eventTime": "10/02/2026 07:21:46.697 UTC",
+      "eventDuration": 10,
+      "lineageDuration": 3892,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "dd45851f-09a9-4626-a468-a78f0829c496",
+      "fileSize": "77 bytes",
+      "fileSizeBytes": 77,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "4",
+          "previousValue": "4"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "dd45851f-09a9-4626-a468-a78f0829c496",
+          "previousValue": "dd45851f-09a9-4626-a468-a78f0829c496"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1037,
+      "inputContentClaimFileSize": "77 bytes",
+      "inputContentClaimFileSizeBytes": 77,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1037,
+      "outputContentClaimFileSize": "77 bytes",
+      "outputContentClaimFileSizeBytes": 77,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507216",
+      "eventId": 507216,
+      "eventTime": "10/02/2026 07:21:46.674 UTC",
+      "eventDuration": 21,
+      "lineageDuration": 3869,
+      "eventType": "DROP",
+      "flowFileUuid": "7f956ee0-d980-4fa4-bf94-7d6be1772529",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "3",
+          "previousValue": "3"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "7f956ee0-d980-4fa4-bf94-7d6be1772529",
+          "previousValue": "7f956ee0-d980-4fa4-bf94-7d6be1772529"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 961,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 961,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507215",
+      "eventId": 507215,
+      "eventTime": "10/02/2026 07:21:46.673 UTC",
+      "eventDuration": 15,
+      "lineageDuration": 3868,
+      "eventType": "ROUTE",
+      "flowFileUuid": "82b0418d-fa7e-4f71-84a2-728df718cffc",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "3"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "82b0418d-fa7e-4f71-84a2-728df718cffc"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "relationship": "FrantziaGehiago1",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1266,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "507214",
+      "eventId": 507214,
+      "eventTime": "10/02/2026 07:21:46.673 UTC",
+      "eventDuration": 17,
+      "lineageDuration": 3868,
+      "eventType": "FORK",
+      "flowFileUuid": "7f956ee0-d980-4fa4-bf94-7d6be1772529",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "3",
+          "previousValue": "3"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "7f956ee0-d980-4fa4-bf94-7d6be1772529",
+          "previousValue": "7f956ee0-d980-4fa4-bf94-7d6be1772529"
+        }
+      ],
+      "parentUuids": [
+        "7f956ee0-d980-4fa4-bf94-7d6be1772529"
+      ],
+      "childUuids": [
+        "82b0418d-fa7e-4f71-84a2-728df718cffc"
+      ],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 961,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 961,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507211",
+      "eventId": 507211,
+      "eventTime": "10/02/2026 07:21:46.651 UTC",
+      "eventDuration": 13,
+      "lineageDuration": 3846,
+      "eventType": "DROP",
+      "flowFileUuid": "902f1017-bd49-4d47-92f0-41df1076a629",
+      "fileSize": "75 bytes",
+      "fileSizeBytes": 75,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "2",
+          "previousValue": "2"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "902f1017-bd49-4d47-92f0-41df1076a629",
+          "previousValue": "902f1017-bd49-4d47-92f0-41df1076a629"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 886,
+      "inputContentClaimFileSize": "75 bytes",
+      "inputContentClaimFileSizeBytes": 75,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 886,
+      "outputContentClaimFileSize": "75 bytes",
+      "outputContentClaimFileSizeBytes": 75,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507210",
+      "eventId": 507210,
+      "eventTime": "10/02/2026 07:21:46.651 UTC",
+      "eventDuration": 13,
+      "lineageDuration": 3846,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "902f1017-bd49-4d47-92f0-41df1076a629",
+      "fileSize": "75 bytes",
+      "fileSizeBytes": 75,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "2",
+          "previousValue": "2"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "902f1017-bd49-4d47-92f0-41df1076a629",
+          "previousValue": "902f1017-bd49-4d47-92f0-41df1076a629"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 886,
+      "inputContentClaimFileSize": "75 bytes",
+      "inputContentClaimFileSizeBytes": 75,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 886,
+      "outputContentClaimFileSize": "75 bytes",
+      "outputContentClaimFileSizeBytes": 75,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507208",
+      "eventId": 507208,
+      "eventTime": "10/02/2026 07:21:46.632 UTC",
+      "eventDuration": 17,
+      "lineageDuration": 3827,
+      "eventType": "DROP",
+      "flowFileUuid": "b3e7ce8b-7deb-4900-8eec-0b1046582216",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "b3e7ce8b-7deb-4900-8eec-0b1046582216",
+          "previousValue": "b3e7ce8b-7deb-4900-8eec-0b1046582216"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 810,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 810,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507207",
+      "eventId": 507207,
+      "eventTime": "10/02/2026 07:21:46.632 UTC",
+      "eventDuration": 11,
+      "lineageDuration": 3827,
+      "eventType": "ROUTE",
+      "flowFileUuid": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "1"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "relationship": "FrantziaGehiago1",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1190,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "507206",
+      "eventId": 507206,
+      "eventTime": "10/02/2026 07:21:46.632 UTC",
+      "eventDuration": 16,
+      "lineageDuration": 3827,
+      "eventType": "FORK",
+      "flowFileUuid": "b3e7ce8b-7deb-4900-8eec-0b1046582216",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "b3e7ce8b-7deb-4900-8eec-0b1046582216",
+          "previousValue": "b3e7ce8b-7deb-4900-8eec-0b1046582216"
+        }
+      ],
+      "parentUuids": [
+        "b3e7ce8b-7deb-4900-8eec-0b1046582216"
+      ],
+      "childUuids": [
+        "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb"
+      ],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 810,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 810,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507205",
+      "eventId": 507205,
+      "eventTime": "10/02/2026 07:21:46.609 UTC",
+      "eventDuration": 2911,
+      "lineageDuration": 3804,
+      "eventType": "DROP",
+      "flowFileUuid": "673211ac-7e59-4020-83ab-ef8553517055",
+      "fileSize": "77 bytes",
+      "fileSizeBytes": 77,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "0",
+          "previousValue": "0"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "673211ac-7e59-4020-83ab-ef8553517055",
+          "previousValue": "673211ac-7e59-4020-83ab-ef8553517055"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 733,
+      "inputContentClaimFileSize": "77 bytes",
+      "inputContentClaimFileSizeBytes": 77,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 733,
+      "outputContentClaimFileSize": "77 bytes",
+      "outputContentClaimFileSizeBytes": 77,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507204",
+      "eventId": 507204,
+      "eventTime": "10/02/2026 07:21:46.610 UTC",
+      "eventDuration": 2911,
+      "lineageDuration": 3805,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "673211ac-7e59-4020-83ab-ef8553517055",
+      "fileSize": "77 bytes",
+      "fileSizeBytes": 77,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "f1bb2211-50c6-34be-7b84-75cf2a4cdb12",
+      "componentType": "QueryRecord",
+      "componentName": "SQLkontsulta",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "0",
+          "previousValue": "0"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "original"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "673211ac-7e59-4020-83ab-ef8553517055",
+          "previousValue": "673211ac-7e59-4020-83ab-ef8553517055"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 733,
+      "inputContentClaimFileSize": "77 bytes",
+      "inputContentClaimFileSizeBytes": 77,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 733,
+      "outputContentClaimFileSize": "77 bytes",
+      "outputContentClaimFileSizeBytes": 77,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b5211881-195e-3048-8ac4-c8970329c9f7"
+    },
+    {
+      "id": "507203",
+      "eventId": 507203,
+      "eventTime": "10/02/2026 07:21:43.647 UTC",
+      "eventDuration": 261,
+      "lineageDuration": 842,
+      "eventType": "DROP",
+      "flowFileUuid": "4d73dc39-9116-415b-995f-57effaa7873e",
+      "fileSize": "252 bytes",
+      "fileSizeBytes": 252,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "04ad648b-d902-392e-76d6-e4954123d92f",
+      "componentType": "SplitRecord",
+      "componentName": "CSVtikFFra",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "4d73dc39-9116-415b-995f-57effaa7873e",
+          "previousValue": "4d73dc39-9116-415b-995f-57effaa7873e"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "6",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924541991-6",
+      "inputContentClaimOffset": 6051,
+      "inputContentClaimFileSize": "252 bytes",
+      "inputContentClaimFileSizeBytes": 252,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 6051,
+      "outputContentClaimFileSize": "252 bytes",
+      "outputContentClaimFileSizeBytes": 252,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "aa4f6d17-58f2-3e61-1936-91708e7bcc15"
+    },
+    {
+      "id": "507202",
+      "eventId": 507202,
+      "eventTime": "10/02/2026 07:21:43.529 UTC",
+      "eventDuration": 261,
+      "lineageDuration": 724,
+      "eventType": "FORK",
+      "flowFileUuid": "4d73dc39-9116-415b-995f-57effaa7873e",
+      "fileSize": "252 bytes",
+      "fileSizeBytes": 252,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "04ad648b-d902-392e-76d6-e4954123d92f",
+      "componentType": "SplitRecord",
+      "componentName": "CSVtikFFra",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "4d73dc39-9116-415b-995f-57effaa7873e",
+          "previousValue": "4d73dc39-9116-415b-995f-57effaa7873e"
+        }
+      ],
+      "parentUuids": [
+        "4d73dc39-9116-415b-995f-57effaa7873e"
+      ],
+      "childUuids": [
+        "29332575-31ac-4a47-93be-35019533d256",
+        "673211ac-7e59-4020-83ab-ef8553517055",
+        "7f956ee0-d980-4fa4-bf94-7d6be1772529",
+        "902f1017-bd49-4d47-92f0-41df1076a629",
+        "b3e7ce8b-7deb-4900-8eec-0b1046582216",
+        "dd45851f-09a9-4626-a468-a78f0829c496"
+      ],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "6",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924541991-6",
+      "inputContentClaimOffset": 6051,
+      "inputContentClaimFileSize": "252 bytes",
+      "inputContentClaimFileSizeBytes": 252,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 6051,
+      "outputContentClaimFileSize": "252 bytes",
+      "outputContentClaimFileSizeBytes": 252,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "aa4f6d17-58f2-3e61-1936-91708e7bcc15"
+    },
+    {
+      "id": "507225",
+      "eventId": 507225,
+      "eventTime": "10/02/2026 07:21:46.726 UTC",
+      "eventDuration": 6,
+      "lineageDuration": 3921,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "fa536dc4-0748-4490-b10c-4115e2736ec6",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "38300985-b053-3bcd-eb41-fc5f2823babd",
+      "componentType": "UpdateAttribute",
+      "componentName": "FitxategiaBerrizendatu",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak_fa536dc4-0748-4490-b10c-4115e2736ec6_1790925706725.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1",
+          "previousValue": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "fa536dc4-0748-4490-b10c-4115e2736ec6",
+          "previousValue": "fa536dc4-0748-4490-b10c-4115e2736ec6"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1342,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1342,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "157847ec-a696-3827-f59b-f1943a617efd"
+    },
+    {
+      "id": "507217",
+      "eventId": 507217,
+      "eventTime": "10/02/2026 07:21:46.693 UTC",
+      "eventDuration": 1,
+      "lineageDuration": 3888,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "82b0418d-fa7e-4f71-84a2-728df718cffc",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "38300985-b053-3bcd-eb41-fc5f2823babd",
+      "componentType": "UpdateAttribute",
+      "componentName": "FitxategiaBerrizendatu",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak_82b0418d-fa7e-4f71-84a2-728df718cffc_1790925706692.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "3",
+          "previousValue": "3"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1",
+          "previousValue": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "82b0418d-fa7e-4f71-84a2-728df718cffc",
+          "previousValue": "82b0418d-fa7e-4f71-84a2-728df718cffc"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1266,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1266,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "157847ec-a696-3827-f59b-f1943a617efd"
+    },
+    {
+      "id": "507209",
+      "eventId": 507209,
+      "eventTime": "10/02/2026 07:21:46.646 UTC",
+      "eventDuration": 6,
+      "lineageDuration": 3841,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "38300985-b053-3bcd-eb41-fc5f2823babd",
+      "componentType": "UpdateAttribute",
+      "componentName": "FitxategiaBerrizendatu",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak_380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb_1790925706644.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1",
+          "previousValue": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb",
+          "previousValue": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1190,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1190,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "157847ec-a696-3827-f59b-f1943a617efd"
+    },
+    {
+      "id": "507227",
+      "eventId": 507227,
+      "eventTime": "10/02/2026 07:21:46.741 UTC",
+      "eventDuration": 2,
+      "lineageDuration": 3936,
+      "eventType": "DROP",
+      "flowFileUuid": "fa536dc4-0748-4490-b10c-4115e2736ec6",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "b500610c-3f3f-3126-0e2d-08b93ac97863",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak_fa536dc4-0748-4490-b10c-4115e2736ec6_1790925706725.csv",
+          "previousValue": "salmentak_fa536dc4-0748-4490-b10c-4115e2736ec6_1790925706725.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1",
+          "previousValue": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "fa536dc4-0748-4490-b10c-4115e2736ec6",
+          "previousValue": "fa536dc4-0748-4490-b10c-4115e2736ec6"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1342,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1342,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "12de8ec0-8622-361e-9dc7-94beb96ea087"
+    },
+    {
+      "id": "507226",
+      "eventId": 507226,
+      "eventTime": "10/02/2026 07:21:46.741 UTC",
+      "eventDuration": 1,
+      "lineageDuration": 3936,
+      "eventType": "SEND",
+      "flowFileUuid": "fa536dc4-0748-4490-b10c-4115e2736ec6",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "b500610c-3f3f-3126-0e2d-08b93ac97863",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak_fa536dc4-0748-4490-b10c-4115e2736ec6_1790925706725.csv",
+          "previousValue": "salmentak_fa536dc4-0748-4490-b10c-4115e2736ec6_1790925706725.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1",
+          "previousValue": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "fa536dc4-0748-4490-b10c-4115e2736ec6",
+          "previousValue": "fa536dc4-0748-4490-b10c-4115e2736ec6"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/irteera/salmentak_fa536dc4-0748-4490-b10c-4115e2736ec6_1790925706725.csv",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1342,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1342,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "12de8ec0-8622-361e-9dc7-94beb96ea087"
+    },
+    {
+      "id": "507221",
+      "eventId": 507221,
+      "eventTime": "10/02/2026 07:21:46.707 UTC",
+      "eventDuration": 5,
+      "lineageDuration": 3902,
+      "eventType": "DROP",
+      "flowFileUuid": "82b0418d-fa7e-4f71-84a2-728df718cffc",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "b500610c-3f3f-3126-0e2d-08b93ac97863",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak_82b0418d-fa7e-4f71-84a2-728df718cffc_1790925706692.csv",
+          "previousValue": "salmentak_82b0418d-fa7e-4f71-84a2-728df718cffc_1790925706692.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "3",
+          "previousValue": "3"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1",
+          "previousValue": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "82b0418d-fa7e-4f71-84a2-728df718cffc",
+          "previousValue": "82b0418d-fa7e-4f71-84a2-728df718cffc"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1266,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1266,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "12de8ec0-8622-361e-9dc7-94beb96ea087"
+    },
+    {
+      "id": "507220",
+      "eventId": 507220,
+      "eventTime": "10/02/2026 07:21:46.705 UTC",
+      "eventDuration": 3,
+      "lineageDuration": 3900,
+      "eventType": "SEND",
+      "flowFileUuid": "82b0418d-fa7e-4f71-84a2-728df718cffc",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "b500610c-3f3f-3126-0e2d-08b93ac97863",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak_82b0418d-fa7e-4f71-84a2-728df718cffc_1790925706692.csv",
+          "previousValue": "salmentak_82b0418d-fa7e-4f71-84a2-728df718cffc_1790925706692.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "3",
+          "previousValue": "3"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1",
+          "previousValue": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "82b0418d-fa7e-4f71-84a2-728df718cffc",
+          "previousValue": "82b0418d-fa7e-4f71-84a2-728df718cffc"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/irteera/salmentak_82b0418d-fa7e-4f71-84a2-728df718cffc_1790925706692.csv",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1266,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1266,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "12de8ec0-8622-361e-9dc7-94beb96ea087"
+    },
+    {
+      "id": "507213",
+      "eventId": 507213,
+      "eventTime": "10/02/2026 07:21:46.656 UTC",
+      "eventDuration": 4,
+      "lineageDuration": 3851,
+      "eventType": "DROP",
+      "flowFileUuid": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "b500610c-3f3f-3126-0e2d-08b93ac97863",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak_380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb_1790925706644.csv",
+          "previousValue": "salmentak_380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb_1790925706644.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1",
+          "previousValue": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb",
+          "previousValue": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1190,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1190,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "12de8ec0-8622-361e-9dc7-94beb96ea087"
+    },
+    {
+      "id": "507212",
+      "eventId": 507212,
+      "eventTime": "10/02/2026 07:21:46.653 UTC",
+      "eventDuration": 1,
+      "lineageDuration": 3848,
+      "eventType": "SEND",
+      "flowFileUuid": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb",
+      "fileSize": "76 bytes",
+      "fileSizeBytes": 76,
+      "groupId": "fb7d8068-01a0-1000-6ddc-f02f01e462e5",
+      "componentId": "b500610c-3f3f-3126-0e2d-08b93ac97863",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:21:42+0000",
+          "previousValue": "2026-10-02T07:21:42+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "salmentak_380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb_1790925706644.csv",
+          "previousValue": "salmentak_380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb_1790925706644.csv"
+        },
+        {
+          "name": "fragment.count",
+          "value": "6",
+          "previousValue": "6"
+        },
+        {
+          "name": "fragment.identifier",
+          "value": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e",
+          "previousValue": "da2ab27f-77b3-4ee9-bf5e-6930a8cec12e"
+        },
+        {
+          "name": "fragment.index",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "mime.type",
+          "value": "text/csv",
+          "previousValue": "text/csv"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "QueryRecord.Route",
+          "value": "FrantziaGehiago1",
+          "previousValue": "FrantziaGehiago1"
+        },
+        {
+          "name": "record.count",
+          "value": "1",
+          "previousValue": "1"
+        },
+        {
+          "name": "segment.original.filename",
+          "value": "salmentak.csv",
+          "previousValue": "salmentak.csv"
+        },
+        {
+          "name": "uuid",
+          "value": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb",
+          "previousValue": "380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_02_csv_datuak_iragazi_aldaera1-final/irteera/salmentak_380f7fd3-312a-4be7-9ba7-2f6f5bcb62fb_1790925706644.csv",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 1190,
+      "inputContentClaimFileSize": "76 bytes",
+      "inputContentClaimFileSizeBytes": 76,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 1190,
+      "outputContentClaimFileSize": "76 bytes",
+      "outputContentClaimFileSizeBytes": 76,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "12de8ec0-8622-361e-9dc7-94beb96ea087"
+    }
+  ],
+  "counts_in_saved_sample": {
+    "CSVFitxategiaEskuratu | RECEIVE": 1,
+    "SQLkontsulta | DROP": 6,
+    "SQLkontsulta | ROUTE": 3,
+    "SQLkontsulta | FORK": 3,
+    "SQLkontsulta | ATTRIBUTES_MODIFIED": 3,
+    "CSVtikFFra | DROP": 1,
+    "CSVtikFFra | FORK": 1,
+    "FitxategiaBerrizendatu | ATTRIBUTES_MODIFIED": 3,
+    "FitxategiaJarri | DROP": 3,
+    "FitxategiaJarri | SEND": 3
+  }
+}

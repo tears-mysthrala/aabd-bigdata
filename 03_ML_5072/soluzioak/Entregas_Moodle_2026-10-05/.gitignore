@@ -1,0 +1,9 @@
+.venv*/
+.pdf-deps/
+__pycache__/
+.pytest_cache/
+tmp/
+renderizados/
+qa/
+**/verificacion/portabilidad/
+**/verificacion/pagina-*.png

@@ -1,26 +1,101 @@
 {
- "k": 3,
- "CA": 0.9533,
- "CM": [
-  [
-   50,
-   0,
-   0
+  "k": 3,
+  "CA": 0.96,
+  "CM": [
+    [
+      50,
+      0,
+      0
+    ],
+    [
+      0,
+      47,
+      3
+    ],
+    [
+      0,
+      3,
+      47
+    ]
   ],
-  [
-   0,
-   46,
-   4
+  "labels": [
+    "setosa",
+    "versicolor",
+    "virginica"
   ],
-  [
-   0,
-   3,
-   47
-  ]
- ],
- "labels": [
-  "setosa",
-  "versicolor",
-  "virginica"
- ]
+  "samples": 150,
+  "correct": 144,
+  "protocol": {
+    "folds": 10,
+    "stratified": true,
+    "shuffle": true,
+    "random_state": 42,
+    "metric": "euclidean",
+    "weights": "uniform",
+    "scaling": false,
+    "preprocessors": [
+      "HasClass",
+      "Continuize",
+      "RemoveNaNColumns",
+      "SklImpute"
+    ]
+  },
+  "versions": {
+    "Orange": "3.40.0",
+    "sklearn": "1.9.1",
+    "numpy": "2.3.5",
+    "python": "3.13.13"
+  },
+  "sha256": {
+    "iris.csv": "e48cd67255542c6c404e58f409cfdde207f2e03513d37576bcfb7713343c1d7e",
+    "iris_knn_predicciones.csv": "26206f3532604f6af249fe0ac4dacd861eca1be053db79daba500b76e697385b"
+  },
+  "validation": {
+    "source_equals_sklearn": true,
+    "export_label_feature_mismatches": 0,
+    "each_row_evaluated_once": true,
+    "fold_ids_verified": true
+  },
+  "classification_report": {
+    "setosa": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 50.0
+    },
+    "versicolor": {
+      "precision": 0.94,
+      "recall": 0.94,
+      "f1-score": 0.94,
+      "support": 50.0
+    },
+    "virginica": {
+      "precision": 0.94,
+      "recall": 0.94,
+      "f1-score": 0.94,
+      "support": 50.0
+    },
+    "accuracy": 0.96,
+    "macro avg": {
+      "precision": 0.96,
+      "recall": 0.96,
+      "f1-score": 0.96,
+      "support": 150.0
+    },
+    "weighted avg": {
+      "precision": 0.96,
+      "recall": 0.96,
+      "f1-score": 0.96,
+      "support": 150.0
+    }
+  },
+  "error_row_ids": [
+    71,
+    73,
+    84,
+    107,
+    120,
+    134
+  ],
+  "execution": "Orange Python API; no GUI screenshots or workflow execution claimed"
 }

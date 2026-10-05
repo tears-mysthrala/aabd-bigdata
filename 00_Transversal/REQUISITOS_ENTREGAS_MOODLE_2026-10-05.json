@@ -1,0 +1,201 @@
+{
+  "verified_at_utc": "2026-10-05T09:51:46.032Z",
+  "course_url": "https://elearning20.hezkuntza.net/012053/course/view.php?id=535",
+  "scope": "Course sections 0-12 except section 3 (CNC Guard contracts and proposals); independent subject exercises included",
+  "sections_reviewed": [
+    0,
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "activities_including_labels": 83,
+  "linked_activities": 66,
+  "assignment_count": 8,
+  "teacher_statement_only_count": 4,
+  "attachment_only_count": 1,
+  "empty_statement_count": 3,
+  "personal_submission_state_included": false,
+  "assignments": [
+    {
+      "id": "63638",
+      "section": 5,
+      "title": "Datuak interpretatzea - Ariketa",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63638",
+      "teacher_statement": "Orange softwarea erabiliz, dataset bat aukeratu (edota saretik deskargatu) eta grafika batean marraztu.\nGrafika horretan agertzen dena interpretatu eta ondorioak atera.\nSarrera, Garapena (pantaila irudiekin) eta Ondorioak dituen PDF dokumentua entregatu.\nBanaka egiteko ariketa da.",
+      "dates_visible": "Irekitze-data: asteazkena, 2026(e)ko irailaren 16(e)an, 00:00(e)tan",
+      "teacher_attachments": [],
+      "page_http_status": 200,
+      "file_submission": true,
+      "online_text_submission": false,
+      "upload_restrictions_visible": "Fitxategientzako gehieneko tamaina: 50 MB, gehieneko fitxategi-kopurua: 20 - 'hartu eta eraman' ez da onartzen",
+      "deadline_visible": false
+    },
+    {
+      "id": "63319",
+      "section": 5,
+      "title": "Erregresio Lineala - Ariketa",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63319",
+      "teacher_statement": "Orange Data Mining Softwarean, aplikatu dagokion modeloa dataset zehatz bat erabiliz.\n\nAzaldu zein datu aukeratu dituzun\nAplikatu dagokion modeloa\nIrteera datuak atera eta aztertu\nDatu eta modeloaren inguruko ondorioak atera",
+      "dates_visible": "Irekitze-data: osteguna, 2026(e)ko irailaren 10(e)an, 00:00(e)tan",
+      "teacher_attachments": [],
+      "page_http_status": 200,
+      "file_submission": true,
+      "online_text_submission": false,
+      "upload_restrictions_visible": "Fitxategientzako gehieneko tamaina: 50 MB, gehieneko fitxategi-kopurua: 20 - 'hartu eta eraman' ez da onartzen",
+      "deadline_visible": false
+    },
+    {
+      "id": "63320",
+      "section": 5,
+      "title": "Erregresio Logistikoa - Ariketa",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63320",
+      "teacher_statement": "Orange Data Mining Softwarean, aplikatu dagokion modeloa dataset zehatz bat erabiliz.\n\nAzaldu zein datu aukeratu dituzun\nAplikatu dagokion modeloa\nIrteera datuak atera eta aztertu\nDatu eta modeloaren inguruko ondorioak atera",
+      "dates_visible": "Irekitze-data: osteguna, 2026(e)ko irailaren 10(e)an, 00:00(e)tan",
+      "teacher_attachments": [],
+      "page_http_status": 200,
+      "file_submission": true,
+      "online_text_submission": false,
+      "upload_restrictions_visible": "Fitxategientzako gehieneko tamaina: 50 MB, gehieneko fitxategi-kopurua: 20 - 'hartu eta eraman' ez da onartzen",
+      "deadline_visible": false
+    },
+    {
+      "id": "63321",
+      "section": 5,
+      "title": "K-NN - Ariketa",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63321",
+      "teacher_statement": "Orange Data Mining Softwarean, aplikatu dagokion modeloa dataset zehatz bat erabiliz.\n\nAzaldu zein datu aukeratu dituzun\nAplikatu dagokion modeloa\nIrteera datuak atera eta aztertu\nDatu eta modeloaren inguruko ondorioak atera",
+      "dates_visible": "Irekitze-data: osteguna, 2026(e)ko irailaren 10(e)an, 00:00(e)tan",
+      "teacher_attachments": [],
+      "page_http_status": 200,
+      "file_submission": true,
+      "online_text_submission": false,
+      "upload_restrictions_visible": "Fitxategientzako gehieneko tamaina: 50 MB, gehieneko fitxategi-kopurua: 20 - 'hartu eta eraman' ez da onartzen",
+      "deadline_visible": false
+    },
+    {
+      "id": "63325",
+      "section": 5,
+      "title": "Ikasketa Gainbegiratua - Erregresio Logistikoa vs KNN - Jupyter Ariketa",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63325",
+      "teacher_statement": "",
+      "dates_visible": "Irekitze-data: osteguna, 2026(e)ko irailaren 10(e)an, 00:00(e)tan",
+      "teacher_attachments": [
+        {
+          "name": "ikaskuntza_gainbegiratua_ikaslea.ipynb",
+          "url": "https://elearning20.hezkuntza.net/012053/pluginfile.php/87341/mod_assign/introattachment/0/ikaskuntza_gainbegiratua_ikaslea.ipynb?forcedownload=1"
+        },
+        {
+          "name": "txostena_ikaslea.md",
+          "url": "https://elearning20.hezkuntza.net/012053/pluginfile.php/87341/mod_assign/introattachment/0/txostena_ikaslea.md?forcedownload=1"
+        }
+      ],
+      "page_http_status": 200,
+      "file_submission": true,
+      "online_text_submission": false,
+      "upload_restrictions_visible": "Fitxategientzako gehieneko tamaina: 50 MB, gehieneko fitxategi-kopurua: 20 - 'hartu eta eraman' ez da onartzen",
+      "deadline_visible": false
+    },
+    {
+      "id": "63544",
+      "section": 5,
+      "title": "Erabakitze Zuhaitza - Ariketa",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63544",
+      "teacher_statement": "",
+      "dates_visible": "Irekitze-data: asteartea, 2026(e)ko irailaren 15(e)an, 00:00(e)tan",
+      "teacher_attachments": [],
+      "page_http_status": 200,
+      "file_submission": true,
+      "online_text_submission": false,
+      "upload_restrictions_visible": "Fitxategientzako gehieneko tamaina: 50 MB, gehieneko fitxategi-kopurua: 20 - 'hartu eta eraman' ez da onartzen",
+      "deadline_visible": false
+    },
+    {
+      "id": "63386",
+      "section": 5,
+      "title": "Random Forest - Ariketa",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63386",
+      "teacher_statement": "",
+      "dates_visible": "Irekitze-data: ostirala, 2026(e)ko irailaren 11(e)an, 00:00(e)tan",
+      "teacher_attachments": [],
+      "page_http_status": 200,
+      "file_submission": true,
+      "online_text_submission": false,
+      "upload_restrictions_visible": "Fitxategientzako gehieneko tamaina: 50 MB, gehieneko fitxategi-kopurua: 20 - 'hartu eta eraman' ez da onartzen",
+      "deadline_visible": false
+    },
+    {
+      "id": "63380",
+      "section": 5,
+      "title": "SVM - Ariketa",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63380",
+      "teacher_statement": "",
+      "dates_visible": "Irekitze-data: ostirala, 2026(e)ko irailaren 11(e)an, 00:00(e)tan",
+      "teacher_attachments": [],
+      "page_http_status": 200,
+      "file_submission": true,
+      "online_text_submission": false,
+      "upload_restrictions_visible": "Fitxategientzako gehieneko tamaina: 50 MB, gehieneko fitxategi-kopurua: 20 - 'hartu eta eraman' ez da onartzen",
+      "deadline_visible": false
+    }
+  ],
+  "local_artifacts": [
+    {
+      "path": "03_ML_5072/soluzioak/Interpretacion_Datos/Interpretacion_Datos_Orange.pdf",
+      "bytes": 189864,
+      "sha256": "4d411e92b01df47bbb7099184d51a847733f7b6add1c72abe00117dbeb9d8351"
+    },
+    {
+      "path": "03_ML_5072/soluzioak/Orange_Erregresio_Lineala_Entregagarria.pdf",
+      "bytes": 641323,
+      "sha256": "f1d6087bc92217868352ce06d2c5a4e9ac6c92e2623e2b0bd4c8a3ef9581cde9"
+    },
+    {
+      "path": "03_ML_5072/soluzioak/Orange_Regresion_Logistica_Entregable.pdf",
+      "bytes": 342610,
+      "sha256": "b0b554f105b36ac25f4c30a55a4a8ca8f9c2c9aec364314a413130da7da02d5f"
+    },
+    {
+      "path": "03_ML_5072/soluzioak/Orange_KNN_Iris.pdf",
+      "bytes": 169966,
+      "sha256": "c94a418c1066958c3d46b59edc83223b418942929fea2ab4918a6d7f04400258"
+    },
+    {
+      "path": "03_ML_5072/soluzioak/Orange_Data_Mining_Entregagarria.pdf",
+      "bytes": 1183744,
+      "sha256": "8a251ad37188f7a75c1c60e98a1408ac90e38347f9da37de369fc4e0976f5c56"
+    },
+    {
+      "path": "03_ML_5072/soluzioak/Iris_LogReg_KNN/iris_logreg_knn.ipynb",
+      "bytes": 117193,
+      "sha256": "879cf5864e38bc0874305e03090d5a52d4b8886abfbda74361982f3daf57e30d"
+    },
+    {
+      "path": "03_ML_5072/soluzioak/Iris_LogReg_KNN/txostena_beteta.md",
+      "bytes": 1634,
+      "sha256": "d38eb6ef8d2cce7ae3c479f1bfd88778072e116a9d217ec9b99f83505818db86"
+    },
+    {
+      "path": "03_ML_5072/soluzioak/Iris_LogReg_KNN/erabaki_mugak.png",
+      "bytes": 115126,
+      "sha256": "e862cbf00b9bda224b755bf70fae44d6ce88e99bbd0d6ac86ef5b2b71ec1e132"
+    },
+    {
+      "path": "03_ML_5072/soluzioak/SVM/svm_adibideak.ipynb",
+      "bytes": 10847,
+      "sha256": "6bf0e309aef86852db27014b8910c7adb03f35c1d97f537b55c9ffd0f28bac6c"
+    },
+    {
+      "path": "03_ML_5072/soluzioak/SVM/README.md",
+      "bytes": 4589,
+      "sha256": "16eb7d5fef50f5354077bba95f9b587b37134cbecf98d7a4cefcc0ed47f21d9f"
+    }
+  ]
+}

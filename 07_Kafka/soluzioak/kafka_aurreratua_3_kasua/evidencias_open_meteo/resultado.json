@@ -1,0 +1,46 @@
+{
+  "verified_at": "2026-10-02T06:54:39.767857+00:00",
+  "source": "open-meteo",
+  "distinct_model_times": 1,
+  "sampling_note": "20 HTTP polls of model current; repeated timestamps are not independent observations",
+  "brokers": 3,
+  "replication_factor": 2,
+  "bronze": 20,
+  "silver": 20,
+  "mongo": 20,
+  "jsonl": 20,
+  "gold_integrated": 2,
+  "gold_independent": 2,
+  "gold_values": [
+    {
+      "hiria": "Elche/Elx",
+      "neurketak": 10,
+      "batez_besteko_tenperatura": 20.800000000000004,
+      "tenperatura_min": 20.8,
+      "tenperatura_max": 20.8,
+      "batez_besteko_hezetasuna": 85.0
+    },
+    {
+      "hiria": "Elche/Elx",
+      "neurketak": 10,
+      "batez_besteko_tenperatura": 20.800000000000004,
+      "tenperatura_min": 20.8,
+      "tenperatura_max": 20.8,
+      "batez_besteko_hezetasuna": 85.0
+    }
+  ],
+  "group_offsets": {
+    "iabd-3kasua-fitxategia": 20,
+    "iabd-3kasua-mongo": 20,
+    "iabd-3kasua-gold": 20
+  },
+  "scripts": {
+    "bronze": "{\"topic\": \"iabd-aemet-brontzea\", \"sent\": 20, \"source\": \"open-meteo\", \"url\": \"https://api.open-meteo.com/v1/forecast\"}\n",
+    "silver": "{\"group\": \"iabd-3kasua-bronze-silver\", \"processed\": 20}\n",
+    "gold": "{\"group\": \"iabd-3kasua-silver-gold\", \"processed\": 20}\n",
+    "jsonl": "{\"group\": \"iabd-3kasua-fitxategia\", \"processed\": 20}\n",
+    "mongo": "{\"group\": \"iabd-3kasua-mongo\", \"processed\": 20}\n",
+    "independent_gold": "{\"group\": \"iabd-3kasua-gold\", \"processed\": 20}\n"
+  },
+  "python": "3.13.13"
+}

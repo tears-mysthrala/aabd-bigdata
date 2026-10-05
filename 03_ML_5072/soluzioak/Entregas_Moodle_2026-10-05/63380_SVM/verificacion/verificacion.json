@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "rows": 150,
+  "folds": 10,
+  "rows_per_fold": 15,
+  "classes_per_fold": 5,
+  "confusion_sum": 150,
+  "pdf_pages": 5,
+  "pdf_sha256": "42cfdbeef460805b0012539197418be6bb8d7f5f68ac45a65ea67f8bdb8d66f2",
+  "dataset_sha256": "e48cd67255542c6c404e58f409cfdde207f2e03513d37576bcfb7713343c1d7e",
+  "workflow_parameters_match": true,
+  "native_capture_count": 4,
+  "capture_hashes_match": true
+}

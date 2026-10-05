@@ -1,0 +1,1974 @@
+{
+  "query_limit_per_processor": 100,
+  "events": [
+    {
+      "id": "1889",
+      "eventId": 1889,
+      "eventTime": "10/02/2026 07:03:08.208 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 1,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "eac07d28-33b7-455e-85e3-0ba7aedeca38",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "ef83678e-ee31-32f2-a751-389b6ef9a3eb",
+      "componentType": "ListenHTTP",
+      "componentName": "ListenHTTP",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "eac07d28-33b7-455e-85e3-0ba7aedeca38"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd"
+        },
+        {
+          "name": "uuid",
+          "value": "eac07d28-33b7-455e-85e3-0ba7aedeca38"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "http://localhost:8081/iabd",
+      "details": "Remote DN=none, Issuer DN=none",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 204,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "1784",
+      "eventId": 1784,
+      "eventTime": "10/02/2026 07:03:08.122 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 0,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "563282d6-f199-4dd2-a1f6-6bd68c751fe8",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "ef83678e-ee31-32f2-a751-389b6ef9a3eb",
+      "componentType": "ListenHTTP",
+      "componentName": "ListenHTTP",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "563282d6-f199-4dd2-a1f6-6bd68c751fe8"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd"
+        },
+        {
+          "name": "uuid",
+          "value": "563282d6-f199-4dd2-a1f6-6bd68c751fe8"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "http://localhost:8081/iabd",
+      "details": "Remote DN=none, Issuer DN=none",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 5778,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "1661",
+      "eventId": 1661,
+      "eventTime": "10/02/2026 07:03:08.018 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 0,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "662ee9ea-80b4-4cd7-a521-e151b37c1eed",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "ef83678e-ee31-32f2-a751-389b6ef9a3eb",
+      "componentType": "ListenHTTP",
+      "componentName": "ListenHTTP",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "662ee9ea-80b4-4cd7-a521-e151b37c1eed"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd"
+        },
+        {
+          "name": "uuid",
+          "value": "662ee9ea-80b4-4cd7-a521-e151b37c1eed"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "http://localhost:8081/iabd",
+      "details": "Remote DN=none, Issuer DN=none",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 186,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "1557",
+      "eventId": 1557,
+      "eventTime": "10/02/2026 07:03:07.915 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 0,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "ef83678e-ee31-32f2-a751-389b6ef9a3eb",
+      "componentType": "ListenHTTP",
+      "componentName": "ListenHTTP",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd"
+        },
+        {
+          "name": "uuid",
+          "value": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "http://localhost:8081/iabd",
+      "details": "Remote DN=none, Issuer DN=none",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 5760,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "1443",
+      "eventId": 1443,
+      "eventTime": "10/02/2026 07:03:07.815 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 0,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "6539fb84-ebcc-4913-8d46-476187f59df4",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "ef83678e-ee31-32f2-a751-389b6ef9a3eb",
+      "componentType": "ListenHTTP",
+      "componentName": "ListenHTTP",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "6539fb84-ebcc-4913-8d46-476187f59df4"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd"
+        },
+        {
+          "name": "uuid",
+          "value": "6539fb84-ebcc-4913-8d46-476187f59df4"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "http://localhost:8081/iabd",
+      "details": "Remote DN=none, Issuer DN=none",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 168,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "1236",
+      "eventId": 1236,
+      "eventTime": "10/02/2026 07:03:07.635 UTC",
+      "eventDuration": 1,
+      "lineageDuration": 3,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "f13cbe99-8822-4bda-be5d-db23aabd4cd1",
+      "fileSize": "26 bytes",
+      "fileSizeBytes": 26,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "ef83678e-ee31-32f2-a751-389b6ef9a3eb",
+      "componentType": "ListenHTTP",
+      "componentName": "ListenHTTP",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "f13cbe99-8822-4bda-be5d-db23aabd4cd1"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd"
+        },
+        {
+          "name": "uuid",
+          "value": "f13cbe99-8822-4bda-be5d-db23aabd4cd1"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "http://localhost:8081/iabd",
+      "details": "Remote DN=none, Issuer DN=none",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 142,
+      "outputContentClaimFileSize": "26 bytes",
+      "outputContentClaimFileSizeBytes": 26,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "2945",
+      "eventId": 2945,
+      "eventTime": "10/02/2026 07:03:09.173 UTC",
+      "eventDuration": 4,
+      "lineageDuration": 1358,
+      "eventType": "CONTENT_MODIFIED",
+      "flowFileUuid": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+      "fileSize": "157 bytes",
+      "fileSizeBytes": 157,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "5515dd52-4d7a-3a29-9f11-ba613840372f",
+      "componentType": "AttributesToJSON",
+      "componentName": "AttributesToJSON",
+      "attributes": [
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "fecha",
+          "value": "2026-10-02 07:03:09",
+          "previousValue": "2026-10-02 07:03:09"
+        },
+        {
+          "name": "filename",
+          "value": "3200735248063",
+          "previousValue": "3200735248063"
+        },
+        {
+          "name": "merge.bin.age",
+          "value": "1018",
+          "previousValue": "1018"
+        },
+        {
+          "name": "merge.count",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "merge.reason",
+          "value": "MIN_THRESHOLDS_REACHED",
+          "previousValue": "MIN_THRESHOLDS_REACHED"
+        },
+        {
+          "name": "mezua",
+          "value": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5",
+          "previousValue": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5"
+        },
+        {
+          "name": "mezua.1",
+          "value": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5",
+          "previousValue": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/octet-stream"
+        },
+        {
+          "name": "mota",
+          "value": "errorea",
+          "previousValue": "errorea"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error",
+          "previousValue": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+          "previousValue": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": false,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "6",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924541991-6",
+      "inputContentClaimOffset": 5796,
+      "inputContentClaimFileSize": "94 bytes",
+      "inputContentClaimFileSizeBytes": 94,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 222,
+      "outputContentClaimFileSize": "157 bytes",
+      "outputContentClaimFileSizeBytes": 157,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "6acf9f56-1eaa-39a9-2a32-91c477ddcbb7"
+    },
+    {
+      "id": "2934",
+      "eventId": 2934,
+      "eventTime": "10/02/2026 07:03:09.160 UTC",
+      "eventDuration": 1,
+      "lineageDuration": 1345,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+      "fileSize": "94 bytes",
+      "fileSizeBytes": 94,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "bf494dc0-9393-3175-8dcd-cec37db38b29",
+      "componentType": "UpdateAttribute",
+      "componentName": "UpdateAttribute",
+      "attributes": [
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100"
+        },
+        {
+          "name": "fecha",
+          "value": "2026-10-02 07:03:09"
+        },
+        {
+          "name": "filename",
+          "value": "3200735248063",
+          "previousValue": "3200735248063"
+        },
+        {
+          "name": "merge.bin.age",
+          "value": "1018",
+          "previousValue": "1018"
+        },
+        {
+          "name": "merge.count",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "merge.reason",
+          "value": "MIN_THRESHOLDS_REACHED",
+          "previousValue": "MIN_THRESHOLDS_REACHED"
+        },
+        {
+          "name": "mezua",
+          "value": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5",
+          "previousValue": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5"
+        },
+        {
+          "name": "mezua.1",
+          "value": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5",
+          "previousValue": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/octet-stream",
+          "previousValue": "application/octet-stream"
+        },
+        {
+          "name": "mota",
+          "value": "errorea"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error",
+          "previousValue": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+          "previousValue": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "6",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924541991-6",
+      "inputContentClaimOffset": 5796,
+      "inputContentClaimFileSize": "94 bytes",
+      "inputContentClaimFileSizeBytes": 94,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 5796,
+      "outputContentClaimFileSize": "94 bytes",
+      "outputContentClaimFileSizeBytes": 94,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "c3dd1c8e-a32c-30eb-c219-8dd4f0474af9"
+    },
+    {
+      "id": "2923",
+      "eventId": 2923,
+      "eventTime": "10/02/2026 07:03:09.148 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 1333,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+      "fileSize": "94 bytes",
+      "fileSizeBytes": 94,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "b09f2b7e-1ffd-3296-6e5f-17167cb381f3",
+      "componentType": "ExtractText",
+      "componentName": "ExtractText",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "3200735248063",
+          "previousValue": "3200735248063"
+        },
+        {
+          "name": "merge.bin.age",
+          "value": "1018",
+          "previousValue": "1018"
+        },
+        {
+          "name": "merge.count",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "merge.reason",
+          "value": "MIN_THRESHOLDS_REACHED",
+          "previousValue": "MIN_THRESHOLDS_REACHED"
+        },
+        {
+          "name": "mezua",
+          "value": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5"
+        },
+        {
+          "name": "mezua.1",
+          "value": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/octet-stream",
+          "previousValue": "application/octet-stream"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error",
+          "previousValue": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+          "previousValue": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "6",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924541991-6",
+      "inputContentClaimOffset": 5796,
+      "inputContentClaimFileSize": "94 bytes",
+      "inputContentClaimFileSizeBytes": 94,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 5796,
+      "outputContentClaimFileSize": "94 bytes",
+      "outputContentClaimFileSizeBytes": 94,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "4393bb07-239d-314c-a1a8-59c42041abbe"
+    },
+    {
+      "id": "2921",
+      "eventId": 2921,
+      "eventTime": "10/02/2026 07:03:09.146 UTC",
+      "eventDuration": 16,
+      "lineageDuration": 939,
+      "eventType": "DROP",
+      "flowFileUuid": "eac07d28-33b7-455e-85e3-0ba7aedeca38",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "282d2be6-8b0c-361d-5e22-30fc67233bb6",
+      "componentType": "MergeContent",
+      "componentName": "MergeContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "eac07d28-33b7-455e-85e3-0ba7aedeca38",
+          "previousValue": "eac07d28-33b7-455e-85e3-0ba7aedeca38"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error",
+          "previousValue": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "eac07d28-33b7-455e-85e3-0ba7aedeca38",
+          "previousValue": "eac07d28-33b7-455e-85e3-0ba7aedeca38"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 204,
+      "inputContentClaimFileSize": "18 bytes",
+      "inputContentClaimFileSizeBytes": 18,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 204,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "450098c1-2418-3c2a-ba15-9cb32bb3df44"
+    },
+    {
+      "id": "2920",
+      "eventId": 2920,
+      "eventTime": "10/02/2026 07:03:09.146 UTC",
+      "eventDuration": 16,
+      "lineageDuration": 1024,
+      "eventType": "DROP",
+      "flowFileUuid": "563282d6-f199-4dd2-a1f6-6bd68c751fe8",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "282d2be6-8b0c-361d-5e22-30fc67233bb6",
+      "componentType": "MergeContent",
+      "componentName": "MergeContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "563282d6-f199-4dd2-a1f6-6bd68c751fe8",
+          "previousValue": "563282d6-f199-4dd2-a1f6-6bd68c751fe8"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error",
+          "previousValue": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "563282d6-f199-4dd2-a1f6-6bd68c751fe8",
+          "previousValue": "563282d6-f199-4dd2-a1f6-6bd68c751fe8"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "6",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924541991-6",
+      "inputContentClaimOffset": 5778,
+      "inputContentClaimFileSize": "18 bytes",
+      "inputContentClaimFileSizeBytes": 18,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 5778,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "450098c1-2418-3c2a-ba15-9cb32bb3df44"
+    },
+    {
+      "id": "2919",
+      "eventId": 2919,
+      "eventTime": "10/02/2026 07:03:09.146 UTC",
+      "eventDuration": 1022,
+      "lineageDuration": 1128,
+      "eventType": "DROP",
+      "flowFileUuid": "662ee9ea-80b4-4cd7-a521-e151b37c1eed",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "282d2be6-8b0c-361d-5e22-30fc67233bb6",
+      "componentType": "MergeContent",
+      "componentName": "MergeContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "662ee9ea-80b4-4cd7-a521-e151b37c1eed",
+          "previousValue": "662ee9ea-80b4-4cd7-a521-e151b37c1eed"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error",
+          "previousValue": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "662ee9ea-80b4-4cd7-a521-e151b37c1eed",
+          "previousValue": "662ee9ea-80b4-4cd7-a521-e151b37c1eed"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 186,
+      "inputContentClaimFileSize": "18 bytes",
+      "inputContentClaimFileSizeBytes": 18,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 186,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "450098c1-2418-3c2a-ba15-9cb32bb3df44"
+    },
+    {
+      "id": "2918",
+      "eventId": 2918,
+      "eventTime": "10/02/2026 07:03:09.146 UTC",
+      "eventDuration": 1022,
+      "lineageDuration": 1231,
+      "eventType": "DROP",
+      "flowFileUuid": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "282d2be6-8b0c-361d-5e22-30fc67233bb6",
+      "componentType": "MergeContent",
+      "componentName": "MergeContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66",
+          "previousValue": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error",
+          "previousValue": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66",
+          "previousValue": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "6",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924541991-6",
+      "inputContentClaimOffset": 5760,
+      "inputContentClaimFileSize": "18 bytes",
+      "inputContentClaimFileSizeBytes": 18,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 5760,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "450098c1-2418-3c2a-ba15-9cb32bb3df44"
+    },
+    {
+      "id": "2917",
+      "eventId": 2917,
+      "eventTime": "10/02/2026 07:03:09.146 UTC",
+      "eventDuration": 1022,
+      "lineageDuration": 1331,
+      "eventType": "DROP",
+      "flowFileUuid": "6539fb84-ebcc-4913-8d46-476187f59df4",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "282d2be6-8b0c-361d-5e22-30fc67233bb6",
+      "componentType": "MergeContent",
+      "componentName": "MergeContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "6539fb84-ebcc-4913-8d46-476187f59df4",
+          "previousValue": "6539fb84-ebcc-4913-8d46-476187f59df4"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error",
+          "previousValue": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "6539fb84-ebcc-4913-8d46-476187f59df4",
+          "previousValue": "6539fb84-ebcc-4913-8d46-476187f59df4"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by original Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 168,
+      "inputContentClaimFileSize": "18 bytes",
+      "inputContentClaimFileSizeBytes": 18,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 168,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "450098c1-2418-3c2a-ba15-9cb32bb3df44"
+    },
+    {
+      "id": "2916",
+      "eventId": 2916,
+      "eventTime": "10/02/2026 07:03:09.143 UTC",
+      "eventDuration": 4,
+      "lineageDuration": 1328,
+      "eventType": "JOIN",
+      "flowFileUuid": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+      "fileSize": "94 bytes",
+      "fileSizeBytes": 94,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "282d2be6-8b0c-361d-5e22-30fc67233bb6",
+      "componentType": "MergeContent",
+      "componentName": "MergeContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "3200735248063"
+        },
+        {
+          "name": "merge.bin.age",
+          "value": "1018"
+        },
+        {
+          "name": "merge.count",
+          "value": "5"
+        },
+        {
+          "name": "merge.reason",
+          "value": "MIN_THRESHOLDS_REACHED"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/octet-stream"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711"
+        }
+      ],
+      "parentUuids": [
+        "563282d6-f199-4dd2-a1f6-6bd68c751fe8",
+        "6539fb84-ebcc-4913-8d46-476187f59df4",
+        "662ee9ea-80b4-4cd7-a521-e151b37c1eed",
+        "8bfdc423-3fa8-4d09-97fa-118c1cf43a66",
+        "eac07d28-33b7-455e-85e3-0ba7aedeca38"
+      ],
+      "childUuids": [
+        "0b0bd6dd-ba02-425d-a4f0-5dde9567e711"
+      ],
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 5796,
+      "outputContentClaimFileSize": "94 bytes",
+      "outputContentClaimFileSizeBytes": 94,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay events that are created from multiple parents",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "3536",
+      "eventId": 3536,
+      "eventTime": "10/02/2026 07:03:09.833 UTC",
+      "eventDuration": 653,
+      "lineageDuration": 2018,
+      "eventType": "DROP",
+      "flowFileUuid": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+      "fileSize": "157 bytes",
+      "fileSizeBytes": 157,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "d3a8c672-5598-3937-f02a-07581da11827",
+      "componentType": "PutMongo",
+      "componentName": "PutMongo",
+      "attributes": [
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "fecha",
+          "value": "2026-10-02 07:03:09",
+          "previousValue": "2026-10-02 07:03:09"
+        },
+        {
+          "name": "filename",
+          "value": "3200735248063",
+          "previousValue": "3200735248063"
+        },
+        {
+          "name": "merge.bin.age",
+          "value": "1018",
+          "previousValue": "1018"
+        },
+        {
+          "name": "merge.count",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "merge.reason",
+          "value": "MIN_THRESHOLDS_REACHED",
+          "previousValue": "MIN_THRESHOLDS_REACHED"
+        },
+        {
+          "name": "mezua",
+          "value": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5",
+          "previousValue": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5"
+        },
+        {
+          "name": "mezua.1",
+          "value": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5",
+          "previousValue": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "mota",
+          "value": "errorea",
+          "previousValue": "errorea"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error",
+          "previousValue": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+          "previousValue": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 222,
+      "inputContentClaimFileSize": "157 bytes",
+      "inputContentClaimFileSizeBytes": 157,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 222,
+      "outputContentClaimFileSize": "157 bytes",
+      "outputContentClaimFileSizeBytes": 157,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "1394f408-7cb0-32e9-62d1-44a8aa9029bc"
+    },
+    {
+      "id": "3534",
+      "eventId": 3534,
+      "eventTime": "10/02/2026 07:03:09.833 UTC",
+      "eventDuration": 653,
+      "lineageDuration": 2018,
+      "eventType": "SEND",
+      "flowFileUuid": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+      "fileSize": "157 bytes",
+      "fileSizeBytes": 157,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "d3a8c672-5598-3937-f02a-07581da11827",
+      "componentType": "PutMongo",
+      "componentName": "PutMongo",
+      "attributes": [
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "fecha",
+          "value": "2026-10-02 07:03:09",
+          "previousValue": "2026-10-02 07:03:09"
+        },
+        {
+          "name": "filename",
+          "value": "3200735248063",
+          "previousValue": "3200735248063"
+        },
+        {
+          "name": "merge.bin.age",
+          "value": "1018",
+          "previousValue": "1018"
+        },
+        {
+          "name": "merge.count",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "merge.reason",
+          "value": "MIN_THRESHOLDS_REACHED",
+          "previousValue": "MIN_THRESHOLDS_REACHED"
+        },
+        {
+          "name": "mezua",
+          "value": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5",
+          "previousValue": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5"
+        },
+        {
+          "name": "mezua.1",
+          "value": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5",
+          "previousValue": "ERROR: lab event 2\nERROR: lab event 1\nERROR: lab event 3\nERROR: lab event 4\nERROR: lab event 5"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "mota",
+          "value": "errorea",
+          "previousValue": "errorea"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error",
+          "previousValue": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711",
+          "previousValue": "0b0bd6dd-ba02-425d-a4f0-5dde9567e711"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "mongodb://mongo:27017",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 222,
+      "inputContentClaimFileSize": "157 bytes",
+      "inputContentClaimFileSizeBytes": 157,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 222,
+      "outputContentClaimFileSize": "157 bytes",
+      "outputContentClaimFileSizeBytes": 157,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "1394f408-7cb0-32e9-62d1-44a8aa9029bc"
+    },
+    {
+      "id": "1894",
+      "eventId": 1894,
+      "eventTime": "10/02/2026 07:03:08.211 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 4,
+      "eventType": "ROUTE",
+      "flowFileUuid": "eac07d28-33b7-455e-85e3-0ba7aedeca38",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "031765f2-a205-3698-3058-d72a0532a212",
+      "componentType": "RouteOnContent",
+      "componentName": "RouteOnContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "eac07d28-33b7-455e-85e3-0ba7aedeca38",
+          "previousValue": "eac07d28-33b7-455e-85e3-0ba7aedeca38"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "eac07d28-33b7-455e-85e3-0ba7aedeca38",
+          "previousValue": "eac07d28-33b7-455e-85e3-0ba7aedeca38"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "relationship": "error",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 204,
+      "inputContentClaimFileSize": "18 bytes",
+      "inputContentClaimFileSizeBytes": 18,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 204,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b0a17aa8-5121-30a0-f2fe-8a3f57bf7842"
+    },
+    {
+      "id": "1794",
+      "eventId": 1794,
+      "eventTime": "10/02/2026 07:03:08.129 UTC",
+      "eventDuration": 1,
+      "lineageDuration": 7,
+      "eventType": "ROUTE",
+      "flowFileUuid": "563282d6-f199-4dd2-a1f6-6bd68c751fe8",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "031765f2-a205-3698-3058-d72a0532a212",
+      "componentType": "RouteOnContent",
+      "componentName": "RouteOnContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "563282d6-f199-4dd2-a1f6-6bd68c751fe8",
+          "previousValue": "563282d6-f199-4dd2-a1f6-6bd68c751fe8"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "563282d6-f199-4dd2-a1f6-6bd68c751fe8",
+          "previousValue": "563282d6-f199-4dd2-a1f6-6bd68c751fe8"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "relationship": "error",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "6",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924541991-6",
+      "inputContentClaimOffset": 5778,
+      "inputContentClaimFileSize": "18 bytes",
+      "inputContentClaimFileSizeBytes": 18,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 5778,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b0a17aa8-5121-30a0-f2fe-8a3f57bf7842"
+    },
+    {
+      "id": "1672",
+      "eventId": 1672,
+      "eventTime": "10/02/2026 07:03:08.027 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 9,
+      "eventType": "ROUTE",
+      "flowFileUuid": "662ee9ea-80b4-4cd7-a521-e151b37c1eed",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "031765f2-a205-3698-3058-d72a0532a212",
+      "componentType": "RouteOnContent",
+      "componentName": "RouteOnContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "662ee9ea-80b4-4cd7-a521-e151b37c1eed",
+          "previousValue": "662ee9ea-80b4-4cd7-a521-e151b37c1eed"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "662ee9ea-80b4-4cd7-a521-e151b37c1eed",
+          "previousValue": "662ee9ea-80b4-4cd7-a521-e151b37c1eed"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "relationship": "error",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 186,
+      "inputContentClaimFileSize": "18 bytes",
+      "inputContentClaimFileSizeBytes": 18,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 186,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b0a17aa8-5121-30a0-f2fe-8a3f57bf7842"
+    },
+    {
+      "id": "1561",
+      "eventId": 1561,
+      "eventTime": "10/02/2026 07:03:07.918 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 3,
+      "eventType": "ROUTE",
+      "flowFileUuid": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "031765f2-a205-3698-3058-d72a0532a212",
+      "componentType": "RouteOnContent",
+      "componentName": "RouteOnContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66",
+          "previousValue": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66",
+          "previousValue": "8bfdc423-3fa8-4d09-97fa-118c1cf43a66"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "relationship": "error",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "6",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924541991-6",
+      "inputContentClaimOffset": 5760,
+      "inputContentClaimFileSize": "18 bytes",
+      "inputContentClaimFileSizeBytes": 18,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "6",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924541991-6",
+      "outputContentClaimOffset": 5760,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b0a17aa8-5121-30a0-f2fe-8a3f57bf7842"
+    },
+    {
+      "id": "1456",
+      "eventId": 1456,
+      "eventTime": "10/02/2026 07:03:07.826 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 11,
+      "eventType": "ROUTE",
+      "flowFileUuid": "6539fb84-ebcc-4913-8d46-476187f59df4",
+      "fileSize": "18 bytes",
+      "fileSizeBytes": 18,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "031765f2-a205-3698-3058-d72a0532a212",
+      "componentType": "RouteOnContent",
+      "componentName": "RouteOnContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "6539fb84-ebcc-4913-8d46-476187f59df4",
+          "previousValue": "6539fb84-ebcc-4913-8d46-476187f59df4"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "error"
+        },
+        {
+          "name": "uuid",
+          "value": "6539fb84-ebcc-4913-8d46-476187f59df4",
+          "previousValue": "6539fb84-ebcc-4913-8d46-476187f59df4"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "relationship": "error",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 168,
+      "inputContentClaimFileSize": "18 bytes",
+      "inputContentClaimFileSizeBytes": 18,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 168,
+      "outputContentClaimFileSize": "18 bytes",
+      "outputContentClaimFileSizeBytes": 18,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b0a17aa8-5121-30a0-f2fe-8a3f57bf7842"
+    },
+    {
+      "id": "1261",
+      "eventId": 1261,
+      "eventTime": "10/02/2026 07:03:07.664 UTC",
+      "eventDuration": 12,
+      "lineageDuration": 32,
+      "eventType": "DROP",
+      "flowFileUuid": "f13cbe99-8822-4bda-be5d-db23aabd4cd1",
+      "fileSize": "26 bytes",
+      "fileSizeBytes": 26,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "031765f2-a205-3698-3058-d72a0532a212",
+      "componentType": "RouteOnContent",
+      "componentName": "RouteOnContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "f13cbe99-8822-4bda-be5d-db23aabd4cd1",
+          "previousValue": "f13cbe99-8822-4bda-be5d-db23aabd4cd1"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "unmatched"
+        },
+        {
+          "name": "uuid",
+          "value": "f13cbe99-8822-4bda-be5d-db23aabd4cd1",
+          "previousValue": "f13cbe99-8822-4bda-be5d-db23aabd4cd1"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by unmatched Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 142,
+      "inputContentClaimFileSize": "26 bytes",
+      "inputContentClaimFileSizeBytes": 26,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 142,
+      "outputContentClaimFileSize": "26 bytes",
+      "outputContentClaimFileSizeBytes": 26,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b0a17aa8-5121-30a0-f2fe-8a3f57bf7842"
+    },
+    {
+      "id": "1260",
+      "eventId": 1260,
+      "eventTime": "10/02/2026 07:03:07.664 UTC",
+      "eventDuration": 12,
+      "lineageDuration": 32,
+      "eventType": "ROUTE",
+      "flowFileUuid": "f13cbe99-8822-4bda-be5d-db23aabd4cd1",
+      "fileSize": "26 bytes",
+      "fileSizeBytes": 26,
+      "groupId": "fb67bc25-01a0-1000-3671-6934059c742e",
+      "componentId": "031765f2-a205-3698-3058-d72a0532a212",
+      "componentType": "RouteOnContent",
+      "componentName": "RouteOnContent",
+      "attributes": [
+        {
+          "name": "filename",
+          "value": "f13cbe99-8822-4bda-be5d-db23aabd4cd1",
+          "previousValue": "f13cbe99-8822-4bda-be5d-db23aabd4cd1"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "restlistener.remote.issuer.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.remote.source.host",
+          "value": "[0:0:0:0:0:0:0:1]",
+          "previousValue": "[0:0:0:0:0:0:0:1]"
+        },
+        {
+          "name": "restlistener.remote.user.dn",
+          "value": "none",
+          "previousValue": "none"
+        },
+        {
+          "name": "restlistener.request.uri",
+          "value": "/iabd",
+          "previousValue": "/iabd"
+        },
+        {
+          "name": "RouteOnContent.Route",
+          "value": "unmatched"
+        },
+        {
+          "name": "uuid",
+          "value": "f13cbe99-8822-4bda-be5d-db23aabd4cd1",
+          "previousValue": "f13cbe99-8822-4bda-be5d-db23aabd4cd1"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "relationship": "unmatched",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 142,
+      "inputContentClaimFileSize": "26 bytes",
+      "inputContentClaimFileSizeBytes": 26,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 142,
+      "outputContentClaimFileSize": "26 bytes",
+      "outputContentClaimFileSizeBytes": 26,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "b0a17aa8-5121-30a0-f2fe-8a3f57bf7842"
+    }
+  ],
+  "counts_in_saved_sample": {
+    "ListenHTTP | RECEIVE": 6,
+    "AttributesToJSON | CONTENT_MODIFIED": 1,
+    "UpdateAttribute | ATTRIBUTES_MODIFIED": 1,
+    "ExtractText | ATTRIBUTES_MODIFIED": 1,
+    "MergeContent | DROP": 5,
+    "MergeContent | JOIN": 1,
+    "PutMongo | DROP": 1,
+    "PutMongo | SEND": 1,
+    "RouteOnContent | ROUTE": 6,
+    "RouteOnContent | DROP": 1
+  }
+}

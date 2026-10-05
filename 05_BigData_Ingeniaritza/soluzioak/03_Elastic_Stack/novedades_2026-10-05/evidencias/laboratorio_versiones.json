@@ -1,0 +1,165 @@
+{
+  "recorded_at_utc": "2026-10-05T08:15:46.952228+00:00",
+  "images": [
+    {
+      "tag": "docker.elastic.co/elasticsearch/elasticsearch:9.5.4",
+      "id": "sha256:82ac14f43fe701992e601f4cc81e1c0d7dbc5a2576d8cd736006452925df4026",
+      "digests": [
+        "docker.elastic.co/elasticsearch/elasticsearch@sha256:82ac14f43fe701992e601f4cc81e1c0d7dbc5a2576d8cd736006452925df4026"
+      ]
+    },
+    {
+      "tag": "docker.elastic.co/kibana/kibana:9.5.4",
+      "id": "sha256:b1b4cea273350ffcb67292d7b90dd034598c1627bfa3cd0783315e9237dbe737",
+      "digests": [
+        "docker.elastic.co/kibana/kibana@sha256:b1b4cea273350ffcb67292d7b90dd034598c1627bfa3cd0783315e9237dbe737"
+      ]
+    },
+    {
+      "tag": "docker.elastic.co/beats/filebeat:9.5.4",
+      "id": "sha256:2dd1d5252f3d5d3f3104f8e908b88cb9dfb53faeab5beb8a01ce1593a8fc149d",
+      "digests": [
+        "docker.elastic.co/beats/filebeat@sha256:2dd1d5252f3d5d3f3104f8e908b88cb9dfb53faeab5beb8a01ce1593a8fc149d"
+      ]
+    },
+    {
+      "tag": "docker.elastic.co/logstash/logstash:9.5.4",
+      "id": "sha256:75a495fa0ce94f44da25b7458bf6bf68bb3e4ecde8cdd00cc4376d78fa64e1e7",
+      "digests": [
+        "docker.elastic.co/logstash/logstash@sha256:75a495fa0ce94f44da25b7458bf6bf68bb3e4ecde8cdd00cc4376d78fa64e1e7"
+      ]
+    },
+    {
+      "tag": "httpd:2.4",
+      "id": "sha256:41163d514c02ac205161c1549b499bc11adfdeb6291735b433d706af7e64382a",
+      "digests": [
+        "httpd@sha256:41163d514c02ac205161c1549b499bc11adfdeb6291735b433d706af7e64382a"
+      ]
+    }
+  ],
+  "compose_version": "Docker Compose version 5.6.0",
+  "apache_version": "Server version: Apache/2.4.69 (Unix)\nServer built:   Oct  2 2026 22:48:05",
+  "filebeat_version": "filebeat version 9.5.4 (amd64), libbeat 9.5.4 [ccdfcad1de773e22e494089f508162c52b027ee2 built 2026-09-09 20:24:03 +0000 UTC] (FIPS-distribution: false)",
+  "memory": "               total        used        free      shared  buff/cache   available\nMem:           7.0Gi       5.7Gi       268Mi        20Mi       1.5Gi       1.3Gi\nSwap:           14Gi       7.6Gi       7.4Gi\n",
+  "containers": [
+    {
+      "Command": "\"/bin/sh -c 'echo 'C\u2026\"",
+      "CreatedAt": "2026-10-05 10:06:46 +0200 CEST",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "",
+      "ID": "67f94d80beca",
+      "Image": "httpd:2.4",
+      "Labels": "com.docker.compose.service=apache,com.docker.compose.container-number=1,com.docker.compose.project=aabd-elastic-novedades-20261005,com.docker.compose.version=5.6.0,com.docker.compose.config-hash=2ea0a7651f7895d4acff67cb07a67b4d75ceb3ae9d033ed7e6b503422133613e,com.docker.compose.depends_on=,com.docker.compose.image=sha256:4b4ca72c99f26f0be304b787a5470001063403de0fe0c228de495432d1c3350b,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=/home/tears/bigdata/05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05/compose.yaml,com.docker.compose.project.working_dir=/home/tears/bigdata/05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05",
+      "LocalVolumes": "1",
+      "Mounts": "/home/tears/bi\u2026,aabd-elastic-n\u2026",
+      "Name": "aabd-elastic-novedades-20261005-apache-1",
+      "Names": "aabd-elastic-novedades-20261005-apache-1",
+      "Networks": "aabd-elastic-novedades-20261005_default",
+      "Ports": "127.0.0.1:18080->80/tcp",
+      "Project": "aabd-elastic-novedades-20261005",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 80,
+          "PublishedPort": 18080,
+          "Protocol": "tcp"
+        }
+      ],
+      "RunningFor": "9 minutes ago",
+      "Service": "apache",
+      "Size": "0B",
+      "State": "running",
+      "Status": "Up 8 minutes"
+    },
+    {
+      "Command": "\"/bin/tini -- /usr/l\u2026\"",
+      "CreatedAt": "2026-10-05 10:06:46 +0200 CEST",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "healthy",
+      "ID": "5116324072ca",
+      "Image": "docker.elastic.co/elasticsearch/elasticsearch:9.5.4",
+      "Labels": "com.docker.compose.config-hash=5f242d27534a10355305451346dbf0ba6358164060698238c81dcbda22eabe23,io.openshift.tags=minimal rhel9,org.label-schema.vcs-ref=9170df19cae1adb107b7b489b4d82dec66d7a337,org.opencontainers.image.created=2026-09-09T22:42:53.976833287Z,url=https://catalog.redhat.com/en/search?searchType=containers,architecture=x86_64,com.docker.compose.oneoff=False,com.docker.compose.version=5.6.0,io.openshift.expose-services=,org.opencontainers.image.licenses=Elastic-License-2.0,org.opencontainers.image.version=9.5.4,summary=Elasticsearch,vcs-ref=032ccfa67770989ab0253359280f8ba2cf77ce39,cpe=cpe:/a:redhat:enterprise_linux:9::appstream,io.buildah.version=1.44.0,maintainer=infra@elastic.co,org.label-schema.license=Elastic-License-2.0,org.label-schema.url=https://www.elastic.co/products/elasticsearch,org.label-schema.version=9.5.4,org.opencontainers.image.documentation=https://www.elastic.co/guide/en/elasticsearch/reference/index.html,org.opencontainers.image.revision=9170df19cae1adb107b7b489b4d82dec66d7a337,com.docker.compose.image=sha256:33178ff49e06da93e3c51c5d87401b26e7a6dea0ef9bb26539cfddc46478b420,description=You know, for search.,io.k8s.display-name=Red Hat Universal Base Image 9 Minimal,org.label-schema.name=Elasticsearch,org.label-schema.usage=https://www.elastic.co/guide/en/elasticsearch/reference/index.html,vendor=Elastic,com.docker.compose.project.config_files=/home/tears/bigdata/05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05/compose.yaml,com.docker.compose.service=elasticsearch,org.label-schema.vendor=Elastic,org.opencontainers.image.title=Elasticsearch,com.docker.compose.project=aabd-elastic-novedades-20261005,com.redhat.license_terms=https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI,io.k8s.description=The Universal Base Image Minimal is a stripped down image that uses microdnf as a package manager. This base image is freely redistributable, but Red Hat only supports Red Hat technologies through subscriptions for Red Hat products. This image is maintained by Red Hat and updated regularly.,vcs-type=git,version=9.5.4,build-date=2026-09-09T07:31:28Z,com.docker.compose.container-number=1,com.docker.compose.project.working_dir=/home/tears/bigdata/05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05,distribution-scope=public,org.label-schema.build-date=2026-09-09T22:42:53.976833287Z,org.label-schema.vcs-url=https://github.com/elastic/elasticsearch,org.opencontainers.image.vendor=Elastic,org.label-schema.schema-version=1.0,com.docker.compose.depends_on=,com.redhat.component=ubi9-minimal-container,name=Elasticsearch,org.opencontainers.image.source=https://github.com/elastic/elasticsearch,org.opencontainers.image.url=https://www.elastic.co/products/elasticsearch,release=1",
+      "LocalVolumes": "1",
+      "Mounts": "aabd-elastic-n\u2026",
+      "Name": "aabd-elastic-novedades-20261005-elasticsearch-1",
+      "Names": "aabd-elastic-novedades-20261005-elasticsearch-1",
+      "Networks": "aabd-elastic-novedades-20261005_default",
+      "Ports": "9300/tcp, 127.0.0.1:19200->9200/tcp",
+      "Project": "aabd-elastic-novedades-20261005",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 9200,
+          "PublishedPort": 19200,
+          "Protocol": "tcp"
+        },
+        {
+          "URL": "",
+          "TargetPort": 9300,
+          "PublishedPort": 0,
+          "Protocol": "tcp"
+        }
+      ],
+      "RunningFor": "9 minutes ago",
+      "Service": "elasticsearch",
+      "Size": "0B",
+      "State": "running",
+      "Status": "Up 9 minutes (healthy)"
+    },
+    {
+      "Command": "\"/usr/bin/tini -- /u\u2026\"",
+      "CreatedAt": "2026-10-05 10:06:47 +0200 CEST",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "",
+      "ID": "d3a2481f6dee",
+      "Image": "docker.elastic.co/beats/filebeat:9.5.4",
+      "Labels": "vendor=Elastic,name=filebeat,org.opencontainers.image.revision=032ccfa67770989ab0253359280f8ba2cf77ce39,vcs-ref=032ccfa67770989ab0253359280f8ba2cf77ce39,org.label-schema.build-date=2026-09-09T20:58:47Z,org.label-schema.name=filebeat,com.docker.compose.depends_on=elasticsearch:service_healthy:false,apache:service_started:false,com.docker.compose.image=sha256:38fc1277130d8f49131e4d9ce76439ddbaf074f4384de3145ea8cdc45e6d6c2f,com.docker.compose.oneoff=False,distribution-scope=public,io.buildah.version=1.44.0,org.opencontainers.image.authors=infra@elastic.co,build-date=2026-09-09T07:31:28Z,com.docker.compose.project.working_dir=/home/tears/bigdata/05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05,com.docker.compose.service=filebeat,com.redhat.component=ubi9-minimal-container,description=Filebeat sends log files to Logstash or directly to Elasticsearch.,io.k8s.description=Filebeat sends log files to Logstash or directly to Elasticsearch.,license=Elastic License,org.label-schema.vcs-url=github.com/elastic/beats/v7,com.docker.compose.container-number=1,com.docker.compose.project=aabd-elastic-novedades-20261005,io.openshift.tags=minimal rhel9,org.label-schema.license=Elastic License,org.label-schema.schema-version=1.0,org.label-schema.url=https://www.elastic.co/beats/filebeat,org.opencontainers.image.created=2026-09-09T20:58:47Z,org.opencontainers.image.licenses=Elastic License,architecture=x86_64,cpe=cpe:/a:redhat:enterprise_linux:9::appstream,io.k8s.display-name=Filebeat image,io.openshift.expose-services=,maintainer=infra@elastic.co,org.opencontainers.image.title=Filebeat,org.opencontainers.image.vendor=Elastic,release=1,com.docker.compose.config-hash=ff602431dc83ab63602403212d516cb341a4abd538cdd2eb74e2e395a3f14059,com.docker.compose.version=5.6.0,com.redhat.license_terms=https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI,org.label-schema.vendor=Elastic,url=https://www.elastic.co/beats/filebeat,vcs-type=git,com.docker.compose.project.config_files=/home/tears/bigdata/05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05/compose.yaml,org.label-schema.vcs-ref=ccdfcad1de773e22e494089f508162c52b027ee2,org.label-schema.version=9.5.4,summary=filebeat,version=9.5.4",
+      "LocalVolumes": "2",
+      "Mounts": "aabd-elastic-n\u2026,aabd-elastic-n\u2026,/home/tears/bi\u2026",
+      "Name": "aabd-elastic-novedades-20261005-filebeat-1",
+      "Names": "aabd-elastic-novedades-20261005-filebeat-1",
+      "Networks": "aabd-elastic-novedades-20261005_default",
+      "Ports": "",
+      "Project": "aabd-elastic-novedades-20261005",
+      "Publishers": [],
+      "RunningFor": "9 minutes ago",
+      "Service": "filebeat",
+      "Size": "0B",
+      "State": "running",
+      "Status": "Up 7 minutes"
+    },
+    {
+      "Command": "\"/bin/tini -- /usr/l\u2026\"",
+      "CreatedAt": "2026-10-05 10:11:47 +0200 CEST",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "",
+      "ID": "79c165ad66ca",
+      "Image": "docker.elastic.co/kibana/kibana:9.5.4",
+      "Labels": "org.label-schema.usage=https://www.elastic.co/guide/en/kibana/reference/index.html,org.opencontainers.image.created=2026-09-10T00:20:16.578Z,com.docker.compose.project.working_dir=/home/tears/bigdata/05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05,io.openshift.expose-services=,org.label-schema.build-date=2026-09-10T00:20:16.578Z,org.opencontainers.image.documentation=https://www.elastic.co/guide/en/kibana/reference/index.html,com.redhat.component=ubi9-minimal-container,com.docker.compose.config-hash=34726174e089bd3b2ee68e94dda2f8b4444c265643068a23933b94e41785fb81,io.k8s.description=The Universal Base Image Minimal is a stripped down image that uses microdnf as a package manager. This base image is freely redistributable, but Red Hat only supports Red Hat technologies through subscriptions for Red Hat products. This image is maintained by Red Hat and updated regularly.,io.openshift.tags=minimal rhel9,org.label-schema.name=Kibana,org.opencontainers.image.revision=abf4eb613d64cdb3a6290671ce1cb67399677ab3,vcs-ref=032ccfa67770989ab0253359280f8ba2cf77ce39,vcs-type=git,com.docker.compose.container-number=1,description=Your window into the Elastic Stack.,org.label-schema.vendor=Elastic,org.opencontainers.image.licenses=Elastic License,org.opencontainers.image.url=https://www.elastic.co/products/kibana,com.docker.compose.oneoff=False,cpe=cpe:/a:redhat:enterprise_linux:9::appstream,io.k8s.display-name=Red Hat Universal Base Image 9 Minimal,org.label-schema.vcs-url=https://github.com/elastic/kibana,release=1,url=https://catalog.redhat.com/en/search?searchType=containers,com.docker.compose.image=sha256:d84abcfe9c715adc4f507eb0e28b3d9d3ee153b20645fbcbb7838a0dc4f98dac,io.buildah.version=1.44.0,org.label-schema.version=9.5.4,org.opencontainers.image.source=https://github.com/elastic/kibana,org.opencontainers.image.title=Kibana,org.opencontainers.image.version=9.5.4,version=9.5.4,com.redhat.license_terms=https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI,com.docker.compose.version=5.6.0,maintainer=infra@elastic.co,org.label-schema.schema-version=1.0,org.label-schema.url=https://www.elastic.co/products/kibana,org.opencontainers.image.vendor=Elastic,vendor=Elastic,com.docker.compose.depends_on=elasticsearch:service_healthy:false,distribution-scope=public,name=Kibana,org.label-schema.vcs-ref=abf4eb613d64cdb3a6290671ce1cb67399677ab3,summary=Kibana,org.label-schema.license=Elastic License,architecture=x86_64,build-date=2026-09-09T07:31:28Z,com.docker.compose.project=aabd-elastic-novedades-20261005,com.docker.compose.project.config_files=/home/tears/bigdata/05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05/compose.yaml,com.docker.compose.service=kibana",
+      "LocalVolumes": "0",
+      "Mounts": "",
+      "Name": "aabd-elastic-novedades-20261005-kibana-1",
+      "Names": "aabd-elastic-novedades-20261005-kibana-1",
+      "Networks": "aabd-elastic-novedades-20261005_default",
+      "Ports": "127.0.0.1:15601->5601/tcp",
+      "Project": "aabd-elastic-novedades-20261005",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 5601,
+          "PublishedPort": 15601,
+          "Protocol": "tcp"
+        }
+      ],
+      "RunningFor": "4 minutes ago",
+      "Service": "kibana",
+      "Size": "0B",
+      "State": "running",
+      "Status": "Up 3 minutes"
+    }
+  ]
+}

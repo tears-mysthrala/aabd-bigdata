@@ -1,0 +1,15 @@
+{
+  "reviewed": true,
+  "method": "Las cinco páginas renderizadas con pdftoppm -r 85 y examinadas mediante view_image; revisión de texto, tablas, capturas y pies",
+  "pages": 5,
+  "reviewed_pages": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "defects_detected": 0,
+  "pdf_sha256": "42cfdbeef460805b0012539197418be6bb8d7f5f68ac45a65ea67f8bdb8d66f2",
+  "reportlab_image_aspect_read_before_size": true
+}

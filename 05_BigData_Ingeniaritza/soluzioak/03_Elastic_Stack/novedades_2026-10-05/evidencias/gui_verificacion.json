@@ -1,0 +1,28 @@
+{
+  "source": "actual agent-browser accessibility snapshots",
+  "p13_discover_documents": 15,
+  "p13_visible_codes": [
+    200,
+    304,
+    404
+  ],
+  "p13_open_document_message": true,
+  "p15_structured_data": {
+    "usuario": {
+      "request": "/login",
+      "status_code": "401",
+      "metodoa": "POST",
+      "erabiltzailea": "erabiltzailea 1",
+      "bytes": "856",
+      "bezero_ip": "10.0.0.25"
+    },
+    "fecha": {
+      "request": "/login",
+      "status_code": "401",
+      "data": "2026-10-04",
+      "metodoa": "POST",
+      "bytes": "856",
+      "bezero_ip": "10.0.0.25"
+    }
+  }
+}

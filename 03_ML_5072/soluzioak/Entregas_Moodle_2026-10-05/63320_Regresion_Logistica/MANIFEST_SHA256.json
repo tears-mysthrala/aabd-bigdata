@@ -1,0 +1,28 @@
+{
+  "algorithm": "SHA-256",
+  "files": {
+    "63320_Regresion_Logistica_Unai_Urzainqui_Perez.pdf": "911653c382929f037d1d97763fef50c1376cdd875adf498eb00a812c23cc1594",
+    "Flujo_Orange.ows": "a5c6c6c7c3fc374d3785494ee1711c4ebb0404341aa095f73d67cdc512b8d2b1",
+    "QA_ENTREGA.json": "1d359e002034a9a22d3f14d2813f746d083ee471cd0cff9a527a1fa9ddcac859",
+    "README.md": "8b2346f2a7c06ca22275a9913a5647a6dcf6024f5e121b9e433ed7ce0d56c2f4",
+    "curva_ajuste_completo.csv": "02e6345e252db7c9563d96d26a31701d6e7742f9262d596b5dfb9acc90fa932c",
+    "curva_explicativa.py": "0b98f9402c1e2f074173284a1246125d8a5eabb2d28ae44e96d757f437584da2",
+    "datos/wdbc_texture_mean.tab": "3a6b3952ae201a6d72042dbddd84ddc22765af51b77a1125edc72639746611a1",
+    "evidencias/curva_explicativa.png": "4231ee8da9028dcb01066ef713d38c99f655345bb6f11a5e1fb6c7dd6764e399",
+    "evidencias/orange_confusion.png": "8318ab959d3e9bced931bbe9188d7e2f8d825c80072d5085bd323bdbbf15ea86",
+    "evidencias/orange_file.png": "6b514d72ae3b95d4ee36db0ef19dd101b03b031b1978473ab9c33597e12a5c30",
+    "evidencias/orange_modelo.png": "152ae7d7816391eb05489e50720bc5fd7806d950a4a5bbad7fe04e9f9a923bae",
+    "evidencias/orange_preprocess.png": "68f0c2e9868c32060609844b26da64d29d5875925f875e99c2a80fe018262480",
+    "evidencias/orange_roc.png": "da1164ad96e0cf441f08bc50c7f4096e7b6171dad77417c8c9206f7bee7deb2a",
+    "evidencias/orange_test_score.png": "9bbb80cfec726994494ee2b2784ee44852552089ae03ceee2922bdc056165edb",
+    "evidencias/settings_gui.json": "652c0840e4514aa5e29dd1bfd76106b4058d63bd5e65745c5c7a155281034a62",
+    "evidencias/validacion_workflow.json": "e34afd7da7d09b3b11ca07f59f8b181ecc0bed115b344f34dddf5d212ceb7274",
+    "generar_pdf.py": "4e464da6cf9434b2d1b383727a644f267427020a7235073635fa288838a3524f",
+    "observaciones_ajuste_completo.csv": "5236a7470f2e193232424b5a4741091ebc0c8e68f3be352da11deadbe6efd248",
+    "predicciones_oof.csv": "c4a45fa177c4cc482b4d80943f05a8aec6c9d2b038fbf74c0b41a81390a70eaa",
+    "reproducir.py": "110c789cf39506269ddcf154772905cc77e5b575706715947229a0a4d746739a",
+    "requirements-orange.txt": "8f5cd1adde967349ee183ac9aadacd5395653309a491a6f74e963db25bbfdedc",
+    "resultados.json": "0fb75fe39735149570a1859f77b51a8555391463217031f4d7bcffd4ae9ef2bd",
+    "verificar_workflow.py": "be30e1679b8610aaf6995634cd4015d4563c94bb19c1cbf0aa6af0b3622f6390"
+  }
+}

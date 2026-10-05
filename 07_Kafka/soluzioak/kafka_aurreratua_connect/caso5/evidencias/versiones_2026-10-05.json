@@ -1,0 +1,37 @@
+{
+  "captured_at_utc": "2026-10-05T08:48:21.417241+00:00",
+  "mysql": "8.4.11",
+  "mongodb": "8.3.11",
+  "images": {
+    "confluentinc/cp-kafka:7.7.1": {
+      "id": "sha256:653f49c51cfebcf8301938d01044efead6afbd8dd60acd2bcf1605d7c6494d3b",
+      "repo_digests": [
+        "confluentinc/cp-kafka@sha256:653f49c51cfebcf8301938d01044efead6afbd8dd60acd2bcf1605d7c6494d3b"
+      ]
+    },
+    "confluentinc/cp-kafka-connect:7.7.1": {
+      "id": "sha256:c5872175ca3a6d15456adfb644c68a77050c106ea1e11a4cd7f2417a16e00037",
+      "repo_digests": [
+        "confluentinc/cp-kafka-connect@sha256:c5872175ca3a6d15456adfb644c68a77050c106ea1e11a4cd7f2417a16e00037"
+      ]
+    },
+    "mysql:8.4": {
+      "id": "sha256:85b9bf2e29cf836ecb8c2a15a935d4ba0c606631dff1dd79531a11983c638f2a",
+      "repo_digests": [
+        "mysql@sha256:85b9bf2e29cf836ecb8c2a15a935d4ba0c606631dff1dd79531a11983c638f2a"
+      ]
+    },
+    "mongo:8": {
+      "id": "sha256:d731d77bfd7afd66bd487bdf627b5bf7ce4c3602ec461d635977021db529ebbc",
+      "repo_digests": [
+        "mongo@sha256:d731d77bfd7afd66bd487bdf627b5bf7ce4c3602ec461d635977021db529ebbc"
+      ]
+    },
+    "aabd-kafka-connect-caso5:7.7.1": {
+      "id": "sha256:c82952324aa3fdc81d0a68c8a9ba8bff70ecacce6dd61588b43e6ff7f7b2d7a5",
+      "repo_digests": [
+        "aabd-kafka-connect-caso5@sha256:c82952324aa3fdc81d0a68c8a9ba8bff70ecacce6dd61588b43e6ff7f7b2d7a5"
+      ]
+    }
+  }
+}

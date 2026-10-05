@@ -1,0 +1,70 @@
+{
+  "captured_at_utc": "2026-10-05T08:58:22.162528+00:00",
+  "project": "aabd-kafka-connect-20261005-v78",
+  "services": {
+    "connect": {
+      "image": "aabd-kafka-connect-caso5:7.8.0",
+      "mem_limit": "536870912",
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 8083,
+          "published": "18083",
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "kafka": {
+      "image": "confluentinc/cp-kafka:7.7.1",
+      "mem_limit": "536870912",
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 9092,
+          "published": "19094",
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "mongodb": {
+      "image": "mongo:8",
+      "mem_limit": "402653184",
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 27017,
+          "published": "12718",
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "mysql": {
+      "image": "mysql:8.4",
+      "mem_limit": "536870912",
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 3306,
+          "published": "13307",
+          "protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "connect_build_args": {
+    "CONNECT_VERSION": "7.8.0"
+  },
+  "files_sha256": {
+    "Dockerfile": "72f6a5d2c972544ca129852ed672987e1c99be41841b2752938df80a690b8a2e",
+    "compose.yaml": "c3055c10f93d55da536017a9a161209ab8882ff94a431369d0b09871d33385e1",
+    "config/connect-standalone.properties": "1d0adc0b940754a2d2d45fec8fe33da768f52c7d75242423a9b133ef60d41ca3",
+    "config/mysql-source.properties": "012230ef3102b864ef9c5707c8ba81d989ded1c545884d3dccf6cfa9c19f83b5",
+    "config/mongodb-sink.properties": "ad82942766c561da1e11a40ab9de1eef09a721d8b0c6fc3925b3ebcd76ad9106"
+  },
+  "memory": "               total        used        free      shared  buff/cache   available\nMem:           7.0Gi       4.5Gi       290Mi        43Mi       2.7Gi       2.5Gi\nSwap:           14Gi       4.2Gi        10Gi\n",
+  "disk": "Filesystem        Size  Used Avail Use% Mounted on\n/dev/mapper/root  237G  199G   34G  86% /home\n"
+}

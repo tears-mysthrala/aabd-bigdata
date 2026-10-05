@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "tasks": 7,
+  "source_files": 154,
+  "pdf_pages": 31,
+  "largest_upload_bytes": 1758292,
+  "max_allowed_file_bytes": 50000000,
+  "zip_roundtrip_and_inner_manifests": true,
+  "master_zip_bytes": 8600041,
+  "master_zip_sha256": "38cac2dc07df69f1eb9789a3dd8d58ecb04ee45e5e005f27b33b392731966c4c",
+  "submitted_to_moodle": false
+}

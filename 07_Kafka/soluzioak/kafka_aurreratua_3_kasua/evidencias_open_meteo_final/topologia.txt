@@ -1,0 +1,6 @@
+Topic: iabd-aemet-urrea	TopicId: 6HUhN3RaSHmu-0yuGKcQUQ	PartitionCount: 1	ReplicationFactor: 2	Configs: 
+	Topic: iabd-aemet-urrea	Partition: 0	Leader: 1	Replicas: 1,2	Isr: 1,2
+Topic: iabd-aemet-zilarra	TopicId: kTU9uM7LQhqeR6UlxCMnaA	PartitionCount: 1	ReplicationFactor: 2	Configs: 
+	Topic: iabd-aemet-zilarra	Partition: 0	Leader: 3	Replicas: 3,1	Isr: 3,1
+Topic: iabd-aemet-brontzea	TopicId: jqPFVzDNTqCUUkdlsGeAIw	PartitionCount: 1	ReplicationFactor: 2	Configs: 
+	Topic: iabd-aemet-brontzea	Partition: 0	Leader: 1	Replicas: 1,2	Isr: 1,2

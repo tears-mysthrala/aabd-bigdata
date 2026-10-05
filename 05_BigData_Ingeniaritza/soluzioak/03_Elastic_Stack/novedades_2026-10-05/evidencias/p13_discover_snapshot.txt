@@ -1,0 +1,691 @@
+- generic
+  - generic [ref=e1] clickable [onclick]
+    - banner
+      - generic
+        - generic
+          - generic
+            - status "Page change announcements"
+              - StaticText "Discover - Elastic"
+            - button "Skip to main content" [ref=e7]
+              - StaticText "Skip to main content"
+          - link "Elastic home" [ref=e8]
+            - image "Elastic Logo"
+          - generic
+            - generic
+              - generic
+                - searchbox "Find apps, content, and more." [ref=e35]
+              - StaticText "^/"
+            - paragraph
+              - StaticText "Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options."
+          - button "Help menu" [expanded=false, ref=e14]
+          - generic
+            - button "Newsfeed menu - all items read" [expanded=false, ref=e20]
+            - button "Submit feedback" [disabled, ref=e23]
+              - image "Submit feedback"
+            - button "AI Agent" [ref=e24]
+              - StaticText "AI Agent"
+        - generic
+          - button "Toggle primary navigation" [expanded=false, ref=e9]
+          - button "Spaces navigation" [expanded=false, ref=e15]
+            - image "Default"
+          - navigation "Breadcrumbs" [ref=e4]
+            - list
+              - listitem [level=1]
+                - StaticText "Discover"
+          - button "Click to learn more about the “solution view”" [expanded=false, ref=e16]
+            - StaticText "Check out context-aware Discover"
+    - generic
+      - heading "Discover - Session not yet saved" [level=1, ref=e2]
+      - tablist
+        - generic
+          - button "Actions" [expanded=false, ref=e37]
+          - image
+          - image
+        - tab "Untitled" [selected, ref=e5]
+          - StaticText "Untitled"
+      - button "New tab" [ref=e6]
+      - button "Tabs menu" [expanded=false, ref=e10]
+      - navigation "App menu" [ref=e3]
+        - button "Share" [ref=e11]
+          - StaticText "Share"
+        - button "Query in ES|QL" [ref=e12]
+          - StaticText "Query in ES|QL"
+        - button "More" [expanded=false, ref=e21]
+        - group
+          - button "Save" [expanded=false, ref=e17]
+            - StaticText "Save"
+          - button "Save options" [ref=e18]
+      - tabpanel "Untitled"
+        - generic
+          - generic
+            - StaticText "Data view"
+            - generic
+              - button "P13 Apache Filebeat" [expanded=false, ref=e25]
+                - StaticText "P13 Apache Filebeat"
+          - generic
+            - button "Add filter" [expanded=false, ref=e26]
+            - button "Query menu" [expanded=false, ref=e27]
+          - combobox "Search and filter the discover page" [expanded=false, ref=e13]
+            - search
+              - textbox "Start typing to search and filter the discover page" [ref=e36]: message: "aabd00f85c624f4944f883270d356d062b9e"
+                - StaticText "message: \"aabd00f85c624f4944f883270d356d062b9e\""
+              - button "Clear input" [ref=e28]
+          - generic
+            - button "Oct 5, 02:00 → Oct 6, 01:59 1d" [expanded=false, ref=e38]
+              - StaticText "Oct"
+              - StaticText " "
+              - StaticText "5"
+              - StaticText ", "
+              - StaticText "02"
+              - StaticText ":"
+              - StaticText "00"
+              - StaticText " "
+              - StaticText "→"
+              - StaticText " "
+              - StaticText "Oct"
+              - StaticText " "
+              - StaticText "6"
+              - StaticText ", "
+              - StaticText "01"
+              - StaticText ":"
+              - StaticText "59"
+              - StaticText "1d"
+          - group "Time window actions"
+            - Legend
+              - StaticText "Time window actions"
+            - button "Previous" [ref=e29]
+              - StaticText "Previous"
+            - generic
+              - button "Zoom out" [ref=e30]
+                - StaticText "Zoom out"
+            - generic
+              - button "Next" [ref=e31]
+                - StaticText "Next"
+          - group
+            - button "Refresh query" [ref=e22]
+              - StaticText "Refresh"
+            - button "Send to background" [disabled, ref=e32]
+        - generic
+          - generic [ref=e33] clickable [onclick]
+            - generic
+              - generic
+                - generic
+                  - searchbox "Search field names" [ref=e41]
+                - button "Filter by type" [expanded=false, ref=e50]
+                  - StaticText "0"
+              - generic
+                - StaticText "1 selected field. 19 available fields. 6594 empty fields. 4 meta fields."
+                - button "Selected fields: 1 item" [expanded=true, ref=e42]
+                  - strong
+                    - StaticText "Selected fields"
+                - StaticText "1"
+                - group "Selected fields: 1 item"
+                  - link "Go to Available fields" [ref=e46]
+                    - StaticText "Go to Available fields"
+                  - list
+                    - listitem [level=1]
+                      - generic
+                        - button "message" [expanded=false, ref=e55]
+                        - button "Preview message: string" [ref=e56]
+                          - generic
+                            - image "Text"
+                          - StaticText "message"
+                        - button "Remove field from table" [ref=e101]
+                - button "Available fields: 19 items" [expanded=true, ref=e43]
+                  - generic
+                    - strong
+                      - StaticText "Available fields"
+                    - image "Fields available for display in the table." [ref=e52] clickable [cursor:pointer, tabindex]
+                - StaticText "19"
+                - group "Available fields: 19 items"
+                  - link "Go to Empty fields" [ref=e47]
+                    - StaticText "Go to Empty fields"
+                  - list
+                    - listitem [level=1]
+                      - generic
+                        - button "@timestamp" [expanded=false, ref=e57]
+                        - button "Preview @timestamp: date" [ref=e58]
+                          - generic
+                            - image "Date"
+                          - StaticText "@timestamp"
+                        - button "Add field as column" [ref=e102]
+                    - listitem [level=1]
+                      - generic
+                        - button "agent.ephemeral_id" [expanded=false, ref=e59]
+                        - button "Preview agent.ephemeral_id: string" [ref=e60]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "agent.ephemeral_id"
+                        - button "Add field as column" [ref=e103]
+                    - listitem [level=1]
+                      - generic
+                        - button "agent.hostname" [expanded=false, ref=e61]
+                        - button "Preview agent.hostname: string" [ref=e62]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "agent.hostname"
+                        - button "Add field as column" [ref=e104]
+                    - listitem [level=1]
+                      - generic
+                        - button "agent.id" [expanded=false, ref=e63]
+                        - button "Preview agent.id: string" [ref=e64]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "agent.id"
+                        - button "Add field as column" [ref=e105]
+                    - listitem [level=1]
+                      - generic
+                        - button "agent.name" [expanded=false, ref=e65]
+                        - button "Preview agent.name: string" [ref=e66]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "agent.name"
+                        - button "Add field as column" [ref=e106]
+                    - listitem [level=1]
+                      - generic
+                        - button "agent.type" [expanded=false, ref=e67]
+                        - button "Preview agent.type: string" [ref=e68]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "agent.type"
+                        - button "Add field as column" [ref=e107]
+                    - listitem [level=1]
+                      - generic
+                        - button "agent.version" [expanded=false, ref=e69]
+                        - button "Preview agent.version: string" [ref=e70]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "agent.version"
+                        - button "Add field as column" [ref=e108]
+                    - listitem [level=1]
+                      - generic
+                        - button "data_stream.dataset" [expanded=false, ref=e71]
+                        - button "Preview data_stream.dataset: string" [ref=e72]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "data_stream.dataset"
+                        - button "Add field as column" [ref=e109]
+                    - listitem [level=1]
+                      - generic
+                        - button "data_stream.namespace" [expanded=false, ref=e73]
+                        - button "Preview data_stream.namespace: string" [ref=e74]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "data_stream.namespace"
+                        - button "Add field as column" [ref=e110]
+                    - listitem [level=1]
+                      - generic
+                        - button "data_stream.type" [expanded=false, ref=e75]
+                        - button "Preview data_stream.type: string" [ref=e76]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "data_stream.type"
+                        - button "Add field as column" [ref=e111]
+                    - listitem [level=1]
+                      - generic
+                        - button "ecs.version" [expanded=false, ref=e77]
+                        - button "Preview ecs.version: string" [ref=e78]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "ecs.version"
+                        - button "Add field as column" [ref=e112]
+                    - listitem [level=1]
+                      - generic
+                        - button "host.name" [expanded=false, ref=e79]
+                        - button "Preview host.name: string" [ref=e80]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "host.name"
+                        - button "Add field as column" [ref=e113]
+                    - listitem [level=1]
+                      - generic
+                        - button "input.type" [expanded=false, ref=e81]
+                        - button "Preview input.type: string" [ref=e82]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "input.type"
+                        - button "Add field as column" [ref=e114]
+                    - listitem [level=1]
+                      - generic
+                        - button "log.file.device_id" [expanded=false, ref=e83]
+                        - button "Preview log.file.device_id: string" [ref=e84]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "log.file.device_id"
+                        - button "Add field as column" [ref=e115]
+                    - listitem [level=1]
+                      - generic
+                        - button "log.file.fingerprint" [expanded=false, ref=e85]
+                        - button "Preview log.file.fingerprint: string" [ref=e86]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "log.file.fingerprint"
+                        - button "Add field as column" [ref=e116]
+                    - listitem [level=1]
+                      - generic
+                        - button "log.file.inode" [expanded=false, ref=e87]
+                        - button "Preview log.file.inode: string" [ref=e88]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "log.file.inode"
+                        - button "Add field as column" [ref=e117]
+                    - listitem [level=1]
+                      - generic
+                        - button "log.file.path" [expanded=false, ref=e89]
+                        - button "Preview log.file.path: string" [ref=e90]
+                          - generic
+                            - image "Keyword"
+                          - StaticText "log.file.path"
+                        - button "Add field as column" [ref=e118]
+                    - listitem [level=1]
+                      - generic
+                        - button "log.offset" [expanded=false, ref=e91]
+                        - button "Preview log.offset: number" [ref=e92]
+                          - generic
+                            - image "Number"
+                          - StaticText "log.offset"
+                        - button "Add field as column" [ref=e119]
+                    - listitem [level=1]
+                      - generic
+                        - button "message" [expanded=false, ref=e93]
+                        - button "Preview message: string" [ref=e94]
+                          - generic
+                            - image "Text"
+                          - StaticText "message"
+                        - button "Remove field from table" [ref=e120]
+                - button "Empty fields: 6594 items" [expanded=false, ref=e44]
+                  - generic
+                    - strong
+                      - StaticText "Empty fields"
+                    - image "Fields that don't have any values based on your filters." [ref=e53] clickable [cursor:pointer, tabindex]
+                - StaticText "6594"
+                - button "Meta fields: 4 items" [expanded=false, ref=e45]
+                  - strong
+                    - StaticText "Meta fields"
+                - StaticText "4"
+            - button "Add a field" [ref=e39]
+              - StaticText "Add a field"
+          - button "Press the left or right arrow keys to adjust panels size" [ref=e19]
+          - generic [ref=e34] clickable [onclick]
+            - main
+              - generic
+                - generic [ref=e48] clickable [onclick]
+                  - generic [ref=e51] clickable [onclick]
+                    - group "Panels visibility"
+                      - Legend
+                        - StaticText "Panels visibility"
+                      - button "Hide field list" [expanded=true, ref=e95]
+                        - StaticText "Hide field list"
+                      - generic
+                        - button "Hide visualization" [expanded=true, ref=e96]
+                          - StaticText "Hide visualization"
+                      - generic
+                        - button "Hide results table" [expanded=true, ref=e97]
+                          - StaticText "Hide results table"
+                    - button "Select time interval" [expanded=false, ref=e98]
+                      - StaticText "Auto interval"
+                    - button "Select breakdown field" [expanded=false, ref=e121]
+                      - StaticText "No breakdown"
+                    - group "Chart actions"
+                      - Legend
+                        - StaticText "Chart actions"
+                      - button "Edit visualization" [ref=e99]
+                        - StaticText "Edit visualization"
+                    - region "Histogram of found documents" [ref=e54]
+                      - graphics-document
+                        - generic
+                          - generic
+                            - figure
+                              - Figcaption
+                                - DescriptionList
+                                  - term "Chart type:"
+                                    - StaticText "Chart type:"
+                                  - definition
+                                    - StaticText "bar chart"
+                            - image
+                      - StaticText "Oct 5, 2026 @ 02:00:00.000 - Oct 6, 2026 @ 01:59:59.999 (interval: Auto - 30 minutes)"
+                - button "Press the up or down arrow keys to adjust panels size" [ref=e40]
+                - generic [ref=e49] clickable [onclick]
+                  - separator
+                  - generic "Documents"
+                    - heading "Documents" [level=2, ref=e100]
+                    - generic
+                      - tablist
+                        - tab "Documents ( 15 )" [selected, ref=e124]
+                          - StaticText "Documents"
+                          - StaticText " ("
+                          - strong
+                            - StaticText "15"
+                          - StaticText ")"
+                        - tab "Field statistics" [ref=e125]
+                          - StaticText "Field statistics"
+                      - button "Columns - Active: 2" [expanded=false, ref=e129]
+                        - StaticText "Columns"
+                        - marquee "- Active: 2"
+                          - StaticText "2"
+                      - button "Sort fields - Active: 1" [expanded=false, ref=e130]
+                        - StaticText "Sort fields"
+                        - marquee "- Active: 1"
+                          - StaticText "1"
+                      - generic
+                        - button "Find in table" [ref=e131]
+                        - button "Keyboard shortcuts" [expanded=false, ref=e150]
+                        - button "Display options" [expanded=false, ref=e151]
+                        - button "Enter fullscreen" [ref=e132]
+                        - button "Save table to dashboard" [ref=e133]
+                      - grid "Documents Page 1 of 1." [ref=e122] focusable [tabindex]
+                        - generic
+                          - row "Select column Select all visible rows Actions column Info @timestamp message Press the Enter key to view this column's actions"
+                            - columnheader "Select column Select all visible rows" [ref=e152]
+                              - StaticText "Select column"
+                              - generic
+                                - checkbox "Select all visible rows" [checked=false, ref=e216]
+                              - status
+                            - columnheader "Actions column Info" [ref=e153]
+                              - generic
+                                - StaticText "Actions column"
+                                - image "Info" [ref=e217] focusable [tabindex]
+                              - status
+                            - generic
+                              - columnheader "@timestamp" [ref=e214]
+                                - generic
+                                  - StaticText "@timestamp"
+                                  - image "Info" [ref=e250] focusable [tabindex]
+                                - button "@timestamp. Click to view column header actions." [expanded=false, ref=e218]
+                                - status
+                            - generic
+                              - columnheader "message Press the Enter key to view this column's actions" [ref=e215]
+                                - generic
+                                  - image "Text"
+                                  - StaticText "message"
+                                - button "Press the Enter key to view this column's actions" [expanded=false, ref=e219]
+                          - row "Select document '1' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 304 -" [ref=e134] clickable [onclick]
+                            - gridcell "Select document '1'" [ref=e154]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '1'" [checked=false, ref=e235]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e155]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e220]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e156]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 304 -" [ref=e157]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 304 -"
+                          - row "Select document '2' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ez-dago?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e135] clickable [onclick]
+                            - gridcell "Select document '2'" [ref=e158]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '2'" [checked=false, ref=e236]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e159]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e221]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e160]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ez-dago?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e161]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ez-dago?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 404 236"
+                          - row "Select document '3' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ikasleak?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e136] clickable [onclick]
+                            - gridcell "Select document '3'" [ref=e162]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '3'" [checked=false, ref=e237]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e163]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e222]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e164]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ikasleak?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e165]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ikasleak?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 404 236"
+                          - row "Select document '4' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /proba?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e137] clickable [onclick]
+                            - gridcell "Select document '4'" [ref=e166]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '4'" [checked=false, ref=e238]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e167]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e223]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e168]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /proba?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e169]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /proba?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 404 236"
+                          - row "Select document '5' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ez-dago?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e138] clickable [onclick]
+                            - gridcell "Select document '5'" [ref=e170]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '5'" [checked=false, ref=e239]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e171]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e224]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e172]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ez-dago?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e173]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ez-dago?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 404 236"
+                          - row "Select document '6' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ikasleak?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e139] clickable [onclick]
+                            - gridcell "Select document '6'" [ref=e174]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '6'" [checked=false, ref=e240]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e175]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e225]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e176]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ikasleak?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e177]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /ikasleak?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 404 236"
+                          - row "Select document '7' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /proba?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e140] clickable [onclick]
+                            - gridcell "Select document '7'" [ref=e178]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '7'" [checked=false, ref=e241]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e179]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e226]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e180]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /proba?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 404 236" [ref=e181]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /proba?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 404 236"
+                          - row "Select document '8' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e141] clickable [onclick]
+                            - gridcell "Select document '8'" [ref=e182]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '8'" [checked=false, ref=e242]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e183]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e227]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e184]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e185]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 200 201"
+                          - row "Select document '9' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e142] clickable [onclick]
+                            - gridcell "Select document '9'" [ref=e186]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '9'" [checked=false, ref=e243]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e187]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e228]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e188]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e189]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 200 201"
+                          - row "Select document '10' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e143] clickable [onclick]
+                            - gridcell "Select document '10'" [ref=e190]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '10'" [checked=false, ref=e244]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e191]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e229]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e192]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e193]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 200 201"
+                          - row "Select document '11' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e144] clickable [onclick]
+                            - gridcell "Select document '11'" [ref=e194]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '11'" [checked=false, ref=e245]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e195]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e230]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e196]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e197]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 200 201"
+                          - row "Select document '12' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e145] clickable [onclick]
+                            - gridcell "Select document '12'" [ref=e198]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '12'" [checked=false, ref=e246]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e199]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e231]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e200]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e201]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 200 201"
+                          - row "Select document '13' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e146] clickable [onclick]
+                            - gridcell "Select document '13'" [ref=e202]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '13'" [checked=false, ref=e247]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e203]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e232]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e204]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e205]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 200 201"
+                          - row "Select document '14' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e147] clickable [onclick]
+                            - gridcell "Select document '14'" [ref=e206]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '14'" [checked=false, ref=e248]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e207]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e233]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e208]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e209]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 200 201"
+                          - row "Select document '15' Toggle dialog with details Oct 5, 2026 @ 10:11:37.593 172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e148] clickable [onclick]
+                            - gridcell "Select document '15'" [ref=e210]
+                              - generic
+                                - generic
+                                  - checkbox "Select document '15'" [checked=false, ref=e249]
+                                - status
+                            - gridcell "Toggle dialog with details" [ref=e211]
+                              - generic
+                                - button "Toggle dialog with details" [ref=e234]
+                                - status
+                            - gridcell "Oct 5, 2026 @ 10:11:37.593" [ref=e212]
+                              - StaticText "Oct 5, 2026 @ 10:11:37.593"
+                            - gridcell "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run=aabd00f85c624f4944f883270d356d062b9e HTTP/1.1\" 200 201" [ref=e213]
+                              - generic
+                                - StaticText "172.20.0.1 - - [05/Oct/2026:08:11:32 +0000] \"GET /?run="
+                                - mark
+                                  - StaticText "aabd00f85c624f4944f883270d356d062b9e"
+                                - StaticText " HTTP/1.1\" 200 201"
+                      - button "Rows per page: 100" [expanded=false, ref=e126]
+                        - StaticText "Rows per page"
+                        - StaticText ": "
+                        - StaticText "100"
+                      - navigation "Pagination for preceding grid" [ref=e123]
+                        - status
+                          - StaticText "Page 1 of 1"
+                        - button "Previous page" [disabled, ref=e127]
+                        - list
+                          - listitem [level=1]
+                            - button "Page 1 of 1" [disabled, ref=e149]
+                              - StaticText "1"
+                        - button "Next page" [disabled, ref=e128]
+        - generic
+          - paragraph
+          - paragraph
+            - StaticText "Press space or enter to start dragging. When dragging, use the up/down arrow keys to reorder items in the group and left/right arrow keys to choose drop targets outside of the group. Press space or enter again to finish."
+          - paragraph
+            - StaticText "Press space or enter to start dragging. When dragging, use the left/right arrow keys to move between drop targets. Press space or enter again to finish."
+  - log "Notification message list"

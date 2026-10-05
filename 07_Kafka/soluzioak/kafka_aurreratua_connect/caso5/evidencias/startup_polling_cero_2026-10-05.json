@@ -1,0 +1,21 @@
+{
+  "setting": "table.monitoring.startup.polling.limit.ms=0",
+  "observed_error": "Task already exists in this worker: mysql-source-0",
+  "status": {
+    "name": "mysql-source",
+    "connector": {
+      "state": "FAILED",
+      "worker_id": "connect:8083",
+      "trace": "org.apache.kafka.connect.errors.ConnectException: Encountered an unrecoverable error while reading tables from the database\n\tat io.confluent.connect.jdbc.source.TableMonitorThread.fail(TableMonitorThread.java:302)\n\tat io.confluent.connect.jdbc.source.TableMonitorThread.run(TableMonitorThread.java:123)\nCaused by: org.apache.kafka.connect.errors.ConnectException: Task already exists in this worker: mysql-source-0\n\tat org.apache.kafka.connect.runtime.Worker.startTask(Worker.java:676)\n\tat org.apache.kafka.connect.runtime.Worker.startSourceTask(Worker.java:560)\n\tat org.apache.kafka.connect.runtime.standalone.StandaloneHerder.startTask(StandaloneHerder.java:464)\n\tat org.apache.kafka.connect.runtime.standalone.StandaloneHerder.createConnectorTasks(StandaloneHerder.java:448)\n\tat org.apache.kafka.connect.runtime.standalone.StandaloneHerder.createConnectorTasks(StandaloneHerder.java:442)\n\tat org.apache.kafka.connect.runtime.standalone.StandaloneHerder.updateConnectorTasks(StandaloneHerder.java:501)\n\tat org.apache.kafka.connect.runtime.standalone.StandaloneHerder.requestTaskReconfiguration(StandaloneHerder.java:266)\n\tat org.apache.kafka.connect.runtime.HerderConnectorContext.requestTaskReconfiguration(HerderConnectorContext.java:50)\n\tat org.apache.kafka.connect.runtime.WorkerConnector$WorkerConnectorContext.requestTaskReconfiguration(WorkerConnector.java:548)\n\tat io.confluent.connect.jdbc.source.TableMonitorThread.run(TableMonitorThread.java:118)\n"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "state": "RUNNING",
+        "worker_id": "connect:8083"
+      }
+    ],
+    "type": "source"
+  },
+  "accepted_as_solution": false
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-05",
+  "status": "locally_verified_prepared_not_submitted",
+  "pdf": "63320_Regresion_Logistica_Unai_Urzainqui_Perez.pdf",
+  "pages": 5,
+  "all_pdf_pages_rendered_and_visually_inspected": true,
+  "no_clipping_overlap_or_missing_glyphs": true,
+  "OOF_rows": 569,
+  "class_counts": {
+    "B": 357,
+    "M": 212
+  },
+  "accuracy": 0.7065026362038664,
+  "gui_settings_match_model": true,
+  "native_screenshots": true,
+  "workflow_relocated_and_executed": true,
+  "original_sources_modified": false,
+  "publication_or_Moodle_submission": false
+}

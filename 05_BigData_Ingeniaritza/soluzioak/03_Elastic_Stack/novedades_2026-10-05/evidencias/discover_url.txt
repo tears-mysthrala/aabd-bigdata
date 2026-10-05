@@ -1,0 +1,1 @@
+http://127.0.0.1:15601/app/discover#/?_g=%28time%3A%28from%3A%272026-10-05T00%3A00%3A00.000Z%27%2Cto%3A%272026-10-05T23%3A59%3A59.999Z%27%29%29&_a=%28columns%3A%21%28message%29%2Cindex%3A%27aabd-novedades-filebeat%27%2Cquery%3A%28language%3Akuery%2Cquery%3A%27message%3A+%22aabd00f85c624f4944f883270d356d062b9e%22%27%29%29

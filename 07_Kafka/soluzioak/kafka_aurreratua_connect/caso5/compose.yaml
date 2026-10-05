@@ -1,0 +1,105 @@
+name: aabd-kafka-connect-20261005-v78
+
+services:
+  kafka:
+    image: confluentinc/cp-kafka:7.7.1
+    hostname: kafka
+    mem_limit: 512m
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:29093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092,CONTROLLER://0.0.0.0:29093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://localhost:19094
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_NUM_PARTITIONS: 1
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_HEAP_OPTS: -Xms128m -Xmx256m
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    ports:
+      - 127.0.0.1:19094:9092
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    healthcheck:
+      test: [CMD-SHELL, "kafka-topics --bootstrap-server kafka:29092 --list >/dev/null 2>&1"]
+      interval: 15s
+      timeout: 10s
+      retries: 12
+      start_period: 30s
+
+  mysql:
+    image: mysql:8.4
+    mem_limit: 512m
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Run preparar_lab.py first}
+      MYSQL_DATABASE: retail_db
+      MYSQL_USER: iabd
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Run preparar_lab.py first}
+    command: [--innodb-buffer-pool-size=64M, --max-connections=25, --performance-schema=OFF]
+    ports:
+      - 127.0.0.1:13307:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: [CMD-SHELL, "MYSQL_PWD=$$MYSQL_PASSWORD mysql -uiabd retail_db -Nse 'SELECT COUNT(*) FROM categories' >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  mongodb:
+    image: mongo:8
+    mem_limit: 384m
+    command: [mongod, --wiredTigerCacheSizeGB, '0.25', --bind_ip_all]
+    ports:
+      - 127.0.0.1:12718:27017
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: [CMD, mongosh, --quiet, --eval, "quit(db.adminCommand({ping:1}).ok === 1 ? 0 : 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 12
+      start_period: 20s
+
+  connect:
+    build:
+      context: .
+      args:
+        CONNECT_VERSION: 7.8.0
+    image: aabd-kafka-connect-caso5:7.8.0
+    hostname: connect
+    mem_limit: 512m
+    # Base image probes REST before our deliberately manual worker starts.
+    # Container startup and worker readiness are verified in separate steps.
+    healthcheck:
+      disable: true
+    environment:
+      KAFKA_HEAP_OPTS: -Xms128m -Xmx256m
+    depends_on:
+      kafka:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    ports:
+      - 127.0.0.1:18083:8083
+    volumes:
+      - ./config:/opt/kafka-connect/config:ro
+      - ./private:/opt/kafka-connect/private:ro
+      - connect-offsets:/var/lib/kafka-connect
+    # As in PDF p. 58: the worker starts manually in a separate terminal.
+    entrypoint: [/bin/bash, -c, 'exec sleep infinity']
+
+volumes:
+  kafka-data:
+  mysql-data:
+  mongo-data:
+  connect-offsets:

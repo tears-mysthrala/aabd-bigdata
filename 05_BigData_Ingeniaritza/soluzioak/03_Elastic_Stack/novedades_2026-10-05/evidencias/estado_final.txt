@@ -1,0 +1,10 @@
+aabd-elastic-novedades-20261005-apache-1 Exited (0) 48 seconds ago
+aabd-elastic-novedades-20261005-p17-1791188774 Exited (0) 9 minutes ago
+aabd-elastic-novedades-20261005-p16-1791188738 Exited (0) 10 minutes ago
+aabd-elastic-novedades-20261005-p15-1791188702 Exited (0) 10 minutes ago
+aabd-elastic-novedades-20261005-kibana-1 Exited (0) 2 minutes ago
+aabd-elastic-novedades-20261005-filebeat-1 Exited (0) 11 minutes ago
+aabd-elastic-novedades-20261005-elasticsearch-1 Exited (143) 2 minutes ago
+aabd-elastic-novedades-20261005_apache-logs
+aabd-elastic-novedades-20261005_es-data
+aabd-elastic-novedades-20261005_filebeat-data

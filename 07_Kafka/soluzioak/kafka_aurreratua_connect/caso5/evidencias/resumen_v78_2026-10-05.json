@@ -1,0 +1,36 @@
+{
+  "captured_at_utc": "2026-10-05T09:05:51.396131+00:00",
+  "project": "aabd-kafka-connect-20261005-v78",
+  "stages": {
+    "inicial": {
+      "time_utc": "2026-10-05T09:00:45.100398+00:00",
+      "worker": "7.8.0-ccs",
+      "mysql_rows": 3,
+      "kafka_messages": 3,
+      "mongo_documents": 3,
+      "passed": true
+    },
+    "streaming": {
+      "time_utc": "2026-10-05T09:01:32.426568+00:00",
+      "worker": "7.8.0-ccs",
+      "mysql_rows": 4,
+      "kafka_messages": 4,
+      "mongo_documents": 4,
+      "passed": true
+    },
+    "reinicio": {
+      "time_utc": "2026-10-05T09:04:51.743647+00:00",
+      "worker": "7.8.0-ccs",
+      "mysql_rows": 4,
+      "kafka_messages": 4,
+      "mongo_documents": 4,
+      "passed": true
+    }
+  },
+  "source_offset_unchanged_after_restart": true,
+  "jstack_after_restart": {
+    "exit_code": 0,
+    "deadlock_marker_present": false
+  },
+  "passed": true
+}

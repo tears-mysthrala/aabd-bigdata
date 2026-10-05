@@ -1,7 +1,11 @@
-# Elastic Stack praktikak: ebazpena (P1–P14)
+# Elastic Stack praktikak: ebazpena (P1–P17)
 
 Iturria: [`02_elastic_stack.pdf`](../../materialak/02_elastic_stack.pdf)
-(61 or., uneko PDFa 2026-10-01ean egiaztatuta). P1–P4 aurreko exekuzioa:
+(75 or., uneko PDFa 2026-10-05ean irakurrita; 2026-10-01ekoak 61 zituen).
+Numerazio berria: stdin P13 zaharra → **P14**; Grok P14 zaharra → **P15**.
+[Nobedadeen gida eta exekuzioak](novedades_2026-10-05/README.md)
+P13 berriaren, P15 aldaeren, P16 Date-ren eta P17 Mutate-ren ebazpen osoa dira.
+P1–P4 aurreko exekuzioa:
 [exekuzioa_2026-09-28.md](exekuzioa_2026-09-28.md). Script berrerabilgarria:
 [elastic_praktikak.sh](elastic_praktikak.sh) (`ES=... ./elastic_praktikak.sh`;
 assert-ak ditu, `DENAK OK` ematen du). Dev Tools kontsulta bakoitza REST
@@ -85,7 +89,7 @@ cacheatzen da — zenbaki/data/balio zehatzetarako (iragazketa).
 
 ## Egiaztapen-erregistroa
 
-P5–P8 eta P14 **Kibana 9.5.4 errealean egiaztatuta, 2026-10-01**:
+P5–P8 eta P15eko Grok oinarria (orduan P14) **Kibana 9.5.4 errealean egiaztatuta, 2026-10-01**:
 [exekuzioa_2026-10-01.md](exekuzioa_2026-10-01.md).
 [Entregaren gida](dashboards/README.md),
 [16 saved object-en esportazioa](dashboards/kibana_praktikak.ndjson),
@@ -265,7 +269,14 @@ output.logstash:
 - Aldatutako zatia: `output.*` blokea (`output.elasticsearch` → `output.logstash`).
 - Filebeat-ek EZ ditu datuak zuzenean ES-era bidaltzen; hurrengo osagaia Logstash da (Beats input, 5044 portuan entzuten).
 
-## 13. praktika — lehen Logstash pipeline-a (exekutatuta)
+## 13. praktika — Apache + Filebeat kasu praktikoa
+
+PDF eguneratua: 51–60. orriak. Helburua Apache → Filebeat → Elasticsearch →
+Kibana fluxua da. [Gida autoazaldua](novedades_2026-10-05/README.md#p13--apache--filebeat--elasticsearch--kibana)
+prestaketa, Compose isolatua, 15 HTTP eskaera, log partekatuaren egiaztapena,
+REST eta Discover urratsak, emaitzak eta hamabost galderen erantzunak ditu.
+
+## 14. praktika — lehen Logstash pipeline-a (exekutatuta)
 
 ```bash
 echo "Kaixo Logstash" | docker run --rm -i \
@@ -290,9 +301,9 @@ Behatutako eventua:
 - Ez dago filter blokerik: ez da derrigorrezkoa; eraldaketarik gabe pasatzen da.
 - `message` = `Kaixo Logstash`; `@timestamp` Logstash-ek sartutako uneko ordua.
 
-## 14. praktika — Grok Debugger
+## 15. praktika — Grok Debugger
 
-PDF: 56. orria. **Kibana → Dev Tools → Grok Debugger → Simulate** bidez
+PDF eguneratua: 65–66. orriak (aurreko PDFan 56). **Kibana → Dev Tools → Grok Debugger → Simulate** bidez
 bi laginak exekutatu eta bost eremuak egiaztatu dira (2026-10-01).
 
 ```text
@@ -313,3 +324,22 @@ bi laginak exekutatu eta bost eremuak egiaztatu dira (2026-10-01).
 
 Motak: NUMBER-ek hemen kateak sortzen ditu. Zenbakizko motak nahi badira,
 `%{NUMBER:status_code:int}` eta `%{NUMBER:bytes:int}` erabil daitezke.
+
+2026-10-05eko bi aldaera berriak (erabiltzailea amaieran eta data hasieran)
+[nobedadeen gidan](novedades_2026-10-05/README.md#p15--grok-debugger-bi-aldaera-berriak)
+daude: patroi osoak, lau lagin on, IP okerreko kontrola eta Logstash benetako
+irteerak. Erabiltzailea `erabiltzailea 1` osoa da; data `2026-10-04`.
+
+## 16. praktika — Grok + Date
+
+PDF: 70. orria. [Ebazpena eta pipeline osoa](novedades_2026-10-05/README.md#p16--grok--date).
+Grok-ek bost eremuak ateratzen ditu; Date-k `dd/MMM/yyyy:HH:mm:ss`, `locale=en`
+eta `timezone=Europe/Madrid` erabiliz gertaeraren data `@timestamp` bihurtzen du.
+Zona PDFan zehaztu gabe dago eta hipotesia dokumentatuta dago.
+
+## 17. praktika — Mutate
+
+PDF: 71–72. orriak. [Ebazpena eta JSON pipeline-a](novedades_2026-10-05/README.md#p17--mutate-mota-izena-eta-eremuak).
+`status_code` eta `bytes` integer bihurtu, `request` → `uri` berrizendatu eta
+`message` ezabatu. Verifikadoreak Logstash benetako irteeraren motak eta
+eremuen presentzia/ausentzia egiaztatzen ditu.

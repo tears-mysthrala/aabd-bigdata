@@ -1,0 +1,3 @@
+.pdf-deps/
+.venv/
+__pycache__/

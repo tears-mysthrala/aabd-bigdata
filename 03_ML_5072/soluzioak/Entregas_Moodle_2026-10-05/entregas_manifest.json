@@ -1,0 +1,945 @@
+{
+  "generated_at_utc": "2026-10-05T10:58:14.859369+00:00",
+  "submitted_to_moodle": false,
+  "tasks": [
+    {
+      "id": "63638",
+      "title": "Interpretación AI4I",
+      "moodle_url": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63638",
+      "teacher_statement": "publicada",
+      "prepared_on_assumptions": false,
+      "source_folder": "63638_Interpretacion_AI4I",
+      "source_files": [
+        {
+          "path": "63638_Interpretacion_AI4I/AI4I_Interpretacion_Orange.pdf",
+          "bytes": 490494,
+          "sha256": "af78a308f2c2e5b6ec19f3dfb9500f88a3ac04853ee97fde132fdc2c272035ea"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/Interpretacion_AI4I.ows",
+          "bytes": 4004,
+          "sha256": "78ad54c235fe2fccb3f0bc9d55f8dfa84ae32b389e7d10d122092f4f25a39adc"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/README.md",
+          "bytes": 6259,
+          "sha256": "8c4432aa2659700da81447717501d10be011d242aa98345ee67f0a83378877dc"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/SHA256SUMS",
+          "bytes": 2149,
+          "sha256": "0d791202a04ccfa6d8f67220f5ee940134c387da6e8e7d4a889f5ce508355850"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/capturas/01_file.png",
+          "bytes": 117664,
+          "sha256": "e4008e48908bf3a6e96d060f683a36faa5eb2aeef3c3c4af4e5628580cc853ba"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/capturas/02_scatter_speed_torque.png",
+          "bytes": 269231,
+          "sha256": "5720af7690f6bb4a8499d60be8ff03704f823d6d2aa8529f7b55b66420696d5a"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/capturas/03_distributions_torque.png",
+          "bytes": 93736,
+          "sha256": "c4929fbdaf5924dba882ffdb49c7de54494c15f880b07e9e067a60cb628a507e"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/datos/ai4i2020.csv",
+          "bytes": 522048,
+          "sha256": "dc6630cd9b1f0f853922fad78a1b6436570d3f1ec863f1dd5c4340ac56bc8a8e"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/datos/ai4i2020_orange.tab",
+          "bytes": 512197,
+          "sha256": "ee1eea94b956b9f3569d3800384a62ac967af9ee42de4286e2c5365dd94e9a23"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/evidencias/estadisticas.json",
+          "bytes": 2596,
+          "sha256": "01801db92d594975c4684efb20fbd09b49755f3f875df3f75ccd8424cca1c739"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/evidencias/flujo_reabierto.json",
+          "bytes": 502,
+          "sha256": "ea5d1297c66ca94fbae85f0d53fae037480cf40e78b84a1fdc92466f9bb31295"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/evidencias/fuente.json",
+          "bytes": 649,
+          "sha256": "f512ead000cbf424e7a0507ec2f09e5977bdcc05850c39f17039c4edeaa2658b"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/evidencias/orange_gui.json",
+          "bytes": 1250,
+          "sha256": "9576e18bc38d74918eb30c01c4f48dacc106e9d760842fa073d71d2acf510893"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/evidencias/pdf_render/pagina-1.png",
+          "bytes": 166856,
+          "sha256": "b0d3a1f568807ea5835027e27b86e76cea45d2c2a1cf76776f14c71096b80e1f"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/evidencias/pdf_render/pagina-2.png",
+          "bytes": 198324,
+          "sha256": "dd8f2e91d8b649a5635d08715c587675fe2080f586d30a3f8dba1b5dc2ff1651"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/evidencias/pdf_render/pagina-3.png",
+          "bytes": 132552,
+          "sha256": "c595d3e330f8195aae92ebde03e678c495a43c58a799f7c1aebe60c727fe840c"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/evidencias/pdf_render/pagina-4.png",
+          "bytes": 162381,
+          "sha256": "a49bf0cea18dd29126e433043a94d7e7f1aeb10f4d5d2149ca8076a4a133ffab"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/evidencias/revision_visual.json",
+          "bytes": 1223,
+          "sha256": "ea84a4dfa4f87ca52237e45f0e6acef8fe60a012979aa3a4f58b2b775aca3892"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/evidencias/verificacion.json",
+          "bytes": 339,
+          "sha256": "575c90104672921c6003d30ab40312136ab04cae05a056bf8b71eacdeb50713d"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/reproducir.sh",
+          "bytes": 856,
+          "sha256": "0a8ed89a3895bc403a0734de1dab1dc1ba5ec9e62da57b95e53b4711628d2e76"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/scripts/capturar_orange.py",
+          "bytes": 7671,
+          "sha256": "ca9da251275a2639c8ab34601262b561b4bc910c6bc04935edfa80b49da7c941"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/scripts/estadisticas.py",
+          "bytes": 3427,
+          "sha256": "35a36b29dd5f51b167129c1004d2d1c07daae6c1a20deb37371ca7e8adf35dc6"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/scripts/generar_pdf.py",
+          "bytes": 12724,
+          "sha256": "e6f0479bc9e36d1f1b5ce879ad882faabe2f854c2bcdc7cb71371115cf73f8fa"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/scripts/verificar.py",
+          "bytes": 3926,
+          "sha256": "d9b5f4c8c3eb94c5a7ace877b026208cb96462899f58c029926988a95313021a"
+        },
+        {
+          "path": "63638_Interpretacion_AI4I/scripts/verificar_flujo_orange.py",
+          "bytes": 3434,
+          "sha256": "dc47ac8b838a1168c72de3ec96d6149a162d0ee97ea855d58cbc9484988ae725"
+        }
+      ],
+      "upload_files": [
+        {
+          "path": "para_subir/63638/AI4I_Interpretacion_Orange.pdf",
+          "bytes": 490494,
+          "sha256": "af78a308f2c2e5b6ec19f3dfb9500f88a3ac04853ee97fde132fdc2c272035ea"
+        },
+        {
+          "path": "para_subir/63638/reproduccion_63638.zip",
+          "bytes": 1758292,
+          "sha256": "06d416cea4c1fe12d0568212abe373e33e78c72a692fe67f79fa95a9dea05cb9"
+        }
+      ]
+    },
+    {
+      "id": "63320",
+      "title": "Regresión logística",
+      "moodle_url": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63320",
+      "teacher_statement": "publicada",
+      "prepared_on_assumptions": false,
+      "source_folder": "63320_Regresion_Logistica",
+      "source_files": [
+        {
+          "path": "63320_Regresion_Logistica/63320_Regresion_Logistica_Unai_Urzainqui_Perez.pdf",
+          "bytes": 420387,
+          "sha256": "911653c382929f037d1d97763fef50c1376cdd875adf498eb00a812c23cc1594"
+        },
+        {
+          "path": "63320_Regresion_Logistica/Flujo_Orange.ows",
+          "bytes": 6152,
+          "sha256": "a5c6c6c7c3fc374d3785494ee1711c4ebb0404341aa095f73d67cdc512b8d2b1"
+        },
+        {
+          "path": "63320_Regresion_Logistica/MANIFEST_SHA256.json",
+          "bytes": 2364,
+          "sha256": "0bfbf17795a364d4111e4a89076bb84793c01ad44678abcef9466c863e9b28f1"
+        },
+        {
+          "path": "63320_Regresion_Logistica/QA_ENTREGA.json",
+          "bytes": 562,
+          "sha256": "1d359e002034a9a22d3f14d2813f746d083ee471cd0cff9a527a1fa9ddcac859"
+        },
+        {
+          "path": "63320_Regresion_Logistica/README.md",
+          "bytes": 4666,
+          "sha256": "8b2346f2a7c06ca22275a9913a5647a6dcf6024f5e121b9e433ed7ce0d56c2f4"
+        },
+        {
+          "path": "63320_Regresion_Logistica/curva_ajuste_completo.csv",
+          "bytes": 22796,
+          "sha256": "02e6345e252db7c9563d96d26a31701d6e7742f9262d596b5dfb9acc90fa932c"
+        },
+        {
+          "path": "63320_Regresion_Logistica/curva_explicativa.py",
+          "bytes": 2463,
+          "sha256": "0b98f9402c1e2f074173284a1246125d8a5eabb2d28ae44e96d757f437584da2"
+        },
+        {
+          "path": "63320_Regresion_Logistica/datos/wdbc_texture_mean.tab",
+          "bytes": 8778,
+          "sha256": "3a6b3952ae201a6d72042dbddd84ddc22765af51b77a1125edc72639746611a1"
+        },
+        {
+          "path": "63320_Regresion_Logistica/evidencias/curva_explicativa.png",
+          "bytes": 101759,
+          "sha256": "4231ee8da9028dcb01066ef713d38c99f655345bb6f11a5e1fb6c7dd6764e399"
+        },
+        {
+          "path": "63320_Regresion_Logistica/evidencias/orange_confusion.png",
+          "bytes": 53896,
+          "sha256": "8318ab959d3e9bced931bbe9188d7e2f8d825c80072d5085bd323bdbbf15ea86"
+        },
+        {
+          "path": "63320_Regresion_Logistica/evidencias/orange_file.png",
+          "bytes": 81122,
+          "sha256": "6b514d72ae3b95d4ee36db0ef19dd101b03b031b1978473ab9c33597e12a5c30"
+        },
+        {
+          "path": "63320_Regresion_Logistica/evidencias/orange_modelo.png",
+          "bytes": 22253,
+          "sha256": "152ae7d7816391eb05489e50720bc5fd7806d950a4a5bbad7fe04e9f9a923bae"
+        },
+        {
+          "path": "63320_Regresion_Logistica/evidencias/orange_preprocess.png",
+          "bytes": 66221,
+          "sha256": "68f0c2e9868c32060609844b26da64d29d5875925f875e99c2a80fe018262480"
+        },
+        {
+          "path": "63320_Regresion_Logistica/evidencias/orange_roc.png",
+          "bytes": 94118,
+          "sha256": "da1164ad96e0cf441f08bc50c7f4096e7b6171dad77417c8c9206f7bee7deb2a"
+        },
+        {
+          "path": "63320_Regresion_Logistica/evidencias/orange_test_score.png",
+          "bytes": 76266,
+          "sha256": "9bbb80cfec726994494ee2b2784ee44852552089ae03ceee2922bdc056165edb"
+        },
+        {
+          "path": "63320_Regresion_Logistica/evidencias/settings_gui.json",
+          "bytes": 1546,
+          "sha256": "652c0840e4514aa5e29dd1bfd76106b4058d63bd5e65745c5c7a155281034a62"
+        },
+        {
+          "path": "63320_Regresion_Logistica/evidencias/validacion_workflow.json",
+          "bytes": 261,
+          "sha256": "e34afd7da7d09b3b11ca07f59f8b181ecc0bed115b344f34dddf5d212ceb7274"
+        },
+        {
+          "path": "63320_Regresion_Logistica/generar_pdf.py",
+          "bytes": 12013,
+          "sha256": "4e464da6cf9434b2d1b383727a644f267427020a7235073635fa288838a3524f"
+        },
+        {
+          "path": "63320_Regresion_Logistica/observaciones_ajuste_completo.csv",
+          "bytes": 17747,
+          "sha256": "5236a7470f2e193232424b5a4741091ebc0c8e68f3be352da11deadbe6efd248"
+        },
+        {
+          "path": "63320_Regresion_Logistica/predicciones_oof.csv",
+          "bytes": 32015,
+          "sha256": "c4a45fa177c4cc482b4d80943f05a8aec6c9d2b038fbf74c0b41a81390a70eaa"
+        },
+        {
+          "path": "63320_Regresion_Logistica/reproducir.py",
+          "bytes": 11501,
+          "sha256": "110c789cf39506269ddcf154772905cc77e5b575706715947229a0a4d746739a"
+        },
+        {
+          "path": "63320_Regresion_Logistica/requirements-orange.txt",
+          "bytes": 81,
+          "sha256": "8f5cd1adde967349ee183ac9aadacd5395653309a491a6f74e963db25bbfdedc"
+        },
+        {
+          "path": "63320_Regresion_Logistica/resultados.json",
+          "bytes": 3948,
+          "sha256": "0fb75fe39735149570a1859f77b51a8555391463217031f4d7bcffd4ae9ef2bd"
+        },
+        {
+          "path": "63320_Regresion_Logistica/verificar_workflow.py",
+          "bytes": 3242,
+          "sha256": "be30e1679b8610aaf6995634cd4015d4563c94bb19c1cbf0aa6af0b3622f6390"
+        }
+      ],
+      "upload_files": [
+        {
+          "path": "para_subir/63320/63320_Regresion_Logistica_Unai_Urzainqui_Perez.pdf",
+          "bytes": 420387,
+          "sha256": "911653c382929f037d1d97763fef50c1376cdd875adf498eb00a812c23cc1594"
+        },
+        {
+          "path": "para_subir/63320/reproduccion_63320.zip",
+          "bytes": 822053,
+          "sha256": "216fd8295b0a54f7cc5465a4f79e1757652bfb7fc6a3f9af6e25c4c28102cc14"
+        }
+      ]
+    },
+    {
+      "id": "63321",
+      "title": "KNN",
+      "moodle_url": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63321",
+      "teacher_statement": "publicada",
+      "prepared_on_assumptions": false,
+      "source_folder": "63321_KNN",
+      "source_files": [
+        {
+          "path": "63321_KNN/63321_KNN_Iris_Unai_Urzainqui_Perez.pdf",
+          "bytes": 232004,
+          "sha256": "8faefac277b8922dfe3468624d773f4031a76d6d4772229cf482a4bd8efba4c8"
+        },
+        {
+          "path": "63321_KNN/Flujo_Orange.ows",
+          "bytes": 4128,
+          "sha256": "fcf0e1c84c3927e2ec5df7e2ff8d26f2cf17320cd45a05f2135f7ecbf8da315c"
+        },
+        {
+          "path": "63321_KNN/MANIFEST_SHA256.json",
+          "bytes": 1717,
+          "sha256": "7a165dee118a34f504091e045a1708264e70ad2922bb8971798052a89ff437ed"
+        },
+        {
+          "path": "63321_KNN/QA_ENTREGA.json",
+          "bytes": 570,
+          "sha256": "c132403dfce14da0726ad950fbb01bc06cb61819ab277feeb359d209bd3ac343"
+        },
+        {
+          "path": "63321_KNN/README.md",
+          "bytes": 4161,
+          "sha256": "88d840c63602fd999fc50fec133d6cc8e00831ff2593a0bfb34eb633e8245b52"
+        },
+        {
+          "path": "63321_KNN/datos/iris.csv",
+          "bytes": 3918,
+          "sha256": "e48cd67255542c6c404e58f409cfdde207f2e03513d37576bcfb7713343c1d7e"
+        },
+        {
+          "path": "63321_KNN/evidencias/orange_confusion.png",
+          "bytes": 58164,
+          "sha256": "9c4979a22866136ee939627d3247a8ce7d0c684ba087fdfbf20d3d4ee9049f13"
+        },
+        {
+          "path": "63321_KNN/evidencias/orange_file.png",
+          "bytes": 90309,
+          "sha256": "0831bc36f86fdbf64cc4e07d5f3d5da420f752b2c418f6bab10556859ffa5648"
+        },
+        {
+          "path": "63321_KNN/evidencias/orange_modelo.png",
+          "bytes": 17290,
+          "sha256": "7e45916c18092d1dcf72f2a3b0e3f2177cb02c66edf45c1f6601a6f80f1a22d4"
+        },
+        {
+          "path": "63321_KNN/evidencias/orange_test_score.png",
+          "bytes": 70669,
+          "sha256": "21ab36c9d6550d753a9975a0893c0261bd698c13d2e755f76cd64f172d08f7fc"
+        },
+        {
+          "path": "63321_KNN/evidencias/settings_gui.json",
+          "bytes": 948,
+          "sha256": "bdca5b8d328d6022297f6098a1bf19384e402a6e354e64852ab47ed89395d931"
+        },
+        {
+          "path": "63321_KNN/evidencias/validacion_workflow.json",
+          "bytes": 261,
+          "sha256": "a0e66c6512d9d15900a1db185b993c633bbfc2be88a112ed327813db13fb7b89"
+        },
+        {
+          "path": "63321_KNN/generar_pdf.py",
+          "bytes": 12013,
+          "sha256": "4e464da6cf9434b2d1b383727a644f267427020a7235073635fa288838a3524f"
+        },
+        {
+          "path": "63321_KNN/predicciones_oof.csv",
+          "bytes": 8435,
+          "sha256": "dc59eedaf4665886833dcdca96a76efecf353db747cf0876fea92e35c813aaeb"
+        },
+        {
+          "path": "63321_KNN/reproducir.py",
+          "bytes": 11754,
+          "sha256": "74454a283f0675aca0a89ae261dc74fb43d50a4398db10264eb199100c53f109"
+        },
+        {
+          "path": "63321_KNN/requirements-orange.txt",
+          "bytes": 81,
+          "sha256": "8f5cd1adde967349ee183ac9aadacd5395653309a491a6f74e963db25bbfdedc"
+        },
+        {
+          "path": "63321_KNN/resultados.json",
+          "bytes": 2355,
+          "sha256": "08ce8f367662d56147696e59de4bf262fb0fb6fcdf3a21a9c3b5a131bd11af46"
+        },
+        {
+          "path": "63321_KNN/verificar_workflow.py",
+          "bytes": 3242,
+          "sha256": "be30e1679b8610aaf6995634cd4015d4563c94bb19c1cbf0aa6af0b3622f6390"
+        }
+      ],
+      "upload_files": [
+        {
+          "path": "para_subir/63321/63321_KNN_Iris_Unai_Urzainqui_Perez.pdf",
+          "bytes": 232004,
+          "sha256": "8faefac277b8922dfe3468624d773f4031a76d6d4772229cf482a4bd8efba4c8"
+        },
+        {
+          "path": "para_subir/63321/reproduccion_63321.zip",
+          "bytes": 405675,
+          "sha256": "d27c819b25e43db678d9f0119d21b5074098b91f63185b128cecf9fe64764bcb"
+        }
+      ]
+    },
+    {
+      "id": "63325",
+      "title": "Jupyter: LogReg vs KNN",
+      "moodle_url": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63325",
+      "teacher_statement": "plantillas",
+      "prepared_on_assumptions": false,
+      "source_folder": "63325_Jupyter_LogReg_KNN",
+      "source_files": [
+        {
+          "path": "63325_Jupyter_LogReg_KNN/Informe_LogReg_KNN.pdf",
+          "bytes": 118584,
+          "sha256": "53b6a0dd553c0ed14e199e4976f8f8e6236f22a7d8c69564adf6e61a45409cc5"
+        },
+        {
+          "path": "63325_Jupyter_LogReg_KNN/README.md",
+          "bytes": 1731,
+          "sha256": "7773ea23d916e9d9dcfaf3b6a1f31d0e96a9c5b50ddb52dea41fe71d50e18ff3"
+        },
+        {
+          "path": "63325_Jupyter_LogReg_KNN/crear_pdf.py",
+          "bytes": 7200,
+          "sha256": "4208d7c7e533eb4c7bd670bf450005a1dc6b220f48687b4b748764345fe80422"
+        },
+        {
+          "path": "63325_Jupyter_LogReg_KNN/ejecutar_notebook.py",
+          "bytes": 1620,
+          "sha256": "e69a1f2ec09bd8e007f9bf0a1d93e28acc3aab65326fff396206e199b35718b2"
+        },
+        {
+          "path": "63325_Jupyter_LogReg_KNN/erabaki_mugak.png",
+          "bytes": 115126,
+          "sha256": "e862cbf00b9bda224b755bf70fae44d6ce88e99bbd0d6ac86ef5b2b71ec1e132"
+        },
+        {
+          "path": "63325_Jupyter_LogReg_KNN/iris_logreg_knn.ipynb",
+          "bytes": 118773,
+          "sha256": "2748d761b7a483371b042b32d629633c4ba8e4340b0a007baa66b895315de4ae"
+        },
+        {
+          "path": "63325_Jupyter_LogReg_KNN/requirements.txt",
+          "bytes": 193,
+          "sha256": "546971081d78c758821f718916b95e5fb9b9580fed1eecd71dd6eff06e5469f9"
+        },
+        {
+          "path": "63325_Jupyter_LogReg_KNN/resultados.json",
+          "bytes": 859,
+          "sha256": "bd15b6927ebae8b0aba8a95ec1c204fb3c7b6c912d30cd510894b5dc5857982b"
+        },
+        {
+          "path": "63325_Jupyter_LogReg_KNN/txostena_beteta.md",
+          "bytes": 3515,
+          "sha256": "1f1a898b05253a868088e6c39f2c0688da995e9ca085c069ac043c96d1660946"
+        },
+        {
+          "path": "63325_Jupyter_LogReg_KNN/verificacion.json",
+          "bytes": 675,
+          "sha256": "7a5159863d8f5faac9fa207aeaadf1c9a0c82b20268a51d626e9f54a68965559"
+        }
+      ],
+      "upload_files": [
+        {
+          "path": "para_subir/63325/Informe_LogReg_KNN.pdf",
+          "bytes": 118584,
+          "sha256": "53b6a0dd553c0ed14e199e4976f8f8e6236f22a7d8c69564adf6e61a45409cc5"
+        },
+        {
+          "path": "para_subir/63325/reproduccion_63325.zip",
+          "bytes": 289776,
+          "sha256": "545376c93b734ee78fc3a9042f5b9134674a4be6b1c290b60719dbe7bb11b14e"
+        },
+        {
+          "path": "para_subir/63325/iris_logreg_knn.ipynb",
+          "bytes": 118773,
+          "sha256": "2748d761b7a483371b042b32d629633c4ba8e4340b0a007baa66b895315de4ae"
+        },
+        {
+          "path": "para_subir/63325/txostena_beteta.md",
+          "bytes": 3515,
+          "sha256": "1f1a898b05253a868088e6c39f2c0688da995e9ca085c069ac043c96d1660946"
+        },
+        {
+          "path": "para_subir/63325/erabaki_mugak.png",
+          "bytes": 115126,
+          "sha256": "e862cbf00b9bda224b755bf70fae44d6ce88e99bbd0d6ac86ef5b2b71ec1e132"
+        }
+      ]
+    },
+    {
+      "id": "63544",
+      "title": "Árbol de decisión",
+      "moodle_url": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63544",
+      "teacher_statement": "vacía; criterio declarado",
+      "prepared_on_assumptions": true,
+      "source_folder": "63544_Arbol_Decision",
+      "source_files": [
+        {
+          "path": "63544_Arbol_Decision/.gitignore",
+          "bytes": 31,
+          "sha256": "5eb845f81e5ba40473a038959582a05974b21b466d3ec610fc961b88f8692080"
+        },
+        {
+          "path": "63544_Arbol_Decision/Arbol_Decision_Iris.ows",
+          "bytes": 8663,
+          "sha256": "abf9e01e9effbff700b2e04729d79ffd443f20425e094bec57abbf251e62847d"
+        },
+        {
+          "path": "63544_Arbol_Decision/Arbol_Decision_Iris.pdf",
+          "bytes": 352336,
+          "sha256": "189a76ae7d47a632ea805f75cb5c5d7a30f1be7b50bcc395f27f3f69c8b175a1"
+        },
+        {
+          "path": "63544_Arbol_Decision/README.md",
+          "bytes": 6638,
+          "sha256": "e5c5be9bcb5f3dac0894f2187d77331b5e11db27d51d0a9ac43d143fe6ae7af7"
+        },
+        {
+          "path": "63544_Arbol_Decision/SHA256SUMS",
+          "bytes": 2329,
+          "sha256": "3f5ac3c0277f1e37309fddae02da281907ecfc8f50dd34e5a8e1046e036fd289"
+        },
+        {
+          "path": "63544_Arbol_Decision/capturas/orange_confusion.png",
+          "bytes": 62439,
+          "sha256": "3ea123b2476ede464f485df46d0ab0da54c1d94d37b5ce946a50184d1263211f"
+        },
+        {
+          "path": "63544_Arbol_Decision/capturas/orange_modelo.png",
+          "bytes": 104057,
+          "sha256": "67b225aa7ea3c41aa2abf3253f7112ada64494baa27218a1f7469761e479620c"
+        },
+        {
+          "path": "63544_Arbol_Decision/capturas/orange_roc.png",
+          "bytes": 85704,
+          "sha256": "34eef3b27cfb662a42d4aa6dbc51f74dbb2f2cb9eb144dbdabf38c733561db8d"
+        },
+        {
+          "path": "63544_Arbol_Decision/capturas/orange_test_score.png",
+          "bytes": 77803,
+          "sha256": "618ab80255bb69fa0705fc727519d9030dca8f99c1c23770f0dfb37489d2669b"
+        },
+        {
+          "path": "63544_Arbol_Decision/capturas/orange_tree_viewer.png",
+          "bytes": 75014,
+          "sha256": "faddfe1943fe8d3a56806beb97a736060cee4568a856d3000a212e8b7fd3816d"
+        },
+        {
+          "path": "63544_Arbol_Decision/config.json",
+          "bytes": 264,
+          "sha256": "39658bbd3acd4911f9ac0c74d349d46430437358857baaee66c4c17b1fede58b"
+        },
+        {
+          "path": "63544_Arbol_Decision/datos/iris.csv",
+          "bytes": 3918,
+          "sha256": "e48cd67255542c6c404e58f409cfdde207f2e03513d37576bcfb7713343c1d7e"
+        },
+        {
+          "path": "63544_Arbol_Decision/generar_pdf.py",
+          "bytes": 11925,
+          "sha256": "1ba83fade822fd811ea5e34c205a8f8eadf2c32532d049127735aa7a565e2ae0"
+        },
+        {
+          "path": "63544_Arbol_Decision/modelo_orange.py",
+          "bytes": 424,
+          "sha256": "cdc527f16d933b03fdc9d45862790909d16368985b3e162143f431dd65f67a60"
+        },
+        {
+          "path": "63544_Arbol_Decision/recursos/LICENCIA_Liberation.txt",
+          "bytes": 4414,
+          "sha256": "93fed46019c38bbe566b479d22148e2e8a1e85ada614accb0211c37b2c61c19b"
+        },
+        {
+          "path": "63544_Arbol_Decision/recursos/LiberationSans-Bold.ttf",
+          "bytes": 414568,
+          "sha256": "769673c4355020b1e28a14c366a152da410ab6b16239fe883ebc35b73624835b"
+        },
+        {
+          "path": "63544_Arbol_Decision/recursos/LiberationSans-Regular.ttf",
+          "bytes": 410820,
+          "sha256": "baccc64becc3eb7d104b7c84d99f5314a0a1f896e2b3ea6c2f22fc08d2003bee"
+        },
+        {
+          "path": "63544_Arbol_Decision/reproducir.py",
+          "bytes": 11113,
+          "sha256": "66e7af9b49dac61dafccf7ef1ce703dedf74b078139d43e29bcbb0e33cc71c6f"
+        },
+        {
+          "path": "63544_Arbol_Decision/requirements-pdf.txt",
+          "bytes": 17,
+          "sha256": "905a4d823bdd13cd21ed118b51d5a48fd4c352d978e3db5e3a6a7022d93c13ff"
+        },
+        {
+          "path": "63544_Arbol_Decision/salidas/arbol.txt",
+          "bytes": 268,
+          "sha256": "9c81091390b8e90616d75162ac720168778d2a5a9cb7c036d836b33a39a57a44"
+        },
+        {
+          "path": "63544_Arbol_Decision/salidas/metricas.json",
+          "bytes": 5566,
+          "sha256": "f02064c736acdb8f2ea67e1a6a75fa837ca75d91771b94c2a789777f8265f746"
+        },
+        {
+          "path": "63544_Arbol_Decision/salidas/predicciones_oof.csv",
+          "bytes": 11000,
+          "sha256": "8b3a4667808176b030dee668896c226fc2e2129d18fd90d7c26a6a14098afd70"
+        },
+        {
+          "path": "63544_Arbol_Decision/verificacion/portabilidad.json",
+          "bytes": 776,
+          "sha256": "66ab3acce4a7031b4e9c75f685cf0eb6ad7216b110268d040be9466bc243aecf"
+        },
+        {
+          "path": "63544_Arbol_Decision/verificacion/revision_visual.json",
+          "bytes": 402,
+          "sha256": "2c9bcd6117973cba6bf35f2fd47ba0791f06c3cb12b715be0520a7ab5883ef72"
+        },
+        {
+          "path": "63544_Arbol_Decision/verificacion/verificacion.json",
+          "bytes": 411,
+          "sha256": "6efc62adb4a2747ac7e5875f0c43c1d525b6cdf6962838c804cfbe0656464591"
+        },
+        {
+          "path": "63544_Arbol_Decision/verificar.py",
+          "bytes": 3167,
+          "sha256": "19f96aba64945d3834a47284f35174a5f57902b61509317220e31f0fd7265d61"
+        },
+        {
+          "path": "63544_Arbol_Decision/verificar_portabilidad.py",
+          "bytes": 4163,
+          "sha256": "591883f7220830f34f3e3db2d36e0c538ecc316c5e086df6e9ccab8d72f09e5b"
+        }
+      ],
+      "upload_files": [
+        {
+          "path": "para_subir/63544/Arbol_Decision_Iris.pdf",
+          "bytes": 352336,
+          "sha256": "189a76ae7d47a632ea805f75cb5c5d7a30f1be7b50bcc395f27f3f69c8b175a1"
+        },
+        {
+          "path": "para_subir/63544/reproduccion_63544.zip",
+          "bytes": 1092029,
+          "sha256": "bed9ba43df25cc1fbb9df4219ff230b8739224ead1d0d52e8fb3bed69066691a"
+        }
+      ]
+    },
+    {
+      "id": "63386",
+      "title": "Random Forest",
+      "moodle_url": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63386",
+      "teacher_statement": "vacía; criterio declarado",
+      "prepared_on_assumptions": true,
+      "source_folder": "63386_Random_Forest",
+      "source_files": [
+        {
+          "path": "63386_Random_Forest/.gitignore",
+          "bytes": 31,
+          "sha256": "5eb845f81e5ba40473a038959582a05974b21b466d3ec610fc961b88f8692080"
+        },
+        {
+          "path": "63386_Random_Forest/README.md",
+          "bytes": 6690,
+          "sha256": "a91e7655c7a1117228bcaadbbfa128fde7caf0757e7cbff1a1aac2c979a82b0c"
+        },
+        {
+          "path": "63386_Random_Forest/Random_Forest_Iris.ows",
+          "bytes": 6296,
+          "sha256": "840d1cb993928e190e8bdbd73e2bd80aae0d5e9f7caf38e12685b04f9f217658"
+        },
+        {
+          "path": "63386_Random_Forest/Random_Forest_Iris.pdf",
+          "bytes": 377180,
+          "sha256": "adf89d9a1e2c46f6bb84543f41054891070d7456304b845d75df558a0aa71d15"
+        },
+        {
+          "path": "63386_Random_Forest/SHA256SUMS",
+          "bytes": 2145,
+          "sha256": "248ab3c489520ab9d8d8127cdce0c3bbc6484429b99e3c1a7e845c8539a95805"
+        },
+        {
+          "path": "63386_Random_Forest/capturas/orange_confusion.png",
+          "bytes": 62512,
+          "sha256": "23d09fe4a7bdb7915451c55868611d6bffbce93a522b59f9f765441a98e4a775"
+        },
+        {
+          "path": "63386_Random_Forest/capturas/orange_modelo.png",
+          "bytes": 112775,
+          "sha256": "3dd6860c2c278e698b6c5f56399e45e8e37c16d3f60f02f309b6fa9c29a8d453"
+        },
+        {
+          "path": "63386_Random_Forest/capturas/orange_roc.png",
+          "bytes": 82120,
+          "sha256": "80dff2d02993328fe8bb3d698861f4aa22382123b044961d8bb4abfb0ca326f9"
+        },
+        {
+          "path": "63386_Random_Forest/capturas/orange_test_score.png",
+          "bytes": 80013,
+          "sha256": "0369ff5f0b9bd7817ef0ea387f55909d7bd656bcd8d27df309fb4bcd4fa3b0ae"
+        },
+        {
+          "path": "63386_Random_Forest/config.json",
+          "bytes": 333,
+          "sha256": "221ad9ef3bf2abdb63dffd3b75c80ea4f5ddcfffcf925a295733fd6373384381"
+        },
+        {
+          "path": "63386_Random_Forest/datos/iris.csv",
+          "bytes": 3918,
+          "sha256": "e48cd67255542c6c404e58f409cfdde207f2e03513d37576bcfb7713343c1d7e"
+        },
+        {
+          "path": "63386_Random_Forest/generar_pdf.py",
+          "bytes": 11925,
+          "sha256": "1ba83fade822fd811ea5e34c205a8f8eadf2c32532d049127735aa7a565e2ae0"
+        },
+        {
+          "path": "63386_Random_Forest/modelo_orange.py",
+          "bytes": 458,
+          "sha256": "67e20bdefff68115103655849ad21191e2f693d45c871bd8818f40b94134882b"
+        },
+        {
+          "path": "63386_Random_Forest/recursos/LICENCIA_Liberation.txt",
+          "bytes": 4414,
+          "sha256": "93fed46019c38bbe566b479d22148e2e8a1e85ada614accb0211c37b2c61c19b"
+        },
+        {
+          "path": "63386_Random_Forest/recursos/LiberationSans-Bold.ttf",
+          "bytes": 414568,
+          "sha256": "769673c4355020b1e28a14c366a152da410ab6b16239fe883ebc35b73624835b"
+        },
+        {
+          "path": "63386_Random_Forest/recursos/LiberationSans-Regular.ttf",
+          "bytes": 410820,
+          "sha256": "baccc64becc3eb7d104b7c84d99f5314a0a1f896e2b3ea6c2f22fc08d2003bee"
+        },
+        {
+          "path": "63386_Random_Forest/reproducir.py",
+          "bytes": 11113,
+          "sha256": "66e7af9b49dac61dafccf7ef1ce703dedf74b078139d43e29bcbb0e33cc71c6f"
+        },
+        {
+          "path": "63386_Random_Forest/requirements-pdf.txt",
+          "bytes": 17,
+          "sha256": "905a4d823bdd13cd21ed118b51d5a48fd4c352d978e3db5e3a6a7022d93c13ff"
+        },
+        {
+          "path": "63386_Random_Forest/salidas/metricas.json",
+          "bytes": 5335,
+          "sha256": "e1f943b440ec1ea347ef644a7159b77ec503434a56950b3e682204e84e3725cf"
+        },
+        {
+          "path": "63386_Random_Forest/salidas/predicciones_oof.csv",
+          "bytes": 9940,
+          "sha256": "c24e1c69957697371aa200331a9cc6c7052326d630a3d75ae825bdbcfc6ae922"
+        },
+        {
+          "path": "63386_Random_Forest/verificacion/portabilidad.json",
+          "bytes": 773,
+          "sha256": "a5c3b623453c7400f4adb2059d45bf288062a9a549baedcee1ac16d7fe126b34"
+        },
+        {
+          "path": "63386_Random_Forest/verificacion/revision_visual.json",
+          "bytes": 402,
+          "sha256": "645df9b9db86a2f5ee64252478e6c628776df443073b07648ec6996cb330a1b9"
+        },
+        {
+          "path": "63386_Random_Forest/verificacion/verificacion.json",
+          "bytes": 411,
+          "sha256": "9db11b8eeb8fda2397626030b64467186af4589f0d6a9e7494acebbed4078550"
+        },
+        {
+          "path": "63386_Random_Forest/verificar.py",
+          "bytes": 3288,
+          "sha256": "59784c905ee5f85c4515f842b8070ca2f48e0389f0c0879e1eea93711da1fad6"
+        },
+        {
+          "path": "63386_Random_Forest/verificar_portabilidad.py",
+          "bytes": 4163,
+          "sha256": "591883f7220830f34f3e3db2d36e0c538ecc316c5e086df6e9ccab8d72f09e5b"
+        }
+      ],
+      "upload_files": [
+        {
+          "path": "para_subir/63386/Random_Forest_Iris.pdf",
+          "bytes": 377180,
+          "sha256": "adf89d9a1e2c46f6bb84543f41054891070d7456304b845d75df558a0aa71d15"
+        },
+        {
+          "path": "para_subir/63386/reproduccion_63386.zip",
+          "bytes": 1048915,
+          "sha256": "3538e3c71fbaa3e6b4fa4d91d8a014be376aee03c0e13b3165aab03d01811b0a"
+        }
+      ]
+    },
+    {
+      "id": "63380",
+      "title": "SVM",
+      "moodle_url": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63380",
+      "teacher_statement": "vacía; criterio declarado",
+      "prepared_on_assumptions": true,
+      "source_folder": "63380_SVM",
+      "source_files": [
+        {
+          "path": "63380_SVM/.gitignore",
+          "bytes": 31,
+          "sha256": "5eb845f81e5ba40473a038959582a05974b21b466d3ec610fc961b88f8692080"
+        },
+        {
+          "path": "63380_SVM/README.md",
+          "bytes": 7038,
+          "sha256": "38cc2ebde27323aded395359c31f641cd2ee4341dc9b8e1be2d0bcbf7160f5c7"
+        },
+        {
+          "path": "63380_SVM/SHA256SUMS",
+          "bytes": 2125,
+          "sha256": "9cb23447a8f320780cb1a404d59d5d0aa56dda31c74afddf6e430c5f0a039614"
+        },
+        {
+          "path": "63380_SVM/SVM_Iris.ows",
+          "bytes": 6433,
+          "sha256": "19d2961a36fc03404a879cbb85ab68e9f72c578243a78f4213cadadb0bf1bb34"
+        },
+        {
+          "path": "63380_SVM/SVM_Iris.pdf",
+          "bytes": 410645,
+          "sha256": "42cfdbeef460805b0012539197418be6bb8d7f5f68ac45a65ea67f8bdb8d66f2"
+        },
+        {
+          "path": "63380_SVM/capturas/orange_confusion.png",
+          "bytes": 62286,
+          "sha256": "280de66d5a96f9743b6c05431f016aaa31ea176fe9bc0ff6c6662dfba7e6bbbb"
+        },
+        {
+          "path": "63380_SVM/capturas/orange_modelo.png",
+          "bytes": 160587,
+          "sha256": "ec9dfef394723cfd8a35b28c41fb455713ab14a580c6e179a33a054ee93497ea"
+        },
+        {
+          "path": "63380_SVM/capturas/orange_roc.png",
+          "bytes": 77743,
+          "sha256": "49f2aa81aeb15b16d9111f2f6a0560689880e4516dda3c34c7644efd5a407170"
+        },
+        {
+          "path": "63380_SVM/capturas/orange_test_score.png",
+          "bytes": 80662,
+          "sha256": "d71494eda9ee01ab8e432eae17cea53fc55d1bbecabbba5d0889dda99361eb41"
+        },
+        {
+          "path": "63380_SVM/config.json",
+          "bytes": 339,
+          "sha256": "f20dae7c8990be2840e809b0acb092af20bd2bfc218fc2b4c35c527a090439d5"
+        },
+        {
+          "path": "63380_SVM/datos/iris.csv",
+          "bytes": 3918,
+          "sha256": "e48cd67255542c6c404e58f409cfdde207f2e03513d37576bcfb7713343c1d7e"
+        },
+        {
+          "path": "63380_SVM/generar_pdf.py",
+          "bytes": 11925,
+          "sha256": "1ba83fade822fd811ea5e34c205a8f8eadf2c32532d049127735aa7a565e2ae0"
+        },
+        {
+          "path": "63380_SVM/modelo_orange.py",
+          "bytes": 556,
+          "sha256": "f53a0ae9cd600a1eba033878a8389dc2557a4ec13464881bc46793ba19970aa1"
+        },
+        {
+          "path": "63380_SVM/recursos/LICENCIA_Liberation.txt",
+          "bytes": 4414,
+          "sha256": "93fed46019c38bbe566b479d22148e2e8a1e85ada614accb0211c37b2c61c19b"
+        },
+        {
+          "path": "63380_SVM/recursos/LiberationSans-Bold.ttf",
+          "bytes": 414568,
+          "sha256": "769673c4355020b1e28a14c366a152da410ab6b16239fe883ebc35b73624835b"
+        },
+        {
+          "path": "63380_SVM/recursos/LiberationSans-Regular.ttf",
+          "bytes": 410820,
+          "sha256": "baccc64becc3eb7d104b7c84d99f5314a0a1f896e2b3ea6c2f22fc08d2003bee"
+        },
+        {
+          "path": "63380_SVM/reproducir.py",
+          "bytes": 11113,
+          "sha256": "66e7af9b49dac61dafccf7ef1ce703dedf74b078139d43e29bcbb0e33cc71c6f"
+        },
+        {
+          "path": "63380_SVM/requirements-pdf.txt",
+          "bytes": 17,
+          "sha256": "905a4d823bdd13cd21ed118b51d5a48fd4c352d978e3db5e3a6a7022d93c13ff"
+        },
+        {
+          "path": "63380_SVM/salidas/metricas.json",
+          "bytes": 8536,
+          "sha256": "c654ddcf7e2bb6eb27b5ea30e11b48496bf6171e8c183bb527a584866a618bec"
+        },
+        {
+          "path": "63380_SVM/salidas/predicciones_oof.csv",
+          "bytes": 15624,
+          "sha256": "5ece1233902ad3e4ce9ce14537e13efca3712050627900202ac87874fe5748d3"
+        },
+        {
+          "path": "63380_SVM/verificacion/portabilidad.json",
+          "bytes": 729,
+          "sha256": "eb83533bd3e95d6795c7a708b9d1d4dbe0aeca63bdabcf3d0ef920c84507d4e9"
+        },
+        {
+          "path": "63380_SVM/verificacion/revision_visual.json",
+          "bytes": 402,
+          "sha256": "2853b9b8e2ff3d1c18cd3fe5992ce4856b59ec04028c9cc80a41d346cef1125c"
+        },
+        {
+          "path": "63380_SVM/verificacion/verificacion.json",
+          "bytes": 411,
+          "sha256": "5db46a446d74d975ff0f8e6095dba40fc6a22ea73b6648fc885ef0012d5e2199"
+        },
+        {
+          "path": "63380_SVM/verificar.py",
+          "bytes": 3288,
+          "sha256": "59784c905ee5f85c4515f842b8070ca2f48e0389f0c0879e1eea93711da1fad6"
+        },
+        {
+          "path": "63380_SVM/verificar_portabilidad.py",
+          "bytes": 4163,
+          "sha256": "591883f7220830f34f3e3db2d36e0c538ecc316c5e086df6e9ccab8d72f09e5b"
+        }
+      ],
+      "upload_files": [
+        {
+          "path": "para_subir/63380/SVM_Iris.pdf",
+          "bytes": 410645,
+          "sha256": "42cfdbeef460805b0012539197418be6bb8d7f5f68ac45a65ea67f8bdb8d66f2"
+        },
+        {
+          "path": "para_subir/63380/reproduccion_63380.zip",
+          "bytes": 1126316,
+          "sha256": "cd73427ae44cf888a4cec3de08838a9d882a7af2fa428efb94f4b2f239847e16"
+        }
+      ]
+    }
+  ]
+}

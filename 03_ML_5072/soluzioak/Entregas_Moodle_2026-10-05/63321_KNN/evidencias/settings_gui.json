@@ -1,0 +1,46 @@
+{
+  "0": {
+    "widget": "File",
+    "n_folds": null,
+    "cv_stratified": null,
+    "C_index": null,
+    "penalty_type": null,
+    "n_neighbors": null,
+    "metric_index": null,
+    "weight_index": null,
+    "preprocessors": null
+  },
+  "1": {
+    "widget": "kNN",
+    "n_folds": null,
+    "cv_stratified": null,
+    "C_index": null,
+    "penalty_type": null,
+    "n_neighbors": 3,
+    "metric_index": 0,
+    "weight_index": 0,
+    "preprocessors": null
+  },
+  "2": {
+    "widget": "Test and Score",
+    "n_folds": 3,
+    "cv_stratified": true,
+    "C_index": null,
+    "penalty_type": null,
+    "n_neighbors": null,
+    "metric_index": null,
+    "weight_index": null,
+    "preprocessors": null
+  },
+  "3": {
+    "widget": "Confusion Matrix",
+    "n_folds": null,
+    "cv_stratified": null,
+    "C_index": null,
+    "penalty_type": null,
+    "n_neighbors": null,
+    "metric_index": null,
+    "weight_index": null,
+    "preprocessors": null
+  }
+}

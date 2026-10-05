@@ -1,0 +1,11 @@
+filebeat.inputs:
+  - type: filestream
+    id: apache-access
+    enabled: true
+    paths: ["/var/log/apache/access_log"]
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+setup.template.settings:
+  index.number_of_shards: 1
+  index.number_of_replicas: 0
+logging.level: info

@@ -1,5 +1,7 @@
 # 03_ML_5072 — soluzioak ✅
 
+[Entregas Moodle del 05/10/2026](Entregas_Moodle_2026-10-05/README.md): seis trabajos individuales y revisión AI4I, con informes, capturas nativas, datos y paquetes autónomos preparados por tarea.
+
 - `5072_ML_praktika.py` / `.ipynb` (7 gelaxka): EDA + aurreprozesamendua + erregresioa + sailkapena, `cnc_mock.csv`-rekin.
 - Exekuzioa, **repoaren errotik**:
   `01_Erronka1_CNC_Guard/proyecto_cnc_guard/.venv/bin/python 03_ML_5072/soluzioak/5072_ML_praktika.py`.
@@ -69,10 +71,10 @@ No hace falta regenerar esos artefactos para estudiar los existentes.
 |---|---|---|
 | CNC, práctica básica | ¿Cómo tratar NaN y categorías antes de regresión/clasificación? | Compara MSE con la media de train y F1/matriz con accuracy. El dato pequeño y desbalanceado limita conclusiones. |
 | Auto MPG | ¿Qué relación hay entre peso (`weight`, libras) y consumo (`mpg`, millas/galón)? | Diferencia recta ajustada con todos los coches de errores **out-of-fold**. R² no es un porcentaje genérico de aciertos; RMSE/MAE están en mpg. |
-| Heart Disease | ¿Cómo comparar cuatro clasificadores bajo CV? | Lee métricas de la clase objetivo, matriz y ROC; el workflow y el script pueden tener preprocesamientos distintos, así que no exijas igualdad sin comparar la configuración. |
+| [Heart Disease](Heart_Disease_Evaluacion.md) | ¿Cómo comparar cuatro clasificadores bajo CV? | Lee métricas de la clase objetivo, matriz y ROC; el workflow y el script pueden tener preprocesamientos distintos, así que no exijas igualdad sin comparar la configuración. |
 | WDBC | ¿Cómo la textura media produce P(maligno) con regresión logística? | Los puntos del scatter son diagnósticos 0/1 y la sigmoide es probabilidad de un ajuste completo. Para evaluar usa las predicciones CV, no la curva completa. |
 | [Iris, fronteras 2D](Iris_LogReg_KNN/README.md) | LogReg/KNN con dos atributos y ajuste sobre todas las flores. | La accuracy es de entrenamiento, no de generalización. |
-| [Iris en Orange](Orange_KNN_Iris.md) | KNN con cuatro atributos y CV de 10 folds. | Comprueba File/CV/matriz; el export de predicciones presenta 90 etiquetas desalineadas, documentadas en su guía. No está validado por muestra. |
+| [Iris en Orange](Orange_KNN_Iris.md) | KNN con cuatro atributos y CV de 10 folds. | Exportación corregida y validada fila a fila: CA 0.9600, 144/150 aciertos; cuatro atributos, 10 folds y seed 42. Guía y PDF regenerados el 2026-10-02. |
 
 En Orange abre File primero y, si necesita una ruta nueva, selecciona el `.tab`
 o CSV local indicado en su guía de datos. Comprueba atributos/target y después
@@ -83,3 +85,9 @@ material docente; sus métricas no representan validación clínica.
 Las figuras y PDF son entregas derivadas. Los scripts, tablas y JSON guardados
 permiten seguir sus cálculos; la presencia de una figura no certifica que el
 workflow GUI se haya ejecutado con la configuración actual.
+
+La [entrega de interpretación de datos en Orange](Interpretacion_Datos/README.md) incluye el PDF específico de la tarea 63638 con capturas reales de Iris.
+
+## SVM — material nuevo de Moodle
+
+[Guía SVC/SVR y notebook ejecutado](SVM/README.md): ejemplos del PDF, evaluación de entrenamiento y extensión fuera de muestra separadas. La tarea SVM - Ariketa está confirmada (05/10), con introducción vacía y sin fecha límite visible; no se realizó entrega.

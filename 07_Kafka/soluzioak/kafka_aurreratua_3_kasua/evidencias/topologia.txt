@@ -1,0 +1,12 @@
+Verificación CLI 2026-10-02; brokers de laboratorio dedicados, posteriormente detenidos.
+Topic: iabd-aemet-brontzea	TopicId: 0ifXNrRNQlCVRmjfqVcAPw	PartitionCount: 1	ReplicationFactor: 2	Configs: 
+	Topic: iabd-aemet-brontzea	Partition: 0	Leader: 2	Replicas: 2,3	Isr: 2,3
+Topic: iabd-aemet-zilarra	TopicId: zliWMFs1TXKSU5CcI2vL3w	PartitionCount: 1	ReplicationFactor: 2	Configs: 
+	Topic: iabd-aemet-zilarra	Partition: 0	Leader: 3	Replicas: 3,1	Isr: 3,1
+Topic: iabd-aemet-urrea	TopicId: Jtd0TvdXSqGBhD-cvUIG4g	PartitionCount: 1	ReplicationFactor: 2	Configs: 
+	Topic: iabd-aemet-urrea	Partition: 0	Leader: 2	Replicas: 2,3	Isr: 2,3
+iabd-3kasua-silver-gold
+iabd-3kasua-gold
+iabd-3kasua-fitxategia
+iabd-3kasua-bronze-silver
+iabd-3kasua-mongo

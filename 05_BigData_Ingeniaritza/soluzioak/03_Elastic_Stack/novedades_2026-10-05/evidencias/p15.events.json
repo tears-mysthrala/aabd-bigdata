@@ -1,0 +1,82 @@
+[
+  {
+    "message": "192.168.1.105 GET /api 500 1234",
+    "bezero_ip": "192.168.1.105",
+    "status_code": "500",
+    "@version": "1",
+    "bytes": "1234",
+    "metodoa": "GET",
+    "host": {
+      "hostname": "ba10b709ca81"
+    },
+    "request": "/api",
+    "event": {
+      "original": "192.168.1.105 GET /api 500 1234"
+    },
+    "@timestamp": "2026-10-05T08:25:37.917608621Z"
+  },
+  {
+    "message": "10.0.0.25 POST /login 200 856",
+    "bezero_ip": "10.0.0.25",
+    "status_code": "200",
+    "@version": "1",
+    "bytes": "856",
+    "metodoa": "POST",
+    "host": {
+      "hostname": "ba10b709ca81"
+    },
+    "request": "/login",
+    "event": {
+      "original": "10.0.0.25 POST /login 200 856"
+    },
+    "@timestamp": "2026-10-05T08:25:37.923946339Z"
+  },
+  {
+    "bezero_ip": "10.0.0.25",
+    "bytes": "856",
+    "erabiltzailea": "erabiltzailea 1",
+    "host": {
+      "hostname": "ba10b709ca81"
+    },
+    "request": "/login",
+    "event": {
+      "original": "10.0.0.25 POST /login 401 856 erabiltzailea 1"
+    },
+    "message": "10.0.0.25 POST /login 401 856 erabiltzailea 1",
+    "status_code": "401",
+    "@timestamp": "2026-10-05T08:25:37.924717582Z",
+    "@version": "1",
+    "metodoa": "POST"
+  },
+  {
+    "bezero_ip": "10.0.0.25",
+    "bytes": "856",
+    "host": {
+      "hostname": "ba10b709ca81"
+    },
+    "request": "/login",
+    "event": {
+      "original": "2026-10-04 10.0.0.25 POST /login 401 856"
+    },
+    "message": "2026-10-04 10.0.0.25 POST /login 401 856",
+    "status_code": "401",
+    "@timestamp": "2026-10-05T08:25:37.925515615Z",
+    "@version": "1",
+    "data": "2026-10-04",
+    "metodoa": "POST"
+  },
+  {
+    "message": "invalid-ip GET /api 500 1234",
+    "@version": "1",
+    "tags": [
+      "_grokparsefailure"
+    ],
+    "host": {
+      "hostname": "ba10b709ca81"
+    },
+    "event": {
+      "original": "invalid-ip GET /api 500 1234"
+    },
+    "@timestamp": "2026-10-05T08:25:37.927316256Z"
+  }
+]

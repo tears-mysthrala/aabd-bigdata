@@ -27,7 +27,7 @@ Classic aldaeran `SplitText`-ek SQL irteerako lerro bakoitzerako FlowFile bana s
 
 Record API aldaerak ez du erregistro bakoitzerako FlowFile banaketarik egiten. `PutMongoRecord`-ek batch bidezko idazketa erabil dezake eta horrek eskaera/FlowFile gainkarga murrizteko aukera ematen du. Emaitza batch tamainak, datu-bolumenak, zerbitzuen konfigurazioak, MongoDBren egoerak eta inguruneko baliabideek baldintzatzen dute; ezin da abiadura-ratio jakin bat ondorioztatu egitura hutsetik.
 
-**Egiaztapen-egoera:** ohar hau eta bi JSONak estatikoan berrikusi dira. Lan honetan ez dira NiFi, MariaDB edo MongoDB exekutatu edo konektatu, eta ez dira `find()`/zenbaketa egiaztapenak, insertak edo benchmarkak egin. Dokumentu honen aurreko bertsioan agertzen ziren 2.508 eta 160.600 dokumentuko kopuruak kendu dira, ez baitago hemen haiek berresteko exekuzio-ebidentziarik. Beraz, ez da zuzeneko kargarik edo errendimendu-emaitzarik baieztatzen.
+**Egiaztapen-egoera (2026-10-02):** ejecutados NiFi 2.0.0, MySQL 8.4 y MongoDB 7 en laboratorio aislado. Ambas variantes escribieron 253.516 documentos (12.435 customers, 68.883 orders, 172.198 order_items). [Comparación completa de filas](evidencias/comparacion_contenido_completo.json): cero diferencias con SQL tras normalizar fechas e importes monetarios. Classic produce 253.516 FlowFiles de registros; Record envía tres conjuntos al sink. No se midió benchmark controlado y MariaDB no se ejecutó. La [receta del README](README.md) conserva reproducción y límites.
 
 ## 4. Ondorioa
 

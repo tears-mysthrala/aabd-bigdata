@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "method": "WidgetsScheme + scheme_load, señales reales; no llamadas manuales set_data/set_learner",
+  "workflow": "Arbol_Decision_Iris.ows",
+  "relocated_directory": "/home/tears/bigdata/03_ML_5072/soluzioak/Entregas_Moodle_2026-10-05/63544_Arbol_Decision/verificacion/portabilidad",
+  "cwd": "/home/tears/bigdata/03_ML_5072/soluzioak/Entregas_Moodle_2026-10-05/63544_Arbol_Decision/verificacion",
+  "relative_dataset_resolved": true,
+  "rows": 150,
+  "gui_accuracy": 0.9466666666666667,
+  "all_oof_predictions_match": true,
+  "all_oof_probabilities_match": true,
+  "downstream_confusion_received": true,
+  "roc_target": "versicolor",
+  "qt_platform": "wayland",
+  "workflow_sha256": "abf9e01e9effbff700b2e04729d79ffd443f20425e094bec57abbf251e62847d"
+}

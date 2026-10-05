@@ -6,7 +6,7 @@ Orduro exekutatzen da (systemd timer bidez):
 2. Atal guztiak aztertzen ditu (fitxategiak, karpetak, zereginak).
 3. Aldaketak edo fitxategi berriak badaude, deskargatu eta dagokion karpetan jartzen ditu.
 4. .docx fitxategiak .md formatura bihurtzen ditu.
-5. Git commit eta push egiten ditu GitHub-era.
+5. Material egiaztatua berrikuspen-adar batean argitaratzen du.
 6. Mahaigaineko jakinarazpena bidaltzen du (notify-send).
 """
 
@@ -62,26 +62,63 @@ def notify(title: str, msg: str) -> None:
         log(f"Ezin izan da notify-send exekutatu: {e}")
 
 
+class MoodleAuthenticationRejected(RuntimeError):
+    """El servidor rechaza la autenticación; repetir puede bloquear la cuenta."""
+
+
+def check_login_rejection(message: str) -> None:
+    """Clasificar mensajes conocidos sin escribir el texto recibido ni secretos."""
+    normalized = " ".join(message.casefold().split())
+    if any(text in normalized for text in (
+        "account is locked", "cuenta está bloqueada", "kontua blokeatuta",
+    )):
+        raise MoodleAuthenticationRejected(
+            "Cuenta Moodle bloqueada: requiere desbloqueo humano; no se reintenta"
+        )
+    if any(text in normalized for text in (
+        "invalid login", "nombre de usuario o contraseña incorrectos",
+    )):
+        raise MoodleAuthenticationRejected(
+            "Moodle rechaza el login: comprobar acceso configurado; no se reintenta"
+        )
+
+
 def lortu_saioa() -> requests.Session:
     """Chromium bidez saioa hasi eta cookies-ak eskuratu."""
-    if not USERNAME or not PASSWORD:
-        raise SystemExit("Falta MOODLE_USER/MOODLE_PASS en el entorno (nunca en código).")
     from playwright.sync_api import sync_playwright
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(
-            executable_path="/usr/bin/chromium",
-            headless=True,
-            args=["--no-sandbox", "--disable-dev-shm-usage"],
-        )
-        page = browser.new_page()
-        page.goto(f"{BASE_URL}/login/index.php")
-        page.fill("#username", USERNAME)
-        page.fill("#password", PASSWORD)
-        page.click("#loginbtn")
-        page.wait_for_load_state("networkidle")
-        cookies = page.context.cookies()
-        browser.close()
+        cdp_port = os.environ.get("MOODLE_BROWSER_CDP_PORT")
+        if cdp_port:
+            port = int(cdp_port)
+            if not 1 <= port <= 65535:
+                raise ValueError("Puerto CDP local inválido")
+            browser = p.chromium.connect_over_cdp(f"http://127.0.0.1:{port}")
+            # Uso manual autorizado de la sesión existente. Solo cookies de
+            # Moodle, en memoria: no se exportan ni se cierra su navegador.
+            cookies = browser.contexts[0].cookies(BASE_URL)
+        else:
+            if not USERNAME or not PASSWORD:
+                raise SystemExit("Falta MOODLE_USER/MOODLE_PASS en el entorno (nunca en código).")
+            browser = p.chromium.launch(
+                executable_path="/usr/bin/chromium",
+                headless=True,
+                args=["--no-sandbox", "--disable-dev-shm-usage"],
+            )
+            page = browser.new_page()
+            page.goto(f"{BASE_URL}/login/index.php")
+            page.fill("#username", USERNAME)
+            page.fill("#password", PASSWORD)
+            page.click("#loginbtn")
+            page.wait_for_load_state("networkidle")
+            try:
+                message = " ".join(page.locator(
+                    ".loginerrors, .alert-danger, #loginerrormessage"
+                ).all_text_contents())
+                check_login_rejection(message)
+                cookies = page.context.cookies(BASE_URL)
+            finally:
+                browser.close()
 
     session = requests.Session()
     for c in cookies:
@@ -310,7 +347,7 @@ def public_url(url: str) -> str:
 
 def sinkronizatu() -> list[str]:
     """Egiaztatu Moodle materiala; erroreak eta kanpo-mugak esplizituak dira."""
-    global SYNC_REPORT
+    global SYNC_REPORT, SYNC_MANAGED
     session = lortu_saioa()
     # Google tiene su propia autorización; nunca reutilizar cookies de Moodle.
     from google_drive_auth import authenticated_session
@@ -328,6 +365,7 @@ def sinkronizatu() -> list[str]:
     seen_activities: set[str] = set()
     seen_files: set[tuple[str, str]] = set()
     activity_types: Counter = Counter()
+    assignments: list[dict] = []
 
     def error(kind: str, url: str, exc: Exception) -> None:
         # Ez idatzi HTML, cookies edo autentifikazio-erantzunen edukia.
@@ -424,6 +462,16 @@ def sinkronizatu() -> list[str]:
                     with moodle_request(session, "GET", url, timeout=25) as response:
                         response.raise_for_status()
                         page = BeautifulSoup(response.text, "html.parser")
+                    if kind == "assign":
+                        intro = page.select_one("#intro")
+                        dates = page.select_one(".activity-dates")
+                        # Solo enunciado y fechas generales: nunca entregas,
+                        # calificaciones ni la tabla personal del alumnado.
+                        assignments.append({
+                            "title": title, "section": sec, "source": public_url(url),
+                            "statement": intro.get_text(" ", strip=True) if intro else "",
+                            "dates": dates.get_text(" ", strip=True) if dates else "",
+                        })
                     selector = '#region-main a[href*="pluginfile.php"]' if kind == "folder" else '#intro a[href*="pluginfile.php"], .introattachment a[href*="pluginfile.php"]'
                     for attachment in page.select(selector):
                         href = urllib.parse.urljoin(url, attachment["href"])
@@ -531,23 +579,23 @@ def sinkronizatu() -> list[str]:
                    "scope": "Moodle resources, folders and assignment statements; external/interactive limitations explicit",
                    "sections": sorted(sections), "activities": len(seen_activities),
                    "activity_types": dict(sorted(activity_types.items())),
+                   "assignments": assignments,
                    "errors": errors, "unavailable": unavailable, "entries": entries}
     report_path = REPO_ROOT / "00_Transversal" / "MOODLE_SYNC_ESTADO.json"
     payload = json.dumps(SYNC_REPORT, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     if not report_path.exists() or report_path.read_text() != payload:
         report_path.write_text(payload)
         downloaded.append(str(report_path.relative_to(REPO_ROOT)))
-    # Recupera descargas pendientes de un ciclo parcial anterior, sin incluir
-    # cambios ajenos en scripts, soluciones o documentos que no gestiona Moodle.
+    # El publicador recupera por separado el material gestionado pendiente,
+    # sin incluir cambios ajenos en scripts o soluciones.
     managed = {entry["path"] for entry in entries if entry.get("status") == "verified" and entry.get("path")}
     managed.update(str(safe_download_path(Path(dest), "MOODLE_URLs.md").relative_to(REPO_ROOT.resolve())) for dest in registries)
     managed.add(str(report_path.relative_to(REPO_ROOT)))
     managed.update(str(Path(name).with_suffix(".md")) for name in list(managed)
                    if Path(name).suffix.lower() == ".docx" and (REPO_ROOT / Path(name).with_suffix(".md")).is_file())
-    for command in (["git", "diff", "--name-only", "-z", "HEAD", "--"],
-                    ["git", "ls-files", "--others", "--exclude-standard", "-z", "--"]):
-        pending = subprocess.check_output([*command, *sorted(managed)], cwd=REPO_ROOT)
-        downloaded.extend(os.fsdecode(name) for name in pending.split(b"\0") if name)
+    SYNC_MANAGED = sorted(managed)
+    # Solo cambios reales de este ciclo. Cambios pendientes en HEAD no son
+    # nuevas descargas ni deben repetir la notificación cada hora.
     log(f"Cobertura: {len(sections)} atal, {len(seen_activities)} jarduera, {errors} errore, {unavailable} kanpo/manual muga")
     session.close()
     if google_session is not None:
@@ -593,12 +641,19 @@ def idatzi_url_erregistroak(erregistroak: dict) -> list[str]:
 
 SAIAKERA_MAX = 5
 SAIAKERA_ATSEDENA_S = 30
+SYNC_MANAGED: list[str] = []
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--no-publish", action="store_true", help="Deskargatu/egiaztatu soilik; Git commit/push gabe")
+    parser.add_argument("--prepare-review", action="store_true", help="Preparar snapshot local para revisión, sin push")
+    parser.add_argument("--browser-cdp", type=int, help="Puerto CDP loopback de Chromium ya autenticado (uso manual)")
     args = parser.parse_args()
+    if args.browser_cdp is not None:
+        if not 1 <= args.browser_cdp <= 65535:
+            parser.error("--browser-cdp debe ser un puerto entre 1 y 65535")
+        os.environ["MOODLE_BROWSER_CDP_PORT"] = str(args.browser_cdp)
     log("=== Sinkronizazio zikloa hasita ===")
     berriak: list[str] = []
     try:
@@ -606,6 +661,10 @@ def main() -> None:
             try:
                 berriak = sinkronizatu()
                 break
+            except MoodleAuthenticationRejected:
+                # No repetir un rechazo explícito del servidor. Los fallos
+                # de red/transitorios conservan sus reintentos anteriores.
+                raise
             except Exception as e:
                 log(f"{saiakera}. saiakera huts: {e}")
                 if saiakera >= SAIAKERA_MAX:
@@ -615,7 +674,7 @@ def main() -> None:
             raise RuntimeError(f"Moodle sinkronizazioa osatu gabe: {SYNC_REPORT['errors']} errore; ez da argitaratu")
         if SYNC_REPORT.get("unavailable"):
             log(f"Moodle fitxategiak egiaztatuta; {SYNC_REPORT['unavailable']} kanpo/manual jarduera ez da deskargatu")
-        if args.no_publish:
+        if args.no_publish and not args.prepare_review:
             log(f"Egiaztapena amaituta: {len(berriak)} fitxategi aldatu; commit/push gabe")
             return
         if SYNC_REPORT.get("unavailable"):
@@ -634,30 +693,21 @@ def main() -> None:
                 f"{len(berriak)} fitxategi berri deskargatu dira:\n" + "\n".join(berriak[:3]),
             )
 
-            # Git: bidea ematen dugu deskargatutako fitxategiei soilik.
-            # Ez erabili `git add -A`: lan-arloko aldaketa ajenoak ez dira
-            # inoiz "Auto-sync" commit batean sartu behar.
-            subprocess.run(["git", "add", "--", *berriak], cwd=REPO_ROOT, check=True)
-            staged = subprocess.run(
-                ["git", "diff", "--cached", "--quiet", "--", *berriak],
-                cwd=REPO_ROOT,
-            )
-            if staged.returncode != 0:
-                msg = f"Auto-sync Moodle: {len(berriak)} fitxategi deskargatuta\n\n" + "\n".join(f"- {b}" for b in berriak)
-                subprocess.run(["git", "commit", "--only", "-m", msg, "--", *berriak], cwd=REPO_ROOT, check=True)
-                branch = subprocess.check_output(["git", "branch", "--show-current"], cwd=REPO_ROOT, text=True).strip()
-                if not branch:
-                    raise RuntimeError("Detached HEAD: ez da automatikoki argitaratzen")
-                subprocess.run(["git", "push", "origin", f"HEAD:refs/heads/{branch}"], cwd=REPO_ROOT, check=True)
-                local = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True).strip()
-                remote = subprocess.check_output(["git", "ls-remote", "--heads", "origin", branch], cwd=REPO_ROOT, text=True).split()
-                if not remote or remote[0] != local:
-                    raise RuntimeError("Push ondoren urruneko commit-a ez dator HEADekin bat")
-                log(f"Git push egiaztatuta: {branch} {local[:12]}")
-            else:
-                log("Aldaketarik ez stage-an: commit/push ez da egin.")
         else:
             log("Ez dago fitxategi berririk Moodle-n.")
+        # Comprobar siempre el material contra el remoto. Un push fallido
+        # sigue pendiente aunque Moodle no cambie en el siguiente ciclo.
+        from moodle_publish import publish_snapshot
+        result = publish_snapshot(
+            REPO_ROOT, SYNC_MANAGED,
+            remote=os.environ.get("MOODLE_GIT_REMOTE", "origin"),
+            base_branch=os.environ.get("MOODLE_BASE_BRANCH", "master"),
+            publish=not args.prepare_review and not args.no_publish,
+        )
+        if result["status"] == "current":
+            log("Material verificado ya presente en la rama remota base.")
+        else:
+            log(f"Snapshot {result['status']}: {result['branch']} {result['commit'][:12]}; integración mediante PR pendiente")
 
     except Exception as e:
         log(f"Errore orokorra sinkronizazioan: {e}")

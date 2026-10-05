@@ -1,0 +1,7 @@
+# Binary is downloaded from the pinned official release and SHA-256 checked
+# by prepare_minio_lab.py before docker build. No remote shell script runs.
+FROM scratch
+COPY minio /minio
+USER 1000:1000
+ENTRYPOINT ["/minio"]
+CMD ["server", "/data", "--address", ":9000", "--console-address", ":9001"]

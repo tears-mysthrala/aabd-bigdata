@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "engine": "orangewidget.workflow.WidgetsScheme",
+  "workflow_sha256": "78ad54c235fe2fccb3f0bc9d55f8dfa84ae32b389e7d10d122092f4f25a39adc",
+  "nodes": 3,
+  "links": 2,
+  "relative_file_resolution": true,
+  "rows_in_each_widget": 10000,
+  "failure_count": 339,
+  "scatter_x": "Rotational speed [rpm]",
+  "scatter_y": "Torque [Nm]",
+  "scatter_color": "Machine failure",
+  "distribution_variable": "Torque [Nm]",
+  "distribution_split": "Machine failure",
+  "bin_width_Nm": 5.0
+}

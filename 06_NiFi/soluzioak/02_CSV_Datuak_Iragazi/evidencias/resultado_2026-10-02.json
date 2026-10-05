@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-02",
+  "NiFi": "2.0.0",
+  "execution": "real Docker lab REST/API; no GUI capture",
+  "scope": "dedicated groups; original materialak untouched",
+  "variant1": {
+    "files": 3,
+    "selected_records": 3,
+    "split_flowfiles": 6
+  },
+  "variant2": {
+    "files": 1,
+    "selected_records": 3,
+    "split_flowfiles": 1
+  },
+  "variant3": {
+    "files": 1,
+    "selected_records": 3,
+    "split_flowfiles": 0
+  },
+  "source_records": 6
+}

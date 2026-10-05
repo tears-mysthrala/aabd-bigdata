@@ -97,3 +97,87 @@ PDFko prezio/stock balioak, eta Pandas concat. Hura exekutatzeko, erabili
   [Ariketa 2.2](<../../data/mock_datuak/Ariketa 2.2/>); su existencia no convierte
   automáticamente los fixtures en esos datos. Adapta la ruta si quieres comparar
   ambas entradas. Esta revisión documenta esa limitación de portabilidad.
+
+## Ampliación docente 2.4 / 2.5 — ejecutada el 05/10/2026
+
+El bloque extra del [notebook docente](../../materialak/2_SOLUZIOAK_URLa.ipynb)
+(celdas 93–97, índices desde cero) amplía estas dos actividades. La solución
+actual está en [ariketa_2_4_2_5_docente.py](ariketa_2_4_2_5_docente.py) y su
+[notebook ejecutado](ariketa_2_4_2_5_docente.ipynb). Las funciones existentes
+`ariketa_2_4()` y `ariketa_2_5()` del script/notebook principal llaman a esta
+misma implementación.
+
+**2.4, objetivo:** sumar ventas por ciudad, calcular `mean/max/count` por
+categoría, construir un pivot de sumas y elegir la combinación ciudad/categoría
+con mayor suma. Lee las **30 filas** de
+[salmentak.csv](../../data/mock_datuak/Ariketa2.4/salmentak.csv).
+El pivot incluye `GUZTIRA` para comprobar los totales; estos márgenes no
+compiten como ciudades/categorías en la selección del máximo.
+
+| Comprobación | Resultado |
+|---|---:|
+| Ventas Gasteiz / Bilbo / Donostia | 3.132 € / 2.820 € / 1.921 € |
+| Total de las 30 ventas | 7.873 € |
+| Máximo agregado ciudad/categoría | **Gasteiz / Janaria: 1.417 €** |
+| Máxima fila individual | Donostia / Arropa: 456 € |
+
+El máximo individual responde otra pregunta. La selección anterior con
+`idxmax()` sobre las filas originales estaba equivocada para este enunciado.
+Ahora se busca sobre las sumas del pivot. Si hay empate, `idxmax()` devuelve
+la primera combinación en el orden del pivot; el enunciado pide una combinación.
+
+**2.5, objetivo y origen:** añadir ciudades a los clientes mediante `merge`
+inner/left y apilar dos meses con `concat`. Los CSV recibidos
+[bezeroak.csv](../../data/mock_datuak/Ariketa2.5/bezeroak.csv) y
+[hiriak.csv](../../data/mock_datuak/Ariketa2.5/hiriak.csv) tienen el mismo
+SHA-256 que el CSV de ventas: 30 filas con
+`hiria,kategoria,produktua,salmenta`. **No son tablas válidas de clientes/ciudades.**
+Se conservan intactos y se documenta el esquema incompatible en el JSON.
+La solución usa las tablas exactas **embebidas en la celda 97 docente**:
+Ane, Mikel, Leire, Jon y Amaia; cuatro ciudades, incluida Iruñea. Amaia tiene
+`hiri_id` nulo. No se presentan estas tablas como si procedieran de los CSV.
+
+- `inner`: cuatro clientes y seis columnas; Amaia queda fuera porque no tiene
+  coincidencia en ciudades.
+- `left`: cinco clientes y seis columnas; Amaia permanece con ciudad/provincia
+  ausentes. La ciudad Iruñea no tiene cliente y no añade una fila a estos JOIN.
+- `concat`: seis ventas, con columna `hila` para preservar el mes. Enero suma
+  295 €, febrero 410 € y el conjunto **705 €**. Apilar no añade ciudad a cada cliente.
+
+Las tablas anteriores se conservan para comparar variantes:
+`ariketa_2_4(SALMENTA_TAULA)` usa el ejemplo de ocho ventas;
+`ariketa_2_5(BEZEROAK, HIRIAK)` usa Kepa con clave 99 sin correspondencia.
+Estas variantes no sustituyen los datos docentes actuales.
+
+### Repetir y comprobar
+
+Desde esta carpeta, con la `.venv` indicada en preparación. Para un entorno
+nuevo dedicado a esta ampliación, instala
+[requirements-docente-notebook.txt](requirements-docente-notebook.txt) en un
+venv Python 3.13 con `uv pip install --python .venv/bin/python -r
+requirements-docente-notebook.txt`; estos pins principales no son un lock
+transitivo:
+
+```bash
+.venv/bin/python ariketa_2_4_2_5_docente.py
+.venv/bin/python test_agregazio_docente.py
+```
+
+El primer comando escribe en [data/docente_2_4_2_5/](data/docente_2_4_2_5/):
+pivot con totales, resumen por categorías, resultados inner/left/concat y
+[emaitzak.json](data/docente_2_4_2_5/emaitzak.json), con hashes, esquemas y
+máximos. Funciona desde cualquier carpeta usando `__file__`. Para el notebook
+nuevo, usa esta carpeta como directorio del kernel y ejecuta todo en orden.
+No hace falta ejecutar el benchmark ni el laboratorio DVC para estas actividades.
+
+El 05/10/2026 se ejecutaron el script, **todas las celdas del notebook nuevo**
+y **solo las celdas 20/22 modificadas del notebook principal**, con sus salidas
+actualizadas. No se afirma una nueva ejecución completa de todos los demás
+bloques del principal. Se verificaron tres regresiones: un grupo de dos ventas
+60+60 supera a otra fila de 100; el máximo docente agregado difiere del
+individual; y Amaia/concat mantienen las filas esperadas y detectan el esquema
+CSV incompatible. La primera prueba fallaba antes de la corrección y ahora pasa.
+
+Entorno observado: Python 3.13, NumPy 2.5.3, pandas 3.0.6, scikit-learn 1.9.1,
+nbclient 0.11.0 e ipykernel 7.3.0. Esta evidencia es local; no corrige la
+incidencia de descarga docente, ni acredita publicación o entrega en Moodle.

@@ -1,5 +1,12 @@
 # Kafka Connect: MySQL → Kafka → MongoDB — ebazpena (4.1–4.3 + bide osoa)
 
+> **5. kasu berria (56–69. or.):** ingurune eta agindu eguneratuak
+> [caso5/README.md](caso5/README.md) fitxategian daude: Compose + broker
+> Confluent 7.7.1 (KRaft), worker 7.8.0 aldaera dokumentatua, MySQL 8.4,
+> MongoDB 8 eta `iabd.categories`. Dokumentu honetako 2026-09-29ko
+> 6 erregistroak aurreko exekuzioaren froga dira; PDF berriak 3 hasierako
+> errenkada eta `Streaming` laugarrena ditu.
+
 Iturria: [`01_04_ApacheKafka_aurreratua.pdf`](../../materialak/01_04_ApacheKafka_aurreratua.pdf),
 17–27. or. Fitxategiak: [`categories-schema.sql`](categories-schema.sql),
 [`connect-standalone.properties`](connect-standalone.properties),

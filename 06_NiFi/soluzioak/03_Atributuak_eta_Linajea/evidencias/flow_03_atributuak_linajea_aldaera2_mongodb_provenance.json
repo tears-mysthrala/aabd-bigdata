@@ -1,0 +1,531 @@
+{
+  "query_limit_per_processor": 100,
+  "events": [
+    {
+      "id": "173",
+      "eventId": 173,
+      "eventTime": "10/02/2026 07:03:06.237 UTC",
+      "eventDuration": 56,
+      "lineageDuration": 233,
+      "eventType": "DROP",
+      "flowFileUuid": "d39aea43-c346-49e3-b57b-e4810621853f",
+      "fileSize": "65 bytes",
+      "fileSizeBytes": 65,
+      "groupId": "fb67bbbd-01a0-1000-412d-f95aab43b695",
+      "componentId": "33230138-0b10-31a9-2ee9-963a4c484347",
+      "componentType": "PutMongo",
+      "componentName": "PutMongo",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "datuak",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]",
+          "previousValue": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "datuak.1",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]",
+          "previousValue": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "filename",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 77,
+      "inputContentClaimFileSize": "65 bytes",
+      "inputContentClaimFileSizeBytes": 65,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 77,
+      "outputContentClaimFileSize": "65 bytes",
+      "outputContentClaimFileSizeBytes": 65,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "25acfe68-cdb0-3361-5a04-c4e889f4a93c"
+    },
+    {
+      "id": "171",
+      "eventId": 171,
+      "eventTime": "10/02/2026 07:03:06.236 UTC",
+      "eventDuration": 56,
+      "lineageDuration": 232,
+      "eventType": "SEND",
+      "flowFileUuid": "d39aea43-c346-49e3-b57b-e4810621853f",
+      "fileSize": "65 bytes",
+      "fileSizeBytes": 65,
+      "groupId": "fb67bbbd-01a0-1000-412d-f95aab43b695",
+      "componentId": "33230138-0b10-31a9-2ee9-963a4c484347",
+      "componentType": "PutMongo",
+      "componentName": "PutMongo",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "datuak",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]",
+          "previousValue": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "datuak.1",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]",
+          "previousValue": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "filename",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "mongodb://mongo:27017",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 77,
+      "inputContentClaimFileSize": "65 bytes",
+      "inputContentClaimFileSizeBytes": 65,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 77,
+      "outputContentClaimFileSize": "65 bytes",
+      "outputContentClaimFileSizeBytes": 65,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "25acfe68-cdb0-3361-5a04-c4e889f4a93c"
+    },
+    {
+      "id": "122",
+      "eventId": 122,
+      "eventTime": "10/02/2026 07:03:06.063 UTC",
+      "eventDuration": 2,
+      "lineageDuration": 59,
+      "eventType": "DROP",
+      "flowFileUuid": "dd0f94b4-8dfc-4f7d-b8d7-c8aed542e51a",
+      "fileSize": "52 bytes",
+      "fileSizeBytes": 52,
+      "groupId": "fb67bbbd-01a0-1000-412d-f95aab43b695",
+      "componentId": "e6f5f2f3-4d57-30aa-d56c-8fcec133d1e7",
+      "componentType": "LogAttribute",
+      "componentName": "LogAttribute",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "datuak",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]",
+          "previousValue": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "datuak.1",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]",
+          "previousValue": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "filename",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "dd0f94b4-8dfc-4f7d-b8d7-c8aed542e51a",
+          "previousValue": "dd0f94b4-8dfc-4f7d-b8d7-c8aed542e51a"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 25,
+      "inputContentClaimFileSize": "52 bytes",
+      "inputContentClaimFileSizeBytes": 52,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 25,
+      "outputContentClaimFileSize": "52 bytes",
+      "outputContentClaimFileSizeBytes": 52,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "11f745e7-2e14-3c0d-76c6-2eb586445c21"
+    },
+    {
+      "id": "121",
+      "eventId": 121,
+      "eventTime": "10/02/2026 07:03:06.050 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 46,
+      "eventType": "CLONE",
+      "flowFileUuid": "d39aea43-c346-49e3-b57b-e4810621853f",
+      "fileSize": "52 bytes",
+      "fileSizeBytes": 52,
+      "groupId": "fb67bbbd-01a0-1000-412d-f95aab43b695",
+      "componentId": "cc70db69-8d86-3159-99a0-df218c516cb4",
+      "componentType": "ExtractText",
+      "componentName": "ExtractText",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "datuak",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "datuak.1",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "filename",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        }
+      ],
+      "parentUuids": [
+        "d39aea43-c346-49e3-b57b-e4810621853f"
+      ],
+      "childUuids": [
+        "dd0f94b4-8dfc-4f7d-b8d7-c8aed542e51a"
+      ],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 25,
+      "inputContentClaimFileSize": "52 bytes",
+      "inputContentClaimFileSizeBytes": 52,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 25,
+      "outputContentClaimFileSize": "52 bytes",
+      "outputContentClaimFileSizeBytes": 52,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "eac3a49b-33b0-3274-eb70-c65aae7a108a"
+    },
+    {
+      "id": "120",
+      "eventId": 120,
+      "eventTime": "10/02/2026 07:03:06.050 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 46,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "d39aea43-c346-49e3-b57b-e4810621853f",
+      "fileSize": "52 bytes",
+      "fileSizeBytes": 52,
+      "groupId": "fb67bbbd-01a0-1000-412d-f95aab43b695",
+      "componentId": "cc70db69-8d86-3159-99a0-df218c516cb4",
+      "componentType": "ExtractText",
+      "componentName": "ExtractText",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "datuak",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "datuak.1",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "filename",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 25,
+      "inputContentClaimFileSize": "52 bytes",
+      "inputContentClaimFileSizeBytes": 52,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 25,
+      "outputContentClaimFileSize": "52 bytes",
+      "outputContentClaimFileSizeBytes": 52,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "eac3a49b-33b0-3274-eb70-c65aae7a108a"
+    },
+    {
+      "id": "118",
+      "eventId": 118,
+      "eventTime": "10/02/2026 07:03:06.005 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 1,
+      "eventType": "CREATE",
+      "flowFileUuid": "d39aea43-c346-49e3-b57b-e4810621853f",
+      "fileSize": "10 bytes",
+      "fileSizeBytes": 10,
+      "groupId": "fb67bbbd-01a0-1000-412d-f95aab43b695",
+      "componentId": "7c4ab6ed-4275-3ffb-ca1d-8afd3cb004f6",
+      "componentType": "GenerateFlowFile",
+      "componentName": "GenerateFlowFile",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8"
+        },
+        {
+          "name": "filename",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 15,
+      "outputContentClaimFileSize": "10 bytes",
+      "outputContentClaimFileSizeBytes": 10,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "137",
+      "eventId": 137,
+      "eventTime": "10/02/2026 07:03:06.151 UTC",
+      "eventDuration": 91,
+      "lineageDuration": 147,
+      "eventType": "CONTENT_MODIFIED",
+      "flowFileUuid": "d39aea43-c346-49e3-b57b-e4810621853f",
+      "fileSize": "65 bytes",
+      "fileSizeBytes": 65,
+      "groupId": "fb67bbbd-01a0-1000-412d-f95aab43b695",
+      "componentId": "5880863e-434d-32bc-ec21-3fbd957d0fe9",
+      "componentType": "AttributesToJSON",
+      "componentName": "AttributesToJSON",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "datuak",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]",
+          "previousValue": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "datuak.1",
+          "value": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]",
+          "previousValue": "0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]"
+        },
+        {
+          "name": "filename",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": false,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 25,
+      "inputContentClaimFileSize": "52 bytes",
+      "inputContentClaimFileSizeBytes": 52,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 77,
+      "outputContentClaimFileSize": "65 bytes",
+      "outputContentClaimFileSizeBytes": 65,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "9ad01bb5-067c-32e8-cf34-89c6b2b3837b"
+    },
+    {
+      "id": "119",
+      "eventId": 119,
+      "eventTime": "10/02/2026 07:03:06.043 UTC",
+      "eventDuration": 5,
+      "lineageDuration": 39,
+      "eventType": "CONTENT_MODIFIED",
+      "flowFileUuid": "d39aea43-c346-49e3-b57b-e4810621853f",
+      "fileSize": "52 bytes",
+      "fileSizeBytes": 52,
+      "groupId": "fb67bbbd-01a0-1000-412d-f95aab43b695",
+      "componentId": "24ac7a1c-0b37-3e54-490f-71dd7e8255fe",
+      "componentType": "ReplaceText",
+      "componentName": "ReplaceText",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "filename",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "d39aea43-c346-49e3-b57b-e4810621853f",
+          "previousValue": "d39aea43-c346-49e3-b57b-e4810621853f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": false,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 15,
+      "inputContentClaimFileSize": "10 bytes",
+      "inputContentClaimFileSizeBytes": 10,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 25,
+      "outputContentClaimFileSize": "52 bytes",
+      "outputContentClaimFileSizeBytes": 52,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "4d35d588-a822-3ffb-f6f2-2df535b06be3"
+    }
+  ],
+  "counts_in_saved_sample": {
+    "PutMongo | DROP": 1,
+    "PutMongo | SEND": 1,
+    "LogAttribute | DROP": 1,
+    "ExtractText | CLONE": 1,
+    "ExtractText | ATTRIBUTES_MODIFIED": 1,
+    "GenerateFlowFile | CREATE": 1,
+    "AttributesToJSON | CONTENT_MODIFIED": 1,
+    "ReplaceText | CONTENT_MODIFIED": 1
+  }
+}

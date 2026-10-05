@@ -1,0 +1,11 @@
+{
+  "workflow_loaded_from_relocated_copy": true,
+  "relative_dataset_resolved": true,
+  "native_signal_propagation": true,
+  "predictions_and_probabilities_equal_to_csv": true,
+  "rows": 569,
+  "nodes": 6,
+  "links": 6,
+  "CV_folds": 10,
+  "stratified": true
+}

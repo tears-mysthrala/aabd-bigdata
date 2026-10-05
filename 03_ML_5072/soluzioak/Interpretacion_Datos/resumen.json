@@ -1,0 +1,26 @@
+{
+  "source": "../datos/iris/iris.csv",
+  "sha256": "e48cd67255542c6c404e58f409cfdde207f2e03513d37576bcfb7713343c1d7e",
+  "rows": 150,
+  "features": 4,
+  "missing": 0,
+  "classes": {
+    "setosa": {
+      "n": 50,
+      "petal_length_mean_cm": 1.4620000000000002,
+      "petal_width_mean_cm": 0.24599999999999997
+    },
+    "versicolor": {
+      "n": 50,
+      "petal_length_mean_cm": 4.26,
+      "petal_width_mean_cm": 1.3259999999999998
+    },
+    "virginica": {
+      "n": 50,
+      "petal_length_mean_cm": 5.5520000000000005,
+      "petal_width_mean_cm": 2.0260000000000002
+    }
+  },
+  "pearson_petal_length_width": 0.9628654314027961,
+  "capture": "Native Orange 3.40 widgets displayed on Wayland; QWidget.grab(), no recreated screenshots"
+}

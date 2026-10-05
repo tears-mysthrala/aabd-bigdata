@@ -1,0 +1,1097 @@
+{
+  "query_limit_per_processor": 100,
+  "events": [
+    {
+      "id": "24",
+      "eventId": 24,
+      "eventTime": "10/02/2026 07:00:55.844 UTC",
+      "eventDuration": 20,
+      "lineageDuration": 30032,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "f97ea84b-5049-4bbb-a0e8-e597b46dc490",
+      "fileSize": "52 bytes",
+      "fileSizeBytes": 52,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "c3c134b9-c8d2-39b7-7bf8-3fed153f5d8d",
+      "componentType": "UpdateAttribute",
+      "componentName": "UpdateAttribute",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:00:25+0000",
+          "previousValue": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:00:25+0000",
+          "previousValue": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:00:25+0000",
+          "previousValue": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "1790924455830-proba_01.txt",
+          "previousValue": "proba_01.txt"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "f97ea84b-5049-4bbb-a0e8-e597b46dc490",
+          "previousValue": "f97ea84b-5049-4bbb-a0e8-e597b46dc490"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 3770,
+      "inputContentClaimFileSize": "52 bytes",
+      "inputContentClaimFileSizeBytes": 52,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 3770,
+      "outputContentClaimFileSize": "52 bytes",
+      "outputContentClaimFileSizeBytes": 52,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "e7bdd6cd-43c1-37e5-f7d9-d6fb34d8a378"
+    },
+    {
+      "id": "23",
+      "eventId": 23,
+      "eventTime": "10/02/2026 07:00:25.813 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 1,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "f97ea84b-5049-4bbb-a0e8-e597b46dc490",
+      "fileSize": "52 bytes",
+      "fileSizeBytes": 52,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "6ab0f42e-c6b2-3843-fd06-9199ea784f32",
+      "componentType": "GetFile",
+      "componentName": "FitxategiaEskuratu",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "proba_01.txt"
+        },
+        {
+          "name": "path",
+          "value": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "f97ea84b-5049-4bbb-a0e8-e597b46dc490"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/proba_01.txt",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 3770,
+      "outputContentClaimFileSize": "52 bytes",
+      "outputContentClaimFileSizeBytes": 52,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "2",
+      "eventId": 2,
+      "eventTime": "10/02/2026 06:59:11.966 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 1,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "38576026-8c78-4499-be52-d4b2d4439a4b",
+      "fileSize": "28 bytes",
+      "fileSizeBytes": 28,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "6ab0f42e-c6b2-3843-fd06-9199ea784f32",
+      "componentType": "GetFile",
+      "componentName": "FitxategiaEskuratu",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "proba_01.txt"
+        },
+        {
+          "name": "path",
+          "value": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "38576026-8c78-4499-be52-d4b2d4439a4b"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/proba_01.txt",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 56,
+      "outputContentClaimFileSize": "28 bytes",
+      "outputContentClaimFileSizeBytes": 28,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "1",
+      "eventId": 1,
+      "eventTime": "10/02/2026 06:59:11.965 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 1,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "801f8b84-54d9-4463-8d98-ec903b0a8c0f",
+      "fileSize": "28 bytes",
+      "fileSizeBytes": 28,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "6ab0f42e-c6b2-3843-fd06-9199ea784f32",
+      "componentType": "GetFile",
+      "componentName": "FitxategiaEskuratu",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "proba_02.txt"
+        },
+        {
+          "name": "path",
+          "value": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "801f8b84-54d9-4463-8d98-ec903b0a8c0f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/proba_02.txt",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 28,
+      "outputContentClaimFileSize": "28 bytes",
+      "outputContentClaimFileSizeBytes": 28,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "0",
+      "eventId": 0,
+      "eventTime": "10/02/2026 06:59:11.962 UTC",
+      "eventDuration": 12,
+      "lineageDuration": 69,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "871bdb98-94c0-460e-adfc-7e9f8a0ad583",
+      "fileSize": "28 bytes",
+      "fileSizeBytes": 28,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "6ab0f42e-c6b2-3843-fd06-9199ea784f32",
+      "componentType": "GetFile",
+      "componentName": "FitxategiaEskuratu",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "proba_03.txt"
+        },
+        {
+          "name": "path",
+          "value": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "871bdb98-94c0-460e-adfc-7e9f8a0ad583"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/proba_03.txt",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 0,
+      "outputContentClaimFileSize": "28 bytes",
+      "outputContentClaimFileSizeBytes": 28,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "8",
+      "eventId": 8,
+      "eventTime": "10/02/2026 06:59:12.117 UTC",
+      "eventDuration": 1,
+      "lineageDuration": 152,
+      "eventType": "DROP",
+      "flowFileUuid": "38576026-8c78-4499-be52-d4b2d4439a4b",
+      "fileSize": "28 bytes",
+      "fileSizeBytes": 28,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "a5e851c2-5445-339f-9a51-8036780362da",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "proba_01.txt",
+          "previousValue": "proba_01.txt"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "38576026-8c78-4499-be52-d4b2d4439a4b",
+          "previousValue": "38576026-8c78-4499-be52-d4b2d4439a4b"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 56,
+      "inputContentClaimFileSize": "28 bytes",
+      "inputContentClaimFileSizeBytes": 28,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 56,
+      "outputContentClaimFileSize": "28 bytes",
+      "outputContentClaimFileSizeBytes": 28,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "8cd78640-8d85-3da8-3458-e6ff1c89fb98"
+    },
+    {
+      "id": "7",
+      "eventId": 7,
+      "eventTime": "10/02/2026 06:59:12.117 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 152,
+      "eventType": "SEND",
+      "flowFileUuid": "38576026-8c78-4499-be52-d4b2d4439a4b",
+      "fileSize": "28 bytes",
+      "fileSizeBytes": 28,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "a5e851c2-5445-339f-9a51-8036780362da",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "proba_01.txt",
+          "previousValue": "proba_01.txt"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "38576026-8c78-4499-be52-d4b2d4439a4b",
+          "previousValue": "38576026-8c78-4499-be52-d4b2d4439a4b"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/irteera/proba_01.txt",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 56,
+      "inputContentClaimFileSize": "28 bytes",
+      "inputContentClaimFileSizeBytes": 28,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 56,
+      "outputContentClaimFileSize": "28 bytes",
+      "outputContentClaimFileSizeBytes": 28,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "8cd78640-8d85-3da8-3458-e6ff1c89fb98"
+    },
+    {
+      "id": "6",
+      "eventId": 6,
+      "eventTime": "10/02/2026 06:59:12.115 UTC",
+      "eventDuration": 1,
+      "lineageDuration": 151,
+      "eventType": "DROP",
+      "flowFileUuid": "801f8b84-54d9-4463-8d98-ec903b0a8c0f",
+      "fileSize": "28 bytes",
+      "fileSizeBytes": 28,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "a5e851c2-5445-339f-9a51-8036780362da",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "proba_02.txt",
+          "previousValue": "proba_02.txt"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "801f8b84-54d9-4463-8d98-ec903b0a8c0f",
+          "previousValue": "801f8b84-54d9-4463-8d98-ec903b0a8c0f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 28,
+      "inputContentClaimFileSize": "28 bytes",
+      "inputContentClaimFileSizeBytes": 28,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 28,
+      "outputContentClaimFileSize": "28 bytes",
+      "outputContentClaimFileSizeBytes": 28,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "8cd78640-8d85-3da8-3458-e6ff1c89fb98"
+    },
+    {
+      "id": "5",
+      "eventId": 5,
+      "eventTime": "10/02/2026 06:59:12.115 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 151,
+      "eventType": "SEND",
+      "flowFileUuid": "801f8b84-54d9-4463-8d98-ec903b0a8c0f",
+      "fileSize": "28 bytes",
+      "fileSizeBytes": 28,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "a5e851c2-5445-339f-9a51-8036780362da",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "proba_02.txt",
+          "previousValue": "proba_02.txt"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "801f8b84-54d9-4463-8d98-ec903b0a8c0f",
+          "previousValue": "801f8b84-54d9-4463-8d98-ec903b0a8c0f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/irteera/proba_02.txt",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 28,
+      "inputContentClaimFileSize": "28 bytes",
+      "inputContentClaimFileSizeBytes": 28,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 28,
+      "outputContentClaimFileSize": "28 bytes",
+      "outputContentClaimFileSizeBytes": 28,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "8cd78640-8d85-3da8-3458-e6ff1c89fb98"
+    },
+    {
+      "id": "4",
+      "eventId": 4,
+      "eventTime": "10/02/2026 06:59:12.112 UTC",
+      "eventDuration": 6,
+      "lineageDuration": 219,
+      "eventType": "DROP",
+      "flowFileUuid": "871bdb98-94c0-460e-adfc-7e9f8a0ad583",
+      "fileSize": "28 bytes",
+      "fileSizeBytes": 28,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "a5e851c2-5445-339f-9a51-8036780362da",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "proba_03.txt",
+          "previousValue": "proba_03.txt"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "871bdb98-94c0-460e-adfc-7e9f8a0ad583",
+          "previousValue": "871bdb98-94c0-460e-adfc-7e9f8a0ad583"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 0,
+      "inputContentClaimFileSize": "28 bytes",
+      "inputContentClaimFileSizeBytes": 28,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 0,
+      "outputContentClaimFileSize": "28 bytes",
+      "outputContentClaimFileSizeBytes": 28,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "8cd78640-8d85-3da8-3458-e6ff1c89fb98"
+    },
+    {
+      "id": "3",
+      "eventId": 3,
+      "eventTime": "10/02/2026 06:59:12.111 UTC",
+      "eventDuration": 1,
+      "lineageDuration": 218,
+      "eventType": "SEND",
+      "flowFileUuid": "871bdb98-94c0-460e-adfc-7e9f8a0ad583",
+      "fileSize": "28 bytes",
+      "fileSizeBytes": 28,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "a5e851c2-5445-339f-9a51-8036780362da",
+      "componentType": "PutFile",
+      "componentName": "FitxategiaJarri",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:11+0000",
+          "previousValue": "2026-10-02T06:59:11+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "proba_03.txt",
+          "previousValue": "proba_03.txt"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "871bdb98-94c0-460e-adfc-7e9f8a0ad583",
+          "previousValue": "871bdb98-94c0-460e-adfc-7e9f8a0ad583"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/irteera/proba_03.txt",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 0,
+      "inputContentClaimFileSize": "28 bytes",
+      "inputContentClaimFileSizeBytes": 28,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 0,
+      "outputContentClaimFileSize": "28 bytes",
+      "outputContentClaimFileSizeBytes": 28,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "8cd78640-8d85-3da8-3458-e6ff1c89fb98"
+    },
+    {
+      "id": "26",
+      "eventId": 26,
+      "eventTime": "10/02/2026 07:00:55.854 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 30042,
+      "eventType": "DROP",
+      "flowFileUuid": "f97ea84b-5049-4bbb-a0e8-e597b46dc490",
+      "fileSize": "52 bytes",
+      "fileSizeBytes": 52,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "2f7ab1f6-2808-392d-5fb7-4746d098f3fd",
+      "componentType": "PutFile",
+      "componentName": "GatazkaFitxategiaMugitu",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:00:25+0000",
+          "previousValue": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:00:25+0000",
+          "previousValue": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:00:25+0000",
+          "previousValue": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "1790924455830-proba_01.txt",
+          "previousValue": "1790924455830-proba_01.txt"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "f97ea84b-5049-4bbb-a0e8-e597b46dc490",
+          "previousValue": "f97ea84b-5049-4bbb-a0e8-e597b46dc490"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 3770,
+      "inputContentClaimFileSize": "52 bytes",
+      "inputContentClaimFileSizeBytes": 52,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 3770,
+      "outputContentClaimFileSize": "52 bytes",
+      "outputContentClaimFileSizeBytes": 52,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "5fc29c93-ff2e-3053-1bfd-77cd2e02b11d"
+    },
+    {
+      "id": "25",
+      "eventId": 25,
+      "eventTime": "10/02/2026 07:00:55.853 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 30041,
+      "eventType": "SEND",
+      "flowFileUuid": "f97ea84b-5049-4bbb-a0e8-e597b46dc490",
+      "fileSize": "52 bytes",
+      "fileSizeBytes": 52,
+      "groupId": "fb67b46a-01a0-1000-1203-9e85637d86a2",
+      "componentId": "2f7ab1f6-2808-392d-5fb7-4746d098f3fd",
+      "componentType": "PutFile",
+      "componentName": "GatazkaFitxategiaMugitu",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:00:25+0000",
+          "previousValue": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:00:25+0000",
+          "previousValue": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:00:25+0000",
+          "previousValue": "2026-10-02T07:00:25+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "1790924455830-proba_01.txt",
+          "previousValue": "1790924455830-proba_01.txt"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "f97ea84b-5049-4bbb-a0e8-e597b46dc490",
+          "previousValue": "f97ea84b-5049-4bbb-a0e8-e597b46dc490"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_01_fitxategiak_mugitu/irteera/gatazkak/1790924455830-proba_01.txt",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 3770,
+      "inputContentClaimFileSize": "52 bytes",
+      "inputContentClaimFileSizeBytes": 52,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 3770,
+      "outputContentClaimFileSize": "52 bytes",
+      "outputContentClaimFileSizeBytes": 52,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "5fc29c93-ff2e-3053-1bfd-77cd2e02b11d"
+    }
+  ],
+  "counts_in_saved_sample": {
+    "UpdateAttribute | ATTRIBUTES_MODIFIED": 1,
+    "FitxategiaEskuratu | RECEIVE": 4,
+    "FitxategiaJarri | DROP": 3,
+    "FitxategiaJarri | SEND": 3,
+    "GatazkaFitxategiaMugitu | DROP": 1,
+    "GatazkaFitxategiaMugitu | SEND": 1
+  }
+}

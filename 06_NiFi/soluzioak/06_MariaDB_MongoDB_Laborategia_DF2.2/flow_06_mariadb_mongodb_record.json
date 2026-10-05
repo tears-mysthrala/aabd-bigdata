@@ -29,7 +29,6 @@
         "properties": {
           "Set Auto Commit": "true",
           "Max Wait Time": "0 seconds",
-          "SQL Query": "SELECT customers.*, 'customers' AS source_table FROM customers",
           "Normalize Table/Column Names": "false",
           "Database Connection Pooling Service": "74888e3f-4e6e-3a48-b543-c2162080cfa1",
           "SQL Post-Query": null,
@@ -40,7 +39,8 @@
           "Max Rows Per FlowFile": "0",
           "esqlrecord-record-writer": "1e207816-ca56-38af-8d4f-4408c7fc579f",
           "dbf-default-precision": "10",
-          "dbf-default-scale": "0"
+          "dbf-default-scale": "0",
+          "SQL select query": "SELECT customers.*, 'customers' AS source_table FROM customers"
         },
         "propertyDescriptors": {
           "Set Auto Commit": {
@@ -292,7 +292,6 @@
         "properties": {
           "Set Auto Commit": "true",
           "Max Wait Time": "0 seconds",
-          "SQL Query": "SELECT orders.*, 'orders' AS source_table FROM orders",
           "Normalize Table/Column Names": "false",
           "Database Connection Pooling Service": "74888e3f-4e6e-3a48-b543-c2162080cfa1",
           "SQL Post-Query": null,
@@ -303,7 +302,8 @@
           "Max Rows Per FlowFile": "0",
           "esqlrecord-record-writer": "1e207816-ca56-38af-8d4f-4408c7fc579f",
           "dbf-default-precision": "10",
-          "dbf-default-scale": "0"
+          "dbf-default-scale": "0",
+          "SQL select query": "SELECT orders.*, 'orders' AS source_table FROM orders"
         },
         "propertyDescriptors": {
           "Set Auto Commit": {
@@ -443,7 +443,6 @@
         "properties": {
           "Set Auto Commit": "true",
           "Max Wait Time": "0 seconds",
-          "SQL Query": "SELECT order_items.*, 'order_items' AS source_table FROM order_items",
           "Normalize Table/Column Names": "false",
           "Database Connection Pooling Service": "74888e3f-4e6e-3a48-b543-c2162080cfa1",
           "SQL Post-Query": null,
@@ -454,7 +453,8 @@
           "Max Rows Per FlowFile": "0",
           "esqlrecord-record-writer": "1e207816-ca56-38af-8d4f-4408c7fc579f",
           "dbf-default-precision": "10",
-          "dbf-default-scale": "0"
+          "dbf-default-scale": "0",
+          "SQL select query": "SELECT order_items.*, 'order_items' AS source_table FROM order_items"
         },
         "propertyDescriptors": {
           "Set Auto Commit": {

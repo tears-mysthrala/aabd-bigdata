@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-02",
+  "NiFi": "2.0.0",
+  "execution": "real Docker lab REST/API; no GUI capture",
+  "scope": "dedicated groups; original materialak untouched",
+  "source_engine": "MySQL8.4",
+  "mariadb_not_tested": true,
+  "source_tables": {
+    "customers": 12435,
+    "orders": 68883,
+    "order_items": 172198
+  },
+  "documents_each_collection": 253516,
+  "all_rows_compared": true,
+  "benchmark": false
+}

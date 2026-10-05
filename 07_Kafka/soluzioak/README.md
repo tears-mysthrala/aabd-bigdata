@@ -81,6 +81,7 @@ offsets al final de cada ejecución, tras procesar los mensajes impresos.
 | [Consola 1–5](ariketa_kontsola_topic_partizio_offset.md) | Topics, particiones, mensajes y offsets. | `describe`, valores recibidos y offset **por partición**. |
 | [Consola 5–11](ariketa_kontsola_5_11_erreplika_gako_taldeak_offset.md) | Réplicas, claves, grupos, rebalanceo y offsets confirmados. | Asignaciones de consumidores, reparto entre miembros y lecturas independientes entre grupos. [Registro](kafka_exekuzio_isolatua_2026-09-28_5_11.md). |
 | [Caso avanzado 2](kafka_aurreratua_2_kasua/Ebazpena_2_Kasua.md) | Tres brokers, personas sintéticas y consumidores Python/NiFi. | Cuatro particiones, RF=2 y equivalencia de mensajes entre grupos diferentes. [Registro](kafka_aurreratua_2_kasua/exekuzioa_2026-09-29_2_kasua.md). |
+| [Caso avanzado 3](kafka_aurreratua_3_kasua/README.md) | Bronze/Silver/Gold y tres grupos independientes. | Kafka/Mongo reales con fixture y 20 respuestas Open-Meteo, JSONL y offsets verificados; el-tiempo.net original devuelve HTTP 405. |
 | [Connect](kafka_aurreratua_connect/Ebazpena_Connect.md) | MySQL → Kafka → MongoDB con conectores. | Estado de tareas, contenido del topic y documento final; REST accesible no demuestra todo el recorrido. [Registro](kafka_aurreratua_connect/exekuzioa_2026-09-29_connect.md). |
 
 **Topic** es la colección lógica de mensajes; **partición** es un log ordenado.
@@ -103,3 +104,7 @@ además de `requirements.txt`. Las guías avanzadas tienen configuración propia
 no sustituyas sus direcciones por las del broker compartido de `infra/`.
 Estos criterios documentan las pruebas; esta revisión no vuelve a ejecutar
 los laboratorios ni actualiza sus mediciones históricas.
+
+## Kafka avanzado — caso 5 nuevo
+
+[Receta y verificación MySQL → Connect → MongoDB](kafka_aurreratua_connect/caso5/README.md), ajustada al PDF de 73 páginas: tres categorías iniciales, inserción Streaming y destino iabd.categories. El registro de ejecución distingue el comando docente de la variante operativa con REST.

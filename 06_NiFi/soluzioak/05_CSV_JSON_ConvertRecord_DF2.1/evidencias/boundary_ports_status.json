@@ -1,0 +1,42 @@
+{
+  "inputPorts": {
+    "id": "59a54c77-ff6d-3a84-5b16-24505365df65",
+    "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+    "name": "sarrera",
+    "runStatus": "Stopped",
+    "statsLastRefreshed": "07:30:26 UTC",
+    "aggregateSnapshot": {
+      "id": "59a54c77-ff6d-3a84-5b16-24505365df65",
+      "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+      "name": "sarrera",
+      "activeThreadCount": 0,
+      "flowFilesIn": 1,
+      "bytesIn": 161,
+      "input": "1 (161 bytes)",
+      "flowFilesOut": 1,
+      "bytesOut": 161,
+      "output": "1 (161 bytes)",
+      "runStatus": "Stopped"
+    }
+  },
+  "outputPorts": {
+    "id": "a77fdffd-b583-33b4-7e94-f42d026b6ebe",
+    "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+    "name": "irteera",
+    "runStatus": "Stopped",
+    "statsLastRefreshed": "07:30:26 UTC",
+    "aggregateSnapshot": {
+      "id": "a77fdffd-b583-33b4-7e94-f42d026b6ebe",
+      "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+      "name": "irteera",
+      "activeThreadCount": 0,
+      "flowFilesIn": 1,
+      "bytesIn": 354,
+      "input": "1 (354 bytes)",
+      "flowFilesOut": 1,
+      "bytesOut": 354,
+      "output": "1 (354 bytes)",
+      "runStatus": "Stopped"
+    }
+  }
+}

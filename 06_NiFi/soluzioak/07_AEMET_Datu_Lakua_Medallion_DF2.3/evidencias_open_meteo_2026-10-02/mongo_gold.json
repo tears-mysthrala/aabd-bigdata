@@ -1,0 +1,19 @@
+[
+  {
+    "municipio": "Elche",
+    "provider": "open-meteo",
+    "data_kind": "modeled_forecast",
+    "timezone": "UTC",
+    "source_url": "https://api.open-meteo.com/v1/forecast?latitude=38.26218&longitude=-0.70107&hourly=temperature_2m,relative_humidity_2m&forecast_days=1&timezone=UTC",
+    "fetched_at_utc": "2026-10-02T07:02:59Z",
+    "source_object": "bronze/e566785e-9239-458c-97e7-e11f9affdc0d.json",
+    "start_utc": "2026-10-02T00:00:00Z",
+    "end_utc": "2026-10-02T23:00:00Z",
+    "n_hours": 24,
+    "n_distinct_hours": 24,
+    "temperatura_media_c": 22.383333333333336,
+    "temperatura_min_c": 20.6,
+    "temperatura_max_c": 23.7,
+    "humedad_media_pct": 82.20833333333333
+  }
+]

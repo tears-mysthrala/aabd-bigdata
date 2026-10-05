@@ -1,0 +1,351 @@
+{
+  "captured_at_utc": "2026-10-05T08:44:31.219831+00:00",
+  "project": "aabd-kafka-connect-20261005",
+  "stage": "inicial",
+  "worker": {
+    "version": "7.7.1-ccs",
+    "commit": "91d86f33092378c89731b4a9cf1ce5db831a2b07",
+    "kafka_cluster_id": "MkU3OEVBNTcwNTJENDM2Qk"
+  },
+  "plugins": [
+    {
+      "class": "com.mongodb.kafka.connect.MongoSinkConnector",
+      "type": "sink",
+      "version": "1.13.0"
+    },
+    {
+      "class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+      "type": "source",
+      "version": "10.8.9"
+    }
+  ],
+  "connector_statuses": {
+    "mysql-source": {
+      "name": "mysql-source",
+      "connector": {
+        "state": "RUNNING",
+        "worker_id": "connect:8083"
+      },
+      "tasks": [
+        {
+          "id": 0,
+          "state": "RUNNING",
+          "worker_id": "connect:8083"
+        }
+      ],
+      "type": "source"
+    },
+    "mongodb-sink": {
+      "name": "mongodb-sink",
+      "connector": {
+        "state": "RUNNING",
+        "worker_id": "connect:8083"
+      },
+      "tasks": [
+        {
+          "id": 0,
+          "state": "RUNNING",
+          "worker_id": "connect:8083"
+        }
+      ],
+      "type": "sink"
+    }
+  },
+  "mysql": {
+    "database": "retail_db",
+    "table": "categories",
+    "rows": [
+      {
+        "category_id": 1,
+        "category_department_id": 1,
+        "category_name": "Football"
+      },
+      {
+        "category_id": 2,
+        "category_department_id": 2,
+        "category_name": "Basketball"
+      },
+      {
+        "category_id": 3,
+        "category_department_id": 3,
+        "category_name": "Running"
+      }
+    ]
+  },
+  "kafka": {
+    "topic": "iabd-retail_db-categories",
+    "end_offsets": [
+      {
+        "topic": "iabd-retail_db-categories",
+        "partition": 0,
+        "offset": 3
+      }
+    ],
+    "messages": [
+      {
+        "schema": {
+          "type": "struct",
+          "fields": [
+            {
+              "type": "int32",
+              "optional": false,
+              "field": "category_id"
+            },
+            {
+              "type": "int32",
+              "optional": false,
+              "field": "category_department_id"
+            },
+            {
+              "type": "string",
+              "optional": false,
+              "field": "category_name"
+            }
+          ],
+          "optional": false,
+          "name": "categories"
+        },
+        "payload": {
+          "category_id": 1,
+          "category_department_id": 1,
+          "category_name": "Football"
+        }
+      },
+      {
+        "schema": {
+          "type": "struct",
+          "fields": [
+            {
+              "type": "int32",
+              "optional": false,
+              "field": "category_id"
+            },
+            {
+              "type": "int32",
+              "optional": false,
+              "field": "category_department_id"
+            },
+            {
+              "type": "string",
+              "optional": false,
+              "field": "category_name"
+            }
+          ],
+          "optional": false,
+          "name": "categories"
+        },
+        "payload": {
+          "category_id": 2,
+          "category_department_id": 2,
+          "category_name": "Basketball"
+        }
+      },
+      {
+        "schema": {
+          "type": "struct",
+          "fields": [
+            {
+              "type": "int32",
+              "optional": false,
+              "field": "category_id"
+            },
+            {
+              "type": "int32",
+              "optional": false,
+              "field": "category_department_id"
+            },
+            {
+              "type": "string",
+              "optional": false,
+              "field": "category_name"
+            }
+          ],
+          "optional": false,
+          "name": "categories"
+        },
+        "payload": {
+          "category_id": 3,
+          "category_department_id": 3,
+          "category_name": "Running"
+        }
+      }
+    ]
+  },
+  "mongodb": {
+    "database": "iabd",
+    "collection": "categories",
+    "documents": [
+      {
+        "_id": {
+          "category_id": 1
+        },
+        "category_id": 1,
+        "category_department_id": 1,
+        "category_name": "Football"
+      },
+      {
+        "_id": {
+          "category_id": 2
+        },
+        "category_id": 2,
+        "category_department_id": 2,
+        "category_name": "Basketball"
+      },
+      {
+        "_id": {
+          "category_id": 3
+        },
+        "category_id": 3,
+        "category_department_id": 3,
+        "category_name": "Running"
+      }
+    ]
+  },
+  "source_offset_file": {
+    "path": "/var/lib/kafka-connect/source.offsets",
+    "bytes": 197,
+    "sha256": "014f36291c4af12a8b29068bebd5e8fb2c2f50570089ccd512b0ec392fbb673d"
+  },
+  "containers": [
+    {
+      "name": "/aabd-kafka-connect-20261005-connect-1",
+      "image": "aabd-kafka-connect-caso5:7.7.1",
+      "image_id": "sha256:c82952324aa3fdc81d0a68c8a9ba8bff70ecacce6dd61588b43e6ff7f7b2d7a5",
+      "state": "running",
+      "oom_killed": false,
+      "memory_limit_bytes": 536870912,
+      "ports": {
+        "8083/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "18083"
+          }
+        ],
+        "9092/tcp": null
+      },
+      "volumes": [
+        {
+          "Type": "volume",
+          "Destination": "/etc/kafka-connect/jars"
+        },
+        {
+          "Type": "volume",
+          "Destination": "/etc/kafka-connect/secrets"
+        },
+        {
+          "Type": "volume",
+          "Destination": "/etc/kafka/secrets"
+        },
+        {
+          "Type": "bind",
+          "Destination": "/opt/kafka-connect/config"
+        },
+        {
+          "Type": "bind",
+          "Destination": "/opt/kafka-connect/private"
+        },
+        {
+          "Type": "volume",
+          "Destination": "/var/lib/kafka-connect"
+        },
+        {
+          "Type": "volume",
+          "Destination": "/var/lib/kafka/data"
+        }
+      ]
+    },
+    {
+      "name": "/aabd-kafka-connect-20261005-kafka-1",
+      "image": "confluentinc/cp-kafka:7.7.1",
+      "image_id": "sha256:653f49c51cfebcf8301938d01044efead6afbd8dd60acd2bcf1605d7c6494d3b",
+      "state": "running",
+      "oom_killed": false,
+      "memory_limit_bytes": 536870912,
+      "ports": {
+        "9092/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "19094"
+          }
+        ]
+      },
+      "volumes": [
+        {
+          "Type": "volume",
+          "Destination": "/etc/kafka/secrets"
+        },
+        {
+          "Type": "volume",
+          "Destination": "/var/lib/kafka/data"
+        }
+      ]
+    },
+    {
+      "name": "/aabd-kafka-connect-20261005-mongodb-1",
+      "image": "mongo:8",
+      "image_id": "sha256:d731d77bfd7afd66bd487bdf627b5bf7ce4c3602ec461d635977021db529ebbc",
+      "state": "running",
+      "oom_killed": false,
+      "memory_limit_bytes": 402653184,
+      "ports": {
+        "27017/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "12718"
+          }
+        ]
+      },
+      "volumes": [
+        {
+          "Type": "volume",
+          "Destination": "/data/configdb"
+        },
+        {
+          "Type": "volume",
+          "Destination": "/data/db"
+        }
+      ]
+    },
+    {
+      "name": "/aabd-kafka-connect-20261005-mysql-1",
+      "image": "mysql:8.4",
+      "image_id": "sha256:85b9bf2e29cf836ecb8c2a15a935d4ba0c606631dff1dd79531a11983c638f2a",
+      "state": "running",
+      "oom_killed": false,
+      "memory_limit_bytes": 536870912,
+      "ports": {
+        "3306/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "13307"
+          }
+        ],
+        "33060/tcp": null
+      },
+      "volumes": [
+        {
+          "Type": "bind",
+          "Destination": "/docker-entrypoint-initdb.d/init.sql"
+        },
+        {
+          "Type": "volume",
+          "Destination": "/var/lib/mysql"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "connectors_expected": true,
+    "connectors_and_tasks_running": true,
+    "plugins_loaded": true,
+    "mysql_exact_rows": true,
+    "topic_one_partition_exact_count": true,
+    "topic_exact_payloads": true,
+    "topic_schema_matches_sql": true,
+    "mongo_exact_rows": true,
+    "mongo_stable_ids": true,
+    "persistent_source_offset_file_nonempty": true,
+    "containers_not_oom_killed": true
+  },
+  "passed": true
+}

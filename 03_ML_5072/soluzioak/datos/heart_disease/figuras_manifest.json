@@ -1,0 +1,10 @@
+{
+  "results_sha256": "fca8bea707dafda004fc5cd7fe7291d743b8040441ac18d710c989b59b71ed76",
+  "figures": {
+    "orange_workflow.png": "97f5e9d13972a3d8ca70065f9cb534737c4124c1c80f124951b09a8d24261cad",
+    "metrics_comparison.png": "184fd8ca3e8b28032fa1999fef29c58e45e9c73a0cbc5fedd0a281cf018c9b2d",
+    "confusion_matrices.png": "cfbf5a83e0e77681203ecbce65734b24745807d78981d990c0998cb6629adc30",
+    "roc_curves.png": "a3b80901067a0cc5e8a80b76730e55685920b7c34506a252806727c959136b37",
+    "decision_tree_vis.png": "b434e40659ff71288af0ff24fd24343ab62c6ff9907ebef06aebc73640831e6f"
+  }
+}

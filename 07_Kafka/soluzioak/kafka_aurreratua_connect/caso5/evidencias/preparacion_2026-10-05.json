@@ -1,0 +1,75 @@
+{
+  "captured_at_utc": "2026-10-05T08:13:34.849043+00:00",
+  "project": "aabd-kafka-connect-20261005",
+  "source_pdf": {
+    "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
+    "sha256": "a28ad97646ac8fc060d5b15bb21f1befc1f04fd37b9ccc5df5e60ac5742ca67d",
+    "pages": "56-69; embedded configurations visually checked on pages58-60"
+  },
+  "compose_version": "Docker Compose version 5.6.0",
+  "services": {
+    "connect": {
+      "image": "aabd-kafka-connect-caso5:7.7.1",
+      "mem_limit": "536870912",
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 8083,
+          "published": "18083",
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "kafka": {
+      "image": "confluentinc/cp-kafka:7.7.1",
+      "mem_limit": "536870912",
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 9092,
+          "published": "19094",
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "mongodb": {
+      "image": "mongo:8",
+      "mem_limit": "402653184",
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 27017,
+          "published": "12718",
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "mysql": {
+      "image": "mysql:8.4",
+      "mem_limit": "536870912",
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 3306,
+          "published": "13307",
+          "protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "files_sha256": {
+    "Dockerfile": "6f5f4ea73ecd505195a7309b3f5d4e0058d3e10fd0fb775cd4539835cd24c6ab",
+    "compose.yaml": "012ea37b9e00bc90ed78641e905cfccfaf0a89dcdd0bb30b1f71426a91b324f0",
+    "mysql/init.sql": "66be1f107b95075222ab2a7af102118a498a5ae9d22dfbde98e795ce4828999c",
+    "config/connect-standalone.properties": "1d0adc0b940754a2d2d45fec8fe33da768f52c7d75242423a9b133ef60d41ca3",
+    "config/mongodb-sink.properties": "ad82942766c561da1e11a40ab9de1eef09a721d8b0c6fc3925b3ebcd76ad9106",
+    "config/mysql-source.properties": "012230ef3102b864ef9c5707c8ba81d989ded1c545884d3dccf6cfa9c19f83b5"
+  },
+  "memory": "               total        used        free      shared  buff/cache   available\nMem:           7.0Gi       6.2Gi       244Mi       5.6Mi       1.1Gi       832Mi\nSwap:           14Gi       6.6Gi       8.3Gi\n",
+  "disk": "Filesystem        Size  Used Avail Use% Mounted on\n/dev/mapper/root  237G  193G   40G  84% /home\n",
+  "initial_ports": "State Recv-Q Send-Q Local Address:Port Peer Address:Port\n"
+}

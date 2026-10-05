@@ -1,0 +1,12 @@
+{
+  "kind": "tree",
+  "title": "Árbol de decisión: clasificación de Iris",
+  "stem": "Arbol_Decision_Iris",
+  "parameters": {
+    "max_depth": 3,
+    "min_samples_leaf": 2,
+    "min_samples_split": 5,
+    "binarize": true,
+    "sufficient_majority": 0.95
+  }
+}

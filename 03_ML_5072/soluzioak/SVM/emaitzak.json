@@ -1,0 +1,34 @@
+{
+  "source": "03_ML_5072/materialak/5072_2_05_SVM.pdf, página física 9",
+  "seed_svr_pdf": 0,
+  "seed_evaluation": 42,
+  "pdf_training": {
+    "svc_rows": 4,
+    "svc_accuracy": 1.0,
+    "svr_rows": 10,
+    "svr_r2": 0.5760863805344085
+  },
+  "educational_extension": {
+    "iris_train_rows": 105,
+    "iris_test_rows": 45,
+    "iris_accuracy_train": 0.9714285714285714,
+    "iris_accuracy_test": 0.9333333333333333,
+    "svr_cv_folds": 5,
+    "svr_cv_rows": 10,
+    "svr_r2_oof": -0.44311269823651656,
+    "svr_mae_oof": 1.0332628805360238,
+    "dummy_r2_oof": -0.17654143015353618,
+    "dummy_mae_oof": 0.8945938981650835
+  },
+  "versions": {
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1"
+  },
+  "limits": [
+    "PDF scores evaluate the same rows used for fit, not generalization.",
+    "Iris is an added educational holdout, not a PDF requirement.",
+    "SVR has only ten random rows; pooled OOF R2 is unstable.",
+    "Moodle task SVM - Ariketa (id 63380) exists; no visible instructions/rubric or due date. No submission made or complete rubric coverage verified."
+  ]
+}

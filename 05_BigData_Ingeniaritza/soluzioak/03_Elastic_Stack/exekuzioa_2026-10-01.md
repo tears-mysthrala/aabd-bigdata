@@ -2,6 +2,9 @@
 
 Iturria: `05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf`, 61 orrialde.
 P5: 35; P6: 38; P7: 39–40; P8: 44; P14: 56.
+Ohar historikoa (2026-10-05): PDF berriak 75 orri ditu; erregistro honetako
+P14 Grok orain P15 da (65–66. orriak), eta stdin P13 zaharra P14 da.
+Hemengo emaitzak 2026-10-01ekoak dira, ez aldaera berrien egiaztapena.
 Aurreko dokumentazioak PDF zaharraren 43 orrialdeak erabiltzen zituen.
 `06_NiFi/materialak/02_elastic_stack.pdf` ere kontrastatu da: testuko aldeak
 P12/Beats inguruan daude; Kibana P5–P8/P14 enuntziatuak berdinak dira.

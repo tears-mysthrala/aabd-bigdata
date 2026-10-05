@@ -1,0 +1,108 @@
+{
+  "csv_sha256": "dc6630cd9b1f0f853922fad78a1b6436570d3f1ec863f1dd5c4340ac56bc8a8e",
+  "rows": 10000,
+  "columns": 14,
+  "missing": 0,
+  "failure_count": 339,
+  "failure_percent": 3.39,
+  "pearson_speed_torque": -0.875027086299607,
+  "groups": {
+    "0": {
+      "count": 9661,
+      "Air temperature [K]": {
+        "mean": 299.9739985508746,
+        "median": 300.0,
+        "min": 295.3,
+        "max": 304.5,
+        "sd": 1.9907479694438195
+      },
+      "Process temperature [K]": {
+        "mean": 309.99556981678916,
+        "median": 310.0,
+        "min": 305.7,
+        "max": 313.8,
+        "sd": 1.4868460647646986
+      },
+      "Rotational speed [rpm]": {
+        "mean": 1540.2600144912535,
+        "median": 1507.0,
+        "min": 1168.0,
+        "max": 2695.0,
+        "sd": 167.39473403228345
+      },
+      "Torque [Nm]": {
+        "mean": 39.62965531518476,
+        "median": 39.9,
+        "min": 12.6,
+        "max": 70.0,
+        "sd": 9.472080111077107
+      },
+      "Tool wear [min]": {
+        "mean": 106.69371700652107,
+        "median": 107.0,
+        "min": 0.0,
+        "max": 246.0,
+        "sd": 62.9457904638941
+      }
+    },
+    "1": {
+      "count": 339,
+      "Air temperature [K]": {
+        "mean": 300.88643067846607,
+        "median": 301.6,
+        "min": 295.6,
+        "max": 304.4,
+        "sd": 2.071472606797602
+      },
+      "Process temperature [K]": {
+        "mean": 310.2902654867257,
+        "median": 310.4,
+        "min": 306.1,
+        "max": 313.7,
+        "sd": 1.3636856993841047
+      },
+      "Rotational speed [rpm]": {
+        "mean": 1496.486725663717,
+        "median": 1365.0,
+        "min": 1181.0,
+        "max": 2886.0,
+        "sd": 384.94354727230365
+      },
+      "Torque [Nm]": {
+        "mean": 50.16814159292036,
+        "median": 53.7,
+        "min": 3.8,
+        "max": 76.6,
+        "sd": 16.374498133978197
+      },
+      "Tool wear [min]": {
+        "mean": 143.78171091445427,
+        "median": 165.0,
+        "min": 0.0,
+        "max": 253.0,
+        "sd": 72.75987593568682
+      }
+    }
+  },
+  "speed_bins": [
+    {
+      "label": "speed < 1400",
+      "count": 1847,
+      "failures": 236,
+      "failure_percent": 12.777476989713048
+    },
+    {
+      "label": "1400 <= speed <= 1800",
+      "count": 7425,
+      "failures": 66,
+      "failure_percent": 0.8888888888888888
+    },
+    {
+      "label": "speed > 1800",
+      "count": 728,
+      "failures": 37,
+      "failure_percent": 5.082417582417582
+    }
+  ],
+  "orange_tab_sha256": "ee1eea94b956b9f3569d3800384a62ac967af9ee42de4286e2c5365dd94e9a23"
+}

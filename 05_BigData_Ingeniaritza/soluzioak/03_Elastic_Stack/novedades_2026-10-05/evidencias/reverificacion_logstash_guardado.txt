@@ -1,0 +1,14 @@
+{
+  "verified_at_utc": "2026-10-05T08:35:16.910472+00:00",
+  "events_per_practice": {
+    "p15": 5,
+    "p16": 3,
+    "p17": 1
+  },
+  "p15_variants": "OK",
+  "p15_invalid_ip": "_grokparsefailure",
+  "p16_timestamp": "2026-09-30T08:30:45.000Z",
+  "p16_invalid_date": "_dateparsefailure",
+  "p16_invalid_structure": "_grokparsefailure",
+  "p17_integer_rename_remove": "OK"
+}

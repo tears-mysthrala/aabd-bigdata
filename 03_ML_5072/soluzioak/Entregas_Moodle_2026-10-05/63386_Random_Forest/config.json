@@ -1,0 +1,15 @@
+{
+  "kind": "forest",
+  "title": "Random Forest: clasificación de Iris",
+  "stem": "Random_Forest_Iris",
+  "parameters": {
+    "n_estimators": 100,
+    "random_state": 42,
+    "max_features": "sqrt",
+    "max_depth": null,
+    "min_samples_split": 5,
+    "min_samples_leaf": 1,
+    "bootstrap": true,
+    "class_weight": null
+  }
+}

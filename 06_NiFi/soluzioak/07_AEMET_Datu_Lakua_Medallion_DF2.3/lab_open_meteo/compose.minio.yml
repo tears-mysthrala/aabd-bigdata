@@ -1,0 +1,23 @@
+# Sidecar only: uses the NiFi laboratory network created by its coordinator.
+# Generated runtime files and random credentials must remain outside Git.
+name: bigdata-nifi-lab-20261002-minio
+services:
+  minio:
+    image: bigdata-minio-official:RELEASE.2025-09-07T16-13-09Z
+    build:
+      context: ./minio-build
+      dockerfile: Dockerfile.minio
+    container_name: bigdata-nifi-lab-20261002-minio
+    hostname: minio
+    env_file: ./minio.env
+    ports:
+      - "127.0.0.1:${MINIO_LAB_PORT:-19000}:9000"
+    volumes:
+      - ./minio-data:/data
+    networks:
+      lab:
+        aliases: [minio]
+networks:
+  lab:
+    external: true
+    name: ${NIFI_LAB_NETWORK:-bigdata-nifi-lab-20261002-net}

@@ -1,0 +1,1 @@
+{"indices":[],"aliases":[],"data_streams":[{"name":"filebeat-9.5.4","backing_indices":[".ds-filebeat-9.5.4-2026.10.05-000001"],"timestamp_field":"@timestamp"}]}

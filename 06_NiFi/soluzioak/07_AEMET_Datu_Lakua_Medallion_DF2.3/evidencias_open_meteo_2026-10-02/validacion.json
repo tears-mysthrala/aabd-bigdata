@@ -1,0 +1,188 @@
+{
+  "validated_utc": "2026-10-02T07:06:42.336191+00:00",
+  "source_provider": "open-meteo",
+  "data_kind": "modeled_forecast",
+  "source_url": "https://api.open-meteo.com/v1/forecast?latitude=38.26218&longitude=-0.70107&hourly=temperature_2m,relative_humidity_2m&forecast_days=1&timezone=UTC",
+  "request_started_at_utc": "2026-10-02T07:02:59Z",
+  "requested_coordinates": {
+    "latitude": 38.26218,
+    "longitude": -0.70107
+  },
+  "grid_coordinates": {
+    "latitude": 38.25,
+    "longitude": -0.6875
+  },
+  "http_requests_seeded": 1,
+  "s3_objects": [
+    {
+      "layer": "bronze",
+      "bucket": "iabd-nifi-open-meteo-lab",
+      "key": "bronze/e566785e-9239-458c-97e7-e11f9affdc0d.json",
+      "bytes": 961,
+      "content_type": "application/json",
+      "sha256": "17586f3240bce5d4cebee258932f54a91a641a64d03a29ec877ff6b12664f0db"
+    },
+    {
+      "layer": "silver",
+      "bucket": "iabd-nifi-open-meteo-lab",
+      "key": "silver/e228a03d-10e3-453c-9cae-cef3ab87bfe7.json",
+      "bytes": 10633,
+      "content_type": "application/json",
+      "sha256": "bf60b2cd2aafa502063560ce88948a29eb4e5cf035b5d2b7516d6e928ac673a1"
+    },
+    {
+      "layer": "gold",
+      "bucket": "iabd-nifi-open-meteo-lab",
+      "key": "gold/503a39f2-cfc7-41fc-8df0-4a66c1cd86f3.parquet",
+      "bytes": 5553,
+      "content_type": "application/vnd.apache.parquet",
+      "sha256": "9414202d2de8326ec8d4a57006e84dd463dd291873a2376a3d7711698510aad8"
+    }
+  ],
+  "silver_rows": 24,
+  "gold_rows": 1,
+  "mongo_silver_documents": 24,
+  "mongo_gold_documents": 1,
+  "distinct_hourly_timestamps": 24,
+  "gold": {
+    "municipio": "Elche",
+    "provider": "open-meteo",
+    "data_kind": "modeled_forecast",
+    "timezone": "UTC",
+    "source_url": "https://api.open-meteo.com/v1/forecast?latitude=38.26218&longitude=-0.70107&hourly=temperature_2m,relative_humidity_2m&forecast_days=1&timezone=UTC",
+    "fetched_at_utc": "2026-10-02T07:02:59Z",
+    "source_object": "bronze/e566785e-9239-458c-97e7-e11f9affdc0d.json",
+    "start_utc": "2026-10-02T00:00:00Z",
+    "end_utc": "2026-10-02T23:00:00Z",
+    "n_hours": 24,
+    "n_distinct_hours": 24,
+    "temperatura_media_c": 22.383333333333336,
+    "temperatura_min_c": 20.6,
+    "temperatura_max_c": 23.7,
+    "humedad_media_pct": 82.20833333333333
+  },
+  "parquet_schema": "municipio: string not null\nprovider: string not null\ndata_kind: string not null\ntimezone: string not null\nsource_url: string not null\nfetched_at_utc: string not null\nsource_object: string not null\nstart_utc: string not null\nend_utc: string not null\nn_hours: int64 not null\nn_distinct_hours: int64 not null\ntemperatura_media_c: double not null\ntemperatura_min_c: double not null\ntemperatura_max_c: double not null\nhumedad_media_pct: double not null\n-- schema metadata --\nparquet.avro.schema: '{\"type\":\"record\",\"name\":\"nifiRecord\",\"namespace\":\"o' + 623\nwriter.model.name: 'avro'",
+  "processors": [
+    {
+      "name": "GET Open-Meteo hourly forecast",
+      "id": "fb69268c-01a0-1000-edd6-2abe28a7cd6a",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 1,
+      "bytes_written": 961
+    },
+    {
+      "name": "Validate and type hourly Silver",
+      "id": "fb6926b7-01a0-1000-2d91-0a33bdcdeb44",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 1,
+      "bytes_written": 10633
+    },
+    {
+      "name": "Gold real Parquet to LAB S3",
+      "id": "fb692976-01a0-1000-5ece-48c54386216a",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 1,
+      "bytes_written": 0
+    },
+    {
+      "name": "Gold aggregate 24 different forecast hours",
+      "id": "fb69296a-01a0-1000-c3e5-d43fced7bdee",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 1,
+      "bytes_written": 5553
+    },
+    {
+      "name": "Bronze raw JSON to LAB S3",
+      "id": "fb6926a1-01a0-1000-ed74-9fe77da26312",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 1,
+      "bytes_written": 0
+    },
+    {
+      "name": "Silver typed JSON to LAB S3",
+      "id": "fb69294c-01a0-1000-182a-4a59b60474f1",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 1,
+      "bytes_written": 0
+    },
+    {
+      "name": "Preserve failed payloads in LAB folder",
+      "id": "fb692992-01a0-1000-1c9f-50f8054ebdf8",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 0,
+      "bytes_written": 0
+    },
+    {
+      "name": "Silver records to LAB Mongo",
+      "id": "fb69295c-01a0-1000-373a-dc21d36076cf",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 1,
+      "bytes_written": 0
+    },
+    {
+      "name": "One HTTP request per manual run",
+      "id": "fb692668-01a0-1000-696e-8714e7445d28",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 1,
+      "bytes_written": 2
+    },
+    {
+      "name": "Source URL and UTC provenance",
+      "id": "fb69267e-01a0-1000-f25a-433e41bfd314",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 1,
+      "bytes_written": 0
+    },
+    {
+      "name": "Gold Parquet records to LAB Mongo",
+      "id": "fb692984-01a0-1000-958e-71a3afb2cd0d",
+      "state": "STOPPED",
+      "validation_status": "VALID",
+      "tasks": 1,
+      "bytes_written": 0
+    }
+  ],
+  "checks": {
+    "bronze_to_silver_values": true,
+    "gold_aggregates_recomputed": true,
+    "mongo_matches_s3": true,
+    "no_pending_flowfiles": true,
+    "failure_files": 0,
+    "all_pg7_processors_stopped": true,
+    "sanitized_export_imported": true,
+    "original_aemet_flow_unchanged": true
+  },
+  "limits": [
+    "Alternative provider; not official AEMET delivery",
+    "Modeled hourly forecasts, not station observations",
+    "One request snapshot; no independent repeated current measurements",
+    "Single local MinIO and Mongo; not AWS production",
+    "No durability/retry/idempotence/high-availability assessment"
+  ],
+  "import_check_process_group": "fb72dd45-01a0-1000-a799-3e67d4dddb07",
+  "original_aemet_flow_sha256": "22655aaa8e8d7468d2b091f9a1e8bcd7783395b153cdcec172c3c869fc9869d1",
+  "runtime_versions": {
+    "nifi": "2.0.0",
+    "minio": "RELEASE.2025-09-07T16-13-09Z",
+    "mongo_image": "mongo:7.0",
+    "pyarrow": "25.0.1",
+    "python": "3.13.13"
+  },
+  "lab_lifecycle": {
+    "pg7_processors_stopped": true,
+    "pg7_queues_empty": true,
+    "minio_sidecar_container_removed": true,
+    "temporary_minio_data_preserved_outside_git": true,
+    "shared_nifi_mongo_mysql_shutdown": "coordinated separately after cases 1-6 evidence capture"
+  }
+}

@@ -12,7 +12,7 @@ Repositorio honetan Google NotebookLM zerbitzuarekin sinkronizatutako baliabide 
 
 ---
 
-## 📦 Sortutako eta Deskargatutako Ikasketa-Modulu Guztiak (100% Osatuta)
+## 📦 Sortutako eta Deskargatutako Ikasketa-Modulu Guztiak (Eguneratuta 2026-09-30)
 
 Guztiak NotebookLM bidez sortu dira eta lokalean gordeta daude:
 
@@ -20,14 +20,14 @@ Guztiak NotebookLM bidez sortu dira eta lokalean gordeta daude:
 | :--- | :--- | :--- | :--- |
 | 🎧 **Audio Podcast** | [`Podcast_AABD_IA_Averias_Industriales.m4a`](Podcast_AABD_IA_Averias_Industriales.m4a) | 46 MB | *"IA para predecir averías industriales silenciosas"*. Conversación completa en español sobre mantenimiento predictivo y ML. |
 | 🎬 **Vídeo Overview** | [`Video_AABD_BigData_MachineLearning.mp4`](Video_AABD_BigData_MachineLearning.mp4) | 34 MB | *"Big Data y Machine Learning"*. Vídeo explicativo y estructurado de los módulos del curso. |
-| 📄 **Guía de Estudio** | [`Guia_Estudio_AABD.md`](Guia_Estudio_AABD.md) | 6.1 KB | Síntesis de conceptos fundamentales: NiFi, Medallion, paradigmas de IA y CNC Guard. |
-| 🃏 **Flashcards** | [`Flashcards_AABD.md`](Flashcards_AABD.md) | 9.1 KB | +480 líneas con tarjetas de preguntas/respuestas de memorización activa. |
-| 📝 **Quiz de Autoevaluación**| [`Quiz_AABD.md`](Quiz_AABD.md) | 4.3 KB | Test de autoevaluación con respuestas justificadas (DAGs, 7V, ELT vs ETL, etc.). |
-| 🧠 **Mapa Mental** | [`MindMap_AABD.json`](MindMap_AABD.json) | 2.8 KB | Nodos conceptuales interconectados de las asignaturas y retos. |
+| 📄 **Guía de Estudio** | [`Guia_Estudio_AABD.md`](Guia_Estudio_AABD.md) | 7.8 KB | Síntesis completa y actualizada: NiFi, Medallion, paradigmas de IA, CNC Guard, Kafka y ML. |
+| 🃏 **Flashcards** | [`Flashcards_AABD.md`](Flashcards_AABD.md) | 11.1 KB | +600 líneas con tarjetas de preguntas/respuestas de memorización activa. |
+| 📝 **Quiz de Autoevaluación**| [`Quiz_AABD.md`](Quiz_AABD.md) | 13.5 KB | Test de autoevaluación exhaustivo con respuestas justificadas y pistas de razonamiento. |
+| 🧠 **Mapa Mental** | [`MindMap_AABD.json`](MindMap_AABD.json) | 2.8 KB | Nodos conceptuales interconectados de todas las asignaturas y retos actualizados. |
 
 ---
 
-## 📚 Koadernoan Kargatutako Iturriak (32 Iturri Guztira)
+## 📚 Koadernoan Kargatutako Iturriak (48 Iturri Guztira)
 
 ### 1. 00 - Orokorra eta Programazioa
 - `00 - Programazio Didaktikoa AA 2026-2027` (PDF)

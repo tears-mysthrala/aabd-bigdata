@@ -476,33 +476,15 @@ SALMENTA_TAULA = pd.DataFrame(
 )
 
 
-def ariketa_2_4() -> dict:
-    """Agregazio konplexuak: groupby + agg + pivot_table."""
-    salm_hiriak = SALMENTA_TAULA.groupby("hiria")["salmenta"].sum()
-    print("=== 1. HIRI BAKOITZEKO SALMENTA OSOA ===")
-    print(salm_hiriak)
+def ariketa_2_4(df: pd.DataFrame | None = None) -> dict:
+    """Agregación docente: máximo de sumas por ciudad/categoría, no de filas.
 
-    agg_kategoriak = SALMENTA_TAULA.groupby("kategoria")["salmenta"].agg(
-        ["mean", "max", "count"]
-    )
-    print("\n=== 2. KATEGORIA BAKOITZEKO ESTATISTIKAK (AGG) ===")
-    print(agg_kategoriak)
+    Sin argumentos lee las 30 filas del CSV docente. SALMENTA_TAULA conserva
+    el ejemplo anterior de ocho filas: ariketa_2_4(SALMENTA_TAULA).
+    """
+    from ariketa_2_4_2_5_docente import agregatu_salmentak
 
-    pivot = SALMENTA_TAULA.pivot_table(
-        index="hiria",
-        columns="kategoria",
-        values="salmenta",
-        aggfunc="sum",
-        fill_value=0,
-    )
-    print("\n=== 3. PIVOT TABLE (HIRIA vs KATEGORIA) ===")
-    print(pivot)
-
-    bikote_max = SALMENTA_TAULA.loc[SALMENTA_TAULA["salmenta"].idxmax()]
-    print(
-        f"\n4. Salmenta indibidualik handiena: {bikote_max['hiria']} - {bikote_max['kategoria']} ({bikote_max['salmenta']} €)"
-    )
-    return {"salm_hiriak": salm_hiriak, "pivot": pivot}
+    return agregatu_salmentak(df)
 
 
 ariketa_2_4()
@@ -537,16 +519,16 @@ HIRIAK = pd.DataFrame(
 )
 
 
-def ariketa_2_5() -> dict:
-    """Eredu erlazionala: inner JOIN vs left JOIN."""
-    df_inner = pd.merge(BEZEROAK, HIRIAK, left_on="hiri_id", right_on="id", how="inner")
-    print("=== 1. INNER JOIN (Bat datozenak soilik) ===")
-    print(df_inner[["izena", "hiri_izena", "probintzia"]])
+def ariketa_2_5(bezeroak=None, hiriak=None) -> dict:
+    """Tablas docentes embebidas: inner, left y concat mensual.
 
-    df_left = pd.merge(BEZEROAK, HIRIAK, left_on="hiri_id", right_on="id", how="left")
-    print("\n=== 2. LEFT JOIN (Bezero guztiak mantenduz) ===")
-    print(df_left[["izena", "hiri_id", "hiri_izena", "probintzia"]])
-    return {"inner": df_inner, "left": df_left}
+    Los CSV recibidos de 2.5 tienen esquema de ventas y no sirven para JOIN.
+    BEZEROAK/HIRIAK conservan la variante anterior con Kepa/hiri_id=99:
+    ariketa_2_5(BEZEROAK, HIRIAK).
+    """
+    from ariketa_2_4_2_5_docente import batu_taulak
+
+    return batu_taulak(bezeroak, hiriak)
 
 
 ariketa_2_5()
