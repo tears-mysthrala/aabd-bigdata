@@ -6,11 +6,90 @@
     "resource": 44,
     "url": 14
   },
+  "assignments": [
+    {
+      "dates": "Entregatze-data: osteguna, 2026(e)ko irailaren 10(e)an, 00:00(e)tan",
+      "section": 3,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63275",
+      "statement": "Talde bakoitzak bere kontratua osatu eta igo behar du. ANEXO1-Eus.docx 2026(e)ko irailaren 8(e)n, 20:22(e)tan",
+      "title": "Kontratua Zeregina"
+    },
+    {
+      "dates": "Entregatze-data: asteartea, 2026(e)ko urriaren 20(e)an, 14:30(e)tan",
+      "section": 3,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63276",
+      "statement": "",
+      "title": "Behin-behineko proposamena Zeregina"
+    },
+    {
+      "dates": "Entregatze-data: asteartea, 2026(e)ko urriaren 20(e)an, 14:30(e)tan",
+      "section": 3,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63277",
+      "statement": "ANEXO4.docx 2026(e)ko irailaren 8(e)n, 20:39(e)tan",
+      "title": "Behin betiko proposamena Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: asteazkena, 2026(e)ko irailaren 16(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63638",
+      "statement": "Orange softwarea erabiliz, dataset bat aukeratu (edota saretik deskargatu) eta grafika batean marraztu. Grafika horretan agertzen dena interpretatu eta ondorioak atera. Sarrera, Garapena (pantaila irudiekin) eta Ondorioak dituen PDF dokumentua entregatu. Banaka egiteko ariketa da.",
+      "title": "Datuak interpretatzea - Ariketa Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: osteguna, 2026(e)ko irailaren 10(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63319",
+      "statement": "Orange Data Mining Softwarean, aplikatu dagokion modeloa dataset zehatz bat erabiliz. Azaldu zein datu aukeratu dituzun Aplikatu dagokion modeloa Irteera datuak atera eta aztertu Datu eta modeloaren inguruko ondorioak atera",
+      "title": "Erregresio Lineala - Ariketa Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: osteguna, 2026(e)ko irailaren 10(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63320",
+      "statement": "Orange Data Mining Softwarean, aplikatu dagokion modeloa dataset zehatz bat erabiliz. Azaldu zein datu aukeratu dituzun Aplikatu dagokion modeloa Irteera datuak atera eta aztertu Datu eta modeloaren inguruko ondorioak atera",
+      "title": "Erregresio Logistikoa - Ariketa Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: osteguna, 2026(e)ko irailaren 10(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63321",
+      "statement": "Orange Data Mining Softwarean, aplikatu dagokion modeloa dataset zehatz bat erabiliz. Azaldu zein datu aukeratu dituzun Aplikatu dagokion modeloa Irteera datuak atera eta aztertu Datu eta modeloaren inguruko ondorioak atera",
+      "title": "K-NN - Ariketa Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: osteguna, 2026(e)ko irailaren 10(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63325",
+      "statement": "ikaskuntza_gainbegiratua_ikaslea.ipynb 2026(e)ko irailaren 10(e)n, 13:56(e)tan txostena_ikaslea.md 2026(e)ko irailaren 10(e)n, 13:56(e)tan",
+      "title": "Ikasketa Gainbegiratua - Erregresio Logistikoa vs KNN - Jupyter Ariketa Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: asteartea, 2026(e)ko irailaren 15(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63544",
+      "statement": "",
+      "title": "Erabakitze Zuhaitza - Ariketa Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: ostirala, 2026(e)ko irailaren 11(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63386",
+      "statement": "",
+      "title": "Random Forest - Ariketa Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: ostirala, 2026(e)ko irailaren 11(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63380",
+      "statement": "",
+      "title": "SVM - Ariketa Zeregina"
+    }
+  ],
   "entries": [
     {
       "kind": "file",
-      "path": "00_Transversal/materialak_00_Orokorra/Programazioa_AA_2026-2027.docx-1.pdf",
-      "sha256": "28a00d23bdca91f03df1949b154702611e065b7bf85d502d521df18a15af0ae6",
+      "path": "00_Transversal/materialak_00_Orokorra/Programazioa_AA_2_2026-2027.docx.pdf",
+      "sha256": "ea8e9fa06aad725f85d3c4a5056624315a65b3140e737d8dd493db3f41a23790",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=61501",
       "status": "verified"
     },
@@ -291,7 +370,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/2_SOLUZIOAK_URLa.ipynb",
-      "sha256": "51f1558ae663eb6b03f03a495649ba236845dc578c0e40449507fcfa4cd4aa39",
+      "sha256": "00f2743271c73168947fb773173f4f4e66834d2d10c41f61d14a653c00bae0eb",
       "source": "https://drive.google.com/file/d/1FI4AahJ68dG3DOYAETuPgdnWFCFw8E3C/view?usp=sharing",
       "status": "verified"
     },
@@ -311,7 +390,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
-      "sha256": "a9f4e38e037eb98bc8ecb32487e721990ff529017eeae6b15b06cb32b7b6d5f6",
+      "sha256": "e7a2836bd107012720cc7efefa55e3e37dc367361919fc95087a90bf8ba2fece",
       "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
       "status": "verified"
     },
@@ -486,7 +565,7 @@
     {
       "kind": "file",
       "path": "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
-      "sha256": "b9a9842ddd443240cf0781eaf388563ee07d2908d0e121a6d218a053d40d321d",
+      "sha256": "ceae486c71ba7355656fe3cddba6f1a66389e2bdb41c66a358519283b6e7a8c8",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64159",
       "status": "verified"
     },
@@ -556,7 +635,7 @@
     {
       "kind": "file",
       "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
-      "sha256": "635e162a6674a5ed53d355941c3d1f7f25a483df2c315939aae393efa6e57371",
+      "sha256": "a28ad97646ac8fc060d5b15bb21f1befc1f04fd37b9ccc5df5e60ac5742ca67d",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64150",
       "status": "verified"
     },
@@ -586,5 +665,5 @@
     12
   ],
   "unavailable": 0,
-  "verified_on": "2026-10-02"
+  "verified_on": "2026-10-05"
 }
