@@ -93,7 +93,7 @@ def main():
                       prediction_default=False, synthetic_holdout_metrics=metrics,
                       versions={m:version(m) for m in ['streamlit','fastapi','uvicorn','scikit-learn','pandas']})
         args.output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
-        print(json.dumps(result,ensure_ascii=False,indent=2))
+        print('Local HTTP and Streamlit checks passed; synthetic evidence saved.')
     finally:
         server.terminate()
         try:

@@ -84,6 +84,10 @@ usa el cliente `confluent-hub`, que instala los plugins en
 `.env` y `private/mysql.properties` quedan fuera de Git y del contexto de
 construcción. No ejecutar `docker compose config` sin `--quiet` para capturas:
 la configuración expandida contiene las contraseñas del laboratorio.
+Compose y el FileConfigProvider requieren estos archivos de texto locales:
+se crean con permisos `0600` desde la apertura, en un directorio privado `0700`,
+sin sobrescribir archivos existentes ni seguir enlaces simbólicos. No son
+almacenamiento de credenciales de producción y sus valores no se imprimen.
 
 ## 2. Arrancar los cuatro contenedores y consultar MySQL
 
