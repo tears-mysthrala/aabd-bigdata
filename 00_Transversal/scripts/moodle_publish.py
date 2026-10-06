@@ -8,9 +8,12 @@ Garantías del snapshot diario:
 - La rama diaria reutilizada se valida contra la base: si contiene rutas
   ajenas al material verificado de este ciclo, la publicación se rechaza
   en lugar de heredar contaminación.
-- La fusión es por ruta: un checkout desfasado no revierte material más
-  nuevo ya publicado. Si su copia de un fichero sigue igual que la base
-  mientras la rama avanzó, se conserva la versión publicada.
+- La fusión es por ruta y falla cerrada: una ruta se publica si la rama
+  no la ha cambiado desde la base; se preserva la rama si este checkout
+  conserva la versión de la base; si base, rama y checkout difieren los
+  tres, la publicación se rechaza (conflicto) porque el orden causal no
+  puede probarse. Reintentar tras sincronizar de nuevo converge si el
+  material ya coincide con la rama.
 - Cada ciclo debe pasar el conjunto gestionado completo que quiera
   preservar en la rama (el llamador real pasa siempre ``SYNC_MANAGED``).
 """
@@ -127,9 +130,15 @@ def publish_snapshot(
                 # la versión de la base. No revertir; conservar lo publicado.
                 git("restore", "--source", parent, "--staged", "--", name, env=env)
                 preserved.append(name)
-            # Si las tres versiones difieren, es una actualización
-            # secuencial legítima: se publica el trabajo sobre la rama,
-            # con la versión anterior como padre en el historial.
+                continue
+            # Tres versiones distintas (base, rama y checkout): el orden
+            # causal no puede probarse y asumir "actualización secuencial"
+            # podría revertir material más nuevo. Fallar cerrado y exigir
+            # una sincronización nueva antes de reintentar.
+            raise RuntimeError(
+                "Conflicto de publicación en " + name + ": base, rama diaria"
+                " y checkout difieren; sincroniza de nuevo y reintenta"
+            )
         tree = git("write-tree", env=env)
     if tree == parent_tree:
         if existing:

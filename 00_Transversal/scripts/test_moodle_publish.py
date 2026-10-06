@@ -5,7 +5,6 @@ import subprocess
 from pathlib import Path
 
 import pytest
-
 from moodle_publish import publish_snapshot
 
 
@@ -128,19 +127,41 @@ def test_moodle_filenames_with_non_ascii_characters(repositories):
     assert git(remote, "show", f"{result['commit']}:{name}") == "enunciado verificado"
 
 
-def test_daily_branch_is_reused_and_fast_forwards_for_same_day_updates(repositories):
+def test_same_day_reupdate_without_fresh_sync_fails_closed(repositories):
     root, remote = repositories
     (root / "material.txt").write_text("primera versión\n")
     first = publish_snapshot(root, ["material.txt"], publish=True)
     assert first["branch"].startswith("moodle-sync/master/")
     assert first["branch"].count("/") == 2
 
+    # Tres versiones distintas sin causalidad probada: se rechaza en vez
+    # de asumir una actualización secuencial legítima.
     (root / "material.txt").write_text("segunda versión\n")
-    second = publish_snapshot(root, ["material.txt"], publish=True)
-    assert second["branch"] == first["branch"]
-    assert second["commit"] != first["commit"]
-    assert git(remote, "show", f"{second['commit']}:material.txt") == "segunda versión"
-    assert git(remote, "rev-parse", f"{second['commit']}^") == first["commit"]
+    with pytest.raises(RuntimeError, match="Conflicto de publicación"):
+        publish_snapshot(root, ["material.txt"], publish=True)
+    assert git(remote, "show", f"{first['commit']}:material.txt") == "primera versión"
+    # Tras sincronizar de nuevo (el material coincide con la rama), el
+    # reintento converge de forma idempotente sin revertir nada.
+    (root / "material.txt").write_text("primera versión\n")
+    repeated = publish_snapshot(root, ["material.txt"], publish=True)
+    assert repeated["commit"] == first["commit"]
+    assert repeated["paths"] == []
+
+
+def test_concurrent_same_file_updates_fail_closed(repositories, tmp_path):
+    root, remote = repositories
+    other = tmp_path / "checkout-b"
+    subprocess.check_output(["git", "clone", str(remote), str(other)], text=True)
+    git(other, "config", "user.name", "Fixture")
+    git(other, "config", "user.email", "fixture@example.invalid")
+    # A publica primero; B, sincronizado antes pero con otro contenido
+    # distinto de la base y de la rama, debe chocar en cerrado.
+    (root / "material.txt").write_text("versión A\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    (other / "material.txt").write_text("versión B\n")
+    with pytest.raises(RuntimeError, match="Conflicto de publicación"):
+        publish_snapshot(other, ["material.txt"], publish=True)
+    assert git(remote, "show", f"{first['commit']}:material.txt") == "versión A"
 
 
 def test_stale_checkout_does_not_revert_newer_published_material(
