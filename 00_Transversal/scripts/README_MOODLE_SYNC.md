@@ -132,6 +132,16 @@ usuario ni incorpora sus commits o cambios ajenos. No modifica su rama ni su
 índice y no propaga borrados. Las rutas con escapes, symlinks o archivos
 ausentes se rechazan.
 
+Garantías del snapshot diario (con regresiones en `test_moodle_publish.py`):
+
+- Antes de reutilizar la rama `moodle-sync/<base>/<fecha>`, su diff contra
+  la base debe estar contenido en el material verificado del ciclo; si la
+  rama trae un fichero ajeno, la publicación se rechaza en vez de heredarlo.
+- La fusión es por ruta: si este checkout conserva la versión de la base
+  en un fichero que la rama ya avanzó, se preserva lo publicado y no se
+  revierte. Cada ciclo pasa el conjunto gestionado completo (`SYNC_MANAGED`)
+  que quiere preservar en la rama.
+
 El snapshot diario se sube a una rama estable
 `moodle-sync/<base>/<fecha>` y se comprueba el commit realmente publicado.
 Si el ciclo encuentra más cambios el mismo día, añade un commit de avance

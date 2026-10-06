@@ -1,9 +1,11 @@
 """Regresiones reales de Git: protección de master y trabajo local ajeno."""
 
+import os
 import subprocess
 from pathlib import Path
 
 import pytest
+
 from moodle_publish import publish_snapshot
 
 
@@ -139,3 +141,60 @@ def test_daily_branch_is_reused_and_fast_forwards_for_same_day_updates(repositor
     assert second["commit"] != first["commit"]
     assert git(remote, "show", f"{second['commit']}:material.txt") == "segunda versión"
     assert git(remote, "rev-parse", f"{second['commit']}^") == first["commit"]
+
+
+def test_stale_checkout_does_not_revert_newer_published_material(
+    repositories, tmp_path
+):
+    root, remote = repositories
+    stale = tmp_path / "desfasado"
+    subprocess.check_output(["git", "clone", str(remote), str(stale)], text=True)
+    git(stale, "config", "user.name", "Fixture")
+    git(stale, "config", "user.email", "fixture@example.invalid")
+    # A publica una versión nueva del material.
+    (root / "material.txt").write_text("segunda versión\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    assert first["status"] == "published"
+    # B sigue con la versión de la base y publica otra novedad: el material
+    # más nuevo no debe revertirse aunque el commit avance en fast-forward.
+    assert (stale / "material.txt").read_text() == "viejo\n"
+    (stale / "other.txt").write_text("otro\n")
+    result = publish_snapshot(stale, ["material.txt", "other.txt"], publish=True)
+    assert result["status"] == "published"
+    assert "material.txt" in result["preserved"]
+    assert "other.txt" in result["paths"]
+    assert git(remote, "show", f"{result['commit']}:material.txt") == "segunda versión"
+    assert git(remote, "show", f"{result['commit']}:other.txt") == "otro"
+    # Reintentar con el conjunto completo tampoco revierte nada: es idempotente.
+    repeated = publish_snapshot(stale, ["material.txt", "other.txt"], publish=True)
+    assert repeated["paths"] == []
+    assert git(remote, "show", f"{repeated['commit']}:material.txt") == (
+        "segunda versión"
+    )
+
+
+def test_contaminated_daily_branch_is_rejected(repositories, tmp_path):
+    root, remote = repositories
+    (root / "material.txt").write_text("primera versión\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    branch = first["branch"]
+    # Contaminación externa: un commit ajeno directo sobre la rama diaria.
+    (root / "evil.txt").write_text("no verificado\n")
+    env = dict(os.environ, GIT_INDEX_FILE=str(tmp_path / "evil-index"))
+    subprocess.check_output(["git", "read-tree", first["commit"]], cwd=root, env=env)
+    subprocess.check_output(["git", "add", "--", "evil.txt"], cwd=root, env=env)
+    tree = subprocess.check_output(["git", "write-tree"], cwd=root, env=env, text=True)
+    commit = subprocess.check_output(
+        ["git", "commit-tree", tree.strip(), "-p", first["commit"]],
+        cwd=root,
+        env=env,
+        text=True,
+        input="Moodle: cambio ajeno\n",
+    ).strip()
+    subprocess.check_output(
+        ["git", "push", "origin", f"{commit}:refs/heads/{branch}"], cwd=root
+    )
+    # Aunque este ciclo no cambie nada, heredar la rama contaminada se rechaza.
+    with pytest.raises(RuntimeError, match="ajenos al material"):
+        publish_snapshot(root, ["material.txt"], publish=True)
+    assert git(remote, "show", f"{commit}:evil.txt") == "no verificado"

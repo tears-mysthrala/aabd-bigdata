@@ -2,6 +2,17 @@
 
 Usa un índice temporal y parte de la rama remota: no cambia HEAD, el índice
 del usuario ni su árbol de trabajo. Nunca fuerza un push ni escribe en master.
+
+Garantías del snapshot diario:
+
+- La rama diaria reutilizada se valida contra la base: si contiene rutas
+  ajenas al material verificado de este ciclo, la publicación se rechaza
+  en lugar de heredar contaminación.
+- La fusión es por ruta: un checkout desfasado no revierte material más
+  nuevo ya publicado. Si su copia de un fichero sigue igual que la base
+  mientras la rama avanzó, se conserva la versión publicada.
+- Cada ciclo debe pasar el conjunto gestionado completo que quiera
+  preservar en la rama (el llamador real pasa siempre ``SYNC_MANAGED``).
 """
 
 from __future__ import annotations
@@ -64,14 +75,32 @@ def publish_snapshot(
     # FETCH_HEAD no altera la rama actual ni el índice real.
     git("fetch", "--no-tags", remote, f"refs/heads/{base_branch}")
     base = git("rev-parse", "FETCH_HEAD")
+    base_tree = git("rev-parse", f"{base}^{{tree}}")
     branch = f"moodle-sync/{base_branch}/{date.today().isoformat()}"
     git("check-ref-format", f"refs/heads/{branch}")
     existing = git("ls-remote", "--heads", remote, f"refs/heads/{branch}").split()
     parent = base
+    parent_tree = base_tree
     if existing:
-        parent = existing[0]
         git("fetch", "--no-tags", remote, f"refs/heads/{branch}")
-    parent_tree = git("rev-parse", f"{parent}^{{tree}}")
+        parent = git("rev-parse", "FETCH_HEAD")
+        parent_tree = git("rev-parse", f"{parent}^{{tree}}")
+        inherited = git(
+            "diff", "--name-only", "-z", base_tree, parent_tree, raw=True
+        ).split("\0")[:-1]
+        outside = sorted(set(inherited) - set(safe_paths))
+        if outside:
+            raise RuntimeError(
+                "La rama diaria contiene cambios ajenos al material "
+                "verificado: " + ", ".join(outside)
+            )
+
+    def blob(rev: str, name: str) -> str | None:
+        try:
+            return git("rev-parse", f"{rev}:{name}")
+        except RuntimeError:
+            return None
+
     with tempfile.TemporaryDirectory(prefix="moodle-index-") as temporary:
         env = dict(
             os.environ,
@@ -80,6 +109,27 @@ def publish_snapshot(
         )
         git("read-tree", parent, env=env)
         git("add", "--", *safe_paths, env=env)
+        preserved = []
+        for name in safe_paths:
+            staged = git("rev-parse", f":{name}", env=env)
+            tip = blob(parent, name)
+            original = blob(base, name)
+            if staged == tip:
+                continue
+            if tip is None and original is not None:
+                raise RuntimeError(
+                    "La rama diaria eliminó material gestionado: " + name
+                )
+            if tip == original:
+                continue  # La rama no tocó esta ruta; publicar el trabajo.
+            if staged == original:
+                # Copia desfasada: la rama avanzó y este checkout conserva
+                # la versión de la base. No revertir; conservar lo publicado.
+                git("restore", "--source", parent, "--staged", "--", name, env=env)
+                preserved.append(name)
+            # Si las tres versiones difieren, es una actualización
+            # secuencial legítima: se publica el trabajo sobre la rama,
+            # con la versión anterior como padre en el historial.
         tree = git("write-tree", env=env)
     if tree == parent_tree:
         if existing:
@@ -90,8 +140,9 @@ def publish_snapshot(
                 "base": base,
                 "tree": tree,
                 "paths": [],
+                "preserved": sorted(preserved),
             }
-        return {"status": "current", "base": base, "tree": tree}
+        return {"status": "current", "base": base, "tree": tree, "preserved": []}
 
     changed = git("diff", "--name-only", "-z", parent_tree, tree, raw=True).split("\0")[
         :-1
@@ -99,10 +150,14 @@ def publish_snapshot(
     if not set(changed).issubset(set(safe_paths)):
         raise RuntimeError("El snapshot incluye cambios ajenos al material verificado")
     if existing:
-        message = "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
+        message = (
+            "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
+        )
         commit = git("commit-tree", tree, "-p", parent, stdin=message)
     else:
-        message = "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
+        message = (
+            "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
+        )
         commit = git("commit-tree", tree, "-p", base, stdin=message)
     result = {
         "status": "prepared",
@@ -111,6 +166,7 @@ def publish_snapshot(
         "base": base,
         "tree": tree,
         "paths": changed,
+        "preserved": sorted(preserved),
     }
     if publish:
         refspec = f"{commit}:refs/heads/{branch}"
