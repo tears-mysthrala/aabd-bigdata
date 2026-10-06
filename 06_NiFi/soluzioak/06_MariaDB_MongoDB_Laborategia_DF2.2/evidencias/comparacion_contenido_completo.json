@@ -1,0 +1,48 @@
+{
+  "source": "create_db.sql imported in MySQL 8.4 (not MariaDB)",
+  "normalization": "exclude Mongo _id; datetime to ISO seconds; currency floats rounded to two decimal places; all other fields exact",
+  "tables": {
+    "customers": {
+      "source_count": 12435,
+      "source_normalized_sha256": "140c7ec209dd26f59e88cbf6dd4914a5d6ed0ce3167f2b3b58280d0a2ab03dbb",
+      "6kasua-classic": {
+        "count": 12435,
+        "normalized_sha256": "140c7ec209dd26f59e88cbf6dd4914a5d6ed0ce3167f2b3b58280d0a2ab03dbb",
+        "mismatching_rows": 0
+      },
+      "6kasua-record": {
+        "count": 12435,
+        "normalized_sha256": "140c7ec209dd26f59e88cbf6dd4914a5d6ed0ce3167f2b3b58280d0a2ab03dbb",
+        "mismatching_rows": 0
+      }
+    },
+    "orders": {
+      "source_count": 68883,
+      "source_normalized_sha256": "4f6e22eef579cd822535bbfa8018c7069c74cde5765dd66aa538e802e8af3fb2",
+      "6kasua-classic": {
+        "count": 68883,
+        "normalized_sha256": "4f6e22eef579cd822535bbfa8018c7069c74cde5765dd66aa538e802e8af3fb2",
+        "mismatching_rows": 0
+      },
+      "6kasua-record": {
+        "count": 68883,
+        "normalized_sha256": "4f6e22eef579cd822535bbfa8018c7069c74cde5765dd66aa538e802e8af3fb2",
+        "mismatching_rows": 0
+      }
+    },
+    "order_items": {
+      "source_count": 172198,
+      "source_normalized_sha256": "21bc34d757db3e0b6d8633de3ecf6ee566d825dd3656ea20eb4dbeec9bc76cd1",
+      "6kasua-classic": {
+        "count": 172198,
+        "normalized_sha256": "21bc34d757db3e0b6d8633de3ecf6ee566d825dd3656ea20eb4dbeec9bc76cd1",
+        "mismatching_rows": 0
+      },
+      "6kasua-record": {
+        "count": 172198,
+        "normalized_sha256": "21bc34d757db3e0b6d8633de3ecf6ee566d825dd3656ea20eb4dbeec9bc76cd1",
+        "mismatching_rows": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "source_2_4": "04_Programazioa_5073/data/mock_datuak/Ariketa2.4/salmentak.csv",
+  "sha256_2_4": "417a1513b9992ac7ebbaa876ad21ea9b96e9bc08cc0e9636c851cb0ca85e41df",
+  "source_2_5": "materialak/2_SOLUZIOAK_URLa.ipynb, celda 97 (índice base 0)",
+  "rows_2_4": 30,
+  "max_group": {
+    "hiria": "Gasteiz",
+    "kategoria": "Janaria",
+    "salmenta": 1417.0
+  },
+  "max_individual": {
+    "hiria": "Donostia",
+    "kategoria": "Arropa",
+    "salmenta": 456.0
+  },
+  "city_totals": {
+    "Gasteiz": 3132.0,
+    "Bilbo": 2820.0,
+    "Donostia": 1921.0
+  },
+  "inner_rows": 4,
+  "left_rows": 5,
+  "concat_rows": 6,
+  "concat_total": 705,
+  "invalid_csv_2_5": [
+    {
+      "file": "04_Programazioa_5073/data/mock_datuak/Ariketa2.5/bezeroak.csv",
+      "sha256": "417a1513b9992ac7ebbaa876ad21ea9b96e9bc08cc0e9636c851cb0ca85e41df",
+      "rows": 30,
+      "columns": [
+        "hiria",
+        "kategoria",
+        "produktua",
+        "salmenta"
+      ],
+      "expected_columns": [
+        "hiri_id",
+        "id",
+        "izena"
+      ],
+      "schema_valid": false
+    },
+    {
+      "file": "04_Programazioa_5073/data/mock_datuak/Ariketa2.5/hiriak.csv",
+      "sha256": "417a1513b9992ac7ebbaa876ad21ea9b96e9bc08cc0e9636c851cb0ca85e41df",
+      "rows": 30,
+      "columns": [
+        "hiria",
+        "kategoria",
+        "produktua",
+        "salmenta"
+      ],
+      "expected_columns": [
+        "hiri_izena",
+        "id",
+        "probintzia"
+      ],
+      "schema_valid": false
+    }
+  ]
+}

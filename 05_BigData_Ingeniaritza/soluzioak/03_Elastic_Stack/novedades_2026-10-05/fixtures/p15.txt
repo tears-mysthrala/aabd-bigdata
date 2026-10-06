@@ -1,0 +1,5 @@
+192.168.1.105 GET /api 500 1234
+10.0.0.25 POST /login 200 856
+10.0.0.25 POST /login 401 856 erabiltzailea 1
+2026-10-04 10.0.0.25 POST /login 401 856
+invalid-ip GET /api 500 1234

@@ -35,14 +35,22 @@ que FP+TN y TP+FN tengan observaciones antes de comparar. La curva agrupada
 por score muestra tasas observadas y tamaños por nivel; parecidos visuales
 no bastan para afirmar calibración estadística ni equivalencia entre grupos.
 
-## Qué está pendiente
+## Solución reconciliada y ejecutada
 
-Los porcentajes y conclusiones «esperados» del texto son referencias del material,
-no una ejecución nueva de este checkout. Esta revisión **no ha reconciliado
-esas cifras con el umbral 7**, no ha recalculado outputs ni ha verificado
-afirmaciones causales o jurídicas. Para entregar la actividad, conserva tus
-tablas ejecutadas y argumenta las garantías/limitaciones; no cites las cifras
-preescritas como si las hubieras obtenido.
+La [copia de solución](../../soluzioak/COMPAS/COMPAS_reconciliado.ipynb) conserva
+el material original y recalcula métricas reales con su umbral **>=7**: FPR
+22,79%/8,27% y FNR 49,25%/72,02% para African-American/Caucasian, respectivamente,
+sobre 5.278 registros filtrados (3.175/2.103). El contraste **>=5** está separado:
+FPR 42,34%/22,01% y FNR 28,48%/49,64%. Los porcentajes «esperados» del original
+no se atribuyen al umbral 7 ni se fuerzan como reproducción exacta de ProPublica.
+
+La [guía de reproducción y resultados](../../soluzioak/COMPAS/README.md) incluye
+fuente fijada por commit/hash, entorno, comandos, denominadores y límites.
+La fuente individual se mantiene en caché privada fuera del repositorio;
+la solución exporta únicamente agregados y dos figuras. El notebook se ejecutó
+con nbclient y se validó con nbformat. Las tasas por decil **no** se presentan
+como prueba de calibración probabilística; no hay inferencia causal ni un
+veredicto jurídico basado en estos números.
 
 [Respuestas de ética y marco legal](../../soluzioak/README.md) y
 [matriz de cobertura](../../../00_Transversal/AUDITORIA_EJERCICIOS.md).

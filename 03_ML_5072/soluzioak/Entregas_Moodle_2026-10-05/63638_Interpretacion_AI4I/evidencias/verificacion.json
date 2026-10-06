@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "rows": 10000,
+  "columns": 14,
+  "failure_count": 339,
+  "csv_equals_tab_values": true,
+  "pdf_pages": 4,
+  "pdf_embedded_images": 3,
+  "workflow_runtime": "passed",
+  "manifest_files": 23,
+  "pdf_sha256": "af78a308f2c2e5b6ec19f3dfb9500f88a3ac04853ee97fde132fdc2c272035ea",
+  "visual_review_matches_pdf": true
+}

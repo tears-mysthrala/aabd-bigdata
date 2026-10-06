@@ -1,0 +1,753 @@
+{
+  "query_limit_per_processor": 100,
+  "events": [
+    {
+      "id": "29",
+      "eventId": 29,
+      "eventTime": "10/02/2026 07:02:06.070 UTC",
+      "eventDuration": 2346,
+      "lineageDuration": 1515,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "355148e7-ca89-44f9-8a0a-586f98812bc7",
+      "fileSize": "32.09 MB",
+      "fileSizeBytes": 33649351,
+      "groupId": "fb67bdff-01a0-1000-56e3-0a31c44174eb",
+      "componentId": "a23fb67a-8f16-3d12-bd32-e1028918c659",
+      "componentType": "ExecuteSQLRecord",
+      "componentName": "ExecuteSQLRecord_OrderItems",
+      "attributes": [
+        {
+          "name": "executesql.query.duration",
+          "value": "2346"
+        },
+        {
+          "name": "executesql.query.executiontime",
+          "value": "832"
+        },
+        {
+          "name": "executesql.query.fetchtime",
+          "value": "1514"
+        },
+        {
+          "name": "executesql.resultset.index",
+          "value": "0"
+        },
+        {
+          "name": "executesql.row.count",
+          "value": "172198"
+        },
+        {
+          "name": "filename",
+          "value": "355148e7-ca89-44f9-8a0a-586f98812bc7"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "record.count",
+          "value": "172198"
+        },
+        {
+          "name": "uuid",
+          "value": "355148e7-ca89-44f9-8a0a-586f98812bc7"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "Retrieved 172198 rows",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "3",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924524555-3",
+      "outputContentClaimOffset": 0,
+      "outputContentClaimFileSize": "32.09 MB",
+      "outputContentClaimFileSizeBytes": 33649351,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "35",
+      "eventId": 35,
+      "eventTime": "10/02/2026 07:02:14.226 UTC",
+      "eventDuration": 4854,
+      "lineageDuration": 9671,
+      "eventType": "DROP",
+      "flowFileUuid": "355148e7-ca89-44f9-8a0a-586f98812bc7",
+      "fileSize": "32.09 MB",
+      "fileSizeBytes": 33649351,
+      "groupId": "fb67bdff-01a0-1000-56e3-0a31c44174eb",
+      "componentId": "1ff950ef-526a-314c-1427-e921004101da",
+      "componentType": "PutMongoRecord",
+      "componentName": "PutMongoRecord_Direct",
+      "attributes": [
+        {
+          "name": "executesql.query.duration",
+          "value": "2346",
+          "previousValue": "2346"
+        },
+        {
+          "name": "executesql.query.executiontime",
+          "value": "832",
+          "previousValue": "832"
+        },
+        {
+          "name": "executesql.query.fetchtime",
+          "value": "1514",
+          "previousValue": "1514"
+        },
+        {
+          "name": "executesql.resultset.index",
+          "value": "0",
+          "previousValue": "0"
+        },
+        {
+          "name": "executesql.row.count",
+          "value": "172198",
+          "previousValue": "172198"
+        },
+        {
+          "name": "filename",
+          "value": "355148e7-ca89-44f9-8a0a-586f98812bc7",
+          "previousValue": "355148e7-ca89-44f9-8a0a-586f98812bc7"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "record.count",
+          "value": "172198",
+          "previousValue": "172198"
+        },
+        {
+          "name": "uuid",
+          "value": "355148e7-ca89-44f9-8a0a-586f98812bc7",
+          "previousValue": "355148e7-ca89-44f9-8a0a-586f98812bc7"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "3",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924524555-3",
+      "inputContentClaimOffset": 0,
+      "inputContentClaimFileSize": "32.09 MB",
+      "inputContentClaimFileSizeBytes": 33649351,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "3",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924524555-3",
+      "outputContentClaimOffset": 0,
+      "outputContentClaimFileSize": "32.09 MB",
+      "outputContentClaimFileSizeBytes": 33649351,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "a696a9e9-1656-3251-e5b1-de3f2749867b"
+    },
+    {
+      "id": "34",
+      "eventId": 34,
+      "eventTime": "10/02/2026 07:02:14.224 UTC",
+      "eventDuration": 4852,
+      "lineageDuration": 9669,
+      "eventType": "SEND",
+      "flowFileUuid": "355148e7-ca89-44f9-8a0a-586f98812bc7",
+      "fileSize": "32.09 MB",
+      "fileSizeBytes": 33649351,
+      "groupId": "fb67bdff-01a0-1000-56e3-0a31c44174eb",
+      "componentId": "1ff950ef-526a-314c-1427-e921004101da",
+      "componentType": "PutMongoRecord",
+      "componentName": "PutMongoRecord_Direct",
+      "attributes": [
+        {
+          "name": "executesql.query.duration",
+          "value": "2346",
+          "previousValue": "2346"
+        },
+        {
+          "name": "executesql.query.executiontime",
+          "value": "832",
+          "previousValue": "832"
+        },
+        {
+          "name": "executesql.query.fetchtime",
+          "value": "1514",
+          "previousValue": "1514"
+        },
+        {
+          "name": "executesql.resultset.index",
+          "value": "0",
+          "previousValue": "0"
+        },
+        {
+          "name": "executesql.row.count",
+          "value": "172198",
+          "previousValue": "172198"
+        },
+        {
+          "name": "filename",
+          "value": "355148e7-ca89-44f9-8a0a-586f98812bc7",
+          "previousValue": "355148e7-ca89-44f9-8a0a-586f98812bc7"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "record.count",
+          "value": "172198",
+          "previousValue": "172198"
+        },
+        {
+          "name": "uuid",
+          "value": "355148e7-ca89-44f9-8a0a-586f98812bc7",
+          "previousValue": "355148e7-ca89-44f9-8a0a-586f98812bc7"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "mongodb://mongo:27017",
+      "details": "Written 172100 documents to MongoDB.",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "3",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924524555-3",
+      "inputContentClaimOffset": 0,
+      "inputContentClaimFileSize": "32.09 MB",
+      "inputContentClaimFileSizeBytes": 33649351,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "3",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924524555-3",
+      "outputContentClaimOffset": 0,
+      "outputContentClaimFileSize": "32.09 MB",
+      "outputContentClaimFileSizeBytes": 33649351,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "a696a9e9-1656-3251-e5b1-de3f2749867b"
+    },
+    {
+      "id": "33",
+      "eventId": 33,
+      "eventTime": "10/02/2026 07:02:09.371 UTC",
+      "eventDuration": 2306,
+      "lineageDuration": 5268,
+      "eventType": "DROP",
+      "flowFileUuid": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f",
+      "fileSize": "8.38 MB",
+      "fileSizeBytes": 8786115,
+      "groupId": "fb67bdff-01a0-1000-56e3-0a31c44174eb",
+      "componentId": "1ff950ef-526a-314c-1427-e921004101da",
+      "componentType": "PutMongoRecord",
+      "componentName": "PutMongoRecord_Direct",
+      "attributes": [
+        {
+          "name": "executesql.query.duration",
+          "value": "1720",
+          "previousValue": "1720"
+        },
+        {
+          "name": "executesql.query.executiontime",
+          "value": "381",
+          "previousValue": "381"
+        },
+        {
+          "name": "executesql.query.fetchtime",
+          "value": "1339",
+          "previousValue": "1339"
+        },
+        {
+          "name": "executesql.resultset.index",
+          "value": "0",
+          "previousValue": "0"
+        },
+        {
+          "name": "executesql.row.count",
+          "value": "68883",
+          "previousValue": "68883"
+        },
+        {
+          "name": "filename",
+          "value": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f",
+          "previousValue": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "record.count",
+          "value": "68883",
+          "previousValue": "68883"
+        },
+        {
+          "name": "uuid",
+          "value": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f",
+          "previousValue": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "2",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924524103-2",
+      "inputContentClaimOffset": 0,
+      "inputContentClaimFileSize": "8.38 MB",
+      "inputContentClaimFileSizeBytes": 8786115,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "2",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924524103-2",
+      "outputContentClaimOffset": 0,
+      "outputContentClaimFileSize": "8.38 MB",
+      "outputContentClaimFileSizeBytes": 8786115,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "f87ed413-d51a-3669-535c-a8acae935949"
+    },
+    {
+      "id": "32",
+      "eventId": 32,
+      "eventTime": "10/02/2026 07:02:09.370 UTC",
+      "eventDuration": 2305,
+      "lineageDuration": 5267,
+      "eventType": "SEND",
+      "flowFileUuid": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f",
+      "fileSize": "8.38 MB",
+      "fileSizeBytes": 8786115,
+      "groupId": "fb67bdff-01a0-1000-56e3-0a31c44174eb",
+      "componentId": "1ff950ef-526a-314c-1427-e921004101da",
+      "componentType": "PutMongoRecord",
+      "componentName": "PutMongoRecord_Direct",
+      "attributes": [
+        {
+          "name": "executesql.query.duration",
+          "value": "1720",
+          "previousValue": "1720"
+        },
+        {
+          "name": "executesql.query.executiontime",
+          "value": "381",
+          "previousValue": "381"
+        },
+        {
+          "name": "executesql.query.fetchtime",
+          "value": "1339",
+          "previousValue": "1339"
+        },
+        {
+          "name": "executesql.resultset.index",
+          "value": "0",
+          "previousValue": "0"
+        },
+        {
+          "name": "executesql.row.count",
+          "value": "68883",
+          "previousValue": "68883"
+        },
+        {
+          "name": "filename",
+          "value": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f",
+          "previousValue": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "record.count",
+          "value": "68883",
+          "previousValue": "68883"
+        },
+        {
+          "name": "uuid",
+          "value": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f",
+          "previousValue": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "mongodb://mongo:27017",
+      "details": "Written 68800 documents to MongoDB.",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "2",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924524103-2",
+      "inputContentClaimOffset": 0,
+      "inputContentClaimFileSize": "8.38 MB",
+      "inputContentClaimFileSizeBytes": 8786115,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "2",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924524103-2",
+      "outputContentClaimOffset": 0,
+      "outputContentClaimFileSize": "8.38 MB",
+      "outputContentClaimFileSizeBytes": 8786115,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "f87ed413-d51a-3669-535c-a8acae935949"
+    },
+    {
+      "id": "31",
+      "eventId": 31,
+      "eventTime": "10/02/2026 07:02:07.063 UTC",
+      "eventDuration": 2348,
+      "lineageDuration": 3241,
+      "eventType": "DROP",
+      "flowFileUuid": "debf3433-a7bf-443d-b532-9fb102820089",
+      "fileSize": "3.28 MB",
+      "fileSizeBytes": 3440524,
+      "groupId": "fb67bdff-01a0-1000-56e3-0a31c44174eb",
+      "componentId": "1ff950ef-526a-314c-1427-e921004101da",
+      "componentType": "PutMongoRecord",
+      "componentName": "PutMongoRecord_Direct",
+      "attributes": [
+        {
+          "name": "executesql.query.duration",
+          "value": "963",
+          "previousValue": "963"
+        },
+        {
+          "name": "executesql.query.executiontime",
+          "value": "85",
+          "previousValue": "85"
+        },
+        {
+          "name": "executesql.query.fetchtime",
+          "value": "878",
+          "previousValue": "878"
+        },
+        {
+          "name": "executesql.resultset.index",
+          "value": "0",
+          "previousValue": "0"
+        },
+        {
+          "name": "executesql.row.count",
+          "value": "12435",
+          "previousValue": "12435"
+        },
+        {
+          "name": "filename",
+          "value": "debf3433-a7bf-443d-b532-9fb102820089",
+          "previousValue": "debf3433-a7bf-443d-b532-9fb102820089"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "record.count",
+          "value": "12435",
+          "previousValue": "12435"
+        },
+        {
+          "name": "uuid",
+          "value": "debf3433-a7bf-443d-b532-9fb102820089",
+          "previousValue": "debf3433-a7bf-443d-b532-9fb102820089"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 3822,
+      "inputContentClaimFileSize": "3.28 MB",
+      "inputContentClaimFileSizeBytes": 3440524,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 3822,
+      "outputContentClaimFileSize": "3.28 MB",
+      "outputContentClaimFileSizeBytes": 3440524,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "880e0a9b-2261-3a44-4fb1-11b05ef98fcc"
+    },
+    {
+      "id": "30",
+      "eventId": 30,
+      "eventTime": "10/02/2026 07:02:07.062 UTC",
+      "eventDuration": 2347,
+      "lineageDuration": 3240,
+      "eventType": "SEND",
+      "flowFileUuid": "debf3433-a7bf-443d-b532-9fb102820089",
+      "fileSize": "3.28 MB",
+      "fileSizeBytes": 3440524,
+      "groupId": "fb67bdff-01a0-1000-56e3-0a31c44174eb",
+      "componentId": "1ff950ef-526a-314c-1427-e921004101da",
+      "componentType": "PutMongoRecord",
+      "componentName": "PutMongoRecord_Direct",
+      "attributes": [
+        {
+          "name": "executesql.query.duration",
+          "value": "963",
+          "previousValue": "963"
+        },
+        {
+          "name": "executesql.query.executiontime",
+          "value": "85",
+          "previousValue": "85"
+        },
+        {
+          "name": "executesql.query.fetchtime",
+          "value": "878",
+          "previousValue": "878"
+        },
+        {
+          "name": "executesql.resultset.index",
+          "value": "0",
+          "previousValue": "0"
+        },
+        {
+          "name": "executesql.row.count",
+          "value": "12435",
+          "previousValue": "12435"
+        },
+        {
+          "name": "filename",
+          "value": "debf3433-a7bf-443d-b532-9fb102820089",
+          "previousValue": "debf3433-a7bf-443d-b532-9fb102820089"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "record.count",
+          "value": "12435",
+          "previousValue": "12435"
+        },
+        {
+          "name": "uuid",
+          "value": "debf3433-a7bf-443d-b532-9fb102820089",
+          "previousValue": "debf3433-a7bf-443d-b532-9fb102820089"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "mongodb://mongo:27017",
+      "details": "Written 12400 documents to MongoDB.",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 3822,
+      "inputContentClaimFileSize": "3.28 MB",
+      "inputContentClaimFileSizeBytes": 3440524,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 3822,
+      "outputContentClaimFileSize": "3.28 MB",
+      "outputContentClaimFileSizeBytes": 3440524,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "880e0a9b-2261-3a44-4fb1-11b05ef98fcc"
+    },
+    {
+      "id": "28",
+      "eventId": 28,
+      "eventTime": "10/02/2026 07:02:05.443 UTC",
+      "eventDuration": 1720,
+      "lineageDuration": 1340,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f",
+      "fileSize": "8.38 MB",
+      "fileSizeBytes": 8786115,
+      "groupId": "fb67bdff-01a0-1000-56e3-0a31c44174eb",
+      "componentId": "dd0e8553-f1b4-35a0-f806-c53221aa72d5",
+      "componentType": "ExecuteSQLRecord",
+      "componentName": "ExecuteSQLRecord_Orders",
+      "attributes": [
+        {
+          "name": "executesql.query.duration",
+          "value": "1720"
+        },
+        {
+          "name": "executesql.query.executiontime",
+          "value": "381"
+        },
+        {
+          "name": "executesql.query.fetchtime",
+          "value": "1339"
+        },
+        {
+          "name": "executesql.resultset.index",
+          "value": "0"
+        },
+        {
+          "name": "executesql.row.count",
+          "value": "68883"
+        },
+        {
+          "name": "filename",
+          "value": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "record.count",
+          "value": "68883"
+        },
+        {
+          "name": "uuid",
+          "value": "0ef0c3d8-93df-4da9-8689-446ea0e0fc0f"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "Retrieved 68883 rows",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "2",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924524103-2",
+      "outputContentClaimOffset": 0,
+      "outputContentClaimFileSize": "8.38 MB",
+      "outputContentClaimFileSizeBytes": 8786115,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "27",
+      "eventId": 27,
+      "eventTime": "10/02/2026 07:02:04.701 UTC",
+      "eventDuration": 963,
+      "lineageDuration": 879,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "debf3433-a7bf-443d-b532-9fb102820089",
+      "fileSize": "3.28 MB",
+      "fileSizeBytes": 3440524,
+      "groupId": "fb67bdff-01a0-1000-56e3-0a31c44174eb",
+      "componentId": "0f5f746a-93ef-3d2a-fad9-99cd58bbca96",
+      "componentType": "ExecuteSQLRecord",
+      "componentName": "ExecuteSQLRecord_Customers",
+      "attributes": [
+        {
+          "name": "executesql.query.duration",
+          "value": "963"
+        },
+        {
+          "name": "executesql.query.executiontime",
+          "value": "85"
+        },
+        {
+          "name": "executesql.query.fetchtime",
+          "value": "878"
+        },
+        {
+          "name": "executesql.resultset.index",
+          "value": "0"
+        },
+        {
+          "name": "executesql.row.count",
+          "value": "12435"
+        },
+        {
+          "name": "filename",
+          "value": "debf3433-a7bf-443d-b532-9fb102820089"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "record.count",
+          "value": "12435"
+        },
+        {
+          "name": "uuid",
+          "value": "debf3433-a7bf-443d-b532-9fb102820089"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "Retrieved 12435 rows",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 3822,
+      "outputContentClaimFileSize": "3.28 MB",
+      "outputContentClaimFileSizeBytes": 3440524,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    }
+  ],
+  "counts_in_saved_sample": {
+    "ExecuteSQLRecord_OrderItems | RECEIVE": 1,
+    "PutMongoRecord_Direct | DROP": 3,
+    "PutMongoRecord_Direct | SEND": 3,
+    "ExecuteSQLRecord_Orders | RECEIVE": 1,
+    "ExecuteSQLRecord_Customers | RECEIVE": 1
+  }
+}

@@ -1,0 +1,50 @@
+kibana-1  | [2026-10-05T08:13:44.640+00:00][INFO ][plugins.discoveries] AD 2.0 managed workflows installed: 7/7
+kibana-1  | [2026-10-05T08:13:44.641+00:00][INFO ][plugins.significant_events] Significant events managed workflows installed
+kibana-1  | [2026-10-05T08:13:44.700+00:00][INFO ][plugins.workflowsManagement] Disabled 0 workflows across all spaces (0 failures)
+kibana-1  | [2026-10-05T08:13:47.440+00:00][INFO ][plugins.reporting.store] Linking ILM policy to reporting data stream: .kibana-reporting, component template: kibana-reporting@custom
+kibana-1  | [2026-10-05T08:13:48.102+00:00][INFO ][plugins.securitySolution] Installing component template .edr-workflow-insights-component-template
+kibana-1  | [2026-10-05T08:13:48.597+00:00][INFO ][plugins.securitySolution] Installing index template .edr-workflow-insights-index-template
+kibana-1  | [2026-10-05T08:13:49.434+00:00][INFO ][plugins.securitySolution] Updating data streams - .edr-workflow-insights-*
+kibana-1  | [2026-10-05T08:13:59.016+00:00][INFO ][plugins.streams] Streams preconfigured successfully
+kibana-1  | [2026-10-05T08:14:33.641+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false
+kibana-1  | [2026-10-05T08:14:52.345+00:00][ERROR][http] 500 Server Error
+kibana-1  | [2026-10-05T08:15:34.490+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false
+kibana-1  | [2026-10-05T08:16:17.235+00:00][ERROR][http] 500 Server Error
+kibana-1  | [2026-10-05T08:16:32.311+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false
+kibana-1  | [2026-10-05T08:17:45.247+00:00][WARN ][status.plugins.security] security plugin is now degraded: 0 service(s) and 1 plugin(s) are degraded: taskManager | See the status page for more information
+kibana-1  | [2026-10-05T08:17:45.290+00:00][WARN ][status.plugins.taskManager] taskManager plugin is now degraded: Task Manager is unhealthy - Reason: setting HealthStatus.Error because of expired hot timestamps
+kibana-1  | [2026-10-05T08:17:46.121+00:00][WARN ][status] Kibana is now degraded (was available): 0 service(s) and 2 plugin(s) are degraded: security, taskManager
+kibana-1  | [2026-10-05T08:17:48.984+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false
+kibana-1  | [2026-10-05T08:17:50.898+00:00][INFO ][status.plugins.security] security plugin is now available: All services and plugins are available
+kibana-1  | [2026-10-05T08:17:50.899+00:00][INFO ][status.plugins.taskManager] taskManager plugin is now available: Task Manager is healthy
+kibana-1  | [2026-10-05T08:17:51.079+00:00][INFO ][status] Kibana is now available (was degraded)
+kibana-1  | [2026-10-05T08:18:42.706+00:00][WARN ][status.plugins.security] security plugin is now degraded: 0 service(s) and 1 plugin(s) are degraded: taskManager | See the status page for more information
+kibana-1  | [2026-10-05T08:18:42.755+00:00][WARN ][status.plugins.taskManager] taskManager plugin is now degraded: Task Manager is unhealthy - Reason: setting HealthStatus.Error because of expired hot timestamps
+kibana-1  | [2026-10-05T08:18:43.478+00:00][WARN ][status] Kibana is now degraded (was available): 0 service(s) and 2 plugin(s) are degraded: security, taskManager
+kibana-1  | [2026-10-05T08:18:43.988+00:00][INFO ][plugins.securitySolution.telemetry_events.sender.task] Telemetry is not opted-in
+kibana-1  | [2026-10-05T08:18:46.859+00:00][INFO ][status.plugins.security] security plugin is now available: All services and plugins are available
+kibana-1  | [2026-10-05T08:18:46.860+00:00][INFO ][status.plugins.taskManager] taskManager plugin is now available: Task Manager is healthy
+kibana-1  | [2026-10-05T08:18:46.995+00:00][INFO ][status] Kibana is now available (was degraded)
+kibana-1  | [2026-10-05T08:18:49.876+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false
+kibana-1  | [2026-10-05T08:18:57.891+00:00][ERROR][http] 500 Server Error
+kibana-1  | [2026-10-05T08:19:36.921+00:00][WARN ][status.plugins.security] security plugin is now degraded: 0 service(s) and 1 plugin(s) are degraded: taskManager | See the status page for more information
+kibana-1  | [2026-10-05T08:19:36.951+00:00][WARN ][status.plugins.taskManager] taskManager plugin is now degraded: Task Manager is unhealthy - Reason: setting HealthStatus.Error because of expired hot timestamps
+kibana-1  | [2026-10-05T08:19:37.178+00:00][WARN ][status] Kibana is now degraded (was available): 0 service(s) and 2 plugin(s) are degraded: security, taskManager
+kibana-1  | [2026-10-05T08:19:42.679+00:00][INFO ][status.plugins.security] security plugin is now available: All services and plugins are available
+kibana-1  | [2026-10-05T08:19:42.686+00:00][INFO ][status.plugins.taskManager] taskManager plugin is now available: Task Manager is healthy
+kibana-1  | [2026-10-05T08:19:42.760+00:00][INFO ][status] Kibana is now available (was degraded)
+kibana-1  | [2026-10-05T08:19:51.291+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false
+kibana-1  | [2026-10-05T08:20:50.183+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false
+kibana-1  | [2026-10-05T08:21:48.533+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false
+kibana-1  | [2026-10-05T08:22:41.333+00:00][WARN ][status.plugins.security] security plugin is now degraded: 0 service(s) and 1 plugin(s) are degraded: taskManager | See the status page for more information
+kibana-1  | [2026-10-05T08:22:41.345+00:00][WARN ][status.plugins.taskManager] taskManager plugin is now degraded: Task Manager is unhealthy - Reason: setting HealthStatus.Error because of expired hot timestamps
+kibana-1  | [2026-10-05T08:22:41.380+00:00][WARN ][plugins.taskManager] Background task node "e0ee9575-37ad-489c-bdb9-9acbae1a4a8a" has no assigned partitions, claiming against all partitions
+kibana-1  | [2026-10-05T08:22:41.453+00:00][WARN ][status] Kibana is now degraded (was available): 0 service(s) and 2 plugin(s) are degraded: security, taskManager
+kibana-1  | [2026-10-05T08:22:44.975+00:00][INFO ][plugins.taskManager] Background task node "e0ee9575-37ad-489c-bdb9-9acbae1a4a8a" now claiming with assigned partitions
+kibana-1  | [2026-10-05T08:22:45.643+00:00][INFO ][status.plugins.security] security plugin is now available: All services and plugins are available
+kibana-1  | [2026-10-05T08:22:45.644+00:00][INFO ][status.plugins.taskManager] taskManager plugin is now available: Task Manager is healthy
+kibana-1  | [2026-10-05T08:22:45.725+00:00][INFO ][status] Kibana is now available (was degraded)
+kibana-1  | [2026-10-05T08:22:48.262+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false
+kibana-1  | [2026-10-05T08:23:45.379+00:00][INFO ][plugins.securitySolution.telemetry_events.sender.task] Telemetry is not opted-in
+kibana-1  | [2026-10-05T08:23:47.821+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false
+kibana-1  | [2026-10-05T08:24:48.070+00:00][WARN ][plugins.fleet] Error while trying to load prerelease flag from settings, defaulting to false

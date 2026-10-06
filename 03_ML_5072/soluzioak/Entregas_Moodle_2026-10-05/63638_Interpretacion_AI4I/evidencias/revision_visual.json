@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "reviewed_utc": "2026-10-05T10:39:48.970184+00:00",
+  "pdf_sha256": "af78a308f2c2e5b6ec19f3dfb9500f88a3ac04853ee97fde132fdc2c272035ea",
+  "method": "Poppler pdftoppm at 100 DPI; all four complete pages inspected with view_image",
+  "pages_reviewed": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "checks": [
+    "Readable text and labels",
+    "No clipped or overlapping content",
+    "Three genuine Orange screenshots visible",
+    "Introduction, Development and Conclusions",
+    "Tables consistent with recomputed CSV statistics",
+    "Sources and student identification visible"
+  ],
+  "rendered_pages": [
+    {
+      "file": "evidencias/pdf_render/pagina-1.png",
+      "sha256": "b0d3a1f568807ea5835027e27b86e76cea45d2c2a1cf76776f14c71096b80e1f"
+    },
+    {
+      "file": "evidencias/pdf_render/pagina-2.png",
+      "sha256": "dd8f2e91d8b649a5635d08715c587675fe2080f586d30a3f8dba1b5dc2ff1651"
+    },
+    {
+      "file": "evidencias/pdf_render/pagina-3.png",
+      "sha256": "c595d3e330f8195aae92ebde03e678c495a43c58a799f7c1aebe60c727fe840c"
+    },
+    {
+      "file": "evidencias/pdf_render/pagina-4.png",
+      "sha256": "a49bf0cea18dd29126e433043a94d7e7f1aeb10f4d5d2149ca8076a4a133ffab"
+    }
+  ]
+}

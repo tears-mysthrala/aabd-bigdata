@@ -1,0 +1,75 @@
+{
+  "captured_at_utc": "2026-10-05T09:09:16.006321+00:00",
+  "projects": {
+    "aabd-kafka-connect-20261005": {
+      "containers": [
+        {
+          "name": "/aabd-kafka-connect-20261005-connect-1",
+          "state": "exited",
+          "exit_code": 137,
+          "oom_killed": false
+        },
+        {
+          "name": "/aabd-kafka-connect-20261005-mongodb-1",
+          "state": "exited",
+          "exit_code": 0,
+          "oom_killed": false
+        },
+        {
+          "name": "/aabd-kafka-connect-20261005-mysql-1",
+          "state": "exited",
+          "exit_code": 0,
+          "oom_killed": false
+        },
+        {
+          "name": "/aabd-kafka-connect-20261005-kafka-1",
+          "state": "exited",
+          "exit_code": 143,
+          "oom_killed": false
+        }
+      ],
+      "named_volumes_preserved": [
+        "aabd-kafka-connect-20261005_kafka-data",
+        "aabd-kafka-connect-20261005_mysql-data",
+        "aabd-kafka-connect-20261005_mongo-data",
+        "aabd-kafka-connect-20261005_connect-offsets"
+      ],
+      "all_containers_stopped": true
+    },
+    "aabd-kafka-connect-20261005-v78": {
+      "containers": [
+        {
+          "name": "/aabd-kafka-connect-20261005-v78-connect-1",
+          "state": "exited",
+          "exit_code": 137,
+          "oom_killed": false
+        },
+        {
+          "name": "/aabd-kafka-connect-20261005-v78-mongodb-1",
+          "state": "exited",
+          "exit_code": 0,
+          "oom_killed": false
+        },
+        {
+          "name": "/aabd-kafka-connect-20261005-v78-mysql-1",
+          "state": "exited",
+          "exit_code": 0,
+          "oom_killed": false
+        },
+        {
+          "name": "/aabd-kafka-connect-20261005-v78-kafka-1",
+          "state": "exited",
+          "exit_code": 143,
+          "oom_killed": false
+        }
+      ],
+      "named_volumes_preserved": [
+        "aabd-kafka-connect-20261005-v78_kafka-data",
+        "aabd-kafka-connect-20261005-v78_mysql-data",
+        "aabd-kafka-connect-20261005-v78_mongo-data",
+        "aabd-kafka-connect-20261005-v78_connect-offsets"
+      ],
+      "all_containers_stopped": true
+    }
+  }
+}

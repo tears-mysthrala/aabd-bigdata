@@ -1,0 +1,15 @@
+{
+  "kind": "svm",
+  "title": "SVM: clasificación de Iris con kernel RBF",
+  "stem": "SVM_Iris",
+  "parameters": {
+    "C": 1.0,
+    "kernel": "rbf",
+    "gamma": 0.25,
+    "tol": 0.001,
+    "max_iter": -1,
+    "probability": true,
+    "random_state": 42,
+    "scaling": "Orange AdaptiveNormalize: media 0 y desviación 1 por fold"
+  }
+}

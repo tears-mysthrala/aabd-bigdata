@@ -9,6 +9,9 @@ El wrapper usa un bloqueo para impedir dos ciclos automáticos simultáneos.
 - Se recorren las secciones del curso y las secciones adicionales encontradas
   en su navegación. Se descargan recursos, archivos de carpetas y adjuntos del
   enunciado de tareas; las entregas personales del alumnado se excluyen.
+- El manifiesto conserva `assignments`: título, sección, URL, enunciado y
+  fechas generales de cada tarea, incluso cuando no tiene adjuntos. Se leen
+  únicamente `#intro` y `.activity-dates`, nunca entregas o calificaciones.
 - Se compara SHA-256 del contenido, también cuando el tamaño no cambia.
 - Los aliases internos se resuelven a su ruta canónica. Las rutas que escapan
   del repositorio y los accesos a `.git` se rechazan.
@@ -100,6 +103,15 @@ didácticamente ni que las soluciones estén ejecutadas.
 
 `--no-publish` descarga y valida sin commit ni push. Requiere las mismas
 credenciales en el entorno que el servicio. No ejecutes dos ciclos a la vez.
+Para una comprobación manual se admite `--browser-cdp <puerto>`: reutiliza
+una sesión de Chromium que el usuario haya autorizado y autenticado. Se conecta
+solo a loopback, lee únicamente cookies de Moodle en memoria, comprueba la
+sesión y conserva el navegador abierto. No exporta cookies ni cambia las
+credenciales del servicio. El modo horario sigue usando su login existente.
+
+`--prepare-review` además prepara un commit local aislado para revisión,
+sin subirlo: consulta el remoto para elegir su base, pero no cambia la rama,
+el índice ni los archivos del usuario.
 
 Si hay errores de Moodle, el modo automático termina con error y no publica.
 Si Moodle se ha verificado pero queda material externo/manual pendiente, el
@@ -109,11 +121,35 @@ cobertura completa ni publicación. El manifiesto conserva el contador
 `unavailable` y las fuentes que faltan. Se exige cobertura completa antes de
 commit/push automáticos.
 `--no-publish` permite verificar una cobertura parcial y dejar sus límites
-documentados sin publicar. El modo automático incorpora
-solo archivos gestionados por la sincronización, publica el HEAD de la rama
-actual y comprueba que el remoto contiene exactamente ese commit. Nunca declara
-éxito por subir una rama distinta. La integración de ramas de trabajo en
-`master` sigue siendo una acción separada.
+documentados sin publicar. El modo automático compara **siempre** el material
+gestionado con la rama remota base, también si el ciclo no descargó nada.
+Así recupera material cuyo push falló después de un commit anterior.
+
+La publicación usa `moodle_publish.py`: construye un snapshot con un índice
+temporal a partir del remoto y añade solo el material verificado, sus Markdown
+derivados, los registros de enlaces y el manifiesto. No publica el HEAD del
+usuario ni incorpora sus commits o cambios ajenos. No modifica su rama ni su
+índice y no propaga borrados. Las rutas con escapes, symlinks o archivos
+ausentes se rechazan.
+
+El snapshot se sube a una rama `moodle-sync/<base>/<fecha>-<hash-del-árbol>`
+y se comprueba el commit realmente publicado. Si ya existe el mismo snapshot,
+se reutiliza. **Nunca se fuerza un push ni se escribe directamente en
+`master`**. Integrarlo requiere una PR y su revisión; publicar la rama no
+equivale a integrar el material. La creación de PR no está automatizada.
+El remoto y la base se pueden indicar con `MOODLE_GIT_REMOTE` (por defecto
+`origin`) y `MOODLE_BASE_BRANCH` (`master`), sin cambiar credenciales ni reglas
+de protección.
+
+Regresiones locales, sin Moodle ni GitHub real:
+
+```bash
+uv run --with pytest --with requests --with beautifulsoup4 python -m pytest -q 00_Transversal/scripts/test_moodle_publish.py 00_Transversal/scripts/test_moodle_sync_auth.py
+```
+
+Usan un remoto bare con `master` protegida y comprueban recuperación tras un
+push fallido, idempotencia, conservación de HEAD/índice/cambios locales,
+exclusión de commits ajenos, preparación sin push y rechazo de rutas inválidas.
 
 Los registros locales `moodle_sync.log` y el journal se conservan fuera del
 contenido publicado. No adjuntes HTML de sesión, cookies ni credenciales a una
@@ -146,3 +182,33 @@ incidencia de sincronización.
   también de los ocho notebooks. Posteriormente el usuario autorizó la
   publicación e integración manual de lo verificado. El temporizador sigue sin
   publicar mientras el manifiesto indique material pendiente.
+
+## Rechazo de login y bloqueo de cuenta
+
+Un aviso explícito de cuenta bloqueada o login inválido detiene el ciclo
+tras ese intento, con mensaje fijo y sin copiar datos de la página. Los
+fallos de red conservan los reintentos limitados. La detección se verifica
+con `test_moodle_sync_auth.py`; no evita todos los posibles bloqueos ni
+renueva credenciales.
+
+Si Moodle bloquea la cuenta, pausa el timer para que no siga intentando:
+
+```bash
+systemctl --user stop moodle-sync.timer
+```
+
+El usuario debe abrir el enlace de desbloqueo enviado por Moodle. No copiar
+el enlace, cookies ni contraseñas al chat o al repositorio. Después verifica
+un único ciclo del servicio y, si termina correctamente, reactiva el timer:
+
+```bash
+systemctl --user start moodle-sync.service
+systemctl --user show moodle-sync.service -p Result -p ExecMainStatus
+systemctl --user start moodle-sync.timer
+```
+
+Si sigue fallando, deja el timer pausado y diagnostica el acceso configurado;
+no cambies credenciales automáticamente. `inactive (dead)` en el servicio
+oneshot puede ser normal: contrastar `Result=success` y `ExecMainStatus=0`.
+
+El recuento de archivos actualizados corresponde solo a cambios reales del ciclo. El material pendiente de integrar en Git se comprueba por separado contra la base remota, sin volver a anunciarlo como descarga nueva cada hora.

@@ -12,7 +12,7 @@ Este es un repositorio docente de IA y Big Data: combina teoría de clase, ejerc
 | Para encontrar... | Empieza por... |
 |---|---|
 | La estructura y el arranque general | [README.md](README.md) |
-| Novedades y pendientes de ejercicios (2026-10-01) | [Revisión Moodle/Drive](00_Transversal/REVISION_NOVEDADES_EJERCICIOS_2026-10-01.md) |
+| Novedades y pendientes de ejercicios (2026-10-02) | [Revisión Moodle/Drive: ML, notebooks, COMPAS, Kafka/Open-Meteo y NiFi](00_Transversal/REVISION_NOVEDADES_EJERCICIOS_2026-10-02.md) |
 | Dónde añadir materiales o soluciones | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | Límites y prácticas seguras del repositorio | [SECURITY.md](SECURITY.md) y [00_Transversal/SECURITY.md](00_Transversal/SECURITY.md) |
 | CNC Guard, instalación y validación | [README de CNC Guard](01_Erronka1_CNC_Guard/proyecto_cnc_guard/README.md) |
@@ -26,10 +26,12 @@ Este es un repositorio docente de IA y Big Data: combina teoría de clase, ejerc
 - `02_AA_Ereduak_5071/`: `materialak/` (E1 pdfs + 5071 fuzzy + Etika/Legea + Marko legala + Alborapenak/COMPAS con dataset local) ✅, `soluzioak/` → ver `01/.../Ebazpena` (stub)
 - `03_ML_5072/`: `materialak/` (5072 pdfs + 02_1 Erregresio Lineala + 02_2 Erregresio Logistikoa ppt) ✅, `soluzioak/` (Orange workflows, regresión lineal/logística y prácticas) ✅
 - `04_Programazioa_5073/`: `materialak/` (8 pares `.py/.ipynb` y 8 cuadernos originales de Drive descargados mediante OAuth el 2026-09-28; ver [registro de fuentes](04_Programazioa_5073/materialak/MOODLE_URLs.md)); `soluzioak/` (26 ejercicios del PDF de frameworks con código preparado, pendientes de validación runtime/GUI/API, y 25 del cuaderno de Programazioa con solución de referencia sin ejecutar); `data/` (katalogoa, git_ariketa_4_2, ariketa_1_1, mock_datuak y ariketa 3.1).
-- `05_BigData_Ingeniaritza/`: `materialak/` (actualizados 01_02 y ariketak v2 con Faker/Parquet/formatos, + `02_elastic_stack.pdf` 9.5.4) + `soluzioak/` (7V Spotify, ETL/ELT, Smart Factory, + `03_Elastic_Stack/` P1–P14; Kibana P5–P8/P14 verificado 2026-10-01, 2 dashboards Lens + búsquedas Discover + exportación importada; [entrega Kibana](05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/dashboards/README.md)) ✅
-- `06_NiFi/`: `materialak/` (guías 1-7 actualizadas + salmentak.csv + docker) ✅, `soluzioak/` (7 casos, 11 archivos `flow_*.json`) ✅
-- `07_Kafka/`: `materialak/01_03_ApacheKafka.pdf` (66 or., ariketak 1–11) + `01_04_ApacheKafka_aurreratua.pdf` (31 or.: 2. kasua klusterra, Connect) ✅, `soluzioak/` (1–5 2026-09-25 + 5–11 2026-09-28 + 2. kasua 07-K2-1–6 2026-09-29 + Connect 07-C kode prest) ✅
+- `05_BigData_Ingeniaritza/`: `materialak/` (actualizados 01_02 y ariketak v2 con Faker/Parquet/formatos, + `02_elastic_stack.pdf` 9.5.4) + `soluzioak/` (7V Spotify, ETL/ELT, Smart Factory, + `03_Elastic_Stack/` P1–P17; Kibana P5–P8 y Grok básico verificados 2026-10-01; [P13/P15–P17 ejecutados 05/10](05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05/README.md), 2 dashboards Lens + búsquedas Discover + exportación importada; [entrega Kibana](05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/dashboards/README.md)) ✅
+- `06_NiFi/`: `materialak/` (guías 1-7 actualizadas + salmentak.csv + docker) ✅, `soluzioak/` (7 casos, 12 archivos `flow_*.json`, incluida variante Open-Meteo) ✅
+- `07_Kafka/`: `materialak/01_03_ApacheKafka.pdf` (66 or., ariketak 1–11) + `01_04_ApacheKafka_aurreratua.pdf` (73 or.: 2. kasua klusterra, 3. kasua Bronze/Silver/Gold implementado y probado con fixture; API HTTP 405, Connect), `soluzioak/` (1–5 2026-09-25 + 5–11 2026-09-28 + 2. kasua 07-K2-1–6 2026-09-29 + Connect 07-C kode prest) ✅
 - `_archivo_legacy/`: `notebooks_root_duplicado/`, `NiFi_duplicado_06_viejo/`, READMEs originales, `deskargatu_berriak/`
+
+**Revisión vigente del lote nuevo:** [05/10: sincronización, SVM, Programación y Elastic/Kafka](00_Transversal/REVISION_NOVEDADES_EJERCICIOS_2026-10-05.md). Los estados históricos siguientes conservan sus fechas.
 
 ## Estado (2026-09-22, stacks reales levantados ✅)
 
@@ -96,5 +98,5 @@ Nuevo material → va a su `0X/materialak/`. Nueva solución → a su `0X/soluzi
 
 [Revisión documental 2026-10-01](00_Transversal/REVISION_DOCUMENTACION_EJERCICIOS.md):
 guías autoexplicativas por módulo, explicación junto al código y límites de
-validación. Incluye incidencias actuales de COMPAS e Iris y diferencias entre
+validación. Conserva incidencias históricas de COMPAS e Iris y diferencias entre
 versiones de los cuadernos.

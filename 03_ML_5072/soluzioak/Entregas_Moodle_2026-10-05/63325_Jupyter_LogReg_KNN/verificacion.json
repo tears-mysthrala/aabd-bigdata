@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-05",
+  "status": "locally_verified_prepared_not_submitted",
+  "executed_code_cells": 6,
+  "errors": 0,
+  "dataset_rows": 150,
+  "predictors": "first_two_sepal_measurements",
+  "training_correct": {
+    "LogReg": 123,
+    "KNN": 128
+  },
+  "accuracy_kind": "training; no holdout or CV",
+  "pdf_pages": 3,
+  "all_pdf_pages_rendered_and_visually_inspected": true,
+  "pdf_sha256": "53b6a0dd553c0ed14e199e4976f8f8e6236f22a7d8c69564adf6e61a45409cc5",
+  "figure_sha256": "e862cbf00b9bda224b755bf70fae44d6ce88e99bbd0d6ac86ef5b2b71ec1e132",
+  "notebook_sha256": "2748d761b7a483371b042b32d629633c4ba8e4340b0a007baa66b895315de4ae",
+  "submitted_to_moodle": false
+}

@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-02",
+  "NiFi": "2.0.0",
+  "execution": "real Docker lab REST/API; no GUI capture",
+  "scope": "dedicated groups; original materialak untouched",
+  "http_posts": 6,
+  "accepted_errors": 5,
+  "excluded_normal": 1,
+  "mongo_documents": 1
+}

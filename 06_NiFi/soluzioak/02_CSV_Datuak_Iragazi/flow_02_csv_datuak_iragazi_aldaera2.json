@@ -106,7 +106,7 @@
           "version": "2.0.0"
         },
         "properties": {
-          "FrantziaGehiago1": "SELECT * FROM FLOWFILE WHERE COUNTRY = 'France' and Units > 1",
+          "FrantziaGehiago1": "SELECT * FROM FLOWFILE WHERE TRIM(Country) = 'France' AND CAST(Units AS INTEGER) > 1",
           "record-reader": "e3afeac2-3508-3cf3-9aa0-99de93600424",
           "record-writer": "e4b1c04c-a99d-3ac0-bc4e-53ad35ee4f2f",
           "include-zero-record-flowfiles": "false",
@@ -753,7 +753,7 @@
           "Quote Character": "\"",
           "Value Separator": ";",
           "Schema Registry": null,
-          "Record Separator": "\\n",
+          "Record Separator": "\n",
           "Timestamp Format": null,
           "Schema Write Strategy": "no-schema",
           "Schema Cache": null,
@@ -978,7 +978,7 @@
           "Quote Character": "\"",
           "Value Separator": ";",
           "Schema Registry": null,
-          "Record Separator": "\\n",
+          "Record Separator": "\n",
           "Timestamp Format": null,
           "Escape Character": "\\",
           "Date Format": null,
@@ -986,7 +986,8 @@
           "Trim Fields": "true",
           "Schema Version": null,
           "Time Format": null,
-          "Comment Marker": null
+          "Comment Marker": null,
+          "schema-access-strategy": "csv-header-derived"
         },
         "propertyDescriptors": {
           "Schema Branch": {

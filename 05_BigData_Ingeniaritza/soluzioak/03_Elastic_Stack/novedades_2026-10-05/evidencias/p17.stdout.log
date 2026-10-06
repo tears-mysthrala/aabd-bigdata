@@ -1,0 +1,7 @@
+Using bundled JDK: /usr/share/logstash/jdk
+Sending Logstash logs to /usr/share/logstash/logs which is now configured via log4j2.properties
+[2026-10-05T08:26:45,633][WARN ][logstash.config.source.multilocal] Ignoring the 'pipelines.yml' file because command line options are specified
+[2026-10-05T08:26:48,314][WARN ][deprecation.logstash.codecs.jsonlines] The default value for `decode_size_limit_bytes`, currently at 512Mb, will be lowered in a future version to prevent Out of Memory errors from abnormally large messages or missing delimiters. Please set a value that reflects the largest expected message size (e.g. 20971520 for 20Mb)
+[2026-10-05T08:26:48,526][WARN ][logstash.javapipeline    ][main] 'pipeline.ordered' is enabled and is likely less efficient, consider disabling if preserving event order is not necessary
+[2026-10-05T08:26:49,817][WARN ][deprecation.logstash.codecs.jsonlines][main] The default value for `decode_size_limit_bytes`, currently at 512Mb, will be lowered in a future version to prevent Out of Memory errors from abnormally large messages or missing delimiters. Please set a value that reflects the largest expected message size (e.g. 20971520 for 20Mb)
+{"bezero_ip":"192.168.1.105","metodoa":"GET","host":{"hostname":"5907504e9ae9"},"uri":"/api","status_code":500,"@timestamp":"2026-10-05T08:26:49.912575827Z","bytes":1234,"@version":"1","event":{"original":"{\"bezero_ip\":\"192.168.1.105\",\"metodoa\":\"GET\",\"request\":\"/api\",\"status_code\":\"500\",\"bytes\":\"1234\",\"message\":\"192.168.1.105 GET /api 500 1234\"}\n"}}

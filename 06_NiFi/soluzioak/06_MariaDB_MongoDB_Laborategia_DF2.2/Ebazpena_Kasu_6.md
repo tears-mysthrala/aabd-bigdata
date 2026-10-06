@@ -1,5 +1,7 @@
 # Apache NiFi 6. Kasua: MariaDB (MySQL) -> NiFi -> MongoDB Pipeline-a
 
+> Esta guía conserva una variante histórica Avro/ExecuteSQL. La solución canónica actual usa ExecuteSQLRecord en dos variantes y las tres tablas completas. Véase [README](README.md) para ejecución real, evidencia y receta aislada; no usar estos nombres de colección históricos para cotejar el resultado actual.
+
 Modulua: **DataFlow eta Datu-base banatuak**  
 Direktorioa: `06_MariaDB_MongoDB_Laborategia`
 

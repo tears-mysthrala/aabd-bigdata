@@ -1,0 +1,675 @@
+{
+  "query_limit_per_processor": 100,
+  "events": [
+    {
+      "id": "337057",
+      "eventId": 337057,
+      "eventTime": "10/02/2026 07:06:55.234 UTC",
+      "eventDuration": 19,
+      "lineageDuration": 72,
+      "eventType": "CONTENT_MODIFIED",
+      "flowFileUuid": "a0589b53-f269-49a0-83ed-e506e0d31caa",
+      "fileSize": "354 bytes",
+      "fileSizeBytes": 354,
+      "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+      "componentId": "b4bc0b61-e90f-3c02-0fd4-2c2e9a5555ce",
+      "componentType": "ConvertRecord",
+      "componentName": "ConvertRecord",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/case5-boundary/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/case5-boundary/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:06:55+0000",
+          "previousValue": "2026-10-02T07:06:55+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:06:55+0000",
+          "previousValue": "2026-10-02T07:06:55+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:06:55+0000",
+          "previousValue": "2026-10-02T07:06:55+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "datuak.csv",
+          "previousValue": "datuak.csv"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "record.count",
+          "value": "5"
+        },
+        {
+          "name": "uuid",
+          "value": "a0589b53-f269-49a0-83ed-e506e0d31caa",
+          "previousValue": "a0589b53-f269-49a0-83ed-e506e0d31caa"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": false,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "6",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924541991-6",
+      "inputContentClaimOffset": 5890,
+      "inputContentClaimFileSize": "161 bytes",
+      "inputContentClaimFileSizeBytes": 161,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 379,
+      "outputContentClaimFileSize": "354 bytes",
+      "outputContentClaimFileSizeBytes": 354,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "dddac8a8-a945-3f90-6e3b-ce983b1c98f3"
+    },
+    {
+      "id": "15",
+      "eventId": 15,
+      "eventTime": "10/02/2026 06:59:28.487 UTC",
+      "eventDuration": 85,
+      "lineageDuration": 95,
+      "eventType": "CONTENT_MODIFIED",
+      "flowFileUuid": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae",
+      "fileSize": "354 bytes",
+      "fileSizeBytes": 354,
+      "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+      "componentId": "b4bc0b61-e90f-3c02-0fd4-2c2e9a5555ce",
+      "componentType": "ConvertRecord",
+      "componentName": "ConvertRecord",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_05_csv_json_df2.1/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_05_csv_json_df2.1/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:28+0000",
+          "previousValue": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:28+0000",
+          "previousValue": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:28+0000",
+          "previousValue": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "datuak.csv",
+          "previousValue": "datuak.csv"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "record.count",
+          "value": "5"
+        },
+        {
+          "name": "uuid",
+          "value": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae",
+          "previousValue": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": false,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 1671,
+      "inputContentClaimFileSize": "161 bytes",
+      "inputContentClaimFileSizeBytes": 161,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 1832,
+      "outputContentClaimFileSize": "354 bytes",
+      "outputContentClaimFileSizeBytes": 354,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "3250022d-868b-3d32-bd11-0c31943a765a"
+    },
+    {
+      "id": "14",
+      "eventId": 14,
+      "eventTime": "10/02/2026 06:59:28.394 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 2,
+      "eventType": "RECEIVE",
+      "flowFileUuid": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae",
+      "fileSize": "161 bytes",
+      "fileSizeBytes": 161,
+      "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+      "componentId": "bea9c7b5-f494-3eba-c48b-70cc08d78250",
+      "componentType": "GetFile",
+      "componentName": "GetFile",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_05_csv_json_df2.1/sarrera/"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "datuak.csv"
+        },
+        {
+          "name": "path",
+          "value": "/"
+        },
+        {
+          "name": "uuid",
+          "value": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_05_csv_json_df2.1/sarrera/datuak.csv",
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 1671,
+      "outputContentClaimFileSize": "161 bytes",
+      "outputContentClaimFileSizeBytes": 161,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "337074",
+      "eventId": 337074,
+      "eventTime": "10/02/2026 07:06:55.246 UTC",
+      "eventDuration": 2,
+      "lineageDuration": 84,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "a0589b53-f269-49a0-83ed-e506e0d31caa",
+      "fileSize": "354 bytes",
+      "fileSizeBytes": 354,
+      "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+      "componentId": "e20e0080-2853-3260-9fa7-b3cb240e3550",
+      "componentType": "UpdateAttribute",
+      "componentName": "UpdateAttribute",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/case5-boundary/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/case5-boundary/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:06:55+0000",
+          "previousValue": "2026-10-02T07:06:55+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:06:55+0000",
+          "previousValue": "2026-10-02T07:06:55+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:06:55+0000",
+          "previousValue": "2026-10-02T07:06:55+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "datuak.json",
+          "previousValue": "datuak.csv"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "record.count",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "uuid",
+          "value": "a0589b53-f269-49a0-83ed-e506e0d31caa",
+          "previousValue": "a0589b53-f269-49a0-83ed-e506e0d31caa"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 379,
+      "inputContentClaimFileSize": "354 bytes",
+      "inputContentClaimFileSizeBytes": 354,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 379,
+      "outputContentClaimFileSize": "354 bytes",
+      "outputContentClaimFileSizeBytes": 354,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "c86bcbec-82bc-3883-78b7-03fafa175569"
+    },
+    {
+      "id": "16",
+      "eventId": 16,
+      "eventTime": "10/02/2026 06:59:28.502 UTC",
+      "eventDuration": 7,
+      "lineageDuration": 110,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae",
+      "fileSize": "354 bytes",
+      "fileSizeBytes": 354,
+      "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+      "componentId": "e20e0080-2853-3260-9fa7-b3cb240e3550",
+      "componentType": "UpdateAttribute",
+      "componentName": "UpdateAttribute",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_05_csv_json_df2.1/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_05_csv_json_df2.1/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:28+0000",
+          "previousValue": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:28+0000",
+          "previousValue": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:28+0000",
+          "previousValue": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "datuak.json",
+          "previousValue": "datuak.csv"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "record.count",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "uuid",
+          "value": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae",
+          "previousValue": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 1832,
+      "inputContentClaimFileSize": "354 bytes",
+      "inputContentClaimFileSizeBytes": 354,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 1832,
+      "outputContentClaimFileSize": "354 bytes",
+      "outputContentClaimFileSizeBytes": 354,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "c86bcbec-82bc-3883-78b7-03fafa175569"
+    },
+    {
+      "id": "337086",
+      "eventId": 337086,
+      "eventTime": "10/02/2026 07:06:55.255 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 93,
+      "eventType": "SEND",
+      "flowFileUuid": "a0589b53-f269-49a0-83ed-e506e0d31caa",
+      "fileSize": "354 bytes",
+      "fileSizeBytes": 354,
+      "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+      "componentId": "14cee951-ee78-321c-736c-0945c9c366ca",
+      "componentType": "PutFile",
+      "componentName": "PutFile",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/case5-boundary/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/case5-boundary/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T07:06:55+0000",
+          "previousValue": "2026-10-02T07:06:55+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T07:06:55+0000",
+          "previousValue": "2026-10-02T07:06:55+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T07:06:55+0000",
+          "previousValue": "2026-10-02T07:06:55+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "datuak.json",
+          "previousValue": "datuak.json"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "record.count",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "uuid",
+          "value": "a0589b53-f269-49a0-83ed-e506e0d31caa",
+          "previousValue": "a0589b53-f269-49a0-83ed-e506e0d31caa"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_05_csv_json_df2.1/irteera/datuak.json",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 379,
+      "inputContentClaimFileSize": "354 bytes",
+      "inputContentClaimFileSizeBytes": 354,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 379,
+      "outputContentClaimFileSize": "354 bytes",
+      "outputContentClaimFileSizeBytes": 354,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "cfcf74cb-79de-3789-002f-515dd0f273b6"
+    },
+    {
+      "id": "17",
+      "eventId": 17,
+      "eventTime": "10/02/2026 06:59:28.516 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 124,
+      "eventType": "SEND",
+      "flowFileUuid": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae",
+      "fileSize": "354 bytes",
+      "fileSizeBytes": 354,
+      "groupId": "fb67bc8a-01a0-1000-78da-936f49d7e28b",
+      "componentId": "14cee951-ee78-321c-736c-0945c9c366ca",
+      "componentType": "PutFile",
+      "componentName": "PutFile",
+      "attributes": [
+        {
+          "name": "absolute.path",
+          "value": "/opt/nifi/ariketak/flow_05_csv_json_df2.1/sarrera/",
+          "previousValue": "/opt/nifi/ariketak/flow_05_csv_json_df2.1/sarrera/"
+        },
+        {
+          "name": "Cache Value Lookup Cache Size",
+          "value": "100",
+          "previousValue": "100"
+        },
+        {
+          "name": "file.creationTime",
+          "value": "2026-10-02T06:59:28+0000",
+          "previousValue": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.group",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.lastAccessTime",
+          "value": "2026-10-02T06:59:28+0000",
+          "previousValue": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.lastModifiedTime",
+          "value": "2026-10-02T06:59:28+0000",
+          "previousValue": "2026-10-02T06:59:28+0000"
+        },
+        {
+          "name": "file.owner",
+          "value": "nifi",
+          "previousValue": "nifi"
+        },
+        {
+          "name": "file.permissions",
+          "value": "rw-r--r--",
+          "previousValue": "rw-r--r--"
+        },
+        {
+          "name": "filename",
+          "value": "datuak.json",
+          "previousValue": "datuak.json"
+        },
+        {
+          "name": "mime.type",
+          "value": "application/json",
+          "previousValue": "application/json"
+        },
+        {
+          "name": "path",
+          "value": "/",
+          "previousValue": "/"
+        },
+        {
+          "name": "record.count",
+          "value": "5",
+          "previousValue": "5"
+        },
+        {
+          "name": "uuid",
+          "value": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae",
+          "previousValue": "eb47e1a4-e24a-4a5a-a4f3-1a961b6589ae"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_05_csv_json_df2.1/irteera/datuak.json",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "1",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924351897-1",
+      "inputContentClaimOffset": 1832,
+      "inputContentClaimFileSize": "354 bytes",
+      "inputContentClaimFileSizeBytes": 354,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "1",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924351897-1",
+      "outputContentClaimOffset": 1832,
+      "outputContentClaimFileSize": "354 bytes",
+      "outputContentClaimFileSizeBytes": 354,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "cfcf74cb-79de-3789-002f-515dd0f273b6"
+    }
+  ],
+  "counts_in_saved_sample": {
+    "ConvertRecord | CONTENT_MODIFIED": 2,
+    "GetFile | RECEIVE": 1,
+    "UpdateAttribute | ATTRIBUTES_MODIFIED": 2,
+    "PutFile | SEND": 2
+  }
+}

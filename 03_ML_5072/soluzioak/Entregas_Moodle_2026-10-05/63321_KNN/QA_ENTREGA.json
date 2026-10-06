@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-05",
+  "status": "locally_verified_prepared_not_submitted",
+  "pdf": "63321_KNN_Iris_Unai_Urzainqui_Perez.pdf",
+  "pages": 4,
+  "all_pdf_pages_rendered_and_visually_inspected": true,
+  "no_clipping_overlap_or_missing_glyphs": true,
+  "OOF_rows": 150,
+  "class_counts": {
+    "setosa": 50,
+    "versicolor": 50,
+    "virginica": 50
+  },
+  "accuracy": 0.96,
+  "gui_settings_match_model": true,
+  "native_screenshots": true,
+  "workflow_relocated_and_executed": true,
+  "original_sources_modified": false,
+  "publication_or_Moodle_submission": false
+}

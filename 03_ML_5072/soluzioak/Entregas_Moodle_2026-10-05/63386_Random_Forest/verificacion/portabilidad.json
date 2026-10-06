@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "method": "WidgetsScheme + scheme_load, señales reales; no llamadas manuales set_data/set_learner",
+  "workflow": "Random_Forest_Iris.ows",
+  "relocated_directory": "/home/tears/bigdata/03_ML_5072/soluzioak/Entregas_Moodle_2026-10-05/63386_Random_Forest/verificacion/portabilidad",
+  "cwd": "/home/tears/bigdata/03_ML_5072/soluzioak/Entregas_Moodle_2026-10-05/63386_Random_Forest/verificacion",
+  "relative_dataset_resolved": true,
+  "rows": 150,
+  "gui_accuracy": 0.9533333333333334,
+  "all_oof_predictions_match": true,
+  "all_oof_probabilities_match": true,
+  "downstream_confusion_received": true,
+  "roc_target": "versicolor",
+  "qt_platform": "wayland",
+  "workflow_sha256": "840d1cb993928e190e8bdbd73e2bd80aae0d5e9f7caf38e12685b04f9f217658"
+}

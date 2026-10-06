@@ -1,0 +1,59 @@
+{
+  "dataset": "sklearn.datasets.load_iris()",
+  "n": 150,
+  "features": [
+    "sepal length (cm)",
+    "sepal width (cm)"
+  ],
+  "evaluation": "training; same 150 rows used by fit and predict",
+  "logreg": {
+    "max_iter": 200,
+    "accuracy": 0.82,
+    "correct": 123,
+    "confusion_matrix": [
+      [
+        50,
+        0,
+        0
+      ],
+      [
+        0,
+        37,
+        13
+      ],
+      [
+        0,
+        14,
+        36
+      ]
+    ]
+  },
+  "knn": {
+    "n_neighbors": 3,
+    "accuracy": 0.8533333333333334,
+    "correct": 128,
+    "confusion_matrix": [
+      [
+        50,
+        0,
+        0
+      ],
+      [
+        0,
+        37,
+        13
+      ],
+      [
+        0,
+        9,
+        41
+      ]
+    ]
+  },
+  "versions": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "matplotlib": "3.11.2",
+    "scikit-learn": "1.9.1"
+  }
+}

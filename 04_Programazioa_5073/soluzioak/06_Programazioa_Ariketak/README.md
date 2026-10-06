@@ -4,8 +4,8 @@ Soluciones de referencia para los 25 ejercicios de
 [5073_3_Programazioa_Ariketak.ipynb](../../materialak/notebooks/5073_3_Programazioa_Ariketak.ipynb).
 El [script](5073_3_Programazioa_Ariketak.py) y el
 [notebook](5073_3_Programazioa_Ariketak.ipynb) comparten los ejercicios base.
-El script contiene también ampliaciones de Drive; el notebook explica esa
-diferencia y enlaza su código, pero no incorpora sus celdas ejecutables.
+Ambos contienen las ampliaciones de Drive. El notebook conserva los bloques
+base y añade las ampliaciones al final, con su edición y numeración explícitas.
 
 ## Preparación y ejecución
 
@@ -24,7 +24,8 @@ Sobrescribe `data/dataset.csv`, `data/eredua.pkl` y `grafikoa_3_8_pr.png`;
 usa una copia para conservar resultados propios. Para Jupyter selecciona ese
 intérprete, reinicia el kernel y ejecuta las celdas en orden.
 
-**No se ha ejecutado en esta revisión documental.** El
+**Notebook ejecutado completo el 2026-10-02:** 11 celdas Python, sin errores,
+esquema `nbformat` válido y curva PR inline inspeccionada. El
 [registro de 2026-09-28](../egiaztapena_2026-09-28.md) corresponde a los ejercicios
 base, antes de las ampliaciones actuales. No cargues archivos joblib/pickle
 ajenos: su deserialización puede ejecutar código; 4.5 carga el modelo que 4.4
@@ -53,9 +54,33 @@ PR combina precision = TP/(TP+FP) y recall al variar el umbral. Bajarlo puede
 mantener/subir recall, a costa de más falsos positivos; no demuestra mejora
 global. El PNG se llama `grafikoa_3_8_pr.png`, aunque lo genera el paso 3.7.
 
-El GridSearch actual usa el scoring por defecto de Random Forest (**accuracy**),
-no optimiza recall. Recibe datos escalados antes de sus folds: para validar un
-preprocesamiento dentro de CV habría que incluirlo en el Pipeline del buscador.
-Aquí el bosque no necesita ese escalado, pero este ejemplo no debe extrapolarse
-a un buscador de modelos sensibles a la escala. Los valores de CV no son una
-evaluación final independiente del modelo seleccionado.
+El GridSearch del notebook declara **accuracy** explícita y recibe train sin
+escalar: RF no necesita escalado y así evitamos aprender estadísticas fuera de
+los folds. El script conserva su entrada preescalada; el notebook documenta
+esta adaptación metodológica. Un preprocesamiento aprendido o SMOTE deben
+estar dentro del Pipeline de CV si se incorporan al buscador. No optimiza recall.
+Los valores de CV no son una evaluación final independiente del modelo seleccionado.
+
+## Resultados y reproducción del notebook · 2026-10-02
+
+LR base: accuracy test 0.9325, recall clase 1 0.6098; matriz `[[348,11],[16,25]]`.
+SMOTE equilibra train a 1.434 ejemplos por clase y conserva test (359/41).
+RF+SMOTE: recall 0.7317 con umbral estándar y 0.8293 con `>0.30`; falsos
+positivos 23→30, precision 0.5660→0.5312. El umbral se fija por el enunciado,
+sin buscar el óptimo con test. GridSearch selecciona 100 árboles y profundidad
+libre, accuracy CV 0.9531 (tres folds). Son ejemplos sintéticos: no justifican
+uso clínico/industrial ni superioridad general de un modelo.
+
+Desde esta carpeta:
+
+```bash
+uv venv .venv-notebook --python 3.13
+uv pip install --python .venv-notebook/bin/python -r requirements-notebook.txt
+source .venv-notebook/bin/activate
+python -m jupyter nbconvert --execute --to notebook --inplace 5073_3_Programazioa_Ariketak.ipynb
+```
+
+[requirements-notebook.txt](requirements-notebook.txt) fija el entorno completo
+validado con CPython 3.13.13. El notebook guarda las tablas y la curva PR en sus
+salidas. No se probó un servidor API ni otro dataset. Todos los modelos se
+entrenan localmente; el joblib cargado es exclusivamente el recién creado.

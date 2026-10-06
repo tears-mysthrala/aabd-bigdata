@@ -1,0 +1,44 @@
+{
+  "verified_at": "2026-10-02T06:31:47.371849+00:00",
+  "source": "synthetic fixture; live API returned HTTP 405",
+  "brokers": 3,
+  "replication_factor": 2,
+  "bronze": 20,
+  "silver": 20,
+  "mongo": 20,
+  "jsonl": 20,
+  "gold_integrated": 2,
+  "gold_independent": 2,
+  "gold_values": [
+    {
+      "hiria": "Elche/Elx",
+      "neurketak": 10,
+      "batez_besteko_tenperatura": 14.5,
+      "tenperatura_min": 10.0,
+      "tenperatura_max": 19.0,
+      "batez_besteko_hezetasuna": 44.5
+    },
+    {
+      "hiria": "Elche/Elx",
+      "neurketak": 10,
+      "batez_besteko_tenperatura": 24.5,
+      "tenperatura_min": 20.0,
+      "tenperatura_max": 29.0,
+      "batez_besteko_hezetasuna": 54.5
+    }
+  ],
+  "group_offsets": {
+    "iabd-3kasua-fitxategia": 20,
+    "iabd-3kasua-mongo": 20,
+    "iabd-3kasua-gold": 20
+  },
+  "scripts": {
+    "bronze": "{\"topic\": \"iabd-aemet-brontzea\", \"sent\": 20, \"source\": \"fixture\"}\n",
+    "silver": "{\"group\": \"iabd-3kasua-bronze-silver\", \"processed\": 20}\n",
+    "gold": "{\"group\": \"iabd-3kasua-silver-gold\", \"processed\": 20}\n",
+    "jsonl": "{\"group\": \"iabd-3kasua-fitxategia\", \"processed\": 20}\n",
+    "mongo": "{\"group\": \"iabd-3kasua-mongo\", \"processed\": 20}\n",
+    "independent_gold": "{\"group\": \"iabd-3kasua-gold\", \"processed\": 20}\n"
+  },
+  "python": "3.13.13"
+}

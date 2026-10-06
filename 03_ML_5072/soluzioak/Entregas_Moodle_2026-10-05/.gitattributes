@@ -1,0 +1,6 @@
+# Preserve dataset bytes and hashes when checking out on another platform.
+*.csv -text whitespace=cr-at-eol
+*.tab -text whitespace=cr-at-eol
+
+# Keep the redistributed upstream font license verbatim.
+**/recursos/LICENCIA_Liberation.txt -whitespace

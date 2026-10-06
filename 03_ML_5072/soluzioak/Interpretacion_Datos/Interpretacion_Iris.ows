@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="Interpretación Iris: pétalos" description="Tarea 63638; 150 flores; análisis descriptivo">
+  <nodes>
+    <node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="File" position="(100.0, 200.0)" />
+    <node id="1" name="Scatter Plot" qualified_name="Orange.widgets.visualize.owscatterplot.OWScatterPlot" project_name="Orange3" version="" title="Scatter Plot" position="(350.0, 100.0)" />
+    <node id="2" name="Distributions" qualified_name="Orange.widgets.visualize.owdistributions.OWDistributions" project_name="Orange3" version="" title="Distributions" position="(350.0, 300.0)" />
+  </nodes>
+  <links>
+    <link id="1" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Data" source_channel_id="data" sink_channel_id="data" enabled="true" />
+    <link id="2" source_node_id="0" sink_node_id="2" source_channel="Data" sink_channel="Data" source_channel_id="data" sink_channel_id="data" enabled="true" />
+  </links>
+  <annotations />
+  <thumbnail />
+  <node_properties>
+    <properties node_id="0" format="pickle">gASVHwEAAAAAAAB9lCiMDHJlY2VudF9wYXRoc5RdlIweb3Jhbmdld2lkZ2V0LnV0aWxzLmZpbGVkaWFsb2dzlIwKUmVjZW50UGF0aJSTlCmBlH2UKIwHYWJzcGF0aJSMAJSMBnByZWZpeJSMB2Jhc2VkaXKUjAdyZWxwYXRolIwWLi4vZGF0b3MvaXJpcy9pcmlzLmNzdpSMBXRpdGxllGgJjAVzaGVldJRoCYwLZmlsZV9mb3JtYXSUTnViYYwLcmVjZW50X3VybHOUXZSMBnNvdXJjZZRLAIwDdXJslGgJjAtzaGVldF9uYW1lc5R9lIwNZG9tYWluX2VkaXRvcpR9lIwQY29udGV4dF9zZXR0aW5nc5RdlIwLX192ZXJzaW9uX1+USwF1Lg==</properties>
+    <properties node_id="1" format="pickle">gASVUgMAAAAAAAB9lCiMDWF0dHJfeF9pc19hYnOUiYwNYXR0cl95X2lzX2Fic5SJjAthdXRvX2NvbW1pdJSIjAthdXRvX3NhbXBsZZSIjBJjb250cm9sQXJlYVZpc2libGWUiIwTc2F2ZWRXaWRnZXRHZW9tZXRyeZRDQgHZ0MsAAwAAAAABkAAAAGQAAAXbAAADgwAAAZAAAABkAAAF2wAAA4MAAAAAAgAAAAeAAAABkAAAAGQAAAXbAAADg5SMCXNlbGVjdGlvbpROjBF0b29sdGlwX3Nob3dzX2FsbJSIjA92aXN1YWxfc2V0dGluZ3OUfZSMBWdyYXBolH2UKIwLYWxwaGFfdmFsdWWUS4CMDWNsYXNzX2RlbnNpdHmUiYwRaml0dGVyX2NvbnRpbnVvdXOUiYwLaml0dGVyX3NpemWUSwCME2xhYmVsX29ubHlfc2VsZWN0ZWSUiYwWb3J0aG9ub3JtYWxfcmVncmVzc2lvbpSJjAtwb2ludF93aWR0aJRLCowMc2hvd19lbGxpcHNllImMCXNob3dfZ3JpZJSJjAtzaG93X2xlZ2VuZJSIjA1zaG93X3JlZ19saW5llIl1jAtfX3ZlcnNpb25fX5RLBYwQY29udGV4dF9zZXR0aW5nc5RdlIwVb3Jhbmdld2lkZ2V0LnNldHRpbmdzlIwHQ29udGV4dJSTlCmBlH2UKIwGdmFsdWVzlH2UKIwKYXR0cl9jb2xvcpSMBGlyaXOUS2WGlIwKYXR0cl9sYWJlbJROSv7///+GlIwKYXR0cl9zaGFwZZRoJEtlhpSMCWF0dHJfc2l6ZZROSv7///+GlIwGYXR0cl94lIwMcGV0YWxfbGVuZ3RolEtmhpSMDGF0dHJfeF9sb3dlcpROSv7///+GlIwMYXR0cl94X3VwcGVylE5K/v///4aUjAZhdHRyX3mUjAtwZXRhbF93aWR0aJRLZoaUjAxhdHRyX3lfbG93ZXKUTkr+////hpSMDGF0dHJfeV91cHBlcpROSv7///+GlGgMfZRoGUsFdYwKYXR0cmlidXRlc5R9lCiMDHNlcGFsX2xlbmd0aJRLAowLc2VwYWxfd2lkdGiUSwJoLUsCaDRLAmgkSwF1jAVtZXRhc5R9lHViYXUu</properties>
+    <properties node_id="2" format="pickle">gASVFQIAAAAAAAB9lCiMCmF1dG9fYXBwbHmUiIwSY29udHJvbEFyZWFWaXNpYmxllIiMEGN1bXVsYXRpdmVfZGlzdHKUiYwTZml0dGVkX2Rpc3RyaWJ1dGlvbpRLAIwJaGlkZV9iYXJzlImMDWtkZV9zbW9vdGhpbmeUSwqME3NhdmVkV2lkZ2V0R2VvbWV0cnmUQ0IB2dDLAAMAAAAAAZAAAABkAAAF2wAAA4MAAAGQAAAAZAAABdsAAAODAAAAAAIAAAAHgAAAAZAAAABkAAAF2wAAA4OUjApzaG93X3Byb2JzlImMDHNvcnRfYnlfZnJlcZSJjA9zdGFja2VkX2NvbHVtbnOUiYwLX192ZXJzaW9uX1+USwKMEGNvbnRleHRfc2V0dGluZ3OUXZSMFW9yYW5nZXdpZGdldC5zZXR0aW5nc5SMB0NvbnRleHSUk5QpgZR9lCiMBnZhbHVlc5R9lCiMBGN2YXKUjARpcmlzlEtlhpSMDm51bWJlcl9vZl9iaW5zlEsCSv7///+GlIwNc2VsZWN0ZWRfYmFyc5SPlEr+////hpSMA3ZhcpSMDHBldGFsX2xlbmd0aJRLZoaUaAxLAnWMCmF0dHJpYnV0ZXOUfZQojAxzZXBhbF9sZW5ndGiUSwKMC3NlcGFsX3dpZHRolEsCaB9LAowLcGV0YWxfd2lkdGiUSwJoF0sBdYwFbWV0YXOUfZR1YmF1Lg==</properties>
+  </node_properties>
+</scheme>

@@ -1,0 +1,22 @@
+{
+  "algorithm": "SHA-256",
+  "files": {
+    "63321_KNN_Iris_Unai_Urzainqui_Perez.pdf": "8faefac277b8922dfe3468624d773f4031a76d6d4772229cf482a4bd8efba4c8",
+    "Flujo_Orange.ows": "fcf0e1c84c3927e2ec5df7e2ff8d26f2cf17320cd45a05f2135f7ecbf8da315c",
+    "QA_ENTREGA.json": "c132403dfce14da0726ad950fbb01bc06cb61819ab277feeb359d209bd3ac343",
+    "README.md": "88d840c63602fd999fc50fec133d6cc8e00831ff2593a0bfb34eb633e8245b52",
+    "datos/iris.csv": "e48cd67255542c6c404e58f409cfdde207f2e03513d37576bcfb7713343c1d7e",
+    "evidencias/orange_confusion.png": "9c4979a22866136ee939627d3247a8ce7d0c684ba087fdfbf20d3d4ee9049f13",
+    "evidencias/orange_file.png": "0831bc36f86fdbf64cc4e07d5f3d5da420f752b2c418f6bab10556859ffa5648",
+    "evidencias/orange_modelo.png": "7e45916c18092d1dcf72f2a3b0e3f2177cb02c66edf45c1f6601a6f80f1a22d4",
+    "evidencias/orange_test_score.png": "21ab36c9d6550d753a9975a0893c0261bd698c13d2e755f76cd64f172d08f7fc",
+    "evidencias/settings_gui.json": "bdca5b8d328d6022297f6098a1bf19384e402a6e354e64852ab47ed89395d931",
+    "evidencias/validacion_workflow.json": "a0e66c6512d9d15900a1db185b993c633bbfc2be88a112ed327813db13fb7b89",
+    "generar_pdf.py": "4e464da6cf9434b2d1b383727a644f267427020a7235073635fa288838a3524f",
+    "predicciones_oof.csv": "dc59eedaf4665886833dcdca96a76efecf353db747cf0876fea92e35c813aaeb",
+    "reproducir.py": "74454a283f0675aca0a89ae261dc74fb43d50a4398db10264eb199100c53f109",
+    "requirements-orange.txt": "8f5cd1adde967349ee183ac9aadacd5395653309a491a6f74e963db25bbfdedc",
+    "resultados.json": "08ce8f367662d56147696e59de4bf262fb0fb6fcdf3a21a9c3b5a131bd11af46",
+    "verificar_workflow.py": "be30e1679b8610aaf6995634cd4015d4563c94bb19c1cbf0aa6af0b3622f6390"
+  }
+}

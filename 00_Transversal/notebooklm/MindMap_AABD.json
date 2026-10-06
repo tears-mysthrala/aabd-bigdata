@@ -1,106 +1,149 @@
 {
-  "name": "AABD ETHAZI Materialak eta Baliabideak",
+  "name": "Artificial Intelligence and Big Data Curriculum",
   "children": [
     {
-      "name": "01 Erronka: CNC Guard",
+      "name": "CNC Guard and AI Paradigms",
       "children": [
         {
-          "name": "Talde Plana: Helburuak eta Konpromezuak"
-        },
-        {
-          "name": "Rolak: Koordinatzailea, Bozeramailea, Idazkaria, Laguntzailea"
-        },
-        {
-          "name": "Dokumentazioa: Kontratua (Anexo 1), Proposamena (Anexo 4)"
-        }
-      ]
-    },
-    {
-      "name": "02-03 Adimen Artifiziala eta ML",
-      "children": [
-        {
-          "name": "Ereduak: Sarrera kontzeptuala eta Logika lausoa"
-        },
-        {
-          "name": "ML: Datua, Aurreprozesamenua eta Ikasketa Gainbegiratua"
-        }
-      ]
-    },
-    {
-      "name": "04 Lengoaiak eta Datu Zientzia",
-      "children": [
-        {
-          "name": "Baliabideak: VS Code eta Jupyter Notebooks"
-        },
-        {
-          "name": "Formatuak: .ipynb (Interactive) eta .py (Scripts)"
-        },
-        {
-          "name": "Edukiak: Python adibideak eta ariketak"
-        }
-      ]
-    },
-    {
-      "name": "05-06 Big Data eta Apache NiFi",
-      "children": [
-        {
-          "name": "Apache NiFi Oinarriak",
+          "name": "Predictive Maintenance",
           "children": [
             {
-              "name": "Definizioa: Datu-fluxuen ingestioa eta eraldaketa"
+              "name": "Sensor Monitoring"
             },
             {
-              "name": "Kontzeptuak: FlowFile, Prozesadorea, Ilara, Linajea"
-            },
-            {
-              "name": "DataFlow: Datua mugimenduan (In motion)"
-            },
-            {
-              "name": "Filosofia: Arrastatu-askatu eta DAG programazioa"
+              "name": "Failure Prevention"
             }
           ]
         },
         {
-          "name": "Arkitektura eta Optimizazioa",
+          "name": "AI Paradigms",
           "children": [
             {
-              "name": "Medallion: Bronze (Gordina), Silver (Garbitua), Gold (Agregatua)"
+              "name": "Symbolic Paradigm"
             },
             {
-              "name": "Dual-Storage: File-lake (Historikoa) eta MongoDB (Operatiboa)"
+              "name": "Connectionist Paradigm"
             },
             {
-              "name": "Errendimendua: SplitRecord saihestu eta QueryRecord erabili"
+              "name": "Generative AI"
             }
           ]
         },
         {
-          "name": "Kasu Praktikoak eta Integrazioa",
+          "name": "Fuzzy Logic Systems",
           "children": [
             {
-              "name": "Fitxategiak: GetFile eta PutFile"
+              "name": "Mamdani Rules"
             },
             {
-              "name": "Datu-baseak: MariaDB (JDBC), MongoDB eta S3"
-            },
-            {
-              "name": "Prozesamendua: SQL kontsultak (Calcite) eta JSON bihurketak"
+              "name": "Sensor Fusion"
             }
           ]
         }
       ]
     },
     {
-      "name": "Kanpoko Baliabideak",
+      "name": "Machine Learning",
       "children": [
         {
-          "name": "Gitflow vs GitHub Flow"
+          "name": "Data Preprocessing",
+          "children": [
+            {
+              "name": "Missing Values Imputation"
+            },
+            {
+              "name": "Outlier Detection"
+            },
+            {
+              "name": "Feature Engineering"
+            }
+          ]
         },
         {
-          "name": "NiFi REST API dokumentazioa"
+          "name": "Supervised Learning",
+          "children": [
+            {
+              "name": "Linear Regression"
+            },
+            {
+              "name": "Logistic Regression"
+            },
+            {
+              "name": "Decision Trees"
+            },
+            {
+              "name": "Support Vector Machines"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Data Engineering and Ingestion",
+      "children": [
+        {
+          "name": "Apache NiFi",
+          "children": [
+            {
+              "name": "Dataflow Programming"
+            },
+            {
+              "name": "QueryRecord Processing"
+            },
+            {
+              "name": "Calcite Engine"
+            }
+          ]
         },
         {
-          "name": "Padlet: Parametroen ezarpena"
+          "name": "Apache Kafka",
+          "children": [
+            {
+              "name": "High Throughput Messaging"
+            },
+            {
+              "name": "Event Streaming"
+            },
+            {
+              "name": "Distributed Architecture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Elastic Stack",
+      "children": [
+        {
+          "name": "Core Components",
+          "children": [
+            {
+              "name": "Elasticsearch Engine"
+            },
+            {
+              "name": "Logstash Pipeline"
+            },
+            {
+              "name": "Kibana Interface"
+            },
+            {
+              "name": "Beats Agents"
+            }
+          ]
+        },
+        {
+          "name": "Use Cases",
+          "children": [
+            {
+              "name": "Log Analysis"
+            },
+            {
+              "name": "Security SIEM"
+            },
+            {
+              "name": "Predictive Maintenance"
+            }
+          ]
         }
       ]
     }

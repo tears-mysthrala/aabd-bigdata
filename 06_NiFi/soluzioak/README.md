@@ -1,5 +1,31 @@
 # AABD - 03 DataFlow: Apache NiFi Ariketa eta Ebazpen Nagusia
 
+## Ejecución verificada · 2026-10-02
+
+Los casos 1–6 se importaron y ejecutaron en un laboratorio NiFi 2.0.0
+dedicado, con servicios privados y TLS verificado por REST. Las guías de
+cada caso enlazan resultados, estados de colas, provenance y receta reproducible:
+
+| Caso | Resultado comprobado |
+|---|---|
+| [1 · Archivos y conflictos](01_Fitxategiak_Mugitu_Gatazkak/README.md) | Tres archivos; conflicto redirigido, original conservado. |
+| [2 · CSV: tres variantes](02_CSV_Datuak_Iragazi/README.md) | Mismas tres ventas; 3/1/1 archivos de salida. |
+| [3 · Atributos y linaje](03_Atributuak_eta_Linajea/README.md) | Dos variantes; LogAttribute, provenance y documento Mongo. |
+| [4 · HTTP → Mongo](04_HTTP_Ingesta_eta_MongoDB/README.md) | Seis mensajes; cinco ERROR conservados, INFO excluido. |
+| [5 · CSV → JSON](05_CSV_JSON_ConvertRecord_DF2.1/README.md) | Cinco filas; fuentes y puertos input/output comprobados. |
+| [6 · SQL → Mongo](06_MariaDB_MongoDB_Laborategia_DF2.2/README.md) | Classic y Record: 253.516 documentos cada uno; comparación completa con cero diferencias tras normalización declarada. Fuente MySQL 8.4, no MariaDB. |
+| [7 · Open-Meteo Medallion](07_AEMET_Datu_Lakua_Medallion_DF2.3/README_OPEN_METEO.md) | API real, MinIO Bronze/Silver/Gold Parquet y Mongo 24/1; 24 horas de pronóstico UTC distintas. |
+
+El [caso 7 AEMET original](07_AEMET_Datu_Lakua_Medallion_DF2.3/README.md)
+sigue necesitando clave y mapping real. Open-Meteo es una variante de proveedor
+y MinIO un S3 local: no valida AEMET ni AWS. Las pruebas no aportan captura
+Canvas, benchmark repetido, alta disponibilidad ni garantías exactly-once.
+Provenance está muestreado; los conteos completos y la comparación de filas
+proceden de los destinos. El laboratorio se detuvo después de guardar evidencia.
+
+La documentación histórica siguiente describe la organización y el stack
+anterior; sus endpoints no son los de este laboratorio aislado.
+
 > **Modulua:** Big Data Aplikatua (5073 / DataFlow)  
 > **Ingurunea:** Apache NiFi 2.0.0, Docker Compose, MySQL 8.4, MongoDB 7.0, Nginx SSL  
 > **UI Sarbidea:** `https://nifi.bigdata.local/nifi` (edo erreserban: `https://localhost:8443/nifi`)

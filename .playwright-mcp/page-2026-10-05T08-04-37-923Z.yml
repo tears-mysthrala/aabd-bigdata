@@ -1,0 +1,26 @@
+- generic [active] [ref=e1]:
+  - status
+  - generic [ref=e2]:
+    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+      - /url: "#maincontent"
+    - main [ref=e10]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - img "Uni Moodle" [ref=e14]
+          - heading "Log in to Uni Moodle" [level=1] [ref=e15]
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - generic [ref=e18]: Username
+            - textbox "Username" [ref=e19]
+          - generic [ref=e20]:
+            - generic [ref=e21]: Password
+            - textbox "Password" [ref=e22]
+          - button "Log in" [ref=e24] [cursor=pointer]
+          - link "Lost password?" [ref=e26] [cursor=pointer]:
+            - /url: https://elearning20.hezkuntza.net/012053/login/forgot_password.php
+        - generic [ref=e28]:
+          - button "English ‎(en)‎" [ref=e34] [cursor=pointer]: English ‎(en)‎ 
+          - button "Cookies notice" [ref=e36] [cursor=pointer]
+    - contentinfo:
+      - button "Show footer" [ref=e37] [cursor=pointer]:
+        - generic [aria-hidden] [ref=e38]: "?"

@@ -1,0 +1,450 @@
+{
+  "query_limit_per_processor": 100,
+  "events": [
+    {
+      "id": "109",
+      "eventId": 109,
+      "eventTime": "10/02/2026 07:03:05.430 UTC",
+      "eventDuration": 11,
+      "lineageDuration": 22,
+      "eventType": "CONTENT_MODIFIED",
+      "flowFileUuid": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+      "fileSize": "5 bytes",
+      "fileSizeBytes": 5,
+      "groupId": "fb67bb62-01a0-1000-ff09-9476ec86bf9e",
+      "componentId": "1df40335-9868-3b5b-2cc8-180846617d87",
+      "componentType": "ReplaceText",
+      "componentName": "ReplaceText",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "filename",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": false,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 0,
+      "inputContentClaimFileSize": "10 bytes",
+      "inputContentClaimFileSizeBytes": 10,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 10,
+      "outputContentClaimFileSize": "5 bytes",
+      "outputContentClaimFileSizeBytes": 5,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "4cd61e11-f4a8-35cd-b27c-612158c64bba"
+    },
+    {
+      "id": "108",
+      "eventId": 108,
+      "eventTime": "10/02/2026 07:03:05.409 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 1,
+      "eventType": "CREATE",
+      "flowFileUuid": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+      "fileSize": "10 bytes",
+      "fileSizeBytes": 10,
+      "groupId": "fb67bb62-01a0-1000-ff09-9476ec86bf9e",
+      "componentId": "e1f1f54c-0ec2-3e23-2bbc-8a16258e6b29",
+      "componentType": "GenerateFlowFile",
+      "componentName": "GenerateFlowFile",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8"
+        },
+        {
+          "name": "filename",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        },
+        {
+          "name": "path",
+          "value": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": false,
+      "inputContentAvailable": false,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 0,
+      "outputContentClaimFileSize": "10 bytes",
+      "outputContentClaimFileSizeBytes": 10,
+      "replayAvailable": false,
+      "replayExplanation": "Cannot replay data from Provenance Event because the Source FlowFile Queue with ID No Value no longer exists",
+      "sourceConnectionIdentifier": "No Value"
+    },
+    {
+      "id": "111",
+      "eventId": 111,
+      "eventTime": "10/02/2026 07:03:05.450 UTC",
+      "eventDuration": 15,
+      "lineageDuration": 42,
+      "eventType": "CLONE",
+      "flowFileUuid": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+      "fileSize": "5 bytes",
+      "fileSizeBytes": 5,
+      "groupId": "fb67bb62-01a0-1000-ff09-9476ec86bf9e",
+      "componentId": "ed330e31-60fe-30d1-e879-e875919e3d78",
+      "componentType": "ExtractText",
+      "componentName": "ExtractText",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "edukia",
+          "value": "proba"
+        },
+        {
+          "name": "edukia.1",
+          "value": "proba"
+        },
+        {
+          "name": "filename",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        }
+      ],
+      "parentUuids": [
+        "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+      ],
+      "childUuids": [
+        "80d25aae-2706-49da-be69-5800c7f08587"
+      ],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 10,
+      "inputContentClaimFileSize": "5 bytes",
+      "inputContentClaimFileSizeBytes": 5,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 10,
+      "outputContentClaimFileSize": "5 bytes",
+      "outputContentClaimFileSizeBytes": 5,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "4d0d9692-8ea8-34d7-9de0-7706242f2e98"
+    },
+    {
+      "id": "110",
+      "eventId": 110,
+      "eventTime": "10/02/2026 07:03:05.447 UTC",
+      "eventDuration": 15,
+      "lineageDuration": 39,
+      "eventType": "ATTRIBUTES_MODIFIED",
+      "flowFileUuid": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+      "fileSize": "5 bytes",
+      "fileSizeBytes": 5,
+      "groupId": "fb67bb62-01a0-1000-ff09-9476ec86bf9e",
+      "componentId": "ed330e31-60fe-30d1-e879-e875919e3d78",
+      "componentType": "ExtractText",
+      "componentName": "ExtractText",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "edukia",
+          "value": "proba"
+        },
+        {
+          "name": "edukia.1",
+          "value": "proba"
+        },
+        {
+          "name": "filename",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 10,
+      "inputContentClaimFileSize": "5 bytes",
+      "inputContentClaimFileSizeBytes": 5,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 10,
+      "outputContentClaimFileSize": "5 bytes",
+      "outputContentClaimFileSizeBytes": 5,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "4d0d9692-8ea8-34d7-9de0-7706242f2e98"
+    },
+    {
+      "id": "113",
+      "eventId": 113,
+      "eventTime": "10/02/2026 07:03:05.457 UTC",
+      "eventDuration": 1,
+      "lineageDuration": 49,
+      "eventType": "DROP",
+      "flowFileUuid": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+      "fileSize": "5 bytes",
+      "fileSizeBytes": 5,
+      "groupId": "fb67bb62-01a0-1000-ff09-9476ec86bf9e",
+      "componentId": "20099986-7b54-335a-ee66-36f0cda9f6eb",
+      "componentType": "PutFile",
+      "componentName": "PutFile",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "edukia",
+          "value": "proba",
+          "previousValue": "proba"
+        },
+        {
+          "name": "edukia.1",
+          "value": "proba",
+          "previousValue": "proba"
+        },
+        {
+          "name": "filename",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 10,
+      "inputContentClaimFileSize": "5 bytes",
+      "inputContentClaimFileSizeBytes": 5,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 10,
+      "outputContentClaimFileSize": "5 bytes",
+      "outputContentClaimFileSizeBytes": 5,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "9f9d5b4b-1ea7-3f52-e219-9982a97be00c"
+    },
+    {
+      "id": "112",
+      "eventId": 112,
+      "eventTime": "10/02/2026 07:03:05.456 UTC",
+      "eventDuration": 0,
+      "lineageDuration": 48,
+      "eventType": "SEND",
+      "flowFileUuid": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+      "fileSize": "5 bytes",
+      "fileSizeBytes": 5,
+      "groupId": "fb67bb62-01a0-1000-ff09-9476ec86bf9e",
+      "componentId": "20099986-7b54-335a-ee66-36f0cda9f6eb",
+      "componentType": "PutFile",
+      "componentName": "PutFile",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "edukia",
+          "value": "proba",
+          "previousValue": "proba"
+        },
+        {
+          "name": "edukia.1",
+          "value": "proba",
+          "previousValue": "proba"
+        },
+        {
+          "name": "filename",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "transitUri": "file:/opt/nifi/ariketak/flow_03_atributuak_linajea/irteera/8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 10,
+      "inputContentClaimFileSize": "5 bytes",
+      "inputContentClaimFileSizeBytes": 5,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 10,
+      "outputContentClaimFileSize": "5 bytes",
+      "outputContentClaimFileSizeBytes": 5,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "9f9d5b4b-1ea7-3f52-e219-9982a97be00c"
+    },
+    {
+      "id": "115",
+      "eventId": 115,
+      "eventTime": "10/02/2026 07:03:05.474 UTC",
+      "eventDuration": 15,
+      "lineageDuration": 66,
+      "eventType": "DROP",
+      "flowFileUuid": "80d25aae-2706-49da-be69-5800c7f08587",
+      "fileSize": "5 bytes",
+      "fileSizeBytes": 5,
+      "groupId": "fb67bb62-01a0-1000-ff09-9476ec86bf9e",
+      "componentId": "f079acb7-962a-3c3d-9df7-a75ced4c8dce",
+      "componentType": "LogAttribute",
+      "componentName": "LogAttribute",
+      "attributes": [
+        {
+          "name": "Character Set",
+          "value": "UTF-8",
+          "previousValue": "UTF-8"
+        },
+        {
+          "name": "edukia",
+          "value": "proba",
+          "previousValue": "proba"
+        },
+        {
+          "name": "edukia.1",
+          "value": "proba",
+          "previousValue": "proba"
+        },
+        {
+          "name": "filename",
+          "value": "8a08e77b-1482-4388-8d3b-f58a8f0bc585",
+          "previousValue": "8a08e77b-1482-4388-8d3b-f58a8f0bc585"
+        },
+        {
+          "name": "path",
+          "value": "./",
+          "previousValue": "./"
+        },
+        {
+          "name": "uuid",
+          "value": "80d25aae-2706-49da-be69-5800c7f08587",
+          "previousValue": "80d25aae-2706-49da-be69-5800c7f08587"
+        }
+      ],
+      "parentUuids": [],
+      "childUuids": [],
+      "details": "Auto-Terminated by success Relationship",
+      "contentEqual": true,
+      "inputContentAvailable": true,
+      "inputContentClaimSection": "8",
+      "inputContentClaimContainer": "default",
+      "inputContentClaimIdentifier": "1790924585409-8",
+      "inputContentClaimOffset": 10,
+      "inputContentClaimFileSize": "5 bytes",
+      "inputContentClaimFileSizeBytes": 5,
+      "outputContentAvailable": true,
+      "outputContentClaimSection": "8",
+      "outputContentClaimContainer": "default",
+      "outputContentClaimIdentifier": "1790924585409-8",
+      "outputContentClaimOffset": 10,
+      "outputContentClaimFileSize": "5 bytes",
+      "outputContentClaimFileSizeBytes": 5,
+      "replayAvailable": true,
+      "sourceConnectionIdentifier": "3da4d264-8418-3b58-0800-94d9764840ed"
+    }
+  ],
+  "counts_in_saved_sample": {
+    "ReplaceText | CONTENT_MODIFIED": 1,
+    "GenerateFlowFile | CREATE": 1,
+    "ExtractText | CLONE": 1,
+    "ExtractText | ATTRIBUTES_MODIFIED": 1,
+    "PutFile | DROP": 1,
+    "PutFile | SEND": 1,
+    "LogAttribute | DROP": 1
+  }
+}

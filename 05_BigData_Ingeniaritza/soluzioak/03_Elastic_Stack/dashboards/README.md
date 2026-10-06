@@ -53,7 +53,7 @@ Importación comprobada en el espacio independiente `aabd-egiaztapena`:
 Los documentos Elasticsearch y las políticas ILM no se incluyen en Saved
 Objects: se reproducen con el script. El CSV original queda en
 `../../../materialak/salmentak_kibana.csv`; la política y el template también
-están guardados como JSON en esta carpeta. La P14 tiene el patrón y los dos
+están guardados como JSON en esta carpeta. La P15 (P14 en el PDF de 61 páginas usado el 01/10) tiene el patrón y los dos
 resultados en las respuestas; Grok Debugger no guarda una visualización Lens.
 
 [La documentación de Elastic](https://www.elastic.co/docs/explore-analyze/find-and-organize/saved-objects)

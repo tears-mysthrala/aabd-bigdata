@@ -1,0 +1,14 @@
+{"log.level":"info","@timestamp":"2026-10-05T08:11:44.154Z","log.origin":{"function":"github.com/elastic/beats/v7/libbeat/cmd/instance.(*Beat).configure","file.name":"instance/beat.go","file.line":925},"message":"Home path: [/usr/share/filebeat] Config path: [/usr/share/filebeat] Data path: [/usr/share/filebeat/data] Logs path: [/usr/share/filebeat/logs]","service.name":"filebeat","ecs.version":"1.6.0"}
+{"log.level":"info","@timestamp":"2026-10-05T08:11:44.158Z","log.origin":{"function":"github.com/elastic/beats/v7/libbeat/cmd/instance.(*Beat).configure","file.name":"instance/beat.go","file.line":933},"message":"Beat ID: 64bc2ad4-d971-48ec-8c75-23a5c79961b0","service.name":"filebeat","ecs.version":"1.6.0"}
+{"log.level":"info","@timestamp":"2026-10-05T08:11:44.405Z","log.logger":"elasticsearch.esclientleg","log.origin":{"function":"github.com/elastic/beats/v7/libbeat/esleg/eslegclient.NewConnection","file.name":"eslegclient/connection.go","file.line":133},"message":"elasticsearch url: http://elasticsearch:9200","service.name":"filebeat","ecs.version":"1.6.0"}
+elasticsearch: http://elasticsearch:9200...
+  parse url... OK
+  connection...
+    parse host... OK
+    dns lookup... OK
+    addresses: 172.20.0.2
+    dial up... OK
+  TLS... WARN secure connection disabled
+{"log.level":"info","@timestamp":"2026-10-05T08:11:44.512Z","log.logger":"elasticsearch.esclientleg","log.origin":{"function":"github.com/elastic/beats/v7/libbeat/esleg/eslegclient.(*Connection).Ping","file.name":"eslegclient/connection.go","file.line":330},"message":"Attempting to connect to Elasticsearch version 9.5.4 (default)","service.name":"filebeat","ecs.version":"1.6.0"}
+  talk to server... OK
+  version: 9.5.4

@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-02",
+  "NiFi": "2.0.0",
+  "execution": "real Docker lab REST/API; no GUI capture",
+  "scope": "dedicated groups; original materialak untouched",
+  "json_records": 5,
+  "local_ingress_tested": true,
+  "boundary_ingress_and_egress_tested": true
+}

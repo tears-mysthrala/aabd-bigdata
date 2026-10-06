@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "method": "WidgetsScheme + scheme_load, señales reales; no llamadas manuales set_data/set_learner",
+  "workflow": "SVM_Iris.ows",
+  "relocated_directory": "/home/tears/bigdata/03_ML_5072/soluzioak/Entregas_Moodle_2026-10-05/63380_SVM/verificacion/portabilidad",
+  "cwd": "/home/tears/bigdata/03_ML_5072/soluzioak/Entregas_Moodle_2026-10-05/63380_SVM/verificacion",
+  "relative_dataset_resolved": true,
+  "rows": 150,
+  "gui_accuracy": 0.96,
+  "all_oof_predictions_match": true,
+  "all_oof_probabilities_match": true,
+  "downstream_confusion_received": true,
+  "roc_target": "versicolor",
+  "qt_platform": "wayland",
+  "workflow_sha256": "19d2961a36fc03404a879cbb85ab68e9f72c578243a78f4213cadadb0bf1bb34"
+}

@@ -2,7 +2,7 @@
 <scheme version="2.0" title="Orange Data Mining - KNN Iris" description="Sortzailea: Unai Urzainqui Perez. Iris: KNN k=3, 10-fold CV estratifikatua.">
 	<nodes>
 		<node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="Iris · 150 lagin" position="(70.0, 210.0)" />
-		<node id="1" name="kNN" qualified_name="Orange.widgets.model.owknn.OWKNN" project_name="Orange3" version="" title="kNN · k=3" position="(350.0, 150.0)" />
+		<node id="1" name="kNN" qualified_name="Orange.widgets.model.owknn.OWKNNLearner" project_name="Orange3" version="" title="kNN · k=3" position="(350.0, 150.0)" />
 		<node id="2" name="Test &amp; Score" qualified_name="Orange.widgets.evaluate.owtestandscore.OWTestAndScore" project_name="Orange3" version="" title="CV estratifikatua · 10 folds" position="(630.0, 235.0)" />
 		<node id="3" name="Confusion Matrix" qualified_name="Orange.widgets.evaluate.owconfusionmatrix.OWConfusionMatrix" project_name="Orange3" version="" title="Matriz de confusión" position="(900.0, 155.0)" />
 		<node id="4" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWTable" project_name="Orange3" version="" title="Predicciones out-of-fold" position="(900.0, 325.0)" />
@@ -18,13 +18,13 @@
 Sortzailea: Unai Urzainqui Perez</text>
 		<text id="1" type="text/plain" rect="(245.0, 12.0, 360.0, 58.0)" font-family="Helvetica" font-size="12">KNN k=3 metrikoa: euklidearra
 Target: iris (setosa/versicolor/virginica)
-CV estratifikatua, 10 folds, CA 0.9533</text>
+CV estratifikatua, 10 folds, semilla 42; CA 0.9600</text>
 	</annotations>
 	<thumbnail />
 	<node_properties>
 		<properties node_id="0" format="pickle">gASVSQEAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjAxyZWNlbnRfcGF0aHOUXZSMHm9yYW5nZXdpZGdldC51dGlscy5maWxlZGlhbG9nc5SMClJlY2VudFBhdGiUk5QpgZR9lCiMB2Fic3BhdGiUjACUjAZwcmVmaXiUjAdiYXNlZGlylIwHcmVscGF0aJSME2RhdG9zL2lyaXMvaXJpcy5jc3aUjAV0aXRsZZRoCowFc2hlZXSUaAqMC2ZpbGVfZm9ybWF0lE51YmGMC3JlY2VudF91cmxzlF2UjBNzYXZlZFdpZGdldEdlb21ldHJ5lE6MC3NoZWV0X25hbWVzlH2UjAZzb3VyY2WUSwCMA3VybJRoCowNZG9tYWluX2VkaXRvcpR9lIwLX192ZXJzaW9uX1+USwGMEGNvbnRleHRfc2V0dGluZ3OUXZR1Lg==</properties>
 		<properties node_id="1" format="literal">{'learner_name': 'kNN', 'n_neighbors': 3, 'metric_index': 0, 'weight_index': 0, 'controlAreaVisible': True, 'auto_apply': True, '__version__': 1}</properties>
-		<properties node_id="2" format="literal">{'controlAreaVisible': True, 'resampling': 0, 'n_folds': 10, 'cv_stratified': True, '__version__': 1}</properties>
+		<properties node_id="2" format="literal">{'controlAreaVisible': True, 'resampling': 0, 'n_folds': 3, 'cv_stratified': True, '__version__': 1}</properties>
 		<properties node_id="3" format="literal">{'auto_commit': True, 'controlAreaVisible': True, 'show_class_distributions': True, '__version__': 1}</properties>
 		<properties node_id="4" format="literal">{'auto_commit': True, 'controlAreaVisible': True, 'color_by_class': True, '__version__': 1}</properties>
 	</node_properties>

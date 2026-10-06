@@ -1,5 +1,30 @@
 # NiFi 2. Kasua: CSV Datuak Iragazi (Caso 2 - 3 Variantes)
 
+## Ejecución verificada y evidencia
+
+2026-10-02: se ejecutaron las tres variantes con las mismas seis ventas.
+SplitRecord=1 creó seis FlowFiles; SplitRecord=10 creó uno; la tercera variante
+no tiene SplitRecord. QueryRecord seleccionó las mismas tres ventas en todas;
+PutFile escribió 3, 1 y 1 archivos respectivamente. Se comprobó su contenido
+contra el predicado `TRIM(Country)='France' AND CAST(Units AS INTEGER)>1`.
+
+La entrada anterior contenía líneas vacías y comentarios `#...` de explicación
+que no eran ventas. El lector infería el esquema y fallaba con
+`Index for header 'Date' is 1 but CSVRecord only has 1 values!`. Ahora el CSV
+contiene solo cabecera y seis filas de datos; las notas del formato quedan en
+esta guía. Los servicios usan esquema de texto desde la cabecera y separador
+LF real; la consulta convierte Units explícitamente. La ejecución final se
+repitió tras limpiar el fixture, evitando contar los comentarios como records.
+
+[Resultado](evidencias/resultado_2026-10-02.json),
+[variant1](evidencias/aldaera1/), [variant2](evidencias/aldaera2/),
+[variant3](evidencias/aldaera3/) y
+[log del diagnóstico](evidencias/nifi_app_extracto.log).
+La simulación Python y su archivo previo se conservan como materiales
+separados; estos nuevos CSV de evidencia los escribió NiFi. No hay benchmark
+CPU/memoria ni ratio de velocidad medido.
+
+
 > **Modulua / Gai-arloa:** Big Data Aplikatua · 01 DataFlow · Apache NiFi  
 > **Fitxategi Nagusiak:**
 > - [`flow_02_csv_datuak_iragazi_aldaera1.json`](flow_02_csv_datuak_iragazi_aldaera1.json) (1. Aldaera: SplitRecord 1)
@@ -106,3 +131,62 @@ Fluxua exekutatu aurretik edo NiFi gabe egiaztatzeko, Python bidezko simulazio-s
 python3 06_NiFi/soluzioak/02_CSV_Datuak_Iragazi/simulatu_kasu_2_salmentak.py
 ```
 Output-a zuzenean sortuko da `irteera/salmentak_iragaziak.csv` bidean.
+
+
+## Laboratorio aislado y reproducción
+
+Los comandos siguientes se ejecutan desde la raíz y prueban los casos 1-6 en
+una única instancia dedicada. No usan `infra/`, bases de datos personales ni
+el canvas de otra instancia. Requieren Docker, Python 3 y las imágenes
+`iabd-nifi:2.0.0-local`, `mongo:7.0` y `mysql:8.4`. Si falta la imagen local:
+
+```bash
+docker build -t iabd-nifi:2.0.0-local \
+  06_NiFi/soluzioak/06_MariaDB_MongoDB_Laborategia_DF2.2
+```
+
+```bash
+python 06_NiFi/soluzioak/scripts/nifi_lab_stack.py up
+python 06_NiFi/soluzioak/scripts/nifi_lab_verificar.py prepare
+python 06_NiFi/soluzioak/scripts/nifi_lab_ejecutar.py
+python 06_NiFi/soluzioak/scripts/nifi_lab_evidencias.py
+python 06_NiFi/soluzioak/scripts/nifi_lab_comparar.py
+python 06_NiFi/soluzioak/scripts/nifi_lab_resultados.py
+python 06_NiFi/soluzioak/scripts/nifi_lab_validar_evidencias.py
+python 06_NiFi/soluzioak/scripts/nifi_lab_stack.py down
+```
+
+[Preparador](../scripts/nifi_lab_stack.py): Compose sanitizado embebido,
+proyecto `bigdata-nifi-lab-20261002`, red dedicada y endpoint
+`https://localhost:18443` publicado solo en loopback. Genera credenciales
+aleatorias en `/tmp/bigdata-nifi-lab-20261002/credentials.json` y `.env`, con
+modo 600 dentro de un directorio 700; exporta el certificado de NiFi y verifica
+TLS y el hostname `localhost`. Ningún secreto entra en Git. No muestra tokens.
+MySQL/MongoDB no publican puertos. No se sobreescribe un laboratorio existente.
+
+[Importador](../scripts/nifi_lab_verificar.py) crea un PG propio y remapea
+servicios/rutas solo dentro del laboratorio. [Ejecutor](../scripts/nifi_lab_ejecutar.py)
+ejecuta SQL y GenerateFlowFile mediante `RUN_ONCE`; GetFile sondea entradas
+con `Keep Source File=false` y se detiene al cerrar la prueba. Espera como
+máximo diez minutos para
+la carga SQL completa (puede necesitar ajuste en otra máquina), evita duplicar la carga SQL si las
+colecciones ya tienen documentos y detiene su PG al terminar. Es una prueba
+local: modifica solo directorios temporales, grupos y bases de datos del lab.
+[Exportador](../scripts/nifi_lab_evidencias.py) guarda estados y provenance
+acotado a 100 eventos por procesador; las listas largas de linaje conservan
+20 UUID y el conteo total. Liberar resultados de consulta no borra eventos.
+[Comparador](../scripts/nifi_lab_comparar.py) coteja todas las filas SQL/Mongo.
+[Verificador de resultados](../scripts/nifi_lab_resultados.py) compara y archiva
+los archivos reales y los documentos de muestra, sin guardar las filas de clientes.
+
+La receta reúne los pasos ejecutados en esta sesión; no se ha repetido un
+segundo arranque completo desde cero con el script conjunto. `down` retira
+solo los contenedores y volúmenes del proyecto dedicado y conserva los
+archivos temporales del host. Si se comparte con el caso 7, detener primero
+su sidecar MinIO y coordinar el cierre. La evidencia versionada permite
+[validación sin Docker](../scripts/nifi_lab_validar_evidencias.py).
+
+**Límites:** ejecución real de NiFi por REST, contenido, logs y provenance;
+no hay captura GUI. T3 abrió el HTTPS del lab pero no pudo cargar su
+certificado en el navegador. La validación REST sí usa certificado verificado.
+No se han accedido APIs con claves reales ni AWS.

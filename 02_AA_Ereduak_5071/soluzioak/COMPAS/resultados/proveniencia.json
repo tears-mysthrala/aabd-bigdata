@@ -1,0 +1,58 @@
+{
+  "url": "https://raw.githubusercontent.com/propublica/compas-analysis/c062fbb5fa84f6c99d82f432c46b405f3a0ca5ec/compas-scores-two-years.csv",
+  "commit": "c062fbb5fa84f6c99d82f432c46b405f3a0ca5ec",
+  "sha256": "c451db85908b2f7fef1d83203bedf6b71ecda0d5af468d82ae62178f91d0cc7d",
+  "source_rows": 7214,
+  "filtered_all_groups": 6172,
+  "analysed_rows": 5278,
+  "groups": [
+    "African-American",
+    "Caucasian"
+  ],
+  "positive_label": "two_year_recid = 1",
+  "primary_threshold": 7,
+  "comparison_threshold": 5,
+  "filter_counts": [
+    {
+      "step": "raw source",
+      "n": 7214
+    },
+    {
+      "step": "days_b_screening_arrest between -30 and 30 inclusive",
+      "n": 6172
+    },
+    {
+      "step": "is_recid != -1",
+      "n": 6172
+    },
+    {
+      "step": "c_charge_degree != O",
+      "n": 6172
+    },
+    {
+      "step": "score_text != N/A",
+      "n": 6172
+    },
+    {
+      "step": "race in African-American, Caucasian",
+      "n": 5278
+    }
+  ],
+  "unit": "one source record; no new cohort or trained model",
+  "stored_outputs": "aggregate counts/rates and figures only; source is outside repository",
+  "versions": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "matplotlib": "3.11.2",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "ipykernel": "7.4.0"
+  },
+  "python": "3.13.13",
+  "outputs_sha256": {
+    "metricas_umbral.csv": "5dbf840042ab065117f2783f8cec3bda79b8fff9098a22901ac9e0fc8bafbc45",
+    "tasas_score.csv": "85a036b27ae3c691d734577055bdd2b6d9fbebc6232e7295d40c2642465de564",
+    "tasas_por_umbral.png": "a193b7928a0d0af33e31483236fbcaaff515de1bab1347f7cb48f8b196e724cf",
+    "tasas_por_score.png": "7419798f4cb25747cb36a57919f4f2732942f73394ed575fd137aadaa7166654"
+  }
+}

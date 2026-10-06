@@ -28,8 +28,41 @@ horiek gaika erakusten ditu.
   mugatuta daude. APIak berreskuratutako iturriak erakusten ditu; horrek ez du
   LLMak sortutako baieztapen bakoitza iturriak sostengatzen duela ziurtatzen.
 
-**Egoera orokorra: kodea prestatuta, exekuzio osoa eta kanpoko zerbitzuen
-emaitzak egiaztatu gabe.** Koadernoan ez dago aurrez betetako irteerarik.
+**Egoera orokorra: bloke lokalak egiaztatuta; Gemini/RAG kanpoko deiak egiaztatu gabe.**
+Koadernoan ez dago aurrez betetako irteerarik.
+
+### Aplicaciones locales verificadas (2026-10-02)
+
+[Verificador reproducible](verificar_apps_locales.py) y [resultados](evidencias_apps_locales.json):
+Uvicorn real en loopback, biblioteca 3.2 con 404/201/409/200/422/204/404 y
+comprobación de cuerpos; Streamlit 4.1, 4.2 y 4.4 ejecutados mediante AppTest.
+Cinco empleados ficticios, edad media 32,0 y salario máximo 42.000 €;
+formulario, selección de intereses e idioma/tema y contador 0→1;
+predicción por defecto False, holdout sintético accuracy 0,75, precision 0,60,
+recall 0,50. Idioma y tema son valores del formulario: el ejercicio no aplica
+traducción ni cambia el tema de Streamlit.
+
+También se abrieron los tres servidores Streamlit y Swagger en el navegador
+compartido T3. Se comprobaron en su DOM las métricas 4.1, envío del formulario
+4.2 y contador, métricas 4.4 e imagen de matriz cargada. Swagger `Try it out`
+ejecutó GET `/liburuak`: 200 y `[]`. La herramienta de captura snapshot falló;
+esta evidencia del navegador es DOM e interacción, sin captura guardada.
+La predicción 4.4 y las selecciones de intereses/idioma/tema se verificaron con
+AppTest, no se atribuyen a una interacción de navegador no observada.
+
+Entorno observado: Python 3.13.13, Streamlit 1.64.0, FastAPI 0.142.2,
+Uvicorn 0.54.0, sklearn 1.9.1, pandas 3.0.6. Para reproducir sin Gemini:
+
+```bash
+uv venv /tmp/aabd-frameworks-venv --python 3.13
+uv pip install --python /tmp/aabd-frameworks-venv/bin/python streamlit==1.64.0 fastapi==0.142.2 uvicorn==0.54.0 scikit-learn==1.9.1 pandas==3.0.6 matplotlib python-dotenv requests
+/tmp/aabd-frameworks-venv/bin/python verificar_apps_locales.py --output /tmp/apps-evidencias.json
+```
+
+El verificador usa el puerto loopback 18033 (configurable), solo datos
+ficticios y detiene su Uvicorn al finalizar. Los servidores de revisión también
+se detuvieron. Las APIs ML 3.4/3.5 conservan su validación histórica TestClient;
+este lote no las ejecuta en un servidor ni llama Gemini.
 
 ### Exekuzio lokal behatua (2026-09-25)
 
@@ -90,7 +123,7 @@ python -m venv .venv
 1.5: `importlib.import_module("5073_3_Frameworkak_PDF_Ariketak").ariketa_1_5()`.
 3.4/3.5: sortu lehenik 1.5eko eredua. 3.5: ezarri `MODEL_API_TOKEN` tokiko
 ingurunean. `/docs`-en HTTP 201/204/404 eta Pydantic 422 erantzunak ikus
-daitezke, baina oraindik ez dira hemen frogatu.
+daitezke; 3.2ko HTTP/Swagger egiaztapena goiko 2026-10-02 blokean dago.
 
 Gemini: kopiatu `.env.example` -> `.env` eta bete norberaren gakoa. `.env`
 ez da versionatu behar. `GEMINI_MODEL` aukerakoa da. 7.1erako:

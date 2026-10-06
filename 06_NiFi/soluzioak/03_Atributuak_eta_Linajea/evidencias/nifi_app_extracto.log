@@ -1,0 +1,124 @@
+2026-10-02 07:03:04,800 INFO [NiFi Web Server-135] o.a.n.c.s.StandardProcessScheduler Starting ReplaceText[id=1df40335-9868-3b5b-2cc8-180846617d87]
+2026-10-02 07:03:04,812 INFO [Timer-Driven Process Thread-8] o.a.n.c.s.TimerDrivenSchedulingAgent Scheduled ReplaceText[id=1df40335-9868-3b5b-2cc8-180846617d87] to run with 1 threads
+2026-10-02 07:03:04,903 INFO [NiFi Web Server-129] o.a.n.c.s.StandardProcessScheduler Starting ExtractText[id=ed330e31-60fe-30d1-e879-e875919e3d78]
+2026-10-02 07:03:04,905 INFO [Timer-Driven Process Thread-8] o.a.n.c.s.TimerDrivenSchedulingAgent Scheduled ExtractText[id=ed330e31-60fe-30d1-e879-e875919e3d78] to run with 1 threads
+2026-10-02 07:03:05,030 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Starting PutFile[id=20099986-7b54-335a-ee66-36f0cda9f6eb]
+2026-10-02 07:03:05,032 INFO [Timer-Driven Process Thread-4] o.a.n.c.s.TimerDrivenSchedulingAgent Scheduled PutFile[id=20099986-7b54-335a-ee66-36f0cda9f6eb] to run with 1 threads
+2026-10-02 07:03:05,119 INFO [NiFi Web Server-129] o.a.n.c.s.StandardProcessScheduler Starting LogAttribute[id=f079acb7-962a-3c3d-9df7-a75ced4c8dce]
+2026-10-02 07:03:05,268 INFO [Timer-Driven Process Thread-5] o.a.n.c.s.TimerDrivenSchedulingAgent Scheduled LogAttribute[id=f079acb7-962a-3c3d-9df7-a75ced4c8dce] to run with 1 threads
+2026-10-02 07:03:05,312 INFO [Flow Service Tasks Thread-2] o.a.nifi.controller.StandardFlowService Saved flow controller org.apache.nifi.controller.FlowController@1789a71c // Another save pending = true
+2026-10-02 07:03:05,404 INFO [NiFi Web Server-129] o.a.n.c.s.StandardProcessScheduler Running once GenerateFlowFile[id=e1f1f54c-0ec2-3e23-2bbc-8a16258e6b29]
+2026-10-02 07:03:05,410 INFO [Timer-Driven Process Thread-4] o.a.n.c.s.StandardProcessScheduler Stopping GenerateFlowFile[id=e1f1f54c-0ec2-3e23-2bbc-8a16258e6b29]
+2026-10-02 07:03:05,411 INFO [Timer-Driven Process Thread-10] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling GenerateFlowFile[id=e1f1f54c-0ec2-3e23-2bbc-8a16258e6b29] to run
+2026-10-02 07:03:05,411 INFO [Timer-Driven Process Thread-10] o.a.n.controller.StandardProcessorNode GenerateFlowFile[id=e1f1f54c-0ec2-3e23-2bbc-8a16258e6b29] has completely stopped. Completing any associated Futures.
+2026-10-02 07:03:05,472 INFO [Timer-Driven Process Thread-3] o.a.n.processors.standard.LogAttribute LogAttribute[id=f079acb7-962a-3c3d-9df7-a75ced4c8dce] logging for flow file StandardFlowFileRecord[uuid=80d25aae-2706-49da-be69-5800c7f08587,claim=StandardContentClaim [resourceClaim=StandardResourceClaim[id=1790924585409-8, container=default, section=8], offset=10, length=5],offset=0,name=8a08e77b-1482-4388-8d3b-f58a8f0bc585,size=5]
+--------------------------------------------------
+FlowFile Properties
+Key: 'entryDate'
+	Value: 'Fri Oct 02 07:03:05 UTC 2026'
+Key: 'lineageStartDate'
+	Value: 'Fri Oct 02 07:03:05 UTC 2026'
+Key: 'fileSize'
+	Value: '5'
+FlowFile Attribute Map Content
+Key: 'Character Set'
+	Value: 'UTF-8'
+Key: 'edukia'
+	Value: 'proba'
+Key: 'edukia.1'
+	Value: 'proba'
+Key: 'filename'
+	Value: '8a08e77b-1482-4388-8d3b-f58a8f0bc585'
+2026-10-02 07:03:05,561 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Starting PutMongo[id=33230138-0b10-31a9-2ee9-963a4c484347]
+2026-10-02 07:03:05,562 INFO [Timer-Driven Process Thread-10] o.a.n.c.s.TimerDrivenSchedulingAgent Scheduled PutMongo[id=33230138-0b10-31a9-2ee9-963a4c484347] to run with 1 threads
+2026-10-02 07:03:05,612 INFO [NiFi Web Server-135] o.a.n.c.s.StandardProcessScheduler Starting LogAttribute[id=e6f5f2f3-4d57-30aa-d56c-8fcec133d1e7]
+2026-10-02 07:03:05,614 INFO [Timer-Driven Process Thread-4] o.a.n.c.s.TimerDrivenSchedulingAgent Scheduled LogAttribute[id=e6f5f2f3-4d57-30aa-d56c-8fcec133d1e7] to run with 1 threads
+2026-10-02 07:03:05,716 INFO [NiFi Web Server-49] o.a.n.c.s.StandardProcessScheduler Starting ExtractText[id=cc70db69-8d86-3159-99a0-df218c516cb4]
+2026-10-02 07:03:05,719 INFO [Timer-Driven Process Thread-3] o.a.n.c.s.TimerDrivenSchedulingAgent Scheduled ExtractText[id=cc70db69-8d86-3159-99a0-df218c516cb4] to run with 1 threads
+2026-10-02 07:03:05,793 INFO [NiFi Web Server-135] o.a.n.c.s.StandardProcessScheduler Starting AttributesToJSON[id=5880863e-434d-32bc-ec21-3fbd957d0fe9]
+2026-10-02 07:03:05,802 INFO [Timer-Driven Process Thread-10] o.a.n.c.s.TimerDrivenSchedulingAgent Scheduled AttributesToJSON[id=5880863e-434d-32bc-ec21-3fbd957d0fe9] to run with 1 threads
+2026-10-02 07:03:05,840 INFO [Flow Service Tasks Thread-1] o.a.nifi.controller.StandardFlowService Saved flow controller org.apache.nifi.controller.FlowController@1789a71c // Another save pending = false
+2026-10-02 07:03:05,891 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Starting ReplaceText[id=24ac7a1c-0b37-3e54-490f-71dd7e8255fe]
+2026-10-02 07:03:05,895 INFO [Timer-Driven Process Thread-4] o.a.n.c.s.TimerDrivenSchedulingAgent Scheduled ReplaceText[id=24ac7a1c-0b37-3e54-490f-71dd7e8255fe] to run with 1 threads
+2026-10-02 07:03:05,909 INFO [Timer-Driven Process Thread-6] org.apache.hadoop.io.compress.CodecPool Got brand-new compressor [.snappy]
+2026-10-02 07:03:06,000 INFO [NiFi Web Server-135] o.a.n.c.s.StandardProcessScheduler Running once GenerateFlowFile[id=7c4ab6ed-4275-3ffb-ca1d-8afd3cb004f6]
+2026-10-02 07:03:06,030 INFO [Timer-Driven Process Thread-10] o.a.n.c.s.StandardProcessScheduler Stopping GenerateFlowFile[id=7c4ab6ed-4275-3ffb-ca1d-8afd3cb004f6]
+2026-10-02 07:03:06,030 INFO [Timer-Driven Process Thread-3] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling GenerateFlowFile[id=7c4ab6ed-4275-3ffb-ca1d-8afd3cb004f6] to run
+2026-10-02 07:03:06,030 INFO [Timer-Driven Process Thread-3] o.a.n.controller.StandardProcessorNode GenerateFlowFile[id=7c4ab6ed-4275-3ffb-ca1d-8afd3cb004f6] has completely stopped. Completing any associated Futures.
+2026-10-02 07:03:06,062 INFO [Timer-Driven Process Thread-1] o.a.n.processors.standard.LogAttribute LogAttribute[id=e6f5f2f3-4d57-30aa-d56c-8fcec133d1e7] logging for flow file StandardFlowFileRecord[uuid=dd0f94b4-8dfc-4f7d-b8d7-c8aed542e51a,claim=StandardContentClaim [resourceClaim=StandardResourceClaim[id=1790924585409-8, container=default, section=8], offset=25, length=52],offset=0,name=d39aea43-c346-49e3-b57b-e4810621853f,size=52]
+--------------------------------------------------
+FlowFile Properties
+Key: 'entryDate'
+	Value: 'Fri Oct 02 07:03:06 UTC 2026'
+Key: 'lineageStartDate'
+	Value: 'Fri Oct 02 07:03:06 UTC 2026'
+Key: 'fileSize'
+	Value: '52'
+FlowFile Attribute Map Content
+Key: 'datuak'
+	Value: '0PNX?Hd?Oh[[[ Data: Fri Oct 02 07:03:06 UTC 2026 ]]]'
+--------------------------------------------------
+2026-10-02 07:03:06,076 INFO [NiFi Web Server-129] o.a.n.c.s.StandardProcessScheduler Starting ListenHTTP[id=ef83678e-ee31-32f2-a751-389b6ef9a3eb]
+2026-10-02 07:03:06,076 INFO [NiFi Web Server-129] o.a.n.c.s.StandardProcessScheduler Starting AttributesToJSON[id=5515dd52-4d7a-3a29-9f11-ba613840372f]
+2026-10-02 07:03:06,077 INFO [NiFi Web Server-129] o.a.n.c.s.StandardProcessScheduler Starting UpdateAttribute[id=bf494dc0-9393-3175-8dcd-cec37db38b29]
+2026-10-02 07:03:06,077 INFO [NiFi Web Server-129] o.a.n.c.s.StandardProcessScheduler Starting ExtractText[id=b09f2b7e-1ffd-3296-6e5f-17167cb381f3]
+2026-10-02 07:03:06,077 INFO [Timer-Driven Process Thread-7] o.a.n.c.s.TimerDrivenSchedulingAgent Scheduled ListenHTTP[id=ef83678e-ee31-32f2-a751-389b6ef9a3eb] to run with 1 threads
+2026-10-02 07:04:16,766 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping ReplaceText[id=1df40335-9868-3b5b-2cc8-180846617d87]
+2026-10-02 07:04:16,767 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping ExtractText[id=ed330e31-60fe-30d1-e879-e875919e3d78]
+2026-10-02 07:04:16,767 INFO [Timer-Driven Process Thread-1] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling ExtractText[id=ed330e31-60fe-30d1-e879-e875919e3d78] to run
+2026-10-02 07:04:16,767 INFO [Timer-Driven Process Thread-8] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling ReplaceText[id=1df40335-9868-3b5b-2cc8-180846617d87] to run
+2026-10-02 07:04:16,768 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping PutFile[id=20099986-7b54-335a-ee66-36f0cda9f6eb]
+2026-10-02 07:04:16,768 INFO [Timer-Driven Process Thread-2] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling PutFile[id=20099986-7b54-335a-ee66-36f0cda9f6eb] to run
+2026-10-02 07:04:16,768 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping LogAttribute[id=f079acb7-962a-3c3d-9df7-a75ced4c8dce]
+2026-10-02 07:04:16,768 INFO [Timer-Driven Process Thread-2] o.a.n.controller.StandardProcessorNode PutFile[id=20099986-7b54-335a-ee66-36f0cda9f6eb] has completely stopped. Completing any associated Futures.
+2026-10-02 07:04:16,769 INFO [Timer-Driven Process Thread-2] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling LogAttribute[id=f079acb7-962a-3c3d-9df7-a75ced4c8dce] to run
+2026-10-02 07:04:16,769 INFO [Timer-Driven Process Thread-2] o.a.n.controller.StandardProcessorNode LogAttribute[id=f079acb7-962a-3c3d-9df7-a75ced4c8dce] has completely stopped. Completing any associated Futures.
+2026-10-02 07:04:16,770 INFO [Timer-Driven Process Thread-8] o.a.n.controller.StandardProcessorNode ReplaceText[id=1df40335-9868-3b5b-2cc8-180846617d87] has completely stopped. Completing any associated Futures.
+2026-10-02 07:04:16,770 INFO [Timer-Driven Process Thread-1] o.a.n.controller.StandardProcessorNode ExtractText[id=ed330e31-60fe-30d1-e879-e875919e3d78] has completely stopped. Completing any associated Futures.
+2026-10-02 07:04:16,948 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping PutMongo[id=33230138-0b10-31a9-2ee9-963a4c484347]
+2026-10-02 07:04:16,948 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping LogAttribute[id=e6f5f2f3-4d57-30aa-d56c-8fcec133d1e7]
+2026-10-02 07:04:16,949 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping ExtractText[id=cc70db69-8d86-3159-99a0-df218c516cb4]
+2026-10-02 07:04:16,949 INFO [Timer-Driven Process Thread-2] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling PutMongo[id=33230138-0b10-31a9-2ee9-963a4c484347] to run
+2026-10-02 07:04:16,949 INFO [Timer-Driven Process Thread-6] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling LogAttribute[id=e6f5f2f3-4d57-30aa-d56c-8fcec133d1e7] to run
+2026-10-02 07:04:16,950 INFO [Timer-Driven Process Thread-4] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling ExtractText[id=cc70db69-8d86-3159-99a0-df218c516cb4] to run
+2026-10-02 07:04:16,950 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping AttributesToJSON[id=5880863e-434d-32bc-ec21-3fbd957d0fe9]
+2026-10-02 07:04:16,950 INFO [Timer-Driven Process Thread-6] o.a.n.controller.StandardProcessorNode LogAttribute[id=e6f5f2f3-4d57-30aa-d56c-8fcec133d1e7] has completely stopped. Completing any associated Futures.
+2026-10-02 07:04:16,950 INFO [Timer-Driven Process Thread-2] o.a.n.controller.StandardProcessorNode PutMongo[id=33230138-0b10-31a9-2ee9-963a4c484347] has completely stopped. Completing any associated Futures.
+2026-10-02 07:04:16,950 INFO [Timer-Driven Process Thread-8] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling AttributesToJSON[id=5880863e-434d-32bc-ec21-3fbd957d0fe9] to run
+2026-10-02 07:04:16,950 INFO [Timer-Driven Process Thread-4] o.a.n.controller.StandardProcessorNode ExtractText[id=cc70db69-8d86-3159-99a0-df218c516cb4] has completely stopped. Completing any associated Futures.
+2026-10-02 07:04:16,951 INFO [Timer-Driven Process Thread-8] o.a.n.controller.StandardProcessorNode AttributesToJSON[id=5880863e-434d-32bc-ec21-3fbd957d0fe9] has completely stopped. Completing any associated Futures.
+2026-10-02 07:04:16,951 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping ReplaceText[id=24ac7a1c-0b37-3e54-490f-71dd7e8255fe]
+2026-10-02 07:04:16,951 INFO [Timer-Driven Process Thread-1] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling ReplaceText[id=24ac7a1c-0b37-3e54-490f-71dd7e8255fe] to run
+2026-10-02 07:04:16,952 INFO [Timer-Driven Process Thread-1] o.a.n.controller.StandardProcessorNode ReplaceText[id=24ac7a1c-0b37-3e54-490f-71dd7e8255fe] has completely stopped. Completing any associated Futures.
+2026-10-02 07:04:17,040 INFO [Flow Service Tasks Thread-1] o.a.nifi.controller.StandardFlowService Saved flow controller org.apache.nifi.controller.FlowController@1789a71c // Another save pending = false
+2026-10-02 07:04:17,065 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping ListenHTTP[id=ef83678e-ee31-32f2-a751-389b6ef9a3eb]
+2026-10-02 07:04:17,065 INFO [Timer-Driven Process Thread-4] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling ListenHTTP[id=ef83678e-ee31-32f2-a751-389b6ef9a3eb] to run
+2026-10-02 07:04:17,066 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping UpdateAttribute[id=bf494dc0-9393-3175-8dcd-cec37db38b29]
+2026-10-02 07:04:17,067 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping AttributesToJSON[id=5515dd52-4d7a-3a29-9f11-ba613840372f]
+2026-10-02 07:04:17,067 INFO [Timer-Driven Process Thread-6] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling UpdateAttribute[id=bf494dc0-9393-3175-8dcd-cec37db38b29] to run
+2026-10-02 07:04:17,068 INFO [Timer-Driven Process Thread-3] o.a.n.c.s.TimerDrivenSchedulingAgent Stopped scheduling AttributesToJSON[id=5515dd52-4d7a-3a29-9f11-ba613840372f] to run
+2026-10-02 07:04:17,068 INFO [Timer-Driven Process Thread-3] o.a.n.controller.StandardProcessorNode AttributesToJSON[id=5515dd52-4d7a-3a29-9f11-ba613840372f] has completely stopped. Completing any associated Futures.
+2026-10-02 07:04:17,069 INFO [NiFi Web Server-137] o.a.n.c.s.StandardProcessScheduler Stopping ExtractText[id=b09f2b7e-1ffd-3296-6e5f-17167cb381f3]
+2026-10-02 07:04:17,069 INFO [Timer-Driven Process Thread-6] o.a.n.controller.StandardProcessorNode UpdateAttribute[id=bf494dc0-9393-3175-8dcd-cec37db38b29] has completely stopped. Completing any associated Futures.
+2026-10-02 07:08:53,810 INFO [Provenance Query-2] o.a.nifi.provenance.StandardQueryResult Completed Query[ [1df40335-9868-3b5b-2cc8-180846617d87] ] comprised of 1 steps in 4 millis. Index found 1 hits. Read 1 events from Event Files.
+2026-10-02 07:08:53,810 INFO [Provenance Query-2] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:1df40335-9868-3b5b-2cc8-180846617d87; retrieved 1 events with a total of 1 hits in 2 millis
+2026-10-02 07:08:53,940 INFO [Provenance Query-1] o.a.nifi.provenance.StandardQueryResult Completed Query[ [e1f1f54c-0ec2-3e23-2bbc-8a16258e6b29] ] comprised of 1 steps in 56 millis. Index found 1 hits. Read 1 events from Event Files.
+2026-10-02 07:08:53,942 INFO [Provenance Query-1] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:e1f1f54c-0ec2-3e23-2bbc-8a16258e6b29; retrieved 1 events with a total of 1 hits in 57 millis
+2026-10-02 07:08:54,038 INFO [Provenance Query-2] o.a.nifi.provenance.StandardQueryResult Completed Query[ [ed330e31-60fe-30d1-e879-e875919e3d78] ] comprised of 1 steps in 2 millis. Index found 2 hits. Read 2 events from Event Files.
+2026-10-02 07:08:54,039 INFO [Provenance Query-2] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:ed330e31-60fe-30d1-e879-e875919e3d78; retrieved 2 events with a total of 2 hits in 3 millis
+2026-10-02 07:08:54,113 INFO [Provenance Query-1] o.a.nifi.provenance.StandardQueryResult Completed Query[ [20099986-7b54-335a-ee66-36f0cda9f6eb] ] comprised of 1 steps in 2 millis. Index found 2 hits. Read 2 events from Event Files.
+2026-10-02 07:08:54,113 INFO [Provenance Query-1] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:20099986-7b54-335a-ee66-36f0cda9f6eb; retrieved 2 events with a total of 2 hits in 1 millis
+2026-10-02 07:08:54,189 INFO [Provenance Query-2] o.a.nifi.provenance.StandardQueryResult Completed Query[ [f079acb7-962a-3c3d-9df7-a75ced4c8dce] ] comprised of 1 steps in 5 millis. Index found 1 hits. Read 1 events from Event Files.
+2026-10-02 07:08:54,189 INFO [Provenance Query-2] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:f079acb7-962a-3c3d-9df7-a75ced4c8dce; retrieved 1 events with a total of 1 hits in 4 millis
+2026-10-02 07:08:54,346 INFO [Provenance Query-1] o.a.nifi.provenance.StandardQueryResult Completed Query[ [33230138-0b10-31a9-2ee9-963a4c484347] ] comprised of 1 steps in 3 millis. Index found 2 hits. Read 2 events from Event Files.
+2026-10-02 07:08:54,346 INFO [Provenance Query-1] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:33230138-0b10-31a9-2ee9-963a4c484347; retrieved 2 events with a total of 2 hits in 3 millis
+2026-10-02 07:08:54,488 INFO [Provenance Query-2] o.a.nifi.provenance.StandardQueryResult Completed Query[ [e6f5f2f3-4d57-30aa-d56c-8fcec133d1e7] ] comprised of 1 steps in 3 millis. Index found 1 hits. Read 1 events from Event Files.
+2026-10-02 07:08:54,488 INFO [Provenance Query-2] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:e6f5f2f3-4d57-30aa-d56c-8fcec133d1e7; retrieved 1 events with a total of 1 hits in 3 millis
+2026-10-02 07:08:54,567 INFO [Provenance Query-1] o.a.nifi.provenance.StandardQueryResult Completed Query[ [cc70db69-8d86-3159-99a0-df218c516cb4] ] comprised of 1 steps in 3 millis. Index found 2 hits. Read 2 events from Event Files.
+2026-10-02 07:08:54,567 INFO [Provenance Query-1] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:cc70db69-8d86-3159-99a0-df218c516cb4; retrieved 2 events with a total of 2 hits in 2 millis
+2026-10-02 07:08:54,644 INFO [Provenance Query-2] o.a.nifi.provenance.StandardQueryResult Completed Query[ [7c4ab6ed-4275-3ffb-ca1d-8afd3cb004f6] ] comprised of 1 steps in 2 millis. Index found 1 hits. Read 1 events from Event Files.
+2026-10-02 07:08:54,644 INFO [Provenance Query-2] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:7c4ab6ed-4275-3ffb-ca1d-8afd3cb004f6; retrieved 1 events with a total of 1 hits in 1 millis
+2026-10-02 07:08:54,726 INFO [Provenance Query-1] o.a.nifi.provenance.StandardQueryResult Completed Query[ [5880863e-434d-32bc-ec21-3fbd957d0fe9] ] comprised of 1 steps in 5 millis. Index found 1 hits. Read 1 events from Event Files.
+2026-10-02 07:08:54,726 INFO [Provenance Query-1] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:5880863e-434d-32bc-ec21-3fbd957d0fe9; retrieved 1 events with a total of 1 hits in 4 millis
+2026-10-02 07:08:54,808 INFO [Provenance Query-2] o.a.nifi.provenance.StandardQueryResult Completed Query[ [24ac7a1c-0b37-3e54-490f-71dd7e8255fe] ] comprised of 1 steps in 2 millis. Index found 1 hits. Read 1 events from Event Files.
+2026-10-02 07:08:54,809 INFO [Provenance Query-2] o.a.n.provenance.index.lucene.QueryTask Successfully queried index ./provenance_repository/lucene-9-index-1790924351962 for query +processorId:24ac7a1c-0b37-3e54-490f-71dd7e8255fe; retrieved 1 events with a total of 1 hits in 2 millis

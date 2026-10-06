@@ -1,0 +1,144 @@
+{
+  "verified_on": "2026-10-05",
+  "sync_mode": "manual, existing authorized Chromium session; --no-publish",
+  "coverage": {
+    "activities": 72,
+    "activity_types": {
+      "assign": 11,
+      "folder": 3,
+      "resource": 44,
+      "url": 14
+    },
+    "errors": 0,
+    "unavailable": 0
+  },
+  "assignments_recorded": 11,
+  "sha256_files_verified": 68,
+  "publication_preparation": {
+    "status": "prepared",
+    "branch": "moodle-sync/master/2026-10-05-fa68cd398f35",
+    "commit": "b5c1150526c1363450c8a9b890fe8cc563a781c6",
+    "base": "07106a4692223e8be875174becbc7c66ea023321",
+    "tree": "fa68cd398f3517aafc204709ae43fec676938e1a",
+    "paths": [
+      "00_Transversal/MOODLE_SYNC_ESTADO.json",
+      "00_Transversal/materialak_00_Orokorra/Programazioa_AA_2_2026-2027.docx.pdf",
+      "04_Programazioa_5073/materialak/2_SOLUZIOAK_URLa.ipynb",
+      "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
+      "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
+      "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf"
+    ]
+  },
+  "head_preserved": true,
+  "index_preserved": true,
+  "publication_regressions_passed": 9,
+  "latest_sync_mode": "manual authorized Chromium session; full download and review-branch publication",
+  "publication_verified": {
+    "status": "published",
+    "branch": "moodle-sync/master/2026-10-05-fa68cd398f35",
+    "commit": "e063f65d3d675053d31589e6dca8208b3b96fc7e",
+    "parent": "07106a4692223e8be875174becbc7c66ea023321",
+    "paths": [
+      "00_Transversal/MOODLE_SYNC_ESTADO.json",
+      "00_Transversal/materialak_00_Orokorra/Programazioa_AA_2_2026-2027.docx.pdf",
+      "04_Programazioa_5073/materialak/2_SOLUZIOAK_URLa.ipynb",
+      "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
+      "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
+      "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf"
+    ],
+    "integrated_in_master": false
+  },
+  "normal_service_cycle": {
+    "started": "2026-10-05 10:34:48 CEST",
+    "finished": "2026-10-05 10:37:32 CEST",
+    "status": "failed",
+    "reason": "Moodle login: authenticated session not confirmed after five attempts",
+    "credentials_changed": false
+  },
+  "login_diagnostic": {
+    "service_environment_used": true,
+    "browser_login_error_present": true,
+    "authenticated_with_all_or_filtered_cookies": false,
+    "secrets_printed": false
+  },
+  "account_lock_observed": true,
+  "account_unlock_confirmed_by_user": true,
+  "normal_service_cycle_after_unlock": {
+    "started": "2026-10-05 10:49:17 CEST",
+    "finished": "2026-10-05 10:51:28 CEST",
+    "status": "success",
+    "exit_code": 0,
+    "login_attempts": 1,
+    "coverage_activities": 72,
+    "reused_existing_published_snapshot": true
+  },
+  "timer_state_after_success": {
+    "ActiveState": "active",
+    "UnitFileState": "enabled"
+  },
+  "authentication_regressions_passed": 8,
+  "new_fast_test_suite_passed": 25,
+  "existing_cnc_test_suite_passed": 18,
+  "published_changed_blobs_equal_worktree_and_manifest": true,
+  "credentials_changed": false,
+  "code_sha256_at_verification": [
+    {
+      "path": "00_Transversal/scripts/moodle_sync.py",
+      "sha256": "d55c6c7c606f2cd3bf9f167a786b074e4add4b4249fd42f63212a53740974c6d"
+    },
+    {
+      "path": "00_Transversal/scripts/moodle_publish.py",
+      "sha256": "6459866e700d8a6b0f964467862194908ee1880d95303e5b032cdfa7f2e5d2ab"
+    },
+    {
+      "path": "00_Transversal/scripts/test_moodle_publish.py",
+      "sha256": "3a7050022625309cc26be2a12db7343e01e964c46ea43b3d046fb1f887c287a4"
+    },
+    {
+      "path": "00_Transversal/scripts/test_moodle_sync_auth.py",
+      "sha256": "1e7b12a0a95dd99b952cbb6d0f8e3aa0ac26f247a23dca1237b9d73e19b6343c"
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "sha256": "5e6cc8720d35f0b6640b2a51311bb7aa467041af6d111ec96a0ecbe63252d713"
+    }
+  ],
+  "auth_guard_known_messages_only": true,
+  "normal_cycle_is_not_a_future_availability_guarantee": true,
+  "scheduled_service_cycle": {
+    "started": "2026-10-05 11:00:00 CEST",
+    "finished": "2026-10-05 11:01:54 CEST",
+    "status": "success",
+    "exit_code": 0,
+    "login_attempts": 1,
+    "coverage_activities": 72,
+    "reused_existing_snapshot": true
+  },
+  "subsequent_manual_service_cycle": {
+    "started": "2026-10-05 11:03:19 CEST",
+    "finished": "2026-10-05 11:03:28 CEST",
+    "status": "authentication_rejected",
+    "exit_code": 1,
+    "login_attempts": 1,
+    "retried": false
+  },
+  "autonomous_login_state": "intermittent; scheduled and post-unlock successes, subsequent explicit rejection",
+  "zero_changes_browser_cycle": {
+    "started": "2026-10-05 11:07:20 CEST",
+    "finished": "2026-10-05 11:09:07 CEST",
+    "coverage_activities": 72,
+    "errors": 0,
+    "unavailable": 0,
+    "files_changed": 0,
+    "published": false
+  },
+  "clean_review_checks": {
+    "fast_pytest_passed": 25,
+    "cnc_pytest_passed": 18,
+    "ruff_check": "passed",
+    "ruff_format_files": 52,
+    "compileall": "passed",
+    "local_review_branch": "review/moodle-novedades-2026-10-05",
+    "published": false
+  }
+}

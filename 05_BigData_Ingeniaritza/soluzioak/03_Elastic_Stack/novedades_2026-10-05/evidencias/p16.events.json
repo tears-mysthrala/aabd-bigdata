@@ -1,0 +1,51 @@
+[
+  {
+    "timestamp": "30/Sep/2026:10:30:45",
+    "@version": "1",
+    "status_code": "500",
+    "@timestamp": "2026-09-30T08:30:45.000Z",
+    "event": {
+      "original": "30/Sep/2026:10:30:45 192.168.1.105 GET /api 500"
+    },
+    "host": {
+      "hostname": "27a60b36c341"
+    },
+    "bezero_ip": "192.168.1.105",
+    "metodoa": "GET",
+    "request": "/api",
+    "message": "30/Sep/2026:10:30:45 192.168.1.105 GET /api 500"
+  },
+  {
+    "@version": "1",
+    "@timestamp": "2026-10-05T08:26:13.940528805Z",
+    "host": {
+      "hostname": "27a60b36c341"
+    },
+    "bezero_ip": "192.168.1.105",
+    "tags": [
+      "_dateparsefailure"
+    ],
+    "request": "/api",
+    "timestamp": "31/Sep/2026:10:30:45",
+    "message": "31/Sep/2026:10:30:45 192.168.1.105 GET /api 500",
+    "status_code": "500",
+    "event": {
+      "original": "31/Sep/2026:10:30:45 192.168.1.105 GET /api 500"
+    },
+    "metodoa": "GET"
+  },
+  {
+    "@version": "1",
+    "@timestamp": "2026-10-05T08:26:13.941473034Z",
+    "event": {
+      "original": "BAD DATE 192.168.1.105 GET /api 500"
+    },
+    "host": {
+      "hostname": "27a60b36c341"
+    },
+    "tags": [
+      "_grokparsefailure"
+    ],
+    "message": "BAD DATE 192.168.1.105 GET /api 500"
+  }
+]

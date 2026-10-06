@@ -1,101 +1,261 @@
-# Data Quiz
+# Big Data Quiz
 
 ## Question 1
-In the context of Apache NiFi, how are data processing pipelines primarily defined?
+What is the primary philosophy for constructing data pipelines in Apache NiFi?
 
-- [x] Directed Acyclic Graphs (DAG)
-- [ ] Linear Sequential Scripts
-- [ ] Relational Schema Maps
-- [ ] Cyclic Neural Networks
+- [x] Pipelines are constructed using a drag-and-drop visual interface without writing code lines.
+- [ ] Pipelines must be compiled as Java bytecode before execution.
+- [ ] Pipelines are defined exclusively through YAML configuration files.
+- [ ] Pipelines are scripted using custom Python functions within an embedded terminal.
 
-**Hint:** Consider the mathematical structure of a flow that has a specific direction and avoids circular logic.
+**Hint:** Consider how the user interface replaces traditional scripting for building flow diagrams.
 
 ## Question 2
-According to the Big Data introductory materials, which two 'Vs' are considered the most critical for the success of a project?
+How does Apache NiFi model and execute application dataflows?
 
-- [ ] Volume and Velocity
-- [x] Value and Veracity
-- [ ] Variety and Visualization
-- [ ] Viability and Volume
+- [ ] As cyclic feedback loops where data continuously loops until a termination flag is set.
+- [x] As Directed Acyclic Graphs (DAGs) where messages are exchanged across predefined connections.
+- [ ] As relational database tables joined via primary and foreign key constraints.
+- [ ] As unconstrained unstructured threads without explicit directional routes.
 
-**Hint:** Think about the principle of 'Garbage in, Garbage out' and the ultimate goal of making better decisions.
+**Hint:** Focus on the graph structure used in workflow orchestrators to avoid endless execution loops.
 
 ## Question 3
-Which statement accurately describes the hierarchical relationship between Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL)?
+When querying data inside Apache NiFi using Apache Calcite SQL, what does the table name `FLOWFILE` represent?
 
-- [ ] AI is a subset of ML, which is a subset of DL
-- [x] DL is a subset of ML, which is a subset of AI
-- [ ] ML and DL are separate branches that do not overlap with AI
-- [ ] AI and ML are synonymous, while DL is a hardware requirement
+- [ ] It refers to a permanent database table stored in an external MariaDB instance.
+- [x] It acts as a special convention referencing the current FlowFile's content as the data source.
+- [ ] It denotes an internal log file containing NiFi system warning messages.
+- [ ] It represents a temporary schema definition for incoming JSON payloads.
 
-**Hint:** Think of a Russian nesting doll where the broadest concept contains the more specific ones.
+**Hint:** Think about how SQL syntax identifies the data package passing through the active processor.
 
 ## Question 4
-Why is the ELT (Extract, Load, Transform) pattern currently more dominant than the traditional ETL in modern cloud environments?
+What is the primary reason to configure `INCLUDE ZERO RECORD FLOWFILES = false` in a NiFi SQL processor?
 
-- [ ] Cloud storage is too expensive to hold raw data
-- [x] Cloud platforms offer infinitely scalable processing power for transformations
-- [ ] ETL does not allow for any data cleaning
-- [ ] ELT ensures that data is transformed before it reaches the data lake
+- [x] It prevents the generation of empty FlowFiles when queries return no matching records, keeping queues clean.
+- [ ] It automatically deletes corrupted records from the source database.
+- [ ] It forces the processor to convert all numeric zero values into null values.
+- [ ] It routes all non-matching records directly to a Dead Letter Queue.
 
-**Hint:** Consider the shift from limited local processing power to the massive resources available in the cloud.
+**Hint:** Consider the impact of empty outputs on downstream queue management.
 
 ## Question 5
-In the study of AI paradigms, how does the Symbolic paradigm (Paradigm 1) differ from the Connectionist paradigm (Paradigm 2)?
+Starting with Apache NiFi 2.0, how can process groups be encapsulated and shared across environments?
 
-- [x] The Symbolic paradigm relies on hand-coded logical rules rather than learning from data
-- [ ] The Symbolic paradigm is considered a 'black box' with low explainability
-- [ ] The Connectionist paradigm is based on 1970s expert systems
-- [ ] The Symbolic paradigm uses backpropagation to adjust its weights
+- [ ] They are compiled into binary `.jar` files that must be placed in the Java classpath.
+- [x] They can be exported and reused via JSON definitions utilizing Input and Output Ports.
+- [ ] They are stored as raw SQL migration scripts in a central repository.
+- [ ] They require Docker image rebuilds for every configuration change.
 
-**Hint:** One approach uses 'top-down' logic defined by humans, while the other uses 'bottom-up' patterns found in data.
+**Hint:** Think about the light data format commonly used for sharing web configurations and API payloads.
 
 ## Question 6
-Data scientists typically spend what percentage of their time on cleaning, understanding, and preparing data?
+What is the main design purpose of a Funnel component in Apache NiFi?
 
-- [ ] Between $10\%$ and $20\%$
-- [ ] Exactly $100\%$
-- [x] Between $60\%$ and $80\%$
-- [ ] Less than $5\%$ due to automated AI tools
+- [x] To consolidate connections from multiple source processors into a single destination route, simplifying maintenance.
+- [ ] To automatically compress incoming data packages before sending them across networks.
+- [ ] To filter out duplicate records based on a unique key attribute.
+- [ ] To convert raw CSV files into structured JSON arrays.
 
-**Hint:** Consider the effort required to fix the 'Garbage in, Garbage out' problem mentioned in the text.
+**Hint:** Recall the visual shape of a funnel and how it combines multiple streams into one.
 
 ## Question 7
-What is the primary function of a 'Connector' in the Apache NiFi environment?
+Why is the Record API (such as `ConvertRecord` or `QueryRecord`) preferred over line-by-line splitting in production NiFi pipelines?
 
-- [x] It acts as a queue that links the output of one processor to the input of another
-- [ ] It executes Java or Groovy scripts to transform data
-- [ ] It is the primary user interface for the drag-and-drop editor
-- [ ] It stores the final data permanently in a MariaDB database
+- [ ] It allows NiFi to execute queries without requiring Java Virtual Machine memory.
+- [x] It avoids the "SPLIT" pattern by processing datasets as batch records in-memory, improving performance.
+- [ ] It automatically translates Python scripts into executable C code.
+- [ ] It removes the need to define any schema or data types for incoming datasets.
 
-**Hint:** Think of this as a temporary waiting area or pipe between two active machines.
+**Hint:** Consider the overhead created when splitting a massive file into millions of separate individual items.
 
 ## Question 8
-When categorizing AI intelligence levels, how is 'Weak AI' (Narrow AI) distinguished from 'Artificial General Intelligence' (AGI)?
+In a production data lake pipeline designed with Medallion architecture (Bronze/Silver/Gold), what dual-storage combination is highlighted in the NiFi advanced curriculum?
 
-- [x] Weak AI is designed for a single specific task without true consciousness
-- [ ] AGI is the standard technology used in current Google Lens applications
-- [ ] Weak AI requires quantum computers to function
-- [ ] AGI refers to any system that uses neural networks
+- [ ] SQLite combined with Hadoop HDFS.
+- [x] Amazon S3 combined with MongoDB.
+- [ ] Redis combined with Neo4j.
+- [ ] PostgreSQL combined with Apache Cassandra.
 
-**Hint:** Consider whether the system can 'think' for itself across any topic or if it is just a very advanced calculator for one job.
+**Hint:** Think about combining cloud object storage with a flexible document database.
 
 ## Question 9
-Which programming language is highlighted in the materials for its importance in high-performance Big Data systems like Hadoop and Spark?
+How are resources persistently identified when interacting with the Apache NiFi REST API for CI/CD automation?
 
-- [ ] Python
-- [x] Java
-- [ ] R
-- [ ] JavaScript
+- [ ] Via sequential integer auto-increment IDs that reset on reboot.
+- [x] Through stable UUIDs assigned to each flow component.
+- [ ] By using the user-defined visual display name of the processor.
+- [ ] Through temporary session IP addresses generated by the host OS.
 
-**Hint:** Identify the compiled language known for building robust, high-performance production systems in large enterprises.
+**Hint:** Identify the standard 128-bit string format used across software engineering for unique object identification.
 
 ## Question 10
-In the ETHAZI team framework (Anexo 1), who is specifically responsible for communicating with teachers and reporting the team's decisions?
+How does Apache Kafka reduce system integration complexity when connecting $N$ source systems to $M$ target systems?
 
-- [ ] Coordinator
-- [x] Spokesperson (Bozeramailea)
-- [ ] Secretary (Idazkaria)
-- [ ] Assistant (Laguntzailea)
+- [ ] It eliminates target systems by storing all historical data permanently inside the source databases.
+- [x] It acts as central middleware, reducing direct $N \times M$ point-to-point connections to $N + M$ decoupled connections.
+- [ ] It converts $N \times M$ connections into $N - M$ synchronous HTTP webhooks.
+- [ ] It bypasses network protocols by writing data directly to target memory addresses.
 
-**Hint:** This role acts as the 'voice' of the group to the outside world.
+**Hint:** Think about how a central broker transforms a dense mesh of direct connections into radial connections.
+
+## Question 11
+Within an Apache Kafka topic, where is strict message ordering guaranteed?
+
+- [ ] Across all partitions globally within the entire topic.
+- [x] Exclusively within the bounds of an individual partition.
+- [ ] Only when consuming messages using HTTP REST endpoints.
+- [ ] Across multiple topics simultaneously within a consumer cluster.
+
+**Hint:** Recall the fundamental unit of parallelism and sequence in a Kafka topic.
+
+## Question 12
+What is the purpose of assigning a key to a message when publishing to an Apache Kafka topic?
+
+- [x] It ensures that all messages sharing the same key are routed to the exact same partition.
+- [ ] It encrypts the payload using asymmetric public key infrastructure.
+- [ ] It forces the message to be replicated to all topics in the cluster.
+- [ ] It automatically compresses the message using gzip compression.
+
+**Hint:** Consider how Kafka determines which specific partition receives a message when multiple partitions exist.
+
+## Question 13
+If a Kafka topic partition has a replication factor of $N = 3$, how many broker failures can the cluster tolerate without losing partition availability?
+
+- [x] Up to 2 broker failures ($N - 1$).
+- [ ] Exactly 3 broker failures.
+- [ ] Only 1 broker failure regardless of replication factor.
+- [ ] Zero broker failures unless Zookeeper is restarted.
+
+**Hint:** Subtract the minimum number of online copies required to maintain data availability from the total replica count.
+
+## Question 14
+Which producer acknowledgment configuration ensures maximum data durability when combined with `min-insync-replicas = 2`?
+
+- [ ] `acks = 0`
+- [ ] `acks = 1`
+- [x] `acks = all`
+- [ ] `acks = none`
+
+**Hint:** Look for the setting that requires write confirmation from all required in-sync replicas.
+
+## Question 15
+How do consumer groups enable the "publish-once-consume-many" pattern in Apache Kafka?
+
+- [ ] By deleting messages immediately after the first consumer group finishes reading them.
+- [x] Multiple consumer groups can independently read from the same topic, each maintaining its own read offsets.
+- [ ] By merging all consumer group threads into a single shared database connection.
+- [ ] By requiring producers to publish a separate message copy for every active consumer group.
+
+**Hint:** Think about how offset tracking allows different applications to read from the same log independently.
+
+## Question 16
+Which metric is essential for monitoring consumer health and detecting if a consumer group is falling behind?
+
+- [ ] The CPU temperature metric on the producer server.
+- [ ] The JVM heap size of the Zookeeper nodes.
+- [x] The LAG metric, which measures the difference between the latest produced offset and the consumed offset.
+- [ ] The disk allocation percentage of the client web browser.
+
+**Hint:** Focus on the term that describes latency or delay between data generation and data consumption.
+
+## Question 17
+According to the source material, which Python library is recommended for production environments versus didactic learning?
+
+- [ ] `kafka-python` for production, while `pyspark` is used for didactic purposes.
+- [x] `confluent-kafka-python` for production, while `kafka-python` is used for didactic purposes.
+- [ ] `requests` for production, while `urllib3` is used for didactic purposes.
+- [ ] `asyncio` for production, while `multiprocessing` is used for didactic purposes.
+
+**Hint:** Look for the client library optimized with C-based bindings (`librdkafka`) for enterprise workloads.
+
+## Question 18
+According to the source materials, what fundamental operational constraint defines a dataset or system as requiring "Big Data" technologies?
+
+- [x] When data volumes become too large to be stored or processed efficiently by a single machine.
+- [ ] When a dataset contains more than 1,000 rows in a spreadsheet.
+- [ ] When data is stored exclusively in relational SQL tables.
+- [ ] When processing requires an internet connection with fiber optic speed.
+
+**Hint:** Think about the hardware limit that forces computing to expand from one machine to a cluster.
+
+## Question 19
+What three original dimensions form the foundation of the Big Data concept?
+
+- [ ] Value, Veracity, and Visualization.
+- [x] Volume, Velocity, and Variety.
+- [ ] Viability, Vectorization, and Validity.
+- [ ] Virtualization, Volume, and Versatility.
+
+**Hint:** Recall the classic triad covering size, speed, and format diversity.
+
+## Question 20
+When expanding Big Data from 3 Vs to 5 Vs, which two dimensions were added to highlight trustworthy and business-relevant data?
+
+- [ ] Visualization and Viability.
+- [x] Value and Veracity.
+- [ ] Validity and Variability.
+- [ ] Versatility and Vectorization.
+
+**Hint:** Identify the terms that refer to data accuracy/trust and monetary or strategic return.
+
+## Question 21
+Which two additional Vs complete the 7 Vs model of Big Data alongside Volume, Velocity, Variety, Value, and Veracity?
+
+- [x] Viability and Visualization.
+- [ ] Virtualization and Versatility.
+- [ ] Vectorization and Validity.
+- [ ] Vulnerability and Verification.
+
+**Hint:** Think about presenting findings graphically and confirming overall project feasibility.
+
+## Question 22
+How are Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL) hierarchically nested?
+
+- [ ] Artificial Intelligence is a subset of Deep Learning, which is a subset of Machine Learning.
+- [x] Deep Learning is a subset of Machine Learning, which in turn is a subset of Artificial Intelligence.
+- [ ] Machine Learning is a subset of Deep Learning, which is a subset of Artificial Intelligence.
+- [ ] Deep Learning and Machine Learning are completely separate domains independent of Artificial Intelligence.
+
+**Hint:** Picture concentric circles starting from the broadest field on the outside down to deep neural networks on the inside.
+
+## Question 23
+How does Machine Learning differ fundamentally from traditional software programming?
+
+- [ ] Systems rely on hardcoded conditional IF-THEN rules written by human programmers.
+- [x] Systems learn patterns directly from data automatically rather than relying on manually programmed rules.
+- [ ] Systems execute code faster by removing the need for compiler optimization.
+- [ ] Systems operate without requiring any hardware processors or RAM allocation.
+
+**Hint:** Consider who or what formulates the rules—a human programmer or an algorithm studying data.
+
+## Question 24
+What computational architecture forms the foundation of Deep Learning techniques?
+
+- [ ] Linear decision trees limited to single-variable splits.
+- [x] Multiple deep neural networks capable of identifying highly complex patterns.
+- [ ] Relational SQL tables joined via foreign keys.
+- [ ] Deterministic finite state automata without probabilistic weights.
+
+**Hint:** Think of the biological inspiration behind deep multi-layer computing models.
+
+## Question 25
+In the curriculum source code setup, how are `.py` files structured so they can run interactively cell-by-cell in VS Code?
+
+- [ ] By wrapping every line in a `try-except` block.
+- [ ] By adding a `main()` function at the top of every file.
+- [x] By using `# %%` cell markers, enabling the VS Code Interactive Window.
+- [ ] By compiling `.py` files into `.ipynb` binaries prior to execution.
+
+**Hint:** Look for the special comment symbol paired with percent signs used by modern IDEs to partition code cells.
+
+## Question 26
+According to the IE5 curriculum learning outcomes, how does Big Data impact Business Intelligence (BI)?
+
+- [ ] It completely replaces BI tools with raw command-line SQL queries.
+- [x] It multiplies the business value and relevance of BI by combining diverse structured and unstructured data sources.
+- [ ] It restricts BI analysis solely to internal financial accounting ledgers.
+- [ ] It eliminates the need for data cleansing and preprocessing pipelines.
+
+**Hint:** Consider how combining varied external data streams affects traditional internal reporting.

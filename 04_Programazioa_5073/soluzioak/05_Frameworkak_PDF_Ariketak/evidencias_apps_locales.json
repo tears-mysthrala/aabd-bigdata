@@ -1,0 +1,70 @@
+{
+  "verified_at": "2026-10-02T07:10:06.718395+00:00",
+  "scope": "localhost Uvicorn HTTP + Streamlit AppTest; synthetic data; no Gemini",
+  "http": [
+    {
+      "method": "GET",
+      "path": "/liburuak/170",
+      "status": 404
+    },
+    {
+      "method": "POST",
+      "path": "/liburuak",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/liburuak",
+      "status": 409
+    },
+    {
+      "method": "GET",
+      "path": "/liburuak/170",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/liburuak",
+      "status": 422
+    },
+    {
+      "method": "DELETE",
+      "path": "/liburuak/170",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/liburuak/170",
+      "status": 404
+    }
+  ],
+  "employees": {
+    "Langileak": "5",
+    "Batez besteko adina": "32.0",
+    "Soldata maximoa": "42,000 €"
+  },
+  "form": {
+    "izena": "Ikasle fikziozkoa",
+    "adina": 24,
+    "interesak": [
+      "Python",
+      "Kafka"
+    ],
+    "hizkuntza": "Castellano",
+    "gaia": "Iluna"
+  },
+  "counter": 1,
+  "prediction_default": false,
+  "synthetic_holdout_metrics": {
+    "Accuracy": "0.75",
+    "Precision": "0.60",
+    "Recall": "0.50"
+  },
+  "versions": {
+    "streamlit": "1.64.0",
+    "fastapi": "0.142.2",
+    "uvicorn": "0.54.0",
+    "scikit-learn": "1.9.1",
+    "pandas": "3.0.6"
+  }
+}
