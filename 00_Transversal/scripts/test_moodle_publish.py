@@ -124,3 +124,18 @@ def test_moodle_filenames_with_non_ascii_characters(repositories):
     result = publish_snapshot(root, [name], publish=True)
     assert result["paths"] == [name]
     assert git(remote, "show", f"{result['commit']}:{name}") == "enunciado verificado"
+
+
+def test_daily_branch_is_reused_and_fast_forwards_for_same_day_updates(repositories):
+    root, remote = repositories
+    (root / "material.txt").write_text("primera versión\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    assert first["branch"].startswith("moodle-sync/master/")
+    assert first["branch"].count("/") == 2
+
+    (root / "material.txt").write_text("segunda versión\n")
+    second = publish_snapshot(root, ["material.txt"], publish=True)
+    assert second["branch"] == first["branch"]
+    assert second["commit"] != first["commit"]
+    assert git(remote, "show", f"{second['commit']}:material.txt") == "segunda versión"
+    assert git(remote, "rev-parse", f"{second['commit']}^") == first["commit"]

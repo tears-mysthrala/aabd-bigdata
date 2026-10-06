@@ -64,43 +64,46 @@ def publish_snapshot(
     # FETCH_HEAD no altera la rama actual ni el índice real.
     git("fetch", "--no-tags", remote, f"refs/heads/{base_branch}")
     base = git("rev-parse", "FETCH_HEAD")
-    base_tree = git("rev-parse", f"{base}^{{tree}}")
+    branch = f"moodle-sync/{base_branch}/{date.today().isoformat()}"
+    git("check-ref-format", f"refs/heads/{branch}")
+    existing = git("ls-remote", "--heads", remote, f"refs/heads/{branch}").split()
+    parent = base
+    if existing:
+        parent = existing[0]
+        git("fetch", "--no-tags", remote, f"refs/heads/{branch}")
+    parent_tree = git("rev-parse", f"{parent}^{{tree}}")
     with tempfile.TemporaryDirectory(prefix="moodle-index-") as temporary:
         env = dict(
             os.environ,
             GIT_INDEX_FILE=str(Path(temporary) / "index"),
             GIT_LITERAL_PATHSPECS="1",
         )
-        git("read-tree", base, env=env)
+        git("read-tree", parent, env=env)
         git("add", "--", *safe_paths, env=env)
         tree = git("write-tree", env=env)
-    if tree == base_tree:
+    if tree == parent_tree:
+        if existing:
+            return {
+                "status": "published",
+                "branch": branch,
+                "commit": parent,
+                "base": base,
+                "tree": tree,
+                "paths": [],
+            }
         return {"status": "current", "base": base, "tree": tree}
 
-    branch = f"moodle-sync/{base_branch}/{date.today().isoformat()}-{tree[:12]}"
-    git("check-ref-format", f"refs/heads/{branch}")
-    changed = git("diff", "--name-only", "-z", base_tree, tree, raw=True).split("\0")[
+    changed = git("diff", "--name-only", "-z", parent_tree, tree, raw=True).split("\0")[
         :-1
     ]
     if not set(changed).issubset(set(safe_paths)):
         raise RuntimeError("El snapshot incluye cambios ajenos al material verificado")
-    existing = git("ls-remote", "--heads", remote, f"refs/heads/{branch}").split()
     if existing:
-        commit = existing[0]
-        git("fetch", "--no-tags", remote, f"refs/heads/{branch}")
-        if git("rev-parse", f"{commit}^{{tree}}") != tree:
-            raise RuntimeError("La rama de revisión contiene un snapshot distinto")
-        return {
-            "status": "published",
-            "branch": branch,
-            "commit": commit,
-            "base": base,
-            "tree": tree,
-            "paths": changed,
-        }
-
-    message = "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
-    commit = git("commit-tree", tree, "-p", base, stdin=message)
+        message = "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
+        commit = git("commit-tree", tree, "-p", parent, stdin=message)
+    else:
+        message = "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
+        commit = git("commit-tree", tree, "-p", base, stdin=message)
     result = {
         "status": "prepared",
         "branch": branch,
@@ -110,7 +113,8 @@ def publish_snapshot(
         "paths": changed,
     }
     if publish:
-        git("push", remote, f"{commit}:refs/heads/{branch}")
+        refspec = f"{commit}:refs/heads/{branch}"
+        git("push", remote, refspec)
         observed = git("ls-remote", "--heads", remote, f"refs/heads/{branch}").split()
         if not observed or observed[0] != commit:
             raise RuntimeError("No se pudo verificar el commit publicado")

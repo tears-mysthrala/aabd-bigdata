@@ -132,11 +132,14 @@ usuario ni incorpora sus commits o cambios ajenos. No modifica su rama ni su
 índice y no propaga borrados. Las rutas con escapes, symlinks o archivos
 ausentes se rechazan.
 
-El snapshot se sube a una rama `moodle-sync/<base>/<fecha>-<hash-del-árbol>`
-y se comprueba el commit realmente publicado. Si ya existe el mismo snapshot,
-se reutiliza. **Nunca se fuerza un push ni se escribe directamente en
-`master`**. Integrarlo requiere una PR y su revisión; publicar la rama no
-equivale a integrar el material. La creación de PR no está automatizada.
+El snapshot diario se sube a una rama estable
+`moodle-sync/<base>/<fecha>` y se comprueba el commit realmente publicado.
+Si el ciclo encuentra más cambios el mismo día, añade un commit de avance
+rápido a esa misma rama; no crea otra rama por hash. **Nunca se fuerza un push
+ni se escribe directamente en `master`**. Al comienzo de la siguiente jornada
+se puede abrir una PR con la rama del día anterior y, después de integrarla,
+el siguiente ciclo diario parte de la nueva base remota. Publicar la rama no
+equivale a integrar el material.
 El remoto y la base se pueden indicar con `MOODLE_GIT_REMOTE` (por defecto
 `origin`) y `MOODLE_BASE_BRANCH` (`master`), sin cambiar credenciales ni reglas
 de protección.
