@@ -1,5 +1,7 @@
 # AABD - 03 DataFlow: Apache NiFi Ariketa eta Ebazpen Nagusia
 
+[Series temporales · 7 de octubre](08_Denbora_Serieak/README.md): todas las actividades del nuevo PDF y práctica Pandas en variante sintética.
+
 ## Ejecución verificada · 2026-10-02
 
 Los casos 1–6 se importaron y ejecutaron en un laboratorio NiFi 2.0.0

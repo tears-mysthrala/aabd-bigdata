@@ -1,0 +1,36 @@
+{
+  "executed_at_utc": "2026-10-07T11:59:53.828434+00:00",
+  "python": "3.13.13",
+  "notebooks": [
+    {
+      "notebook": "1_1_prompt_injection.ipynb",
+      "executed_code_cells": 1,
+      "errors": 0
+    },
+    {
+      "notebook": "1_2_membership_inference.ipynb",
+      "executed_code_cells": 3,
+      "errors": 0
+    },
+    {
+      "notebook": "3_1_privacy_by_design.ipynb",
+      "executed_code_cells": 0,
+      "errors": 0
+    },
+    {
+      "notebook": "4_1_security_vs_privacy.ipynb",
+      "executed_code_cells": 0,
+      "errors": 0
+    },
+    {
+      "notebook": "5_1_eia_trafico.ipynb",
+      "executed_code_cells": 0,
+      "errors": 0
+    },
+    {
+      "notebook": "6_0_proiektu_integratzailea.ipynb",
+      "executed_code_cells": 0,
+      "errors": 0
+    }
+  ]
+}

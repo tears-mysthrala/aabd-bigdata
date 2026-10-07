@@ -256,3 +256,11 @@ Tras `notebooklm login`, las novedades se suben con
 - Para añadir soluciones: [CONTRIBUTING.md](CONTRIBUTING.md).
 - Para avisar de vulnerabilidades o secretos filtrados: [SECURITY.md](SECURITY.md).
 - GitHub Actions valida las PR; no hay CI ni despliegues en cada push.
+
+## Material nuevo resuelto · 7 de octubre de 2026
+
+- [AA: seis actividades de seguridad, privacidad y EIA](02_AA_Ereduak_5071/soluzioak/Segurtasuna_Pribatasuna_2026-10-07/README.md).
+- [Programación: ampliación Pipeline/API](04_Programazioa_5073/soluzioak/08_Moodle_2026-10-07/README.md).
+- [Series temporales: respuestas y práctica Pandas](06_NiFi/soluzioak/08_Denbora_Serieak/README.md).
+
+Kafka no añade ejercicios en la edición de hoy: el diff textual del PDF elimina una línea de comprobación del arranque. Se conserva la [solución y evidencia del caso 5](07_Kafka/soluzioak/kafka_aurreratua_connect/caso5/README.md). Los cambios de outputs/metadata en cuadernos previos no representan ejercicios nuevos.
