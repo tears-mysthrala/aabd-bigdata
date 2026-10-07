@@ -14,7 +14,7 @@ uv sync --frozen
 MPLBACKEND=Agg uv run --frozen python denbora_serieak.py
 ```
 
-Para el notebook seleccionar `.venv/bin/python` como kernel y ejecutar en orden desde esta carpeta. El script sobrescribe sus artefactos propios en `resultados/`: CSV sintético, CSV de operaciones, dos PNG y JSON de validación. Copiarlos antes si se quiere conservar una ejecución distinta. No modifica servicios ni descarga datos.
+Para el notebook seleccionar `.venv/bin/python` como kernel y ejecutar en orden desde esta carpeta. El script resuelve la salida respecto a su archivo y funciona también desde la raíz sin crear una carpeta resultados allí. En notebook se reconoce la carpeta de práctica o la raíz y se rechazan otros directorios. Sobrescribe sus artefactos propios en `resultados/`: CSV sintético, CSV de operaciones, dos PNG y JSON de validación. Copiarlos antes si se quiere conservar una ejecución distinta. No modifica servicios ni descarga datos.
 
 No está disponible el `sentsorea.csv` docente. La variante sintética declara semilla, tendencia, ruido y huecos; sus conclusiones no describen una fábrica real. Tampoco se ha ejecutado un pipeline NiFi/Kafka: el ejercicio Pandas no lo pide. La arquitectura IoT es una respuesta de diseño.
 

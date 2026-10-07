@@ -19,7 +19,17 @@ import pandas as pd
 from sklearn.metrics import mean_absolute_error
 from statsmodels.tsa.seasonal import seasonal_decompose
 
-OUTPUT = Path("resultados")
+if "__file__" in globals():
+    exercise_dir = Path(__file__).resolve().parent
+else:
+    exercise_dir = Path.cwd()
+    if not (exercise_dir / "denbora_serieak.ipynb").is_file():
+        exercise_dir = exercise_dir / "06_NiFi" / "soluzioak" / "08_Denbora_Serieak"
+    if not (exercise_dir / "denbora_serieak.ipynb").is_file():
+        raise RuntimeError(
+            "Ejecuta el notebook desde su carpeta o desde la raiz del repositorio"
+        )
+OUTPUT = exercise_dir / "resultados"
 OUTPUT.mkdir(exist_ok=True)
 assert [10, 10 * 60, 10 * 3600, 10 * 86400] == [10, 600, 36000, 864000]
 raw_example = pd.DataFrame(
