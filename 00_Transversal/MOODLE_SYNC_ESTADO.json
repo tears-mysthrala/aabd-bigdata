@@ -1,9 +1,9 @@
 {
-  "activities": 73,
+  "activities": 74,
   "activity_types": {
     "assign": 11,
     "folder": 3,
-    "resource": 45,
+    "resource": 46,
     "url": 14
   },
   "assignments": [
@@ -406,7 +406,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
-      "sha256": "3e058cf5ce0a18c6d9c803dbd8bce3dec2cd7fff9326633d5de9a397fa32d26d",
+      "sha256": "c12a0e00d3d60497d17ebaea3d7ebfd887f987f657fd78917f622b356f94e30e",
       "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
       "status": "verified"
     },
@@ -637,6 +637,13 @@
       "path": "05_BigData_Ingeniaritza/materialak/salmentak_kibana.csv",
       "sha256": "0bbfc4ca836a05bcff227a127f37bec12830da4459b8f798e9ee1cf615313735",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64293",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "05_BigData_Ingeniaritza/materialak/compose.yaml",
+      "sha256": "0119944c89ba058f0f9114e31450b8dfaf1444b7ae59ca63acbfc3b480d6c3fe",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64577",
       "status": "verified"
     },
     {
