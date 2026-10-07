@@ -1,11 +1,14 @@
 """Regresiones reales de Git: protección de master y trabajo local ajeno."""
 
+import hashlib
 import os
 import subprocess
+from datetime import date, timedelta
 from pathlib import Path
 
+import moodle_publish
 import pytest
-from moodle_publish import publish_snapshot
+from moodle_publish import observe_publication, publish_snapshot
 
 
 def git(root: Path, *args: str) -> str:
@@ -98,6 +101,47 @@ def test_preparation_does_not_create_remote_branches(repositories):
     )
 
 
+def test_edit_after_source_verification_cannot_be_published(repositories):
+    root, remote = repositories
+    observation = observe_publication(root)
+    (root / "material.txt").write_bytes(b"verified source\n")
+    hashes = {
+        "material.txt": hashlib.sha256((root / "material.txt").read_bytes()).hexdigest()
+    }
+    (root / "material.txt").write_bytes(b"unverified local edit\n")
+    with pytest.raises(RuntimeError, match="no coincide con el material verificado"):
+        publish_snapshot(
+            root,
+            ["material.txt"],
+            publish=True,
+            observation=observation,
+            verified_hashes=hashes,
+        )
+    assert (
+        git(remote, "for-each-ref", "--format=%(refname)", "refs/heads/")
+        == "refs/heads/master"
+    )
+
+
+def test_verified_hashes_cover_binary_material_and_reject_incomplete_sets(repositories):
+    root, remote = repositories
+    (root / "material.txt").write_bytes(b"\x00\xff\x80\n")
+    with pytest.raises(ValueError, match="no cubren todo"):
+        publish_snapshot(root, ["material.txt"], publish=True, verified_hashes={})
+    hashes = {
+        "material.txt": hashlib.sha256((root / "material.txt").read_bytes()).hexdigest()
+    }
+    result = publish_snapshot(
+        root, ["material.txt"], publish=True, verified_hashes=hashes
+    )
+    assert (
+        subprocess.check_output(
+            ["git", "show", f"{result['commit']}:material.txt"], cwd=remote
+        )
+        == b"\x00\xff\x80\n"
+    )
+
+
 @pytest.mark.parametrize("path", ["../private.txt", "/tmp/private.txt", ".git/config"])
 def test_rejects_paths_outside_managed_tree(repositories, path):
     with pytest.raises(ValueError, match="Ruta de publicación"):
@@ -116,6 +160,103 @@ def test_rejects_symlinks_and_missing_files(repositories):
 def test_already_merged_material_creates_nothing(repositories):
     root, _ = repositories
     assert publish_snapshot(root, ["material.txt"], publish=True)["status"] == "current"
+
+
+def test_observed_source_can_revert_to_the_base_without_preserving_stale_tip(
+    repositories,
+):
+    root, remote = repositories
+    original = (root / "material.txt").read_bytes()
+    (root / "material.txt").write_text("updated source\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    observation = observe_publication(root)
+    (root / "material.txt").write_bytes(original)
+    result = publish_snapshot(
+        root,
+        ["material.txt"],
+        publish=True,
+        observation=observation,
+        verified_hashes={"material.txt": hashlib.sha256(original).hexdigest()},
+    )
+    assert (
+        subprocess.check_output(
+            ["git", "show", f"{result['commit']}:material.txt"], cwd=remote
+        )
+        == original
+    )
+    assert result["preserved"] == []
+    assert git(remote, "rev-parse", f"{result['commit']}^") == first["commit"]
+
+
+def test_observed_cycle_reconciles_independent_upstream_changes(repositories):
+    root, remote = repositories
+    (root / "material.txt").write_text("daily source\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    (root / "user.txt").write_text("upstream code/documentation\n")
+    git(root, "add", "user.txt")
+    git(root, "commit", "-m", "independent upstream change")
+    base = git(root, "rev-parse", "HEAD")
+    git(root, "push", "origin", f"{base}:refs/heads/upstream-fixture")
+    git(remote, "update-ref", "refs/heads/master", base)
+    observation = observe_publication(root)
+    (root / "material.txt").write_text("fresh source after upstream change\n")
+    result = publish_snapshot(
+        root, ["material.txt"], publish=True, observation=observation
+    )
+    assert (
+        git(remote, "show", f"{result['commit']}:user.txt")
+        == "upstream code/documentation"
+    )
+    assert (
+        git(remote, "show", f"{result['commit']}:material.txt")
+        == "fresh source after upstream change"
+    )
+    assert git(remote, "rev-parse", f"{result['commit']}^1") == first["commit"]
+    assert git(remote, "rev-parse", f"{result['commit']}^2") == base
+    assert result["paths"] == ["material.txt"]
+    repeated = publish_snapshot(
+        root, ["material.txt"], publish=True, observation=observe_publication(root)
+    )
+    assert repeated["commit"] == result["commit"]
+
+
+def test_daily_merge_and_new_upstream_files_allow_noop_and_further_updates(
+    repositories, tmp_path
+):
+    root, remote = repositories
+    (root / "material.txt").write_text("first download\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    # Merge por PR más un cambio ajeno legítimo en master.
+    (root / "user.txt").write_text("new upstream content\n")
+    env = dict(os.environ, GIT_INDEX_FILE=str(tmp_path / "merge-index"))
+    subprocess.check_output(["git", "read-tree", first["commit"]], cwd=root, env=env)
+    subprocess.check_output(["git", "add", "user.txt"], cwd=root, env=env)
+    tree = subprocess.check_output(
+        ["git", "write-tree"], cwd=root, env=env, text=True
+    ).strip()
+    merged = subprocess.check_output(
+        ["git", "commit-tree", tree, "-p", first["base"], "-p", first["commit"]],
+        cwd=root,
+        text=True,
+        input="merge daily PR\n",
+    ).strip()
+    git(root, "push", "origin", f"{merged}:refs/heads/upstream-fixture")
+    git(remote, "update-ref", "refs/heads/master", merged)
+    result = publish_snapshot(
+        root, ["material.txt"], publish=True, observation=observe_publication(root)
+    )
+    assert result["status"] == "current"
+    assert git(remote, "rev-parse", first["branch"]) == first["commit"]
+    observation = observe_publication(root)
+    (root / "material.txt").write_text("second download after merge\n")
+    second = publish_snapshot(
+        root, ["material.txt"], publish=True, observation=observation
+    )
+    assert second["branch"] == first["branch"]
+    assert git(remote, "rev-parse", f"{second['commit']}^") == merged
+    assert git(remote, "show", f"{second['commit']}:user.txt") == "new upstream content"
+    assert second["paths"] == ["material.txt"]
+    assert git(remote, "rev-parse", "master") == merged
 
 
 def test_moodle_filenames_with_non_ascii_characters(repositories):
@@ -146,6 +287,155 @@ def test_same_day_reupdate_without_fresh_sync_fails_closed(repositories):
     repeated = publish_snapshot(root, ["material.txt"], publish=True)
     assert repeated["commit"] == first["commit"]
     assert repeated["paths"] == []
+
+
+def test_fresh_cycles_update_manifest_and_material_on_the_same_daily_branch(
+    repositories,
+):
+    root, remote = repositories
+    paths = ["material.txt", "MOODLE_SYNC_ESTADO.json"]
+    master = git(remote, "rev-parse", "master")
+    before = git(root, "status", "--porcelain=v1")
+    previous = None
+    for cycle in range(3):
+        observation = observe_publication(root)
+        # La descarga y su manifiesto cambian DESPUÉS de la observación.
+        (root / "material.txt").write_text(f"descarga {cycle}\n")
+        (root / "MOODLE_SYNC_ESTADO.json").write_text(f'{{"cycle": {cycle}}}\n')
+        local_state = git(root, "status", "--porcelain=v1")
+        result = publish_snapshot(root, paths, publish=True, observation=observation)
+        assert (
+            git(remote, "show", f"{result['commit']}:material.txt")
+            == f"descarga {cycle}"
+        )
+        assert (
+            git(remote, "show", f"{result['commit']}:MOODLE_SYNC_ESTADO.json")
+            == f'{{"cycle": {cycle}}}'
+        )
+        assert git(root, "status", "--porcelain=v1") == local_state
+        assert git(root, "rev-parse", "HEAD") == master
+        if previous:
+            assert result["branch"] == previous["branch"]
+            assert (
+                git(remote, "rev-parse", f"{result['commit']}^") == previous["commit"]
+            )
+        previous = result
+    assert git(remote, "rev-parse", "master") == master
+    assert before == ""
+    assert (
+        publish_snapshot(
+            root, paths, publish=True, observation=observe_publication(root)
+        )["commit"]
+        == previous["commit"]
+    )
+
+
+@pytest.mark.parametrize("existing_branch", [False, True])
+def test_remote_advance_after_observation_rejects_an_independent_checkout(
+    repositories, tmp_path, existing_branch
+):
+    root, remote = repositories
+    if existing_branch:
+        (root / "material.txt").write_text("primera descarga\n")
+        publish_snapshot(root, ["material.txt"], publish=True)
+    other = tmp_path / "independent"
+    subprocess.check_output(["git", "clone", str(remote), str(other)], text=True)
+    git(other, "config", "user.name", "Fixture")
+    git(other, "config", "user.email", "fixture@example.invalid")
+    observation = observe_publication(other)
+    # A publica mientras B está leyendo las fuentes.
+    a_observation = observe_publication(root)
+    (root / "material.txt").write_text("descarga A\n")
+    published = publish_snapshot(
+        root, ["material.txt"], publish=True, observation=a_observation
+    )
+    (other / "material.txt").write_text("descarga B\n")
+    with pytest.raises(RuntimeError, match="remoto cambió"):
+        publish_snapshot(other, ["material.txt"], publish=True, observation=observation)
+    assert git(remote, "rev-parse", published["branch"]) == published["commit"]
+    assert git(remote, "show", f"{published['commit']}:material.txt") == "descarga A"
+    # Un nuevo ciclo obtiene una observación nueva antes de descargar.
+    retry_observation = observe_publication(other)
+    (other / "material.txt").write_text("descarga B fresca\n")
+    retried = publish_snapshot(
+        other, ["material.txt"], publish=True, observation=retry_observation
+    )
+    assert (
+        git(remote, "show", f"{retried['commit']}:material.txt") == "descarga B fresca"
+    )
+
+
+def test_cycle_crossing_midnight_requires_a_fresh_observation(
+    repositories, monkeypatch
+):
+    root, remote = repositories
+    observation = observe_publication(root)
+
+    class NextDay:
+        @staticmethod
+        def today():
+            return date.today() + timedelta(days=1)
+
+    monkeypatch.setattr(moodle_publish, "date", NextDay)
+    (root / "material.txt").write_text("download crossing midnight\n")
+    with pytest.raises(RuntimeError, match="remoto cambió"):
+        publish_snapshot(root, ["material.txt"], publish=True, observation=observation)
+    assert (
+        git(remote, "for-each-ref", "--format=%(refname)", "refs/heads/")
+        == "refs/heads/master"
+    )
+
+
+def test_base_advance_during_download_requires_a_fresh_observation(repositories):
+    root, remote = repositories
+    observation = observe_publication(root)
+    (root / "user.txt").write_text("new upstream base\n")
+    git(root, "add", "user.txt")
+    git(root, "commit", "-m", "upstream base moved")
+    new_base = git(root, "rev-parse", "HEAD")
+    git(root, "push", "origin", f"{new_base}:refs/heads/upstream-fixture")
+    git(remote, "update-ref", "refs/heads/master", new_base)
+    (root / "material.txt").write_text("fresh material\n")
+    with pytest.raises(RuntimeError, match="remoto cambió"):
+        publish_snapshot(root, ["material.txt"], publish=True, observation=observation)
+    assert git(remote, "rev-parse", "master") == new_base
+
+
+def test_concurrent_push_after_validation_is_rejected_without_force(
+    repositories, tmp_path, monkeypatch
+):
+    root, remote = repositories
+    (root / "material.txt").write_text("first\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    other = tmp_path / "concurrent"
+    subprocess.check_output(["git", "clone", str(remote), str(other)], text=True)
+    git(other, "config", "user.name", "Fixture")
+    git(other, "config", "user.email", "fixture@example.invalid")
+    observation = observe_publication(root)
+    (root / "material.txt").write_text("outer download\n")
+    original_run = subprocess.run
+    concurrent = []
+
+    def run(command, *args, **kwargs):
+        if command[:2] == ["git", "push"] and not concurrent:
+            assert not any("force" in arg for arg in command)
+            concurrent.append(True)
+            other_observation = observe_publication(other)
+            (other / "material.txt").write_text("concurrent download\n")
+            concurrent.append(
+                publish_snapshot(
+                    other, ["material.txt"], publish=True, observation=other_observation
+                )
+            )
+        return original_run(command, *args, **kwargs)
+
+    monkeypatch.setattr(subprocess, "run", run)
+    with pytest.raises(RuntimeError, match="push falló"):
+        publish_snapshot(root, ["material.txt"], publish=True, observation=observation)
+    assert git(remote, "rev-parse", first["branch"]) == concurrent[1]["commit"]
+    assert (
+        git(remote, "show", f"{first['branch']}:material.txt") == "concurrent download"
+    )
 
 
 def test_concurrent_same_file_updates_fail_closed(repositories, tmp_path):
@@ -218,6 +508,10 @@ def test_contaminated_daily_branch_is_rejected(repositories, tmp_path):
     # Aunque este ciclo no cambie nada, heredar la rama contaminada se rechaza.
     with pytest.raises(RuntimeError, match="ajenos al material"):
         publish_snapshot(root, ["material.txt"], publish=True)
+    with pytest.raises(RuntimeError, match="ajenos al material"):
+        publish_snapshot(
+            root, ["material.txt"], publish=True, observation=observe_publication(root)
+        )
     assert git(remote, "show", f"{commit}:evil.txt") == "no verificado"
 
 
