@@ -406,7 +406,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
-      "sha256": "239f8fa9191bcd326878ae87263665dd739d841b0f0ced064e4a30d7d67166c0",
+      "sha256": "fbf4a7a2a3af6129d5880c2aa1fe76d64a4ff45fc6305a6d28aa8cf4f685e844",
       "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
       "status": "verified"
     },
@@ -554,9 +554,16 @@
     },
     {
       "kind": "file",
-      "path": "04_Programazioa_5073/data/mock_datuak/Ariketa3.4/txandakatze_pipeline.pkl",
-      "sha256": "e1cd12be6083364a2d5fe69ab1b233168a72c4bb5ebbee041e0ee2ddf465849c",
-      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.4/txandakatze_pipeline.pkl?forcedownload=1",
+      "path": "04_Programazioa_5073/data/mock_datuak/Ariketa3.4/models/pipeline.pkl",
+      "sha256": "787d2f0cc1a622e0cdc4ec26e12ef62bb220459ebb23a597472b6ff142754e96",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.4/models/pipeline.pkl?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "04_Programazioa_5073/data/mock_datuak/Ariketa3.4/requirements.txt",
+      "sha256": "ee5e3c6bfc0f89002889578cb73979d13d806b0e22ce0a264d6986eaf31da2bf",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.4/requirements.txt?forcedownload=1",
       "status": "verified"
     },
     {
