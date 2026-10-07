@@ -168,6 +168,16 @@ def publish_snapshot(
             # La PR ya se integró; las siguientes novedades parten de master.
             # master conserva el tip diario como ancestro: el push sigue siendo FF.
             parent, parent_tree = base, base_tree
+        includes_base = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", base, parent],
+            cwd=root,
+            capture_output=True,
+            timeout=90,
+        )
+        if includes_base.returncode:
+            raise RuntimeError(
+                "La rama diaria no incluye la base actual; reconciliar antes de publicar"
+            )
         inherited = git(
             "diff",
             "--no-renames",
@@ -183,6 +193,23 @@ def publish_snapshot(
                 "La rama diaria contiene cambios ajenos al material "
                 "verificado: " + ", ".join(outside)
             )
+
+    if existing and inherited:
+        entries = git(
+            "ls-tree",
+            "-z",
+            parent,
+            "--",
+            *inherited,
+            env=dict(os.environ, GIT_LITERAL_PATHSPECS="1"),
+            raw=True,
+        ).split("\0")
+        for entry in filter(None, entries):
+            mode, kind, _ = entry.split("\t", 1)[0].split()
+            if mode not in {"100644", "100755"} or kind != "blob":
+                raise RuntimeError(
+                    "Tipo de entrada heredada no admitido en la rama diaria"
+                )
 
     def blob(rev: str, name: str) -> str | None:
         try:
