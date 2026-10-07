@@ -1,5 +1,6 @@
 """Regresiones reales de Git: protección de master y trabajo local ajeno."""
 
+import os
 import subprocess
 from pathlib import Path
 
@@ -23,7 +24,7 @@ def repositories(tmp_path):
     (root / "user.txt").write_text("base\n")
     git(root, "add", "material.txt", "user.txt")
     git(root, "commit", "-m", "base")
-    git(root, "init", "--bare", str(remote))
+    git(root, "init", "--bare", "-b", "master", str(remote))
     git(root, "remote", "add", "origin", str(remote))
     git(root, "push", "origin", "master")
     # Igual que GH006: el remoto protege master, admite ramas de revisión.
@@ -124,3 +125,176 @@ def test_moodle_filenames_with_non_ascii_characters(repositories):
     result = publish_snapshot(root, [name], publish=True)
     assert result["paths"] == [name]
     assert git(remote, "show", f"{result['commit']}:{name}") == "enunciado verificado"
+
+
+def test_same_day_reupdate_without_fresh_sync_fails_closed(repositories):
+    root, remote = repositories
+    (root / "material.txt").write_text("primera versión\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    assert first["branch"].startswith("moodle-sync/master/")
+    assert first["branch"].count("/") == 2
+
+    # Tres versiones distintas sin causalidad probada: se rechaza en vez
+    # de asumir una actualización secuencial legítima.
+    (root / "material.txt").write_text("segunda versión\n")
+    with pytest.raises(RuntimeError, match="Conflicto de publicación"):
+        publish_snapshot(root, ["material.txt"], publish=True)
+    assert git(remote, "show", f"{first['commit']}:material.txt") == "primera versión"
+    # Tras sincronizar de nuevo (el material coincide con la rama), el
+    # reintento converge de forma idempotente sin revertir nada.
+    (root / "material.txt").write_text("primera versión\n")
+    repeated = publish_snapshot(root, ["material.txt"], publish=True)
+    assert repeated["commit"] == first["commit"]
+    assert repeated["paths"] == []
+
+
+def test_concurrent_same_file_updates_fail_closed(repositories, tmp_path):
+    root, remote = repositories
+    other = tmp_path / "checkout-b"
+    subprocess.check_output(["git", "clone", str(remote), str(other)], text=True)
+    git(other, "config", "user.name", "Fixture")
+    git(other, "config", "user.email", "fixture@example.invalid")
+    # A publica primero; B, sincronizado antes pero con otro contenido
+    # distinto de la base y de la rama, debe chocar en cerrado.
+    (root / "material.txt").write_text("versión A\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    (other / "material.txt").write_text("versión B\n")
+    with pytest.raises(RuntimeError, match="Conflicto de publicación"):
+        publish_snapshot(other, ["material.txt"], publish=True)
+    assert git(remote, "show", f"{first['commit']}:material.txt") == "versión A"
+
+
+def test_stale_checkout_does_not_revert_newer_published_material(
+    repositories, tmp_path
+):
+    root, remote = repositories
+    stale = tmp_path / "desfasado"
+    subprocess.check_output(["git", "clone", str(remote), str(stale)], text=True)
+    git(stale, "config", "user.name", "Fixture")
+    git(stale, "config", "user.email", "fixture@example.invalid")
+    # A publica una versión nueva del material.
+    (root / "material.txt").write_text("segunda versión\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    assert first["status"] == "published"
+    # B sigue con la versión de la base y publica otra novedad: el material
+    # más nuevo no debe revertirse aunque el commit avance en fast-forward.
+    assert (stale / "material.txt").read_text() == "viejo\n"
+    (stale / "other.txt").write_text("otro\n")
+    result = publish_snapshot(stale, ["material.txt", "other.txt"], publish=True)
+    assert result["status"] == "published"
+    assert "material.txt" in result["preserved"]
+    assert "other.txt" in result["paths"]
+    assert git(remote, "show", f"{result['commit']}:material.txt") == "segunda versión"
+    assert git(remote, "show", f"{result['commit']}:other.txt") == "otro"
+    # Reintentar con el conjunto completo tampoco revierte nada: es idempotente.
+    repeated = publish_snapshot(stale, ["material.txt", "other.txt"], publish=True)
+    assert repeated["paths"] == []
+    assert git(remote, "show", f"{repeated['commit']}:material.txt") == (
+        "segunda versión"
+    )
+
+
+def test_contaminated_daily_branch_is_rejected(repositories, tmp_path):
+    root, remote = repositories
+    (root / "material.txt").write_text("primera versión\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    branch = first["branch"]
+    # Contaminación externa: un commit ajeno directo sobre la rama diaria.
+    (root / "evil.txt").write_text("no verificado\n")
+    env = dict(os.environ, GIT_INDEX_FILE=str(tmp_path / "evil-index"))
+    subprocess.check_output(["git", "read-tree", first["commit"]], cwd=root, env=env)
+    subprocess.check_output(["git", "add", "--", "evil.txt"], cwd=root, env=env)
+    tree = subprocess.check_output(["git", "write-tree"], cwd=root, env=env, text=True)
+    commit = subprocess.check_output(
+        ["git", "commit-tree", tree.strip(), "-p", first["commit"]],
+        cwd=root,
+        env=env,
+        text=True,
+        input="Moodle: cambio ajeno\n",
+    ).strip()
+    subprocess.check_output(
+        ["git", "push", "origin", f"{commit}:refs/heads/{branch}"], cwd=root
+    )
+    # Aunque este ciclo no cambie nada, heredar la rama contaminada se rechaza.
+    with pytest.raises(RuntimeError, match="ajenos al material"):
+        publish_snapshot(root, ["material.txt"], publish=True)
+    assert git(remote, "show", f"{commit}:evil.txt") == "no verificado"
+
+
+def test_unmanaged_rename_source_cannot_hide_in_a_managed_destination(
+    repositories, tmp_path
+):
+    root, remote = repositories
+    (root / "material.txt").write_text("first publication\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    (root / "renamed.txt").write_text("base\n")
+    env = dict(os.environ, GIT_INDEX_FILE=str(tmp_path / "rename-index"))
+    subprocess.check_output(["git", "read-tree", first["commit"]], cwd=root, env=env)
+    subprocess.check_output(["git", "rm", "--cached", "user.txt"], cwd=root, env=env)
+    subprocess.check_output(["git", "add", "renamed.txt"], cwd=root, env=env)
+    tree = subprocess.check_output(
+        ["git", "write-tree"], cwd=root, env=env, text=True
+    ).strip()
+    commit = subprocess.check_output(
+        ["git", "commit-tree", tree, "-p", first["commit"]],
+        cwd=root,
+        text=True,
+        input="external rename\n",
+    ).strip()
+    git(root, "push", "origin", f"{commit}:refs/heads/{first['branch']}")
+    with pytest.raises(RuntimeError, match="ajenos al material"):
+        publish_snapshot(root, ["material.txt", "renamed.txt"], publish=True)
+    assert git(remote, "rev-parse", first["branch"]) == commit
+
+
+@pytest.mark.parametrize("mode", ["120000", "160000"])
+def test_inherited_symlinks_and_gitlinks_are_rejected(repositories, tmp_path, mode):
+    root, remote = repositories
+    (root / "material.txt").write_text("first\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    env = dict(os.environ, GIT_INDEX_FILE=str(tmp_path / "entry-index"))
+    subprocess.check_output(["git", "read-tree", first["commit"]], cwd=root, env=env)
+    oid = (
+        first["commit"]
+        if mode == "160000"
+        else subprocess.check_output(
+            ["git", "hash-object", "-w", "--stdin"],
+            cwd=root,
+            text=True,
+            input="../outside\n",
+        ).strip()
+    )
+    subprocess.check_output(
+        ["git", "update-index", "--cacheinfo", f"{mode},{oid},material.txt"],
+        cwd=root,
+        env=env,
+    )
+    tree = subprocess.check_output(
+        ["git", "write-tree"], cwd=root, env=env, text=True
+    ).strip()
+    commit = subprocess.check_output(
+        ["git", "commit-tree", tree, "-p", first["commit"]],
+        cwd=root,
+        text=True,
+        input="unsupported entry\n",
+    ).strip()
+    git(root, "push", "origin", f"{commit}:refs/heads/{first['branch']}")
+    (root / "material.txt").write_text("viejo\n")
+    with pytest.raises(RuntimeError, match="Tipo de entrada heredada"):
+        publish_snapshot(root, ["material.txt"], publish=True)
+    assert git(remote, "rev-parse", first["branch"]) == commit
+
+
+def test_unmerged_daily_branch_on_old_base_is_rejected(repositories):
+    root, remote = repositories
+    (root / "material.txt").write_text("daily version\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    (root / "material.txt").write_text("new master version\n")
+    git(root, "add", "material.txt")
+    git(root, "commit", "-m", "base advanced independently")
+    base = git(root, "rev-parse", "HEAD")
+    git(root, "push", "origin", f"{base}:refs/heads/upstream-fixture")
+    git(remote, "update-ref", "refs/heads/master", base)
+    with pytest.raises(RuntimeError, match="no incluye la base actual"):
+        publish_snapshot(root, ["material.txt"], publish=True)
+    assert git(remote, "show", f"{first['branch']}:material.txt") == "daily version"

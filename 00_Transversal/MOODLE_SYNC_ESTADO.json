@@ -15,14 +15,14 @@
       "title": "Kontratua Zeregina"
     },
     {
-      "dates": "Entregatze-data: asteartea, 2026(e)ko urriaren 20(e)an, 14:30(e)tan",
+      "dates": "Entregatze-data: asteartea, 2026(e)ko urriaren 13(e)an, 14:30(e)tan",
       "section": 3,
       "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63276",
       "statement": "",
       "title": "Behin-behineko proposamena Zeregina"
     },
     {
-      "dates": "Entregatze-data: asteartea, 2026(e)ko urriaren 20(e)an, 14:30(e)tan",
+      "dates": "Entregatze-data: asteazkena, 2026(e)ko urriaren 14(e)an, 14:30(e)tan",
       "section": 3,
       "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63277",
       "statement": "ANEXO4.docx 2026(e)ko irailaren 8(e)n, 20:39(e)tan",
@@ -296,28 +296,43 @@
       "status": "verified"
     },
     {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/1_Adibide_koadernoa_URLa.ipynb",
+      "sha256": "e6b9bd730ea1cfab775c16adafc1c74b8972e6ab9f99918220004599d692ef7f",
+      "source": "https://colab.research.google.com/drive/1pIrZl1VAx13kL31IT3_UijJr7VMhR66f",
+      "status": "verified"
+    },
+    {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=63424",
       "kind": "external link",
-      "oauth_warning": "Google OAuth initialization failed (RuntimeError); reauthorize the account",
-      "reason": "Google OAuth initialization failed (RuntimeError); reauthorize the account; public download unavailable",
       "source": "https://colab.research.google.com/drive/1pIrZl1VAx13kL31IT3_UijJr7VMhR66f",
-      "status": "not downloaded: Google access or download unavailable"
+      "status": "downloaded and verified"
+    },
+    {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/1_Ariketa_koadernoa_URLa.ipynb",
+      "sha256": "248b880b166041eb4697ee3c9a1944140b21cc2d025ad44aa0183d7efbe16fdc",
+      "source": "https://drive.google.com/file/d/1AkffwCX1W2BAMWj18M4UdX2ayxDahT78/view?usp=sharing",
+      "status": "verified"
     },
     {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=63438",
       "kind": "external link",
-      "oauth_warning": "Google OAuth initialization failed (RuntimeError); reauthorize the account",
-      "reason": "Google OAuth initialization failed (RuntimeError); reauthorize the account; public download unavailable",
       "source": "https://drive.google.com/file/d/1AkffwCX1W2BAMWj18M4UdX2ayxDahT78/view?usp=sharing",
-      "status": "not downloaded: Google access or download unavailable"
+      "status": "downloaded and verified"
+    },
+    {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/1_SOLUZIOAK_URLa.ipynb",
+      "sha256": "9a37a86f5f00f1cd55054b91a153c2b06e28b9d99462652fbf7c37aeb69794ee",
+      "source": "https://drive.google.com/file/d/1yFkBH4o66kT16R2py8wfkAO6QVRxmZH1/view?usp=sharing",
+      "status": "verified"
     },
     {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64130",
       "kind": "external link",
-      "oauth_warning": "Google OAuth initialization failed (RuntimeError); reauthorize the account",
-      "reason": "Google OAuth initialization failed (RuntimeError); reauthorize the account; public download unavailable",
       "source": "https://drive.google.com/file/d/1yFkBH4o66kT16R2py8wfkAO6QVRxmZH1/view?usp=sharing",
-      "status": "not downloaded: Google access or download unavailable"
+      "status": "downloaded and verified"
     },
     {
       "kind": "file",
@@ -327,28 +342,43 @@
       "status": "verified"
     },
     {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/2_Adibide_Koadernoa_URLa.ipynb",
+      "sha256": "15624d9f7959e1c671f51129782f8381b16d5c17015e4e0fc930a5f5f1b3c294",
+      "source": "https://drive.google.com/file/d/16hf21r6zBb82LNvnwYlcO39ASMRGAqPl/view?usp=sharing",
+      "status": "verified"
+    },
+    {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=63710",
       "kind": "external link",
-      "oauth_warning": "Google OAuth initialization failed (RuntimeError); reauthorize the account",
-      "reason": "Google OAuth initialization failed (RuntimeError); reauthorize the account; public download unavailable",
       "source": "https://drive.google.com/file/d/16hf21r6zBb82LNvnwYlcO39ASMRGAqPl/view?usp=sharing",
-      "status": "not downloaded: Google access or download unavailable"
+      "status": "downloaded and verified"
+    },
+    {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/2_Ariketa_Koadernoa_URLa.ipynb",
+      "sha256": "52f666e6c431acc7330c0aebd4a8d7c7bd4a0a65ba1afcc68ce17223cf42c899",
+      "source": "https://drive.google.com/file/d/1J-ZAJlNEDZoeSPHK9zI4dq9SU70UfG1m/view?usp=sharing",
+      "status": "verified"
     },
     {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=63711",
       "kind": "external link",
-      "oauth_warning": "Google OAuth initialization failed (RuntimeError); reauthorize the account",
-      "reason": "Google OAuth initialization failed (RuntimeError); reauthorize the account; public download unavailable",
       "source": "https://drive.google.com/file/d/1J-ZAJlNEDZoeSPHK9zI4dq9SU70UfG1m/view?usp=sharing",
-      "status": "not downloaded: Google access or download unavailable"
+      "status": "downloaded and verified"
+    },
+    {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/2_SOLUZIOAK_URLa.ipynb",
+      "sha256": "00f2743271c73168947fb773173f4f4e66834d2d10c41f61d14a653c00bae0eb",
+      "source": "https://drive.google.com/file/d/1FI4AahJ68dG3DOYAETuPgdnWFCFw8E3C/view?usp=sharing",
+      "status": "verified"
     },
     {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64126",
       "kind": "external link",
-      "oauth_warning": "Google OAuth initialization failed (RuntimeError); reauthorize the account",
-      "reason": "Google OAuth initialization failed (RuntimeError); reauthorize the account; public download unavailable",
       "source": "https://drive.google.com/file/d/1FI4AahJ68dG3DOYAETuPgdnWFCFw8E3C/view?usp=sharing",
-      "status": "not downloaded: Google access or download unavailable"
+      "status": "downloaded and verified"
     },
     {
       "kind": "file",
@@ -358,20 +388,30 @@
       "status": "verified"
     },
     {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
+      "sha256": "e7a2836bd107012720cc7efefa55e3e37dc367361919fc95087a90bf8ba2fece",
+      "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
+      "status": "verified"
+    },
+    {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64096",
       "kind": "external link",
-      "oauth_warning": "Google OAuth initialization failed (RuntimeError); reauthorize the account",
-      "reason": "Google OAuth initialization failed (RuntimeError); reauthorize the account; public download unavailable",
       "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
-      "status": "not downloaded: Google access or download unavailable"
+      "status": "downloaded and verified"
+    },
+    {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/3_Ariketa_koadernoa_URLa.ipynb",
+      "sha256": "70238c779bbb4f83f081114525179733dd022610c1218f84f796a5d79594c085",
+      "source": "https://drive.google.com/file/d/1ly5JO5DIGhkNOgE0fuWU9COGUvLOz3Yi/view?usp=sharing",
+      "status": "verified"
     },
     {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64095",
       "kind": "external link",
-      "oauth_warning": "Google OAuth initialization failed (RuntimeError); reauthorize the account",
-      "reason": "Google OAuth initialization failed (RuntimeError); reauthorize the account; public download unavailable",
       "source": "https://drive.google.com/file/d/1ly5JO5DIGhkNOgE0fuWU9COGUvLOz3Yi/view?usp=sharing",
-      "status": "not downloaded: Google access or download unavailable"
+      "status": "downloaded and verified"
     },
     {
       "kind": "file",
@@ -381,12 +421,17 @@
       "status": "verified"
     },
     {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/Eredu_guztiak_testuinguru_berdina_ADIBIDE_OSODUN_Koadernoa_U.ipynb",
+      "sha256": "a3eb735f785ce70c291ac6e1d402e13a5775cf1aabb04663f2cefcfab7564e44",
+      "source": "https://drive.google.com/file/d/1A8odZkhTki3J5-znNgTErJ55P_DtF9gd/view?usp=sharing",
+      "status": "verified"
+    },
+    {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64222",
       "kind": "external link",
-      "oauth_warning": "Google OAuth initialization failed (RuntimeError); reauthorize the account",
-      "reason": "Google OAuth initialization failed (RuntimeError); reauthorize the account; public download unavailable",
       "source": "https://drive.google.com/file/d/1A8odZkhTki3J5-znNgTErJ55P_DtF9gd/view?usp=sharing",
-      "status": "not downloaded: Google access or download unavailable"
+      "status": "downloaded and verified"
     },
     {
       "kind": "file",
@@ -590,7 +635,7 @@
     {
       "kind": "file",
       "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
-      "sha256": "a28ad97646ac8fc060d5b15bb21f1befc1f04fd37b9ccc5df5e60ac5742ca67d",
+      "sha256": "f6b5b942bd99bd7f3a996721cc2220c08c2952220fa9621611111a4a2ebcfade",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64150",
       "status": "verified"
     },
@@ -619,6 +664,6 @@
     11,
     12
   ],
-  "unavailable": 9,
-  "verified_on": "2026-10-05"
+  "unavailable": 0,
+  "verified_on": "2026-10-06"
 }

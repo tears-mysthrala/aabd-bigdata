@@ -17,4 +17,4 @@ if ! flock -n 9; then
     exit 0
 fi
 
-exec /usr/bin/uv run --with playwright --with requests --with beautifulsoup4 --with python-docx --with 'google-auth==2.58.1' /home/tears/bigdata/00_Transversal/scripts/moodle_sync.py
+exec /usr/bin/uv run --with playwright --with requests --with beautifulsoup4 --with python-docx --with 'google-auth==2.58.1' /home/tears/bigdata/00_Transversal/scripts/moodle_sync.py "$@"

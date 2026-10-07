@@ -132,11 +132,27 @@ usuario ni incorpora sus commits o cambios ajenos. No modifica su rama ni su
 índice y no propaga borrados. Las rutas con escapes, symlinks o archivos
 ausentes se rechazan.
 
-El snapshot se sube a una rama `moodle-sync/<base>/<fecha>-<hash-del-árbol>`
-y se comprueba el commit realmente publicado. Si ya existe el mismo snapshot,
-se reutiliza. **Nunca se fuerza un push ni se escribe directamente en
-`master`**. Integrarlo requiere una PR y su revisión; publicar la rama no
-equivale a integrar el material. La creación de PR no está automatizada.
+Garantías del snapshot diario (con regresiones en `test_moodle_publish.py`):
+
+- Antes de reutilizar la rama `moodle-sync/<base>/<fecha>`, su diff contra
+  la base debe estar contenido en el material verificado del ciclo; si la
+  rama trae un fichero ajeno, la publicación se rechaza en vez de heredarlo.
+- La fusión es por ruta y falla cerrada: una ruta se publica cuando la
+  rama no la ha cambiado desde la base, y se preserva la rama cuando el
+  checkout conserva la versión de la base. Si base, rama y checkout
+  difieren los tres, la publicación se rechaza (conflicto) porque el orden
+  causal no puede probarse; reintentar tras una sincronización nueva
+  converge si el material ya coincide con la rama. Cada ciclo pasa el
+  conjunto gestionado completo (`SYNC_MANAGED`) que quiere preservar.
+
+El snapshot diario se sube a una rama estable
+`moodle-sync/<base>/<fecha>` y se comprueba el commit realmente publicado.
+Si el ciclo encuentra más cambios el mismo día, añade un commit de avance
+rápido a esa misma rama; no crea otra rama por hash. **Nunca se fuerza un push
+ni se escribe directamente en `master`**. Al comienzo de la siguiente jornada
+se puede abrir una PR con la rama del día anterior y, después de integrarla,
+el siguiente ciclo diario parte de la nueva base remota. Publicar la rama no
+equivale a integrar el material.
 El remoto y la base se pueden indicar con `MOODLE_GIT_REMOTE` (por defecto
 `origin`) y `MOODLE_BASE_BRANCH` (`master`), sin cambiar credenciales ni reglas
 de protección.
