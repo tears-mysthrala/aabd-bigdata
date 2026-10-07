@@ -1,8 +1,9 @@
 import numpy as np
 import pytest
 from fastapi.testclient import TestClient
-from ml_api import create_app
 from sklearn.datasets import load_breast_cancer
+
+from ml_api import create_app
 from train_pipeline import train_breast_cancer
 
 
@@ -53,8 +54,9 @@ def test_missing_model_is_503_and_stays_unloaded(tmp_path):
 
 
 def test_nonfinite_rejected(trained):
-    from ml_api import PredictionRequest
     from pydantic import ValidationError
+
+    from ml_api import PredictionRequest
 
     for value in [float("nan"), float("inf"), float("-inf")]:
         with pytest.raises(ValidationError):

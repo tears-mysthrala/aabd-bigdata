@@ -12,8 +12,9 @@
 # %%
 import numpy as np
 from fastapi.testclient import TestClient
-from ml_api import create_app
 from sklearn.metrics import classification_report
+
+from ml_api import create_app
 from train_pipeline import MODEL_PATH, train_breast_cancer, train_turnover
 
 turnover_accuracy = train_turnover()

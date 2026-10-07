@@ -7,6 +7,7 @@ import joblib
 import numpy as np
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict, Field, FiniteFloat
+
 from train_pipeline import MODEL_PATH
 
 LABELS = {0: "Gaiztoa", 1: "Ona"}

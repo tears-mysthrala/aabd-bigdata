@@ -264,3 +264,5 @@ Tras `notebooklm login`, las novedades se suben con
 - [Series temporales: respuestas y práctica Pandas](06_NiFi/soluzioak/08_Denbora_Serieak/README.md).
 
 Kafka no añade ejercicios en la edición de hoy: el diff textual del PDF elimina una línea de comprobación del arranque. Se conserva la [solución y evidencia del caso 5](07_Kafka/soluzioak/kafka_aurreratua_connect/caso5/README.md). Los cambios de outputs/metadata en cuadernos previos no representan ejercicios nuevos.
+
+- [Elastic: Compose de apoyo incorporado a las 14:01](05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-07.md), sin ejercicio adicional. Se integran las fuentes del último snapshot de hoy y se verifican sus 79 archivos con SHA-256; los tres modelos de apoyo remotos no se cargan. El PDF de series temporales actualizado no cambia su texto.
