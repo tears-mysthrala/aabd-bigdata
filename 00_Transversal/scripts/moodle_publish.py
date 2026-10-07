@@ -89,7 +89,13 @@ def publish_snapshot(
         parent = git("rev-parse", "FETCH_HEAD")
         parent_tree = git("rev-parse", f"{parent}^{{tree}}")
         inherited = git(
-            "diff", "--name-only", "-z", base_tree, parent_tree, raw=True
+            "diff",
+            "--no-renames",
+            "--name-only",
+            "-z",
+            base_tree,
+            parent_tree,
+            raw=True,
         ).split("\0")[:-1]
         outside = sorted(set(inherited) - set(safe_paths))
         if outside:

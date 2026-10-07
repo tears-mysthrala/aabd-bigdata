@@ -24,7 +24,7 @@ def repositories(tmp_path):
     (root / "user.txt").write_text("base\n")
     git(root, "add", "material.txt", "user.txt")
     git(root, "commit", "-m", "base")
-    git(root, "init", "--bare", str(remote))
+    git(root, "init", "--bare", "-b", "master", str(remote))
     git(root, "remote", "add", "origin", str(remote))
     git(root, "push", "origin", "master")
     # Igual que GH006: el remoto protege master, admite ramas de revisión.
@@ -219,3 +219,29 @@ def test_contaminated_daily_branch_is_rejected(repositories, tmp_path):
     with pytest.raises(RuntimeError, match="ajenos al material"):
         publish_snapshot(root, ["material.txt"], publish=True)
     assert git(remote, "show", f"{commit}:evil.txt") == "no verificado"
+
+
+def test_unmanaged_rename_source_cannot_hide_in_a_managed_destination(
+    repositories, tmp_path
+):
+    root, remote = repositories
+    (root / "material.txt").write_text("first publication\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    (root / "renamed.txt").write_text("base\n")
+    env = dict(os.environ, GIT_INDEX_FILE=str(tmp_path / "rename-index"))
+    subprocess.check_output(["git", "read-tree", first["commit"]], cwd=root, env=env)
+    subprocess.check_output(["git", "rm", "--cached", "user.txt"], cwd=root, env=env)
+    subprocess.check_output(["git", "add", "renamed.txt"], cwd=root, env=env)
+    tree = subprocess.check_output(
+        ["git", "write-tree"], cwd=root, env=env, text=True
+    ).strip()
+    commit = subprocess.check_output(
+        ["git", "commit-tree", tree, "-p", first["commit"]],
+        cwd=root,
+        text=True,
+        input="external rename\n",
+    ).strip()
+    git(root, "push", "origin", f"{commit}:refs/heads/{first['branch']}")
+    with pytest.raises(RuntimeError, match="ajenos al material"):
+        publish_snapshot(root, ["material.txt", "renamed.txt"], publish=True)
+    assert git(remote, "rev-parse", first["branch"]) == commit
