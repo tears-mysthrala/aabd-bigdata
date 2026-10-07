@@ -1,9 +1,9 @@
 {
-  "activities": 72,
+  "activities": 73,
   "activity_types": {
     "assign": 11,
     "folder": 3,
-    "resource": 44,
+    "resource": 45,
     "url": 14
   },
   "assignments": [
@@ -172,7 +172,7 @@
     {
       "kind": "file",
       "path": "02_AA_Ereduak_5071/materialak/Alborapenak/2.2_compas_historikoa_soluzioa.ipynb",
-      "sha256": "597b2f8d29db71087032b54d08e5e9c1df73ce1632789414a2438e2ef49702a8",
+      "sha256": "9408669a8bb2457b43b97935971a6ce1d58c45fb2d6534965f6c9abe4decb643",
       "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88815/mod_folder/content/0/2.2_compas_historikoa_soluzioa.ipynb?forcedownload=1",
       "status": "verified"
     },
@@ -185,9 +185,51 @@
     },
     {
       "kind": "file",
+      "path": "02_AA_Ereduak_5071/materialak/1.1_prompt_injection_diseinua_soluzioa.ipynb",
+      "sha256": "1eaf16361ff7d7fb123e7e6bed0d3d11af5901061967f2363f356f46fc97717e",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89014/mod_folder/content/0/1.1_prompt_injection_diseinua_soluzioa.ipynb?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "02_AA_Ereduak_5071/materialak/1.2_kide_inferentzia_soluzioa.ipynb",
+      "sha256": "862b9dc1f6e7bab71e3a78c828a87cf94e23940124f6a2f3b4ffd4560e2c6215",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89014/mod_folder/content/0/1.2_kide_inferentzia_soluzioa.ipynb?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
       "path": "02_AA_Ereduak_5071/materialak/2.1_ai_act_arrisku_mailak_sailkatzen.ipynb",
       "sha256": "5441b33e0401353f958527804f57a966a86fc74611b569f11b812bfa0fc22f20",
       "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89014/mod_folder/content/0/2.1_ai_act_arrisku_mailak_sailkatzen.ipynb?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "02_AA_Ereduak_5071/materialak/3.1_privacy_by_design_auditoria_soluzioa.ipynb",
+      "sha256": "696b51c084dc442272330756f888e1366fbd58ce3554be86e24b62210e28cb0c",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89014/mod_folder/content/0/3.1_privacy_by_design_auditoria_soluzioa.ipynb?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "02_AA_Ereduak_5071/materialak/4.1_security_vs_privacy_sailkapena_soluzioa.ipynb",
+      "sha256": "f472c8546dd3dbc34e144c24c25111df4e429dd8620e7ee25e6bf76936995ca0",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89014/mod_folder/content/0/4.1_security_vs_privacy_sailkapena_soluzioa.ipynb?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "02_AA_Ereduak_5071/materialak/5.1_eia_aplikatu_soluzioa.ipynb",
+      "sha256": "e1b0b8778c5b8451bca61f826eb7bd48ae6374fd5be04482dc54ca2d508ca96c",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89014/mod_folder/content/0/5.1_eia_aplikatu_soluzioa.ipynb?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "02_AA_Ereduak_5071/materialak/6.0_proiektu_integratzailea_soluzioa.ipynb",
+      "sha256": "d40efc5956c7664269876bbd4b12fd75f56e77622436e86557da61ffa8ba57da",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89014/mod_folder/content/0/6.0_proiektu_integratzailea_soluzioa.ipynb?forcedownload=1",
       "status": "verified"
     },
     {
@@ -298,7 +340,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/1_Adibide_koadernoa_URLa.ipynb",
-      "sha256": "e6b9bd730ea1cfab775c16adafc1c74b8972e6ab9f99918220004599d692ef7f",
+      "sha256": "513cb461c4c7f7b91d73d97b338af1b038243d6c116dab1706e47387b23ce803",
       "source": "https://colab.research.google.com/drive/1pIrZl1VAx13kL31IT3_UijJr7VMhR66f",
       "status": "verified"
     },
@@ -322,19 +364,6 @@
       "status": "downloaded and verified"
     },
     {
-      "kind": "external notebook",
-      "path": "04_Programazioa_5073/materialak/1_SOLUZIOAK_URLa.ipynb",
-      "sha256": "9a37a86f5f00f1cd55054b91a153c2b06e28b9d99462652fbf7c37aeb69794ee",
-      "source": "https://drive.google.com/file/d/1yFkBH4o66kT16R2py8wfkAO6QVRxmZH1/view?usp=sharing",
-      "status": "verified"
-    },
-    {
-      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64130",
-      "kind": "external link",
-      "source": "https://drive.google.com/file/d/1yFkBH4o66kT16R2py8wfkAO6QVRxmZH1/view?usp=sharing",
-      "status": "downloaded and verified"
-    },
-    {
       "kind": "file",
       "path": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
       "sha256": "0115c3bba18f628b224b5b54a39b353d59bd1b0fcbd94152a8bde43bd455568e",
@@ -344,7 +373,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/2_Adibide_Koadernoa_URLa.ipynb",
-      "sha256": "15624d9f7959e1c671f51129782f8381b16d5c17015e4e0fc930a5f5f1b3c294",
+      "sha256": "2ebd3451a45b44c77074b12dae4fddca7d8e93fc837e2386cec9c8a880ce320e",
       "source": "https://drive.google.com/file/d/16hf21r6zBb82LNvnwYlcO39ASMRGAqPl/view?usp=sharing",
       "status": "verified"
     },
@@ -357,7 +386,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/2_Ariketa_Koadernoa_URLa.ipynb",
-      "sha256": "52f666e6c431acc7330c0aebd4a8d7c7bd4a0a65ba1afcc68ce17223cf42c899",
+      "sha256": "b5d971b7a9dc79da618db45ec9ded05103313b751c23d6efcf3b4df8c608b3f8",
       "source": "https://drive.google.com/file/d/1J-ZAJlNEDZoeSPHK9zI4dq9SU70UfG1m/view?usp=sharing",
       "status": "verified"
     },
@@ -368,29 +397,16 @@
       "status": "downloaded and verified"
     },
     {
-      "kind": "external notebook",
-      "path": "04_Programazioa_5073/materialak/2_SOLUZIOAK_URLa.ipynb",
-      "sha256": "00f2743271c73168947fb773173f4f4e66834d2d10c41f61d14a653c00bae0eb",
-      "source": "https://drive.google.com/file/d/1FI4AahJ68dG3DOYAETuPgdnWFCFw8E3C/view?usp=sharing",
-      "status": "verified"
-    },
-    {
-      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64126",
-      "kind": "external link",
-      "source": "https://drive.google.com/file/d/1FI4AahJ68dG3DOYAETuPgdnWFCFw8E3C/view?usp=sharing",
-      "status": "downloaded and verified"
-    },
-    {
       "kind": "file",
       "path": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
-      "sha256": "db8e1ca2a41fb17d6150f979655faf3d55c6aedb9d8fd0f341e3da804445292d",
+      "sha256": "cdc9f7298efa2c9f71ec0d64e56165ae8092dbf9a91aab4ee2c99ffca4048553",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=61497",
       "status": "verified"
     },
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
-      "sha256": "e7a2836bd107012720cc7efefa55e3e37dc367361919fc95087a90bf8ba2fece",
+      "sha256": "239f8fa9191bcd326878ae87263665dd739d841b0f0ced064e4a30d7d67166c0",
       "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
       "status": "verified"
     },
@@ -411,6 +427,32 @@
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64095",
       "kind": "external link",
       "source": "https://drive.google.com/file/d/1ly5JO5DIGhkNOgE0fuWU9COGUvLOz3Yi/view?usp=sharing",
+      "status": "downloaded and verified"
+    },
+    {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/1_SOLUZIOAK_URLa.ipynb",
+      "sha256": "bed634eb5af6f5769a10ce8d3faff0a6d1fbf9c1561964574a155ff9dac8a071",
+      "source": "https://drive.google.com/file/d/1yFkBH4o66kT16R2py8wfkAO6QVRxmZH1/view?usp=sharing",
+      "status": "verified"
+    },
+    {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64130",
+      "kind": "external link",
+      "source": "https://drive.google.com/file/d/1yFkBH4o66kT16R2py8wfkAO6QVRxmZH1/view?usp=sharing",
+      "status": "downloaded and verified"
+    },
+    {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/2_SOLUZIOAK_URLa.ipynb",
+      "sha256": "c8fbc0d243c6e32893d7117a9a5213af7d31ac5859f30e199ea682e64e8f2555",
+      "source": "https://drive.google.com/file/d/1FI4AahJ68dG3DOYAETuPgdnWFCFw8E3C/view?usp=sharing",
+      "status": "verified"
+    },
+    {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64126",
+      "kind": "external link",
+      "source": "https://drive.google.com/file/d/1FI4AahJ68dG3DOYAETuPgdnWFCFw8E3C/view?usp=sharing",
       "status": "downloaded and verified"
     },
     {
@@ -508,6 +550,13 @@
       "path": "04_Programazioa_5073/data/mock_datuak/Ariketa 3.1/ikasleak_notak_100.csv",
       "sha256": "e0d7532192305825baa417e93b345fd38993a5970c6a054d4b0f53173d5aa017",
       "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.1/ikasleak_notak_100.csv?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "04_Programazioa_5073/data/mock_datuak/Ariketa3.4/txandakatze_pipeline.pkl",
+      "sha256": "e1cd12be6083364a2d5fe69ab1b233168a72c4bb5ebbee041e0ee2ddf465849c",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.4/txandakatze_pipeline.pkl?forcedownload=1",
       "status": "verified"
     },
     {
@@ -635,7 +684,7 @@
     {
       "kind": "file",
       "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
-      "sha256": "f6b5b942bd99bd7f3a996721cc2220c08c2952220fa9621611111a4a2ebcfade",
+      "sha256": "6c7f76d6480de1dd22f2051928738678d5aa815b4625d5af1d37d3402afa56f5",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64150",
       "status": "verified"
     },
@@ -644,6 +693,13 @@
       "path": "06_NiFi/materialak/compose.yaml",
       "sha256": "47981fa66008c5a7fecad6a9f8b5538876d2e17f62bf54ae615ac37f0c04f29e",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64236",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "06_NiFi/materialak/02_Denbora_Serieak.pdf",
+      "sha256": "6289cb932f504cb20348006aa5a526e023664bc645faae3def461bd23e529996",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64556",
       "status": "verified"
     }
   ],
@@ -665,5 +721,5 @@
     12
   ],
   "unavailable": 0,
-  "verified_on": "2026-10-06"
+  "verified_on": "2026-10-07"
 }
