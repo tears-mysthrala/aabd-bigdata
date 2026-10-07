@@ -245,3 +245,56 @@ def test_unmanaged_rename_source_cannot_hide_in_a_managed_destination(
     with pytest.raises(RuntimeError, match="ajenos al material"):
         publish_snapshot(root, ["material.txt", "renamed.txt"], publish=True)
     assert git(remote, "rev-parse", first["branch"]) == commit
+
+
+@pytest.mark.parametrize("mode", ["120000", "160000"])
+def test_inherited_symlinks_and_gitlinks_are_rejected(repositories, tmp_path, mode):
+    root, remote = repositories
+    (root / "material.txt").write_text("first\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    env = dict(os.environ, GIT_INDEX_FILE=str(tmp_path / "entry-index"))
+    subprocess.check_output(["git", "read-tree", first["commit"]], cwd=root, env=env)
+    oid = (
+        first["commit"]
+        if mode == "160000"
+        else subprocess.check_output(
+            ["git", "hash-object", "-w", "--stdin"],
+            cwd=root,
+            text=True,
+            input="../outside\n",
+        ).strip()
+    )
+    subprocess.check_output(
+        ["git", "update-index", "--cacheinfo", f"{mode},{oid},material.txt"],
+        cwd=root,
+        env=env,
+    )
+    tree = subprocess.check_output(
+        ["git", "write-tree"], cwd=root, env=env, text=True
+    ).strip()
+    commit = subprocess.check_output(
+        ["git", "commit-tree", tree, "-p", first["commit"]],
+        cwd=root,
+        text=True,
+        input="unsupported entry\n",
+    ).strip()
+    git(root, "push", "origin", f"{commit}:refs/heads/{first['branch']}")
+    (root / "material.txt").write_text("viejo\n")
+    with pytest.raises(RuntimeError, match="Tipo de entrada heredada"):
+        publish_snapshot(root, ["material.txt"], publish=True)
+    assert git(remote, "rev-parse", first["branch"]) == commit
+
+
+def test_unmerged_daily_branch_on_old_base_is_rejected(repositories):
+    root, remote = repositories
+    (root / "material.txt").write_text("daily version\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    (root / "material.txt").write_text("new master version\n")
+    git(root, "add", "material.txt")
+    git(root, "commit", "-m", "base advanced independently")
+    base = git(root, "rev-parse", "HEAD")
+    git(root, "push", "origin", f"{base}:refs/heads/upstream-fixture")
+    git(remote, "update-ref", "refs/heads/master", base)
+    with pytest.raises(RuntimeError, match="no incluye la base actual"):
+        publish_snapshot(root, ["material.txt"], publish=True)
+    assert git(remote, "show", f"{first['branch']}:material.txt") == "daily version"
