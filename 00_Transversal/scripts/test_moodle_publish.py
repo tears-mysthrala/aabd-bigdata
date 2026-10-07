@@ -27,7 +27,7 @@ def repositories(tmp_path):
     (root / "user.txt").write_text("base\n")
     git(root, "add", "material.txt", "user.txt")
     git(root, "commit", "-m", "base")
-    git(root, "init", "--bare", str(remote))
+    git(root, "init", "--bare", "-b", "master", str(remote))
     git(root, "remote", "add", "origin", str(remote))
     git(root, "push", "origin", "master")
     # Igual que GH006: el remoto protege master, admite ramas de revisión.
@@ -160,6 +160,45 @@ def test_rejects_symlinks_and_missing_files(repositories):
 def test_already_merged_material_creates_nothing(repositories):
     root, _ = repositories
     assert publish_snapshot(root, ["material.txt"], publish=True)["status"] == "current"
+
+
+def test_daily_merge_and_new_upstream_files_allow_noop_and_further_updates(
+    repositories, tmp_path
+):
+    root, remote = repositories
+    (root / "material.txt").write_text("first download\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    # Merge por PR más un cambio ajeno legítimo en master.
+    (root / "user.txt").write_text("new upstream content\n")
+    env = dict(os.environ, GIT_INDEX_FILE=str(tmp_path / "merge-index"))
+    subprocess.check_output(["git", "read-tree", first["commit"]], cwd=root, env=env)
+    subprocess.check_output(["git", "add", "user.txt"], cwd=root, env=env)
+    tree = subprocess.check_output(
+        ["git", "write-tree"], cwd=root, env=env, text=True
+    ).strip()
+    merged = subprocess.check_output(
+        ["git", "commit-tree", tree, "-p", first["base"], "-p", first["commit"]],
+        cwd=root,
+        text=True,
+        input="merge daily PR\n",
+    ).strip()
+    git(root, "push", "origin", f"{merged}:refs/heads/upstream-fixture")
+    git(remote, "update-ref", "refs/heads/master", merged)
+    result = publish_snapshot(
+        root, ["material.txt"], publish=True, observation=observe_publication(root)
+    )
+    assert result["status"] == "current"
+    assert git(remote, "rev-parse", first["branch"]) == first["commit"]
+    observation = observe_publication(root)
+    (root / "material.txt").write_text("second download after merge\n")
+    second = publish_snapshot(
+        root, ["material.txt"], publish=True, observation=observation
+    )
+    assert second["branch"] == first["branch"]
+    assert git(remote, "rev-parse", f"{second['commit']}^") == merged
+    assert git(remote, "show", f"{second['commit']}:user.txt") == "new upstream content"
+    assert second["paths"] == ["material.txt"]
+    assert git(remote, "rev-parse", "master") == merged
 
 
 def test_moodle_filenames_with_non_ascii_characters(repositories):
@@ -416,3 +455,29 @@ def test_contaminated_daily_branch_is_rejected(repositories, tmp_path):
             root, ["material.txt"], publish=True, observation=observe_publication(root)
         )
     assert git(remote, "show", f"{commit}:evil.txt") == "no verificado"
+
+
+def test_unmanaged_rename_source_cannot_hide_in_a_managed_destination(
+    repositories, tmp_path
+):
+    root, remote = repositories
+    (root / "material.txt").write_text("first publication\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    (root / "renamed.txt").write_text("base\n")
+    env = dict(os.environ, GIT_INDEX_FILE=str(tmp_path / "rename-index"))
+    subprocess.check_output(["git", "read-tree", first["commit"]], cwd=root, env=env)
+    subprocess.check_output(["git", "rm", "--cached", "user.txt"], cwd=root, env=env)
+    subprocess.check_output(["git", "add", "renamed.txt"], cwd=root, env=env)
+    tree = subprocess.check_output(
+        ["git", "write-tree"], cwd=root, env=env, text=True
+    ).strip()
+    commit = subprocess.check_output(
+        ["git", "commit-tree", tree, "-p", first["commit"]],
+        cwd=root,
+        text=True,
+        input="external rename\n",
+    ).strip()
+    git(root, "push", "origin", f"{commit}:refs/heads/{first['branch']}")
+    with pytest.raises(RuntimeError, match="ajenos al material"):
+        publish_snapshot(root, ["material.txt", "renamed.txt"], publish=True)
+    assert git(remote, "rev-parse", first["branch"]) == commit

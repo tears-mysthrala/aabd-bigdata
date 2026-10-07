@@ -146,8 +146,36 @@ def publish_snapshot(
         git("fetch", "--no-tags", remote, f"refs/heads/{branch}")
         parent = git("rev-parse", "FETCH_HEAD")
         parent_tree = git("rev-parse", f"{parent}^{{tree}}")
+    if observation is not None and observation != PublicationObservation(
+        branch, base, parent
+    ):
+        raise RuntimeError(
+            "El remoto cambió durante la sincronización; repetir un ciclo fresco"
+        )
+
+    integrated = False
+    if existing:
+        ancestry = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", parent, base],
+            cwd=root,
+            capture_output=True,
+            timeout=90,
+        )
+        if ancestry.returncode not in (0, 1):
+            raise RuntimeError("No se pudo verificar la integración de la rama diaria")
+        integrated = ancestry.returncode == 0
+        if integrated:
+            # La PR ya se integró; las siguientes novedades parten de master.
+            # master conserva el tip diario como ancestro: el push sigue siendo FF.
+            parent, parent_tree = base, base_tree
         inherited = git(
-            "diff", "--name-only", "-z", base_tree, parent_tree, raw=True
+            "diff",
+            "--no-renames",
+            "--name-only",
+            "-z",
+            base_tree,
+            parent_tree,
+            raw=True,
         ).split("\0")[:-1]
         outside = sorted(set(inherited) - set(safe_paths))
         if outside:
@@ -155,13 +183,6 @@ def publish_snapshot(
                 "La rama diaria contiene cambios ajenos al material "
                 "verificado: " + ", ".join(outside)
             )
-
-    if observation is not None and observation != PublicationObservation(
-        branch, base, parent
-    ):
-        raise RuntimeError(
-            "El remoto cambió durante la sincronización; repetir un ciclo fresco"
-        )
 
     def blob(rev: str, name: str) -> str | None:
         try:
@@ -227,7 +248,7 @@ def publish_snapshot(
                     )
         tree = git("write-tree", env=env)
     if tree == parent_tree:
-        if existing:
+        if existing and not integrated:
             return {
                 "status": "published",
                 "branch": branch,

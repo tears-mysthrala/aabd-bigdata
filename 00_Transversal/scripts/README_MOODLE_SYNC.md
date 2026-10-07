@@ -168,6 +168,10 @@ ni se escribe directamente en `master`**. Al comienzo de la siguiente jornada
 se puede abrir una PR con la rama del día anterior y, después de integrarla,
 el siguiente ciclo diario parte de la nueva base remota. Publicar la rama no
 equivale a integrar el material.
+Si la rama diaria ya es ancestro de la base (merge mediante PR), un ciclo
+sin novedades termina como material ya integrado. Si llegan nuevas descargas
+ese mismo día, continúa la misma rama a partir de la base actual mediante
+avance rápido, conservando los cambios de código y documentación integrados.
 El remoto y la base se pueden indicar con `MOODLE_GIT_REMOTE` (por defecto
 `origin`) y `MOODLE_BASE_BRANCH` (`master`), sin cambiar credenciales ni reglas
 de protección.
