@@ -2,15 +2,79 @@
 
 Usa un índice temporal y parte de la rama remota: no cambia HEAD, el índice
 del usuario ni su árbol de trabajo. Nunca fuerza un push ni escribe en master.
+
+Garantías del snapshot diario:
+
+- La rama diaria reutilizada se valida contra la base: si contiene rutas
+  ajenas al material verificado de este ciclo, la publicación se rechaza
+  en lugar de heredar contaminación.
+- La fusión es por ruta y falla cerrada: una ruta se publica si la rama
+  no la ha cambiado desde la base; se preserva la rama si este checkout
+  conserva la versión de la base; si base, rama y checkout difieren los
+  tres, la publicación se rechaza (conflicto) salvo que el llamador haya
+  observado estas referencias antes de verificar otra vez las fuentes.
+  Esa observación solo sirve si base y rama siguen intactas al publicar.
+- Cada ciclo debe pasar el conjunto gestionado completo que quiera
+  preservar en la rama (el llamador real pasa siempre ``SYNC_MANAGED``).
 """
 
 from __future__ import annotations
 
+import hashlib
 import os
 import subprocess
 import tempfile
+from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
+
+
+@dataclass(frozen=True)
+class PublicationObservation:
+    """Estado remoto observado antes de verificar de nuevo las fuentes."""
+
+    branch: str
+    base: str
+    parent: str
+
+
+def observe_publication(
+    root: Path, *, remote: str = "origin", base_branch: str = "master"
+) -> PublicationObservation:
+    """Leer ambas referencias antes de descargar, sin modificar el remoto."""
+    if not remote or remote.startswith("-"):
+        raise ValueError("Remoto Git inválido")
+    branch = f"moodle-sync/{base_branch}/{date.today().isoformat()}"
+    for name in (base_branch, branch):
+        checked = subprocess.run(
+            ["git", "check-ref-format", f"refs/heads/{name}"],
+            cwd=root,
+            capture_output=True,
+            timeout=90,
+        )
+        if checked.returncode:
+            raise ValueError("Referencia Git inválida")
+    observed = subprocess.run(
+        [
+            "git",
+            "ls-remote",
+            "--heads",
+            remote,
+            f"refs/heads/{base_branch}",
+            f"refs/heads/{branch}",
+        ],
+        cwd=root,
+        text=True,
+        capture_output=True,
+        timeout=90,
+    )
+    if observed.returncode:
+        raise RuntimeError("No se pudo observar el remoto antes de sincronizar")
+    refs = dict(line.split()[::-1] for line in observed.stdout.splitlines())
+    base = refs.get(f"refs/heads/{base_branch}")
+    if base is None:
+        raise RuntimeError("No existe la rama remota base")
+    return PublicationObservation(branch, base, refs.get(f"refs/heads/{branch}", base))
 
 
 def publish_snapshot(
@@ -20,8 +84,14 @@ def publish_snapshot(
     remote: str = "origin",
     base_branch: str = "master",
     publish: bool = False,
+    observation: PublicationObservation | None = None,
+    verified_hashes: dict[str, str] | None = None,
 ) -> dict:
-    """Preparar o publicar un snapshot acotado, también sin descargas nuevas."""
+    """Preparar o publicar un snapshot acotado, también sin descargas nuevas.
+
+    ``observation`` debe obtenerse antes de descargar/verificar las fuentes,
+    nunca como forma de saltarse un conflicto al final del ciclo.
+    """
     root = root.resolve()
 
     def git(
@@ -60,47 +130,130 @@ def publish_snapshot(
         safe_paths.append(name)
     if not safe_paths:
         raise ValueError("No hay material verificado para publicar")
+    if verified_hashes is not None and set(verified_hashes) != set(safe_paths):
+        raise ValueError("Los hashes verificados no cubren todo el material gestionado")
 
     # FETCH_HEAD no altera la rama actual ni el índice real.
     git("fetch", "--no-tags", remote, f"refs/heads/{base_branch}")
     base = git("rev-parse", "FETCH_HEAD")
     base_tree = git("rev-parse", f"{base}^{{tree}}")
+    branch = f"moodle-sync/{base_branch}/{date.today().isoformat()}"
+    git("check-ref-format", f"refs/heads/{branch}")
+    existing = git("ls-remote", "--heads", remote, f"refs/heads/{branch}").split()
+    parent = base
+    parent_tree = base_tree
+    if existing:
+        git("fetch", "--no-tags", remote, f"refs/heads/{branch}")
+        parent = git("rev-parse", "FETCH_HEAD")
+        parent_tree = git("rev-parse", f"{parent}^{{tree}}")
+        inherited = git(
+            "diff", "--name-only", "-z", base_tree, parent_tree, raw=True
+        ).split("\0")[:-1]
+        outside = sorted(set(inherited) - set(safe_paths))
+        if outside:
+            raise RuntimeError(
+                "La rama diaria contiene cambios ajenos al material "
+                "verificado: " + ", ".join(outside)
+            )
+
+    if observation is not None and observation != PublicationObservation(
+        branch, base, parent
+    ):
+        raise RuntimeError(
+            "El remoto cambió durante la sincronización; repetir un ciclo fresco"
+        )
+
+    def blob(rev: str, name: str) -> str | None:
+        try:
+            return git("rev-parse", f"{rev}:{name}")
+        except RuntimeError:
+            return None
+
     with tempfile.TemporaryDirectory(prefix="moodle-index-") as temporary:
         env = dict(
             os.environ,
             GIT_INDEX_FILE=str(Path(temporary) / "index"),
             GIT_LITERAL_PATHSPECS="1",
         )
-        git("read-tree", base, env=env)
+        git("read-tree", parent, env=env)
         git("add", "--", *safe_paths, env=env)
+        preserved = []
+        for name in safe_paths:
+            staged = git("rev-parse", f":{name}", env=env)
+            tip = blob(parent, name)
+            original = blob(base, name)
+            if staged == tip:
+                continue
+            if tip is None and original is not None:
+                raise RuntimeError(
+                    "La rama diaria eliminó material gestionado: " + name
+                )
+            if tip == original:
+                continue  # La rama no tocó esta ruta; publicar el trabajo.
+            if staged == original:
+                # Copia desfasada: la rama avanzó y este checkout conserva
+                # la versión de la base. No revertir; conservar lo publicado.
+                git("restore", "--source", parent, "--staged", "--", name, env=env)
+                preserved.append(name)
+                continue
+            if observation is not None:
+                # Las fuentes se verificaron después de observar este tip y
+                # el remoto no ha avanzado. Hay causalidad para este ciclo.
+                continue
+            # Tres versiones distintas (base, rama y checkout): el orden
+            # causal no puede probarse y asumir "actualización secuencial"
+            # podría revertir material más nuevo. Fallar cerrado y exigir
+            # una sincronización nueva antes de reintentar.
+            raise RuntimeError(
+                "Conflicto de publicación en " + name + ": base, rama diaria"
+                " y checkout difieren; sincroniza de nuevo y reintenta"
+            )
+        if verified_hashes is not None:
+            for name in safe_paths:
+                staged = git("rev-parse", f":{name}", env=env)
+                content = subprocess.run(
+                    ["git", "cat-file", "blob", staged],
+                    cwd=root,
+                    capture_output=True,
+                    timeout=90,
+                )
+                if (
+                    content.returncode
+                    or hashlib.sha256(content.stdout).hexdigest()
+                    != verified_hashes[name]
+                ):
+                    raise RuntimeError(
+                        "El snapshot no coincide con el material verificado: " + name
+                    )
         tree = git("write-tree", env=env)
-    if tree == base_tree:
-        return {"status": "current", "base": base, "tree": tree}
+    if tree == parent_tree:
+        if existing:
+            return {
+                "status": "published",
+                "branch": branch,
+                "commit": parent,
+                "base": base,
+                "tree": tree,
+                "paths": [],
+                "preserved": sorted(preserved),
+            }
+        return {"status": "current", "base": base, "tree": tree, "preserved": []}
 
-    branch = f"moodle-sync/{base_branch}/{date.today().isoformat()}-{tree[:12]}"
-    git("check-ref-format", f"refs/heads/{branch}")
-    changed = git("diff", "--name-only", "-z", base_tree, tree, raw=True).split("\0")[
+    changed = git("diff", "--name-only", "-z", parent_tree, tree, raw=True).split("\0")[
         :-1
     ]
     if not set(changed).issubset(set(safe_paths)):
         raise RuntimeError("El snapshot incluye cambios ajenos al material verificado")
-    existing = git("ls-remote", "--heads", remote, f"refs/heads/{branch}").split()
     if existing:
-        commit = existing[0]
-        git("fetch", "--no-tags", remote, f"refs/heads/{branch}")
-        if git("rev-parse", f"{commit}^{{tree}}") != tree:
-            raise RuntimeError("La rama de revisión contiene un snapshot distinto")
-        return {
-            "status": "published",
-            "branch": branch,
-            "commit": commit,
-            "base": base,
-            "tree": tree,
-            "paths": changed,
-        }
-
-    message = "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
-    commit = git("commit-tree", tree, "-p", base, stdin=message)
+        message = (
+            "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
+        )
+        commit = git("commit-tree", tree, "-p", parent, stdin=message)
+    else:
+        message = (
+            "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
+        )
+        commit = git("commit-tree", tree, "-p", base, stdin=message)
     result = {
         "status": "prepared",
         "branch": branch,
@@ -108,9 +261,11 @@ def publish_snapshot(
         "base": base,
         "tree": tree,
         "paths": changed,
+        "preserved": sorted(preserved),
     }
     if publish:
-        git("push", remote, f"{commit}:refs/heads/{branch}")
+        refspec = f"{commit}:refs/heads/{branch}"
+        git("push", remote, refspec)
         observed = git("ls-remote", "--heads", remote, f"refs/heads/{branch}").split()
         if not observed or observed[0] != commit:
             raise RuntimeError("No se pudo verificar el commit publicado")

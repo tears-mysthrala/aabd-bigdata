@@ -57,7 +57,10 @@ def log(msg: str) -> None:
 
 def notify(title: str, msg: str) -> None:
     try:
-        subprocess.run(["notify-send", "-a", "Moodle Sync", title, redact_sensitive(msg)], check=False)
+        subprocess.run(
+            ["notify-send", "-a", "Moodle Sync", title, redact_sensitive(msg)],
+            check=False,
+        )
     except Exception as e:
         log(f"Ezin izan da notify-send exekutatu: {e}")
 
@@ -69,15 +72,24 @@ class MoodleAuthenticationRejected(RuntimeError):
 def check_login_rejection(message: str) -> None:
     """Clasificar mensajes conocidos sin escribir el texto recibido ni secretos."""
     normalized = " ".join(message.casefold().split())
-    if any(text in normalized for text in (
-        "account is locked", "cuenta está bloqueada", "kontua blokeatuta",
-    )):
+    if any(
+        text in normalized
+        for text in (
+            "account is locked",
+            "cuenta está bloqueada",
+            "kontua blokeatuta",
+        )
+    ):
         raise MoodleAuthenticationRejected(
             "Cuenta Moodle bloqueada: requiere desbloqueo humano; no se reintenta"
         )
-    if any(text in normalized for text in (
-        "invalid login", "nombre de usuario o contraseña incorrectos",
-    )):
+    if any(
+        text in normalized
+        for text in (
+            "invalid login",
+            "nombre de usuario o contraseña incorrectos",
+        )
+    ):
         raise MoodleAuthenticationRejected(
             "Moodle rechaza el login: comprobar acceso configurado; no se reintenta"
         )
@@ -99,7 +111,9 @@ def lortu_saioa() -> requests.Session:
             cookies = browser.contexts[0].cookies(BASE_URL)
         else:
             if not USERNAME or not PASSWORD:
-                raise SystemExit("Falta MOODLE_USER/MOODLE_PASS en el entorno (nunca en código).")
+                raise SystemExit(
+                    "Falta MOODLE_USER/MOODLE_PASS en el entorno (nunca en código)."
+                )
             browser = p.chromium.launch(
                 executable_path="/usr/bin/chromium",
                 headless=True,
@@ -112,9 +126,11 @@ def lortu_saioa() -> requests.Session:
             page.click("#loginbtn")
             page.wait_for_load_state("networkidle")
             try:
-                message = " ".join(page.locator(
-                    ".loginerrors, .alert-danger, #loginerrormessage"
-                ).all_text_contents())
+                message = " ".join(
+                    page.locator(
+                        ".loginerrors, .alert-danger, #loginerrormessage"
+                    ).all_text_contents()
+                )
                 check_login_rejection(message)
                 cookies = page.context.cookies(BASE_URL)
             finally:
@@ -127,7 +143,9 @@ def lortu_saioa() -> requests.Session:
     # Verificar autenticación real: sin sesión válida Moodle devuelve el
     # formulario de login (HTTP 200) y el escaneo vería 0 actividades,
     # informando "sin novedades" en falso. Fallar ruidoso en ese caso.
-    probe = moodle_request(session, "GET", f"{BASE_URL}/course/view.php?id={COURSE_ID}", timeout=15)
+    probe = moodle_request(
+        session, "GET", f"{BASE_URL}/course/view.php?id={COURSE_ID}", timeout=15
+    )
     probe.raise_for_status()
     if 'id="username"' in probe.text or "login/index.php" in probe.url:
         raise RuntimeError("Login Moodle fallido: sesión autenticada no confirmada")
@@ -180,7 +198,7 @@ def docx_to_md(docx_path: Path, md_path: Path) -> None:
 def helburu_direktorioa(sec_id: int, izena: str, karpeta_izena: str = "") -> Path:
     """Zehaztu fitxategiaren helburu-karpeta atal eta fitxategi-izenaren arabera."""
     izena_lower = izena.lower()
-    
+
     # 1. Karpeta espezifikoak
     if "mock datuak" in karpeta_izena.lower():
         return REPO_ROOT / "04_Programazioa_5073" / "data" / "mock_datuak"
@@ -212,37 +230,60 @@ def helburu_direktorioa(sec_id: int, izena: str, karpeta_izena: str = "") -> Pat
         return REPO_ROOT / "materialak"
 
 
-def safe_download_path(dest_dir: Path, remote_name: str, *, nested: bool = False) -> Path:
+def safe_download_path(
+    dest_dir: Path, remote_name: str, *, nested: bool = False
+) -> Path:
     """Baliozkotu urruneko izena idatzi aurretik, baita symlinkak ere."""
     name = urllib.parse.unquote(remote_name).replace("\\", "/")
     parts = name.split("/")
-    if (not name or name.startswith("/") or re.match(r"^[A-Za-z]:", name)
-            or any(part in ("", ".", "..", ".git") for part in parts)
-            or (not nested and len(parts) != 1)):
+    if (
+        not name
+        or name.startswith("/")
+        or re.match(r"^[A-Za-z]:", name)
+        or any(part in ("", ".", "..", ".git") for part in parts)
+        or (not nested and len(parts) != 1)
+    ):
         raise ValueError(f"Moodle izen ez-segurua: {remote_name!r}")
     root = REPO_ROOT.resolve()
     base = dest_dir.resolve()
     candidate = (base / name).resolve()
-    if (not base.is_relative_to(root) or not candidate.is_relative_to(root)
-            or ".git" in candidate.relative_to(root).parts):
+    if (
+        not base.is_relative_to(root)
+        or not candidate.is_relative_to(root)
+        or ".git" in candidate.relative_to(root).parts
+    ):
         raise ValueError("Moodle deskarga-bidea baimendutako direktoriotik kanpo")
     return candidate
 
 
 def moodle_request(
-    session: requests.Session, method: str, url: str,
-    allowed_hosts: set[str] | None = None, *, stop_at_external: bool = False, **kwargs
+    session: requests.Session,
+    method: str,
+    url: str,
+    allowed_hosts: set[str] | None = None,
+    *,
+    stop_at_external: bool = False,
+    **kwargs,
 ) -> requests.Response:
     """Jarraitu soilik baimendutako HTTPS hostetako birbideratzeei."""
     current = urllib.parse.urljoin(BASE_URL + "/", url)
     hosts = allowed_hosts or {urllib.parse.urlparse(BASE_URL).hostname}
     for _ in range(6):
         parsed = urllib.parse.urlparse(current)
-        if parsed.scheme != "https" or parsed.hostname not in hosts or parsed.username or parsed.password:
-            raise ValueError("Deskarga esteka/birbideratzea baimendutako hostetik kanpo")
+        if (
+            parsed.scheme != "https"
+            or parsed.hostname not in hosts
+            or parsed.username
+            or parsed.password
+        ):
+            raise ValueError(
+                "Deskarga esteka/birbideratzea baimendutako hostetik kanpo"
+            )
         for attempt in range(3):
             try:
-                response = session.request(method, current, allow_redirects=False, **kwargs)
+                response = session.request(
+                    method, current, allow_redirects=False, **kwargs
+                )
                 break
             except (requests.ConnectionError, requests.Timeout):
                 if attempt == 2:
@@ -256,50 +297,129 @@ def moodle_request(
             raise ValueError("Moodle birbideratzeak ez du Location goibururik")
         target = urllib.parse.urljoin(current, location)
         parsed_target = urllib.parse.urlparse(target)
-        if stop_at_external and (parsed_target.scheme != "https" or parsed_target.hostname not in hosts):
+        if stop_at_external and (
+            parsed_target.scheme != "https" or parsed_target.hostname not in hosts
+        ):
             return response
         response.close()
         current = target
     raise ValueError("Moodle birbideratze gehiegi")
 
 
+def sanitize_notebook(data: dict) -> bool:
+    """Limpiar metadata personal y rutas de outputs sin tocar el código docente."""
+    changed = False
+    private_keys = {
+        "userid",
+        "user_id",
+        "displayname",
+        "email",
+        "user_email",
+        "executioninfo",
+        "authorship_tag",
+    }
+
+    def metadata(value):
+        nonlocal changed
+        if isinstance(value, dict):
+            for key in list(value):
+                if key.casefold() in private_keys:
+                    del value[key]
+                    changed = True
+                else:
+                    metadata(value[key])
+        elif isinstance(value, list):
+            for item in value:
+                metadata(item)
+
+    def outputs(value):
+        nonlocal changed
+        if isinstance(value, str):
+            clean = re.sub(
+                r"/(?:home|tmp|var/tmp)/[^\s\"'<>\x1b]+", "[ruta local omitida]", value
+            )
+            changed |= clean != value
+            return clean
+        if isinstance(value, dict):
+            return {key: outputs(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [outputs(item) for item in value]
+        return value
+
+    metadata(data.get("metadata", {}))
+    for cell in data["cells"]:
+        metadata(cell.get("metadata", {}))
+        if "outputs" in cell:
+            cell["outputs"] = outputs(cell["outputs"])
+    return changed
+
+
 def download_file(
-    session: requests.Session, url: str, dest_path: Path,
-    *, allowed_hosts: set[str] | None = None, notebook: bool = False
+    session: requests.Session,
+    url: str,
+    dest_path: Path,
+    *,
+    allowed_hosts: set[str] | None = None,
+    notebook: bool = False,
 ) -> bool:
     """Deskargatu muga batekin eta ordezkatu fitxategia deskarga osoa denean."""
     dest_path.parent.mkdir(parents=True, exist_ok=True)
     temp_path = None
     try:
         with moodle_request(
-            session, "GET", url, allowed_hosts=allowed_hosts, stream=True, timeout=(10, 30)
+            session,
+            "GET",
+            url,
+            allowed_hosts=allowed_hosts,
+            stream=True,
+            timeout=(10, 30),
         ) as response:
             response.raise_for_status()
             html_content = "text/html" in response.headers.get("Content-Type", "")
-            if html_content and (dest_path.suffix.lower() not in (".html", ".htm")
-                                 or "pluginfile.php" not in urllib.parse.urlparse(response.url).path):
+            if html_content and (
+                dest_path.suffix.lower() not in (".html", ".htm")
+                or "pluginfile.php" not in urllib.parse.urlparse(response.url).path
+            ):
                 raise ValueError("Moodle HTML orria ez da deskargatzeko fitxategia")
             if notebook and "text/html" in response.headers.get("Content-Type", ""):
                 raise ValueError("Drive-k HTML/login orria itzuli du, ez notebook bat")
             if int(response.headers.get("Content-Length") or 0) > MAX_DOWNLOAD_BYTES:
                 raise ValueError("Moodle fitxategiak tamaina-muga gainditzen du")
-            with tempfile.NamedTemporaryFile(dir=dest_path.parent, delete=False) as output:
+            with tempfile.NamedTemporaryFile(
+                dir=dest_path.parent, delete=False
+            ) as output:
                 temp_path = Path(output.name)
                 total = 0
                 for chunk in response.iter_content(chunk_size=64 * 1024):
                     total += len(chunk)
                     if total > MAX_DOWNLOAD_BYTES:
-                        raise ValueError("Moodle fitxategiak tamaina-muga gainditzen du")
+                        raise ValueError(
+                            "Moodle fitxategiak tamaina-muga gainditzen du"
+                        )
                     output.write(chunk)
         if notebook:
             data = json.loads(temp_path.read_text(encoding="utf-8"))
-            if not isinstance(data, dict) or not isinstance(data.get("cells"), list) or not data.get("nbformat"):
+            if (
+                not isinstance(data, dict)
+                or not isinstance(data.get("cells"), list)
+                or not data.get("nbformat")
+            ):
                 raise ValueError("Drive deskarga ez da notebook JSON bat")
+            if sanitize_notebook(data):
+                temp_path.write_text(
+                    json.dumps(data, ensure_ascii=False, indent=1) + "\n",
+                    encoding="utf-8",
+                )
         with temp_path.open("rb") as source:
             prefix = source.read(512).lstrip().lower()
-        if dest_path.suffix.lower() not in (".html", ".htm") and prefix.startswith((b"<!doctype html", b"<html")):
+        if dest_path.suffix.lower() not in (".html", ".htm") and prefix.startswith(
+            (b"<!doctype html", b"<html")
+        ):
             raise ValueError("HTML/login orria ezin da material gisa gorde")
-        if dest_path.suffix.lower() in (".html", ".htm") and b"sesskey" in temp_path.read_bytes().lower():
+        if (
+            dest_path.suffix.lower() in (".html", ".htm")
+            and b"sesskey" in temp_path.read_bytes().lower()
+        ):
             raise ValueError("HTMLak Moodle saio-datuak ditu")
         if dest_path.suffix.lower() == ".pdf" and not prefix.startswith(b"%pdf-"):
             raise ValueError("PDF fitxategiak ez du PDF goibururik")
@@ -323,7 +443,10 @@ def file_hash(path: Path) -> str:
 def response_filename(response: requests.Response) -> str:
     header = Message()
     header["Content-Disposition"] = response.headers.get("Content-Disposition", "")
-    return header.get_filename() or urllib.parse.urlparse(response.url).path.rsplit("/", 1)[-1]
+    return (
+        header.get_filename()
+        or urllib.parse.urlparse(response.url).path.rsplit("/", 1)[-1]
+    )
 
 
 def fetch_file(*args, **kwargs) -> bool:
@@ -331,7 +454,11 @@ def fetch_file(*args, **kwargs) -> bool:
     for attempt in range(3):
         try:
             return download_file(*args, **kwargs)
-        except (requests.ConnectionError, requests.Timeout, requests.exceptions.ChunkedEncodingError):
+        except (
+            requests.ConnectionError,
+            requests.Timeout,
+            requests.exceptions.ChunkedEncodingError,
+        ):
             if attempt == 2:
                 raise
             time.sleep(attempt + 1)
@@ -340,17 +467,25 @@ def fetch_file(*args, **kwargs) -> bool:
 def public_url(url: str) -> str:
     """Gorde erreferentzia publikoa, saio-parametrorik eta userinfo gabe."""
     parsed = urllib.parse.urlsplit(url)
-    query = urllib.parse.urlencode([(key, value) for key, value in urllib.parse.parse_qsl(parsed.query)
-                                   if key in {"id", "section", "forcedownload", "export", "usp", "chapterid"}])
-    return urllib.parse.urlunsplit((parsed.scheme, parsed.netloc.rsplit("@", 1)[-1], parsed.path, query, ""))
+    query = urllib.parse.urlencode(
+        [
+            (key, value)
+            for key, value in urllib.parse.parse_qsl(parsed.query)
+            if key in {"id", "section", "forcedownload", "export", "usp", "chapterid"}
+        ]
+    )
+    return urllib.parse.urlunsplit(
+        (parsed.scheme, parsed.netloc.rsplit("@", 1)[-1], parsed.path, query, "")
+    )
 
 
 def sinkronizatu() -> list[str]:
     """Egiaztatu Moodle materiala; erroreak eta kanpo-mugak esplizituak dira."""
-    global SYNC_REPORT, SYNC_MANAGED
+    global SYNC_REPORT, SYNC_MANAGED, SYNC_HASHES
     session = lortu_saioa()
     # Google tiene su propia autorización; nunca reutilizar cookies de Moodle.
     from google_drive_auth import authenticated_session
+
     google_auth_error = None
     try:
         google_session = authenticated_session()
@@ -369,12 +504,23 @@ def sinkronizatu() -> list[str]:
 
     def error(kind: str, url: str, exc: Exception) -> None:
         # Ez idatzi HTML, cookies edo autentifikazio-erantzunen edukia.
-        detail = re.sub(r"""https?://[^\s'"]+""", lambda match: public_url(match.group()), str(exc))[:400]
+        detail = re.sub(
+            r"""https?://[^\s'"]+""", lambda match: public_url(match.group()), str(exc)
+        )[:400]
         reason = redact_sensitive(f"{type(exc).__name__}: {detail}")
-        entries.append({"kind": kind, "source": public_url(url), "status": "error", "reason": reason})
+        entries.append(
+            {
+                "kind": kind,
+                "source": public_url(url),
+                "status": "error",
+                "reason": reason,
+            }
+        )
         log(f"Sinkronizazio errorea ({kind}): {reason}")
 
-    def sync_file(sec: int, url: str, folder: str = "", relative: str | None = None) -> None:
+    def sync_file(
+        sec: int, url: str, folder: str = "", relative: str | None = None
+    ) -> None:
         with moodle_request(session, "HEAD", url, timeout=20) as head:
             head.raise_for_status()
             name = relative or response_filename(head)
@@ -386,13 +532,23 @@ def sinkronizatu() -> list[str]:
         if key in seen_files:
             return
         seen_files.add(key)
-        changed = fetch_file(session, url, target, notebook=target.suffix.lower() == ".ipynb")
+        changed = fetch_file(
+            session, url, target, notebook=target.suffix.lower() == ".ipynb"
+        )
         if changed:
             downloaded.append(str(target.relative_to(REPO_ROOT.resolve())))
-        entries.append({"kind": "file", "source": public_url(url),
-                        "path": str(target.relative_to(REPO_ROOT.resolve())),
-                        "status": "verified", "sha256": file_hash(target)})
-        if target.suffix.lower() == ".docx" and (changed or not target.with_suffix(".md").is_file()):
+        entries.append(
+            {
+                "kind": "file",
+                "source": public_url(url),
+                "path": str(target.relative_to(REPO_ROOT.resolve())),
+                "status": "verified",
+                "sha256": file_hash(target),
+            }
+        )
+        if target.suffix.lower() == ".docx" and (
+            changed or not target.with_suffix(".md").is_file()
+        ):
             md = target.with_suffix(".md")
             previous = file_hash(md) if md.is_file() else None
             docx_to_md(target, md)
@@ -426,14 +582,18 @@ def sinkronizatu() -> list[str]:
             error("section", section_url, exc)
             continue
         for activity in soup.select(".activity"):
-            link = activity.select_one('a.aalink[href], .activityname a[href]') or activity.select_one('a[href]')
+            link = activity.select_one(
+                "a.aalink[href], .activityname a[href]"
+            ) or activity.select_one("a[href]")
             if link is None:
                 continue
             url = urllib.parse.urljoin(BASE_URL + "/", link["href"])
             if url in seen_activities:
                 continue
             seen_activities.add(url)
-            title = (activity.select_one(".instancename") or link).get_text(" ", strip=True)
+            title = (activity.select_one(".instancename") or link).get_text(
+                " ", strip=True
+            )
             kind_match = re.search(r"/mod/([^/]+)/", urllib.parse.urlparse(url).path)
             if not kind_match:
                 continue
@@ -443,19 +603,36 @@ def sinkronizatu() -> list[str]:
                 if kind == "resource":
                     with moodle_request(session, "HEAD", url, timeout=20) as head:
                         head.raise_for_status()
-                        direct = "pluginfile.php" in urllib.parse.urlparse(head.url).path
+                        direct = (
+                            "pluginfile.php" in urllib.parse.urlparse(head.url).path
+                        )
                         filename = response_filename(head)
-                    if direct and Path(urllib.parse.unquote(filename)).suffix.lower() != ".php":
+                    if (
+                        direct
+                        and Path(urllib.parse.unquote(filename)).suffix.lower()
+                        != ".php"
+                    ):
                         sync_file(sec, url)
                     else:
-                        with moodle_request(session, "GET", url, timeout=25) as response:
+                        with moodle_request(
+                            session, "GET", url, timeout=25
+                        ) as response:
                             response.raise_for_status()
                             page = BeautifulSoup(response.text, "html.parser")
                         main = page.select_one("#region-main") or page
-                        links = [a["href"] for a in main.select('a[href*="pluginfile.php"]')]
-                        links += [tag.get("src") or tag.get("data") for tag in main.select('iframe[src*="pluginfile.php"], object[data*="pluginfile.php"], embed[src*="pluginfile.php"], img[src*="pluginfile.php"]')]
+                        links = [
+                            a["href"] for a in main.select('a[href*="pluginfile.php"]')
+                        ]
+                        links += [
+                            tag.get("src") or tag.get("data")
+                            for tag in main.select(
+                                'iframe[src*="pluginfile.php"], object[data*="pluginfile.php"], embed[src*="pluginfile.php"], img[src*="pluginfile.php"]'
+                            )
+                        ]
                         if not links:
-                            raise ValueError("Baliabidearen HTML orrian ez da eranskinik aurkitu")
+                            raise ValueError(
+                                "Baliabidearen HTML orrian ez da eranskinik aurkitu"
+                            )
                         for attachment in dict.fromkeys(links):
                             sync_file(sec, urllib.parse.urljoin(url, attachment))
                 elif kind in ("folder", "assign"):
@@ -467,50 +644,100 @@ def sinkronizatu() -> list[str]:
                         dates = page.select_one(".activity-dates")
                         # Solo enunciado y fechas generales: nunca entregas,
                         # calificaciones ni la tabla personal del alumnado.
-                        assignments.append({
-                            "title": title, "section": sec, "source": public_url(url),
-                            "statement": intro.get_text(" ", strip=True) if intro else "",
-                            "dates": dates.get_text(" ", strip=True) if dates else "",
-                        })
-                    selector = '#region-main a[href*="pluginfile.php"]' if kind == "folder" else '#intro a[href*="pluginfile.php"], .introattachment a[href*="pluginfile.php"]'
+                        assignments.append(
+                            {
+                                "title": title,
+                                "section": sec,
+                                "source": public_url(url),
+                                "statement": intro.get_text(" ", strip=True)
+                                if intro
+                                else "",
+                                "dates": dates.get_text(" ", strip=True)
+                                if dates
+                                else "",
+                            }
+                        )
+                    selector = (
+                        '#region-main a[href*="pluginfile.php"]'
+                        if kind == "folder"
+                        else '#intro a[href*="pluginfile.php"], .introattachment a[href*="pluginfile.php"]'
+                    )
                     for attachment in page.select(selector):
                         href = urllib.parse.urljoin(url, attachment["href"])
                         relative = None
                         if kind == "folder":
-                            match = re.search(r"/content/\d+/(.+)$", urllib.parse.urlparse(href).path)
-                            relative = match.group(1) if match else urllib.parse.urlparse(href).path.rsplit("/", 1)[-1]
+                            match = re.search(
+                                r"/content/\d+/(.+)$", urllib.parse.urlparse(href).path
+                            )
+                            relative = (
+                                match.group(1)
+                                if match
+                                else urllib.parse.urlparse(href).path.rsplit("/", 1)[-1]
+                            )
                         try:
-                            sync_file(sec, href, title if kind == "folder" else "", relative)
+                            sync_file(
+                                sec, href, title if kind == "folder" else "", relative
+                            )
                         except Exception as exc:
                             error(kind, href, exc)
                 elif kind == "url":
-                    with moodle_request(session, "GET", url, stop_at_external=True, timeout=25) as response:
-                        external = urllib.parse.urljoin(response.url, response.headers["Location"]) if response.is_redirect else None
+                    with moodle_request(
+                        session, "GET", url, stop_at_external=True, timeout=25
+                    ) as response:
+                        external = (
+                            urllib.parse.urljoin(
+                                response.url, response.headers["Location"]
+                            )
+                            if response.is_redirect
+                            else None
+                        )
                         if not external:
                             response.raise_for_status()
                             page = BeautifulSoup(response.text, "html.parser")
                             main = page.select_one("#region-main") or page
-                            for candidate in main.select('a[href]'):
+                            for candidate in main.select("a[href]"):
                                 href = candidate["href"]
                                 host = urllib.parse.urlparse(href).hostname
-                                if href.startswith("https://") and host and host not in {urllib.parse.urlparse(BASE_URL).hostname, "moodle.org", "moodle.com"}:
+                                if (
+                                    href.startswith("https://")
+                                    and host
+                                    and host
+                                    not in {
+                                        urllib.parse.urlparse(BASE_URL).hostname,
+                                        "moodle.org",
+                                        "moodle.com",
+                                    }
+                                ):
                                     external = href
                                     break
                     if not external:
                         raise ValueError("URL jarduerak ez du kanpoko estekarik")
                     external_parts = urllib.parse.urlsplit(external)
-                    if (external_parts.scheme != "https" or not external_parts.hostname
-                            or external_parts.username or external_parts.password):
-                        raise ValueError("Kanpo-estekak HTTPS eta userinfo gabe izan behar du")
+                    if (
+                        external_parts.scheme != "https"
+                        or not external_parts.hostname
+                        or external_parts.username
+                        or external_parts.password
+                    ):
+                        raise ValueError(
+                            "Kanpo-estekak HTTPS eta userinfo gabe izan behar du"
+                        )
                     status = "web reference"
                     google_reason = None
                     google_api_reason = None
                     match = None
-                    if external_parts.hostname in {"drive.google.com", "colab.research.google.com"}:
-                        match = re.search(r"/(?:file/d/|drive/)([A-Za-z0-9_-]+)", external_parts.path)
+                    if external_parts.hostname in {
+                        "drive.google.com",
+                        "colab.research.google.com",
+                    }:
+                        match = re.search(
+                            r"/(?:file/d/|drive/)([A-Za-z0-9_-]+)", external_parts.path
+                        )
                     if match:
                         slug = re.sub(r"[^\w\-]+", "_", title).strip("_")[:60]
-                        target = safe_download_path(helburu_direktorioa(sec, title), f"{slug}.ipynb")
+                        target = safe_download_path(
+                            helburu_direktorioa(sec, title), f"{slug}.ipynb"
+                        )
                         try:
                             if google_session is not None:
                                 google_url = (
@@ -518,39 +745,100 @@ def sinkronizatu() -> list[str]:
                                     "?alt=media&supportsAllDrives=true"
                                 )
                                 try:
-                                    changed = fetch_file(google_session, google_url, target,
-                                        allowed_hosts={"www.googleapis.com"}, notebook=True)
-                                except (requests.RequestException, ValueError) as api_exc:
-                                    if isinstance(api_exc, requests.HTTPError) and api_exc.response is not None:
+                                    changed = fetch_file(
+                                        google_session,
+                                        google_url,
+                                        target,
+                                        allowed_hosts={"www.googleapis.com"},
+                                        notebook=True,
+                                    )
+                                except (
+                                    requests.RequestException,
+                                    ValueError,
+                                ) as api_exc:
+                                    if (
+                                        isinstance(api_exc, requests.HTTPError)
+                                        and api_exc.response is not None
+                                    ):
                                         google_api_reason = f"Google Drive API HTTP {api_exc.response.status_code}"
                                     else:
                                         google_api_reason = f"Google API download failed ({type(api_exc).__name__})"
                                     # Una autorización no elimina el acceso público original.
                                     with requests.Session() as public_session:
-                                        changed = fetch_file(public_session, f"https://drive.google.com/uc?export=download&id={match.group(1)}", target,
-                                            allowed_hosts={"drive.google.com", "drive.usercontent.google.com"}, notebook=True)
+                                        changed = fetch_file(
+                                            public_session,
+                                            f"https://drive.google.com/uc?export=download&id={match.group(1)}",
+                                            target,
+                                            allowed_hosts={
+                                                "drive.google.com",
+                                                "drive.usercontent.google.com",
+                                            },
+                                            notebook=True,
+                                        )
                             else:
                                 # Ez bidali Moodle cookies-ak Google-ra.
                                 with requests.Session() as public_session:
-                                    changed = fetch_file(public_session, f"https://drive.google.com/uc?export=download&id={match.group(1)}", target,
-                                        allowed_hosts={"drive.google.com", "drive.usercontent.google.com"}, notebook=True)
+                                    changed = fetch_file(
+                                        public_session,
+                                        f"https://drive.google.com/uc?export=download&id={match.group(1)}",
+                                        target,
+                                        allowed_hosts={
+                                            "drive.google.com",
+                                            "drive.usercontent.google.com",
+                                        },
+                                        notebook=True,
+                                    )
                             if changed:
-                                downloaded.append(str(target.relative_to(REPO_ROOT.resolve())))
-                            entries.append({"kind": "external notebook", "source": public_url(external), "path": str(target.relative_to(REPO_ROOT.resolve())), "status": "verified", "sha256": file_hash(target)})
+                                downloaded.append(
+                                    str(target.relative_to(REPO_ROOT.resolve()))
+                                )
+                            entries.append(
+                                {
+                                    "kind": "external notebook",
+                                    "source": public_url(external),
+                                    "path": str(
+                                        target.relative_to(REPO_ROOT.resolve())
+                                    ),
+                                    "status": "verified",
+                                    "sha256": file_hash(target),
+                                }
+                            )
                             status = "downloaded and verified"
-                        except (requests.RequestException, ValueError, json.JSONDecodeError) as exc:
-                            status = "not downloaded: Google access or download unavailable"
+                        except (
+                            requests.RequestException,
+                            ValueError,
+                            json.JSONDecodeError,
+                        ) as exc:
+                            status = (
+                                "not downloaded: Google access or download unavailable"
+                            )
                             if google_session is None:
-                                google_reason = (google_auth_error or "Google OAuth is not configured for the synchronizer") + "; public download unavailable"
+                                google_reason = (
+                                    google_auth_error
+                                    or "Google OAuth is not configured for the synchronizer"
+                                ) + "; public download unavailable"
                             elif google_api_reason:
-                                google_reason = google_api_reason + f"; public download unavailable ({type(exc).__name__})"
-                            elif isinstance(exc, requests.HTTPError) and exc.response is not None:
+                                google_reason = (
+                                    google_api_reason
+                                    + f"; public download unavailable ({type(exc).__name__})"
+                                )
+                            elif (
+                                isinstance(exc, requests.HTTPError)
+                                and exc.response is not None
+                            ):
                                 google_reason = f"Google Drive API HTTP {exc.response.status_code}; check account access, API activation and download permission"
                             else:
                                 google_reason = f"Google download or notebook validation failed ({type(exc).__name__})"
                     dest = helburu_direktorioa(sec, title)
-                    registries.setdefault(str(dest), []).append((title, public_url(url), public_url(external), status))
-                    entry = {"kind": "external link", "source": public_url(external), "activity": public_url(url), "status": status}
+                    registries.setdefault(str(dest), []).append(
+                        (title, public_url(url), public_url(external), status)
+                    )
+                    entry = {
+                        "kind": "external link",
+                        "source": public_url(external),
+                        "activity": public_url(url),
+                        "status": status,
+                    }
                     if google_reason:
                         entry["reason"] = google_reason
                     if match and google_auth_error:
@@ -558,45 +846,101 @@ def sinkronizatu() -> list[str]:
                     entries.append(entry)
                 elif kind in ("page", "book", "lesson", "scorm", "wiki"):
                     # Hauek ez dira fitxategiak. Ez aldarrikatu deskarga osoa.
-                    entries.append({"kind": kind, "source": public_url(url), "status": "manual review required"})
+                    entries.append(
+                        {
+                            "kind": kind,
+                            "source": public_url(url),
+                            "status": "manual review required",
+                        }
+                    )
                 else:
-                    entries.append({"kind": kind, "source": public_url(url), "status": "interactive activity (not mirrored)"})
+                    entries.append(
+                        {
+                            "kind": kind,
+                            "source": public_url(url),
+                            "status": "interactive activity (not mirrored)",
+                        }
+                    )
             except Exception as exc:
                 error(kind, url, exc)
     for name in idatzi_url_erregistroak(registries):
         downloaded.append(name)
     if not seen_activities or not seen_files:
-        error("course", index_url, ValueError("Ez da jarduera edo fitxategirik aurkitu; ezin da arrakasta aldarrikatu"))
+        error(
+            "course",
+            index_url,
+            ValueError(
+                "Ez da jarduera edo fitxategirik aurkitu; ezin da arrakasta aldarrikatu"
+            ),
+        )
     for entry in entries:
         if entry.get("status") == "verified" and entry.get("path"):
             target = REPO_ROOT / entry["path"]
             if not target.is_file() or file_hash(target) != entry["sha256"]:
                 entry["status"] = "error"
-                entry["reason"] = "Saved hash mismatch: possible filename collision or concurrent edit"
+                entry["reason"] = (
+                    "Saved hash mismatch: possible filename collision or concurrent edit"
+                )
     errors = sum(entry["status"] == "error" for entry in entries)
-    unavailable = sum(entry["status"].startswith("not downloaded") or entry["status"] == "manual review required" for entry in entries)
-    SYNC_REPORT = {"verified_on": datetime.now().date().isoformat(),
-                   "scope": "Moodle resources, folders and assignment statements; external/interactive limitations explicit",
-                   "sections": sorted(sections), "activities": len(seen_activities),
-                   "activity_types": dict(sorted(activity_types.items())),
-                   "assignments": assignments,
-                   "errors": errors, "unavailable": unavailable, "entries": entries}
+    unavailable = sum(
+        entry["status"].startswith("not downloaded")
+        or entry["status"] == "manual review required"
+        for entry in entries
+    )
+    SYNC_REPORT = {
+        "verified_on": datetime.now().date().isoformat(),
+        "scope": "Moodle resources, folders and assignment statements; external/interactive limitations explicit",
+        "sections": sorted(sections),
+        "activities": len(seen_activities),
+        "activity_types": dict(sorted(activity_types.items())),
+        "assignments": assignments,
+        "errors": errors,
+        "unavailable": unavailable,
+        "entries": entries,
+    }
     report_path = REPO_ROOT / "00_Transversal" / "MOODLE_SYNC_ESTADO.json"
-    payload = json.dumps(SYNC_REPORT, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    payload = (
+        json.dumps(SYNC_REPORT, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    )
     if not report_path.exists() or report_path.read_text() != payload:
         report_path.write_text(payload)
         downloaded.append(str(report_path.relative_to(REPO_ROOT)))
     # El publicador recupera por separado el material gestionado pendiente,
     # sin incluir cambios ajenos en scripts o soluciones.
-    managed = {entry["path"] for entry in entries if entry.get("status") == "verified" and entry.get("path")}
-    managed.update(str(safe_download_path(Path(dest), "MOODLE_URLs.md").relative_to(REPO_ROOT.resolve())) for dest in registries)
+    managed = {
+        entry["path"]
+        for entry in entries
+        if entry.get("status") == "verified" and entry.get("path")
+    }
+    managed.update(
+        str(
+            safe_download_path(Path(dest), "MOODLE_URLs.md").relative_to(
+                REPO_ROOT.resolve()
+            )
+        )
+        for dest in registries
+    )
     managed.add(str(report_path.relative_to(REPO_ROOT)))
-    managed.update(str(Path(name).with_suffix(".md")) for name in list(managed)
-                   if Path(name).suffix.lower() == ".docx" and (REPO_ROOT / Path(name).with_suffix(".md")).is_file())
+    managed.update(
+        str(Path(name).with_suffix(".md"))
+        for name in list(managed)
+        if Path(name).suffix.lower() == ".docx"
+        and (REPO_ROOT / Path(name).with_suffix(".md")).is_file()
+    )
     SYNC_MANAGED = sorted(managed)
+    SYNC_HASHES = {
+        entry["path"]: entry["sha256"]
+        for entry in entries
+        if entry.get("status") == "verified" and entry.get("path")
+    }
+    SYNC_HASHES.update(
+        {name: file_hash(REPO_ROOT / name) for name in managed - SYNC_HASHES.keys()}
+    )
     # Solo cambios reales de este ciclo. Cambios pendientes en HEAD no son
     # nuevas descargas ni deben repetir la notificación cada hora.
-    log(f"Cobertura: {len(sections)} atal, {len(seen_activities)} jarduera, {errors} errore, {unavailable} kanpo/manual muga")
+    log(
+        f"Cobertura: {len(sections)} atal, {len(seen_activities)} jarduera, {errors} errore, {unavailable} kanpo/manual muga"
+    )
     session.close()
     if google_session is not None:
         google_session.close()
@@ -610,8 +954,11 @@ def idatzi_url_erregistroak(erregistroak: dict) -> list[str]:
     isilean galduko: erregistroak Moodle izena, jarduera-URL eta kanpoko
     URLa jasotzen ditu, hurrengo sync-ean berridatzita.
     """
+
     def cell(value: str) -> str:
-        return html.escape(value).replace("|", "\\|").replace("\r", " ").replace("\n", " ")
+        return (
+            html.escape(value).replace("|", "\\|").replace("\r", " ").replace("\n", " ")
+        )
 
     changed = []
     for dest_s, zerrenda in sorted(erregistroak.items()):
@@ -631,7 +978,9 @@ def idatzi_url_erregistroak(erregistroak: dict) -> list[str]:
             if (izena, kanpoko) in ikusitakoak:
                 continue
             ikusitakoak.add((izena, kanpoko))
-            lerroak.append(f"| {cell(izena)} | {cell(jarduera)} | {cell(kanpoko)} | {egoera} |")
+            lerroak.append(
+                f"| {cell(izena)} | {cell(jarduera)} | {cell(kanpoko)} | {egoera} |"
+            )
         payload = "\n".join(lerroak) + "\n"
         if not registry_path.exists() or registry_path.read_text() != payload:
             registry_path.write_text(payload, encoding="utf-8")
@@ -642,13 +991,26 @@ def idatzi_url_erregistroak(erregistroak: dict) -> list[str]:
 SAIAKERA_MAX = 5
 SAIAKERA_ATSEDENA_S = 30
 SYNC_MANAGED: list[str] = []
+SYNC_HASHES: dict[str, str] = {}
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--no-publish", action="store_true", help="Deskargatu/egiaztatu soilik; Git commit/push gabe")
-    parser.add_argument("--prepare-review", action="store_true", help="Preparar snapshot local para revisión, sin push")
-    parser.add_argument("--browser-cdp", type=int, help="Puerto CDP loopback de Chromium ya autenticado (uso manual)")
+    parser.add_argument(
+        "--no-publish",
+        action="store_true",
+        help="Deskargatu/egiaztatu soilik; Git commit/push gabe",
+    )
+    parser.add_argument(
+        "--prepare-review",
+        action="store_true",
+        help="Preparar snapshot local para revisión, sin push",
+    )
+    parser.add_argument(
+        "--browser-cdp",
+        type=int,
+        help="Puerto CDP loopback de Chromium ya autenticado (uso manual)",
+    )
     args = parser.parse_args()
     if args.browser_cdp is not None:
         if not 1 <= args.browser_cdp <= 65535:
@@ -656,9 +1018,18 @@ def main() -> None:
         os.environ["MOODLE_BROWSER_CDP_PORT"] = str(args.browser_cdp)
     log("=== Sinkronizazio zikloa hasita ===")
     berriak: list[str] = []
+    from moodle_publish import observe_publication, publish_snapshot
+
+    publication_options = {
+        "remote": os.environ.get("MOODLE_GIT_REMOTE", "origin"),
+        "base_branch": os.environ.get("MOODLE_BASE_BRANCH", "master"),
+    }
+    observation = None
     try:
         for saiakera in range(1, SAIAKERA_MAX + 1):
             try:
+                if not args.no_publish or args.prepare_review:
+                    observation = observe_publication(REPO_ROOT, **publication_options)
                 berriak = sinkronizatu()
                 break
             except MoodleAuthenticationRejected:
@@ -671,15 +1042,23 @@ def main() -> None:
                     raise
                 time.sleep(SAIAKERA_ATSEDENA_S)
         if SYNC_REPORT.get("errors"):
-            raise RuntimeError(f"Moodle sinkronizazioa osatu gabe: {SYNC_REPORT['errors']} errore; ez da argitaratu")
+            raise RuntimeError(
+                f"Moodle sinkronizazioa osatu gabe: {SYNC_REPORT['errors']} errore; ez da argitaratu"
+            )
         if SYNC_REPORT.get("unavailable"):
-            log(f"Moodle fitxategiak egiaztatuta; {SYNC_REPORT['unavailable']} kanpo/manual jarduera ez da deskargatu")
+            log(
+                f"Moodle fitxategiak egiaztatuta; {SYNC_REPORT['unavailable']} kanpo/manual jarduera ez da deskargatu"
+            )
         if args.no_publish and not args.prepare_review:
-            log(f"Egiaztapena amaituta: {len(berriak)} fitxategi aldatu; commit/push gabe")
+            log(
+                f"Egiaztapena amaituta: {len(berriak)} fitxategi aldatu; commit/push gabe"
+            )
             return
         if SYNC_REPORT.get("unavailable"):
             pending = SYNC_REPORT["unavailable"]
-            log(f"Publicación pendiente: {pending} fuentes externas/manuales sin descargar; ciclo terminado sin commit/push")
+            log(
+                f"Publicación pendiente: {pending} fuentes externas/manuales sin descargar; ciclo terminado sin commit/push"
+            )
             notify(
                 "Moodle Sync: material pendiente",
                 f"Descarga de Moodle verificada. Faltan {pending} fuentes externas/manuales. "
@@ -690,24 +1069,28 @@ def main() -> None:
             log(f"Deskargatutako fitxategiak ({len(berriak)}): {', '.join(berriak)}")
             notify(
                 "Moodle Eguneratua!",
-                f"{len(berriak)} fitxategi berri deskargatu dira:\n" + "\n".join(berriak[:3]),
+                f"{len(berriak)} fitxategi berri deskargatu dira:\n"
+                + "\n".join(berriak[:3]),
             )
 
         else:
             log("Ez dago fitxategi berririk Moodle-n.")
         # Comprobar siempre el material contra el remoto. Un push fallido
         # sigue pendiente aunque Moodle no cambie en el siguiente ciclo.
-        from moodle_publish import publish_snapshot
         result = publish_snapshot(
-            REPO_ROOT, SYNC_MANAGED,
-            remote=os.environ.get("MOODLE_GIT_REMOTE", "origin"),
-            base_branch=os.environ.get("MOODLE_BASE_BRANCH", "master"),
+            REPO_ROOT,
+            SYNC_MANAGED,
+            **publication_options,
             publish=not args.prepare_review and not args.no_publish,
+            observation=observation,
+            verified_hashes=SYNC_HASHES,
         )
         if result["status"] == "current":
             log("Material verificado ya presente en la rama remota base.")
         else:
-            log(f"Snapshot {result['status']}: {result['branch']} {result['commit'][:12]}; integración mediante PR pendiente")
+            log(
+                f"Snapshot {result['status']}: {result['branch']} {result['commit'][:12]}; integración mediante PR pendiente"
+            )
 
     except Exception as e:
         log(f"Errore orokorra sinkronizazioan: {e}")

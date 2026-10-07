@@ -22,6 +22,11 @@ El wrapper usa un bloqueo para impedir dos ciclos automáticos simultáneos.
 - Los enlaces externos quedan en `MOODLE_URLs.md`. Los notebooks de Google se
   intentan descargar sin cookies de Moodle y se valida su estructura JSON.
   Un enlace registrado no equivale a una descarga ni a acceso Google verificado.
+- Antes de comparar o guardar un notebook se limpia su metadata personal
+  de Colab/Jupyter y las rutas locales de sus outputs. Se conservan código,
+  narrativa y resultados docentes. El SHA-256 del manifiesto corresponde a
+  la copia limpia guardada, no a los bytes originales del proveedor. Cambios
+  únicamente en identidades o metadata de ejecución no generan novedades.
 
 ## Google Drive privado: cuenta del centro
 
@@ -132,11 +137,37 @@ usuario ni incorpora sus commits o cambios ajenos. No modifica su rama ni su
 índice y no propaga borrados. Las rutas con escapes, symlinks o archivos
 ausentes se rechazan.
 
-El snapshot se sube a una rama `moodle-sync/<base>/<fecha>-<hash-del-árbol>`
-y se comprueba el commit realmente publicado. Si ya existe el mismo snapshot,
-se reutiliza. **Nunca se fuerza un push ni se escribe directamente en
-`master`**. Integrarlo requiere una PR y su revisión; publicar la rama no
-equivale a integrar el material. La creación de PR no está automatizada.
+Garantías del snapshot diario (con regresiones en `test_moodle_publish.py`):
+
+- Antes de reutilizar la rama `moodle-sync/<base>/<fecha>`, su diff contra
+  la base debe estar contenido en el material verificado del ciclo; si la
+  rama trae un fichero ajeno, la publicación se rechaza en vez de heredarlo.
+- La fusión es por ruta y falla cerrada: una ruta se publica cuando la
+  rama no la ha cambiado desde la base, y se preserva la rama cuando el
+  checkout conserva la versión de la base. Si base, rama y checkout
+  difieren los tres, la publicación se rechaza (conflicto) porque el orden
+  causal no puede probarse. Para los ciclos automáticos, se observan la base
+  y la rama diaria **antes** de descargar/verificar las fuentes. Si ambas
+  siguen en esos mismos commits al publicar, se admite la actualización
+  verificada posterior, aunque haya tres versiones distintas. Si el remoto
+  avanza, la base cambia o el ciclo cruza de fecha, se rechaza la observación
+  y se exige un ciclo completo nuevo; observar solo al final no es válido.
+  Sin esa observación se mantienen las reglas conservadoras anteriores.
+  Cada ciclo pasa el
+  conjunto gestionado completo (`SYNC_MANAGED`) que quiere preservar.
+- Antes de crear el commit se contrastan los SHA-256 de los blobs del índice
+  temporal con los hashes del ciclo verificado, también para archivos binarios.
+  Una edición local posterior a la descarga o una versión conservada que no
+  corresponda al manifiesto bloquea la publicación; no viaja contenido sin verificar.
+
+El snapshot diario se sube a una rama estable
+`moodle-sync/<base>/<fecha>` y se comprueba el commit realmente publicado.
+Si el ciclo encuentra más cambios el mismo día, añade un commit de avance
+rápido a esa misma rama; no crea otra rama por hash. **Nunca se fuerza un push
+ni se escribe directamente en `master`**. Al comienzo de la siguiente jornada
+se puede abrir una PR con la rama del día anterior y, después de integrarla,
+el siguiente ciclo diario parte de la nueva base remota. Publicar la rama no
+equivale a integrar el material.
 El remoto y la base se pueden indicar con `MOODLE_GIT_REMOTE` (por defecto
 `origin`) y `MOODLE_BASE_BRANCH` (`master`), sin cambiar credenciales ni reglas
 de protección.
@@ -150,6 +181,8 @@ uv run --with pytest --with requests --with beautifulsoup4 python -m pytest -q 0
 Usan un remoto bare con `master` protegida y comprueban recuperación tras un
 push fallido, idempotencia, conservación de HEAD/índice/cambios locales,
 exclusión de commits ajenos, preparación sin push y rechazo de rutas inválidas.
+También se verifican varios ciclos sucesivos, carreras desde checkouts
+independientes con observaciones previas y limpieza idempotente de notebooks.
 
 Los registros locales `moodle_sync.log` y el journal se conservan fuera del
 contenido publicado. No adjuntes HTML de sesión, cookies ni credenciales a una
