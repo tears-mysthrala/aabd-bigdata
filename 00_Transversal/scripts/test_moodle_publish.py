@@ -162,6 +162,64 @@ def test_already_merged_material_creates_nothing(repositories):
     assert publish_snapshot(root, ["material.txt"], publish=True)["status"] == "current"
 
 
+def test_observed_source_can_revert_to_the_base_without_preserving_stale_tip(
+    repositories,
+):
+    root, remote = repositories
+    original = (root / "material.txt").read_bytes()
+    (root / "material.txt").write_text("updated source\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    observation = observe_publication(root)
+    (root / "material.txt").write_bytes(original)
+    result = publish_snapshot(
+        root,
+        ["material.txt"],
+        publish=True,
+        observation=observation,
+        verified_hashes={"material.txt": hashlib.sha256(original).hexdigest()},
+    )
+    assert (
+        subprocess.check_output(
+            ["git", "show", f"{result['commit']}:material.txt"], cwd=remote
+        )
+        == original
+    )
+    assert result["preserved"] == []
+    assert git(remote, "rev-parse", f"{result['commit']}^") == first["commit"]
+
+
+def test_observed_cycle_reconciles_independent_upstream_changes(repositories):
+    root, remote = repositories
+    (root / "material.txt").write_text("daily source\n")
+    first = publish_snapshot(root, ["material.txt"], publish=True)
+    (root / "user.txt").write_text("upstream code/documentation\n")
+    git(root, "add", "user.txt")
+    git(root, "commit", "-m", "independent upstream change")
+    base = git(root, "rev-parse", "HEAD")
+    git(root, "push", "origin", f"{base}:refs/heads/upstream-fixture")
+    git(remote, "update-ref", "refs/heads/master", base)
+    observation = observe_publication(root)
+    (root / "material.txt").write_text("fresh source after upstream change\n")
+    result = publish_snapshot(
+        root, ["material.txt"], publish=True, observation=observation
+    )
+    assert (
+        git(remote, "show", f"{result['commit']}:user.txt")
+        == "upstream code/documentation"
+    )
+    assert (
+        git(remote, "show", f"{result['commit']}:material.txt")
+        == "fresh source after upstream change"
+    )
+    assert git(remote, "rev-parse", f"{result['commit']}^1") == first["commit"]
+    assert git(remote, "rev-parse", f"{result['commit']}^2") == base
+    assert result["paths"] == ["material.txt"]
+    repeated = publish_snapshot(
+        root, ["material.txt"], publish=True, observation=observe_publication(root)
+    )
+    assert repeated["commit"] == result["commit"]
+
+
 def test_daily_merge_and_new_upstream_files_allow_noop_and_further_updates(
     repositories, tmp_path
 ):

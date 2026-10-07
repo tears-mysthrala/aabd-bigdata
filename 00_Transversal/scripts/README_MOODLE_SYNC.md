@@ -140,16 +140,21 @@ ausentes se rechazan.
 Garantías del snapshot diario (con regresiones en `test_moodle_publish.py`):
 
 - Antes de reutilizar la rama `moodle-sync/<base>/<fecha>`, su diff contra
-  la base debe estar contenido en el material verificado del ciclo; si la
+  el ancestro común con la base debe estar contenido en el material verificado del ciclo; si la
   rama trae un fichero ajeno, la publicación se rechaza en vez de heredarlo.
 - La fusión es por ruta y falla cerrada: una ruta se publica cuando la
   rama no la ha cambiado desde la base, y se preserva la rama cuando el
-  checkout conserva la versión de la base. Si base, rama y checkout
+  checkout conserva la versión de la base sin verificación causal nueva. Si base, rama y checkout
   difieren los tres, la publicación se rechaza (conflicto) porque el orden
   causal no puede probarse. Para los ciclos automáticos, se observan la base
   y la rama diaria **antes** de descargar/verificar las fuentes. Si ambas
   siguen en esos mismos commits al publicar, se admite la actualización
-  verificada posterior, aunque haya tres versiones distintas. Si el remoto
+  verificada posterior, incluso una reversión legítima de la fuente a la
+  versión de la base. Si la base avanzó antes de observarla, el índice conserva
+  su árbol actualizado y el commit incluye ambas historias: los cambios
+  legítimos de código/documentación no se confunden con contaminación diaria.
+  Sin observación nueva, una base divergente bloquea la publicación.
+  Si el remoto
   avanza, la base cambia o el ciclo cruza de fecha, se rechaza la observación
   y se exige un ciclo completo nuevo; observar solo al final no es válido.
   Sin esa observación se mantienen las reglas conservadoras anteriores.

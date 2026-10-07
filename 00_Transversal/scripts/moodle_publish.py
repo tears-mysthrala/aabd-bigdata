@@ -5,12 +5,12 @@ del usuario ni su árbol de trabajo. Nunca fuerza un push ni escribe en master.
 
 Garantías del snapshot diario:
 
-- La rama diaria reutilizada se valida contra la base: si contiene rutas
+- La rama diaria reutilizada se valida contra el ancestro común con la base: si contiene rutas
   ajenas al material verificado de este ciclo, la publicación se rechaza
   en lugar de heredar contaminación.
 - La fusión es por ruta y falla cerrada: una ruta se publica si la rama
   no la ha cambiado desde la base; se preserva la rama si este checkout
-  conserva la versión de la base; si base, rama y checkout difieren los
+  conserva la versión de la base sin nueva verificación causal; si base, rama y checkout difieren los
   tres, la publicación se rechaza (conflicto) salvo que el llamador haya
   observado estas referencias antes de verificar otra vez las fuentes.
   Esa observación solo sirve si base y rama siguen intactas al publicar.
@@ -154,6 +154,8 @@ def publish_snapshot(
         )
 
     integrated = False
+    reconcile = False
+    comparison_base = base
     if existing:
         ancestry = subprocess.run(
             ["git", "merge-base", "--is-ancestor", parent, base],
@@ -174,16 +176,22 @@ def publish_snapshot(
             capture_output=True,
             timeout=90,
         )
-        if includes_base.returncode:
+        if includes_base.returncode not in (0, 1):
+            raise RuntimeError("No se pudo verificar la base de la rama diaria")
+        if includes_base.returncode and observation is None:
             raise RuntimeError(
                 "La rama diaria no incluye la base actual; reconciliar antes de publicar"
             )
+        if includes_base.returncode:
+            reconcile = True
+            comparison_base = git("merge-base", base, parent)
+        comparison_tree = git("rev-parse", f"{comparison_base}^{{tree}}")
         inherited = git(
             "diff",
             "--no-renames",
             "--name-only",
             "-z",
-            base_tree,
+            comparison_tree,
             parent_tree,
             raw=True,
         ).split("\0")[:-1]
@@ -223,13 +231,13 @@ def publish_snapshot(
             GIT_INDEX_FILE=str(Path(temporary) / "index"),
             GIT_LITERAL_PATHSPECS="1",
         )
-        git("read-tree", parent, env=env)
+        git("read-tree", base if reconcile else parent, env=env)
         git("add", "--", *safe_paths, env=env)
         preserved = []
         for name in safe_paths:
             staged = git("rev-parse", f":{name}", env=env)
             tip = blob(parent, name)
-            original = blob(base, name)
+            original = blob(comparison_base, name)
             if staged == tip:
                 continue
             if tip is None and original is not None:
@@ -238,7 +246,7 @@ def publish_snapshot(
                 )
             if tip == original:
                 continue  # La rama no tocó esta ruta; publicar el trabajo.
-            if staged == original:
+            if staged == original and observation is None:
                 # Copia desfasada: la rama avanzó y este checkout conserva
                 # la versión de la base. No revertir; conservar lo publicado.
                 git("restore", "--source", parent, "--staged", "--", name, env=env)
@@ -274,7 +282,7 @@ def publish_snapshot(
                         "El snapshot no coincide con el material verificado: " + name
                     )
         tree = git("write-tree", env=env)
-    if tree == parent_tree:
+    if tree == parent_tree and not reconcile:
         if existing and not integrated:
             return {
                 "status": "published",
@@ -287,16 +295,25 @@ def publish_snapshot(
             }
         return {"status": "current", "base": base, "tree": tree, "preserved": []}
 
-    changed = git("diff", "--name-only", "-z", parent_tree, tree, raw=True).split("\0")[
-        :-1
-    ]
+    changed = git(
+        "diff",
+        "--no-renames",
+        "--name-only",
+        "-z",
+        base_tree if reconcile else parent_tree,
+        tree,
+        raw=True,
+    ).split("\0")[:-1]
     if not set(changed).issubset(set(safe_paths)):
         raise RuntimeError("El snapshot incluye cambios ajenos al material verificado")
     if existing:
         message = (
             "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
         )
-        commit = git("commit-tree", tree, "-p", parent, stdin=message)
+        parents = ["-p", parent]
+        if reconcile:
+            parents.extend(["-p", base])
+        commit = git("commit-tree", tree, *parents, stdin=message)
     else:
         message = (
             "Moodle: actualizar material verificado\n\n" + "\n".join(changed) + "\n"
