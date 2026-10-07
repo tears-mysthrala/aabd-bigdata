@@ -48,3 +48,5 @@ Para reproducir, anota versión y URL del laboratorio, ejecuta la práctica y
 compara las respuestas con sus criterios. En un dashboard revisa tanto el dato
 del Inspector como el efecto de un filtro y su retirada. Importar un NDJSON
 sin abrir sus paneles no prueba que todas las visualizaciones funcionen.
+
+[Nota sobre el Compose docente incorporado el 7 de octubre](novedades_2026-10-07.md): misma práctica, configuración local comprobada.

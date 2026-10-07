@@ -1,5 +1,7 @@
 # Programación 5073: cómo estudiar y ejecutar las soluciones
 
+[Pipeline y API · ampliación del 7 de octubre](08_Moodle_2026-10-07/README.md): modelos propios, lifespan, etiquetas/probabilidades y HTTP verificado.
+
 Los ejercicios de los **cuadernos** y los de los **PDF** son variantes distintas:
 un mismo número puede pedir otra cosa. Consulta primero el enunciado enlazado
 en cada guía. Las versiones originales y las descargadas de Drive están en

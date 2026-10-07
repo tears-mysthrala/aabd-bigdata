@@ -1,0 +1,10 @@
+[project]
+name = "aabd-pipeline-api-20261007"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = ["numpy", "pandas", "scikit-learn", "joblib", "fastapi", "uvicorn", "httpx", "pytest", "nbformat", "nbclient", "ipykernel"]
+[dependency-groups]
+security = ["pip-audit"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["ml_api", "train_pipeline"]

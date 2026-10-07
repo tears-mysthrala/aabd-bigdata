@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-07",
+  "command": ".venv/bin/python -m pip_audit --local --format json",
+  "packages_checked": 81,
+  "known_vulnerabilities": 0,
+  "scope": "installed locked Python environment; not an assurance of absence of unknown vulnerabilities"
+}

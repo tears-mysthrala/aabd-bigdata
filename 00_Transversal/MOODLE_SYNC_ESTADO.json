@@ -1,9 +1,9 @@
 {
-  "activities": 73,
+  "activities": 74,
   "activity_types": {
     "assign": 11,
     "folder": 3,
-    "resource": 45,
+    "resource": 46,
     "url": 14
   },
   "assignments": [
@@ -406,7 +406,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
-      "sha256": "239f8fa9191bcd326878ae87263665dd739d841b0f0ced064e4a30d7d67166c0",
+      "sha256": "c12a0e00d3d60497d17ebaea3d7ebfd887f987f657fd78917f622b356f94e30e",
       "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
       "status": "verified"
     },
@@ -554,9 +554,23 @@
     },
     {
       "kind": "file",
-      "path": "04_Programazioa_5073/data/mock_datuak/Ariketa3.4/txandakatze_pipeline.pkl",
-      "sha256": "e1cd12be6083364a2d5fe69ab1b233168a72c4bb5ebbee041e0ee2ddf465849c",
-      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.4/txandakatze_pipeline.pkl?forcedownload=1",
+      "path": "04_Programazioa_5073/data/mock_datuak/Ariketa3.4/models/pipeline.pkl",
+      "sha256": "787d2f0cc1a622e0cdc4ec26e12ef62bb220459ebb23a597472b6ff142754e96",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.4/models/pipeline.pkl?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "04_Programazioa_5073/data/mock_datuak/Ariketa3.4/models/txandakatze_pipeline.pkl",
+      "sha256": "28ae07a8ad3f3fa0fc0aeb69cbe4a2377248f96d422b3e99f77f4182c1578e2e",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.4/models/txandakatze_pipeline.pkl?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "04_Programazioa_5073/data/mock_datuak/Ariketa3.4/requirements.txt",
+      "sha256": "ee5e3c6bfc0f89002889578cb73979d13d806b0e22ce0a264d6986eaf31da2bf",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.4/requirements.txt?forcedownload=1",
       "status": "verified"
     },
     {
@@ -623,6 +637,13 @@
       "path": "05_BigData_Ingeniaritza/materialak/salmentak_kibana.csv",
       "sha256": "0bbfc4ca836a05bcff227a127f37bec12830da4459b8f798e9ee1cf615313735",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64293",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "05_BigData_Ingeniaritza/materialak/compose.yaml",
+      "sha256": "0119944c89ba058f0f9114e31450b8dfaf1444b7ae59ca63acbfc3b480d6c3fe",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64577",
       "status": "verified"
     },
     {
@@ -698,7 +719,7 @@
     {
       "kind": "file",
       "path": "06_NiFi/materialak/02_Denbora_Serieak.pdf",
-      "sha256": "6289cb932f504cb20348006aa5a526e023664bc645faae3def461bd23e529996",
+      "sha256": "d73867c087a250dd81b2e7ca0749415304be50e22f916a2ee9eed063d6b40dbc",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64556",
       "status": "verified"
     }

@@ -71,3 +71,40 @@ jobs:
       - run: pytest -q 07_Kafka/soluzioak/test_kafka_mock.py 00_Transversal/scripts/test_moodle_publish.py 00_Transversal/scripts/test_moodle_sync_auth.py 04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak/test_agregazio_docente.py 04_Programazioa_5073/git_ariketa_4_2/test_agur.py
       - run: PYTHONPATH=src pytest -q tests/
         working-directory: 01_Erronka1_CNC_Guard/proyecto_cnc_guard
+
+  exercises-20261007:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        include:
+          - directory: 02_AA_Ereduak_5071/soluzioak/Segurtasuna_Pribatasuna_2026-10-07
+            scripts: 1_1_prompt_injection.py 1_2_membership_inference.py
+          - directory: 04_Programazioa_5073/soluzioak/08_Moodle_2026-10-07
+            scripts: pipeline_eta_api.py
+          - directory: 06_NiFi/soluzioak/08_Denbora_Serieak
+            scripts: denbora_serieak.py
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - run: pip install 'uv==0.12.23' 'ruff==0.16.8'
+      - name: Validate committed exercise files
+        working-directory: ${{ matrix.directory }}
+        run: |
+          ruff check --select E4,E7,E9,F,I .
+          ruff format --check .
+          uv sync --frozen
+          python -m compileall -q -x '/\.venv/' .
+      - name: Execute exercises with locked dependencies
+        working-directory: ${{ matrix.directory }}
+        env:
+          EXERCISE_SCRIPTS: ${{ matrix.scripts }}
+          MPLBACKEND: Agg
+        run: |
+          for script in $EXERCISE_SCRIPTS; do
+            uv run --frozen python "$script"
+          done
+          if test -f test_ml_api.py; then
+            uv run --frozen pytest -q test_ml_api.py
+          fi

@@ -1,0 +1,22 @@
+{
+  "transport": "real_loopback_http",
+  "health_status": 200,
+  "predictions": [
+    {
+      "iragarpena": 0,
+      "etiketa": "Gaiztoa",
+      "probabilitatea": 0.999999996473865,
+      "probabilitate_klasea": 0
+    },
+    {
+      "iragarpena": 0,
+      "etiketa": "Gaiztoa",
+      "probabilitatea": 0.9999646177050683,
+      "probabilitate_klasea": 0
+    }
+  ],
+  "invalid_length_status": 422,
+  "server_shutdown": "SIGTERM then waited",
+  "server_exit_code": -15,
+  "lifespan_shutdown_complete": true
+}
