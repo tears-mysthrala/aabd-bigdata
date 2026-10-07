@@ -406,7 +406,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
-      "sha256": "fbf4a7a2a3af6129d5880c2aa1fe76d64a4ff45fc6305a6d28aa8cf4f685e844",
+      "sha256": "3e058cf5ce0a18c6d9c803dbd8bce3dec2cd7fff9326633d5de9a397fa32d26d",
       "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
       "status": "verified"
     },
@@ -561,6 +561,13 @@
     },
     {
       "kind": "file",
+      "path": "04_Programazioa_5073/data/mock_datuak/Ariketa3.4/models/txandakatze_pipeline.pkl",
+      "sha256": "28ae07a8ad3f3fa0fc0aeb69cbe4a2377248f96d422b3e99f77f4182c1578e2e",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.4/models/txandakatze_pipeline.pkl?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
       "path": "04_Programazioa_5073/data/mock_datuak/Ariketa3.4/requirements.txt",
       "sha256": "ee5e3c6bfc0f89002889578cb73979d13d806b0e22ce0a264d6986eaf31da2bf",
       "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/88684/mod_folder/content/0/Ariketa3.4/requirements.txt?forcedownload=1",
@@ -705,7 +712,7 @@
     {
       "kind": "file",
       "path": "06_NiFi/materialak/02_Denbora_Serieak.pdf",
-      "sha256": "6289cb932f504cb20348006aa5a526e023664bc645faae3def461bd23e529996",
+      "sha256": "d73867c087a250dd81b2e7ca0749415304be50e22f916a2ee9eed063d6b40dbc",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64556",
       "status": "verified"
     }
