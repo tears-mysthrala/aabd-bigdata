@@ -1,10 +1,10 @@
 {
-  "activities": 77,
+  "activities": 78,
   "activity_types": {
     "assign": 11,
     "folder": 3,
     "resource": 48,
-    "url": 15
+    "url": 16
   },
   "assignments": [
     {
@@ -341,6 +341,12 @@
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64600",
       "kind": "external link",
       "source": "https://www.youtube.com/watch",
+      "status": "web reference"
+    },
+    {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=63381",
+      "kind": "external link",
+      "source": "https://medium.com/@fraidoonomarzai99/15-most-commonly-used-ml-algorithms-ml-resources-in-depth-0e3c97943151",
       "status": "web reference"
     },
     {
