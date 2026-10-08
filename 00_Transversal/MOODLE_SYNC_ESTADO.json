@@ -1,10 +1,10 @@
 {
-  "activities": 74,
+  "activities": 77,
   "activity_types": {
     "assign": 11,
     "folder": 3,
-    "resource": 46,
-    "url": 14
+    "resource": 48,
+    "url": 15
   },
   "assignments": [
     {
@@ -325,6 +325,26 @@
     },
     {
       "kind": "file",
+      "path": "03_ML_5072/materialak/5072_2_07_Boosting.pdf",
+      "sha256": "845e22fe0b1fb2f38dee881109fc2685227018b8a597fe6f2e3ad42ac12be85a",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=63542",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "03_ML_5072/materialak/Boosting Ereduak_ Adaboost, Gradient Boost eta XGBoost.pdf",
+      "sha256": "73d5020a4e07e821cdda2ca1e4f44de1e93fade72626160c20f56674b6c6fb68",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64599",
+      "status": "verified"
+    },
+    {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64600",
+      "kind": "external link",
+      "source": "https://www.youtube.com/watch",
+      "status": "web reference"
+    },
+    {
+      "kind": "file",
       "path": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
       "sha256": "854425d7bdbe5388d16ba0761655186a487a8329f7415a9b773800e8adf24c95",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=63545",
@@ -406,7 +426,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
-      "sha256": "c12a0e00d3d60497d17ebaea3d7ebfd887f987f657fd78917f622b356f94e30e",
+      "sha256": "f943c29e13eb5a101afe9f6a03753f653a76de37c853bcf02c81a95af976a6a8",
       "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
       "status": "verified"
     },
@@ -628,7 +648,7 @@
     {
       "kind": "file",
       "path": "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
-      "sha256": "ceae486c71ba7355656fe3cddba6f1a66389e2bdb41c66a358519283b6e7a8c8",
+      "sha256": "eb5072685bca39e1dfc8d88dbd0ac71588306c7e9e54864e89bb409965c87183",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64159",
       "status": "verified"
     },
@@ -742,5 +762,5 @@
     12
   ],
   "unavailable": 0,
-  "verified_on": "2026-10-07"
+  "verified_on": "2026-10-08"
 }

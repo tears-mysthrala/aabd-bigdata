@@ -381,3 +381,19 @@ Iturri bikoitzak (DOCX/MD edo PY/IPYNB) normalean enuntziatu beraren aurkezpenak
 ## Revisión de novedades 2026-10-01
 
 [Comprobación remota y prioridades](REVISION_NOVEDADES_EJERCICIOS_2026-10-01.md): 70 actividades, sin novedades de archivos respecto al manifiesto local de hoy. La tabla incorpora las dos tareas omitidas de árbol/Random Forest y corrige el estado KNN Iris. CNC Guard aplazado por el usuario.
+
+## 2026-10-08: Boosting, Elastic P18–P22 y validación actual
+
+[Informe con fuentes, pruebas y pendientes](validaciones_2026-10-08/README.md). 81 hashes del manifiesto correctos; último ciclo observado 11:02 CEST, 77 actividades sin errores. No se realizaron entregas Moodle.
+
+| ID | Enunciado | Estado | Solución | Validación actual |
+|---|---|---|---|---|
+| 03-BOOST-PY | [Boosting diapositivas 10–11](../03_ML_5072/materialak/5072_2_07_Boosting.pdf) | resuelto | [Cuatro ejemplos y extensión](../03_ML_5072/soluzioak/Boosting/README.md) | AdaBoost/GB/XGB clasificación y regresión; script/notebook ejecutados, tres tests. Evaluación diabetes train se distingue del test reservado. |
+| 03-BOOST-MANUAL | [PDF paso a paso](<../03_ML_5072/materialak/Boosting Ereduak_ Adaboost, Gradient Boost eta XGBoost.pdf>) | resuelto | [Pesos, residuos, regularización](../03_ML_5072/soluzioak/Boosting/README.md) | Tres cálculos reproducidos sin redondeo intermedio; voto P4 aún incorrecto tras dos stumps; gain teórico y dump de biblioteca distinguidos. |
+| 05-ES-18 | [Elastic P18](../05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf) | resuelto | [Ocho respuestas + pipeline](../05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-08/README.md) | Logstash y Grok Debugger; GeoIP propuesto, no ubicación inventada para TEST-NET-3. |
+| 05-ES-19 | [Elastic P19](../05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf) | resuelto | [Cuatro decisiones justificadas](../05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-08/README.md) | Respuesta de arquitectura; no necesita un servicio ejecutado para dar la justificación. |
+| 05-ES-20 | [Elastic P20 + reto](../05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf) | resuelto | [Seis respuestas, archivo y Compose](../05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-08/README.md) | Compose real exit 0, tres eventos, Date UTC correcto y status entero; Grok Debugger con evidencia del fallo parcial original. Variante file/stdout del reto; no se afirma Beats/ES. |
+| 05-ES-21 | [Elastic P21](../05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf) | resuelto | [Tres logs añadidos](../05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-08/README.md) | Reinicio con el mismo pipeline; seis eventos válidos. Replay explícito, no ingestión incremental sin duplicados. |
+| 05-ES-22 | [Elastic P22](../05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf) | resuelto | [Condición numérica y negativos](../05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-08/README.md) | Cuatro tags errorea, ninguno en los dos 200; tres grok failures y un date failure visibles y sin etiqueta HTTP. |
+
+Pruebas actuales: 92 finales pasadas, cinco series de Programación en copias aisladas, seis scripts de seguridad/privacidad, series temporales, SVM y Pipeline/API. FastAPI HTTP real y Streamlit AppTest; NiFi solo revalidación de evidencia archivada. Se mantienen parciales los requisitos de datos humanos, notebooks docentes ausentes, AEMET/LLM con acceso no disponible, MariaDB y captura Canvas: ver motivos individuales en el informe.

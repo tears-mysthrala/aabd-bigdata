@@ -50,3 +50,7 @@ del Inspector como el efecto de un filtro y su retirada. Importar un NDJSON
 sin abrir sus paneles no prueba que todas las visualizaciones funcionen.
 
 [Nota sobre el Compose docente incorporado el 7 de octubre](novedades_2026-10-07.md): misma práctica, configuración local comprobada.
+
+## Ampliación del 8 de octubre: P18–P22
+
+[Respuestas y pruebas reales](novedades_2026-10-08/README.md): filtros Grok/Date, arquitectura Logstash/Ingest Pipeline, reparación de logs y etiqueta de errores HTTP. Incluye Grok Debugger, ejecución Compose y cuatro entradas negativas.

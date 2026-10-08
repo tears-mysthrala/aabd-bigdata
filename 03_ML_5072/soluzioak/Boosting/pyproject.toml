@@ -1,0 +1,11 @@
+[project]
+name = "aabd-boosting-20261008"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = ["numpy", "scikit-learn", "xgboost-cpu", "matplotlib", "nbformat", "nbclient", "ipykernel", "pytest"]
+
+[dependency-groups]
+security = ["pip-audit"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["boosting"]

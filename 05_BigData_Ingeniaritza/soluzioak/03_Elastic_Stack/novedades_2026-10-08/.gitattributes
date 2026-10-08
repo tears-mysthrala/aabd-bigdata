@@ -1,0 +1,2 @@
+# Los registros se conservan byte a byte, incluidos espacios/escapes de Compose.
+*.log -whitespace

@@ -1,0 +1,47 @@
+[
+  {
+    "@version": "1",
+    "metodoa": "GET",
+    "event": {
+      "original": "05/Oct/2026:14:32:10 83.45.120.10 GET /api 500"
+    },
+    "message": "05/Oct/2026:14:32:10 83.45.120.10 GET /api 500",
+    "path": "/datos/web.log",
+    "timestamp": "05/Oct/2026:14:32:10",
+    "bezero_ip": "83.45.120.10",
+    "request": "/api",
+    "host": "5da0c320ad46",
+    "status_code": 500,
+    "@timestamp": "2026-10-05T12:32:10.000Z"
+  },
+  {
+    "@version": "1",
+    "metodoa": "POST",
+    "event": {
+      "original": "05/Oct/2026:14:33:20 192.168.1.15 POST /login 200"
+    },
+    "message": "05/Oct/2026:14:33:20 192.168.1.15 POST /login 200",
+    "path": "/datos/web.log",
+    "timestamp": "05/Oct/2026:14:33:20",
+    "bezero_ip": "192.168.1.15",
+    "request": "/login",
+    "host": "5da0c320ad46",
+    "status_code": 200,
+    "@timestamp": "2026-10-05T12:33:20.000Z"
+  },
+  {
+    "@version": "1",
+    "metodoa": "GET",
+    "event": {
+      "original": "05/Oct/2026:14:34:45 10.0.0.8 GET /produktuak 404"
+    },
+    "message": "05/Oct/2026:14:34:45 10.0.0.8 GET /produktuak 404",
+    "path": "/datos/web.log",
+    "timestamp": "05/Oct/2026:14:34:45",
+    "bezero_ip": "10.0.0.8",
+    "request": "/produktuak",
+    "host": "5da0c320ad46",
+    "status_code": 404,
+    "@timestamp": "2026-10-05T12:34:45.000Z"
+  }
+]

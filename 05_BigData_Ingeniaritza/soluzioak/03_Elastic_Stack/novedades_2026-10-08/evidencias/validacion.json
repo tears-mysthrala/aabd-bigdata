@@ -1,0 +1,23 @@
+{
+  "p18": {
+    "events": 1,
+    "verified": true
+  },
+  "p20": {
+    "events": 3,
+    "verified": true
+  },
+  "p21": {
+    "events": 6,
+    "verified": true
+  },
+  "p22": {
+    "events": 6,
+    "verified": true
+  },
+  "p22_invalid": {
+    "events": 4,
+    "format_errors_visible": true,
+    "verified": true
+  }
+}
