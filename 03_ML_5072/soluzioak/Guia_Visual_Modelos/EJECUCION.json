@@ -18,5 +18,5 @@
     "mobile_horizontal_overflow": false,
     "evidence": "earlier same-day browser check; HTML bytes unchanged by explicit UTF-8 fix"
   },
-  "rerun_after_utf8_fix": "2026-10-09; script, notebook and four tests"
+  "rerun_after_utf8_fix": "2026-10-09; script, notebook and four tests; CSV newline translation disabled for byte/hash consistency"
 }

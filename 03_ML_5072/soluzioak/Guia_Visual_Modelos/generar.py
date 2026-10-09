@@ -417,7 +417,9 @@ def generate(output=HERE):
         frame["split"] = "train"
         frame.loc[test, "split"] = "test"
         payload = frame.to_csv(index_label="id")
-        (output / "datos" / f"{task}.csv").write_text(payload, encoding="utf-8")
+        (output / "datos" / f"{task}.csv").write_text(
+            payload, encoding="utf-8", newline=""
+        )
         metadata[task] = {
             "train": len(train),
             "test": len(test),
