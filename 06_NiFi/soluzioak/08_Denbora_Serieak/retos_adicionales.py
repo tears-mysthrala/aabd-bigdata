@@ -27,7 +27,7 @@ def alert_episodes(series, threshold=50, consecutive=3, cadence="1min"):
         raise ValueError("Índice temporal ordenado y único; consecutive >= 1")
     count, previous, alerts = 0, None, []
     for timestamp, value in series.items():
-        if np.isfinite(value) and value > threshold:
+        if pd.notna(value) and np.isfinite(value) and value > threshold:
             count = (
                 count + 1
                 if previous is not None
@@ -82,7 +82,7 @@ def run():
     assert int(aggregated["size"].sum()) == len(df)
     assert int(aggregated["count"].sum()) == df.tenperatura.notna().sum()
     report = {
-        "source": "synthetic_seed_42; no sentsorea.csv docente disponible",
+        "source": "synthetic_seed_42; variante previa, no usa el CSV docente",
         "alerts_per_reading": len(above),
         "alerts_three_consecutive": int(sustained.sum()),
         "above_50": [

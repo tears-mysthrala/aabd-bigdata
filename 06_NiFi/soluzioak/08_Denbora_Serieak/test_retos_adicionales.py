@@ -1,12 +1,15 @@
 import pandas as pd
+import pytest
 
 from retos_adicionales import alert_episodes
 
 
-def test_one_alert_per_sustained_episode_and_nan_resets():
+@pytest.mark.parametrize("dtype", ["float64", "Float64"])
+def test_one_alert_per_sustained_episode_and_nan_resets(dtype):
     series = pd.Series(
         [49, 51, 52, 53, 54, float("nan"), 55, 56, 57],
         index=pd.date_range("2026-10-01", periods=9, freq="min"),
+        dtype=dtype,
     )
     assert alert_episodes(series).tolist() == [
         False,

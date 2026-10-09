@@ -84,7 +84,7 @@ jobs:
           - directory: 04_Programazioa_5073/soluzioak/08_Moodle_2026-10-07
             scripts: pipeline_eta_api.py
           - directory: 06_NiFi/soluzioak/08_Denbora_Serieak
-            scripts: denbora_serieak.py retos_adicionales.py
+            scripts: denbora_serieak.py retos_adicionales.py denbora_serieak_docente.py
           - directory: 04_Programazioa_5073/soluzioak/07_Moodle_2026-10-06
             scripts: 3_Ariketa_koadernoa_RESUELTO.py
             ruff_targets: 3_Ariketa_koadernoa_RESUELTO.py 3_Ariketa_koadernoa_RESUELTO.ipynb
@@ -126,7 +126,7 @@ jobs:
             uv run --frozen pytest -q test_mock_azterketa.py
           fi
           if test -f test_retos_adicionales.py; then
-            uv run --frozen pytest -q test_retos_adicionales.py
+            uv run --frozen pytest -q test_retos_adicionales.py test_denbora_docente.py
           fi
           if test -f test_galeria.py; then
             uv run --frozen pytest -q test_galeria.py

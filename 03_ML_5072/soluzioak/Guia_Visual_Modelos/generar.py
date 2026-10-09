@@ -417,12 +417,12 @@ def generate(output=HERE):
         frame["split"] = "train"
         frame.loc[test, "split"] = "test"
         payload = frame.to_csv(index_label="id")
-        (output / "datos" / f"{task}.csv").write_text(payload)
+        (output / "datos" / f"{task}.csv").write_text(payload, encoding="utf-8")
         metadata[task] = {
             "train": len(train),
             "test": len(test),
             "features": X.shape[1],
-            "sha256": hashlib.sha256(payload.encode()).hexdigest(),
+            "sha256": hashlib.sha256(payload.encode("utf-8")).hexdigest(),
         }
     records = []
     for example in examples():
@@ -481,7 +481,7 @@ def generate(output=HERE):
         "models": records,
     }
     (output / "metricas.json").write_text(
-        json.dumps(result, ensure_ascii=False, indent=2) + "\n"
+        json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     cards = []
     for record in records:
@@ -494,9 +494,9 @@ def generate(output=HERE):
         cards.append(f'''<article class="card" data-task="{record["task"]}" data-name="{esc(record["name"])}">
 <a href="figuras/{record["filename"]}" aria-label="Ampliar {esc(record["name"])} ({record["task"]})"><img src="figuras/{record["filename"]}" alt="{esc(record["name"])}: {"frontera de clases y muestras train/test" if record["task"] == "clasificacion" else "curva ajustada, señal y muestras train/test"}" width="1008" height="686" loading="lazy"></a>
 <div class="inner"><span class="kind">{"Clasificación" if record["task"] == "clasificacion" else "Regresión"}</span><h2>{esc(record["name"])}</h2><p class="metric">{esc(text)}</p><p>{esc(record["explanation"])}</p><p><strong>Qué observar:</strong> {esc(record["look"])}</p><details><summary>Parámetros y resultados</summary><pre>{esc(record["parameters"])}</pre><a href="datos/{record["predictions"]}">Predicciones de test (CSV)</a></details><a class="lesson" href="{record["lesson"]}">Ir a la práctica del repositorio →</a></div></article>''')
-    template = (HERE / "plantilla.html").read_text()
+    template = (HERE / "plantilla.html").read_text(encoding="utf-8")
     (output / "index.html").write_text(
-        template.replace("<!-- CARDS -->", "\n".join(cards))
+        template.replace("<!-- CARDS -->", "\n".join(cards)), encoding="utf-8"
     )
     return result
 

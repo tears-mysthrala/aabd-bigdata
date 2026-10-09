@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-09",
+  "notebook_code_cells": 3,
+  "errors": 0,
+  "script_executed_separately": true,
+  "notebook": "denbora_serieak_docente.ipynb",
+  "script": "denbora_serieak_docente.py",
+  "source_sha256": "4ff61b212f15a7f1d4a38fcf445c1fad88d168c023282243d2c6abdfb66f0ba2",
+  "pytest_passed": 7,
+  "plot_visually_inspected": true
+}

@@ -1,0 +1,111 @@
+[
+  {
+    "folder": "01_Erronka1_CNC_Guard",
+    "title": "Reto integrado CNC Guard",
+    "minutes": 120,
+    "exam": "01_Erronka1_CNC_Guard/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "01_Erronka1_CNC_Guard/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "objetivos, PERT/Gantt, arquitectura, fuzzy/anomalías, coste y defensa",
+    "sources": [
+      "1Erronka_ikaslearen_txostena.docx.pdf",
+      "patata tortila - planifikazioa eta kostuak lantzekoAA 2026-2027.md",
+      "ANEXO1-Eus.md"
+    ]
+  },
+  {
+    "folder": "02_AA_Ereduak_5071",
+    "title": "5071 — Modelos de inteligencia artificial",
+    "minutes": 110,
+    "exam": "02_AA_Ereduak_5071/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "02_AA_Ereduak_5071/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "IA/sistemas expertos, fuzzy, sesgo COMPAS, seguridad, privacidad y ética",
+    "sources": [
+      "5071-IE1-Sarrera_Kontzeptuala.md",
+      "5071-IE1-Logika_Lausoa.md",
+      "E1-Ereduak-Etika_eta_legea.pdf",
+      "5071-IE6-Marko_legala.md",
+      "Alborapenak/2.2_compas_historikoa_soluzioa.ipynb",
+      "1.1_prompt_injection_diseinua_soluzioa.ipynb",
+      "3.1_privacy_by_design_auditoria_soluzioa.ipynb",
+      "5.1_eia_aplikatu_soluzioa.ipynb"
+    ]
+  },
+  {
+    "folder": "03_ML_5072",
+    "title": "5072 — Machine Learning",
+    "minutes": 120,
+    "exam": "03_ML_5072/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "03_ML_5072/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "preprocesado, regresiones, KNN/árbol/SVM/RF/boosting, métricas, CV e Iris",
+    "sources": [
+      "5072_1_Datua_eta_Aurreprozesamenua.pdf",
+      "5072_2_01_Erregresio_Lineala.pdf",
+      "5072_2_02_Erregresio_Logistikoa.pdf",
+      "5072_2_03_KNN.pdf",
+      "5072_2_04_Decision_Tree.pdf",
+      "5072_2_05_SVM.pdf",
+      "5072_2_06_Random_Forest.pdf",
+      "5072_2_07_Boosting.pdf",
+      "5072_3_Balidazio_Metodologia.pdf",
+      "AI4I_Orange_txostena.pdf"
+    ]
+  },
+  {
+    "folder": "04_Programazioa_5073",
+    "title": "5073 — Programación para IA",
+    "minutes": 150,
+    "exam": "04_Programazioa_5073/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "04_Programazioa_5073/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "30 test; Python/JSON/Git/uv, NumPy/Pandas/gráficos, pipeline/métricas/Pydantic",
+    "sources": [
+      "Moodle_page_64153.md",
+      "5073_1_Lengoaiak.pdf",
+      "5073_2_Datu_Zientzia.pdf",
+      "5073_3_Programazioa.pdf",
+      "1_Ariketa_koadernoa_URLa.ipynb",
+      "2_Ariketa_Koadernoa_URLa.ipynb",
+      "3_Ariketa_koadernoa_URLa.ipynb"
+    ]
+  },
+  {
+    "folder": "05_BigData_Ingeniaritza",
+    "title": "Big Data e ingeniería de datos",
+    "minutes": 120,
+    "exam": "05_BigData_Ingeniaritza/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "05_BigData_Ingeniaritza/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "7 V (incluida Viability), analítica, ETL/ELT, Faker/formatos, Elastic/Kibana/Grok/ILM",
+    "sources": [
+      "Ariketak_01_01_big_data_sarrera.md",
+      "Ariketak_01_02_datuen_ingeniaritza.md",
+      "01_01_big_data_sarrera.pdf",
+      "02_elastic_stack.pdf"
+    ]
+  },
+  {
+    "folder": "06_NiFi",
+    "title": "NiFi y series temporales",
+    "minutes": 120,
+    "exam": "06_NiFi/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "06_NiFi/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "FlowFile, ConvertRecord/QueryRecord, provenance, bases/API/medallion, tiempo y alertas",
+    "sources": [
+      "01_01_ApacheNifi.pdf",
+      "GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf",
+      "01_02_ApacheNifi_aurreratua.pdf",
+      "Apache NiFi kasu praktikoak (5-6-7).pdf",
+      "02_Denbora_Serieak.pdf"
+    ]
+  },
+  {
+    "folder": "07_Kafka",
+    "title": "Kafka básico y avanzado",
+    "minutes": 110,
+    "exam": "07_Kafka/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "07_Kafka/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "particiones/keys/groups/offsets, RF/ISR, medallion, idempotencia y Connect",
+    "sources": [
+      "01_03_ApacheKafka.pdf",
+      "01_04_ApacheKafka_aurreratua.pdf"
+    ]
+  }
+]

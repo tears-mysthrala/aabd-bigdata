@@ -15,6 +15,8 @@
     "regression_filter_visible": 10,
     "ridge_search_visible": 1,
     "empty_search_visible": 0,
-    "mobile_horizontal_overflow": false
-  }
+    "mobile_horizontal_overflow": false,
+    "evidence": "earlier same-day browser check; HTML bytes unchanged by explicit UTF-8 fix"
+  },
+  "rerun_after_utf8_fix": "2026-10-09; script, notebook and four tests"
 }
