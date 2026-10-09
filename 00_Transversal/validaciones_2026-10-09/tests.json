@@ -1,0 +1,64 @@
+{
+  "verified_at_utc": "2026-10-09T06:47:43.661940+00:00",
+  "results": [
+    {
+      "suite": "sync",
+      "passed": 51,
+      "exit_code": 0
+    },
+    {
+      "suite": "api",
+      "passed": 11,
+      "exit_code": 0
+    },
+    {
+      "suite": "cnc",
+      "passed": 18,
+      "exit_code": 0
+    },
+    {
+      "suite": "frameworks",
+      "passed": 2,
+      "exit_code": 0
+    },
+    {
+      "suite": "csv",
+      "passed": 3,
+      "exit_code": 0
+    },
+    {
+      "suite": "kafka_mock",
+      "passed": 1,
+      "exit_code": 0
+    },
+    {
+      "suite": "kafka_medallion",
+      "passed": 12,
+      "exit_code": 0
+    },
+    {
+      "suite": "kafka_tears_style",
+      "passed": 5,
+      "exit_code": 0
+    },
+    {
+      "suite": "faker",
+      "passed": 1,
+      "exit_code": 0
+    },
+    {
+      "suite": "boosting",
+      "passed": 3,
+      "exit_code": 0
+    }
+  ],
+  "passed_total": 107,
+  "limits": [
+    "Frameworks structure tests do not prove GUI completion",
+    "Kafka tests do not prove a live broker or the original weather provider",
+    "tears_style is pre-existing local work, tested but excluded from this change"
+  ],
+  "warnings": [
+    "FastAPI TestClient emits the existing Starlette/httpx deprecation warning"
+  ]
+}

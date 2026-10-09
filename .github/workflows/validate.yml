@@ -52,6 +52,7 @@ jobs:
         with:
           python-version: "3.13"
       - run: pip install 'ruff==0.16.8'
+      - run: ruff check --select E4,E7,E9,F,I 00_Transversal/scripts/moodle_sync.py 00_Transversal/scripts/test_moodle_pages.py 04_Programazioa_5073/soluzioak/05_Frameworkak_PDF_Ariketak/test_bearer_api.py && ruff format --check 00_Transversal/scripts/moodle_sync.py 00_Transversal/scripts/test_moodle_pages.py 04_Programazioa_5073/soluzioak/05_Frameworkak_PDF_Ariketak/test_bearer_api.py
       - run: ruff check --select E4,E7,E9,F,I .github/scripts/ && ruff format --check .github/scripts/
       - run: ruff check --select E4,E7,E9,F,I 01_Erronka1_CNC_Guard/proyecto_cnc_guard/src 01_Erronka1_CNC_Guard/proyecto_cnc_guard/tests 01_Erronka1_CNC_Guard/proyecto_cnc_guard/scripts 01_Erronka1_CNC_Guard/proyecto_cnc_guard/generar_notebook.py 03_ML_5072/soluzioak/5072_ML_praktika.py 04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak/5073_2_Datu_Zientzia_PDF_Ariketak.py 07_Kafka/soluzioak/ 00_Transversal/scripts/moodle_publish.py 00_Transversal/scripts/test_moodle_publish.py 00_Transversal/scripts/test_moodle_sync_auth.py 03_ML_5072/soluzioak/SVM/ 05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05/ 04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak/ariketa_2_4_2_5_docente.py 04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak/test_agregazio_docente.py 04_Programazioa_5073/data/generar_cnc_10M.py 04_Programazioa_5073/data/test_estabilidad_10M.py 04_Programazioa_5073/git_ariketa_4_2/
       - run: ruff format --check 01_Erronka1_CNC_Guard/proyecto_cnc_guard/src 01_Erronka1_CNC_Guard/proyecto_cnc_guard/tests 01_Erronka1_CNC_Guard/proyecto_cnc_guard/scripts 01_Erronka1_CNC_Guard/proyecto_cnc_guard/generar_notebook.py 03_ML_5072/soluzioak/5072_ML_praktika.py 04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak/5073_2_Datu_Zientzia_PDF_Ariketak.py 07_Kafka/soluzioak/ 00_Transversal/scripts/moodle_publish.py 00_Transversal/scripts/test_moodle_publish.py 00_Transversal/scripts/test_moodle_sync_auth.py 03_ML_5072/soluzioak/SVM/ 05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-05/ 04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak/ariketa_2_4_2_5_docente.py 04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak/test_agregazio_docente.py 04_Programazioa_5073/data/generar_cnc_10M.py 04_Programazioa_5073/data/test_estabilidad_10M.py 04_Programazioa_5073/git_ariketa_4_2/
@@ -67,6 +68,7 @@ jobs:
         with:
           python-version: "3.13"
       - run: pip install pytest numpy pandas scikit-learn requests beautifulsoup4
+      - run: pytest -q 00_Transversal/scripts/test_moodle_pages.py
       - run: python -m unittest discover -s .github/scripts -p 'test_*.py'
       - run: pytest -q 07_Kafka/soluzioak/test_kafka_mock.py 00_Transversal/scripts/test_moodle_publish.py 00_Transversal/scripts/test_moodle_sync_auth.py 04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak/test_agregazio_docente.py 04_Programazioa_5073/git_ariketa_4_2/test_agur.py
       - run: PYTHONPATH=src pytest -q tests/
@@ -83,6 +85,11 @@ jobs:
             scripts: pipeline_eta_api.py
           - directory: 06_NiFi/soluzioak/08_Denbora_Serieak
             scripts: denbora_serieak.py
+          - directory: 04_Programazioa_5073/soluzioak/07_Moodle_2026-10-06
+            scripts: 3_Ariketa_koadernoa_RESUELTO.py
+            ruff_targets: 3_Ariketa_koadernoa_RESUELTO.py 3_Ariketa_koadernoa_RESUELTO.ipynb
+          - directory: 03_ML_5072/soluzioak/Boosting
+            scripts: boosting.py
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -91,9 +98,11 @@ jobs:
       - run: pip install 'uv==0.12.23' 'ruff==0.16.8'
       - name: Validate committed exercise files
         working-directory: ${{ matrix.directory }}
+        env:
+          RUFF_TARGETS: ${{ matrix.ruff_targets || '.' }}
         run: |
-          ruff check --select E4,E7,E9,F,I .
-          ruff format --check .
+          ruff check --select E4,E7,E9,F,I $RUFF_TARGETS
+          ruff format --check $RUFF_TARGETS
           uv sync --frozen
           python -m compileall -q -x '/\.venv/' .
       - name: Execute exercises with locked dependencies
@@ -107,4 +116,8 @@ jobs:
           done
           if test -f test_ml_api.py; then
             uv run --frozen pytest -q test_ml_api.py
+            uv run --frozen pytest -q ../05_Frameworkak_PDF_Ariketak/test_bearer_api.py
+          fi
+          if test -f test_boosting.py; then
+            uv run --frozen pytest -q test_boosting.py
           fi

@@ -270,3 +270,7 @@ Kafka no añade ejercicios en la edición de hoy: el diff textual del PDF elimin
 ## Novedades y pruebas del 8 de octubre
 
 [Informe de ejercicios y validación](00_Transversal/validaciones_2026-10-08/README.md): Boosting y Elastic Stack P18–P22, 92 pruebas finales, ejecución de las series de Programación y lista explícita de requisitos humanos o externos pendientes.
+
+## Novedades y pruebas del 9 de octubre
+
+[Informe actualizado](00_Transversal/validaciones_2026-10-09/README.md): series temporales adaptadas a los 19 pasos, contraste del cuaderno 3 con las soluciones docentes, 107 pruebas locales y guía de examen sincronizada. Ciclo real con 83 archivos verificados y cero fuentes pendientes; los requisitos humanos y externos siguen identificados.

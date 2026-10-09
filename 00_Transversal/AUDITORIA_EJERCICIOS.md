@@ -397,3 +397,7 @@ Iturri bikoitzak (DOCX/MD edo PY/IPYNB) normalean enuntziatu beraren aurkezpenak
 | 05-ES-22 | [Elastic P22](../05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf) | resuelto | [Condición numérica y negativos](../05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-08/README.md) | Cuatro tags errorea, ninguno en los dos 200; tres grok failures y un date failure visibles y sin etiqueta HTTP. |
 
 Pruebas actuales: 92 finales pasadas, cinco series de Programación en copias aisladas, seis scripts de seguridad/privacidad, series temporales, SVM y Pipeline/API. FastAPI HTTP real y Streamlit AppTest; NiFi solo revalidación de evidencia archivada. Se mantienen parciales los requisitos de datos humanos, notebooks docentes ausentes, AEMET/LLM con acceso no disponible, MariaDB y captura Canvas: ver motivos individuales en el informe.
+
+## 2026-10-09: enunciado ampliado y contraste docente
+
+[Informe actual](validaciones_2026-10-09/README.md): 107 pruebas locales, dos notebooks modificados ejecutados y 83 hashes correctos. Series temporales cubre los 19 pasos con una variante sintética explícita; sigue pendiente el CSV docente. Programación 3 incorpora interpretación, validación por fold y probabilidad de clase 1 explícita. La nueva guía de examen se sincroniza como texto; el ciclo real ya no tiene fuentes pendientes. No se han realizado entregas Moodle ni cerrado requisitos humanos o externos mediante estas comprobaciones.

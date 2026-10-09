@@ -1,0 +1,8 @@
+[project]
+name = "aabd-programazioa-koaderno-3"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = ["numpy", "pandas", "matplotlib", "scikit-learn", "imbalanced-learn", "pydantic", "joblib", "nbformat", "nbclient", "ipykernel"]
+
+[dependency-groups]
+security = ["pip-audit"]

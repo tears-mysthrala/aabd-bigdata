@@ -1,0 +1,9 @@
+{
+  "executed_at_utc": "2026-10-09T06:44:02.192274+00:00",
+  "python": "3.13.13",
+  "notebook": "3_Ariketa_koadernoa_RESUELTO.ipynb",
+  "executed_code_cells": 33,
+  "errors": 0,
+  "script_exit_code": 0,
+  "data": "synthetic make_classification seed 42 and sklearn Wine"
+}
