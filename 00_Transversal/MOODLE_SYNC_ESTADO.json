@@ -1,10 +1,10 @@
 {
-  "activities": 80,
+  "activities": 82,
   "activity_types": {
     "assign": 11,
     "folder": 3,
     "page": 1,
-    "resource": 48,
+    "resource": 50,
     "url": 17
   },
   "assignments": [
@@ -766,8 +766,22 @@
     {
       "kind": "file",
       "path": "06_NiFi/materialak/02_Denbora_Serieak.pdf",
-      "sha256": "e1002195c777fe7d8fbb342d88653b0e07426966b2e944f6a24841219f7bf561",
+      "sha256": "209d7cc11316af1d4ae46477e3eb4990ba10fe0bf7fa7fb61244154e074a57fb",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64556",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "06_NiFi/materialak/Ariketak_02_denbora_serieak.docx",
+      "sha256": "2bde26fbbd5d9274c3b5a6b88785b3ce25323a975922aa6aa39ad2b728a0c081",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64563",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "06_NiFi/materialak/sentsorea.csv",
+      "sha256": "4ff61b212f15a7f1d4a38fcf445c1fad88d168c023282243d2c6abdfb66f0ba2",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64608",
       "status": "verified"
     }
   ],
