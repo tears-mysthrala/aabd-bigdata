@@ -222,6 +222,10 @@ def run():
     plt.ylabel("Clase real")
     plt.tight_layout()
     plt.savefig(output / "confusion.png", dpi=140)
+    if "__file__" not in globals():
+        from IPython.display import Image, display
+
+        display(Image(filename=str(output / "confusion.png")))
     plt.show()
     plt.close("all")
     print(json.dumps(report, ensure_ascii=False, indent=2))

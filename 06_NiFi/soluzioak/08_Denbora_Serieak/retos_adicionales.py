@@ -47,6 +47,10 @@ def alert_episodes(series, threshold=50, consecutive=3, cadence="1min"):
 # lecturas: en la variante sintética hay un único pico deliberado de 65 °C.
 # Un umbral solo no demuestra una avería. Revisar calibración, unidad, rango,
 # persistencia y otros sensores/eventos; conservar la lectura y su quality flag.
+# El PDF sitúa el rango habitual en 40–50 °C; esta variante reutiliza la práctica
+# sintética anterior, cuyo fondo es 21–23 °C. Solo demuestra el filtro >50 y la
+# persistencia; no reproduce el régimen físico de la máquina del enunciado.
+#
 # Tres medidas consecutivas reducen alertas de picos aislados, pero retrasan
 # detección y pueden omitir episodios breves. Un NaN o hueco temporal rompe la
 # secuencia. Emitimos una alerta por episodio al alcanzar la tercera medida,
