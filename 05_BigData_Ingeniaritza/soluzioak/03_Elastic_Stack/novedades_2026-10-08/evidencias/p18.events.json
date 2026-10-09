@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp": "2026-10-05 10:30:45",
+    "mezua": "Connection refused",
+    "bezero_ip": "203.0.113.5",
+    "@timestamp": "2026-10-05T08:30:45.000Z",
+    "maila": "ERROR",
+    "@version": "1",
+    "host": {
+      "hostname": "43d6a7fbbb62"
+    },
+    "event": {
+      "original": "2026-10-05 10:30:45 ERROR nginx 'Connection refused' client=203.0.113.5"
+    },
+    "zerbitzua": "nginx",
+    "message": "2026-10-05 10:30:45 ERROR nginx 'Connection refused' client=203.0.113.5"
+  }
+]

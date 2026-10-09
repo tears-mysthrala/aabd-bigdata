@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "results": [
+    {
+      "script": "01_Lengoaiak_Ariketak/5073_1_Lengoaiak_Ariketak.py",
+      "exit_code": 0,
+      "isolated_copy": true
+    },
+    {
+      "script": "02_Datu_Zientzia_Ariketak/5073_2_Datu_Zientzia_Ariketak.py",
+      "exit_code": 0,
+      "isolated_copy": true
+    },
+    {
+      "script": "03_Lengoaiak_PDF_Ariketak/5073_1_Lengoaiak_PDF_Ariketak.py",
+      "exit_code": 0,
+      "isolated_copy": true
+    },
+    {
+      "script": "04_Datu_Zientzia_PDF_Ariketak/5073_2_Datu_Zientzia_PDF_Ariketak.py",
+      "exit_code": 0,
+      "isolated_copy": true
+    },
+    {
+      "script": "06_Programazioa_Ariketak/5073_3_Programazioa_Ariketak.py",
+      "exit_code": 0,
+      "isolated_copy": true
+    }
+  ]
+}

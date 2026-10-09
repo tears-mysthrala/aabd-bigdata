@@ -1,0 +1,12 @@
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:9.5.4
+    network_mode: none
+    mem_limit: 1100m
+    cpus: 2
+    environment:
+      LS_JAVA_OPTS: -Xms256m -Xmx512m
+    volumes:
+      - ./pipelines/p20.conf:/usr/share/logstash/pipeline/praktika.conf:ro
+      - ./fixtures/web.log:/datos/web.log:ro
+    command: [logstash, -f, /usr/share/logstash/pipeline/praktika.conf, --pipeline.workers, "1", --pipeline.batch.size, "10", --log.level, warn]

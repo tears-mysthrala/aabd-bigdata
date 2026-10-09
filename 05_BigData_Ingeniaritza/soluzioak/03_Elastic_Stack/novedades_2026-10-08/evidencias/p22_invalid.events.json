@@ -1,0 +1,59 @@
+[
+  {
+    "event": {
+      "original": "prefijo 05/Oct/2026:14:32:10 83.45.120.10 GET /api 500"
+    },
+    "path": "/datos/web.log",
+    "tags": [
+      "_grokparsefailure"
+    ],
+    "host": "4e8f57361a01",
+    "@version": "1",
+    "@timestamp": "2026-10-08T09:21:59.412224961Z",
+    "message": "prefijo 05/Oct/2026:14:32:10 83.45.120.10 GET /api 500"
+  },
+  {
+    "event": {
+      "original": "05/Oct/2026:14:32:10 83.45.120.10 GET /api"
+    },
+    "path": "/datos/web.log",
+    "tags": [
+      "_grokparsefailure"
+    ],
+    "host": "4e8f57361a01",
+    "@version": "1",
+    "@timestamp": "2026-10-08T09:21:59.416896507Z",
+    "message": "05/Oct/2026:14:32:10 83.45.120.10 GET /api"
+  },
+  {
+    "event": {
+      "original": "05/Oct/2026:14:32:10 83.45.120.10 GET /api 500 sufijo"
+    },
+    "path": "/datos/web.log",
+    "tags": [
+      "_grokparsefailure"
+    ],
+    "host": "4e8f57361a01",
+    "@version": "1",
+    "@timestamp": "2026-10-08T09:21:59.417784839Z",
+    "message": "05/Oct/2026:14:32:10 83.45.120.10 GET /api 500 sufijo"
+  },
+  {
+    "event": {
+      "original": "31/Feb/2026:14:32:10 83.45.120.10 GET /api 500"
+    },
+    "path": "/datos/web.log",
+    "tags": [
+      "_dateparsefailure"
+    ],
+    "@version": "1",
+    "@timestamp": "2026-10-08T09:21:59.418657783Z",
+    "status_code": 500,
+    "bezero_ip": "83.45.120.10",
+    "message": "31/Feb/2026:14:32:10 83.45.120.10 GET /api 500",
+    "request": "/api",
+    "host": "4e8f57361a01",
+    "timestamp": "31/Feb/2026:14:32:10",
+    "metodoa": "GET"
+  }
+]

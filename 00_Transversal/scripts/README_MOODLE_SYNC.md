@@ -6,6 +6,14 @@ El wrapper usa un bloqueo para impedir dos ciclos automáticos simultáneos.
 
 ## Qué se comprueba
 
+- Las actividades `mod/page` de texto se guardan como `Moodle_page_<id>.md`
+  en la carpeta de material de su sección y se verifican con SHA-256.
+  Solo se extrae el cuerpo docente `#region-main .generalbox`, sin el
+  envoltorio autenticado, scripts ni parámetros de sesión de los enlaces.
+  Las páginas con imágenes, medios, tablas, formularios o adjuntos permanecen
+  pendientes de revisión: no se declara una copia completa de esos elementos.
+  Una página vacía, login o cuerpo ambiguo es un error y bloquea publicación.
+
 - Se recorren las secciones del curso y las secciones adicionales encontradas
   en su navegación. Se descargan recursos, archivos de carpetas y adjuntos del
   enunciado de tareas; las entregas personales del alumnado se excluyen.
@@ -184,7 +192,7 @@ de protección.
 Regresiones locales, sin Moodle ni GitHub real:
 
 ```bash
-uv run --with pytest --with requests --with beautifulsoup4 python -m pytest -q 00_Transversal/scripts/test_moodle_publish.py 00_Transversal/scripts/test_moodle_sync_auth.py
+uv run --with pytest --with requests --with beautifulsoup4 python -m pytest -q 00_Transversal/scripts/test_moodle_publish.py 00_Transversal/scripts/test_moodle_sync_auth.py 00_Transversal/scripts/test_moodle_pages.py
 ```
 
 Usan un remoto bare con `master` protegida y comprueban recuperación tras un

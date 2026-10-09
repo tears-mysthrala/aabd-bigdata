@@ -1,0 +1,2 @@
+# Artefactos locales generados por los notebooks: no distribuir pickle ni duplicar CSV.
+data/

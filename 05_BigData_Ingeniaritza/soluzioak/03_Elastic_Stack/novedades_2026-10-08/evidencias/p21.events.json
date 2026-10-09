@@ -1,0 +1,92 @@
+[
+  {
+    "metodoa": "GET",
+    "path": "/datos/web.log",
+    "event": {
+      "original": "05/Oct/2026:14:32:10 83.45.120.10 GET /api 500"
+    },
+    "timestamp": "05/Oct/2026:14:32:10",
+    "@version": "1",
+    "message": "05/Oct/2026:14:32:10 83.45.120.10 GET /api 500",
+    "host": "421e98511588",
+    "request": "/api",
+    "status_code": 500,
+    "bezero_ip": "83.45.120.10",
+    "@timestamp": "2026-10-05T12:32:10.000Z"
+  },
+  {
+    "metodoa": "POST",
+    "path": "/datos/web.log",
+    "event": {
+      "original": "05/Oct/2026:14:33:20 192.168.1.15 POST /login 200"
+    },
+    "timestamp": "05/Oct/2026:14:33:20",
+    "@version": "1",
+    "message": "05/Oct/2026:14:33:20 192.168.1.15 POST /login 200",
+    "host": "421e98511588",
+    "request": "/login",
+    "status_code": 200,
+    "bezero_ip": "192.168.1.15",
+    "@timestamp": "2026-10-05T12:33:20.000Z"
+  },
+  {
+    "metodoa": "GET",
+    "path": "/datos/web.log",
+    "event": {
+      "original": "05/Oct/2026:14:34:45 10.0.0.8 GET /produktuak 404"
+    },
+    "timestamp": "05/Oct/2026:14:34:45",
+    "@version": "1",
+    "message": "05/Oct/2026:14:34:45 10.0.0.8 GET /produktuak 404",
+    "host": "421e98511588",
+    "request": "/produktuak",
+    "status_code": 404,
+    "bezero_ip": "10.0.0.8",
+    "@timestamp": "2026-10-05T12:34:45.000Z"
+  },
+  {
+    "metodoa": "GET",
+    "path": "/datos/web.log",
+    "event": {
+      "original": "06/Oct/2026:09:15:20 192.168.1.20 GET /hasiera 200"
+    },
+    "timestamp": "06/Oct/2026:09:15:20",
+    "@version": "1",
+    "message": "06/Oct/2026:09:15:20 192.168.1.20 GET /hasiera 200",
+    "host": "421e98511588",
+    "request": "/hasiera",
+    "status_code": 200,
+    "bezero_ip": "192.168.1.20",
+    "@timestamp": "2026-10-06T07:15:20.000Z"
+  },
+  {
+    "metodoa": "POST",
+    "path": "/datos/web.log",
+    "event": {
+      "original": "06/Oct/2026:09:16:35 10.0.0.15 POST /login 401"
+    },
+    "timestamp": "06/Oct/2026:09:16:35",
+    "@version": "1",
+    "message": "06/Oct/2026:09:16:35 10.0.0.15 POST /login 401",
+    "host": "421e98511588",
+    "request": "/login",
+    "status_code": 401,
+    "bezero_ip": "10.0.0.15",
+    "@timestamp": "2026-10-06T07:16:35.000Z"
+  },
+  {
+    "metodoa": "DELETE",
+    "path": "/datos/web.log",
+    "event": {
+      "original": "06/Oct/2026:09:17:50 172.16.0.8 DELETE /produktuak 403"
+    },
+    "timestamp": "06/Oct/2026:09:17:50",
+    "@version": "1",
+    "message": "06/Oct/2026:09:17:50 172.16.0.8 DELETE /produktuak 403",
+    "host": "421e98511588",
+    "request": "/produktuak",
+    "status_code": 403,
+    "bezero_ip": "172.16.0.8",
+    "@timestamp": "2026-10-06T07:17:50.000Z"
+  }
+]

@@ -1,0 +1,11 @@
+[project]
+name = "aabd-guia-visual-modelos"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = ["numpy", "pandas", "matplotlib", "scikit-learn", "xgboost-cpu", "pytest", "nbformat", "nbclient", "ipykernel"]
+
+[dependency-groups]
+security = ["pip-audit"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["generar"]

@@ -266,3 +266,17 @@ Tras `notebooklm login`, las novedades se suben con
 Kafka no añade ejercicios en la edición de hoy: el diff textual del PDF elimina una línea de comprobación del arranque. Se conserva la [solución y evidencia del caso 5](07_Kafka/soluzioak/kafka_aurreratua_connect/caso5/README.md). Los cambios de outputs/metadata en cuadernos previos no representan ejercicios nuevos.
 
 - [Elastic: Compose de apoyo incorporado a las 14:01](05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-07.md), sin ejercicio adicional. Se integran las fuentes del último snapshot de hoy y se verifican sus 79 archivos con SHA-256; los tres modelos de apoyo remotos no se cargan. El PDF de series temporales actualizado no cambia su texto.
+
+## Novedades y pruebas del 8 de octubre
+
+[Informe de ejercicios y validación](00_Transversal/validaciones_2026-10-08/README.md): Boosting y Elastic Stack P18–P22, 92 pruebas finales, ejecución de las series de Programación y lista explícita de requisitos humanos o externos pendientes.
+
+## Novedades y pruebas del 9 de octubre
+
+[Informe actualizado](00_Transversal/validaciones_2026-10-09/README.md): series temporales adaptadas a los 19 pasos, contraste del cuaderno 3 con las soluciones docentes, 115 pruebas locales y guía de examen sincronizada. Ciclo real con 83 archivos verificados y cero fuentes pendientes; los requisitos humanos y externos siguen identificados.
+
+- [Guía visual de 20 modelos: clasificación, regresión y Boosting](03_ML_5072/soluzioak/Guia_Visual_Modelos/README.md), con galería offline, datos reproducibles y los 14 gráficos originales conservados.
+
+- [Mock de preparación del examen: cinco respuestas y checklist práctico completo](04_Programazioa_5073/soluzioak/09_Mock_Azterketa_64153/README.md).
+
+[Auditoría posterior de descargas recuperadas](00_Transversal/REVISION_DESCARGAS_RECUPERADAS_2026-10-09.md), incluido el mock y los retos de series incorporados a las 10:02.

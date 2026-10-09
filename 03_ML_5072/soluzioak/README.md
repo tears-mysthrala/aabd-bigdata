@@ -91,3 +91,9 @@ La [entrega de interpretación de datos en Orange](Interpretacion_Datos/README.m
 ## SVM — material nuevo de Moodle
 
 [Guía SVC/SVR y notebook ejecutado](SVM/README.md): ejemplos del PDF, evaluación de entrenamiento y extensión fuera de muestra separadas. La tarea SVM - Ariketa está confirmada (05/10), con introducción vacía y sin fecha límite visible; no se realizó entrega.
+
+## Boosting — Moodle 8 de octubre
+
+[Cuatro ejemplos Python, tres cálculos manuales y evaluación separada](Boosting/README.md): AdaBoost, Gradient Boosting y XGBoost, con script/notebook ejecutados, lock uv y pruebas de pesos/residuos/pruning.
+
+- [Guía visual de 20 modelos: clasificación, regresión y Boosting](Guia_Visual_Modelos/README.md), con galería offline, datos reproducibles y los 14 gráficos originales conservados.

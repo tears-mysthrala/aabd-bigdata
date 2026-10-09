@@ -1,0 +1,15 @@
+{
+  "verified_at_utc": "2026-10-09T08:15:54.795546+00:00",
+  "verified_files": 83,
+  "activities": 80,
+  "errors": 0,
+  "unavailable": 0,
+  "snapshot_commit": "bdb70679fb86c9a7b04ecca2faf888835990d412",
+  "tests_this_revision": {
+    "mock_64153": 11,
+    "additional_timeseries": 2
+  },
+  "notebook_errors": 0,
+  "original_exam_specific_csv_provided": false,
+  "source_pdf_sha256": "e1002195c777fe7d8fbb342d88653b0e07426966b2e944f6a24841219f7bf561"
+}

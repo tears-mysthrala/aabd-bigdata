@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-09",
+  "notebook_code_cells": 2,
+  "errors": 0,
+  "script_executed_separately": true,
+  "models": 20,
+  "original_figures": 14,
+  "pytest_passed": 4,
+  "dependencies_audit": "no known vulnerabilities detected",
+  "browser": {
+    "route": "HTTP local on 127.0.0.1",
+    "desktop_width": 1440,
+    "mobile_width": 390,
+    "images_loaded": 20,
+    "regression_filter_visible": 10,
+    "ridge_search_visible": 1,
+    "empty_search_visible": 0,
+    "mobile_horizontal_overflow": false,
+    "evidence": "earlier same-day browser check; HTML bytes unchanged by explicit UTF-8 fix"
+  },
+  "rerun_after_utf8_fix": "2026-10-09; script, notebook and four tests; CSV newline translation disabled for byte/hash consistency"
+}

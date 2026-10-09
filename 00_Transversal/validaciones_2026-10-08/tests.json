@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-08",
+  "results": [
+    {
+      "name": "cnc_guard",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "-q"
+      ],
+      "cwd": "01_Erronka1_CNC_Guard/proyecto_cnc_guard",
+      "exit_code": 0
+    },
+    {
+      "name": "frameworks_estructura",
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--with",
+        "pytest",
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_frameworkak.py"
+      ],
+      "cwd": "04_Programazioa_5073/soluzioak/05_Frameworkak_PDF_Ariketak",
+      "exit_code": 0
+    },
+    {
+      "name": "csv_regresion",
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--with",
+        "pytest",
+        "--with",
+        "pandas",
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_agregazio_docente.py"
+      ],
+      "cwd": "04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak",
+      "exit_code": 0
+    },
+    {
+      "name": "csv_200_fixtures",
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--with",
+        "pandas",
+        "python",
+        "test_laguntzaileak.py"
+      ],
+      "cwd": "04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak",
+      "exit_code": 0
+    },
+    {
+      "name": "kafka_mock",
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--with",
+        "pytest",
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_kafka_mock.py"
+      ],
+      "cwd": "07_Kafka/soluzioak",
+      "exit_code": 0
+    },
+    {
+      "name": "kafka_medallion",
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--with",
+        "pytest",
+        "--with",
+        "kafka-python",
+        "--with",
+        "pymongo",
+        "--with",
+        "requests",
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_pipeline.py"
+      ],
+      "cwd": "07_Kafka/soluzioak/kafka_aurreratua_3_kasua",
+      "exit_code": 1
+    },
+    {
+      "name": "kafka_tears_style",
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--with",
+        "pytest",
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_modelos.py"
+      ],
+      "cwd": "07_Kafka/soluzioak/kafka_aurreratua_connect/tears_style",
+      "exit_code": 0
+    },
+    {
+      "name": "faker_seed",
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--with",
+        "pytest",
+        "--with",
+        "faker==37.12.0",
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_sales_seed_ignores_system_date.py"
+      ],
+      "cwd": "05_BigData_Ingeniaritza/soluzioak/02_Datuen_Ingeniaritza",
+      "exit_code": 0
+    },
+    {
+      "name": "kafka_medallion_reintento",
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--with",
+        "pytest",
+        "--with",
+        "kafka-python",
+        "--with",
+        "pymongo",
+        "--with",
+        "requests",
+        "--with",
+        "pandas",
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_pipeline.py"
+      ],
+      "cwd": "07_Kafka/soluzioak/kafka_aurreratua_3_kasua",
+      "exit_code": 0,
+      "result": "12 passed in 2.69s",
+      "reason": "Primer comando omitía pandas; corregido el entorno de prueba"
+    },
+    {
+      "name": "moodle_sync",
+      "passed": 39,
+      "command": "uv run --with pytest --with requests --with beautifulsoup4 --no-project python -m pytest -q 00_Transversal/scripts/test_moodle_publish.py 00_Transversal/scripts/test_moodle_sync_auth.py",
+      "cwd": ".",
+      "exit_code": 0
+    },
+    {
+      "name": "pipeline_ml_api",
+      "passed": 8,
+      "command": "uv run --frozen pytest -q test_ml_api.py",
+      "cwd": "04_Programazioa_5073/soluzioak/08_Moodle_2026-10-07",
+      "exit_code": 0
+    },
+    {
+      "name": "boosting",
+      "passed": 3,
+      "command": "uv run --frozen pytest -q test_boosting.py",
+      "cwd": "03_ML_5072/soluzioak/Boosting",
+      "exit_code": 0
+    }
+  ],
+  "passed_final_total": 92,
+  "note": "Primer intento Kafka Medallion: 10 pass/2 fail por dependencia pandas ausente en el comando; reintento completo 12 pass. El total final no cuenta dos veces ese intento."
+}

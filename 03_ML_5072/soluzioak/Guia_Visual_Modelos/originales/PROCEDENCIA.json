@@ -1,0 +1,71 @@
+{
+  "source": "Carpeta AABD_graficas_modelos aportada por el usuario; originales conservados sin cambios",
+  "original_generator_available": false,
+  "original_metrics_independently_reproduced": false,
+  "files": [
+    {
+      "file": "clasificacion_01.png",
+      "sha256": "f386fbcd85f69635db95465adfc3d8829de3546533241c2b53ab136b6e0d9671"
+    },
+    {
+      "file": "clasificacion_02.png",
+      "sha256": "5f8bcb4624c12c20fda5cecd9257c6d1c517b8d2ea8cc9bdbba954361121099b"
+    },
+    {
+      "file": "clasificacion_03.png",
+      "sha256": "c58064f68e23653ad847c128dd9ab972c5ff98998881d0b3f19c0efda9b6602f"
+    },
+    {
+      "file": "clasificacion_04.png",
+      "sha256": "fcd471f4c5cff871fa0c618f1926db54bf6af834c342061c8128f326a9d0f7eb"
+    },
+    {
+      "file": "clasificacion_05.png",
+      "sha256": "e66e7f44bc6e58719be0eccdca76fbaced16a9658743f2043ad61a75e6858b8f"
+    },
+    {
+      "file": "clasificacion_06.png",
+      "sha256": "43d289158c47af517ba5ddcb13d0c337ff77a6d63686c9b2d4d248a14c609e89"
+    },
+    {
+      "file": "clasificacion_07.png",
+      "sha256": "fb187a98dc1384a86cf75102ceebc9d919ee41b4b88fcaa6fd38478283325c10"
+    },
+    {
+      "file": "index.html",
+      "sha256": "0c04d7100ec84692ecb44870892b8d41a1e2f7e80c07997ca73be2c6ade8651f"
+    },
+    {
+      "file": "metricas.json",
+      "sha256": "6aa6b1429a99edf9c390a21c0a44053b95dfb1d6f5b95d31d98935bbd147c498"
+    },
+    {
+      "file": "regresion_01.png",
+      "sha256": "3ef51ec1dbf6bc95937fcc0265f9ffcb3c7ae35665dfbce613fa48e7a01c83f4"
+    },
+    {
+      "file": "regresion_02.png",
+      "sha256": "344bda5dea4980dc872483e5942c28ce2f77d8f208d4acdc2300ca61378caf94"
+    },
+    {
+      "file": "regresion_03.png",
+      "sha256": "0ca3de6d88eb9150bd53a24eaf098db50e7a168f088116b5cd954e438794c93f"
+    },
+    {
+      "file": "regresion_04.png",
+      "sha256": "2d84d3745a5285ad198b05f37629412efdfb4ce968aa2451937d97bf76a89ccb"
+    },
+    {
+      "file": "regresion_05.png",
+      "sha256": "6c199caefb6fbe0f5d709e887cb7969a3f6652831891da1ddad081cd824776f1"
+    },
+    {
+      "file": "regresion_06.png",
+      "sha256": "9d0d68b1e40df60e5fd930f70955bf7a4fda5bf650c676ad7ba466935e3b2816"
+    },
+    {
+      "file": "regresion_07.png",
+      "sha256": "68b011336e0c806610f487ac1dfc613ca91e5d7f12bfd0ddba290f6d0e39dbc6"
+    }
+  ]
+}

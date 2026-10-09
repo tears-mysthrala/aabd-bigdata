@@ -2,9 +2,17 @@
   "source": "synthetic_seed_42",
   "practice_rows": 180,
   "missing_temperature": 3,
-  "selected_hour_rows": 60,
+  "selected_hour_rows": 61,
+  "selected_hour_mean": 22.586971527154617,
+  "selected_interval": "2026-10-01 08:00\u201309:00 UTC, inclusive",
   "resample_rows": 18,
+  "anomalies_above_50": 1,
+  "original_peak": 65.0,
+  "resample_peak": 26.030380373336527,
+  "rolling_peak": 30.424979095243344,
+  "rolling_missing_after_warmup": 0,
   "sensor_values_per_day_20_machines": 3456000,
+  "bytes_per_day_100_bytes_per_scalar": 345600000,
   "energy_test_hours": 48,
   "energy_mae": 2.1115075366267653
 }

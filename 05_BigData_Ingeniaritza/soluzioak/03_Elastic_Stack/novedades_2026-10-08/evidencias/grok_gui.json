@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-08",
+  "url": "http://127.0.0.1:15601/app/dev_tools#/grokdebugger",
+  "pattern": "^(?<timestamp>%{MONTHDAY}/%{MONTH}/%{YEAR}:%{TIME}) %{IP:bezero_ip} %{WORD:metodoa} %{URIPATHPARAM:request} %{INT:status_code:int}$",
+  "results": [
+    {
+      "request": "/api",
+      "status_code": 500,
+      "metodoa": "GET",
+      "bezero_ip": "83.45.120.10",
+      "timestamp": "05/Oct/2026:14:32:10"
+    },
+    {
+      "request": "/login",
+      "status_code": 200,
+      "metodoa": "POST",
+      "bezero_ip": "192.168.1.15",
+      "timestamp": "05/Oct/2026:14:33:20"
+    },
+    {
+      "request": "/produktuak",
+      "status_code": 404,
+      "metodoa": "GET",
+      "bezero_ip": "10.0.0.8",
+      "timestamp": "05/Oct/2026:14:34:45"
+    },
+    {
+      "request": "/hasiera",
+      "status_code": 200,
+      "metodoa": "GET",
+      "bezero_ip": "192.168.1.20",
+      "timestamp": "06/Oct/2026:09:15:20"
+    },
+    {
+      "request": "/login",
+      "status_code": 401,
+      "metodoa": "POST",
+      "bezero_ip": "10.0.0.15",
+      "timestamp": "06/Oct/2026:09:16:35"
+    },
+    {
+      "request": "/produktuak",
+      "status_code": 403,
+      "metodoa": "DELETE",
+      "bezero_ip": "172.16.0.8",
+      "timestamp": "06/Oct/2026:09:17:50"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+ Container aabd-elastic-20261008-logstash-1 Creating 
+ Container aabd-elastic-20261008-logstash-1 Created 
+Attaching to logstash-1
+ Container aabd-elastic-20261008-logstash-1 Starting 
+ Container aabd-elastic-20261008-logstash-1 Started 
+logstash-1  | Using bundled JDK: /usr/share/logstash/jdk
+logstash-1  | Sending Logstash logs to /usr/share/logstash/logs which is now configured via log4j2.properties
+logstash-1  | [2026-10-08T09:20:54,678][WARN ][logstash.config.source.multilocal] Ignoring the 'pipelines.yml' file because command line options are specified
+logstash-1  | [2026-10-08T09:20:56,536][WARN ][deprecation.logstash.codecs.jsonlines] The default value for `decode_size_limit_bytes`, currently at 512Mb, will be lowered in a future version to prevent Out of Memory errors from abnormally large messages or missing delimiters. Please set a value that reflects the largest expected message size (e.g. 20971520 for 20Mb)
+logstash-1  | [2026-10-08T09:20:56,708][WARN ][logstash.filters.grok    ][main] ECS v8 support is a preview of the unreleased ECS v8, and uses the v1 patterns. When Version 8 of the Elastic Common Schema becomes available, this plugin will need to be updated
+logstash-1  | [2026-10-08T09:20:56,817][WARN ][logstash.javapipeline    ][main] 'pipeline.ordered' is enabled and is likely less efficient, consider disabling if preserving event order is not necessary
+logstash-1  | {"host":"9cdda5d83687","timestamp":"05/Oct/2026:14:32:10","message":"05/Oct/2026:14:32:10 83.45.120.10 GET /api 500","@timestamp":"2026-10-05T12:32:10.000Z","bezero_ip":"83.45.120.10","path":"/datos/web.log","status_code":500,"request":"/api","metodoa":"GET","@version":"1","event":{"original":"05/Oct/2026:14:32:10 83.45.120.10 GET /api 500"}}
+logstash-1  | {"host":"9cdda5d83687","timestamp":"05/Oct/2026:14:33:20","message":"05/Oct/2026:14:33:20 192.168.1.15 POST /login 200","@timestamp":"2026-10-05T12:33:20.000Z","bezero_ip":"192.168.1.15","path":"/datos/web.log","status_code":200,"request":"/login","metodoa":"POST","@version":"1","event":{"original":"05/Oct/2026:14:33:20 192.168.1.15 POST /login 200"}}
+logstash-1  | {"host":"9cdda5d83687","timestamp":"05/Oct/2026:14:34:45","message":"05/Oct/2026:14:34:45 10.0.0.8 GET /produktuak 404","@timestamp":"2026-10-05T12:34:45.000Z","bezero_ip":"10.0.0.8","path":"/datos/web.log","status_code":404,"request":"/produktuak","metodoa":"GET","@version":"1","event":{"original":"05/Oct/2026:14:34:45 10.0.0.8 GET /produktuak 404"}}
+[Klogstash-1 exited with code 0
+ Compose Stopping Aborting on container exit...
+ Container aabd-elastic-20261008-logstash-1 Stopping 
+ Container aabd-elastic-20261008-logstash-1 Stopped 

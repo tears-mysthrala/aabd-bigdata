@@ -12,6 +12,7 @@ Este es un repositorio docente de IA y Big Data: combina teoría de clase, ejerc
 | Para encontrar... | Empieza por... |
 |---|---|
 | La estructura y el arranque general | [README.md](README.md) |
+| Practicar con simulacros por asignatura y bloque | [Mock exams: enunciados, soluciones y rúbricas](00_Transversal/MOCK_EXAMS_2026-10/README.md) |
 | Novedades y pendientes de ejercicios (2026-10-02) | [Revisión Moodle/Drive: ML, notebooks, COMPAS, Kafka/Open-Meteo y NiFi](00_Transversal/REVISION_NOVEDADES_EJERCICIOS_2026-10-02.md) |
 | Dónde añadir materiales o soluciones | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | Límites y prácticas seguras del repositorio | [SECURITY.md](SECURITY.md) y [00_Transversal/SECURITY.md](00_Transversal/SECURITY.md) |
