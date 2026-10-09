@@ -17,16 +17,18 @@ No necesitas levantar servicios para los apartados de diseño o traza.
 
 ## Materia de referencia
 
-- [5072_1_Datua_eta_Aurreprozesamenua.pdf](../5072_1_Datua_eta_Aurreprozesamenua.pdf)
-- [5072_2_01_Erregresio_Lineala.pdf](../5072_2_01_Erregresio_Lineala.pdf)
-- [5072_2_02_Erregresio_Logistikoa.pdf](../5072_2_02_Erregresio_Logistikoa.pdf)
-- [5072_2_03_KNN.pdf](../5072_2_03_KNN.pdf)
-- [5072_2_04_Decision_Tree.pdf](../5072_2_04_Decision_Tree.pdf)
-- [5072_2_05_SVM.pdf](../5072_2_05_SVM.pdf)
-- [5072_2_06_Random_Forest.pdf](../5072_2_06_Random_Forest.pdf)
-- [5072_2_07_Boosting.pdf](../5072_2_07_Boosting.pdf)
-- [5072_3_Balidazio_Metodologia.pdf](../5072_3_Balidazio_Metodologia.pdf)
-- [AI4I_Orange_txostena.pdf](../AI4I_Orange_txostena.pdf)
+- [5072_1_Datua_eta_Aurreprozesamenua.pdf](<../5072_1_Datua_eta_Aurreprozesamenua.pdf>)
+- [5072_2_02_Erregresio_Logistikoa.pdf](<../5072_2_02_Erregresio_Logistikoa.pdf>)
+- [5072_2_03_KNN.pdf](<../5072_2_03_KNN.pdf>)
+- [5072_2_05_SVM.pdf](<../5072_2_05_SVM.pdf>)
+- [5072_2_06_Random_Forest.pdf](<../5072_2_06_Random_Forest.pdf>)
+- [5072_2_07_Boosting.pdf](<../5072_2_07_Boosting.pdf>)
+- [5072_2_Ikasketa_Gainbegiratua.pdf](<../5072_2_Ikasketa_Gainbegiratua.pdf>)
+- [5072_3_Balidazio_Metodologia.pdf](<../5072_3_Balidazio_Metodologia.pdf>)
+- [5073_3_Programazioa.pdf](<../../../04_Programazioa_5073/materialak/5073_3_Programazioa.pdf>)
+
+Correspondencia de cada apartado con páginas y ejercicios docentes:
+[matriz de cobertura](../../../00_Transversal/MOCK_EXAMS_2026-10/COBERTURA.md#ml).
 
 ## 1. Datos y validación (2 puntos; 20 min)
 

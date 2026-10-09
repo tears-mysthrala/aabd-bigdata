@@ -20,9 +20,12 @@ Admitir híbridos razonados. Rúbrica 0.5/0.5/0.75/0.25.
 Base: hechos y reglas; motor: aplica reglas a hechos. R1=min(0.75,0.6)=**0.6**;
 R2=max(0.25,0.6)=**0.6**. Pertenencia expresa grado de compatibilidad con un
 concepto, no probabilidad de fallo. Fuzzificación convierte entradas en grados;
-Mamdani recorta consecuentes por activación y los agrega por máximo. Centroide
-= integral(z·μ(z))/integral(μ(z)); faltan formas de consecuentes, universo y
-resolución si se discretiza. Umbral rígido cambia abruptamente; fuzzy admite
+inferencia aplica las reglas con su intensidad; defuzzificación combina las
+consecuencias para obtener una salida concreta. El material presenta el centro
+de gravedad cualitativamente. Faltan las funciones de salida y su dominio para
+calcular un riesgo numérico; no basta promediar las etiquetas alto/medio.
+No puntúan nombres de métodos adicionales ni fórmulas de integración.
+Umbral rígido cambia abruptamente; fuzzy admite
 transición gradual, sin garantizar por sí solo mejor seguridad. Puntos según
 los cinco subapartados.
 
@@ -45,8 +48,9 @@ permitidos; autorización específica para escritura/exportación; validar argum
 y registrar acciones sin secretos. Cifrado protege frente a acceso ilegítimo,
 minimización reduce lo recogido: son complementarios. Membership inference
 intenta inferir pertenencia al entrenamiento; sobreajuste puede facilitarla,
-pero no es requisito único. DP requiere mecanismo, sensibilidad, presupuesto y
-composición definidos; ruido arbitrario no los prueba. 0.5 por apartado.
+pero no es requisito único. El material introduce ruido para dificultar la
+identificación individual; añadir ruido sin más no permite certificar privacidad.
+No se pide desarrollar la teoría matemática de DP. 0.5 por apartado.
 
 ## 5 — 1.5 puntos
 

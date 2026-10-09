@@ -32,13 +32,19 @@ aplicado; CNC Guard es un reto transversal, no una asignatura adicional.
 
 Todos puntúan sobre 10; los baremos y tiempos son propuestos. Solo Programación
 toma el **formato docente documentado** de 30 test (3 puntos) + práctica (7 puntos),
-sin Internet/IA y con PDFs locales en la práctica. La fórmula concreta de
-penalización del test es propuesta: la guía local no proporciona cuantía.
+sin Internet/IA y con PDFs locales en la práctica. Se registran aciertos,
+errores y blancos; la guía local no proporciona la cuantía de penalización,
+así que no se inventa una nota penalizada.
 Para los demás no se conoce aquí un formato oficial por asignatura.
+
+La preparación sigue los entornos virtuales de los apuntes de Programación;
+las preferencias de herramientas del repositorio no son contenido del examen.
 
 El alcance es **materia disponible**, no certificación de qué se ha impartido ya
 ni cobertura de todo el currículo del curso. Cada enunciado enlaza sus fuentes;
-la [matriz de cobertura](COBERTURA.md) explica decisiones y límites.
+la [matriz de cobertura](COBERTURA.md) vincula los 64 apartados a páginas y
+ejercicios concretos de 37 fuentes docentes. El manifiesto fija sus hashes;
+si una fuente cambia, hay que revisar de nuevo los apartados afectados.
 
 ## Datos y ejecución
 

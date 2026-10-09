@@ -63,7 +63,7 @@ Filtro date sobre ts con ISO8601 a @timestamp; gestionar _grokparsefailure
 mediante cuarentena/log de error, sin enviar como éxito silencioso.
 ILM: hot inicial; warm min_age=7d; cold min_age=30d; delete min_age=90d.
 Definir acciones compatibles con recursos y requisitos del caso.
-Comprobar política, index template y asociación efectiva; si hay rollover,
-configurar alias/data stream apropiado y entender que min_age se referencia al
-rollover para índices rotados. No asumir que crear una política la aplica a todos
-los índices existentes. 0.5 por apartado.
+Comprobar política, index template con patrón del caso y asociación efectiva de
+un índice nuevo. Se sigue la práctica 8, sin exigir configuración de rollover ni
+data streams. No asumir que crear una política la aplica a todos los índices
+existentes. 0.5 por apartado.

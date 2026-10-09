@@ -19,7 +19,7 @@ el test final no determina parámetros ni umbral. 0.5 por apartado.
 
 Errores absolutos 1,1,0: **MAE=2/3**, **MSE=2/3**; SSE=2 y SST=8,
 **R²=0.75**. Lineal estima valor continuo; logística modela probabilidad de
-clase con sigmoid/softmax. Ridge penaliza L2, Lasso L1 y puede anular coeficientes;
+clase, mediante sigmoide en el caso binario. Ridge penaliza L2, Lasso L1 y puede anular coeficientes;
 regularización limita complejidad, no garantiza mejor score. K pequeño favorece
 fronteras irregulares y varianza; C grande penaliza más violaciones de margen,
 reduce regularización y puede sobreajustar según kernel/datos; árbol sin límite
@@ -52,12 +52,12 @@ Código de referencia del núcleo (ejecutar con dependencias locales disponibles
 ```python
 import numpy as np
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix
 
 X, y = load_iris(return_X_y=True)
 Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.30, random_state=42, stratify=y)

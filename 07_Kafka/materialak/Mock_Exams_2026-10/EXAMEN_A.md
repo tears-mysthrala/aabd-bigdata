@@ -17,8 +17,11 @@ No necesitas levantar servicios para los apartados de diseño o traza.
 
 ## Materia de referencia
 
-- [01_03_ApacheKafka.pdf](../01_03_ApacheKafka.pdf)
-- [01_04_ApacheKafka_aurreratua.pdf](../01_04_ApacheKafka_aurreratua.pdf)
+- [01_03_ApacheKafka.pdf](<../01_03_ApacheKafka.pdf>)
+- [01_04_ApacheKafka_aurreratua.pdf](<../01_04_ApacheKafka_aurreratua.pdf>)
+
+Correspondencia de cada apartado con páginas y ejercicios docentes:
+[matriz de cobertura](../../../00_Transversal/MOCK_EXAMS_2026-10/COBERTURA.md#kafka).
 
 ## 1. Conceptos y claves (2 puntos; 20 min)
 
@@ -40,7 +43,8 @@ Explica cuándo auto_offset_reset='earliest' actúa y cuándo no (0.5).
 ## 3. Disponibilidad y diagnóstico (2 puntos; 20 min)
 
 Partición: leader B1, replicas=[B1,B2], ISR=[B1,B2]. min.insync.replicas=2;
-producer acks='all'. Cae B2. ¿Se aceptan nuevas escrituras? Justifica (0.75).
+producer acks='all'. Cae B2 y la ISR pasa a [B1]. ¿Se aceptan nuevas escrituras?
+Justifica (0.75).
 Después cae B1: ¿puede B3 convertirse en leader de esta partición sin más? (0.5).
 Explica por qué RF=3 no es posible con 2 brokers y por qué RF no aumenta el número
 de particiones útiles para consumidores (0.5). Propón una comprobación de describe
@@ -53,15 +57,17 @@ Bronze recibe once mensajes válidos para una sola estación, con temperaturas
 estación, timestamp, temperatura y event_id. Gold agrupa lotes de diez eventos
 únicos. Define roles de capas y grupos para fichero/MongoDB/Gold independientes
 (0.75); calcula count/media/máximo del primer lote y destino del resto (0.5);
-diseña deduplicación y explica fallo entre salida y commit, sin prometer exactly-once
-solo por usar Kafka (0.75); compara lote de diez eventos con ventana temporal
-por estación y tratamiento de API caída (0.5).
+explica cómo un ID estable permite reconocer la reentrega y el riesgo de
+confirmar offset antes/después de procesar, usando las semánticas de la página
+49 del PDF básico (0.75); compara la transformación/agregación del caso Python
+con EvaluateJsonPath, MergeRecord y QueryRecord del caso NiFi (0.5).
 
 ## 5. Kafka Connect y verificación (1.5 puntos; 20 min)
 
-Se requiere fichero → Kafka → otro fichero. Elige source/sink y distingue
-worker, connector y task (0.5). Describe serializers de un producer frente a
+Se requiere MySQL (`retail_db.categories`) → Kafka → MongoDB, como en el caso
+5 del PDF avanzado. Elige JDBC source/MongoDB sink y distingue worker,
+connector y task (0.5). Describe serializers de un producer frente a
 converters de Connect, plugin y estado de tasks a verificar (0.5).
-Define una prueba local de diez registros, reinicio y control de duplicados,
+Describe una prueba con registros nuevos en MySQL y comprobación de topic/MongoDB,
 distinguiendo configuración preparada de ejecución verificada (0.5).
 No levantes ni reinicies servicios para este examen escrito.

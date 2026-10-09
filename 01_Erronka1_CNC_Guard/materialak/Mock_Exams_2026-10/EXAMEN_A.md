@@ -17,9 +17,18 @@ No necesitas levantar servicios para los apartados de diseño o traza.
 
 ## Materia de referencia
 
-- [1Erronka_ikaslearen_txostena.docx.pdf](../1Erronka_ikaslearen_txostena.docx.pdf)
+- [1Erronka_ikaslearen_txostena.docx.pdf](<../1Erronka_ikaslearen_txostena.docx.pdf>)
+- [ANEXO1-Eus.md](<../ANEXO1-Eus.md>)
 - [patata tortila - planifikazioa eta kostuak lantzekoAA 2026-2027.md](<../patata tortila - planifikazioa eta kostuak lantzekoAA 2026-2027.md>)
-- [ANEXO1-Eus.md](../ANEXO1-Eus.md)
+- [5071-IE1-Logika_Lausoa.md](<../../../02_AA_Ereduak_5071/materialak/5071-IE1-Logika_Lausoa.md>)
+- [5072_2_01_Erregresio_Lineala.pdf](<../../../03_ML_5072/materialak/5072_2_01_Erregresio_Lineala.pdf>)
+- [5072_3_Balidazio_Metodologia.pdf](<../../../03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf>)
+- [Ariketak_01_02_datuen_ingeniaritza.md](<../../../05_BigData_Ingeniaritza/materialak/Ariketak_01_02_datuen_ingeniaritza.md>)
+- [01_01_ApacheNifi.pdf](<../../../06_NiFi/materialak/01_01_ApacheNifi.pdf>)
+- [01_03_ApacheKafka.pdf](<../../../07_Kafka/materialak/01_03_ApacheKafka.pdf>)
+
+Correspondencia de cada apartado con páginas y ejercicios docentes:
+[matriz de cobertura](../../../00_Transversal/MOCK_EXAMS_2026-10/COBERTURA.md#cnc).
 
 ## 1. Objetivo y alcance (1.5 puntos; 15 min)
 
@@ -51,7 +60,8 @@ si solo hay una persona que no puede ejecutar dos tareas a la vez (0.5).
 Diseña el recorrido sensor → ingesta → almacenamiento → modelo → alerta.
 Indica papel de Kafka/NiFi, histórico y monitorización (0.75), esquema mínimo
 con máquina, instante, unidades y calidad (0.5), tratamiento de duplicados/huecos
-y trazabilidad (0.5), reparto de responsabilidades entre dos roles del equipo (0.25).
+y trazabilidad (0.5), tareas de dos roles del contrato docente:
+coordinador, secretario o portavoz (0.25).
 No conviertas una alerta de laboratorio en una orden de parada.
 
 ## 4. Reglas y aprendizaje (2 puntos; 25 min)
@@ -61,8 +71,8 @@ Para una lectura se dan μ(temperatura alta)=0.7, μ(vibración alta)=0.4 y
 R2 temperatura media → riesgo medio. Usa AND=min. Calcula activaciones (0.5),
 explica las tres fases fuzzy y por qué faltan datos para un centroide numérico
 (0.5), compara experto/fuzzy con detector de anomalías sin etiquetas (0.5), y
-justifica por qué combinar señales tomando el máximo es conservador pero puede
-incrementar falsas alarmas (0.5).
+explica el sistema híbrido experto + fuzzy del apartado 03.4 de Logika Lausoa:
+reglas para decidir qué hacer y control gradual para decidir cuánto (0.5).
 
 ## 5. Evaluación, coste y defensa (2.5 puntos; 35 min)
 

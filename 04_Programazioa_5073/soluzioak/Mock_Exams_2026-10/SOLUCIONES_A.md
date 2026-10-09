@@ -11,38 +11,39 @@ Los valores calculados son respuestas de casos sintéticos, no resultados de pla
 | Nº | Respuesta | Motivo |
 |---|---|---|
 | 1 | A | La elección depende de ecosistema, integración y requisitos. |
-| 2 | D | Conectar una herramienta no concede permiso para toda acción. |
-| 3 | C | El filtro se aplica antes de construir cada elemento. |
-| 4 | C | loads lee texto JSON; dumps serializa hacia texto. |
-| 5 | C | La confianza en el origen importa en pickle/joblib. |
-| 6 | D | Son aislamientos diferentes. |
-| 7 | B | uv reutiliza caché sin mezclar estado lógico de ejercicios. |
-| 8 | D | reshape conserva número de elementos. |
-| 9 | C | Indexación por máscara filtra valores. |
-| 10 | C | Usar operadores vectorizados y paréntesis. |
-| 11 | B | subset/how pueden cambiar la regla; no es imputación. |
+| 2 | C | MCP estandariza conexiones con herramientas y contexto. |
+| 3 | B | El filtro se aplica antes de construir cada elemento. |
+| 4 | D | loads lee texto JSON; dumps serializa hacia texto. |
+| 5 | B | La confianza en el origen importa en pickle/joblib. |
+| 6 | A | Son aislamientos diferentes. |
+| 7 | D | El aislamiento evita conflictos de dependencias entre proyectos. |
+| 8 | B | reshape conserva número de elementos. |
+| 9 | D | Indexación por máscara filtra valores. |
+| 10 | A | Usar operadores vectorizados y paréntesis. |
+| 11 | A | subset/how pueden cambiar la regla; no es imputación. |
 | 12 | D | loc evita asignación encadenada ambigua. |
-| 13 | D | Una Figure puede contener varios Axes. |
+| 13 | B | Una Figure puede contener varios Axes. |
 | 14 | B | Boxplot muestra distribución, mediana y dispersión por grupo. |
-| 15 | D | El test no debe informar los parámetros del escalado. |
+| 15 | C | El test no debe informar los parámetros del escalado. |
 | 16 | D | La etiqueta no puede permanecer como predictor de sí misma. |
 | 17 | C | Ordinal requiere un orden justificable. |
 | 18 | B | Pipeline ayuda, pero no corrige un split inadecuado. |
-| 19 | B | La mediana resiste outliers mejor que la media. |
-| 20 | B | Pesos n/(K*n_c); no equivale a oversampling. |
+| 19 | A | La mediana resiste outliers mejor que la media. |
+| 20 | B | Pondera inversamente a la frecuencia; no crea nuevas filas. |
 | 21 | A | Remuestrear antes del split puede contaminar evaluación. |
-| 22 | D | Mide cobertura de positivos reales. |
+| 22 | C | Mide cobertura de positivos reales. |
 | 23 | A | Mide acierto de positivos predichos. |
 | 24 | D | Accuracy aislada engaña con desbalance. |
-| 25 | D | Filas reales, columnas predichas. |
+| 25 | B | Filas reales, columnas predichas. |
 | 26 | C | Optimizar con test lo convierte en parte de selección. |
 | 27 | D | La selección necesita respetar frontera de validación. |
-| 28 | B | Evitar carga repetida; cada worker tiene su proceso. |
-| 29 | A | Validación de datos no sustituye autenticación ni modelo. |
-| 30 | D | Usar el pipeline entrenado y su contrato de entrada. |
+| 28 | C | Evitar carga repetida; cada worker tiene su proceso. |
+| 29 | C | Define el esquema de entrada y validaciones adicionales. |
+| 30 | A | Usar el pipeline entrenado y su contrato de entrada. |
 
-Aplicar T=max(0,0.1×(A−E/3)); A+E+blancos=30. Si A=24,E=3,blancos=3,
-T=2.3. Esta penalización es una propuesta de entrenamiento.
+Aciertos+errores+blancos=30. Por ejemplo, 24 aciertos, 3 errores y 3 blancos
+permiten registrar el resultado, pero no obtener una nota penalizada: falta la
+cuantía que debe proporcionar el profesorado. No se inventa ese dato.
 
 ## Práctica — máximo 7 puntos
 
@@ -55,27 +56,37 @@ métricas del clasificador: deben salir de la ejecución.
 Código de referencia. Desde la raíz del repositorio, pegarlo en un notebook o
 script nuevo; crea/sobrescribe únicamente `resultados_mock_programacion/`.
 Conserva una copia de esa salida antes de repetir si interesa comparar.
-Selecciona un entorno local con las dependencias declaradas; para preparar uno
-fuera del tiempo de examen usa uv, no pip global.
+Antes del simulacro, prepara un entorno virtual como en las páginas 21–23 de
+5073_1_Lengoaiak. Desde la raíz del repositorio, para este ejercicio:
+
+```bash
+python -m venv 04_Programazioa_5073/soluzioak/Mock_Exams_2026-10/.venv
+source 04_Programazioa_5073/soluzioak/Mock_Exams_2026-10/.venv/bin/activate
+python -m pip install pandas numpy scikit-learn matplotlib 'pydantic>=2,<3'
+```
+
+Estos comandos son preparación, fuera del tiempo de examen; dentro del simulacro
+se usan las bibliotecas preinstaladas y los PDFs locales. No incluyas el entorno
+en Git ni instales paquetes en el Python global.
 
 ```python
-from pathlib import Path
 import math
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
+from pydantic import BaseModel, ValidationError, field_validator
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score,
-    balanced_accuracy_score,
-    recall_score,
-    precision_score,
-    f1_score,
     classification_report,
     confusion_matrix,
+    f1_score,
+    precision_score,
+    recall_score,
 )
-from pydantic import BaseModel, ConfigDict, field_validator, ValidationError
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 
 source = Path("04_Programazioa_5073/data/mock_exams_2026_10/refrigeracion.csv")
 out = Path("resultados_mock_programacion")
@@ -132,7 +143,6 @@ pred = model.predict(test[features])
 def evaluate(y, p):
     return dict(
         accuracy=accuracy_score(y, p),
-        balanced_accuracy=balanced_accuracy_score(y, p),
         recall=recall_score(y, p, zero_division=0),
         precision=precision_score(y, p, zero_division=0),
         f1=f1_score(y, p, zero_division=0),
@@ -153,7 +163,6 @@ predictions.to_csv(out / "predicciones.csv", index=False)
 
 
 class Solicitud(BaseModel):
-    model_config = ConfigDict(extra="forbid")
     temperatura_c: float
     potencia_w: float
 
@@ -173,7 +182,6 @@ invalid = [
     dict(temperatura_c=-18, potencia_w=-1),
     dict(temperatura_c=float("nan"), potencia_w=100),
     dict(temperatura_c=-18, potencia_w=float("inf")),
-    dict(temperatura_c=-18, potencia_w=100, extra=1),
 ]
 for entry in invalid:
     try:
@@ -200,19 +208,20 @@ una cámara frigorífica puede tener temperatura válida negativa.
 ### P2 — 2 puntos
 
 Split/comprobaciones 0.5; pipeline y fit solo train 1; explicación 0.5.
-Pesos n/(K*n_c): clase 1 =231/48=**4.8125**; clase 0=231/414≈**0.5580**.
-Cambian contribución a la pérdida; no generan registros, no cambian prevalencia
+La clase minoritaria recibe mayor peso y la mayoritaria menor peso en el ajuste.
+Cambian la contribución de cada clase; no generan registros, no cambian prevalencia
 real y no garantizan mejora. El test C04 simula cámara nueva, no futuro temporal.
 
 ### P3 — 2 puntos
 
 Métricas/matriz/reporte 1; baseline/interpretación 0.75; límite 0.25.
-Baseline accuracy=69/77≈**0.8961**, balanced accuracy=**0.5**, recall/F1=0.
+Baseline accuracy=69/77≈**0.8961**, recall/F1=0.
 Precision con cero predicciones positivas es indefinida, se usa zero_division=0.
 Filas reales/columnas predichas, matriz [[TN,FP],[FN,TP]], support número real de
 cada clase. FN omite avería; FP moviliza revisión innecesaria. Test pequeño y
 sintético no valida planta ni calibración; cambiar umbral mirando test invalida
-su papel final. Explicar métricas obtenidas, sin asegurar que balanced mejora.
+su papel final. Explicar métricas obtenidas, sin asegurar que los pesos mejoran
+el resultado.
 
 ### P4 — 1.5 puntos
 

@@ -17,111 +17,113 @@ No necesitas levantar servicios para los apartados de diseño o traza.
 
 ## Materia de referencia
 
-- [Moodle_page_64153.md](../Moodle_page_64153.md)
-- [5073_1_Lengoaiak.pdf](../5073_1_Lengoaiak.pdf)
-- [5073_2_Datu_Zientzia.pdf](../5073_2_Datu_Zientzia.pdf)
-- [5073_3_Programazioa.pdf](../5073_3_Programazioa.pdf)
-- [1_Ariketa_koadernoa_URLa.ipynb](../1_Ariketa_koadernoa_URLa.ipynb)
-- [2_Ariketa_Koadernoa_URLa.ipynb](../2_Ariketa_Koadernoa_URLa.ipynb)
-- [3_Ariketa_koadernoa_URLa.ipynb](../3_Ariketa_koadernoa_URLa.ipynb)
+- [5072_3_Balidazio_Metodologia.pdf](<../../../03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf>)
+- [3_Ariketa_koadernoa_URLa.ipynb](<../3_Ariketa_koadernoa_URLa.ipynb>)
+- [5073_1_Lengoaiak.pdf](<../5073_1_Lengoaiak.pdf>)
+- [5073_2_Datu_Zientzia.pdf](<../5073_2_Datu_Zientzia.pdf>)
+- [5073_3_Programazioa.pdf](<../5073_3_Programazioa.pdf>)
+- [Moodle_page_64153.md](<../Moodle_page_64153.md>)
+
+Correspondencia de cada apartado con páginas y ejercicios docentes:
+[matriz de cobertura](../../../00_Transversal/MOCK_EXAMS_2026-10/COBERTURA.md#programacion).
 
 ## Parte teórica (3 puntos; 35 min)
 
 30 preguntas, una respuesta correcta, cuatro opciones. Sin apuntes ni ordenador.
-La guía especifica penalización, pero no fija aquí su cuantía: para este simulacro
-se propone **T = max(0, 0.1 × (aciertos − errores/3))**; blanco=0.
-No atribuyas esta fórmula al profesorado. Marca respuestas en una hoja 1–30.
+La guía especifica penalización, pero no fija su cuantía. Registra aciertos,
+errores y blancos; no calcules una nota penalizada sin ese dato docente.
+Marca respuestas en una hoja 1–30. La teoría tiene un máximo de 3 puntos.
 
 **1. ¿Qué combinación describe mejor el uso de Python y Java en la materia?**
 
 - A) Python: ecosistema de datos/ML; Java: sistemas robustos y parte del ecosistema Big Data.
-- B) Ambos lenguajes obligan a usar GPU en toda inferencia.
-- C) Java sustituye a Pandas sin librerías; Python exige navegador.
-- D) Python: solo frontend; Java: exclusivamente estadística.
+- B) Java sustituye a Pandas sin librerías; Python exige navegador.
+- C) Python: solo frontend; Java: exclusivamente estadística.
+- D) Ambos lenguajes obligan a usar GPU en toda inferencia.
 
 **2. ¿Qué hace MCP en un sistema de agentes?**
 
 - A) Entrena automáticamente el clasificador con nuevos pesos.
 - B) Sustituye al protocolo de transporte de Kafka.
-- C) Garantiza que toda herramienta tenga autorización de escritura.
-- D) Estandariza la conexión con herramientas y fuentes de contexto.
+- C) Estandariza la conexión con herramientas y fuentes de contexto.
+- D) Garantiza que toda herramienta tenga autorización de escritura.
 
 **3. ¿Cuál es el resultado de [x*x for x in [1,2,3] if x>1]?**
 
 - A) [1, 2, 3]
-- B) [1, 4, 9]
-- C) [4, 9]
+- B) [4, 9]
+- C) [1, 4, 9]
 - D) [2, 3]
 
 **4. Para convertir una cadena JSON en un diccionario Python se usa:**
 
 - A) dict.dump(cadena)
 - B) pickle.dump(cadena)
-- C) json.loads(cadena)
-- D) json.dumps(cadena)
+- C) json.dumps(cadena)
+- D) json.loads(cadena)
 
 **5. ¿Qué conviene hacer con un pickle de origen desconocido?**
 
 - A) Cargarlo porque la extensión garantiza datos puros.
-- B) Quitar espacios al nombre para convertirlo en seguro.
-- C) Evitar deserializarlo: puede ejecutar código.
+- B) Evitar deserializarlo: puede ejecutar código.
+- C) Quitar espacios al nombre para convertirlo en seguro.
 - D) Renombrarlo a JSON y luego cargarlo con pickle.
 
 **6. ¿Qué distingue una rama de Git de un entorno virtual?**
 
-- A) Ambos almacenan únicamente librerías Python.
-- B) La rama fija automáticamente las versiones del lockfile.
-- C) Un venv sustituye los commits y la historia.
-- D) La rama organiza historia de código; el entorno aísla dependencias.
+- A) La rama organiza historia de código; el entorno aísla dependencias.
+- B) Ambos almacenan únicamente librerías Python.
+- C) La rama fija automáticamente las versiones del lockfile.
+- D) Un venv sustituye los commits y la historia.
 
-**7. ¿Qué flujo respeta los entornos de este repositorio?**
+**7. ¿Para qué sirve un entorno virtual de Python?**
 
-- A) Usar un solo entorno global para todas las prácticas.
-- B) Gestionar con uv y el lock local, manteniendo aislamiento por ejercicio.
-- C) Instalar con sudo pip para compartir todas las dependencias.
-- D) Copiar .venv entre sistemas como sustituto del lock.
+- A) Para sustituir el historial de Git por las librerías instaladas.
+- B) Para convertir automáticamente Python en otro lenguaje.
+- C) Para garantizar mejores métricas de cualquier modelo.
+- D) Para aislar las dependencias de un proyecto y evitar conflictos de versiones.
 
 **8. Un array de 12 elementos puede hacerse matriz 3×4 con:**
 
 - A) arr.reshape(4, 4)
-- B) arr.reshape(12, 12)
-- C) arr.reshape(3, 5)
-- D) arr.reshape(3, 4)
+- B) arr.reshape(3, 4)
+- C) arr.reshape(12, 12)
+- D) arr.reshape(3, 5)
 
 **9. ¿Qué selecciona arr[arr > 5]?**
 
 - A) Todos los elementos desde la posición 5.
 - B) Una copia con valores <=5 reemplazados por cero.
-- C) Los elementos que cumplen una máscara booleana.
-- D) Los índices siempre, aunque arr contenga float.
+- C) Los índices siempre, aunque arr contenga float.
+- D) Los elementos que cumplen una máscara booleana.
 
 **10. Para dos condiciones sobre columnas Pandas se emplea normalmente:**
 
-- A) (df.a > 0) && (df.b < 10)
+- A) (df.a > 0) & (df.b < 10)
 - B) df.a > 0 and df.b < 10
-- C) (df.a > 0) & (df.b < 10)
-- D) (df.a > 0) + (df.b < 10) como filtro equivalente
+- C) (df.a > 0) + (df.b < 10) como filtro equivalente
+- D) (df.a > 0) && (df.b < 10)
 
 **11. ¿Qué hace dropna() con sus valores por defecto sobre un DataFrame?**
 
-- A) Elimina solo filas completamente nulas.
-- B) Elimina filas que contienen al menos un valor ausente.
+- A) Elimina filas que contienen al menos un valor ausente.
+- B) Elimina solo filas completamente nulas.
 - C) Elimina duplicados sin revisar los nulos.
 - D) Imputa todos los nulos con la media.
 
 **12. ¿Qué instrucción modifica valores por una condición de forma explícita?**
 
-- A) df['x'].median() = 0
-- B) df.iloc['x'] = 0
-- C) df[df['x'] < 0]['x'] = 0 como forma siempre fiable
+- A) df[df['x'] < 0]['x'] = 0 como forma siempre fiable
+- B) df['x'].median() = 0
+- C) df.iloc['x'] = 0
 - D) df.loc[df['x'] < 0, 'x'] = 0
 
 **13. ¿Qué son Figure y Axes en Matplotlib?**
 
 - A) Figure y Axes son siempre el mismo objeto.
-- B) Figure es una serie; Axes es una base de datos.
-- C) Axes es solo el título de la ventana.
-- D) Figure es el contenedor general; Axes representa un gráfico con sus ejes.
+- B) Figure es el contenedor general; Axes representa un gráfico con sus ejes.
+- C) Figure es una serie; Axes es una base de datos.
+- D) Axes es solo el título de la ventana.
 
 **14. Para comparar temperatura por cámara, ¿qué gráfico ayuda?**
 
@@ -132,10 +134,10 @@ No atribuyas esta fórmula al profesorado. Marca respuestas en una hoja 1–30.
 
 **15. ¿Dónde se ajusta StandardScaler para evaluar un holdout?**
 
-- A) Se ajusta por separado en test para hacer comparables métricas.
-- B) Sobre train y test juntos para tener media global.
-- C) Solo sobre test antes de entrenar.
-- D) Solo en train; se transforma test con ese ajuste.
+- A) Sobre train y test juntos para tener media global.
+- B) Solo sobre test antes de entrenar.
+- C) Solo en train; se transforma test con ese ajuste.
+- D) Se ajusta por separado en test para hacer comparables métricas.
 
 **16. ¿Qué código separa correctamente el target?**
 
@@ -160,31 +162,31 @@ No atribuyas esta fórmula al profesorado. Marca respuestas en una hoja 1–30.
 
 **19. ¿Cuál es una imputación razonable de stock con outliers?**
 
-- A) Valor máximo de test para cada nulo de train.
-- B) Mediana ajustada solo en train, con justificación del contexto.
-- C) Etiqueta de fallo como valor sustituto de stock.
-- D) Media calculada en train+test obligatoriamente.
+- A) Mediana ajustada solo en train, con justificación del contexto.
+- B) Etiqueta de fallo como valor sustituto de stock.
+- C) Media calculada en train+test obligatoriamente.
+- D) Valor máximo de test para cada nulo de train.
 
 **20. ¿Qué significa class_weight="balanced"?**
 
-- A) Duplica físicamente cada muestra minoritaria.
+- A) Garantiza precisión y recall superiores.
 - B) Pondera clases inversamente a su frecuencia en entrenamiento.
-- C) Garantiza precisión y recall superiores.
-- D) Equilibra siempre las probabilidades predichas a 50/50.
+- C) Equilibra siempre las probabilidades predichas a 50/50.
+- D) Duplica físicamente cada muestra minoritaria.
 
 **21. ¿Dónde debe aplicarse SMOTE durante selección con CV?**
 
 - A) Solo a entrenamiento de cada fold, sin sintetizar validación/test.
-- B) Solo al test para facilitar recall.
-- C) Después de calcular métricas para corregirlas.
-- D) A todo el dataset antes del split.
+- B) Después de calcular métricas para corregirlas.
+- C) A todo el dataset antes del split.
+- D) Solo al test para facilitar recall.
 
 **22. Recall de la clase positiva es:**
 
 - A) (TP+TN)/N.
 - B) TN/(TN+FP).
-- C) TP/(TP+FP).
-- D) TP/(TP+FN).
+- C) TP/(TP+FN).
+- D) TP/(TP+FP).
 
 **23. Precision de la clase positiva es:**
 
@@ -203,9 +205,9 @@ No atribuyas esta fórmula al profesorado. Marca respuestas en una hoja 1–30.
 **25. En confusion_matrix con labels=[0,1], ¿qué representa [1,0]?**
 
 - A) FP: real 0, predicho 1.
-- B) TN: real 0, predicho 0.
-- C) TP: real 1, predicho 1.
-- D) FN: real 1, predicho 0.
+- B) FN: real 1, predicho 0.
+- C) TN: real 0, predicho 0.
+- D) TP: real 1, predicho 1.
 
 **26. Para elegir un umbral se debe usar:**
 
@@ -224,23 +226,23 @@ No atribuyas esta fórmula al profesorado. Marca respuestas en una hoja 1–30.
 **28. Al publicar una API de inferencia, el modelo suele cargarse:**
 
 - A) Solo al apagar el servicio.
-- B) Una vez durante arranque de cada proceso de la API.
-- C) Después de enviar la respuesta al cliente.
+- B) Después de enviar la respuesta al cliente.
+- C) Una vez durante arranque de cada proceso de la API.
 - D) Desde disco en cada predicción como requisito general.
 
 **29. BaseModel y field_validator se usan para:**
 
-- A) Definir esquema de entrada y validar restricciones adicionales.
-- B) Conceder acceso automático a cualquier endpoint.
-- C) Entrenar los coeficientes del clasificador.
+- A) Conceder acceso automático a cualquier endpoint.
+- B) Entrenar los coeficientes del clasificador.
+- C) Definir esquema de entrada y validar restricciones adicionales.
 - D) Convertir toda entrada inválida en una predicción válida.
 
 **30. Una entrada de inferencia válida debe:**
 
-- A) Ordenar features alfabéticamente aunque train usara otro orden.
-- B) Escalarse con un scaler nuevo ajustado a una sola solicitud.
-- C) Incluir el target verdadero para la predicción.
-- D) Respetar esquema, rangos y mismo orden de features que train.
+- A) Respetar esquema, rangos y mismo orden de features que train.
+- B) Ordenar features alfabéticamente aunque train usara otro orden.
+- C) Escalarse con un scaler nuevo ajustado a una sola solicitud.
+- D) Incluir el target verdadero para la predicción.
 
 ## Parte práctica — cámaras frigoríficas (7 puntos; 115 min)
 
@@ -273,16 +275,16 @@ No selecciones umbral en test: conserva 0.5.
 
 ### P3. Métricas y explicación (2 puntos; 30 min)
 
-Predicciones en test, accuracy, balanced_accuracy, recall, precision, F1,
+Predicciones en test, accuracy, recall, precision, F1,
 classification_report y matriz con labels=[0,1] (1). Compara con siempre 0 y
 explica FN/FP, support y coste de cada error (0.75). Escribe limitación de evaluar
 una sola cámara sintética y evita adjudicar generalización real (0.25).
 
 ### P4. Contrato de inferencia (1.5 puntos; 30 min)
 
-BaseModel con temperatura_c/potencia_w, extra='forbid' y **field_validator**:
+BaseModel con temperatura_c/potencia_w y **field_validator**:
 finito y rangos de P1 (0.75). Prueba extremos válidos y al menos negativo fuera
-de rango, NaN, infinito y campo extra; temperatura negativa dentro del rango es
+de rango, NaN e infinito; temperatura negativa dentro del rango es
 válida (0.5). Predice una solicitud válida con el pipeline y orden correcto;
 define probabilidad de averia=1 (0.25). No hace falta desplegar una API.
 

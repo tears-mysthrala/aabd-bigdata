@@ -17,10 +17,14 @@ No necesitas levantar servicios para los apartados de diseño o traza.
 
 ## Materia de referencia
 
-- [Ariketak_01_01_big_data_sarrera.md](../Ariketak_01_01_big_data_sarrera.md)
-- [Ariketak_01_02_datuen_ingeniaritza.md](../Ariketak_01_02_datuen_ingeniaritza.md)
-- [01_01_big_data_sarrera.pdf](../01_01_big_data_sarrera.pdf)
-- [02_elastic_stack.pdf](../02_elastic_stack.pdf)
+- [01_01_big_data_sarrera.pdf](<../01_01_big_data_sarrera.pdf>)
+- [01_02_datuen_ingeniaritza.pdf](<../01_02_datuen_ingeniaritza.pdf>)
+- [02_elastic_stack.pdf](<../02_elastic_stack.pdf>)
+- [Ariketak_01_01_big_data_sarrera.md](<../Ariketak_01_01_big_data_sarrera.md>)
+- [Ariketak_01_02_datuen_ingeniaritza.md](<../Ariketak_01_02_datuen_ingeniaritza.md>)
+
+Correspondencia de cada apartado con páginas y ejercicios docentes:
+[matriz de cobertura](../../../00_Transversal/MOCK_EXAMS_2026-10/COBERTURA.md#bigdata).
 
 ## 1. Fundamentos aplicados (2 puntos; 20 min)
 
@@ -35,7 +39,8 @@ para compra de OLAP para histórico (0.5).
 
 500 sensores emiten una lectura de 100 bytes cada 5 s, todo el día. Calcula
 lecturas/s y GB/día decimales sin overhead (0.5). Explica las cinco fases del
-ciclo de datos con un ejemplo (0.5). Elige almacenamiento de originales,
+ciclo de ingeniería de datos de Ariketak_01_02 con un ejemplo (0.5): no se
+confunden con las seis fases de Data Science de Ariketak_01_01. Elige almacenamiento de originales,
 analítica histórica y cache operacional, distinguiendo HDD/SSD/RAM de
 Lake/Warehouse/Lakehouse/Cache (0.75). Compara ETL y ELT para este caso (0.25).
 
@@ -83,4 +88,5 @@ Describe Filebeat → Logstash → Elasticsearch → Kibana (0.5). Escribe patr�
 Grok con nombres de campos y conversión fecha/número; ruta para fallo de parsing
 (0.5). Propón política ILM conceptual hot hasta 7 días / warm de 7 a 30 / cold de 30 a 90 / delete desde
 90 días y explica qué comprobar para aplicarla a índices nuevos (0.5).
-No ejecutes borrados; los días son requisitos ficticios, no política de clase.
+No ejecutes borrados. Se usan los días del ejercicio 8 del PDF de Elastic Stack
+(página 44); se evalúan las fases y la asociación mediante template.

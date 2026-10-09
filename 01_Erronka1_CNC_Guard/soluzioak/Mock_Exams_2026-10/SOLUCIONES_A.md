@@ -33,9 +33,10 @@ conserva originales y limpios; modelo produce score; visualización muestra
 alertas para revisión. Aceptar otras arquitecturas con funciones claras.
 Campos: event_id, makina_id, timestamp UTC, temperatura °C, vibración con unidad,
 quality. Deduplicar por identificador, registrar rechazos y huecos; mantener
-versión de reglas/modelo y procedencia. Roles: responsable de datos verifica
-esquema/ingesta y responsable de evaluación verifica splits/métricas; documentar
-entregables individuales. No afirmar latencia ni uptime sin medir.
+versión de reglas/modelo y procedencia. Roles del contrato: coordinador organiza
+pasos y controla entregas; secretario registra acuerdos y conserva documentos;
+portavoz comunica decisiones del equipo. Explicar tareas de dos de ellos.
+No afirmar latencia ni uptime sin medir.
 
 ## 4 — 2 puntos
 
@@ -43,8 +44,9 @@ R1=min(0.7,0.4)=**0.4**, R2=**0.3**. Fuzzificación → inferencia/agregación �
 defuzzificación. Sin funciones de pertenencia de salida y dominio no existe
 centroide determinado: no basta promediar etiquetas. Sistema experto usa reglas
 explícitas; fuzzy permite grados; anomalías detecta rareza, que no equivale a
-fallo. El máximo dispara si cualquiera puntúa alto, lo cual protege sensibilidad
-pero no garantiza recall ni calibración. 0.5 por cada apartado.
+fallo. En el híbrido, la regla experta decide que se necesita refrigeración y
+el controlador fuzzy gradúa su intensidad; no se exige una regla de fusión de
+scores de modelos distintos. 0.5 por cada apartado.
 
 ## 5 — 2.5 puntos
 

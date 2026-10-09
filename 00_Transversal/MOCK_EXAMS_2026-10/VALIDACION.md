@@ -1,51 +1,84 @@
-# Comprobaciones locales — 9 de octubre de 2026
+# Validación de los simulacros revisados — 9 de octubre de 2026
 
-[Índice](README.md). Validación de este paquete, no de entregas ni examen oficial.
+[Índice](README.md). Evidencia local del paquete del PR #18, después de ajustar
+preguntas y soluciones a la materia docente. No acredita una entrega ni examen
+oficial, un servicio ejecutado o el resultado de CI remoto.
 
-## Comprobado
+## Contraste docente y comprobación estructural
 
-- Siete enunciados y siete soluciones separados; 10 puntos cada uno; suma de
-  tiempos por apartado coherente. Programación: 30 preguntas/120 opciones,
-  clave de 30 respuestas, teoría 3 puntos y práctica 7 puntos.
-- **75 enlaces locales** de referencias y navegación verificados con resolución de rutas; revisión
-  de cálculos PERT, métricas, costes, volumen, join, ventanas y lote Kafka.
-- CSV sintético: 322 registros, 2 duplicados y 12 inválidos; quedan 308 registros,
-  32 positivos. Separación por cámaras: train 231/24 positivos, test 77/8.
-- Código de referencia de Programación extraído del Markdown y ejecutado desde
-  carpeta temporal con el Python del entorno existente de la práctica Moodle
-  64153. Se comprobaron limpieza, split, pipeline, métricas y validadores Pydantic.
-  No se instalaron dependencias ni se sobrescribieron resultados previos.
-- Código de referencia de ML, incluido el gráfico 2D, ejecutado con backend Agg
-  en carpeta temporal y el entorno existente de Boosting. Dos pipelines, CV de
-  KNN, matrices de test y figura; no se descargó Iris ni se tocaron servicios.
+- Los 64 apartados de siete modelos se contrastaron con los pasajes identificados
+  en la [matriz](COBERTURA.md). Incluye las 30 preguntas del test y los cuatro
+  apartados prácticos de Programación. Hay 37 fuentes únicas del curso.
+- El [manifiesto](manifest.json) conserva rutas y SHA-256 de esas fuentes.
+  No se emplean simulacros ni soluciones propias como fuente del temario.
+- Se conserva el formato docente 30 test / 3 puntos + práctica / 7 puntos.
+  La guía no cuantifica la penalización: solo se registran aciertos/errores/blancos.
+  Se revisaron las claves tras redistribuir opciones: A=8, B=8, C=7, D=7.
+- Puntos y tiempos de los apartados comprobados; se mantienen las rúbricas
+  propuestas. La revisión manual incluye PERT, métricas, costes, volumen, join,
+  ventanas y lote Kafka. El comprobador no evalúa corrección conceptual.
 
-- Código Pandas del caso de NiFi ejecutado: selección inclusiva, medias/sumas
-  de ventanas, interpolación, rolling y alerta en 08:03 comprobadas por asserts.
-- Figura 2D de Iris revisada visualmente: paneles de LogReg/KNN, puntos de train,
-  ejes con unidades y leyendas de tres clases. No se guarda en la entrada del examen.
-- `git diff --check` sin errores. Se añadió navegación en `INDICE.md`; se
-  conservaron cambios previos. Estas comprobaciones se realizaron antes de publicar.
-  La publicación Git posterior no supone una entrega en Moodle.
+Desde la raíz, con Python y sin dependencias adicionales:
 
-SHA-256 del CSV de entrada:
-`5d5ef215eb21486ad569b870518f6519ff05f415ffb58531db9942bbf9fa514b`.
+```bash
+python 00_Transversal/MOCK_EXAMS_2026-10/comprobar.py
+```
 
-Resultados de esta ejecución, útiles para contrastar pero no exigidos como
-valores universales en la corrección:
+El [comprobador](comprobar.py) solo lee archivos. Valida hashes, referencias por
+apartado, enlaces locales, puntuaciones/tiempos, opciones/claves, sintaxis de los
+seis bloques Python y conteos del CSV. Hay 201 enlaces locales comprobados.
+Aborta si una fuente cambia: hay que
+revisar los apartados afectados, no renovar el hash automáticamente.
+Se comprobó también que rechaza una fuente alterada y un enlace roto mediante
+copias temporales, sin modificar los originales.
 
-| Caso | Resultado local |
+## Ejecuciones realizadas
+
+Los fragmentos de las soluciones de Programación, Iris y series se extrajeron
+del Markdown y se ejecutaron en una carpeta temporal con los entornos aislados
+ya disponibles de sus prácticas. No se instalaron paquetes ni se cambiaron
+fuentes, datos de entrada o resultados anteriores. Para series se proporcionó
+el CSV literal del enunciado como `csv_text`.
+
+Python 3.13.13; NumPy 2.5.3, Pandas 3.0.6, scikit-learn 1.9.1,
+Matplotlib 3.11.2 y Pydantic 2.14.0 en el entorno de Programación.
+
+- **Programación:** 322 filas; dos duplicados; 12 inválidas; 308 válidas,
+  32 positivas. Train C01–C03: 231 filas/24 positivas; test C04: 77/8.
+  Comprobados grupos disjuntos, media del scaler aprendida solo en train,
+  descartes/predicciones exportados, métricas y validadores de límites/NaN/inf.
+- **Iris:** 105 train/45 test; dos pipelines; búsqueda de k solo en train;
+  matrices suman 45. El gráfico 2D se genera con modelos nuevos sobre dos
+  features y se revisó visualmente: paneles, clases y ejes con unidades.
+- **Series:** intervalo inclusivo de tres filas, media 54 °C; medias de ventanas
+  50.5/44; energía 7/1 kWh; interpolación 50 °C; primera rolling 146/3 °C;
+  alerta en 08:03. Gráfico original/suavizada generado y revisado visualmente.
+
+| Caso | Resultado de esta ejecución |
 |---|---|
-| Programación modelo | accuracy 0.9610; balanced accuracy 0.9783; recall 1.0000; precision 0.7273; F1 0.8421 |
+| Programación | accuracy 0.9610; recall 1.0000; precision 0.7273; F1 0.8421 |
 | Programación matriz | [[66,3],[0,8]], filas reales y columnas predichas |
-| Programación siempre 0 | accuracy 0.8961; balanced accuracy 0.5; recall/F1 0 |
+| Programación siempre 0 | accuracy 0.8961; recall/F1 0 |
 | Iris LogReg 4D | accuracy 0.9111; matriz [[15,0,0],[0,14,1],[0,3,12]] |
 | Iris KNN 4D | accuracy 0.9333; matriz [[15,0,0],[0,15,0],[0,3,12]] |
 
+SHA-256 del CSV de entrada, conservado sin cambios:
+`5d5ef215eb21486ad569b870518f6519ff05f415ffb58531db9942bbf9fa514b`.
+
+Ruff aplicado al comprobador y al formato/imports de los fragmentos; sintaxis y
+ejecuciones comprobadas. `git diff --check` sin errores. La preparación para el
+estudiante sigue los entornos virtuales de los apuntes; no se evalúan preferencias
+de herramientas del repositorio.
+
+Gitleaks sobre los 22 archivos del paquete del PR, con salida redactada:
+sin hallazgos. Esta comprobación no equivale a un escaneo del historial completo.
+
 ## Límites
 
-Resultados sintéticos; el recall perfecto en ocho positivos no valida una planta.
-Las métricas dependen de datos, versiones y protocolo; conservar la frontera de
-test importa más que reproducir a ciegas una cifra. La ejecución del código de
-referencia no constituye la entrega del alumno. Arquitecturas, políticas ILM,
-caídas de broker, conectores y flujos son respuestas propuestas: no se han
-aplicado a servicios. No se ha subido nada a Moodle ni publicado por Git.
+Las métricas son de casos sintéticos y no se exigen como cifras universales.
+Ocho positivos no validan una planta. El contraste con materia disponible no
+certifica qué se ha impartido ya ni que el modelo cubra todos los ejercicios.
+Arquitecturas, ILM, caídas de broker, Connect y flujos NiFi son respuestas de
+diseño; no se aplicaron a servicios. La ejecución del código de referencia no
+constituye entrega de un alumno ni subida a Moodle. El estado de publicación,
+revisión y checks remotos debe consultarse en el PR.
