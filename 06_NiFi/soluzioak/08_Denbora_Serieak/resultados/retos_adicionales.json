@@ -1,0 +1,25 @@
+{
+  "source": "synthetic_seed_42; no sentsorea.csv docente disponible",
+  "alerts_per_reading": 1,
+  "alerts_three_consecutive": 0,
+  "above_50": [
+    {
+      "timestamp": "2026-10-01 08:15:00+00:00",
+      "temperature": 65.0
+    }
+  ],
+  "aggregation_answers": {
+    "average_temperature": "mean",
+    "highest_temperature": "max",
+    "lowest_temperature": "min",
+    "measurement_rows": "size (count solo valores no nulos)",
+    "interval_kwh": "sum"
+  },
+  "review_answers": [
+    "loc",
+    "resample",
+    "rolling",
+    "interpolate",
+    "estacionalidad"
+  ]
+}

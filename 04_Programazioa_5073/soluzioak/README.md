@@ -61,3 +61,5 @@ ejercicios de PDF y complementarios, e incluyen explicaciones del docente.
 Conservan las convenciones de su entorno original (por ejemplo Colab); para
 ejecutar localmente usa las guías canónicas anteriores y compara la variante.
 No se reescriben esas fuentes descargadas en esta revisión.
+
+- [Mock de preparación del examen: cinco respuestas y checklist práctico completo](09_Mock_Azterketa_64153/README.md).

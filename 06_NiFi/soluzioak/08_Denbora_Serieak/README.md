@@ -27,3 +27,9 @@ La variante incorpora un pico deliberado de 65 °C y lo conserva: la máxima med
 [Gráfico de práctica](resultados/tenperatura.png), [descomposición](resultados/descomposicion.png) y [CSV con operaciones](resultados/practica.csv). La interpolación es retrospectiva; no se usa para entrenar el pronóstico. Descomposición con periodo 24 sobre 14 días sintéticos; test de las últimas 48 horas, baseline del último día de train repetido, MAE 2.1115 en unidades sintéticas. No prueba rendimiento energético real ni ausencia de sesgo temporal en otro modelo.
 
 [Auditoría de dependencias](AUDITORIA_DEPENDENCIAS.json): sin vulnerabilidades conocidas detectadas en este entorno.
+
+## Retos adicionales recibidos el 9 de octubre a las 10:02
+
+La nueva edición incorpora dos retos y un repaso. [Solución](retos_adicionales.ipynb) y [script equivalente](retos_adicionales.py): selección de temperaturas >50 °C y alertas por episodio de tres medidas consecutivas, agregación adecuada según magnitud/unidades y cinco emparejamientos del repaso. En la variante sintética: una lectura de 65 °C y cero episodios de tres consecutivas. Los NaN y huecos rompen la secuencia; no se ordena detener ninguna máquina. `size` cuenta filas y `count` valores no nulos; los kWh de intervalos se suman, una potencia se integra y un contador acumulativo requiere diferencias.
+
+Ejecutar desde esta carpeta `uv run --frozen python denbora_serieak.py`, después `uv run --frozen python retos_adicionales.py` y `uv run --frozen pytest -q`. Se sobrescribe solo `resultados/retos_adicionales.json`; el script adicional lee el CSV sintético generado por la práctica principal. [Ejecución adicional](EJECUCION_RETOS.json), dos regresiones de persistencia/NaN/huecos y auditoría de dependencias actualizada. Sigue ausente el CSV docente `sentsorea.csv`; no se inventan resultados de planta.
