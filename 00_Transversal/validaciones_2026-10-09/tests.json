@@ -62,7 +62,7 @@
       "exit_code": 0
     }
   ],
-  "passed_total": 107,
+  "passed_total": 115,
   "limits": [
     "Frameworks structure tests do not prove GUI completion",
     "Kafka tests do not prove a live broker or the original weather provider",
@@ -70,6 +70,5 @@
   ],
   "warnings": [
     "FastAPI TestClient emits the existing Starlette/httpx deprecation warning"
-  ],
-  "total_passed": 115
+  ]
 }

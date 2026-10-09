@@ -12,11 +12,11 @@ Comparación y pendientes iniciales: [revisión del día](../REVISION_MOODLE_202
 
 ## Evidencia actual
 
-[Tests](tests.json): **107 pasados** — Moodle/publicación 51, API 11, CNC 18, estructura Frameworks 2, CSV 3, Kafka mock 1, Medallion 12, tears_style 5, Faker 1, Boosting 3. `tears_style` es trabajo previo local: se ha probado, pero no se incluye en el commit. El aviso deprecado Starlette/httpx sigue visible.
+[Tests](tests.json): **115 pasados** — Moodle/publicación 54, API 11, CNC 18, estructura Frameworks 2, CSV 3, Kafka mock 1, Medallion 12, tears_style 5, Faker 1, Boosting 3, galería 4 y validación Elastic optimizada 1. `tears_style` es trabajo previo local: se ha probado, pero no se incluye en el commit. El aviso deprecado Starlette/httpx sigue visible.
 
 Ruff check y format --check, compilación Python y diff --check correctos. Se verificó equivalencia AST del código de cada pareja notebook/script modificada y ausencia de outputs de error; se aplicó la limpieza de metadata/rutas locales antes de publicar.
 
-[Moodle](moodle.json): ciclo real terminado a las 08:37 CEST con `Result=success`, `ExecMainStatus=0`, **80 actividades, 83 archivos, 0 errores y 0 fuentes pendientes**. Los 83 SHA-256 coinciden. Snapshot publicado y comprobado por `git ls-remote`: `moodle-sync/master/2026-10-09`, `d51ae97904abb9e2fe3b0e9ecd8b49e9c8b73066`. La publicación del snapshot no equivale a integración en master.
+Primer ciclo del día: terminado a las 08:37 CEST con `Result=success`, `ExecMainStatus=0`, **80 actividades, 83 archivos, 0 errores y 0 fuentes pendientes**. Los 83 SHA-256 coinciden. Snapshot publicado y comprobado por `git ls-remote`: `moodle-sync/master/2026-10-09`, `d51ae97904abb9e2fe3b0e9ecd8b49e9c8b73066`. La publicación del snapshot no equivale a integración en master.
 
 No se han hecho entregas en Moodle ni se atribuyen resultados del profesor a ejecuciones propias. El CSV de sensores docente sigue ausente. Los pendientes humanos, credenciales, datos externos y evidencias GUI históricas del [informe del día 8](../validaciones_2026-10-08/README.md) conservan sus límites; estas pruebas no los cierran.
 
