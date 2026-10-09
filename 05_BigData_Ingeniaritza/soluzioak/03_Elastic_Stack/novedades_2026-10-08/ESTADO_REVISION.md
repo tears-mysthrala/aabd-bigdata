@@ -8,7 +8,7 @@
 - Cuaderno tema 3: añadidos ejemplos curl de salud/predicción, uso de `.env`/`load_dotenv` y ajustes de texto/metadata. No añade un enunciado de ejercicio respecto a la base comparada.
 - Elastic Stack: cinco ejercicios nuevos P18–P22. Respuestas y pipelines en este directorio. En P20 el pattern original sin anclaje puede coincidir parcialmente, omitiendo la fecha. La primera prueba detectó que HTTPDATE exige offset; se sustituyó por captura explícita de fecha sin zona. Primeros registros conservados en `evidencias/primer_intento/`.
 - Las soluciones del 7 de octubre ya figuran en master: seguridad/privacidad, Pipeline/API, series temporales y Kafka. No se presentan sus evidencias históricas como ejecuciones de hoy.
-- Trabajo nuevo separado en `/home/tears/bigdata-worktrees/elastic-2026-10-08`, rama `feat/elastic-p18-p22-2026-10-08`, basada en el snapshot nuevo. Para continuar: `cd /home/tears/bigdata-worktrees/elastic-2026-10-08`.
+- Trabajo inicial separado en la rama `feat/elastic-p18-p22-2026-10-08`. El trabajo actual está consolidado en el checkout principal; desde la raíz del repositorio: `cd 05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-08`.
 - Pendientes que no se confunden con código: publicación/integración de este trabajo y cualquier entrega personal en Moodle. Propuestas del reto: IDs 63276 (13 de octubre, 14:30) y 63277 (14 de octubre, 14:30); requieren información del equipo, no se inventa.
 
 ## Cierre de la ampliación

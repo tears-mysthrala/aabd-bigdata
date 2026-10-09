@@ -1,0 +1,100 @@
+[
+  {
+    "tipo": "Clasificación",
+    "name": "Regresión logística",
+    "filename": "clasificacion_01.png",
+    "metric": "Accuracy test = 0.854",
+    "explanation": "Clasificador lineal; devuelve probabilidad de clase."
+  },
+  {
+    "tipo": "Clasificación",
+    "name": "KNN (k=5)",
+    "filename": "clasificacion_02.png",
+    "metric": "Accuracy test = 0.938",
+    "explanation": "Vota entre vecinos cercanos; frontera local."
+  },
+  {
+    "tipo": "Clasificación",
+    "name": "SVM lineal",
+    "filename": "clasificacion_03.png",
+    "metric": "Accuracy test = 0.865",
+    "explanation": "Margen máximo con frontera lineal."
+  },
+  {
+    "tipo": "Clasificación",
+    "name": "SVM RBF",
+    "filename": "clasificacion_04.png",
+    "metric": "Accuracy test = 0.969",
+    "explanation": "Kernel no lineal; frontera curva."
+  },
+  {
+    "tipo": "Clasificación",
+    "name": "Árbol de decisión",
+    "filename": "clasificacion_05.png",
+    "metric": "Accuracy test = 0.917",
+    "explanation": "Reglas escalonadas; susceptible a sobreajuste."
+  },
+  {
+    "tipo": "Clasificación",
+    "name": "Random Forest",
+    "filename": "clasificacion_06.png",
+    "metric": "Accuracy test = 0.917",
+    "explanation": "Promedia múltiples árboles, suaviza la variabilidad."
+  },
+  {
+    "tipo": "Clasificación",
+    "name": "Naive Bayes gaussiano",
+    "filename": "clasificacion_07.png",
+    "metric": "Accuracy test = 0.875",
+    "explanation": "Modelo probabilístico bajo hipótesis de independencia."
+  },
+  {
+    "tipo": "Regresión",
+    "name": "Regresión lineal",
+    "filename": "regresion_01.png",
+    "metric": "R² test = -0.028",
+    "explanation": "Ajuste en línea recta; elevado sesgo si la curva es no lineal."
+  },
+  {
+    "tipo": "Regresión",
+    "name": "Ridge (grado 5)",
+    "filename": "regresion_02.png",
+    "metric": "R² test = 0.632",
+    "explanation": "Penalización L2 para reducir coeficientes."
+  },
+  {
+    "tipo": "Regresión",
+    "name": "Lasso (grado 5)",
+    "filename": "regresion_03.png",
+    "metric": "R² test = 0.742",
+    "explanation": "Penalización L1; puede anular coeficientes."
+  },
+  {
+    "tipo": "Regresión",
+    "name": "KNN Regressor",
+    "filename": "regresion_04.png",
+    "metric": "R² test = 0.902",
+    "explanation": "Media de los valores de vecinos cercanos."
+  },
+  {
+    "tipo": "Regresión",
+    "name": "SVR RBF",
+    "filename": "regresion_05.png",
+    "metric": "R² test = 0.916",
+    "explanation": "Regresión de vectores soporte con tolerancia epsilon."
+  },
+  {
+    "tipo": "Regresión",
+    "name": "Árbol de regresión",
+    "filename": "regresion_06.png",
+    "metric": "R² test = 0.869",
+    "explanation": "Predicción por tramos constantes."
+  },
+  {
+    "tipo": "Regresión",
+    "name": "Random Forest Regressor",
+    "filename": "regresion_07.png",
+    "metric": "R² test = 0.911",
+    "explanation": "Media de árboles; aproxima relaciones no lineales."
+  }
+]

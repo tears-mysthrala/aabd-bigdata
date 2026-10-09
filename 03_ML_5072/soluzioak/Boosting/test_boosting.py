@@ -29,4 +29,6 @@ def test_xgb_manual_gain_convention_and_library_pruning():
     observed = xgboost_one_tree()
     assert np.allclose(observed["0"]["prediction"], manual["prediction"])
     assert "children" in observed["100"]["tree"]
+    assert "children" in observed["150"]["tree"]
+    assert np.isclose(observed["150"]["tree"]["gain"], 216.0)
     assert "children" not in observed["250"]["tree"]

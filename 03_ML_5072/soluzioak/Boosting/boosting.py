@@ -33,7 +33,7 @@ from xgboost import XGBClassifier, XGBRegressor
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
 
 
 def adaboost_manual():
@@ -199,7 +199,7 @@ def xgboost_one_tree():
     X = np.arange(1, 5, dtype=float).reshape(-1, 1)
     y = np.array([30.0, 32.0, 48.0, 50.0])
     result = {}
-    for gamma in (0, 100, 250):
+    for gamma in (0, 100, 150, 250):
         model = XGBRegressor(
             n_estimators=1,
             max_depth=1,

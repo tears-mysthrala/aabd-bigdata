@@ -11,8 +11,7 @@
         "-q"
       ],
       "cwd": "01_Erronka1_CNC_Guard/proyecto_cnc_guard",
-      "exit_code": 0,
-      "log": "cnc_guard.log"
+      "exit_code": 0
     },
     {
       "name": "frameworks_estructura",
@@ -29,8 +28,7 @@
         "test_frameworkak.py"
       ],
       "cwd": "04_Programazioa_5073/soluzioak/05_Frameworkak_PDF_Ariketak",
-      "exit_code": 0,
-      "log": "frameworks_estructura.log"
+      "exit_code": 0
     },
     {
       "name": "csv_regresion",
@@ -49,8 +47,7 @@
         "test_agregazio_docente.py"
       ],
       "cwd": "04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak",
-      "exit_code": 0,
-      "log": "csv_regresion.log"
+      "exit_code": 0
     },
     {
       "name": "csv_200_fixtures",
@@ -64,8 +61,7 @@
         "test_laguntzaileak.py"
       ],
       "cwd": "04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak",
-      "exit_code": 0,
-      "log": "csv_200_fixtures.log"
+      "exit_code": 0
     },
     {
       "name": "kafka_mock",
@@ -82,8 +78,7 @@
         "test_kafka_mock.py"
       ],
       "cwd": "07_Kafka/soluzioak",
-      "exit_code": 0,
-      "log": "kafka_mock.log"
+      "exit_code": 0
     },
     {
       "name": "kafka_medallion",
@@ -106,8 +101,7 @@
         "test_pipeline.py"
       ],
       "cwd": "07_Kafka/soluzioak/kafka_aurreratua_3_kasua",
-      "exit_code": 1,
-      "log": "kafka_medallion.log"
+      "exit_code": 1
     },
     {
       "name": "kafka_tears_style",
@@ -124,8 +118,7 @@
         "test_modelos.py"
       ],
       "cwd": "07_Kafka/soluzioak/kafka_aurreratua_connect/tears_style",
-      "exit_code": 0,
-      "log": "kafka_tears_style.log"
+      "exit_code": 0
     },
     {
       "name": "faker_seed",
@@ -144,8 +137,7 @@
         "tests/test_sales_seed_ignores_system_date.py"
       ],
       "cwd": "05_BigData_Ingeniaritza/soluzioak/02_Datuen_Ingeniaritza",
-      "exit_code": 0,
-      "log": "faker_seed.log"
+      "exit_code": 0
     },
     {
       "name": "kafka_medallion_reintento",
@@ -172,7 +164,7 @@
       "cwd": "07_Kafka/soluzioak/kafka_aurreratua_3_kasua",
       "exit_code": 0,
       "result": "12 passed in 2.69s",
-      "reason": "Primer comando omit\u00eda pandas; corregido el entorno de prueba"
+      "reason": "Primer comando omitía pandas; corregido el entorno de prueba"
     },
     {
       "name": "moodle_sync",

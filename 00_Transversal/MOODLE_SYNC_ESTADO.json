@@ -341,7 +341,7 @@
     {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64600",
       "kind": "external link",
-      "source": "https://www.youtube.com/watch",
+      "source": "https://www.youtube.com/watch?v=kVKalJGngLE",
       "status": "web reference"
     },
     {
@@ -772,7 +772,7 @@
     }
   ],
   "errors": 0,
-  "scope": "Moodle resources, folders and assignment statements; external/interactive limitations explicit",
+  "scope": "Moodle resources, folders, assignment statements and text pages; external/interactive limitations explicit",
   "sections": [
     0,
     1,

@@ -28,3 +28,5 @@ El entorno bloqueado cubre el cuaderno 3; no certifica las dependencias ni los p
 El ejemplo docente Streamlit actualizado ya realiza una predicción, pero solo recibe cinco de treinta variables y completa las restantes con medias del dataset completo. Ese comportamiento sigue siendo una demostración parcial; para una evaluación propia habría que aprender los valores de relleno únicamente de train y aclarar la procedencia de las otras variables. Nuestra práctica Streamlit de Frameworks ya predice con sus entradas y utiliza su propio dataset sintético; no se presenta como réplica del ejemplo breast cancer.
 
 La práctica de entornos virtuales requiere `uv` instalado y disponible en `PATH`. Este repositorio usa `uv venv` deliberadamente para conservar el aislamiento por ejercicio y reutilizar la caché global (véase `AGENTS.md`); la orden `python -m venv` del enunciado sirve como referencia conceptual. Instala primero `uv` siguiendo su documentación oficial: https://docs.astral.sh/uv/getting-started/installation/.
+
+[Erratas y contratos comparados con la fuente docente](CONTRASTE_DOCENTE_2026-10-09.md).

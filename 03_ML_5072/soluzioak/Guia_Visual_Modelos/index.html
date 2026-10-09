@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía visual de modelos · AABD</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root { color-scheme: dark; --ink:#edf2ff; --muted:#bdc8de; --accent:#add1ff; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#101827; color:var(--ink); font-family:system-ui,sans-serif; line-height:1.55; }
+    main { max-width:1440px; padding:40px 28px; margin:auto; }
+    h1 { font-size:clamp(1.7rem,4vw,2.8rem); line-height:1.15; margin:12px 0 20px; }
+    h2 { font-size:1.25rem; line-height:1.3; }
+    a { color:var(--accent); text-underline-offset:3px; }
+    p { color:var(--muted); }
+    .intro { max-width:85ch; }
+    .eyebrow,.kind { letter-spacing:.1em; text-transform:uppercase; font-size:.75rem; color:var(--accent); }
+    .how { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; padding:20px 0; border-block:1px solid #364867; margin:28px 0; }
+    .how h2 { margin:0; }
+    .controls { display:flex; flex-wrap:wrap; gap:12px; align-items:center; padding:12px 0; }
+    button,input { font:inherit; border:1px solid #53637e; border-radius:6px; padding:10px 14px; background:#1a2840; color:var(--ink); }
+    button { cursor:pointer; }
+    button[aria-pressed="true"] { color:#101827; background:var(--accent); border-color:var(--accent); }
+    :focus-visible { outline:3px solid #efc369; outline-offset:3px; }
+    input { width:100%; max-width:360px; }
+    .search { display:flex; flex:1 1 270px; gap:10px; align-items:center; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr)); gap:24px; }
+    .card { background:#1a2840; border:1px solid #364867; border-radius:10px; overflow:hidden; min-width:0; }
+    .card[hidden] { display:none; }
+    .card img { display:block; width:100%; height:auto; background:white; }
+    .inner { padding:22px; }
+    .metric { color:#c6e0ff; font-size:.9rem; font-variant-numeric:tabular-nums; }
+    summary { cursor:pointer; color:var(--accent); }
+    pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.85rem; }
+    .lesson { display:inline-block; margin-top:18px; }
+    footer { margin:36px 0 0; padding:20px 0; border-top:1px solid #364867; }
+    @media(max-width:600px) { main { padding:24px 14px; } .how { grid-template-columns:1fr; } .inner { padding:18px; } .search { flex-wrap:wrap; } }
+    @media print { body { color:black; background:white; } p { color:#333; } .controls { display:none; } .grid { grid-template-columns:1fr 1fr; } .card { background:white; break-inside:avoid; } }
+  </style>
+</head>
+<body>
+<main>
+  <a href="README.md">Guía de estudio y reproducción</a>
+  <p class="eyebrow">AABD · Machine Learning · 20 figuras</p>
+  <h1>Cómo se ve cada modelo</h1>
+  <p class="intro">Una misma pregunta, distintas formas de aprender. Compara las fronteras de clasificación y las curvas de regresión, y conecta cada figura con las prácticas que hemos trabajado.</p>
+  <p class="intro">Datos sintéticos, semilla 42, 70% train y 30% test. Se aprende solo con train. Las métricas describen este ejemplo: no ordenan universalmente los algoritmos.</p>
+  <section class="how" aria-label="Cómo leer las figuras">
+    <div><h2>Clasificación: separar dos clases</h2><p>320 muestras de dos medias lunas: 224 train y 96 test. Círculos y triángulos indican clase; símbolos huecos = train, rellenos = test. El fondo es la clase predicha, no una medida de confianza.</p></div>
+    <div><h2>Regresión: aproximar una curva</h2><p>240 muestras: 168 train y 72 test. Círculos huecos = train, cruces = test. Línea naranja = predicción; discontinua = señal sintética sin ruido. R² no es porcentaje de aciertos y puede ser negativo.</p></div>
+  </section>
+  <div class="controls" aria-label="Filtrar modelos">
+    <button type="button" data-filter="todos" aria-pressed="true">Todos</button>
+    <button type="button" data-filter="clasificacion" aria-pressed="false">Clasificación</button>
+    <button type="button" data-filter="regresion" aria-pressed="false">Regresión</button>
+    <label class="search">Buscar modelo <input id="search" type="search" placeholder="Ej.: SVM, Ridge o Boosting"></label>
+  </div>
+  <p id="count" role="status" aria-live="polite">20 modelos visibles</p>
+  <p id="empty" hidden>No hay modelos que coincidan. Cambia la búsqueda o el tipo de tarea.</p>
+  <div class="grid">
+    <article class="card" data-task="clasificacion" data-name="Regresión logística">
+<a href="figuras/clasificacion_logistica.png" aria-label="Ampliar Regresión logística (clasificacion)"><img src="figuras/clasificacion_logistica.png" alt="Regresión logística: frontera de clases y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Clasificación</span><h2>Regresión logística</h2><p class="metric">Accuracy test 0.875 · train 0.879 · F1 test 0.872</p><p>Modela P(clase 1) con una sigmoide sobre una combinación lineal.</p><p><strong>Qué observar:</strong> La frontera es recta aunque los datos formen medias lunas. El fondo muestra clase, no probabilidad.</p><details><summary>Parámetros y resultados</summary><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;logisticregression&#x27;, LogisticRegression(max_iter=1000))])</pre><a href="datos/clasificacion_logistica.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../Iris_LogReg_KNN/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="clasificacion" data-name="KNN · k=5">
+<a href="figuras/clasificacion_knn.png" aria-label="Ampliar KNN · k=5 (clasificacion)"><img src="figuras/clasificacion_knn.png" alt="KNN · k=5: frontera de clases y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Clasificación</span><h2>KNN · k=5</h2><p class="metric">Accuracy test 0.958 · train 0.924 · F1 test 0.958</p><p>Vota entre los cinco vecinos más cercanos en el espacio escalado.</p><p><strong>Qué observar:</strong> La frontera sigue detalles locales; cambiar k cambia cuánto se suaviza.</p><details><summary>Parámetros y resultados</summary><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;kneighborsclassifier&#x27;, KNeighborsClassifier())])</pre><a href="datos/clasificacion_knn.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../Iris_LogReg_KNN/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="clasificacion" data-name="SVM lineal">
+<a href="figuras/clasificacion_svm-lineal.png" aria-label="Ampliar SVM lineal (clasificacion)"><img src="figuras/clasificacion_svm-lineal.png" alt="SVM lineal: frontera de clases y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Clasificación</span><h2>SVM lineal</h2><p class="metric">Accuracy test 0.875 · train 0.879 · F1 test 0.872</p><p>Busca una separación lineal con margen y penalización C.</p><p><strong>Qué observar:</strong> Una recta no sigue la curvatura de las medias lunas. No se dibuja aquí el margen.</p><details><summary>Parámetros y resultados</summary><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;svc&#x27;, SVC(C=1, kernel=&#x27;linear&#x27;))])</pre><a href="datos/clasificacion_svm-lineal.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../SVM/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="clasificacion" data-name="SVM · kernel RBF">
+<a href="figuras/clasificacion_svm-rbf.png" aria-label="Ampliar SVM · kernel RBF (clasificacion)"><img src="figuras/clasificacion_svm-rbf.png" alt="SVM · kernel RBF: frontera de clases y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Clasificación</span><h2>SVM · kernel RBF</h2><p class="metric">Accuracy test 0.938 · train 0.897 · F1 test 0.938</p><p>El kernel RBF permite una frontera no lineal; C y gamma controlan el ajuste.</p><p><strong>Qué observar:</strong> La separación curva puede seguir la forma de los datos.</p><details><summary>Parámetros y resultados</summary><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()), (&#x27;svc&#x27;, SVC(C=1))])</pre><a href="datos/clasificacion_svm-rbf.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../SVM/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="clasificacion" data-name="Árbol de decisión">
+<a href="figuras/clasificacion_arbol.png" aria-label="Ampliar Árbol de decisión (clasificacion)"><img src="figuras/clasificacion_arbol.png" alt="Árbol de decisión: frontera de clases y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Clasificación</span><h2>Árbol de decisión</h2><p class="metric">Accuracy test 0.906 · train 0.911 · F1 test 0.903</p><p>Construye reglas mediante cortes sobre una variable cada vez.</p><p><strong>Qué observar:</strong> Los bordes son horizontales o verticales; profundidad limitada a cuatro.</p><details><summary>Parámetros y resultados</summary><pre>DecisionTreeClassifier(max_depth=4, random_state=42)</pre><a href="datos/clasificacion_arbol.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../Entregas_Moodle_2026-10-05/63544_Arbol_Decision/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="clasificacion" data-name="Random Forest">
+<a href="figuras/clasificacion_forest.png" aria-label="Ampliar Random Forest (clasificacion)"><img src="figuras/clasificacion_forest.png" alt="Random Forest: frontera de clases y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Clasificación</span><h2>Random Forest</h2><p class="metric">Accuracy test 0.917 · train 0.987 · F1 test 0.915</p><p>Agrega probabilidades de árboles entrenados con bootstrap y selección de atributos.</p><p><strong>Qué observar:</strong> Muchos cortes se combinan; su frontera puede seguir siendo irregular.</p><details><summary>Parámetros y resultados</summary><pre>RandomForestClassifier(max_depth=6, n_estimators=200, n_jobs=1, random_state=42)</pre><a href="datos/clasificacion_forest.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../Entregas_Moodle_2026-10-05/63386_Random_Forest/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="clasificacion" data-name="Naive Bayes gaussiano">
+<a href="figuras/clasificacion_naive-bayes.png" aria-label="Ampliar Naive Bayes gaussiano (clasificacion)"><img src="figuras/clasificacion_naive-bayes.png" alt="Naive Bayes gaussiano: frontera de clases y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Clasificación</span><h2>Naive Bayes gaussiano</h2><p class="metric">Accuracy test 0.885 · train 0.879 · F1 test 0.884</p><p>Supone independencia condicional y distribución gaussiana por variable y clase.</p><p><strong>Qué observar:</strong> Este ejemplo continuo no es MultinomialNB: la variante de texto docente utiliza conteos.</p><details><summary>Parámetros y resultados</summary><pre>GaussianNB()</pre><a href="datos/clasificacion_naive-bayes.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="clasificacion" data-name="AdaBoost">
+<a href="figuras/clasificacion_adaboost.png" aria-label="Ampliar AdaBoost (clasificacion)"><img src="figuras/clasificacion_adaboost.png" alt="AdaBoost: frontera de clases y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Clasificación</span><h2>AdaBoost</h2><p class="metric">Accuracy test 0.958 · train 0.951 · F1 test 0.957</p><p>Combina clasificadores débiles y aumenta el peso de observaciones mal clasificadas.</p><p><strong>Qué observar:</strong> Stumps sucesivos forman una frontera más compleja que un solo corte.</p><details><summary>Parámetros y resultados</summary><pre>AdaBoostClassifier(estimator=DecisionTreeClassifier(max_depth=1),
+                   learning_rate=0.8, n_estimators=100, random_state=42)</pre><a href="datos/clasificacion_adaboost.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../Boosting/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="clasificacion" data-name="Gradient Boosting">
+<a href="figuras/clasificacion_gradient-boosting.png" aria-label="Ampliar Gradient Boosting (clasificacion)"><img src="figuras/clasificacion_gradient-boosting.png" alt="Gradient Boosting: frontera de clases y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Clasificación</span><h2>Gradient Boosting</h2><p class="metric">Accuracy test 0.917 · train 0.991 · F1 test 0.915</p><p>Añade árboles para reducir la pérdida siguiendo su gradiente.</p><p><strong>Qué observar:</strong> Es una construcción secuencial; no equivale al bagging de Random Forest.</p><details><summary>Parámetros y resultados</summary><pre>GradientBoostingClassifier(max_depth=2, random_state=42)</pre><a href="datos/clasificacion_gradient-boosting.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../Boosting/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="clasificacion" data-name="XGBoost">
+<a href="figuras/clasificacion_xgboost.png" aria-label="Ampliar XGBoost (clasificacion)"><img src="figuras/clasificacion_xgboost.png" alt="XGBoost: frontera de clases y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Clasificación</span><h2>XGBoost</h2><p class="metric">Accuracy test 0.948 · train 0.978 · F1 test 0.946</p><p>Boosting de árboles con regularización y optimización mediante gradientes y Hessianos.</p><p><strong>Qué observar:</strong> Otra configuración y profundidad: una mejor métrica aquí no demuestra superioridad universal.</p><details><summary>Parámetros y resultados</summary><pre>XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=None, device=None, early_stopping_rounds=None,
+              enable_categorical=True, eval_metric=&#x27;logloss&#x27;,
+              feature_types=None, feature_weights=None, gamma=None,
+              grow_policy=None, importance_type=None,
+              interaction_constraints=None, learning_rate=0.1, max_bin=None,
+              max_cat_threshold=None, max_cat_to_onehot=None,
+              max_delta_step=None, max_depth=3, max_leaves=None,
+              min_child_weight=None, missing=nan, monotone_constraints=None,
+              multi_strategy=None, n_estimators=100, n_jobs=1,
+              num_parallel_tree=None, ...)</pre><a href="datos/clasificacion_xgboost.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../Boosting/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="regresion" data-name="Regresión lineal">
+<a href="figuras/regresion_lineal.png" aria-label="Ampliar Regresión lineal (regresion)"><img src="figuras/regresion_lineal.png" alt="Regresión lineal: curva ajustada, señal y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Regresión</span><h2>Regresión lineal</h2><p class="metric">R² test 0.050 · train 0.113 · RMSE test 0.987</p><p>Ajusta una recta minimizando la suma de errores cuadrados.</p><p><strong>Qué observar:</strong> La recta no reproduce las oscilaciones de esta señal sintética.</p><details><summary>Parámetros y resultados</summary><pre>LinearRegression()</pre><a href="datos/regresion_lineal.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="regresion" data-name="Ridge · polinomio grado 5">
+<a href="figuras/regresion_ridge.png" aria-label="Ampliar Ridge · polinomio grado 5 (regresion)"><img src="figuras/regresion_ridge.png" alt="Ridge · polinomio grado 5: curva ajustada, señal y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Regresión</span><h2>Ridge · polinomio grado 5</h2><p class="metric">R² test 0.809 · train 0.838 · RMSE test 0.443</p><p>Penaliza con L2 los coeficientes de los términos polinómicos escalados.</p><p><strong>Qué observar:</strong> La curva proviene de la expansión polinómica; Ridge por sí solo es lineal en sus atributos.</p><details><summary>Parámetros y resultados</summary><pre>Pipeline(steps=[(&#x27;polynomialfeatures&#x27;,
+                 PolynomialFeatures(degree=5, include_bias=False)),
+                (&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;ridge&#x27;, Ridge(alpha=1))])</pre><a href="datos/regresion_ridge.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="regresion" data-name="Lasso · polinomio grado 5">
+<a href="figuras/regresion_lasso.png" aria-label="Ampliar Lasso · polinomio grado 5 (regresion)"><img src="figuras/regresion_lasso.png" alt="Lasso · polinomio grado 5: curva ajustada, señal y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Regresión</span><h2>Lasso · polinomio grado 5</h2><p class="metric">R² test 0.665 · train 0.705 · RMSE test 0.586</p><p>La penalización L1 puede dejar algunos coeficientes exactamente en cero.</p><p><strong>Qué observar:</strong> Se usa la misma expansión y escalado que Ridge; comprobar coeficientes, no solo la curva.</p><details><summary>Parámetros y resultados</summary><pre>Pipeline(steps=[(&#x27;polynomialfeatures&#x27;,
+                 PolynomialFeatures(degree=5, include_bias=False)),
+                (&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;lasso&#x27;, Lasso(alpha=0.02, max_iter=20000))])</pre><a href="datos/regresion_lasso.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="regresion" data-name="KNN Regressor · k=5">
+<a href="figuras/regresion_knn.png" aria-label="Ampliar KNN Regressor · k=5 (regresion)"><img src="figuras/regresion_knn.png" alt="KNN Regressor · k=5: curva ajustada, señal y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Regresión</span><h2>KNN Regressor · k=5</h2><p class="metric">R² test 0.918 · train 0.951 · RMSE test 0.290</p><p>Promedia el valor observado de cinco vecinos del entrenamiento.</p><p><strong>Qué observar:</strong> Las predicciones son locales y no extrapolan una tendencia fuera del soporte observado.</p><details><summary>Parámetros y resultados</summary><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;kneighborsregressor&#x27;, KNeighborsRegressor())])</pre><a href="datos/regresion_knn.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="regresion" data-name="SVR · kernel RBF">
+<a href="figuras/regresion_svr-rbf.png" aria-label="Ampliar SVR · kernel RBF (regresion)"><img src="figuras/regresion_svr-rbf.png" alt="SVR · kernel RBF: curva ajustada, señal y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Regresión</span><h2>SVR · kernel RBF</h2><p class="metric">R² test 0.928 · train 0.947 · RMSE test 0.272</p><p>Ajusta una función no lineal con tolerancia epsilon y penalización C.</p><p><strong>Qué observar:</strong> La banda epsilon forma parte del método, pero no se representa como intervalo de confianza.</p><details><summary>Parámetros y resultados</summary><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()), (&#x27;svr&#x27;, SVR(C=10))])</pre><a href="datos/regresion_svr-rbf.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../SVM/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="regresion" data-name="Árbol de regresión">
+<a href="figuras/regresion_arbol.png" aria-label="Ampliar Árbol de regresión (regresion)"><img src="figuras/regresion_arbol.png" alt="Árbol de regresión: curva ajustada, señal y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Regresión</span><h2>Árbol de regresión</h2><p class="metric">R² test 0.900 · train 0.923 · RMSE test 0.320</p><p>Devuelve la media de los valores de cada hoja.</p><p><strong>Qué observar:</strong> La curva es escalonada: constante dentro de cada región.</p><details><summary>Parámetros y resultados</summary><pre>DecisionTreeRegressor(max_depth=4, random_state=42)</pre><a href="datos/regresion_arbol.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="regresion" data-name="Random Forest Regressor">
+<a href="figuras/regresion_forest.png" aria-label="Ampliar Random Forest Regressor (regresion)"><img src="figuras/regresion_forest.png" alt="Random Forest Regressor: curva ajustada, señal y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Regresión</span><h2>Random Forest Regressor</h2><p class="metric">R² test 0.922 · train 0.971 · RMSE test 0.282</p><p>Promedia predicciones de muchos árboles de regresión.</p><p><strong>Qué observar:</strong> Los escalones se combinan; fuera del rango de train no aprende una ley de extrapolación.</p><details><summary>Parámetros y resultados</summary><pre>RandomForestRegressor(max_depth=6, n_estimators=200, n_jobs=1, random_state=42)</pre><a href="datos/regresion_forest.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="regresion" data-name="AdaBoost Regressor">
+<a href="figuras/regresion_adaboost.png" aria-label="Ampliar AdaBoost Regressor (regresion)"><img src="figuras/regresion_adaboost.png" alt="AdaBoost Regressor: curva ajustada, señal y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Regresión</span><h2>AdaBoost Regressor</h2><p class="metric">R² test 0.896 · train 0.908 · RMSE test 0.326</p><p>AdaBoost.R2 repondera muestras y combina predicciones mediante mediana ponderada.</p><p><strong>Qué observar:</strong> No aplica exactamente la regla de voto del clasificador AdaBoost.</p><details><summary>Parámetros y resultados</summary><pre>AdaBoostRegressor(estimator=DecisionTreeRegressor(max_depth=3),
+                  learning_rate=0.05, n_estimators=100, random_state=42)</pre><a href="datos/regresion_adaboost.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../Boosting/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="regresion" data-name="Gradient Boosting Regressor">
+<a href="figuras/regresion_gradient-boosting.png" aria-label="Ampliar Gradient Boosting Regressor (regresion)"><img src="figuras/regresion_gradient-boosting.png" alt="Gradient Boosting Regressor: curva ajustada, señal y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Regresión</span><h2>Gradient Boosting Regressor</h2><p class="metric">R² test 0.927 · train 0.969 · RMSE test 0.274</p><p>Añade árboles que corrigen residuos para la pérdida cuadrática.</p><p><strong>Qué observar:</strong> La suma secuencial sigue la señal; learning_rate reduce cada contribución.</p><details><summary>Parámetros y resultados</summary><pre>GradientBoostingRegressor(max_depth=2, random_state=42)</pre><a href="datos/regresion_gradient-boosting.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../Boosting/README.md">Ir a la práctica del repositorio →</a></div></article>
+<article class="card" data-task="regresion" data-name="XGBoost Regressor">
+<a href="figuras/regresion_xgboost.png" aria-label="Ampliar XGBoost Regressor (regresion)"><img src="figuras/regresion_xgboost.png" alt="XGBoost Regressor: curva ajustada, señal y muestras train/test" width="1008" height="686" loading="lazy"></a>
+<div class="inner"><span class="kind">Regresión</span><h2>XGBoost Regressor</h2><p class="metric">R² test 0.923 · train 0.976 · RMSE test 0.282</p><p>Optimiza una suma regularizada de árboles con información de primer y segundo orden.</p><p><strong>Qué observar:</strong> La figura usa una configuración fijada antes de evaluar, sin buscar parámetros con test.</p><details><summary>Parámetros y resultados</summary><pre>XGBRegressor(base_score=None, booster=None, callbacks=None,
+             colsample_bylevel=None, colsample_bynode=None,
+             colsample_bytree=None, device=None, early_stopping_rounds=None,
+             enable_categorical=True, eval_metric=None, feature_types=None,
+             feature_weights=None, gamma=None, grow_policy=None,
+             importance_type=None, interaction_constraints=None,
+             learning_rate=0.1, max_bin=None, max_cat_threshold=None,
+             max_cat_to_onehot=None, max_delta_step=None, max_depth=3,
+             max_leaves=None, min_child_weight=None, missing=nan,
+             monotone_constraints=None, multi_strategy=None, n_estimators=100,
+             n_jobs=1, num_parallel_tree=None, ...)</pre><a href="datos/regresion_xgboost.csv">Predicciones de test (CSV)</a></details><a class="lesson" href="../Boosting/README.md">Ir a la práctica del repositorio →</a></div></article>
+  </div>
+  <footer><p>Ridge y Lasso usan expansión polinómica de grado 5, aprendida junto con el escalado en train. Naive Bayes gaussiano ilustra variables continuas; MultinomialNB del material de texto trabaja con conteos. Train y test comparten los mismos ejes por tarea.</p><p><a href="metricas.json">Métricas y configuración</a> · <a href="originales/index.html">14 gráficas originales</a> · <a href="../Boosting/README.md">Cálculos paso a paso de Boosting</a></p></footer>
+</main>
+<script>
+(() => {
+  const cards = [...document.querySelectorAll('.card')];
+  const buttons = [...document.querySelectorAll('[data-filter]')];
+  const search = document.querySelector('#search');
+  let task = 'todos';
+  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  function refresh() {
+    const query = normalize(search.value.trim());
+    let count = 0;
+    for (const card of cards) {
+      card.hidden = !(task === 'todos' || card.dataset.task === task) || !normalize(card.dataset.name).includes(query);
+      if (!card.hidden) count++;
+    }
+    document.querySelector('#count').textContent = `${count} ${count === 1 ? "modelo visible" : "modelos visibles"}`;
+    document.querySelector('#empty').hidden = count !== 0;
+  }
+  for (const button of buttons) button.addEventListener('click', () => {
+    task = button.dataset.filter;
+    for (const item of buttons) item.setAttribute('aria-pressed', String(item === button));
+    refresh();
+  });
+  search.addEventListener('input', refresh);
+})();
+</script>
+</body>
+</html>

@@ -471,16 +471,52 @@ def public_url(url: str) -> str:
         [
             (key, value)
             for key, value in urllib.parse.parse_qsl(parsed.query)
-            if key in {"id", "section", "forcedownload", "export", "usp", "chapterid"}
+            if key
+            in {
+                "id",
+                "section",
+                "forcedownload",
+                "export",
+                "usp",
+                "chapterid",
+                "v",
+                "t",
+                "list",
+                "index",
+            }
         ]
     )
     return urllib.parse.urlunsplit(
-        (parsed.scheme, parsed.netloc.rsplit("@", 1)[-1], parsed.path, query, "")
+        (
+            parsed.scheme,
+            parsed.netloc.rsplit("@", 1)[-1],
+            parsed.path,
+            query,
+            parsed.fragment if re.fullmatch(r"[\w.%:/-]+", parsed.fragment) else "",
+        )
     )
 
 
 class ManualPageRequired(ValueError):
     """Una copia de texto no cubriría todos los elementos docentes."""
+
+
+def write_page_atomic(target: Path, payload: str) -> bool:
+    """Conservar la copia anterior si falla la escritura o el reemplazo."""
+    if target.exists() and target.read_text(encoding="utf-8") == payload:
+        return False
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=target.parent, delete=False
+        ) as stream:
+            temporary = Path(stream.name)
+            stream.write(payload)
+        temporary.replace(target)
+        return True
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 def page_document(source_html: str, source_url: str, title: str) -> str:
@@ -914,11 +950,7 @@ def sinkronizatu() -> list[str]:
                     dest = helburu_direktorioa(sec, title)
                     target = safe_download_path(dest, f"Moodle_page_{page_id[0]}.md")
                     target.parent.mkdir(parents=True, exist_ok=True)
-                    if (
-                        not target.exists()
-                        or target.read_text(encoding="utf-8") != payload
-                    ):
-                        target.write_text(payload, encoding="utf-8")
+                    if write_page_atomic(target, payload):
                         downloaded.append(str(target.relative_to(REPO_ROOT.resolve())))
                     entries.append(
                         {
@@ -974,7 +1006,7 @@ def sinkronizatu() -> list[str]:
     )
     SYNC_REPORT = {
         "verified_on": datetime.now().date().isoformat(),
-        "scope": "Moodle resources, folders and assignment statements; external/interactive limitations explicit",
+        "scope": "Moodle resources, folders, assignment statements and text pages; external/interactive limitations explicit",
         "sections": sorted(sections),
         "activities": len(seen_activities),
         "activity_types": dict(sorted(activity_types.items())),

@@ -72,6 +72,40 @@ def test_page_table_is_not_flattened_without_column_boundaries():
         )
 
 
+def test_public_video_and_anchor_survive_but_credentials_do_not():
+    url = "https://private@example.org/watch?v=lesson&t=30&sesskey=hidden#section-2"
+    clean = sync.public_url(url)
+    assert clean == "https://example.org/watch?v=lesson&t=30#section-2"
+    assert (
+        sync.public_url("https://example.org/#access_token=hidden")
+        == "https://example.org/"
+    )
+    page = f'<main id="region-main"><div class="generalbox"><a href="{url}">Vídeo</a></div></main>'
+    saved = sync.page_document(page, URL, "Guía")
+    assert clean in saved and "hidden" not in saved and "private@" not in saved
+
+
+def test_atomic_write_failure_preserves_existing_page(monkeypatch, tmp_path):
+    target = tmp_path / "page.md"
+    target.write_text("previous", encoding="utf-8")
+
+    def fail_replace(self, destination):
+        raise OSError("simulated replacement failure")
+
+    monkeypatch.setattr(type(target), "replace", fail_replace)
+    with pytest.raises(OSError):
+        sync.write_page_atomic(target, "new text")
+    assert target.read_text() == "previous"
+    assert list(tmp_path.iterdir()) == [target]
+
+
+def test_atomic_write_success_is_idempotent(tmp_path):
+    target = tmp_path / "page.md"
+    assert sync.write_page_atomic(target, "new text")
+    assert not sync.write_page_atomic(target, "new text")
+    assert target.read_text() == "new text"
+
+
 @pytest.mark.parametrize("media", [False, True])
 def test_full_cycle_tracks_page_hash_or_keeps_coverage_pending(
     monkeypatch, tmp_path, media

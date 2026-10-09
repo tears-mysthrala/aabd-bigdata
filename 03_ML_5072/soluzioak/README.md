@@ -95,3 +95,5 @@ La [entrega de interpretación de datos en Orange](Interpretacion_Datos/README.m
 ## Boosting — Moodle 8 de octubre
 
 [Cuatro ejemplos Python, tres cálculos manuales y evaluación separada](Boosting/README.md): AdaBoost, Gradient Boosting y XGBoost, con script/notebook ejecutados, lock uv y pruebas de pesos/residuos/pruning.
+
+- [Guía visual de 20 modelos: clasificación, regresión y Boosting](Guia_Visual_Modelos/README.md), con galería offline, datos reproducibles y los 14 gráficos originales conservados.

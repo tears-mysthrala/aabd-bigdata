@@ -19,3 +19,9 @@ Ruff check y format --check, compilación Python y diff --check correctos. Se ve
 [Moodle](moodle.json): ciclo real terminado a las 08:37 CEST con `Result=success`, `ExecMainStatus=0`, **80 actividades, 83 archivos, 0 errores y 0 fuentes pendientes**. Los 83 SHA-256 coinciden. Snapshot publicado y comprobado por `git ls-remote`: `moodle-sync/master/2026-10-09`, `d51ae97904abb9e2fe3b0e9ecd8b49e9c8b73066`. La publicación del snapshot no equivale a integración en master.
 
 No se han hecho entregas en Moodle ni se atribuyen resultados del profesor a ejecuciones propias. El CSV de sensores docente sigue ausente. Los pendientes humanos, credenciales, datos externos y evidencias GUI históricas del [informe del día 8](../validaciones_2026-10-08/README.md) conservan sus límites; estas pruebas no los cierran.
+
+## Cierre de revisión y ayuda visual
+
+Se añaden tres regresiones de URL/escritura atómica Moodle, cuatro de la galería y una que exige rechazar eventos inválidos aun con `python -O`: total local 115. Se regenera Boosting con gamma=150, que distingue las escalas de ganancia 108/216. Se elimina una predicción duplicada y se ejecuta de nuevo el cuaderno 3. Los errores del material docente se conservan y contrastan en una guía de erratas. La galería de 20 modelos conserva los 14 originales y añade datos, parámetros, métricas recalculadas y pruebas de separación train/test.
+
+El login fue rechazado a las 09:00; se pausó el temporizador. Tras confirmar el usuario que podía entrar sin cambio de contraseña, un único ciclo fresco de 09:14 a 09:16 terminó correctamente (80 actividades, 83 hashes coincidentes, cero errores o fuentes pendientes). Se reactivó el temporizador. No se atribuye una causa demostrada al rechazo anterior. Snapshot y SHA en `moodle.json`; integración por PR #17.

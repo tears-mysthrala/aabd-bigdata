@@ -3,6 +3,12 @@
 import json
 from pathlib import Path
 
+
+def require(condition, reason):
+    if not condition:
+        raise ValueError(reason)
+
+
 ROOT = Path(__file__).resolve().parent
 EXPECTED = [500, 200, 404, 200, 401, 403]
 REPORT = {}
@@ -17,27 +23,59 @@ for practice, count in (("p18", 1), ("p20", 3), ("p21", 6), ("p22", 6)):
             continue
         if isinstance(event, dict) and "message" in event and "@timestamp" in event:
             events.append(event)
-    assert len(events) == count, (practice, len(events))
+    require(len(events) == count, (practice, len(events)))
     for event in events:
-        assert not {"_grokparsefailure", "_dateparsefailure"}.intersection(
-            event.get("tags", [])
+        require(
+            not {"_grokparsefailure", "_dateparsefailure"}.intersection(
+                event.get("tags", [])
+            ),
+            'Eventos inválidos: not {"_grokparsefailure", "_dateparsefailure"}.intersection(             event.get("tags", [])         )',
         )
     if practice == "p18":
         e = events[0]
-        assert e["maila"] == "ERROR" and e["zerbitzua"] == "nginx"
-        assert e["mezua"] == "Connection refused" and e["bezero_ip"] == "203.0.113.5"
-        assert e["@timestamp"] == "2026-10-05T08:30:45.000Z"
+        require(
+            e["maila"] == "ERROR" and e["zerbitzua"] == "nginx",
+            'Eventos inválidos: e["maila"] == "ERROR" and e["zerbitzua"] == "nginx"',
+        )
+        require(
+            e["mezua"] == "Connection refused" and e["bezero_ip"] == "203.0.113.5",
+            'Eventos inválidos: e["mezua"] == "Connection refused" and e["bezero_ip"] == "203.0.113.5"',
+        )
+        require(
+            e["@timestamp"] == "2026-10-05T08:30:45.000Z",
+            'Eventos inválidos: e["@timestamp"] == "2026-10-05T08:30:45.000Z"',
+        )
     else:
-        assert [e["status_code"] for e in events] == EXPECTED[:count]
-        assert all(type(e["status_code"]) is int for e in events)
-        assert events[0]["@timestamp"] == "2026-10-05T12:32:10.000Z"
-        assert events[1]["metodoa"] == "POST"
+        require(
+            [e["status_code"] for e in events] == EXPECTED[:count],
+            'Eventos inválidos: [e["status_code"] for e in events] == EXPECTED[:count]',
+        )
+        require(
+            all(type(e["status_code"]) is int for e in events),
+            'Eventos inválidos: all(type(e["status_code"]) is int for e in events)',
+        )
+        require(
+            events[0]["@timestamp"] == "2026-10-05T12:32:10.000Z",
+            'Eventos inválidos: events[0]["@timestamp"] == "2026-10-05T12:32:10.000Z"',
+        )
+        require(
+            events[1]["metodoa"] == "POST",
+            'Eventos inválidos: events[1]["metodoa"] == "POST"',
+        )
         if count == 6:
-            assert events[3]["@timestamp"] == "2026-10-06T07:15:20.000Z"
-            assert events[5]["metodoa"] == "DELETE"
+            require(
+                events[3]["@timestamp"] == "2026-10-06T07:15:20.000Z",
+                'Eventos inválidos: events[3]["@timestamp"] == "2026-10-06T07:15:20.000Z"',
+            )
+            require(
+                events[5]["metodoa"] == "DELETE",
+                'Eventos inválidos: events[5]["metodoa"] == "DELETE"',
+            )
         for e in events:
-            assert ("errorea" in e.get("tags", [])) == (
-                practice == "p22" and e["status_code"] >= 400
+            require(
+                ("errorea" in e.get("tags", []))
+                == (practice == "p22" and e["status_code"] >= 400),
+                'Eventos inválidos: ("errorea" in e.get("tags", [])) == (                 practice == "p22" and e["status_code"] >= 400           ',
             )
     (ROOT / "evidencias" / f"{practice}.events.json").write_text(
         json.dumps(events, indent=2) + "\n"
@@ -52,10 +90,19 @@ for line in (ROOT / "evidencias" / "p22_invalid.stdout.log").read_text().splitli
         continue
     if isinstance(event, dict) and "message" in event and "@timestamp" in event:
         invalid.append(event)
-assert len(invalid) == 4
-assert all("_grokparsefailure" in e.get("tags", []) for e in invalid[:3])
-assert "_dateparsefailure" in invalid[3].get("tags", [])
-assert all("errorea" not in e.get("tags", []) for e in invalid)
+require(len(invalid) == 4, "Eventos inválidos: len(invalid) == 4")
+require(
+    all("_grokparsefailure" in e.get("tags", []) for e in invalid[:3]),
+    'Eventos inválidos: all("_grokparsefailure" in e.get("tags", []) for e in invalid[:3])',
+)
+require(
+    "_dateparsefailure" in invalid[3].get("tags", []),
+    'Eventos inválidos: "_dateparsefailure" in invalid[3].get("tags", [])',
+)
+require(
+    all("errorea" not in e.get("tags", []) for e in invalid),
+    'Eventos inválidos: all("errorea" not in e.get("tags", []) for e in invalid)',
+)
 (ROOT / "evidencias" / "p22_invalid.events.json").write_text(
     json.dumps(invalid, indent=2) + "\n"
 )

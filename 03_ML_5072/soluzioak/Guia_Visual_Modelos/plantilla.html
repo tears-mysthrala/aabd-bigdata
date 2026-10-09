@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía visual de modelos · AABD</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root { color-scheme: dark; --ink:#edf2ff; --muted:#bdc8de; --accent:#add1ff; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#101827; color:var(--ink); font-family:system-ui,sans-serif; line-height:1.55; }
+    main { max-width:1440px; padding:40px 28px; margin:auto; }
+    h1 { font-size:clamp(1.7rem,4vw,2.8rem); line-height:1.15; margin:12px 0 20px; }
+    h2 { font-size:1.25rem; line-height:1.3; }
+    a { color:var(--accent); text-underline-offset:3px; }
+    p { color:var(--muted); }
+    .intro { max-width:85ch; }
+    .eyebrow,.kind { letter-spacing:.1em; text-transform:uppercase; font-size:.75rem; color:var(--accent); }
+    .how { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; padding:20px 0; border-block:1px solid #364867; margin:28px 0; }
+    .how h2 { margin:0; }
+    .controls { display:flex; flex-wrap:wrap; gap:12px; align-items:center; padding:12px 0; }
+    button,input { font:inherit; border:1px solid #53637e; border-radius:6px; padding:10px 14px; background:#1a2840; color:var(--ink); }
+    button { cursor:pointer; }
+    button[aria-pressed="true"] { color:#101827; background:var(--accent); border-color:var(--accent); }
+    :focus-visible { outline:3px solid #efc369; outline-offset:3px; }
+    input { width:100%; max-width:360px; }
+    .search { display:flex; flex:1 1 270px; gap:10px; align-items:center; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr)); gap:24px; }
+    .card { background:#1a2840; border:1px solid #364867; border-radius:10px; overflow:hidden; min-width:0; }
+    .card[hidden] { display:none; }
+    .card img { display:block; width:100%; height:auto; background:white; }
+    .inner { padding:22px; }
+    .metric { color:#c6e0ff; font-size:.9rem; font-variant-numeric:tabular-nums; }
+    summary { cursor:pointer; color:var(--accent); }
+    pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.85rem; }
+    .lesson { display:inline-block; margin-top:18px; }
+    footer { margin:36px 0 0; padding:20px 0; border-top:1px solid #364867; }
+    @media(max-width:600px) { main { padding:24px 14px; } .how { grid-template-columns:1fr; } .inner { padding:18px; } .search { flex-wrap:wrap; } }
+    @media print { body { color:black; background:white; } p { color:#333; } .controls { display:none; } .grid { grid-template-columns:1fr 1fr; } .card { background:white; break-inside:avoid; } }
+  </style>
+</head>
+<body>
+<main>
+  <a href="README.md">Guía de estudio y reproducción</a>
+  <p class="eyebrow">AABD · Machine Learning · 20 figuras</p>
+  <h1>Cómo se ve cada modelo</h1>
+  <p class="intro">Una misma pregunta, distintas formas de aprender. Compara las fronteras de clasificación y las curvas de regresión, y conecta cada figura con las prácticas que hemos trabajado.</p>
+  <p class="intro">Datos sintéticos, semilla 42, 70% train y 30% test. Se aprende solo con train. Las métricas describen este ejemplo: no ordenan universalmente los algoritmos.</p>
+  <section class="how" aria-label="Cómo leer las figuras">
+    <div><h2>Clasificación: separar dos clases</h2><p>320 muestras de dos medias lunas: 224 train y 96 test. Círculos y triángulos indican clase; símbolos huecos = train, rellenos = test. El fondo es la clase predicha, no una medida de confianza.</p></div>
+    <div><h2>Regresión: aproximar una curva</h2><p>240 muestras: 168 train y 72 test. Círculos huecos = train, cruces = test. Línea naranja = predicción; discontinua = señal sintética sin ruido. R² no es porcentaje de aciertos y puede ser negativo.</p></div>
+  </section>
+  <div class="controls" aria-label="Filtrar modelos">
+    <button type="button" data-filter="todos" aria-pressed="true">Todos</button>
+    <button type="button" data-filter="clasificacion" aria-pressed="false">Clasificación</button>
+    <button type="button" data-filter="regresion" aria-pressed="false">Regresión</button>
+    <label class="search">Buscar modelo <input id="search" type="search" placeholder="Ej.: SVM, Ridge o Boosting"></label>
+  </div>
+  <p id="count" role="status" aria-live="polite">20 modelos visibles</p>
+  <p id="empty" hidden>No hay modelos que coincidan. Cambia la búsqueda o el tipo de tarea.</p>
+  <div class="grid">
+    <!-- CARDS -->
+  </div>
+  <footer><p>Ridge y Lasso usan expansión polinómica de grado 5, aprendida junto con el escalado en train. Naive Bayes gaussiano ilustra variables continuas; MultinomialNB del material de texto trabaja con conteos. Train y test comparten los mismos ejes por tarea.</p><p><a href="metricas.json">Métricas y configuración</a> · <a href="originales/index.html">14 gráficas originales</a> · <a href="../Boosting/README.md">Cálculos paso a paso de Boosting</a></p></footer>
+</main>
+<script>
+(() => {
+  const cards = [...document.querySelectorAll('.card')];
+  const buttons = [...document.querySelectorAll('[data-filter]')];
+  const search = document.querySelector('#search');
+  let task = 'todos';
+  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  function refresh() {
+    const query = normalize(search.value.trim());
+    let count = 0;
+    for (const card of cards) {
+      card.hidden = !(task === 'todos' || card.dataset.task === task) || !normalize(card.dataset.name).includes(query);
+      if (!card.hidden) count++;
+    }
+    document.querySelector('#count').textContent = `${count} ${count === 1 ? "modelo visible" : "modelos visibles"}`;
+    document.querySelector('#empty').hidden = count !== 0;
+  }
+  for (const button of buttons) button.addEventListener('click', () => {
+    task = button.dataset.filter;
+    for (const item of buttons) item.setAttribute('aria-pressed', String(item === button));
+    refresh();
+  });
+  search.addEventListener('input', refresh);
+})();
+</script>
+</body>
+</html>

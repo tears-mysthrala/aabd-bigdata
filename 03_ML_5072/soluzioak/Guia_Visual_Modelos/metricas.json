@@ -1,0 +1,457 @@
+{
+  "source": "synthetic; make_moons(noise=0.22) and 0.2*x^2+sin(1.7*x)+Gaussian noise(sigma=0.25)",
+  "seed": 42,
+  "test_fraction": 0.3,
+  "datasets": {
+    "clasificacion": {
+      "train": 224,
+      "test": 96,
+      "features": 2,
+      "sha256": "4373da174b6e08b05b78c4a81576421e98b7d50ec6308b7cf25f5fae2e04c6f0"
+    },
+    "regresion": {
+      "train": 168,
+      "test": 72,
+      "features": 1,
+      "sha256": "23cd1a513d752c1e9b01428922c584921e64c9ccc2492f1ecebea6f8b0d80d28"
+    }
+  },
+  "versions": {
+    "numpy": "2.5.3",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "matplotlib": "3.11.2"
+  },
+  "models": [
+    {
+      "task": "clasificacion",
+      "key": "logistica",
+      "name": "Regresión logística",
+      "filename": "clasificacion_logistica.png",
+      "predictions": "clasificacion_logistica.csv",
+      "metrics": {
+        "accuracy_test": 0.875,
+        "accuracy_train": 0.8794642857142857,
+        "f1_test": 0.8723404255319149,
+        "confusion_matrix": [
+          [
+            43,
+            5
+          ],
+          [
+            7,
+            41
+          ]
+        ]
+      },
+      "parameters": "Pipeline(steps=[('standardscaler', StandardScaler()),\n                ('logisticregression', LogisticRegression(max_iter=1000))])",
+      "explanation": "Modela P(clase 1) con una sigmoide sobre una combinación lineal.",
+      "look": "La frontera es recta aunque los datos formen medias lunas. El fondo muestra clase, no probabilidad.",
+      "lesson": "../Iris_LogReg_KNN/README.md"
+    },
+    {
+      "task": "clasificacion",
+      "key": "knn",
+      "name": "KNN · k=5",
+      "filename": "clasificacion_knn.png",
+      "predictions": "clasificacion_knn.csv",
+      "metrics": {
+        "accuracy_test": 0.9583333333333334,
+        "accuracy_train": 0.9241071428571429,
+        "f1_test": 0.9583333333333334,
+        "confusion_matrix": [
+          [
+            46,
+            2
+          ],
+          [
+            2,
+            46
+          ]
+        ]
+      },
+      "parameters": "Pipeline(steps=[('standardscaler', StandardScaler()),\n                ('kneighborsclassifier', KNeighborsClassifier())])",
+      "explanation": "Vota entre los cinco vecinos más cercanos en el espacio escalado.",
+      "look": "La frontera sigue detalles locales; cambiar k cambia cuánto se suaviza.",
+      "lesson": "../Iris_LogReg_KNN/README.md"
+    },
+    {
+      "task": "clasificacion",
+      "key": "svm-lineal",
+      "name": "SVM lineal",
+      "filename": "clasificacion_svm-lineal.png",
+      "predictions": "clasificacion_svm-lineal.csv",
+      "metrics": {
+        "accuracy_test": 0.875,
+        "accuracy_train": 0.8794642857142857,
+        "f1_test": 0.8723404255319149,
+        "confusion_matrix": [
+          [
+            43,
+            5
+          ],
+          [
+            7,
+            41
+          ]
+        ]
+      },
+      "parameters": "Pipeline(steps=[('standardscaler', StandardScaler()),\n                ('svc', SVC(C=1, kernel='linear'))])",
+      "explanation": "Busca una separación lineal con margen y penalización C.",
+      "look": "Una recta no sigue la curvatura de las medias lunas. No se dibuja aquí el margen.",
+      "lesson": "../SVM/README.md"
+    },
+    {
+      "task": "clasificacion",
+      "key": "svm-rbf",
+      "name": "SVM · kernel RBF",
+      "filename": "clasificacion_svm-rbf.png",
+      "predictions": "clasificacion_svm-rbf.csv",
+      "metrics": {
+        "accuracy_test": 0.9375,
+        "accuracy_train": 0.8973214285714286,
+        "f1_test": 0.9375,
+        "confusion_matrix": [
+          [
+            45,
+            3
+          ],
+          [
+            3,
+            45
+          ]
+        ]
+      },
+      "parameters": "Pipeline(steps=[('standardscaler', StandardScaler()), ('svc', SVC(C=1))])",
+      "explanation": "El kernel RBF permite una frontera no lineal; C y gamma controlan el ajuste.",
+      "look": "La separación curva puede seguir la forma de los datos.",
+      "lesson": "../SVM/README.md"
+    },
+    {
+      "task": "clasificacion",
+      "key": "arbol",
+      "name": "Árbol de decisión",
+      "filename": "clasificacion_arbol.png",
+      "predictions": "clasificacion_arbol.csv",
+      "metrics": {
+        "accuracy_test": 0.90625,
+        "accuracy_train": 0.9107142857142857,
+        "f1_test": 0.9032258064516129,
+        "confusion_matrix": [
+          [
+            45,
+            3
+          ],
+          [
+            6,
+            42
+          ]
+        ]
+      },
+      "parameters": "DecisionTreeClassifier(max_depth=4, random_state=42)",
+      "explanation": "Construye reglas mediante cortes sobre una variable cada vez.",
+      "look": "Los bordes son horizontales o verticales; profundidad limitada a cuatro.",
+      "lesson": "../Entregas_Moodle_2026-10-05/63544_Arbol_Decision/README.md"
+    },
+    {
+      "task": "clasificacion",
+      "key": "forest",
+      "name": "Random Forest",
+      "filename": "clasificacion_forest.png",
+      "predictions": "clasificacion_forest.csv",
+      "metrics": {
+        "accuracy_test": 0.9166666666666666,
+        "accuracy_train": 0.9866071428571429,
+        "f1_test": 0.9148936170212766,
+        "confusion_matrix": [
+          [
+            45,
+            3
+          ],
+          [
+            5,
+            43
+          ]
+        ]
+      },
+      "parameters": "RandomForestClassifier(max_depth=6, n_estimators=200, n_jobs=1, random_state=42)",
+      "explanation": "Agrega probabilidades de árboles entrenados con bootstrap y selección de atributos.",
+      "look": "Muchos cortes se combinan; su frontera puede seguir siendo irregular.",
+      "lesson": "../Entregas_Moodle_2026-10-05/63386_Random_Forest/README.md"
+    },
+    {
+      "task": "clasificacion",
+      "key": "naive-bayes",
+      "name": "Naive Bayes gaussiano",
+      "filename": "clasificacion_naive-bayes.png",
+      "predictions": "clasificacion_naive-bayes.csv",
+      "metrics": {
+        "accuracy_test": 0.8854166666666666,
+        "accuracy_train": 0.8794642857142857,
+        "f1_test": 0.8842105263157894,
+        "confusion_matrix": [
+          [
+            43,
+            5
+          ],
+          [
+            6,
+            42
+          ]
+        ]
+      },
+      "parameters": "GaussianNB()",
+      "explanation": "Supone independencia condicional y distribución gaussiana por variable y clase.",
+      "look": "Este ejemplo continuo no es MultinomialNB: la variante de texto docente utiliza conteos.",
+      "lesson": "../README.md"
+    },
+    {
+      "task": "clasificacion",
+      "key": "adaboost",
+      "name": "AdaBoost",
+      "filename": "clasificacion_adaboost.png",
+      "predictions": "clasificacion_adaboost.csv",
+      "metrics": {
+        "accuracy_test": 0.9583333333333334,
+        "accuracy_train": 0.9508928571428571,
+        "f1_test": 0.9574468085106383,
+        "confusion_matrix": [
+          [
+            47,
+            1
+          ],
+          [
+            3,
+            45
+          ]
+        ]
+      },
+      "parameters": "AdaBoostClassifier(estimator=DecisionTreeClassifier(max_depth=1),\n                   learning_rate=0.8, n_estimators=100, random_state=42)",
+      "explanation": "Combina clasificadores débiles y aumenta el peso de observaciones mal clasificadas.",
+      "look": "Stumps sucesivos forman una frontera más compleja que un solo corte.",
+      "lesson": "../Boosting/README.md"
+    },
+    {
+      "task": "clasificacion",
+      "key": "gradient-boosting",
+      "name": "Gradient Boosting",
+      "filename": "clasificacion_gradient-boosting.png",
+      "predictions": "clasificacion_gradient-boosting.csv",
+      "metrics": {
+        "accuracy_test": 0.9166666666666666,
+        "accuracy_train": 0.9910714285714286,
+        "f1_test": 0.9148936170212766,
+        "confusion_matrix": [
+          [
+            45,
+            3
+          ],
+          [
+            5,
+            43
+          ]
+        ]
+      },
+      "parameters": "GradientBoostingClassifier(max_depth=2, random_state=42)",
+      "explanation": "Añade árboles para reducir la pérdida siguiendo su gradiente.",
+      "look": "Es una construcción secuencial; no equivale al bagging de Random Forest.",
+      "lesson": "../Boosting/README.md"
+    },
+    {
+      "task": "clasificacion",
+      "key": "xgboost",
+      "name": "XGBoost",
+      "filename": "clasificacion_xgboost.png",
+      "predictions": "clasificacion_xgboost.csv",
+      "metrics": {
+        "accuracy_test": 0.9479166666666666,
+        "accuracy_train": 0.9776785714285714,
+        "f1_test": 0.946236559139785,
+        "confusion_matrix": [
+          [
+            47,
+            1
+          ],
+          [
+            4,
+            44
+          ]
+        ]
+      },
+      "parameters": "XGBClassifier(base_score=None, booster=None, callbacks=None,\n              colsample_bylevel=None, colsample_bynode=None,\n              colsample_bytree=None, device=None, early_stopping_rounds=None,\n              enable_categorical=True, eval_metric='logloss',\n              feature_types=None, feature_weights=None, gamma=None,\n              grow_policy=None, importance_type=None,\n              interaction_constraints=None, learning_rate=0.1, max_bin=None,\n              max_cat_threshold=None, max_cat_to_onehot=None,\n              max_delta_step=None, max_depth=3, max_leaves=None,\n              min_child_weight=None, missing=nan, monotone_constraints=None,\n              multi_strategy=None, n_estimators=100, n_jobs=1,\n              num_parallel_tree=None, ...)",
+      "explanation": "Boosting de árboles con regularización y optimización mediante gradientes y Hessianos.",
+      "look": "Otra configuración y profundidad: una mejor métrica aquí no demuestra superioridad universal.",
+      "lesson": "../Boosting/README.md"
+    },
+    {
+      "task": "regresion",
+      "key": "lineal",
+      "name": "Regresión lineal",
+      "filename": "regresion_lineal.png",
+      "predictions": "regresion_lineal.csv",
+      "metrics": {
+        "r2_test": 0.05023033358849782,
+        "r2_train": 0.11285479126327058,
+        "mae_test": 0.7830700244155424,
+        "rmse_test": 0.9865452328094749
+      },
+      "parameters": "LinearRegression()",
+      "explanation": "Ajusta una recta minimizando la suma de errores cuadrados.",
+      "look": "La recta no reproduce las oscilaciones de esta señal sintética.",
+      "lesson": "../README.md"
+    },
+    {
+      "task": "regresion",
+      "key": "ridge",
+      "name": "Ridge · polinomio grado 5",
+      "filename": "regresion_ridge.png",
+      "predictions": "regresion_ridge.csv",
+      "metrics": {
+        "r2_test": 0.8087373370236016,
+        "r2_train": 0.8378010327715768,
+        "mae_test": 0.35321639912599323,
+        "rmse_test": 0.4427136921108962
+      },
+      "parameters": "Pipeline(steps=[('polynomialfeatures',\n                 PolynomialFeatures(degree=5, include_bias=False)),\n                ('standardscaler', StandardScaler()),\n                ('ridge', Ridge(alpha=1))])",
+      "explanation": "Penaliza con L2 los coeficientes de los términos polinómicos escalados.",
+      "look": "La curva proviene de la expansión polinómica; Ridge por sí solo es lineal en sus atributos.",
+      "lesson": "../README.md"
+    },
+    {
+      "task": "regresion",
+      "key": "lasso",
+      "name": "Lasso · polinomio grado 5",
+      "filename": "regresion_lasso.png",
+      "predictions": "regresion_lasso.csv",
+      "metrics": {
+        "r2_test": 0.6649581613005273,
+        "r2_train": 0.7054818845140092,
+        "mae_test": 0.4976529413562382,
+        "rmse_test": 0.5859457067337754
+      },
+      "parameters": "Pipeline(steps=[('polynomialfeatures',\n                 PolynomialFeatures(degree=5, include_bias=False)),\n                ('standardscaler', StandardScaler()),\n                ('lasso', Lasso(alpha=0.02, max_iter=20000))])",
+      "explanation": "La penalización L1 puede dejar algunos coeficientes exactamente en cero.",
+      "look": "Se usa la misma expansión y escalado que Ridge; comprobar coeficientes, no solo la curva.",
+      "lesson": "../README.md"
+    },
+    {
+      "task": "regresion",
+      "key": "knn",
+      "name": "KNN Regressor · k=5",
+      "filename": "regresion_knn.png",
+      "predictions": "regresion_knn.csv",
+      "metrics": {
+        "r2_test": 0.9179435768916295,
+        "r2_train": 0.950939242850465,
+        "mae_test": 0.2419728068749685,
+        "rmse_test": 0.28997739610887324
+      },
+      "parameters": "Pipeline(steps=[('standardscaler', StandardScaler()),\n                ('kneighborsregressor', KNeighborsRegressor())])",
+      "explanation": "Promedia el valor observado de cinco vecinos del entrenamiento.",
+      "look": "Las predicciones son locales y no extrapolan una tendencia fuera del soporte observado.",
+      "lesson": "../README.md"
+    },
+    {
+      "task": "regresion",
+      "key": "svr-rbf",
+      "name": "SVR · kernel RBF",
+      "filename": "regresion_svr-rbf.png",
+      "predictions": "regresion_svr-rbf.csv",
+      "metrics": {
+        "r2_test": 0.9275771138639581,
+        "r2_train": 0.9467580765889329,
+        "mae_test": 0.22621859012206041,
+        "rmse_test": 0.2724242530414234
+      },
+      "parameters": "Pipeline(steps=[('standardscaler', StandardScaler()), ('svr', SVR(C=10))])",
+      "explanation": "Ajusta una función no lineal con tolerancia epsilon y penalización C.",
+      "look": "La banda epsilon forma parte del método, pero no se representa como intervalo de confianza.",
+      "lesson": "../SVM/README.md"
+    },
+    {
+      "task": "regresion",
+      "key": "arbol",
+      "name": "Árbol de regresión",
+      "filename": "regresion_arbol.png",
+      "predictions": "regresion_arbol.csv",
+      "metrics": {
+        "r2_test": 0.8998933592615184,
+        "r2_train": 0.9233075639057859,
+        "mae_test": 0.2576427295480175,
+        "rmse_test": 0.32028699057291893
+      },
+      "parameters": "DecisionTreeRegressor(max_depth=4, random_state=42)",
+      "explanation": "Devuelve la media de los valores de cada hoja.",
+      "look": "La curva es escalonada: constante dentro de cada región.",
+      "lesson": "../README.md"
+    },
+    {
+      "task": "regresion",
+      "key": "forest",
+      "name": "Random Forest Regressor",
+      "filename": "regresion_forest.png",
+      "predictions": "regresion_forest.csv",
+      "metrics": {
+        "r2_test": 0.9224555160500074,
+        "r2_train": 0.9713926131153765,
+        "mae_test": 0.23759510538109493,
+        "rmse_test": 0.2818923628060646
+      },
+      "parameters": "RandomForestRegressor(max_depth=6, n_estimators=200, n_jobs=1, random_state=42)",
+      "explanation": "Promedia predicciones de muchos árboles de regresión.",
+      "look": "Los escalones se combinan; fuera del rango de train no aprende una ley de extrapolación.",
+      "lesson": "../README.md"
+    },
+    {
+      "task": "regresion",
+      "key": "adaboost",
+      "name": "AdaBoost Regressor",
+      "filename": "regresion_adaboost.png",
+      "predictions": "regresion_adaboost.csv",
+      "metrics": {
+        "r2_test": 0.8960704197180842,
+        "r2_train": 0.9084527272872394,
+        "mae_test": 0.26873774166749154,
+        "rmse_test": 0.3263453594360501
+      },
+      "parameters": "AdaBoostRegressor(estimator=DecisionTreeRegressor(max_depth=3),\n                  learning_rate=0.05, n_estimators=100, random_state=42)",
+      "explanation": "AdaBoost.R2 repondera muestras y combina predicciones mediante mediana ponderada.",
+      "look": "No aplica exactamente la regla de voto del clasificador AdaBoost.",
+      "lesson": "../Boosting/README.md"
+    },
+    {
+      "task": "regresion",
+      "key": "gradient-boosting",
+      "name": "Gradient Boosting Regressor",
+      "filename": "regresion_gradient-boosting.png",
+      "predictions": "regresion_gradient-boosting.csv",
+      "metrics": {
+        "r2_test": 0.9265468421861823,
+        "r2_train": 0.9688941608729253,
+        "mae_test": 0.2302491629070697,
+        "rmse_test": 0.2743551332789471
+      },
+      "parameters": "GradientBoostingRegressor(max_depth=2, random_state=42)",
+      "explanation": "Añade árboles que corrigen residuos para la pérdida cuadrática.",
+      "look": "La suma secuencial sigue la señal; learning_rate reduce cada contribución.",
+      "lesson": "../Boosting/README.md"
+    },
+    {
+      "task": "regresion",
+      "key": "xgboost",
+      "name": "XGBoost Regressor",
+      "filename": "regresion_xgboost.png",
+      "predictions": "regresion_xgboost.csv",
+      "metrics": {
+        "r2_test": 0.9225297640708785,
+        "r2_train": 0.9762848699998863,
+        "mae_test": 0.23545254657797404,
+        "rmse_test": 0.2817573760125372
+      },
+      "parameters": "XGBRegressor(base_score=None, booster=None, callbacks=None,\n             colsample_bylevel=None, colsample_bynode=None,\n             colsample_bytree=None, device=None, early_stopping_rounds=None,\n             enable_categorical=True, eval_metric=None, feature_types=None,\n             feature_weights=None, gamma=None, grow_policy=None,\n             importance_type=None, interaction_constraints=None,\n             learning_rate=0.1, max_bin=None, max_cat_threshold=None,\n             max_cat_to_onehot=None, max_delta_step=None, max_depth=3,\n             max_leaves=None, min_child_weight=None, missing=nan,\n             monotone_constraints=None, multi_strategy=None, n_estimators=100,\n             n_jobs=1, num_parallel_tree=None, ...)",
+      "explanation": "Optimiza una suma regularizada de árboles con información de primer y segundo orden.",
+      "look": "La figura usa una configuración fijada antes de evaluar, sin buscar parámetros con test.",
+      "lesson": "../Boosting/README.md"
+    }
+  ]
+}

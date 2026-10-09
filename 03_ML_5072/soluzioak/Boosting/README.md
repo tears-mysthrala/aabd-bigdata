@@ -38,7 +38,7 @@ MSE de entrenamiento: **82 → 21,25 → 6,0625**. No es test. Ajustar residuos 
 
 Con los mismos cuatro precios, lambda=1 reduce los outputs de las hojas a ±6; eta=0,3 produce F1=`38,2,38,2,41,8,41,8`. La mejora de score del PDF es 216 para el corte 2,5 y 75 para 1,5/3,5. El árbol hist real separa con umbral 3, que representa la misma partición de estas cuatro observaciones que cortar en 2,5.
 
-Hay que especificar **la escala de la fórmula**: la [derivación oficial](https://xgboost.readthedocs.io/en/latest/tutorials/model.html) para el objetivo con factor 1/2 da mejora 108 antes de restar gamma. El dump de la biblioteca instalada registra `gain=216`. Por eso no trasladamos una cifra de gamma entre fórmulas con factores distintos sin verificarla. La prueba ejecutada confirma directamente que gamma=100 conserva el corte y gamma=250 lo elimina en esa biblioteca; las predicciones pasan de 38,2/41,8 a cuatro 40. Lambda penaliza el peso de las hojas; gamma exige mejora para añadir una partición; eta escala su contribución.
+Hay que especificar **la escala de la fórmula**: la [derivación oficial](https://xgboost.readthedocs.io/en/latest/tutorials/model.html) para el objetivo con factor 1/2 da mejora 108 antes de restar gamma. El dump de la biblioteca instalada registra `gain=216`. Por eso no trasladamos una cifra de gamma entre fórmulas con factores distintos sin verificarla. La prueba ejecutada confirma directamente que gamma=100 y gamma=150 conservan el corte y gamma=250 lo elimina en esa biblioteca; las predicciones pasan de 38,2/41,8 a cuatro 40. Lambda penaliza el peso de las hojas; gamma exige mejora para añadir una partición; eta escala su contribución.
 
 ### Cuatro ejemplos Python del PDF principal
 

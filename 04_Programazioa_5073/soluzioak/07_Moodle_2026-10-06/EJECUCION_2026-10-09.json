@@ -5,5 +5,8 @@
   "executed_code_cells": 33,
   "errors": 0,
   "script_exit_code": 0,
-  "data": "synthetic make_classification seed 42 and sklearn Wine"
+  "data": "synthetic make_classification seed 42 and sklearn Wine",
+  "date": "2026-10-09",
+  "notebook_code_cells": 33,
+  "script_executed_separately": true
 }

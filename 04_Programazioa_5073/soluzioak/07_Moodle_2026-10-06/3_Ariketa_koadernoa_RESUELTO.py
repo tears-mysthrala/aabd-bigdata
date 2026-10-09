@@ -11,7 +11,6 @@
 
 # %%
 from pathlib import Path
-from typing import List
 
 import joblib
 import numpy as np
@@ -159,7 +158,7 @@ df = pd.read_csv(DATA_DIR / "dataset.csv")
 # Balioztatzea (jatorrizko ariketatik)
 # Balioztatzea (EZ UKITU)
 assert "df" in locals(), "'df' aldagaia ez da sortu"
-assert type(df) == pd.DataFrame, "'df' ez da Pandas DataFrame bat"  # noqa: E721 (assert docente conservado)
+assert type(df) is pd.DataFrame, "'df' ez da Pandas DataFrame bat"
 assert df.shape == (2000, 21), "Datuen tamaina ez da zuzena"
 print("✅ Zuzena!")
 
@@ -532,7 +531,7 @@ print(f"✅ Zuzena! Lehenengo instantziaren iragarpena: {iragarpen_1[0]}")
 
 # %%
 class PredictionRequest(BaseModel):
-    features: List[float]
+    features: list[float]
 
 
 # Balioztatzea (jatorrizko ariketatik)
@@ -549,11 +548,11 @@ import math
 
 
 class PredictionRequest(BaseModel):
-    features: List[float]
+    features: list[float]
 
     @field_validator("features")
     @classmethod
-    def validar_longitud(cls, values: List[float]) -> List[float]:
+    def validar_longitud(cls, values: list[float]) -> list[float]:
         if len(values) != 20 or not all(math.isfinite(v) for v in values):
             raise ValueError("Se necesitan exactamente 20 características finitas")
         return values
@@ -606,9 +605,6 @@ def egin_iragarpena(req: PredictionRequest) -> PredictionResponse:
     probabilitatea = float(eredu_kargatua.predict_proba(features)[0, 1])
     return PredictionResponse(klasea=klasea, probabilitatea=probabilitatea)
 
-
-req_test = PredictionRequest(features=[0.0] * 20)
-resp = egin_iragarpena(req_test)
 
 # Balioztatzea (jatorrizko ariketatik)
 # Balioztatzea

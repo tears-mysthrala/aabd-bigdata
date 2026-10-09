@@ -68,7 +68,7 @@ jobs:
         with:
           python-version: "3.13"
       - run: pip install pytest numpy pandas scikit-learn requests beautifulsoup4
-      - run: pytest -q 00_Transversal/scripts/test_moodle_pages.py
+      - run: pytest -q 00_Transversal/scripts/test_moodle_pages.py 05_BigData_Ingeniaritza/soluzioak/03_Elastic_Stack/novedades_2026-10-08/test_verificar.py
       - run: python -m unittest discover -s .github/scripts -p 'test_*.py'
       - run: pytest -q 07_Kafka/soluzioak/test_kafka_mock.py 00_Transversal/scripts/test_moodle_publish.py 00_Transversal/scripts/test_moodle_sync_auth.py 04_Programazioa_5073/soluzioak/04_Datu_Zientzia_PDF_Ariketak/test_agregazio_docente.py 04_Programazioa_5073/git_ariketa_4_2/test_agur.py
       - run: PYTHONPATH=src pytest -q tests/
@@ -90,6 +90,8 @@ jobs:
             ruff_targets: 3_Ariketa_koadernoa_RESUELTO.py 3_Ariketa_koadernoa_RESUELTO.ipynb
           - directory: 03_ML_5072/soluzioak/Boosting
             scripts: boosting.py
+          - directory: 03_ML_5072/soluzioak/Guia_Visual_Modelos
+            scripts: generar.py
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -117,6 +119,9 @@ jobs:
           if test -f test_ml_api.py; then
             uv run --frozen pytest -q test_ml_api.py
             uv run --frozen pytest -q ../05_Frameworkak_PDF_Ariketak/test_bearer_api.py
+          fi
+          if test -f test_galeria.py; then
+            uv run --frozen pytest -q test_galeria.py
           fi
           if test -f test_boosting.py; then
             uv run --frozen pytest -q test_boosting.py
