@@ -1,0 +1,1014 @@
+[
+  {
+    "folder": "01_Erronka1_CNC_Guard",
+    "title": "Reto integrado CNC Guard",
+    "minutes": 120,
+    "exam": "01_Erronka1_CNC_Guard/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "01_Erronka1_CNC_Guard/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "objetivos, PERT/Gantt, arquitectura, fuzzy/anomalías, coste y defensa",
+    "sources": [
+      "01_Erronka1_CNC_Guard/materialak/1Erronka_ikaslearen_txostena.docx.pdf",
+      "01_Erronka1_CNC_Guard/materialak/ANEXO1-Eus.md",
+      "01_Erronka1_CNC_Guard/materialak/patata tortila - planifikazioa eta kostuak lantzekoAA 2026-2027.md",
+      "02_AA_Ereduak_5071/materialak/5071-IE1-Logika_Lausoa.md",
+      "03_ML_5072/materialak/5072_2_01_Erregresio_Lineala.pdf",
+      "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+      "05_BigData_Ingeniaritza/materialak/Ariketak_01_02_datuen_ingeniaritza.md",
+      "06_NiFi/materialak/01_01_ApacheNifi.pdf",
+      "07_Kafka/materialak/01_03_ApacheKafka.pdf"
+    ],
+    "sections": [
+      {
+        "id": "1",
+        "topic": "Objetivos, mantenimiento y límites del piloto",
+        "references": [
+          {
+            "source": "01_Erronka1_CNC_Guard/materialak/1Erronka_ikaslearen_txostena.docx.pdf",
+            "location": "p. 2; objetivos técnicos, pp. 3–7"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "topic": "Dependencias, PERT/Gantt y coste de retrasos",
+        "references": [
+          {
+            "source": "01_Erronka1_CNC_Guard/materialak/patata tortila - planifikazioa eta kostuak lantzekoAA 2026-2027.md",
+            "location": "Ariketa: PERT, GANTT y preguntas sobre tareas que no pueden retrasarse"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "topic": "Arquitectura de datos y roles del contrato",
+        "references": [
+          {
+            "source": "05_BigData_Ingeniaritza/materialak/Ariketak_01_02_datuen_ingeniaritza.md",
+            "location": "Datu baten bidaia; Kasu praktikoa: Smart Factory"
+          },
+          {
+            "source": "07_Kafka/materialak/01_03_ApacheKafka.pdf",
+            "location": "pp. 16–20: producer, broker, topic y consumer"
+          },
+          {
+            "source": "06_NiFi/materialak/01_01_ApacheNifi.pdf",
+            "location": "pp. 10–13: FlowFile, atributos y provenance"
+          },
+          {
+            "source": "01_Erronka1_CNC_Guard/materialak/1Erronka_ikaslearen_txostena.docx.pdf",
+            "location": "p. 9: coordinador, secretario y portavoz"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "topic": "Reglas, grados de pertenencia y sistema híbrido",
+        "references": [
+          {
+            "source": "02_AA_Ereduak_5071/materialak/5071-IE1-Logika_Lausoa.md",
+            "location": "03.2, 03.3 (AND=min) y 03.4 (SA + Logika Lausoa)"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_2_01_Erregresio_Lineala.pdf",
+            "location": "p. 6: aprendizaje supervisado y no supervisado"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "topic": "Métricas, coste, evaluación y defensa",
+        "references": [
+          {
+            "source": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+            "location": "pp. 3–8: separación, leakage, grupos, matriz y métricas"
+          },
+          {
+            "source": "01_Erronka1_CNC_Guard/materialak/1Erronka_ikaslearen_txostena.docx.pdf",
+            "location": "p. 2: coste de parada; pp. 8 y 11: evaluación individual y grupal"
+          },
+          {
+            "source": "01_Erronka1_CNC_Guard/materialak/ANEXO1-Eus.md",
+            "location": "roles y compromisos del contrato de equipo"
+          }
+        ]
+      }
+    ],
+    "source_sha256": {
+      "01_Erronka1_CNC_Guard/materialak/1Erronka_ikaslearen_txostena.docx.pdf": "647fbcc2d9d54895646576ff3c832bcd3bffdc1772f3383eb593703056fc2199",
+      "01_Erronka1_CNC_Guard/materialak/ANEXO1-Eus.md": "877ce722b6c54d5f226897cef6e79b75ea6c0002fc5174678f185f7030b7294a",
+      "01_Erronka1_CNC_Guard/materialak/patata tortila - planifikazioa eta kostuak lantzekoAA 2026-2027.md": "e78dc35cdd3374e211acdda6e811ff5fd9c7ba216c4c19a67a198e74201a044a",
+      "02_AA_Ereduak_5071/materialak/5071-IE1-Logika_Lausoa.md": "78e232f9bbad25365faf49839620fe6b5d93314c4309a1fdac785b1e15f808d4",
+      "03_ML_5072/materialak/5072_2_01_Erregresio_Lineala.pdf": "bd4563877507042b88fa39106b0a8f4406574d246427c846939e7872e71692cc",
+      "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf": "854425d7bdbe5388d16ba0761655186a487a8329f7415a9b773800e8adf24c95",
+      "05_BigData_Ingeniaritza/materialak/Ariketak_01_02_datuen_ingeniaritza.md": "df9cfd232ae8b2d66edfb95d473e3c5933abfadae4f829a2d2c69568b332db92",
+      "06_NiFi/materialak/01_01_ApacheNifi.pdf": "68489d730205544b25afe655eee75223359872acaa21560e6918c6edb7d371f9",
+      "07_Kafka/materialak/01_03_ApacheKafka.pdf": "a0bc8381e79e95dff5002391cdd227b34621ae3d483bb719e5f8a97a375323d1"
+    }
+  },
+  {
+    "folder": "02_AA_Ereduak_5071",
+    "title": "5071 — Modelos de inteligencia artificial",
+    "minutes": 110,
+    "exam": "02_AA_Ereduak_5071/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "02_AA_Ereduak_5071/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "IA/sistemas expertos, fuzzy, sesgo COMPAS, seguridad, privacidad y ética",
+    "sources": [
+      "02_AA_Ereduak_5071/materialak/1.1_prompt_injection_diseinua_soluzioa.ipynb",
+      "02_AA_Ereduak_5071/materialak/3.1_privacy_by_design_auditoria_soluzioa.ipynb",
+      "02_AA_Ereduak_5071/materialak/5.1_eia_aplikatu_soluzioa.ipynb",
+      "02_AA_Ereduak_5071/materialak/5071-IE1-Logika_Lausoa.md",
+      "02_AA_Ereduak_5071/materialak/5071-IE1-Sarrera_Kontzeptuala.md",
+      "02_AA_Ereduak_5071/materialak/5071-IE6-Marko_legala.md",
+      "02_AA_Ereduak_5071/materialak/Alborapenak/2.2_compas_historikoa_soluzioa.ipynb",
+      "02_AA_Ereduak_5071/materialak/E1-Ereduak-Etika_eta_legea.pdf",
+      "03_ML_5072/materialak/5072_2_01_Erregresio_Lineala.pdf"
+    ],
+    "sections": [
+      {
+        "id": "1",
+        "topic": "IA, ML, DL, Turing y sistemas expertos",
+        "references": [
+          {
+            "source": "02_AA_Ereduak_5071/materialak/5071-IE1-Sarrera_Kontzeptuala.md",
+            "location": "01.1, 01.3–01.6: definición, Turing, paradigmas, jerarquía y AA débil/general"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_2_01_Erregresio_Lineala.pdf",
+            "location": "p. 6: selección supervisada/no supervisada; apoyo del módulo 5072"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "topic": "Sistema experto y tres fases fuzzy",
+        "references": [
+          {
+            "source": "02_AA_Ereduak_5071/materialak/5071-IE1-Sarrera_Kontzeptuala.md",
+            "location": "01.4: AA simbólica, base de conocimiento y motor de inferencia"
+          },
+          {
+            "source": "02_AA_Ereduak_5071/materialak/5071-IE1-Logika_Lausoa.md",
+            "location": "03.1–03.3: grados, fases y ejemplo AND=min; operadores del caso facilitados"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "topic": "COMPAS, FPR y sesgos por grupos",
+        "references": [
+          {
+            "source": "02_AA_Ereduak_5071/materialak/Alborapenak/2.2_compas_historikoa_soluzioa.ipynb",
+            "location": "Ariketa 2.2; metrikak_taldekoak y discusión accuracy/alborapena"
+          },
+          {
+            "source": "02_AA_Ereduak_5071/materialak/E1-Ereduak-Etika_eta_legea.pdf",
+            "location": "pp. 5–13: fuentes de sesgo y COMPAS"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "topic": "Prompt injection, security/privacy y membership inference",
+        "references": [
+          {
+            "source": "02_AA_Ereduak_5071/materialak/1.1_prompt_injection_diseinua_soluzioa.ipynb",
+            "location": "amenaza, filtro y límites de la defensa"
+          },
+          {
+            "source": "02_AA_Ereduak_5071/materialak/E1-Ereduak-Etika_eta_legea.pdf",
+            "location": "pp. 42–50: inyección, membership inference, introducción a DP y security/privacy"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "topic": "Finalidad, principios normativos, PbD e impacto",
+        "references": [
+          {
+            "source": "02_AA_Ereduak_5071/materialak/5071-IE6-Marko_legala.md",
+            "location": "marco legal, niveles de riesgo y preguntas de auditoría"
+          },
+          {
+            "source": "02_AA_Ereduak_5071/materialak/3.1_privacy_by_design_auditoria_soluzioa.ipynb",
+            "location": "principios de Cavoukian y propuestas de rediseño"
+          },
+          {
+            "source": "02_AA_Ereduak_5071/materialak/5.1_eia_aplikatu_soluzioa.ipynb",
+            "location": "evaluación de impacto: afectados, riesgos y mitigación"
+          }
+        ]
+      }
+    ],
+    "source_sha256": {
+      "02_AA_Ereduak_5071/materialak/1.1_prompt_injection_diseinua_soluzioa.ipynb": "1eaf16361ff7d7fb123e7e6bed0d3d11af5901061967f2363f356f46fc97717e",
+      "02_AA_Ereduak_5071/materialak/3.1_privacy_by_design_auditoria_soluzioa.ipynb": "696b51c084dc442272330756f888e1366fbd58ce3554be86e24b62210e28cb0c",
+      "02_AA_Ereduak_5071/materialak/5.1_eia_aplikatu_soluzioa.ipynb": "e1b0b8778c5b8451bca61f826eb7bd48ae6374fd5be04482dc54ca2d508ca96c",
+      "02_AA_Ereduak_5071/materialak/5071-IE1-Logika_Lausoa.md": "78e232f9bbad25365faf49839620fe6b5d93314c4309a1fdac785b1e15f808d4",
+      "02_AA_Ereduak_5071/materialak/5071-IE1-Sarrera_Kontzeptuala.md": "ff124a1e3445888237eaf266f8d3bf2a6edf1760641840199d9974e4b56b29a7",
+      "02_AA_Ereduak_5071/materialak/5071-IE6-Marko_legala.md": "26a4f523d7eeba19903e458836e43fbc29c1f67ac6864a78b5430445f09bb6b0",
+      "02_AA_Ereduak_5071/materialak/Alborapenak/2.2_compas_historikoa_soluzioa.ipynb": "9408669a8bb2457b43b97935971a6ce1d58c45fb2d6534965f6c9abe4decb643",
+      "02_AA_Ereduak_5071/materialak/E1-Ereduak-Etika_eta_legea.pdf": "2f0717acd5d236d7c03ddda92c956df746679c0e08b055bc617c4d611e58516f",
+      "03_ML_5072/materialak/5072_2_01_Erregresio_Lineala.pdf": "bd4563877507042b88fa39106b0a8f4406574d246427c846939e7872e71692cc"
+    }
+  },
+  {
+    "folder": "03_ML_5072",
+    "title": "5072 — Machine Learning",
+    "minutes": 120,
+    "exam": "03_ML_5072/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "03_ML_5072/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "preprocesado, regresiones, KNN/árbol/SVM/RF/boosting, métricas, CV e Iris",
+    "sources": [
+      "03_ML_5072/materialak/5072_1_Datua_eta_Aurreprozesamenua.pdf",
+      "03_ML_5072/materialak/5072_2_02_Erregresio_Logistikoa.pdf",
+      "03_ML_5072/materialak/5072_2_03_KNN.pdf",
+      "03_ML_5072/materialak/5072_2_05_SVM.pdf",
+      "03_ML_5072/materialak/5072_2_06_Random_Forest.pdf",
+      "03_ML_5072/materialak/5072_2_07_Boosting.pdf",
+      "03_ML_5072/materialak/5072_2_Ikasketa_Gainbegiratua.pdf",
+      "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+      "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf"
+    ],
+    "sections": [
+      {
+        "id": "1",
+        "topic": "Nulos, categorías, leakage y validación",
+        "references": [
+          {
+            "source": "03_ML_5072/materialak/5072_1_Datua_eta_Aurreprozesamenua.pdf",
+            "location": "pp. 2–9: tipos, nulos, codificación y escalado"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+            "location": "pp. 3–6: train/validation/test, leakage y Group K-Fold"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 14–16: implementación de Pipeline/ColumnTransformer; apoyo del módulo 5073"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "topic": "Regresión, errores, regularización, KNN/SVM/árbol",
+        "references": [
+          {
+            "source": "03_ML_5072/materialak/5072_2_Ikasketa_Gainbegiratua.pdf",
+            "location": "pp. 2–9: MSE, Ridge/Lasso, logística, k y pruning"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_2_05_SVM.pdf",
+            "location": "p. 5: soft margin y C"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 12–13: MAE, MSE y R²; apoyo del módulo 5073"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "topic": "Matriz, precision/recall/F1, ROC y multiclase",
+        "references": [
+          {
+            "source": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+            "location": "pp. 7–10: matriz, métricas, macro/weighted y ROC-AUC"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_2_02_Erregresio_Logistikoa.pdf",
+            "location": "p. 4: probabilidad y umbral"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+            "location": "p. 3: selección en validation y evaluación final en test"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "topic": "Bagging/Random Forest y boosting",
+        "references": [
+          {
+            "source": "03_ML_5072/materialak/5072_2_06_Random_Forest.pdf",
+            "location": "pp. 2–5: bagging, selección de features y ensembles"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_2_07_Boosting.pdf",
+            "location": "pp. 2–9: AdaBoost, Gradient Boosting y XGBoost"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+            "location": "p. 11: brecha train/validation y overfitting"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "topic": "Iris, pipelines, CV de k y límites 2D",
+        "references": [
+          {
+            "source": "03_ML_5072/materialak/5072_2_02_Erregresio_Logistikoa.pdf",
+            "location": "p. 9: Iris con dos features y gráfico de frontera"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_2_03_KNN.pdf",
+            "location": "pp. 2–5: vecinos, k y límites"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+            "location": "pp. 3–6: separación y Stratified K-Fold"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 14–17: Pipeline y GridSearchCV; apoyo de código del módulo 5073"
+          }
+        ]
+      }
+    ],
+    "source_sha256": {
+      "03_ML_5072/materialak/5072_1_Datua_eta_Aurreprozesamenua.pdf": "b414e85a7145a110fc5ecbbc47239343a9abbf11b8977f6def301eb964121c7d",
+      "03_ML_5072/materialak/5072_2_02_Erregresio_Logistikoa.pdf": "07a6cf8be7398014ad86b5403a7ab68153366e9c163471fe0b7c8ed458df13f1",
+      "03_ML_5072/materialak/5072_2_03_KNN.pdf": "a1051b129d6d1258b587067b5a1972562a177ef59f0d2f1f6bb7e7deb522ae76",
+      "03_ML_5072/materialak/5072_2_05_SVM.pdf": "ed7e2f38cb10d432273a56d9ba95e422c1a904e9dacf650cf46a646db5c93a72",
+      "03_ML_5072/materialak/5072_2_06_Random_Forest.pdf": "b9b7a16c7d3b778fc4e097e4c66b4abe25e9c348b406feda5bdc9827e36ed9bb",
+      "03_ML_5072/materialak/5072_2_07_Boosting.pdf": "845e22fe0b1fb2f38dee881109fc2685227018b8a597fe6f2e3ad42ac12be85a",
+      "03_ML_5072/materialak/5072_2_Ikasketa_Gainbegiratua.pdf": "b794aed2f56cd04012a30c9d54a1bc6114bc4e04f62c70705b4055c3fdc3a51d",
+      "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf": "854425d7bdbe5388d16ba0761655186a487a8329f7415a9b773800e8adf24c95",
+      "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf": "cdc9f7298efa2c9f71ec0d64e56165ae8092dbf9a91aab4ee2c99ffca4048553"
+    }
+  },
+  {
+    "folder": "04_Programazioa_5073",
+    "title": "5073 — Programación para IA",
+    "minutes": 150,
+    "exam": "04_Programazioa_5073/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "04_Programazioa_5073/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "30 test; Python/JSON/Git/entornos virtuales, NumPy/Pandas/gráficos, pipeline/métricas/Pydantic",
+    "sources": [
+      "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+      "04_Programazioa_5073/materialak/3_Ariketa_koadernoa_URLa.ipynb",
+      "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf",
+      "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+      "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+      "04_Programazioa_5073/materialak/Moodle_page_64153.md"
+    ],
+    "sections": [
+      {
+        "id": "T1",
+        "topic": "¿Qué combinación describe mejor el uso de Python y Java en la materia?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf",
+            "location": "pp. 7–9: Python y Java"
+          }
+        ]
+      },
+      {
+        "id": "T2",
+        "topic": "¿Qué hace MCP en un sistema de agentes?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf",
+            "location": "pp. 36–37: MCP"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+            "location": "segunda pregunta de ejemplo"
+          }
+        ]
+      },
+      {
+        "id": "T3",
+        "topic": "¿Cuál es el resultado de [x*x for x in [1,2,3] if x>1]?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf",
+            "location": "pp. 44–45: list comprehension"
+          }
+        ]
+      },
+      {
+        "id": "T4",
+        "topic": "Para convertir una cadena JSON en un diccionario Python se usa:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf",
+            "location": "p. 49: JSON"
+          }
+        ]
+      },
+      {
+        "id": "T5",
+        "topic": "¿Qué conviene hacer con un pickle de origen desconocido?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf",
+            "location": "pp. 50–51: Pickle y advertencia de seguridad"
+          }
+        ]
+      },
+      {
+        "id": "T6",
+        "topic": "¿Qué distingue una rama de Git de un entorno virtual?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf",
+            "location": "pp. 21–23: entornos; pp. 52–56: Git"
+          }
+        ]
+      },
+      {
+        "id": "T7",
+        "topic": "¿Para qué sirve un entorno virtual de Python?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf",
+            "location": "pp. 21–23: finalidad y aislamiento de entornos virtuales"
+          }
+        ]
+      },
+      {
+        "id": "T8",
+        "topic": "Un array de 12 elementos puede hacerse matriz 3×4 con:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+            "location": "pp. 6–7: reshape"
+          }
+        ]
+      },
+      {
+        "id": "T9",
+        "topic": "¿Qué selecciona arr[arr > 5]?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+            "location": "pp. 9–11: máscaras booleanas"
+          }
+        ]
+      },
+      {
+        "id": "T10",
+        "topic": "Para dos condiciones sobre columnas Pandas se emplea normalmente:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+            "location": "pp. 14–15: filtros y operadores Pandas"
+          }
+        ]
+      },
+      {
+        "id": "T11",
+        "topic": "¿Qué hace dropna() con sus valores por defecto sobre un DataFrame?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+            "location": "pp. 18–20: dropna"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+            "location": "cuarta pregunta de ejemplo"
+          }
+        ]
+      },
+      {
+        "id": "T12",
+        "topic": "¿Qué instrucción modifica valores por una condición de forma explícita?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+            "location": "pp. 14–15: selección y loc"
+          }
+        ]
+      },
+      {
+        "id": "T13",
+        "topic": "¿Qué son Figure y Axes en Matplotlib?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+            "location": "pp. 25–27: Figure/Axes"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+            "location": "tercera pregunta de ejemplo"
+          }
+        ]
+      },
+      {
+        "id": "T14",
+        "topic": "Para comparar temperatura por cámara, ¿qué gráfico ayuda?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+            "location": "pp. 28–30: boxplot y distribución"
+          }
+        ]
+      },
+      {
+        "id": "T15",
+        "topic": "¿Dónde se ajusta StandardScaler para evaluar un holdout?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 3–5: escalado train/test"
+          }
+        ]
+      },
+      {
+        "id": "T16",
+        "topic": "¿Qué código separa correctamente el target?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 3–4: separar X e y"
+          }
+        ]
+      },
+      {
+        "id": "T17",
+        "topic": "Una categoría nominal sin orden se suele codificar con:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 6–8: OneHot y Ordinal"
+          }
+        ]
+      },
+      {
+        "id": "T18",
+        "topic": "¿Para qué sirve Pipeline en sklearn?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 14–16: Pipeline y CV"
+          }
+        ]
+      },
+      {
+        "id": "T19",
+        "topic": "¿Cuál es una imputación razonable de stock con outliers?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+            "location": "pp. 18–19: mediana"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 7–8: imputación en train"
+          }
+        ]
+      },
+      {
+        "id": "T20",
+        "topic": "¿Qué significa class_weight=\"balanced\"?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+            "location": "checklist: Klaseen Desoreka Kudeatzea"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/3_Ariketa_koadernoa_URLa.ipynb",
+            "location": "ejercicios 3.3–3.4: class_weight balanced"
+          }
+        ]
+      },
+      {
+        "id": "T21",
+        "topic": "¿Dónde debe aplicarse SMOTE durante selección con CV?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/3_Ariketa_koadernoa_URLa.ipynb",
+            "location": "ejercicios 3.5–3.6: SMOTE solo en train"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+            "location": "p. 4: augmentation y leakage; apoyo del módulo 5072"
+          }
+        ]
+      },
+      {
+        "id": "T22",
+        "topic": "Recall de la clase positiva es:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 10–12: recall"
+          }
+        ]
+      },
+      {
+        "id": "T23",
+        "topic": "Precision de la clase positiva es:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 10–12: precision"
+          }
+        ]
+      },
+      {
+        "id": "T24",
+        "topic": "Si fallo tiene prevalencia 1%, predecir siempre no fallo produce:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 11–12: desbalance y accuracy"
+          }
+        ]
+      },
+      {
+        "id": "T25",
+        "topic": "En confusion_matrix con labels=[0,1], ¿qué representa [1,0]?",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 10–12: matriz de confusión"
+          }
+        ]
+      },
+      {
+        "id": "T26",
+        "topic": "Para elegir un umbral se debe usar:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 18–19: umbral"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+            "location": "p. 3: test final no se usa para seleccionar parámetros; apoyo del módulo 5072"
+          }
+        ]
+      },
+      {
+        "id": "T27",
+        "topic": "GridSearchCV debe recibir:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 16–18: GridSearchCV y scoring"
+          }
+        ]
+      },
+      {
+        "id": "T28",
+        "topic": "Al publicar una API de inferencia, el modelo suele cargarse:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 30–33: carga al arrancar"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+            "location": "quinta pregunta de ejemplo"
+          }
+        ]
+      },
+      {
+        "id": "T29",
+        "topic": "BaseModel y field_validator se usan para:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 29–30: BaseModel y field_validator"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+            "location": "checklist: API Eskemak"
+          }
+        ]
+      },
+      {
+        "id": "T30",
+        "topic": "Una entrada de inferencia válida debe:",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 14–15: inferencia con el pipeline; pp. 29–30: esquema de entrada"
+          }
+        ]
+      },
+      {
+        "id": "P1",
+        "topic": "Inspección, list comprehension y limpieza Pandas",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+            "location": "checklist: Python Oinarriak y Pandas Iragazkiak"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+            "location": "pp. 18–20: nulos, rangos y duplicados"
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "topic": "Split facilitado, Pipeline y class_weight",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+            "location": "checklist: ML Pipeline-en Eraikuntza y Klaseen Desoreka Kudeatzea"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 14–16: Pipeline"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/3_Ariketa_koadernoa_URLa.ipynb",
+            "location": "ejercicios 3.3–3.4: class_weight balanced"
+          },
+          {
+            "source": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+            "location": "pp. 4–6: sujeto/grupo y leakage; apoyo del módulo 5072"
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "topic": "Métricas, classification_report e interpretación",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+            "location": "checklist: Metriken Interpretazioa"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 10–12: accuracy, precision, recall, F1 y matriz"
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "topic": "BaseModel, field_validator e inferencia",
+        "references": [
+          {
+            "source": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+            "location": "checklist: API Eskemak"
+          },
+          {
+            "source": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+            "location": "pp. 14–15: orden de inferencia; pp. 29–30: esquema y validación"
+          }
+        ]
+      }
+    ],
+    "source_sha256": {
+      "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf": "854425d7bdbe5388d16ba0761655186a487a8329f7415a9b773800e8adf24c95",
+      "04_Programazioa_5073/materialak/3_Ariketa_koadernoa_URLa.ipynb": "70238c779bbb4f83f081114525179733dd022610c1218f84f796a5d79594c085",
+      "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf": "0525208bc7a90f774f565d1cd4e212c7ffbfc5be9502041e0eb669a995bee04e",
+      "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf": "0115c3bba18f628b224b5b54a39b353d59bd1b0fcbd94152a8bde43bd455568e",
+      "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf": "cdc9f7298efa2c9f71ec0d64e56165ae8092dbf9a91aab4ee2c99ffca4048553",
+      "04_Programazioa_5073/materialak/Moodle_page_64153.md": "85028dd38e3eea950513abbfc77cca1c938c872f987c9a36404a9bda7531fac6"
+    }
+  },
+  {
+    "folder": "05_BigData_Ingeniaritza",
+    "title": "Big Data e ingeniería de datos",
+    "minutes": 120,
+    "exam": "05_BigData_Ingeniaritza/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "05_BigData_Ingeniaritza/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "7 V (incluida Viability), analítica, ETL/ELT, Faker/formatos, Elastic/Kibana/Grok/ILM",
+    "sources": [
+      "05_BigData_Ingeniaritza/materialak/01_01_big_data_sarrera.pdf",
+      "05_BigData_Ingeniaritza/materialak/01_02_datuen_ingeniaritza.pdf",
+      "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
+      "05_BigData_Ingeniaritza/materialak/Ariketak_01_01_big_data_sarrera.md",
+      "05_BigData_Ingeniaritza/materialak/Ariketak_01_02_datuen_ingeniaritza.md"
+    ],
+    "sections": [
+      {
+        "id": "1",
+        "topic": "7 V, analítica y OLTP/OLAP",
+        "references": [
+          {
+            "source": "05_BigData_Ingeniaritza/materialak/01_01_big_data_sarrera.pdf",
+            "location": "pp. 5–16: 7 V (Viability), analítica y OLTP/OLAP"
+          },
+          {
+            "source": "05_BigData_Ingeniaritza/materialak/Ariketak_01_01_big_data_sarrera.md",
+            "location": "7 V-ak kasu errealetan; Analitika motak; OLTP ala OLAP"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "topic": "Ciclo de ingeniería, hardware, abstracciones y ETL/ELT",
+        "references": [
+          {
+            "source": "05_BigData_Ingeniaritza/materialak/Ariketak_01_02_datuen_ingeniaritza.md",
+            "location": "Datuen bizi-zikloa (cinco fases); Hardware fisikoa; Smart Factory; ETL ala ELT?"
+          },
+          {
+            "source": "05_BigData_Ingeniaritza/materialak/01_02_datuen_ingeniaritza.pdf",
+            "location": "pp. 5–9 y 19–28: ciclo, HDD/SSD/RAM, cache y ETL/ELT"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "topic": "ETL de ventas, formatos y Faker",
+        "references": [
+          {
+            "source": "05_BigData_Ingeniaritza/materialak/Ariketak_01_02_datuen_ingeniaritza.md",
+            "location": "ETL prozesua diseinatu; Zein formatu aukeratuko zenuke?; Faker-ekin lehen dataset-a; Zer egiten du seed-ak?; CSV JSON"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "topic": "Mapping, consultas, agregaciones y Kibana",
+        "references": [
+          {
+            "source": "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
+            "location": "pp. 14–20, 24–29 y 31–41: mapping, shards, filtros, agregaciones y Lens"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "topic": "Stack, Grok e ILM",
+        "references": [
+          {
+            "source": "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
+            "location": "pp. 3–8: componentes; pp. 42–44: ILM y práctica 8; pp. 62–67: Grok y conversión"
+          }
+        ]
+      }
+    ],
+    "source_sha256": {
+      "05_BigData_Ingeniaritza/materialak/01_01_big_data_sarrera.pdf": "469338554c3b8da7b027797f0fb5bdef3093d536abf0eabe00409e16973a0e7a",
+      "05_BigData_Ingeniaritza/materialak/01_02_datuen_ingeniaritza.pdf": "c4553d4a491cd9e7045ae595b47c1879220b9195415ea887a06a3e5b87c31dfc",
+      "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf": "eb5072685bca39e1dfc8d88dbd0ac71588306c7e9e54864e89bb409965c87183",
+      "05_BigData_Ingeniaritza/materialak/Ariketak_01_01_big_data_sarrera.md": "94c9955a2dc9bdebb940dd74efaf4f26cf8e8a79e6a64085849fc780132d08e9",
+      "05_BigData_Ingeniaritza/materialak/Ariketak_01_02_datuen_ingeniaritza.md": "df9cfd232ae8b2d66edfb95d473e3c5933abfadae4f829a2d2c69568b332db92"
+    }
+  },
+  {
+    "folder": "06_NiFi",
+    "title": "NiFi y series temporales",
+    "minutes": 120,
+    "exam": "06_NiFi/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "06_NiFi/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "FlowFile, ConvertRecord/QueryRecord, provenance, bases/API/medallion, tiempo y alertas",
+    "sources": [
+      "06_NiFi/materialak/01_01_ApacheNifi.pdf",
+      "06_NiFi/materialak/01_02_ApacheNifi_aurreratua.pdf",
+      "06_NiFi/materialak/02_Denbora_Serieak.pdf",
+      "06_NiFi/materialak/Apache NiFi kasu praktikoak (5-6-7).pdf",
+      "06_NiFi/materialak/GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf"
+    ],
+    "sections": [
+      {
+        "id": "1",
+        "topic": "FlowFile, conexiones, servicios y provenance",
+        "references": [
+          {
+            "source": "06_NiFi/materialak/01_01_ApacheNifi.pdf",
+            "location": "pp. 10–13 y 24: atributos, colas, back pressure, provenance y Reader/Writer"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "topic": "CSV/JSON, ConvertRecord, QueryRecord y destinos",
+        "references": [
+          {
+            "source": "06_NiFi/materialak/01_02_ApacheNifi_aurreratua.pdf",
+            "location": "pp. 18–21: ConvertRecord, Reader/Writer y UpdateAttribute"
+          },
+          {
+            "source": "06_NiFi/materialak/GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf",
+            "location": "pp. 13–26: CSV, QueryRecord y comprobación del recorrido"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "topic": "MariaDB/MongoDB y capas HTTP/Bronze/Silver/Gold",
+        "references": [
+          {
+            "source": "06_NiFi/materialak/01_02_ApacheNifi_aurreratua.pdf",
+            "location": "pp. 29–34: DBCP, ExecuteSQLRecord, SplitText, PutMongo; pp. 38–50: InvokeHTTP, capas, MergeContent y QueryRecord"
+          },
+          {
+            "source": "06_NiFi/materialak/Apache NiFi kasu praktikoak (5-6-7).pdf",
+            "location": "pp. 25–34: caso 7 de capas y comprobación de salidas"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "topic": "Tiempo, resample, interpolación, rolling, alerta y gráfico",
+        "references": [
+          {
+            "source": "06_NiFi/materialak/02_Denbora_Serieak.pdf",
+            "location": "pp. 25–36: Pandas y práctica (incluidos gráfico e interpretación); p. 37: tres lecturas consecutivas"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "topic": "Volumen, pérdida de picos y agregaciones",
+        "references": [
+          {
+            "source": "06_NiFi/materialak/02_Denbora_Serieak.pdf",
+            "location": "p. 23: 20 máquinas, dos sensores y volumen; p. 38: max/min/conteo/kWh de intervalo"
+          }
+        ]
+      }
+    ],
+    "source_sha256": {
+      "06_NiFi/materialak/01_01_ApacheNifi.pdf": "68489d730205544b25afe655eee75223359872acaa21560e6918c6edb7d371f9",
+      "06_NiFi/materialak/01_02_ApacheNifi_aurreratua.pdf": "f342f97f5ec2b4344c99e02ec2d2a59306d5cdb8326bcceb4e4e93423d44037a",
+      "06_NiFi/materialak/02_Denbora_Serieak.pdf": "e1002195c777fe7d8fbb342d88653b0e07426966b2e944f6a24841219f7bf561",
+      "06_NiFi/materialak/Apache NiFi kasu praktikoak (5-6-7).pdf": "7d7615cb2dfce0e33e7820d4f26b8d23ae10672c2d26150295fc55a4463ad2e9",
+      "06_NiFi/materialak/GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf": "84de9a409d6e15d919dd59d1f404f8bcfe62002acf8afe59a35e5dba76df27e6"
+    }
+  },
+  {
+    "folder": "07_Kafka",
+    "title": "Kafka básico y avanzado",
+    "minutes": 110,
+    "exam": "07_Kafka/materialak/Mock_Exams_2026-10/EXAMEN_A.md",
+    "solution": "07_Kafka/soluzioak/Mock_Exams_2026-10/SOLUCIONES_A.md",
+    "coverage": "particiones/keys/groups/offsets, RF/ISR, medallion, idempotencia y Connect",
+    "sources": [
+      "07_Kafka/materialak/01_03_ApacheKafka.pdf",
+      "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf"
+    ],
+    "sections": [
+      {
+        "id": "1",
+        "topic": "Topic, particiones, key, broker y bootstrap",
+        "references": [
+          {
+            "source": "07_Kafka/materialak/01_03_ApacheKafka.pdf",
+            "location": "pp. 16–20, 27–28, 33 y 37: conceptos, bootstrap, ISR y key"
+          },
+          {
+            "source": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
+            "location": "pp. 8–16: describe, key y listener interno"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "topic": "Grupos, paralelismo, offsets y reentrega",
+        "references": [
+          {
+            "source": "07_Kafka/materialak/01_03_ApacheKafka.pdf",
+            "location": "pp. 42–49: particiones por grupo, consumer config, commits y semánticas"
+          },
+          {
+            "source": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
+            "location": "pp. 17 y 34: grupos diferentes para Python/NiFi y destinos independientes"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "topic": "RF, ISR, leader y acks",
+        "references": [
+          {
+            "source": "07_Kafka/materialak/01_03_ApacheKafka.pdf",
+            "location": "pp. 32–33 y 37: replicación, leader/ISR, min.insync.replicas y acks"
+          },
+          {
+            "source": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
+            "location": "pp. 8–9: RF, describe, Replicas e ISR"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "topic": "Capas, lotes, semánticas y equivalente Python/NiFi",
+        "references": [
+          {
+            "source": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
+            "location": "pp. 23–37: capas, tres grupos y diez mensajes; pp. 39–45: EvaluateJsonPath, MergeRecord y QueryRecord"
+          },
+          {
+            "source": "07_Kafka/materialak/01_03_ApacheKafka.pdf",
+            "location": "pp. 48–49: commits, duplicados e idempotencia conceptual"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "topic": "Connect, source/sink, worker/task y comprobación",
+        "references": [
+          {
+            "source": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
+            "location": "pp. 47–54: componentes, converters y estado; pp. 56–69: caso 5 MySQL → Kafka → MongoDB y prueba con registros nuevos"
+          }
+        ]
+      }
+    ],
+    "source_sha256": {
+      "07_Kafka/materialak/01_03_ApacheKafka.pdf": "a0bc8381e79e95dff5002391cdd227b34621ae3d483bb719e5f8a97a375323d1",
+      "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf": "6c7f76d6480de1dd22f2051928738678d5aa815b4625d5af1d37d3402afa56f5"
+    }
+  }
+]
