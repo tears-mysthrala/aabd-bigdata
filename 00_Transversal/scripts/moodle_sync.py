@@ -479,6 +479,51 @@ def public_url(url: str) -> str:
     )
 
 
+class ManualPageRequired(ValueError):
+    """Una copia de texto no cubriría todos los elementos docentes."""
+
+
+def page_document(source_html: str, source_url: str, title: str) -> str:
+    """Extraer solo el cuerpo docente de una página Moodle de texto.
+
+    No guarda el HTML autenticado, navegación, formularios ni scripts.
+    Medios, tablas y adjuntos siguen pendientes de revisión: aplanarlos o
+    ignorarlos permitiría publicar una cobertura incompleta.
+    """
+    soup = BeautifulSoup(source_html, "html.parser")
+    if soup.select_one("#username, form#login"):
+        raise ValueError("Página sin autenticación confirmada")
+    boxes = soup.select("#region-main .generalbox")
+    if len(boxes) != 1:
+        raise ValueError("Cuerpo de página ausente o ambiguo")
+    content = boxes[0]
+    if content.select(
+        "img, picture, video, audio, iframe, embed, object, svg, canvas, math, table, form, input"
+    ):
+        raise ManualPageRequired(
+            "Página con medios, tablas o elementos interactivos sin copiar"
+        )
+    for link in content.select("a[href]"):
+        absolute = urllib.parse.urljoin(source_url, link["href"])
+        if "pluginfile.php" in urllib.parse.urlparse(absolute).path:
+            raise ManualPageRequired("Página con adjuntos sin descargar")
+        # Solo referencias públicas; nunca parámetros de sesión.
+        if urllib.parse.urlparse(absolute).scheme in ("http", "https"):
+            link.append(f" ({public_url(absolute)})")
+    for unwanted in content.select("script, style, nav, button"):
+        unwanted.decompose()
+    text = content.get_text("\n", strip=True)
+    if not text:
+        raise ValueError("Página docente vacía")
+    safe_title = " ".join(redact_sensitive(title).split())
+    return (
+        f"# {safe_title}\n\nFuente: {public_url(source_url)}\n\n"
+        "Copia automática del texto docente; no incluye el envoltorio de sesión.\n\n"
+        + redact_sensitive(text)
+        + "\n"
+    )
+
+
 def sinkronizatu() -> list[str]:
     """Egiaztatu Moodle materiala; erroreak eta kanpo-mugak esplizituak dira."""
     global SYNC_REPORT, SYNC_MANAGED, SYNC_HASHES
@@ -844,7 +889,47 @@ def sinkronizatu() -> list[str]:
                     if match and google_auth_error:
                         entry["oauth_warning"] = google_auth_error
                     entries.append(entry)
-                elif kind in ("page", "book", "lesson", "scorm", "wiki"):
+                elif kind == "page":
+                    with moodle_request(session, "GET", url, timeout=25) as response:
+                        response.raise_for_status()
+                        if "login/index.php" in response.url:
+                            raise ValueError("Página sin autenticación confirmada")
+                        try:
+                            payload = page_document(response.text, url, title)
+                        except ManualPageRequired as exc:
+                            entries.append(
+                                {
+                                    "kind": kind,
+                                    "source": public_url(url),
+                                    "status": "manual review required",
+                                    "reason": str(exc),
+                                }
+                            )
+                            continue
+                    page_id = urllib.parse.parse_qs(
+                        urllib.parse.urlparse(url).query
+                    ).get("id", [])
+                    if len(page_id) != 1 or not page_id[0].isdigit():
+                        raise ValueError("Identificador de página Moodle inválido")
+                    dest = helburu_direktorioa(sec, title)
+                    target = safe_download_path(dest, f"Moodle_page_{page_id[0]}.md")
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    if (
+                        not target.exists()
+                        or target.read_text(encoding="utf-8") != payload
+                    ):
+                        target.write_text(payload, encoding="utf-8")
+                        downloaded.append(str(target.relative_to(REPO_ROOT.resolve())))
+                    entries.append(
+                        {
+                            "kind": kind,
+                            "source": public_url(url),
+                            "path": str(target.relative_to(REPO_ROOT.resolve())),
+                            "status": "verified",
+                            "sha256": file_hash(target),
+                        }
+                    )
+                elif kind in ("book", "lesson", "scorm", "wiki"):
                     # Hauek ez dira fitxategiak. Ez aldarrikatu deskarga osoa.
                     entries.append(
                         {

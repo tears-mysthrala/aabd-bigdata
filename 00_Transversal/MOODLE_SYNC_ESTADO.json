@@ -1,10 +1,11 @@
 {
-  "activities": 77,
+  "activities": 80,
   "activity_types": {
     "assign": 11,
     "folder": 3,
+    "page": 1,
     "resource": 48,
-    "url": 15
+    "url": 17
   },
   "assignments": [
     {
@@ -344,6 +345,12 @@
       "status": "web reference"
     },
     {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=63381",
+      "kind": "external link",
+      "source": "https://medium.com/@fraidoonomarzai99/15-most-commonly-used-ml-algorithms-ml-resources-in-depth-0e3c97943151",
+      "status": "web reference"
+    },
+    {
       "kind": "file",
       "path": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
       "sha256": "854425d7bdbe5388d16ba0761655186a487a8329f7415a9b773800e8adf24c95",
@@ -426,7 +433,7 @@
     {
       "kind": "external notebook",
       "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
-      "sha256": "f943c29e13eb5a101afe9f6a03753f653a76de37c853bcf02c81a95af976a6a8",
+      "sha256": "cfba4ce5d3c0b1ab4207f6073f75da79f2b5e8b16363741238891aa2fd096058",
       "source": "https://drive.google.com/file/d/1zdhBQUHzPWXSCoIUepQTZqLTitOBj8_S/view?usp=sharing",
       "status": "verified"
     },
@@ -476,6 +483,19 @@
       "status": "downloaded and verified"
     },
     {
+      "kind": "external notebook",
+      "path": "04_Programazioa_5073/materialak/3_SOLUZIOAK_URLa.ipynb",
+      "sha256": "13aff60e059885a0361a325f2e219837805ac68c50d6e701b9e8c1ba0f8ef078",
+      "source": "https://drive.google.com/file/d/1VJdiSrag1V83dupTGTnrc5mDLwU0yTCA",
+      "status": "verified"
+    },
+    {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64542",
+      "kind": "external link",
+      "source": "https://drive.google.com/file/d/1VJdiSrag1V83dupTGTnrc5mDLwU0yTCA",
+      "status": "downloaded and verified"
+    },
+    {
       "kind": "file",
       "path": "04_Programazioa_5073/materialak/ML_ereduak_euskaraz.html",
       "sha256": "220da47f68b92b739bc4213dea7ed92470aeb9079d6c1e26c2017a21376dbdac",
@@ -507,6 +527,13 @@
       "path": "04_Programazioa_5073/materialak/Sailkapen Ebaluazio-metrikak.png",
       "sha256": "b8bdb584e8faa28a7a48b06d0d4b4743641959360e3e889771d1cd62e4b10af8",
       "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/89145/mod_resource/content/3/Sailkapen%20Ebaluazio-metrikak.png",
+      "status": "verified"
+    },
+    {
+      "kind": "page",
+      "path": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+      "sha256": "85028dd38e3eea950513abbfc77cca1c938c872f987c9a36404a9bda7531fac6",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/page/view.php?id=64153",
       "status": "verified"
     },
     {
@@ -739,7 +766,7 @@
     {
       "kind": "file",
       "path": "06_NiFi/materialak/02_Denbora_Serieak.pdf",
-      "sha256": "d73867c087a250dd81b2e7ca0749415304be50e22f916a2ee9eed063d6b40dbc",
+      "sha256": "3f0ad08aa22c9466a7620a0c4836f800907417221c13e262a42baa62ce2a4557",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64556",
       "status": "verified"
     }
@@ -762,5 +789,5 @@
     12
   ],
   "unavailable": 0,
-  "verified_on": "2026-10-08"
+  "verified_on": "2026-10-09"
 }
