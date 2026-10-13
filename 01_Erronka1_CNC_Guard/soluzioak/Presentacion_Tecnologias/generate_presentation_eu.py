@@ -1,4 +1,5 @@
 """Euskarazko PPTX eta PDFa sortu, diseinu-sortzaile bera erabiliz."""
+
 from __future__ import annotations
 
 import json
@@ -11,11 +12,14 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 BASENAME = "CNC_Guard_Tecnologias_EU"
 
+
 def main() -> None:
     source = HERE / "contenido.eu.json"
     data = json.loads(source.read_text(encoding="utf-8"))
     if data.get("language") != "eu" or len(data.get("slides", [])) != 33:
         raise ValueError("Euskarazko 33 diapositibak behar dira")
+    if any(not slide.get("title") or not slide.get("rows") for slide in data["slides"]):
+        raise ValueError("Diapositiba huts bat aurkitu da")
     with tempfile.TemporaryDirectory(prefix="cnc-eu-") as tmp:
         folder = Path(tmp)
         shutil.copy2(HERE / "generate_presentation.py", folder / "generate_presentation.py")
@@ -27,6 +31,7 @@ def main() -> None:
                 raise RuntimeError(f"Ez da fitxategia sortu: {original}")
             shutil.copy2(original, HERE / f"{BASENAME}.{ext}")
     print("Euskarazko aurkezpena: 33 diapositiba, PPTX + PDF.")
+
 
 if __name__ == "__main__":
     main()

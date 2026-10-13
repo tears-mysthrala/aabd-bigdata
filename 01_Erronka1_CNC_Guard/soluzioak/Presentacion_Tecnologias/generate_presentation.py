@@ -89,18 +89,21 @@ def main():
     setup_fonts()
     info = json.loads((HERE / "contenido.json").read_text(encoding="utf-8"))
     slides = info["slides"]
+    language = info.get("language", "es")
+    if language not in ("es", "eu"):
+        raise ValueError(f"Unsupported language: {language}")
     assert len(slides) == 33, "Refuse to export an incomplete slide deck"
     ppt = Presentation()
     ppt.slide_width, ppt.slide_height = Inches(13.333333), Inches(7.5)
     pdf = canvas.Canvas(str(HERE / "CNC_Guard_Tecnologias.pdf"), pagesize=(WIDTH, HEIGHT))
-    pdf.setTitle("CNC Guard - Propuesta tecnologica 2026")
+    pdf.setTitle("CNC Guard - Proposamen teknologikoa 2026" if language == "eu" else "CNC Guard - Propuesta tecnologica 2026")
     for index, data in enumerate(slides, 1):
         slide = ppt.slides.add_slide(ppt.slide_layouts[6])
         add_box(slide, 0, 0, WIDTH, HEIGHT, NAVY)
         pdf_rect(pdf, 0, 0, WIDTH, HEIGHT, NAVY)
         add_box(slide, 0, 0, 7, HEIGHT, TEAL)
         pdf_rect(pdf, 0, 0, 7, HEIGHT, TEAL)
-        hdr = "CNC GUARD / PROPUESTA TECNOLÓGICA"
+        hdr = "CNC GUARD / PROPOSAMEN TEKNOLOGIKOA" if language == "eu" else "CNC GUARD / PROPUESTA TECNOLÓGICA"
         add_text(slide, 50, 20, 520, 20, hdr, 8.5, TEAL, True)
         pdf_text(pdf, 50, 20, hdr, 8.5, TEAL, True)
         title = data["title"]
@@ -139,7 +142,8 @@ def main():
             add_text(slide, x+pad, y+bodytop, inner, ph-bodytop-pad, value, size, WHITE)
             for k, line in enumerate(wrapped):
                 pdf_text(pdf, x+pad, y+bodytop+k*size*1.22, line, size, WHITE)
-        req = (data.get("req") or "DISEÑO Y ALCANCE").strip()[:125]
+        default_req = "DISEINUA ETA IRISMENA" if language == "eu" else "DISEÑO Y ALCANCE"
+        req = (data.get("req") or default_req).strip()[:125]
         pdf_rect(pdf, 50, 487, 860, 1.0, "29425D")
         add_box(slide, 50, 487, 860, 1.0, "29425D")
         pdf_text(pdf, 51, 497, req, 8.0, MUTE)

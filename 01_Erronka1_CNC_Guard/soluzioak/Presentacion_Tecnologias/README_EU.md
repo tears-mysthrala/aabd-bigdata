@@ -7,7 +7,7 @@ Gaztelaniazko aurkezpenaren **33 diapositibako euskarazko bertsio osoa**, azalpe
 - `CNC_Guard_Tecnologias_EU.pdf`: aurkezteko PDFa.
 - `generate_presentation_eu.py`: gaztelaniazko fitxategi berdinetatik diseinu-sistema bera erabiltzen du.
 
-**Birsortzeko:** aurkezpenaren karpetan, `python generate_presentation_eu.py`. GitHub Actions-ek bi fitxategietan 33 diapositiba eta edukia egiaztatzen ditu.
+**Birsortzeko:** aurkezpenaren karpetan, `uv sync --locked` eta `uv run --locked python generate_presentation_eu.py`. `pyproject.toml` eta `uv.lock` fitxategiek esportazioaren mendekotasunak finkatzen dituzte. GitHub Actions-ek bi formatuetako eduki osoa egiaztatzen du.
 
 Proposamen teknologikoa da, ez egiaztatutako industria-instalazioa: 24 orduko matxura-aurreikuspena hipotesia da eta integrazio osoa ebaluatzeke dago. Izen teknikoak eta erreferentzien IDak jatorrizkoen berdinak dira.
 
