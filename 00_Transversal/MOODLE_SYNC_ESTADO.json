@@ -1,11 +1,11 @@
 {
-  "activities": 82,
+  "activities": 83,
   "activity_types": {
     "assign": 11,
     "folder": 3,
     "page": 1,
     "resource": 50,
-    "url": 17
+    "url": 18
   },
   "assignments": [
     {
@@ -107,6 +107,12 @@
       "sha256": "647fbcc2d9d54895646576ff3c832bcd3bffdc1772f3383eb593703056fc2199",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=61494",
       "status": "verified"
+    },
+    {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64664",
+      "kind": "external link",
+      "source": "https://docs.google.com/spreadsheets/d/1cSTAGeRHBalejlizDdn1UGMZZfkBeenMut27FWV8W80/edit?usp=sharing",
+      "status": "web reference"
     },
     {
       "kind": "file",
