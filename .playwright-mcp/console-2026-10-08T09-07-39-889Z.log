@@ -1,0 +1,3 @@
+[ 1795154ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:15601/internal/saved_objects_tagging/tags/_all:0
+[ 2695183ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:15601/internal/saved_objects_tagging/tags/_all:0
+[ 3595073ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:15601/internal/saved_objects_tagging/tags/_all:0

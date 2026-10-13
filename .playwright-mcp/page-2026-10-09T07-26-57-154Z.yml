@@ -1,0 +1,194 @@
+- main [ref=e2]:
+  - link "Guía de estudio y reproducción" [ref=e3] [cursor=pointer]:
+    - /url: README.md
+  - paragraph [ref=e4]: AABD · Machine Learning · 20 figuras
+  - heading "Cómo se ve cada modelo" [level=1] [ref=e5]
+  - paragraph [ref=e6]: Una misma pregunta, distintas formas de aprender. Compara las fronteras de clasificación y las curvas de regresión, y conecta cada figura con las prácticas que hemos trabajado.
+  - paragraph [ref=e7]: "Datos sintéticos, semilla 42, 70% train y 30% test. Se aprende solo con train. Las métricas describen este ejemplo: no ordenan universalmente los algoritmos."
+  - region "Cómo leer las figuras" [ref=e8]:
+    - generic [ref=e9]:
+      - 'heading "Clasificación: separar dos clases" [level=2] [ref=e10]'
+      - paragraph [ref=e11]: "320 muestras de dos medias lunas: 224 train y 96 test. Círculos y triángulos indican clase; símbolos huecos = train, rellenos = test. El fondo es la clase predicha, no una medida de confianza."
+    - generic [ref=e12]:
+      - 'heading "Regresión: aproximar una curva" [level=2] [ref=e13]'
+      - paragraph [ref=e14]: "240 muestras: 168 train y 72 test. Círculos huecos = train, cruces = test. Línea naranja = predicción; discontinua = señal sintética sin ruido. R² no es porcentaje de aciertos y puede ser negativo."
+  - generic "Filtrar modelos" [ref=e15]:
+    - button "Todos" [ref=e16] [cursor=pointer]
+    - button "Clasificación" [ref=e17] [cursor=pointer]
+    - button "Regresión" [active] [pressed] [ref=e18] [cursor=pointer]
+    - generic [ref=e19]:
+      - text: Buscar modelo
+      - searchbox "Buscar modelo" [ref=e20]
+  - status [ref=e21]: 10 modelos visibles
+  - generic [ref=e22]:
+    - article [ref=e143]:
+      - link "Ampliar Regresión lineal (regresion)" [ref=e144] [cursor=pointer]:
+        - /url: figuras/regresion_lineal.png
+        - 'img "Regresión lineal: curva ajustada, señal y muestras train/test" [ref=e145]'
+      - generic [ref=e146]:
+        - text: Regresión
+        - heading "Regresión lineal" [level=2] [ref=e147]
+        - paragraph [ref=e148]: R² test 0.050 · train 0.113 · RMSE test 0.987
+        - paragraph [ref=e149]: Ajusta una recta minimizando la suma de errores cuadrados.
+        - paragraph [ref=e150]:
+          - strong [ref=e151]: "Qué observar:"
+          - text: La recta no reproduce las oscilaciones de esta señal sintética.
+        - group [ref=e152]:
+          - generic "Parámetros y resultados" [ref=e153] [cursor=pointer]
+        - link "Ir a la práctica del repositorio →" [ref=e154] [cursor=pointer]:
+          - /url: ../README.md
+    - article [ref=e155]:
+      - link "Ampliar Ridge · polinomio grado 5 (regresion)" [ref=e156] [cursor=pointer]:
+        - /url: figuras/regresion_ridge.png
+        - 'img "Ridge · polinomio grado 5: curva ajustada, señal y muestras train/test" [ref=e157]'
+      - generic [ref=e158]:
+        - text: Regresión
+        - heading "Ridge · polinomio grado 5" [level=2] [ref=e159]
+        - paragraph [ref=e160]: R² test 0.809 · train 0.838 · RMSE test 0.443
+        - paragraph [ref=e161]: Penaliza con L2 los coeficientes de los términos polinómicos escalados.
+        - paragraph [ref=e162]:
+          - strong [ref=e163]: "Qué observar:"
+          - text: La curva proviene de la expansión polinómica; Ridge por sí solo es lineal en sus atributos.
+        - group [ref=e164]:
+          - generic "Parámetros y resultados" [ref=e165] [cursor=pointer]
+        - link "Ir a la práctica del repositorio →" [ref=e166] [cursor=pointer]:
+          - /url: ../README.md
+    - article [ref=e167]:
+      - link "Ampliar Lasso · polinomio grado 5 (regresion)" [ref=e168] [cursor=pointer]:
+        - /url: figuras/regresion_lasso.png
+        - 'img "Lasso · polinomio grado 5: curva ajustada, señal y muestras train/test" [ref=e169]'
+      - generic [ref=e170]:
+        - text: Regresión
+        - heading "Lasso · polinomio grado 5" [level=2] [ref=e171]
+        - paragraph [ref=e172]: R² test 0.665 · train 0.705 · RMSE test 0.586
+        - paragraph [ref=e173]: La penalización L1 puede dejar algunos coeficientes exactamente en cero.
+        - paragraph [ref=e174]:
+          - strong [ref=e175]: "Qué observar:"
+          - text: Se usa la misma expansión y escalado que Ridge; comprobar coeficientes, no solo la curva.
+        - group [ref=e176]:
+          - generic "Parámetros y resultados" [ref=e177] [cursor=pointer]
+        - link "Ir a la práctica del repositorio →" [ref=e178] [cursor=pointer]:
+          - /url: ../README.md
+    - article [ref=e179]:
+      - link "Ampliar KNN Regressor · k=5 (regresion)" [ref=e180] [cursor=pointer]:
+        - /url: figuras/regresion_knn.png
+        - 'img "KNN Regressor · k=5: curva ajustada, señal y muestras train/test" [ref=e181]'
+      - generic [ref=e182]:
+        - text: Regresión
+        - heading "KNN Regressor · k=5" [level=2] [ref=e183]
+        - paragraph [ref=e184]: R² test 0.918 · train 0.951 · RMSE test 0.290
+        - paragraph [ref=e185]: Promedia el valor observado de cinco vecinos del entrenamiento.
+        - paragraph [ref=e186]:
+          - strong [ref=e187]: "Qué observar:"
+          - text: Las predicciones son locales y no extrapolan una tendencia fuera del soporte observado.
+        - group [ref=e188]:
+          - generic "Parámetros y resultados" [ref=e189] [cursor=pointer]
+        - link "Ir a la práctica del repositorio →" [ref=e190] [cursor=pointer]:
+          - /url: ../README.md
+    - article [ref=e191]:
+      - link "Ampliar SVR · kernel RBF (regresion)" [ref=e192] [cursor=pointer]:
+        - /url: figuras/regresion_svr-rbf.png
+        - 'img "SVR · kernel RBF: curva ajustada, señal y muestras train/test" [ref=e193]'
+      - generic [ref=e194]:
+        - text: Regresión
+        - heading "SVR · kernel RBF" [level=2] [ref=e195]
+        - paragraph [ref=e196]: R² test 0.928 · train 0.947 · RMSE test 0.272
+        - paragraph [ref=e197]: Ajusta una función no lineal con tolerancia epsilon y penalización C.
+        - paragraph [ref=e198]:
+          - strong [ref=e199]: "Qué observar:"
+          - text: La banda epsilon forma parte del método, pero no se representa como intervalo de confianza.
+        - group [ref=e200]:
+          - generic "Parámetros y resultados" [ref=e201] [cursor=pointer]
+        - link "Ir a la práctica del repositorio →" [ref=e202] [cursor=pointer]:
+          - /url: ../SVM/README.md
+    - article [ref=e203]:
+      - link "Ampliar Árbol de regresión (regresion)" [ref=e204] [cursor=pointer]:
+        - /url: figuras/regresion_arbol.png
+        - 'img "Árbol de regresión: curva ajustada, señal y muestras train/test" [ref=e205]'
+      - generic [ref=e206]:
+        - text: Regresión
+        - heading "Árbol de regresión" [level=2] [ref=e207]
+        - paragraph [ref=e208]: R² test 0.900 · train 0.923 · RMSE test 0.320
+        - paragraph [ref=e209]: Devuelve la media de los valores de cada hoja.
+        - paragraph [ref=e210]:
+          - strong [ref=e211]: "Qué observar:"
+          - text: "La curva es escalonada: constante dentro de cada región."
+        - group [ref=e212]:
+          - generic "Parámetros y resultados" [ref=e213] [cursor=pointer]
+        - link "Ir a la práctica del repositorio →" [ref=e214] [cursor=pointer]:
+          - /url: ../README.md
+    - article [ref=e215]:
+      - link "Ampliar Random Forest Regressor (regresion)" [ref=e216] [cursor=pointer]:
+        - /url: figuras/regresion_forest.png
+        - 'img "Random Forest Regressor: curva ajustada, señal y muestras train/test" [ref=e217]'
+      - generic [ref=e218]:
+        - text: Regresión
+        - heading "Random Forest Regressor" [level=2] [ref=e219]
+        - paragraph [ref=e220]: R² test 0.922 · train 0.971 · RMSE test 0.282
+        - paragraph [ref=e221]: Promedia predicciones de muchos árboles de regresión.
+        - paragraph [ref=e222]:
+          - strong [ref=e223]: "Qué observar:"
+          - text: Los escalones se combinan; fuera del rango de train no aprende una ley de extrapolación.
+        - group [ref=e224]:
+          - generic "Parámetros y resultados" [ref=e225] [cursor=pointer]
+        - link "Ir a la práctica del repositorio →" [ref=e226] [cursor=pointer]:
+          - /url: ../README.md
+    - article [ref=e227]:
+      - link "Ampliar AdaBoost Regressor (regresion)" [ref=e228] [cursor=pointer]:
+        - /url: figuras/regresion_adaboost.png
+        - 'img "AdaBoost Regressor: curva ajustada, señal y muestras train/test" [ref=e229]'
+      - generic [ref=e230]:
+        - text: Regresión
+        - heading "AdaBoost Regressor" [level=2] [ref=e231]
+        - paragraph [ref=e232]: R² test 0.896 · train 0.908 · RMSE test 0.326
+        - paragraph [ref=e233]: AdaBoost.R2 repondera muestras y combina predicciones mediante mediana ponderada.
+        - paragraph [ref=e234]:
+          - strong [ref=e235]: "Qué observar:"
+          - text: No aplica exactamente la regla de voto del clasificador AdaBoost.
+        - group [ref=e236]:
+          - generic "Parámetros y resultados" [ref=e237] [cursor=pointer]
+        - link "Ir a la práctica del repositorio →" [ref=e238] [cursor=pointer]:
+          - /url: ../Boosting/README.md
+    - article [ref=e239]:
+      - link "Ampliar Gradient Boosting Regressor (regresion)" [ref=e240] [cursor=pointer]:
+        - /url: figuras/regresion_gradient-boosting.png
+        - 'img "Gradient Boosting Regressor: curva ajustada, señal y muestras train/test" [ref=e241]'
+      - generic [ref=e242]:
+        - text: Regresión
+        - heading "Gradient Boosting Regressor" [level=2] [ref=e243]
+        - paragraph [ref=e244]: R² test 0.927 · train 0.969 · RMSE test 0.274
+        - paragraph [ref=e245]: Añade árboles que corrigen residuos para la pérdida cuadrática.
+        - paragraph [ref=e246]:
+          - strong [ref=e247]: "Qué observar:"
+          - text: La suma secuencial sigue la señal; learning_rate reduce cada contribución.
+        - group [ref=e248]:
+          - generic "Parámetros y resultados" [ref=e249] [cursor=pointer]
+        - link "Ir a la práctica del repositorio →" [ref=e250] [cursor=pointer]:
+          - /url: ../Boosting/README.md
+    - article [ref=e251]:
+      - link "Ampliar XGBoost Regressor (regresion)" [ref=e252] [cursor=pointer]:
+        - /url: figuras/regresion_xgboost.png
+        - 'img "XGBoost Regressor: curva ajustada, señal y muestras train/test" [ref=e253]'
+      - generic [ref=e254]:
+        - text: Regresión
+        - heading "XGBoost Regressor" [level=2] [ref=e255]
+        - paragraph [ref=e256]: R² test 0.923 · train 0.976 · RMSE test 0.282
+        - paragraph [ref=e257]: Optimiza una suma regularizada de árboles con información de primer y segundo orden.
+        - paragraph [ref=e258]:
+          - strong [ref=e259]: "Qué observar:"
+          - text: La figura usa una configuración fijada antes de evaluar, sin buscar parámetros con test.
+        - group [ref=e260]:
+          - generic "Parámetros y resultados" [ref=e261] [cursor=pointer]
+        - link "Ir a la práctica del repositorio →" [ref=e262] [cursor=pointer]:
+          - /url: ../Boosting/README.md
+  - generic [ref=e263]:
+    - paragraph [ref=e264]: Ridge y Lasso usan expansión polinómica de grado 5, aprendida junto con el escalado en train. Naive Bayes gaussiano ilustra variables continuas; MultinomialNB del material de texto trabaja con conteos. Train y test comparten los mismos ejes por tarea.
+    - paragraph [ref=e265]:
+      - link "Métricas y configuración" [ref=e266] [cursor=pointer]:
+        - /url: metricas.json
+      - text: ·
+      - link "14 gráficas originales" [ref=e267] [cursor=pointer]:
+        - /url: originales/index.html
+      - text: ·
+      - link "Cálculos paso a paso de Boosting" [ref=e268] [cursor=pointer]:
+        - /url: ../Boosting/README.md
