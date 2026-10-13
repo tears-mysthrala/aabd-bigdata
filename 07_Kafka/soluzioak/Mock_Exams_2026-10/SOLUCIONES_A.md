@@ -43,24 +43,28 @@ inventar una prueba de caída. 0.75/0.5/0.5/0.25.
 Bronze raw reprocessable; Silver validado; Gold agregado. Grupos independientes
 silver-file, silver-db, silver-gold. Primer lote IDs de temperaturas 1..10:
 **count=10, media=5.5, max=10**; temperatura 11 pendiente de próximo lote.
-Reentrega de 5 no entra otra vez. ID dedup persistente, aislamiento por estación,
-estado de lote recuperable e ID determinista de agregado. Crash tras publicar
-Gold antes de commit puede republicar agregado: destino idempotente o
-transacción Kafka con offsets si todo está en Kafka y consumidores adecuados;
-MongoDB/ficheros requieren estrategia propia, no quedan cubiertos automáticamente.
-Lote puede tardar indefinidamente; ventana corresponde a tiempo e implica
-watermarks/late events y política de cierre según implementación. API caída:
-registrar respuesta, backoff acotado, no sustituir fuente sin marcarla; fixture
-prueba transformación. Puntos 0.75/0.5/0.75/0.5.
+Reentrega de 5 no entra otra vez si se reconoce su event_id. Confirmar antes de
+procesar puede perder el efecto si se cae después (at-most-once); confirmar
+después permite repetirlo si se cae antes del commit (at-least-once). Reconocer
+el ID evita contar dos veces; no se exige implementar almacenamiento de estado
+ni transacciones distribuidas. Kafka no garantiza automáticamente exactly-once
+para MongoDB o ficheros.
+Python selecciona campos y agrega un lote de diez con Pandas. NiFi selecciona
+campos con EvaluateJsonPath, reconstruye Silver, agrupa con MergeRecord y
+agrega con QueryRecord. Ambos persiguen Bronze/Silver/Gold; cambian las
+herramientas. Puntos 0.75/0.5/0.75/0.5.
 
 ## 5 — 1.5 puntos
 
-Source lee externo y produce; sink consume y escribe. Worker ejecuta Connect,
+JDBC source lee MySQL y produce en Kafka; MongoDB sink consume y escribe en
+MongoDB. En el caso docente se detectan nuevos category_id con mode=incrementing.
+Worker ejecuta Connect,
 connector configura integración, tasks unidades de trabajo (cantidad posible
 depende del conector). Serializer convierte objetos de cliente a bytes;
-converter conecta formato Kafka y representación Connect, revisar schemas.enabled
-y contrato. Plugin debe existir en worker; comprobar estado del connector y
-cada task, offsets y logs. Prueba: fichero sintético 10 IDs, leer topic y destino,
-comparar IDs/conteo/contenido; reinicio controlado y volver a comprobar repetición
-y commits. Un JSON aceptado por REST o RUNNING no prueba llegada al destino.
+converter conecta formato Kafka y representación Connect; mantener formatos
+compatibles. Plugin debe existir en worker; comprobar estado del connector y
+cada task, offsets y logs. Prueba: añadir un registro nuevo a categories con un
+category_id creciente, observar el topic y buscar el documento en MongoDB;
+comparar ID/contenido. Repetir con otro registro distingue avance de una copia
+inicial. Un JSON aceptado por REST o RUNNING no prueba llegada al destino.
 No reportar esta prueba como ejecutada. 0.5 por apartado.

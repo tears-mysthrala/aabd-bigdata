@@ -19,7 +19,7 @@ el test final no determina parámetros ni umbral. 0.5 por apartado.
 
 Errores absolutos 1,1,0: **MAE=2/3**, **MSE=2/3**; SSE=2 y SST=8,
 **R²=0.75**. Lineal estima valor continuo; logística modela probabilidad de
-clase con sigmoid/softmax. Ridge penaliza L2, Lasso L1 y puede anular coeficientes;
+clase, mediante sigmoide en el caso binario. Ridge penaliza L2, Lasso L1 y puede anular coeficientes;
 regularización limita complejidad, no garantiza mejor score. K pequeño favorece
 fronteras irregulares y varianza; C grande penaliza más violaciones de margen,
 reduce regularización y puede sobreajustar según kernel/datos; árbol sin límite
@@ -52,27 +52,27 @@ Código de referencia del núcleo (ejecutar con dependencias locales disponibles
 ```python
 import numpy as np
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix
 
 X, y = load_iris(return_X_y=True)
-Xtr, Xte, ytr, yte = train_test_split(
-    X, y, test_size=0.30, random_state=42, stratify=y
-)
+Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.30, random_state=42, stratify=y)
 assert len(ytr) == 105 and len(yte) == 45
 cv = StratifiedKFold(5, shuffle=True, random_state=42)
 lr = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))
 search = GridSearchCV(
     make_pipeline(StandardScaler(), KNeighborsClassifier()),
-    {'kneighborsclassifier__n_neighbors': [3, 5, 7]}, cv=cv, scoring='accuracy'
+    {"kneighborsclassifier__n_neighbors": [3, 5, 7]},
+    cv=cv,
+    scoring="accuracy",
 )
 lr.fit(Xtr, ytr)
 search.fit(Xtr, ytr)
-for name, model in [('LogReg', lr), ('KNN', search.best_estimator_)]:
+for name, model in [("LogReg", lr), ("KNN", search.best_estimator_)]:
     pred = model.predict(Xte)
     cm = confusion_matrix(yte, pred, labels=[0, 1, 2])
     assert cm.sum() == 45
@@ -86,6 +86,7 @@ puede predecir con solo dos. Continuación del código anterior:
 ```python
 import matplotlib.pyplot as plt
 from sklearn.base import clone
+
 lr2 = clone(lr).fit(Xtr[:, :2], ytr)
 search2 = clone(search).fit(Xtr[:, :2], ytr)
 x0, x1 = Xtr[:, 0].min() - 0.5, Xtr[:, 0].max() + 0.5
@@ -94,19 +95,30 @@ xx, yy = np.meshgrid(np.linspace(x0, x1, 180), np.linspace(y0, y1, 180))
 mesh = np.c_[xx.ravel(), yy.ravel()]
 fig, axes = plt.subplots(1, 2, figsize=(10, 4))
 for ax, name, model2 in zip(
-    axes, ['LogReg 2D', 'KNN 2D'], [lr2, search2.best_estimator_]
+    axes, ["LogReg 2D", "KNN 2D"], [lr2, search2.best_estimator_]
 ):
-    ax.contourf(xx, yy, model2.predict(mesh).reshape(xx.shape),
-                levels=[-0.5, 0.5, 1.5, 2.5], cmap='viridis', alpha=0.25)
-    for label, name_class in enumerate(['setosa', 'versicolor', 'virginica']):
+    ax.contourf(
+        xx,
+        yy,
+        model2.predict(mesh).reshape(xx.shape),
+        levels=[-0.5, 0.5, 1.5, 2.5],
+        cmap="viridis",
+        alpha=0.25,
+    )
+    for label, name_class in enumerate(["setosa", "versicolor", "virginica"]):
         mask = ytr == label
-        ax.scatter(Xtr[mask, 0], Xtr[mask, 1], label=name_class,
-                   color=plt.get_cmap('viridis')(label / 2), edgecolor='black')
-    ax.set(xlabel='Longitud sépalo (cm)', ylabel='Anchura sépalo (cm)', title=name)
+        ax.scatter(
+            Xtr[mask, 0],
+            Xtr[mask, 1],
+            label=name_class,
+            color=plt.get_cmap("viridis")(label / 2),
+            edgecolor="black",
+        )
+    ax.set(xlabel="Longitud sépalo (cm)", ylabel="Anchura sépalo (cm)", title=name)
     ax.legend()
 fig.tight_layout()
 # Guardar solo salida propia, en el directorio actual de la práctica.
-fig.savefig('limites_iris_mock.png', dpi=140)
+fig.savefig("limites_iris_mock.png", dpi=140)
 plt.close(fig)
 ```
 
