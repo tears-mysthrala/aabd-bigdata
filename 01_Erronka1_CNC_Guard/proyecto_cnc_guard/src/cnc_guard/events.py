@@ -67,8 +67,13 @@ def to_csv_message(original: dict) -> tuple[str, dict]:
 
 
 ALERT_DOCUMENT_FIELDS = (
-    "machine_id", "timestamp", "failure_predicted",
-    "failure_probability", "alert_level", "history_available", "model_schema",
+    "machine_id",
+    "timestamp",
+    "failure_predicted",
+    "failure_probability",
+    "alert_level",
+    "history_available",
+    "model_schema",
 )
 
 
@@ -91,8 +96,7 @@ def alert_document(event_id: str, prediction: dict) -> dict:
         raise ValueError("Invalid scoring timestamp") from exc
     if parsed.tzinfo is None:
         raise ValueError("timestamp requires a timezone")
-    if (not isinstance(prediction["machine_id"], str)
-            or not prediction["machine_id"].strip()):
+    if not isinstance(prediction["machine_id"], str) or not prediction["machine_id"].strip():
         raise ValueError("machine_id missing")
     probability = prediction["failure_probability"]
     if isinstance(probability, bool) or not isinstance(probability, (int, float)):

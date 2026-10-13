@@ -41,7 +41,6 @@ def test_invalid_source_rejected():
         to_csv_message({**record(), "tenperatura": "missing"})
 
 
-
 def test_kafka_delivery_failure_preserves_evidence(monkeypatch, tmp_path):
     """A publish failure must produce a nonzero exit and retained error evidence."""
 
@@ -84,9 +83,18 @@ def test_kafka_delivery_failure_preserves_evidence(monkeypatch, tmp_path):
         writer.writerow(record())
     evidence = tmp_path / "rejects.json"
     monkeypatch.setattr(
-        sys, "argv",
-        ["produce_telemetry", "--csv", str(src), "--limit", "1", "--publish",
-         "--errors", str(evidence)],
+        sys,
+        "argv",
+        [
+            "produce_telemetry",
+            "--csv",
+            str(src),
+            "--limit",
+            "1",
+            "--publish",
+            "--errors",
+            str(evidence),
+        ],
     )
     with pytest.raises(SystemExit) as raised:
         module.main()

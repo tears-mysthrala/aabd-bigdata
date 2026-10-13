@@ -65,16 +65,16 @@ def main() -> None:
                     rejected.append({"row": rowno, "stage": "validation", "reason": str(exc)})
                 except kafka_error as exc:
                     delivery_failed += 1
-                    rejected.append({"row": rowno, "stage": "kafka_delivery",
-                                     "reason": type(exc).__name__})
+                    rejected.append(
+                        {"row": rowno, "stage": "kafka_delivery", "reason": type(exc).__name__}
+                    )
     finally:
         if producer:
             try:
                 producer.flush(timeout=30)
             except kafka_error as exc:
                 delivery_failed += 1
-                rejected.append({"row": None, "stage": "kafka_flush",
-                                 "reason": type(exc).__name__})
+                rejected.append({"row": None, "stage": "kafka_flush", "reason": type(exc).__name__})
             finally:
                 producer.close()
     if args.errors:

@@ -52,9 +52,12 @@ def test_missing_fields_and_alert_boundaries():
 def test_alert_document_matches_strict_elasticsearch_template():
     event_id = normalize_record(sample())["event_id"]
     response = {
-        "machine_id": "M1", "timestamp": "2026-10-13T09:00:00Z",
-        "failure_predicted": True, "failure_probability": 0.7,
-        "alert_level": "CRITICA", "history_available": False,
+        "machine_id": "M1",
+        "timestamp": "2026-10-13T09:00:00Z",
+        "failure_predicted": True,
+        "failure_probability": 0.7,
+        "alert_level": "CRITICA",
+        "history_available": False,
         "model_schema": 1,
     }
     doc = alert_document(event_id, response)
