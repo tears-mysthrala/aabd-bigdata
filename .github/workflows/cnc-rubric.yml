@@ -1,0 +1,41 @@
+name: CNC Guard rubric checks
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - "01_Erronka1_CNC_Guard/proyecto_cnc_guard/**"
+      - ".github/workflows/cnc-rubric.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rubric:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: 01_Erronka1_CNC_Guard/proyecto_cnc_guard
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - run: pip install 'uv==0.12.23'
+      - run: uv sync --locked
+      - name: Static checks
+        run: |
+          uv run --locked ruff check --select E4,E7,E9,F,I \
+            src/cnc_guard/supervised.py src/cnc_guard/api.py src/cnc_guard/events.py \
+            scripts/train_supervised.py scripts/produce_telemetry.py \
+            tests/test_supervised_rubric.py tests/test_api_rubric.py \
+            tests/test_events_rubric.py tests/test_ingest_rubric.py
+          uv run --locked python -m compileall -q src scripts tests
+      - name: Pure tests (no Docker)
+        run: |
+          uv run --locked pytest -q tests/test_supervised_rubric.py \
+            tests/test_events_rubric.py tests/test_ingest_rubric.py
+      - name: API tests with ephemeral uv dependencies
+        run: |
+          uv run --locked --with fastapi --with httpx \
+            python -c 'import fastapi, httpx'
+          uv run --locked --with fastapi --with httpx \
+            pytest -q tests/test_api_rubric.py

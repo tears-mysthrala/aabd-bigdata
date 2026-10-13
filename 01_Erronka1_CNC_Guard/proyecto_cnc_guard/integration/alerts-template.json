@@ -1,0 +1,41 @@
+{
+  "index_patterns": [
+    "cnc-alerts-*"
+  ],
+  "priority": 110,
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "event_id": {
+          "type": "keyword"
+        },
+        "machine_id": {
+          "type": "keyword"
+        },
+        "failure_predicted": {
+          "type": "boolean"
+        },
+        "failure_probability": {
+          "type": "float"
+        },
+        "alert_level": {
+          "type": "keyword"
+        },
+        "history_available": {
+          "type": "boolean"
+        },
+        "model_schema": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

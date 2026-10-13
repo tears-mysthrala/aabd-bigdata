@@ -1,5 +1,6 @@
-import random
 """Unit checks of the pure record logic (no Docker, no broker)."""
+
+import random
 
 from modelos import (
     ID_DUPLICADO,

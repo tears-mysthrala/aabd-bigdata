@@ -1,0 +1,38 @@
+{
+  "index_patterns": [
+    "cnc-telemetry-*"
+  ],
+  "priority": 110,
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "event_id": {
+          "type": "keyword"
+        },
+        "machine_id": {
+          "type": "keyword"
+        },
+        "temperature": {
+          "type": "float"
+        },
+        "vibration": {
+          "type": "float"
+        },
+        "pressure": {
+          "type": "float"
+        },
+        "ingested_at": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}

@@ -3,9 +3,8 @@ from __future__ import annotations
 
 import pytest
 
-pytest.importorskip("fastapi")
+TestClient = pytest.importorskip("fastapi.testclient").TestClient
 pytest.importorskip("httpx")
-from fastapi.testclient import TestClient
 
 from cnc_guard.api import create_app
 from cnc_guard.supervised import FEATURES
