@@ -18,7 +18,7 @@ Ruff check y format --check, compilación Python y diff --check correctos. Se ve
 
 Primer ciclo del día: terminado a las 08:37 CEST con `Result=success`, `ExecMainStatus=0`, **80 actividades, 83 archivos, 0 errores y 0 fuentes pendientes**. Los 83 SHA-256 coinciden. Snapshot publicado y comprobado por `git ls-remote`: `moodle-sync/master/2026-10-09`, `d51ae97904abb9e2fe3b0e9ecd8b49e9c8b73066`. La publicación del snapshot no equivale a integración en master.
 
-No se han hecho entregas en Moodle ni se atribuyen resultados del profesor a ejecuciones propias. El CSV de sensores docente sigue ausente. Los pendientes humanos, credenciales, datos externos y evidencias GUI históricas del [informe del día 8](../validaciones_2026-10-08/README.md) conservan sus límites; estas pruebas no los cierran.
+No se han hecho entregas en Moodle ni se atribuyen resultados del profesor a ejecuciones propias. En ese primer ciclo faltaba el CSV de sensores docente; se recibió después y se resolvió en el cierre de hoy. Los pendientes humanos, credenciales, datos externos y evidencias GUI históricas del [informe del día 8](../validaciones_2026-10-08/README.md) conservan sus límites; estas pruebas no los cierran.
 
 ## Cierre de revisión y ayuda visual
 
@@ -27,3 +27,5 @@ Se añaden tres regresiones de URL/escritura atómica Moodle, cuatro de la galer
 El login fue rechazado a las 09:00; se pausó el temporizador. Tras confirmar el usuario que podía entrar sin cambio de contraseña, un único ciclo fresco de 09:14 a 09:16 terminó correctamente (80 actividades, 83 hashes coincidentes, cero errores o fuentes pendientes). Se reactivó el temporizador. No se atribuye una causa demostrada al rechazo anterior. Snapshot y SHA en `moodle.json`; integración por PR #17.
 
 [Revisión posterior de descargas y mock de examen](../REVISION_DESCARGAS_RECUPERADAS_2026-10-09.md): 13 pruebas adicionales, cinco preguntas justificadas, checklist práctico cubierto y retos nuevos del PDF de series de las 10:02.
+
+[Cierre con el CSV docente y material posterior](../CIERRE_2026-10-09.md).

@@ -400,8 +400,15 @@ Pruebas actuales: 92 finales pasadas, cinco series de Programación en copias ai
 
 ## 2026-10-09: enunciado ampliado y contraste docente
 
-[Informe actual](validaciones_2026-10-09/README.md): 107 pruebas locales, dos notebooks modificados ejecutados y 83 hashes correctos. Series temporales cubre los 19 pasos con una variante sintética explícita; sigue pendiente el CSV docente. Programación 3 incorpora interpretación, validación por fold y probabilidad de clase 1 explícita. La nueva guía de examen se sincroniza como texto; el ciclo real ya no tiene fuentes pendientes. No se han realizado entregas Moodle ni cerrado requisitos humanos o externos mediante estas comprobaciones.
+[Informe actual](validaciones_2026-10-09/README.md): 115 pruebas locales en el cierre anterior, dos notebooks modificados ejecutados y 83 hashes correctos entonces. Series temporales cubre los 19 pasos con una variante sintética explícita; el CSV docente se ha recibido después y su resolución se documenta en el cierre de hoy. Programación 3 incorpora interpretación, validación por fold y probabilidad de clase 1 explícita. La nueva guía de examen se sincroniza como texto; el ciclo real ya no tiene fuentes pendientes. No se han realizado entregas Moodle ni cerrado requisitos humanos o externos mediante estas comprobaciones.
 
 ## Descargas recuperadas y mock de examen · 9 de octubre
 
 [Revisión completa](REVISION_DESCARGAS_RECUPERADAS_2026-10-09.md): la guía 64153 tenía cobertura documental incompleta, ahora cuenta con cinco respuestas justificadas y práctica que cubre las seis habilidades. El PDF de series de las 10:02 añade dos retos y un repaso, resueltos. Trece pruebas adicionales y dos notebooks ejecutados; se preservan las fuentes y se identifican los datos sintéticos y requisitos pendientes.
+
+## Cierre de nuevas entradas · 9 de octubre
+
+[Informe de cierre](CIERRE_2026-10-09.md): CSV y plantilla docentes recibidos,
+práctica y seis actividades nuevas resueltas; siete simulacros propios revalidados.
+Las variantes y ejecuciones anteriores conservan su contexto; publicación e
+integración se verifican por separado.

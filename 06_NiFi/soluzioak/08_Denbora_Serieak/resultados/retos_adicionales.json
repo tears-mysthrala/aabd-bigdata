@@ -1,5 +1,5 @@
 {
-  "source": "synthetic_seed_42; no sentsorea.csv docente disponible",
+  "source": "synthetic_seed_42; variante previa, no usa el CSV docente",
   "alerts_per_reading": 1,
   "alerts_three_consecutive": 0,
   "above_50": [

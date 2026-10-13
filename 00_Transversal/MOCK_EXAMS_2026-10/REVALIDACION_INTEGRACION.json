@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-09",
+  "local_links": 75,
+  "programming_questions": 30,
+  "programming_metrics": {
+    "accuracy": 0.961038961038961,
+    "balanced_accuracy": 0.9782608695652174,
+    "recall": 1.0,
+    "precision": 0.7272727272727273,
+    "f1": 0.8421052631578947
+  },
+  "programming_baseline": {
+    "accuracy": 0.8961038961038961,
+    "balanced_accuracy": 0.5,
+    "recall": 0.0,
+    "precision": 0.0,
+    "f1": 0.0
+  },
+  "programming_matrix": [
+    [
+      66,
+      3
+    ],
+    [
+      0,
+      8
+    ]
+  ],
+  "iris": {
+    "LogReg": {
+      "accuracy": 0.9111111111111111,
+      "matrix": [
+        [
+          15,
+          0,
+          0
+        ],
+        [
+          0,
+          14,
+          1
+        ],
+        [
+          0,
+          3,
+          12
+        ]
+      ]
+    },
+    "KNN": {
+      "accuracy": 0.9333333333333333,
+      "matrix": [
+        [
+          15,
+          0,
+          0
+        ],
+        [
+          0,
+          15,
+          0
+        ],
+        [
+          0,
+          3,
+          12
+        ]
+      ]
+    }
+  },
+  "nifi_alerts": [
+    "2026-10-09 08:03:00+00:00"
+  ],
+  "programming_source_sha256": "5d5ef215eb21486ad569b870518f6519ff05f415ffb58531db9942bbf9fa514b"
+}

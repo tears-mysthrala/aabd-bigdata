@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-09",
+  "source": "06_NiFi/materialak/sentsorea.csv; práctica docente",
+  "source_sha256": "4ff61b212f15a7f1d4a38fcf445c1fad88d168c023282243d2c6abdfb66f0ba2",
+  "timezone": "unspecified in source; naive timestamps preserved",
+  "rows": 180,
+  "interval_rows": 61,
+  "interval_nonmissing_temperature": 60,
+  "interval_mean_temperature": 42.22833333333334,
+  "ten_minute_windows": 18,
+  "missing_original": {
+    "tenperatura": 3,
+    "bibrazioa": 0
+  },
+  "missing_interpolated": 0,
+  "rolling_warmup_missing": 4,
+  "above_50": [
+    {
+      "timestamp": "2026-10-01 09:53:00",
+      "temperature": 84.8
+    }
+  ],
+  "alerts_three_consecutive": 0,
+  "raw_max": 84.8,
+  "ten_minute_mean_max": 49.106,
+  "rolling_max": 53.164,
+  "scope": "Pandas exercise, not NiFi/Kafka execution or Moodle submission"
+}
