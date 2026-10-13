@@ -117,15 +117,15 @@
       "rows": [
         [
           "Entrada",
-          "CSV de telemetría + CSV de mantenimiento + logs JSON/texto → NiFi → Kafka: cnc.telemetry.validated y cnc.rejected."
+          "CSV sintético → Kafka cnc-telemetry-csv → NiFi; registros inválidos a DLQ por event_id."
         ],
         [
           "Inferencia",
-          "Consumidor Python: contexto por máquina → variables temporales → Random Forest + Isolation Forest → topic cnc.predictions → consumidor de salida → Elasticsearch → Kibana."
+          "NiFi ConvertRecord y validación → InvokeHTTP /predict FastAPI → Elasticsearch y Kibana con niveles de alerta."
         ],
         [
           "Histórico",
-          "Consumidor de archivo guarda telemetría validada y predicciones en Parquet. DuckDB prepara datasets; Jupyter entrena; un modelo versionado se carga en el consumidor de inferencia."
+          "Histórico Parquet y DuckDB; Random Forest entrenado offline en FastAPI; Isolation Forest como experimento independiente."
         ]
       ],
       "src": [
@@ -136,7 +136,7 @@
         "W"
       ],
       "req": "Sistemas IE1 b,c · IE3 a,d · Aplicada IE1 b,d",
-      "note": "Tres funciones de consumo independientes: archivo, inferencia y salida a Elasticsearch. El código de inferencia se comparte entre notebook y consumidor. Los conectores aún deben implementarse. Actualización de rúbrica 2026-10-13: la vía demostrable será Kafka → NiFi → API de scoring → Elasticsearch/Kibana; esta lámina anterior es una alternativa de diseño.",
+      "note": "Tres funciones de consumo independientes: archivo, inferencia y salida a Elasticsearch. El código de inferencia se comparte entre notebook y consumidor. Los conectores aún deben implementarse. Actualización de rúbrica 2026-10-13: la vía demostrable será Kafka → NiFi → API de scoring → Elasticsearch/Kibana; esta lámina anterior es una alternativa de diseño. Diseño actualizado según rúbrica: Kafka → NiFi → FastAPI. Falta demostrar la integración.",
       "kind": "normal"
     },
     {
@@ -197,15 +197,15 @@
       "rows": [
         [
           "Configuración elegida",
-          "Procesadores de lectura de archivos y lectores CSV/JSON. Validar esquema, tipos, campos obligatorios, timestamp y unidades."
+          "ConsumeKafka → ConvertRecord (CSVReader/JSON) → ValidateRecord, todo en laboratorio, nunca en CNC real."
         ],
         [
           "Rutas fijas",
-          "Registro válido → cnc.telemetry.validated. Registro inválido → cnc.rejected con motivo y origen. Los archivos de entrada originales se conservan por separado."
+          "Registros válidos → Elasticsearch y POST /predict; inválidos/422 a cuarentena; 5xx a reintentos acotados."
         ],
         [
           "Evidencia requerida",
-          "Contar entradas, válidos y rechazados; documentar provenance y colas. Probar un CSV mal formado, campo ausente y timestamp inválido."
+          "Exportación NiFi, contadores, backpressure, replay y parada/reinicio; integración todavía por demostrar."
         ]
       ],
       "src": [
@@ -223,15 +223,15 @@
       "rows": [
         [
           "Topics elegidos",
-          "cnc.telemetry.validated, cnc.rejected y cnc.predictions. Clave machine_id en telemetría y predicciones; event_id único en cada registro."
+          "Topic cnc-telemetry-csv, clave machine_id e identidad SHA-256 event_id por telemetría."
         ],
         [
           "Grupos elegidos",
-          "archive guarda histórico; inference calcula puntuaciones; dashboard-sink indexa predicciones. Offsets separados y retención para relectura."
+          "NiFi group cnc-nifi-v1 consume Kafka, guarda telemetría y llama al scoring HTTP."
         ],
         [
           "Garantía que probaremos",
-          "Orden por partición y control de duplicados. Los destinos usan event_id; confirmar offset después de escribir. No prometer exactly-once de extremo a extremo."
+          "Entrega al menos una vez con deduplicación por event_id; sin prometer exactly-once."
         ]
       ],
       "src": [
@@ -476,15 +476,15 @@
       "rows": [
         [
           "Al iniciar",
-          "Verificar esquema, lista de variables, hash y versión del artefacto. Cargar Pipeline y los dos modelos propios; fallar si falta un componente."
+          "FastAPI /health carga una sola vez el modelo propio con schema verificado y acceso local."
         ],
         [
           "Por cada evento",
-          "Deduplicar event_id; actualizar ventana de su máquina; calcular variables; producir score_RF, score_IF, alert_type, calidad y model_version en cnc.predictions."
+          "NiFi InvokeHTTP /predict con sensores e historia causal de cada máquina; devuelve fallo, probabilidad y nivel."
         ],
         [
           "Errores",
-          "Entrada inválida o ventana insuficiente → estado explícito, sin inventar riesgo cero. Registrar error y permitir relectura; escritura confirmada antes de avanzar offset."
+          "422 a cuarentena, 5xx con reintentos limitados, cold start explícito y sin actuar sobre maquinaria."
         ]
       ],
       "src": [
@@ -817,7 +817,7 @@
         ],
         [
           "Sistemas Big Data · IE1 b,c",
-          "Extracción de información e integración de fuentes. Diapositiva 6. Evidencia de ejecución pendiente cuando corresponda."
+          "IE1/b → diapositiva 11; IE1/c → diapositiva 6. La ejecución sigue pendiente."
         ],
         [
           "Sistemas Big Data · IE2 a,b",
@@ -845,7 +845,7 @@
         ],
         [
           "Big Data aplicada · IE1 b,d",
-          "Mecanismo de ingesta y proceso del dato almacenado. Diapositiva 8. Evidencia de ejecución pendiente cuando corresponda."
+          "IE1/b → diapositiva 8; IE1/d → diapositiva 11. Integración pendiente."
         ],
         [
           "Big Data aplicada · IE3 a,b",
@@ -853,7 +853,7 @@
         ],
         [
           "Big Data aplicada · IE5 a,b",
-          "Selección de datos estructurados/no estructurados y limpieza. Diapositiva 12. Evidencia de ejecución pendiente cuando corresponda."
+          "IE5/a → diapositiva 6; IE5/b → diapositiva 12. Validación pendiente."
         ]
       ],
       "src": [

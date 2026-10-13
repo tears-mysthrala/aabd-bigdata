@@ -384,3 +384,7 @@ El informe TRAZABILIDAD.md contiene criterios rojos originales, mapa de tecnolog
 ## Entrega y uso
 
 Abrir `CNC_Guard_Tecnologias.html` en navegador. Flechas, PageUp/PageDown o botones cambian diapositiva; N abre notas y fuentes; F activa pantalla completa. El PDF contiene el mismo contenido visible. El HTML y contenido.json conservan texto editable; no se ha generado PowerPoint porque el runtime obligatorio artifact-tool no está disponible en esta sesión.
+
+## Nueva rúbrica (13/10/2026)
+
+El flujo propuesto ahora es Kafka → NiFi → FastAPI /predict → Elasticsearch/Kibana. Este HTML y contenido.json se han actualizado; el PDF anterior no se ha regenerado y requiere nueva exportación antes de entregar. La trazabilidad ponderada y estados de evidencia están en `../../proyecto_cnc_guard/docs/RUBRICA_2026_10_13.md`. Ninguna presentación sustituye a una ejecución real de servicios.
