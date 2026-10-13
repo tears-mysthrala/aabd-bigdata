@@ -3,6 +3,7 @@
 Run: CNC_MODEL_PATH=/path/to/model.joblib uv run --locked --with fastapi --with uvicorn uvicorn cnc_guard.api:app
 Never load untrusted joblib/pickle files. Do not expose this demonstrator to OT.
 """
+
 from __future__ import annotations
 
 import os
@@ -87,20 +88,25 @@ def create_app(model_bundle: dict | None = None) -> FastAPI:
         bundle = state.get("bundle")
         if bundle is None:
             raise HTTPException(status_code=503, detail="model unavailable")
-        history = [{"temperature": p.temperature, "vibration": p.vibration}
-                   for p in payload.history]
-        values = features_for_reading(payload.temperature, payload.vibration,
-                                      payload.pressure, history)
+        history = [
+            {"temperature": p.temperature, "vibration": p.vibration} for p in payload.history
+        ]
+        values = features_for_reading(
+            payload.temperature, payload.vibration, payload.pressure, history
+        )
         frame = pd.DataFrame([[values[f] for f in FEATURES]], columns=list(FEATURES))
         prob = float(bundle["model"].predict_proba(frame)[0, 1])
         if not 0 <= prob <= 1:
             raise HTTPException(status_code=503, detail="invalid model output")
         level = "CRITICA" if prob >= 0.7 else "AVISO" if prob >= 0.15 else "OK"
         return Prediction(
-            machine_id=payload.machine_id, timestamp=payload.timestamp,
+            machine_id=payload.machine_id,
+            timestamp=payload.timestamp,
             failure_predicted=prob >= float(bundle["binary_threshold"]),
-            failure_probability=prob, alert_level=level,
-            history_available=bool(history), model_schema=1,
+            failure_probability=prob,
+            alert_level=level,
+            history_available=bool(history),
+            model_schema=1,
         )
 
     return api

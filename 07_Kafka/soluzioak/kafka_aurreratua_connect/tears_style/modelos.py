@@ -59,7 +59,10 @@ def validar(registro_: dict) -> tuple[bool, str]:
     body = {k: v for k, v in registro_.items() if k != "sha256"}
     if registro_.get("sha256") != sha_de(body):
         return False, "sha256 no coincide: corrupción o veneno"
-    if type(registro_.get("schema_v")) is not int or registro_["schema_v"] not in (1, 2):
+    if type(registro_.get("schema_v")) is not int or registro_["schema_v"] not in (
+        1,
+        2,
+    ):
         return False, f"schema_v desconocido: {registro_.get('schema_v')}"
     if type(registro_.get("id")) is not int:
         return False, "id ausente o no entero"

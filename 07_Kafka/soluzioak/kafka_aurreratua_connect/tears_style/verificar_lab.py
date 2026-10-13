@@ -174,8 +174,7 @@ def collect(etapa):
     mysql_vs_manifiesto = sorted(f["id"] for f in filas) == ids_validos + [
         ID_VENENO
     ] and all(
-        f["payload"] == verdad[f["id"]]
-        and f["sha256"] == verdad[f["id"]]["sha256"]
+        f["payload"] == verdad[f["id"]] and f["sha256"] == verdad[f["id"]]["sha256"]
         for f in filas
         if f["id"] in verdad
     )

@@ -1,4 +1,5 @@
 """Pure tests for CSV -> NiFi -> API wire format."""
+
 from __future__ import annotations
 
 import csv
@@ -10,8 +11,14 @@ from cnc_guard.events import OUTPUT_COLUMNS, normalize_record, to_csv_message
 
 
 def record():
-    return {"ts": 1700000000, "makina_id": "M3", "tenperatura": 68.1,
-            "bibrazioa": 3.3, "presioa": 1009, "errorea": 1}
+    return {
+        "ts": 1700000000,
+        "makina_id": "M3",
+        "tenperatura": 68.1,
+        "bibrazioa": 3.3,
+        "presioa": 1009,
+        "errorea": 1,
+    }
 
 
 def test_csv_message_one_row_with_stable_identity():

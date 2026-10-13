@@ -2,6 +2,7 @@
 
 Dry-run is the default; --publish requires a local laboratory broker.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -30,8 +31,11 @@ def main() -> None:
         from kafka import KafkaProducer
 
         producer = KafkaProducer(
-            bootstrap_servers=args.bootstrap, acks="all", retries=3,
-            value_serializer=lambda v: v.encode(), key_serializer=lambda v: v.encode(),
+            bootstrap_servers=args.bootstrap,
+            acks="all",
+            retries=3,
+            value_serializer=lambda v: v.encode(),
+            key_serializer=lambda v: v.encode(),
         )
     sent = invalid = duplicates = 0
     seen: set[str] = set()
@@ -48,7 +52,9 @@ def main() -> None:
                         continue
                     seen.add(item["event_id"])
                     if producer:
-                        producer.send(args.topic, key=item["machine_id"], value=wire).get(timeout=20)
+                        producer.send(args.topic, key=item["machine_id"], value=wire).get(
+                            timeout=20
+                        )
                     sent += 1
                 except (ValueError, TypeError) as exc:
                     invalid += 1
@@ -59,11 +65,17 @@ def main() -> None:
             producer.close()
     if args.errors:
         args.errors.parent.mkdir(parents=True, exist_ok=True)
-        args.errors.write_text(
-            json.dumps(rejected, ensure_ascii=False, indent=2), encoding="utf-8"
+        args.errors.write_text(json.dumps(rejected, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(
+        json.dumps(
+            {
+                "mode": "published" if args.publish else "validated-only",
+                "accepted": sent,
+                "invalid": invalid,
+                "duplicates": duplicates,
+            }
         )
-    print(json.dumps({"mode": "published" if args.publish else "validated-only",
-                      "accepted": sent, "invalid": invalid, "duplicates": duplicates}))
+    )
 
 
 if __name__ == "__main__":

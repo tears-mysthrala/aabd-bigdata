@@ -1,4 +1,5 @@
 """Validate, normalize, and fingerprint telemetry without hiding invalid records."""
+
 from __future__ import annotations
 
 import csv
@@ -31,9 +32,11 @@ def normalize_record(record: dict) -> dict:
         raise ValueError("Invalid timestamp or sensor type") from exc
     if not machine or len(machine) > 32 or not all(c.isalnum() or c in "_-" for c in machine):
         raise ValueError("Invalid machine identifier")
-    if not (-40 <= readings["temperature"] <= 200 and
-            0 <= readings["vibration"] <= 100 and
-            0 <= readings["pressure"] <= 5000):
+    if not (
+        -40 <= readings["temperature"] <= 200
+        and 0 <= readings["vibration"] <= 100
+        and 0 <= readings["pressure"] <= 5000
+    ):
         raise ValueError("Sensor out of range")
     if not all(math.isfinite(v) for v in readings.values()):
         raise ValueError("Sensor value must be finite")

@@ -62,7 +62,9 @@ def test_balance_del_caso():
 
 def test_unknown_schema_with_correct_hash_is_not_a_poison_hash():
     record = registro(200, 3, random.Random(7))
-    assert record["sha256"] == sha_de({k: v for k, v in record.items() if k != "sha256"})
+    assert record["sha256"] == sha_de(
+        {k: v for k, v in record.items() if k != "sha256"}
+    )
     assert validar(record)[0] is False
     assert "schema_v" in validar(record)[1]
 

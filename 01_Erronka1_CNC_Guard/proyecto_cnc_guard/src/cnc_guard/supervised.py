@@ -3,6 +3,7 @@
 No claims of future failure forecasting or plant reliability. Features include
 only the current sensors and past sensor values of the *same* machine.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -26,14 +27,22 @@ from sklearn.model_selection import TimeSeriesSplit
 
 COLUMNS = ("ts", "makina_id", "tenperatura", "bibrazioa", "presioa", "errorea")
 FEATURES = (
-    "tenperatura", "bibrazioa", "presioa", "txv", "t2",
-    "temp_prev3", "vib_prev3", "delta_temp",
+    "tenperatura",
+    "bibrazioa",
+    "presioa",
+    "txv",
+    "t2",
+    "temp_prev3",
+    "vib_prev3",
+    "delta_temp",
 )
 SEED = 42
 
 
 def features_for_reading(
-    temperature: float, vibration: float, pressure: float,
+    temperature: float,
+    vibration: float,
+    pressure: float,
     history: list[dict] | None = None,
 ) -> dict[str, float]:
     """Online equivalent of the batch feature calculation.
@@ -51,9 +60,9 @@ def features_for_reading(
         "txv": temperature * vibration,
         "t2": temperature**2,
         "temp_prev3": float(np.mean([v["temperature"] for v in history]))
-        if history else temperature,
-        "vib_prev3": float(np.mean([v["vibration"] for v in history]))
-        if history else vibration,
+        if history
+        else temperature,
+        "vib_prev3": float(np.mean([v["vibration"] for v in history])) if history else vibration,
         "delta_temp": temperature - history[-1]["temperature"] if history else 0.0,
     }
 
@@ -81,9 +90,11 @@ def prepare_frame(data: pd.DataFrame) -> pd.DataFrame:
     df = df.sort_values(["ts", "makina_id"], kind="stable").reset_index(drop=True)
     grouped = df.groupby("makina_id", sort=False, observed=True)
     for source, destination in (("tenperatura", "temp_prev3"), ("bibrazioa", "vib_prev3")):
-        df[destination] = grouped[source].transform(
-            lambda s: s.shift(1).rolling(3, min_periods=1).mean()
-        ).fillna(df[source])
+        df[destination] = (
+            grouped[source]
+            .transform(lambda s: s.shift(1).rolling(3, min_periods=1).mean())
+            .fillna(df[source])
+        )
     prev_temp = grouped["tenperatura"].shift(1)
     df["delta_temp"] = (df["tenperatura"] - prev_temp).fillna(0.0)
     df["txv"] = df["tenperatura"] * df["bibrazioa"]
@@ -130,8 +141,12 @@ def train(data: pd.DataFrame, *, trees: int = 120) -> tuple[dict, dict]:
     if len(np.unique(ytrain)) < 2:
         raise ValueError("Training segment must contain both target classes")
     forest = RandomForestClassifier(
-        n_estimators=trees, class_weight="balanced_subsample",
-        min_samples_leaf=3, max_depth=12, random_state=SEED, n_jobs=1,
+        n_estimators=trees,
+        class_weight="balanced_subsample",
+        min_samples_leaf=3,
+        max_depth=12,
+        random_state=SEED,
+        n_jobs=1,
     )
     forest.fit(xtrain, ytrain)
     vscores = forest.predict_proba(val_df[list(FEATURES)])[:, 1]
@@ -142,15 +157,24 @@ def train(data: pd.DataFrame, *, trees: int = 120) -> tuple[dict, dict]:
         "label_definition": "Same-instant synthetic errorea, NOT failure within 24h",
         "sample_count": n,
         "observed_failure_rate": float(df["errorea"].mean()),
-        "split": {"train": len(train_df), "validation": len(val_df), "test": len(test_df),
-                  "method": "global chronological 60/20/20"},
+        "split": {
+            "train": len(train_df),
+            "validation": len(val_df),
+            "test": len(test_df),
+            "method": "global chronological 60/20/20",
+        },
         "validation_selected_binary_threshold": selected,
         "validation": _quality(val_df["errorea"].to_numpy(dtype=int), vscores, selected),
         "test": _quality(test_df["errorea"].to_numpy(dtype=int), tscores, selected),
         "test_at_0_15": _quality(test_df["errorea"].to_numpy(dtype=int), tscores, 0.15),
-        "feature_importance": dict(zip(FEATURES, map(float, forest.feature_importances_), strict=True)),
-        "caveats": ["Synthetic sensor-dependent target and random noise",
-                    "No measured industrial early warning", "Single sampled time period"],
+        "feature_importance": dict(
+            zip(FEATURES, map(float, forest.feature_importances_), strict=True)
+        ),
+        "caveats": [
+            "Synthetic sensor-dependent target and random noise",
+            "No measured industrial early warning",
+            "Single sampled time period",
+        ],
     }
     if len(train_df) >= 90 and int(np.sum(ytrain)) >= 3:
         cv = []
@@ -158,17 +182,22 @@ def train(data: pd.DataFrame, *, trees: int = 120) -> tuple[dict, dict]:
             if len(np.unique(ytrain[tr])) < 2 or len(np.unique(ytrain[va])) < 2:
                 continue
             candidate = RandomForestClassifier(
-                n_estimators=min(trees, 40), max_depth=12,
-                min_samples_leaf=3, class_weight="balanced_subsample",
-                random_state=SEED, n_jobs=1,
+                n_estimators=min(trees, 40),
+                max_depth=12,
+                min_samples_leaf=3,
+                class_weight="balanced_subsample",
+                random_state=SEED,
+                n_jobs=1,
             )
             candidate.fit(xtrain.iloc[tr], ytrain[tr])
             ps = candidate.predict_proba(xtrain.iloc[va])[:, 1]
             cv.append(_quality(ytrain[va], ps, selected)["recall"])
         metrics["train_time_series_cv_recall"] = cv
     bundle = {
-        "model": forest, "features": list(FEATURES),
-        "model_schema": 1, "trained_at_utc": datetime.now(UTC).isoformat(),
+        "model": forest,
+        "features": list(FEATURES),
+        "model_schema": 1,
+        "trained_at_utc": datetime.now(UTC).isoformat(),
         "binary_threshold": selected,
         "alert_thresholds": {"warning": 0.15, "critical": 0.7},
         "history_size": 3,
@@ -194,8 +223,12 @@ def main() -> None:
         parser.error("Output exists; choose fresh paths to preserve prior evidence")
     joblib.dump(bundle, args.out)
     args.metrics.write_text(json.dumps(metrics, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(json.dumps({"model": str(args.out), "metrics": str(args.metrics),
-                      "test": metrics["test"]}, indent=2))
+    print(
+        json.dumps(
+            {"model": str(args.out), "metrics": str(args.metrics), "test": metrics["test"]},
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":
