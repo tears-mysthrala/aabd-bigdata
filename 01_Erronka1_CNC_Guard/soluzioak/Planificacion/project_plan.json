@@ -1,0 +1,914 @@
+{
+  "title": "CNC Guard · B-taldea",
+  "repository": "AABD-Ethazi-2627/B-taldea",
+  "project_url": "https://github.com/orgs/AABD-Ethazi-2627/projects/2",
+  "start": "2026-10-13",
+  "target": "2026-12-28",
+  "weeks": 11,
+  "source": "01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/contenido.json",
+  "source_sha256": "98b1e4997f20e06b07bbc2254af070d0b54b1ccb6a7c5ebb76a64fb8056c7a68",
+  "calendar": "11 aste natural; helburu-datak proposamenak dira, jaiegunak doitu gabe. Pertsona arduradunak esleitu gabe.",
+  "views": [
+    {
+      "id": "PVTV_lADOE3gaF84Bm1BCzgMCgoA",
+      "name": "Parametroak",
+      "number": 1,
+      "layout": "TABLE_LAYOUT"
+    },
+    {
+      "id": "PVTV_lADOE3gaF84Bm1BCzgMCgoQ",
+      "name": "GANTT",
+      "number": 2,
+      "layout": "ROADMAP_LAYOUT"
+    },
+    {
+      "id": "PVTV_lADOE3gaF84Bm1BCzgMCgoU",
+      "name": "KANBAN",
+      "number": 3,
+      "layout": "BOARD_LAYOUT"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "CG01",
+      "title": "Irismena, eginkizunak eta ANEXO1eko jarraipena adostu",
+      "slides": [
+        2,
+        3,
+        28
+      ],
+      "start": "2026-10-13",
+      "target": "2026-10-13",
+      "area": "Koordinazioa",
+      "milestone": 1,
+      "dependencies": [],
+      "acceptance": "Eginkizunak eta akordioak erregistratu, izenik asmatu gabe; proiektua laborategira mugatu eta 11 asteko egutegia dokumentatu.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Koordinazioa",
+      "issue_number": 1,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/1",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW27P5g",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaM_o",
+      "effort_person_days": 1
+    },
+    {
+      "id": "CG02",
+      "title": "Datu-iturrien inbentarioa egin eta helburu-etiketaren bideragarritasuna egiaztatu",
+      "slides": [
+        2,
+        6,
+        27
+      ],
+      "start": "2026-10-14",
+      "target": "2026-10-19",
+      "area": "Datuak",
+      "milestone": 1,
+      "dependencies": [
+        "CG01"
+      ],
+      "acceptance": "Jatorria, lizentzia, unitateak, hashak, denbora-markak eta matxurak erregistratu; argi erabaki 24 orduko aurreikuspena baliozta daitekeen edo egoeraren sailkapena soilik egin daitekeen. Mantentze-lanetako datuak etorkizuneko etiketen eta testuinguruaren iturria dira.",
+      "status": "Egiteke",
+      "priority": "Handia",
+      "role": "Datu-ingeniaritza",
+      "issue_number": 2,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/2",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW28EBw",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaN7s",
+      "effort_person_days": 3
+    },
+    {
+      "id": "CG03",
+      "title": "Telemetriaren, mantentzearen, logen eta iragarpenen datu-kontratuak definitu",
+      "slides": [
+        5,
+        6,
+        19
+      ],
+      "start": "2026-10-14",
+      "target": "2026-10-19",
+      "area": "Datuak",
+      "milestone": 1,
+      "dependencies": [
+        "CG01"
+      ],
+      "acceptance": "Eskemak eta adibide zuzenak zein okerrak bertsionatu; event_id, machine_id, timestamp UTC, schema_version eta quality_flag jaso. Tenperatura, rpm, torque eta higaduraren unitateak dokumentatu. Ez asmatu bibrazio-daturik iturrian ez badago. Jatorrizko log-testua gorde eta makina, data eta kodea erauzi.",
+      "status": "Egiteke",
+      "priority": "Handia",
+      "role": "Datu-ingeniaritza",
+      "issue_number": 3,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/3",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW28MnQ",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaOCU",
+      "effort_person_days": 3
+    },
+    {
+      "id": "CG04",
+      "title": "Python ingurunea eta modulu erreproduzigarriak prestatu",
+      "slides": [
+        7
+      ],
+      "start": "2026-10-14",
+      "target": "2026-10-19",
+      "area": "Modelizazioa",
+      "milestone": 1,
+      "dependencies": [
+        "CG01"
+      ],
+      "acceptance": "uv eta lock fitxategiaren bidez ingurunea erreproduzitu; kontratuak, prestaketa, entrenamendua eta inferentzia modulu partekatuetan antolatu. NumPy/pandas eta scikit-learn erabili; Jupyter-ek modulu berak erabili behar ditu. Notebooketik kanpoko inportazioa eta exekuzioa probatu.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Modelizazioa",
+      "issue_number": 4,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/4",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW28ThQ",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaOIw",
+      "effort_person_days": 2
+    },
+    {
+      "id": "CG05",
+      "title": "Laborategiko CSV sarrerak eta logak prestatu",
+      "slides": [
+        6,
+        8
+      ],
+      "start": "2026-10-20",
+      "target": "2026-10-26",
+      "area": "Datuak",
+      "milestone": 1,
+      "dependencies": [
+        "CG02",
+        "CG03"
+      ],
+      "acceptance": "Jatorrizko fitxategiak eta hashak gorde; telemetriaren, mantentzearen eta logen jatorria dokumentatu. Datu sintetikoak argi identifikatu eta ez erabili industria-eraginkortasuna baieztatzeko.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Datu-ingeniaritza",
+      "issue_number": 5,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/5",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW28aKw",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaOPU",
+      "effort_person_days": 3
+    },
+    {
+      "id": "CG06",
+      "title": "Parquet historikoa, DuckDB kontsultak eta EDA notebooka prestatu",
+      "slides": [
+        10,
+        11,
+        25
+      ],
+      "start": "2026-10-27",
+      "target": "2026-11-02",
+      "area": "Datuak",
+      "milestone": 1,
+      "dependencies": [
+        "CG04",
+        "CG05"
+      ],
+      "acceptance": "Datu-multzo bertsionatuak, kontsulta erreproduzigarriak, erregistro-kopuruak eta esplorazio-analisia sortu. Denbora-tarteak eta makinak hautatu, mantentze-lanak lotu eta ebaluazio-datuak eta jatorrizkoak gorde. Ez aktibatu atxikipenaren araberako ezabaketa automatikorik.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Datu-ingeniaritza",
+      "issue_number": 6,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/6",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW28g8w",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaOVY",
+      "effort_person_days": 4
+    },
+    {
+      "id": "CG07",
+      "title": "Aldagaiak, etiketak eta datu-zatiketak informazio-ihesik gabe eraiki",
+      "slides": [
+        12,
+        18
+      ],
+      "start": "2026-11-03",
+      "target": "2026-11-06",
+      "area": "Modelizazioa",
+      "milestone": 1,
+      "dependencies": [
+        "CG06"
+      ],
+      "acceptance": "Makina bakoitzaren iraganeko 5 minutuko balioekin batezbestekoa, desbideratzea eta joera kalkulatu; ez interpolatu etorkizunetik. Falta diren balioak entrenamenduan ikasitako medianekin bete. 70/15/15 zatiketa kronologikoa egin, leihoen eta 24 orduko horizontearen gainjartzeak saihestuz. Jarraipen osoa ez duten laginak baztertu. AI4I-n luzetarako daturik ez badago, une bereko egoeraren sailkapena dela adierazi.",
+      "status": "Egiteke",
+      "priority": "Handia",
+      "role": "Modelizazioa",
+      "issue_number": 7,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/7",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW28oTA",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaOdQ",
+      "effort_person_days": 4
+    },
+    {
+      "id": "CG08",
+      "title": "Random Forest eta ebaluazio-erreferentziak entrenatu",
+      "slides": [
+        15,
+        18
+      ],
+      "start": "2026-11-07",
+      "target": "2026-11-09",
+      "area": "Modelizazioa",
+      "milestone": 1,
+      "dependencies": [
+        "CG07"
+      ],
+      "acceptance": "Hasierako parametroak erregistratu: n_estimators=200, max_depth=12, min_samples_leaf=5, class_weight=balanced eta random_state=42. Matxurarik ez dagoela beti iragartzen duen erreferentziarekin eta erregresio logistikoarekin alderatu, zatiketa berdinetan. Norberaren Pipeline-a, hashak eta aldagaiak gorde. Aldagaien garrantzia ez interpretatu kausalitate gisa; predict_proba arrisku-puntuazioa da, kalibrazioa egiaztatu ezean.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Modelizazioa",
+      "issue_number": 8,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/8",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW28uCQ",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaOjY",
+      "effort_person_days": 3
+    },
+    {
+      "id": "CG09",
+      "title": "Isolation Forest entrenatu eta atalase osagarria hautatu",
+      "slides": [
+        16
+      ],
+      "start": "2026-11-07",
+      "target": "2026-11-09",
+      "area": "Modelizazioa",
+      "milestone": 1,
+      "dependencies": [
+        "CG07"
+      ],
+      "acceptance": "Hasierako parametroak erregistratu: n_estimators=200, max_samples=256 eta random_state=42. Funtzionamendu normaltzat jotako datuekin entrenatu, halako historikoa badago, etorkizuneko etiketarik erabili gabe. Atalasea balioztatze-datuetan hautatu eta puntuazioa gorde. Anomaliak berrikuspena eskatzen du; ez da matxuraren froga eta ez du RFren abisua ezeztatzen.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Modelizazioa",
+      "issue_number": 9,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/9",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW2817Q",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaOqw",
+      "effort_person_days": 2
+    },
+    {
+      "id": "CG10",
+      "title": "Metrikak, atalaseak eta abisu-politika balioztatu",
+      "slides": [
+        14,
+        17,
+        18
+      ],
+      "start": "2026-11-10",
+      "target": "2026-11-14",
+      "area": "Modelizazioa",
+      "milestone": 1,
+      "dependencies": [
+        "CG08",
+        "CG09"
+      ],
+      "acceptance": "RFren atalasea balioztatze-datuetan F1 maximizatuz hautatu, irizpide akademiko gisa; test multzoa behin ebaluatu. Precision, recall, F1, nahasmen-matrizea, negatibo faltsuak, kostua eta makina/egun bakoitzeko alarma faltsuak azaldu. Aurreabisu-denbora luzetarako datu baliodunekin soilik neurtu. Arrisku-abisua eta anomalia bereizi; ez erabili AND baldintzarik edo CNCa gelditzeko agindurik. Datuen kalitate-arau deterministak erabili, motor lauso berririk gabe.",
+      "status": "Egiteke",
+      "priority": "Handia",
+      "role": "Modelizazioa",
+      "issue_number": 10,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/10",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW289YA",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaOxE",
+      "effort_person_days": 4
+    },
+    {
+      "id": "CG11",
+      "title": "1. mugarria · Datu eta modelo erreproduzigarriak",
+      "slides": [
+        25,
+        28
+      ],
+      "start": "2026-11-15",
+      "target": "2026-11-16",
+      "area": "Koordinazioa",
+      "milestone": 1,
+      "dependencies": [
+        "CG10"
+      ],
+      "acceptance": "Kontratuak, Parquet/DuckDB, notebooka, modeloak, hashak, parametroak eta ebaluazioa berrikusi. Ebidentzia erreproduzigarriak eta datuen mugak erantsi. AI4I edo datu sintetikoak soilik badaude, egoeraren eta datu-fluxuaren proba dela argi adierazi.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Koordinazioa",
+      "issue_number": 11,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/11",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW29Ebw",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaO2s",
+      "effort_person_days": 1
+    },
+    {
+      "id": "CG12",
+      "title": "Tokiko Docker Compose eta biltegiratzea konfiguratu",
+      "slides": [
+        22
+      ],
+      "start": "2026-10-20",
+      "target": "2026-11-02",
+      "area": "Integrazioa",
+      "milestone": 2,
+      "dependencies": [
+        "CG03"
+      ],
+      "acceptance": "NiFi, Kafka, Elasticsearch eta Kibana ostalariaren bidez soilik eskuragarri jarri; bolumenak bereizi eta sekretuak Git-etik kanpo gorde. Abiarazteko eta gelditzeko prozedura erreproduzigarria dokumentatu. Ostalari bakarrak ez du erabilgarritasun handia bermatzen.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Integrazioa",
+      "issue_number": 12,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/12",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW29Kiw",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaO9M",
+      "effort_person_days": 3
+    },
+    {
+      "id": "CG13",
+      "title": "Kafka topicak eta kontsumitzaile-taldeak konfiguratu",
+      "slides": [
+        9
+      ],
+      "start": "2026-11-03",
+      "target": "2026-11-09",
+      "area": "Integrazioa",
+      "milestone": 2,
+      "dependencies": [
+        "CG12"
+      ],
+      "acceptance": "cnc.telemetry.validated, cnc.rejected eta cnc.predictions sortu; telemetriaren eta iragarpenen gakoa machine_id izan dadila eta erregistro bakoitzak event_id izan dezala. archive, inference eta dashboard-sink taldeek offset bereiziak izan behar dituzte. Atxikipena, berrirakurketa, broker bakarra eta partizio bakoitzeko ordena dokumentatu. Ez agindu muturretik muturrerako exactly-once bermerik.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Integrazioa",
+      "issue_number": 13,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/13",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW29SLQ",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaPD8",
+      "effort_person_days": 2
+    },
+    {
+      "id": "CG14",
+      "title": "NiFi-ren balioztatze- eta baztertze-fluxua eraiki",
+      "slides": [
+        8
+      ],
+      "start": "2026-11-10",
+      "target": "2026-11-23",
+      "area": "Integrazioa",
+      "milestone": 2,
+      "dependencies": [
+        "CG05",
+        "CG13"
+      ],
+      "acceptance": "Fluxua esportatu eta instalatutako bertsioaren prozesadoreak egiaztatu. Motak, derrigorrezko eremuak, UTC datak eta unitateak balioztatu. Erregistro baliodunak eta baztertutakoak dagokien topicera bidali, baztertze-arrazoia eta jatorria jasoz. CSV okerra, falta den eremua eta data baliogabea probatu; sarrerak, baliodunak, baztertuak, ilarak eta provenance dokumentatu.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Integrazioa",
+      "issue_number": 14,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/14",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW29aAA",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaPKs",
+      "effort_person_days": 5
+    },
+    {
+      "id": "CG15",
+      "title": "archive kontsumitzailea Parquet idempotentearekin inplementatu",
+      "slides": [
+        5,
+        9,
+        10
+      ],
+      "start": "2026-11-10",
+      "target": "2026-11-23",
+      "area": "Integrazioa",
+      "milestone": 2,
+      "dependencies": [
+        "CG06",
+        "CG13"
+      ],
+      "acceptance": "Telemetria eta iragarpenak egunez partizionatutako datu-multzo bereizietan artxibatu, machine_id zutabea mantenduz. event_id bikoiztuak eta berrabiarazteak kudeatu. Offseta datuak gorde ondoren berretsi, erregistrorik galdu gabe. Jatorrizkoak eta baztertzeak auditoretzarako gorde.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Integrazioa",
+      "issue_number": 15,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/15",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW29fpg",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaPQc",
+      "effort_person_days": 4
+    },
+    {
+      "id": "CG16",
+      "title": "Inferentzia-kontsumitzailea eta datu-kalitatearen egoerak inplementatu",
+      "slides": [
+        19
+      ],
+      "start": "2026-11-15",
+      "target": "2026-11-27",
+      "area": "Integrazioa",
+      "milestone": 2,
+      "dependencies": [
+        "CG10",
+        "CG13"
+      ],
+      "acceptance": "Abiaraztean artefaktuaren hasha, bertsioa, eskema eta aldagaiak egiaztatu; osagairen bat falta bada, huts egin. Makina bakoitzeko testuingurua eta leihoa mantendu; score_RF, score_IF, alert_type, kalitatea eta model_version argitaratu cnc.predictions-en. Leiho eskasa edo sarrera okerra egoera esplizitua izan dadila, arrisku zero asmatu gabe. Idempotentzia eta berrirakurketa probatu; offseta idazketa berretsi ondoren aurreratu. Ez gehitu FastAPI zerbitzurik.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Integrazioa",
+      "issue_number": 16,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/16",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW29lyw",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaPXE",
+      "effort_person_days": 5
+    },
+    {
+      "id": "CG17",
+      "title": "Makina bakoitzeko abisuak multzokatzeko politika inplementatu",
+      "slides": [
+        14,
+        17
+      ],
+      "start": "2026-11-28",
+      "target": "2026-11-30",
+      "area": "Integrazioa",
+      "milestone": 2,
+      "dependencies": [
+        "CG16"
+      ],
+      "acceptance": "Abisu iraunkorrak multzokatu, lagin errepikatuak gertakari berritzat hartu gabe. Arrisku- eta anomalia-abisuak bereizi eta makina, unea, horizontea, puntuazioa eta bertsioa erakutsi. Teknikariak baieztatzeko, baztertzeko edo ikuskapena programatzeko prozedura dokumentatu; ez asmatu giza balioztatzerik eta ez gelditu makina fisikorik.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Integrazioa",
+      "issue_number": 17,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/17",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW29tAw",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaPeY",
+      "effort_person_days": 2
+    },
+    {
+      "id": "CG18",
+      "title": "Elasticsearch mappingak eta dashboard-sink kontsumitzailea sortu",
+      "slides": [
+        20
+      ],
+      "start": "2026-11-17",
+      "target": "2026-11-27",
+      "area": "Bistaratzea",
+      "milestone": 2,
+      "dependencies": [
+        "CG03",
+        "CG13"
+      ],
+      "acceptance": "timestamp=date, machine_id=keyword eta puntuazio numerikoen mappingak prestatu; kalitatea eta model_version jaso. event_id dokumentu-identifikatzaile idempotentea izan dadila. Offseta indexatu ondoren berretsi. 30 eguneko atxikipen-proposamena neurtu, ebaluazio-historikoa ezabatu gabe. Kibana-k Elasticsearch kontsultatzen du, ez Kafka zuzenean.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Bistaratzea",
+      "issue_number": 18,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/18",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW290Jw",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaPmg",
+      "effort_person_days": 4
+    },
+    {
+      "id": "CG19",
+      "title": "Kibana panela eta ikerketa-bistak eraiki",
+      "slides": [
+        20,
+        21
+      ],
+      "start": "2026-12-01",
+      "target": "2026-12-05",
+      "area": "Bistaratzea",
+      "milestone": 2,
+      "dependencies": [
+        "CG17",
+        "CG18"
+      ],
+      "acceptance": "Data view eta gordetako objektuak esportatu; makina, data eta abisu motaren iragazkiak prestatu. Tenperatura/torque/arrisku serieetan esku-hartzeak eta hutsuneak erakutsi. Arriskuaren araberako sailkapena eta anomalia-zerrenda bereizi. Azken datuaren adina, baztertzeak, atzerapena, rpm–torque sakabanaketa eta ebaluazioko nahasmen-matrizea jaso. Grafikoak justifikatu eta benetako interfazean egiaztatu; ez asmatu pantaila-argazkirik.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Bistaratzea",
+      "issue_number": 19,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/19",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW2962g",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaPuk",
+      "effort_person_days": 5
+    },
+    {
+      "id": "CG20",
+      "title": "Ohiko ibilbidea muturretik muturrera probatu",
+      "slides": [
+        26
+      ],
+      "start": "2026-12-06",
+      "target": "2026-12-07",
+      "area": "Balioztatzea",
+      "milestone": 2,
+      "dependencies": [
+        "CG14",
+        "CG15",
+        "CG19"
+      ],
+      "acceptance": "Sarrera baliodun batek event_id bera mantendu behar du Parquet historikoan, iragarpenean, Elasticsearch-en eta Kibana-n. Modeloaren bertsioa egiaztatu, erregistro-kopuruak bateratu eta etapa bakoitzeko denborak eta benetako ebidentziak erregistratu.",
+      "status": "Egiteke",
+      "priority": "Handia",
+      "role": "Balioztatzea",
+      "issue_number": 20,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/20",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW2-BHQ",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaP1k",
+      "effort_person_days": 2
+    },
+    {
+      "id": "CG21",
+      "title": "Akatsak, bikoiztuak eta berreskuratzea probatu",
+      "slides": [
+        9,
+        19,
+        22,
+        26
+      ],
+      "start": "2026-12-08",
+      "target": "2026-12-12",
+      "area": "Balioztatzea",
+      "milestone": 2,
+      "dependencies": [
+        "CG20"
+      ],
+      "acceptance": "Eremu baliogabea, mezu bikoiztua, kontsumitzailearen berrabiaraztea eta helmugaren aldi baterako erorketa probatu. Baztertzea, idempotentzia, offsetak, berrirakurketa eta erregistro-kopuruen bateratzea egiaztatu; galera eta bikoiztuak azaldu. Modelo-artefaktuaren ustelkeria hautematen dela frogatu.",
+      "status": "Egiteke",
+      "priority": "Handia",
+      "role": "Balioztatzea",
+      "issue_number": 21,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/21",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW2-H9w",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaP8g",
+      "effort_person_days": 4
+    },
+    {
+      "id": "CG22",
+      "title": "2. mugarria · Integrazio berreskuragarria eta panel egiaztatua",
+      "slides": [
+        26,
+        28
+      ],
+      "start": "2026-12-13",
+      "target": "2026-12-14",
+      "area": "Koordinazioa",
+      "milestone": 2,
+      "dependencies": [
+        "CG21"
+      ],
+      "acceptance": "NiFi eta Kibana esportazioak, Kafka konfigurazioa, kontsumitzaileak, mappingak eta ohiko zein akatsezko probak berrikusi. Komandoak, ebidentziak eta laborategiaren mugak dokumentatu; ez aurkeztu plantako hedapen, erabilgarritasun handi edo 24 orduko iragarpen balioztatu gisa.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Koordinazioa",
+      "issue_number": 22,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/22",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW2-PVg",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaQDk",
+      "effort_person_days": 1
+    },
+    {
+      "id": "CG23",
+      "title": "Ahalmena neurtu eta atxikipena eta kostua berrikusi",
+      "slides": [
+        10,
+        20,
+        23
+      ],
+      "start": "2026-12-15",
+      "target": "2026-12-20",
+      "area": "Balioztatzea",
+      "milestone": 3,
+      "dependencies": [
+        "CG22"
+      ],
+      "acceptance": "Throughput, inferentzia-latentzia, kontsumitzaileen lag-a, RAMa, diskoa, Parquet konpresioa eta indizeen tamaina karga mugatuarekin neurtu. Hipotesia: 50 makina, 1 Hz eta 200 byte/gertaera; 4,32 milioi gertaera/egun, 864 MB/egun eta 77,76 GB/90 egun, konpresiorik eta overheadik gabe. Diskoa egiaztatu karga zabaldu aurretik; ez sortu 90 eguneko datuak besterik gabe. Balioa: saihestutako orduak × 1.200 € ken ikuskapenak, alarma faltsuak eta azpiegitura; ez baieztatu benetako aurrezkirik.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Balioztatzea",
+      "issue_number": 23,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/23",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW2-WkQ",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaQLE",
+      "effort_person_days": 4
+    },
+    {
+      "id": "CG24",
+      "title": "Segurtasuna, alborapenak eta giza eragina berrikusi",
+      "slides": [
+        22,
+        23
+      ],
+      "start": "2026-12-15",
+      "target": "2026-12-20",
+      "area": "Dokumentazioa",
+      "milestone": 3,
+      "dependencies": [
+        "CG22"
+      ],
+      "acceptance": "Sarbidea, atxikipena, pribatutasuna, alarma faltsuak, hauteman gabeko matxurak eta makina edo funtzionamendu-erregimenaren araberako alborapenak dokumentatu. Ez jaso beharrezkoak ez diren operadoreen identifikatzailerik. Ez konektatu OT ekipamendura, ez baieztatu arau-betetzea ziurtatu denik eta ez egotzi industria-eraginkortasunik datu sintetikoei.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Dokumentazioa",
+      "issue_number": 24,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/24",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW2-duA",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaQSI",
+      "effort_person_days": 3
+    },
+    {
+      "id": "CG25",
+      "title": "Txostena, irizpide gorriak eta ANEXO4 osatu",
+      "slides": [
+        13,
+        24,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "start": "2026-12-21",
+      "target": "2026-12-24",
+      "area": "Dokumentazioa",
+      "milestone": 3,
+      "dependencies": [
+        "CG23",
+        "CG24"
+      ],
+      "acceptance": "Irizpide gorri guztiak artefaktuekin eta benetako ebidentziekin lotu. IA ahula, RF ez-konexionista, arau deterministak eta lehen bertsiotik kanpoko alternatibak azaldu. ANEXO4 osatu eta ANEXO1 benetako emaitzekin eguneratu. Iturriak, parametroak, metrikak, arriskuak, kostua eta balioztatze-mugak dokumentatu.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Dokumentazioa",
+      "issue_number": 25,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/25",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW2-k5w",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaQYQ",
+      "effort_person_days": 4
+    },
+    {
+      "id": "CG26",
+      "title": "Demo erreproduzigarria eta taldearen defentsa prestatu",
+      "slides": [
+        25,
+        26,
+        28,
+        29
+      ],
+      "start": "2026-12-25",
+      "target": "2026-12-27",
+      "area": "Koordinazioa",
+      "milestone": 3,
+      "dependencies": [
+        "CG25"
+      ],
+      "acceptance": "Instalazio garbia, ohiko kasua eta akatsezko kasua entseatu. Metrikak, kostuak, erantzukizunak eta mugak berrikusi. Aurkezpena eta entrega prestatu; Moodleko igoera benetan egin eta egiaztatu arte ez adierazi entregatuta dagoenik.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Koordinazioa",
+      "issue_number": 26,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/26",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW2-r_g",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaQeE",
+      "effort_person_days": 3
+    },
+    {
+      "id": "CG27",
+      "title": "3. mugarria · Defentsa eta azken dokumentazioa",
+      "slides": [
+        28
+      ],
+      "start": "2026-12-28",
+      "target": "2026-12-28",
+      "area": "Koordinazioa",
+      "milestone": 3,
+      "dependencies": [
+        "CG26"
+      ],
+      "acceptance": "Txostena, ANEXO1, ANEXO4, demo erreproduzigarria eta trazabilitatea benetako ebidentziekin berrikusi. Egiteke dagoena erregistratu eta giza entrega bereiz egiaztatu.",
+      "status": "Egiteke",
+      "priority": "Arrunta",
+      "role": "Koordinazioa",
+      "issue_number": 27,
+      "issue_url": "https://github.com/AABD-Ethazi-2627/B-taldea/issues/27",
+      "issue_node_id": "I_kwDOUYD5Ac8AAAABW2-zYQ",
+      "project_item_id": "PVTI_lADOE3gaF84Bm1BCzhAaQkM",
+      "effort_person_days": 1
+    }
+  ],
+  "fields": {
+    "Title": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZMk",
+      "name": "Title",
+      "type": "ProjectV2Field"
+    },
+    "Assignees": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZMw",
+      "name": "Assignees",
+      "type": "ProjectV2Field"
+    },
+    "Status": {
+      "id": "PVTSSF_lADOE3gaF84Bm1BCzhlcZM4",
+      "name": "Status",
+      "options": [
+        {
+          "id": "09bce04e",
+          "name": "Egiteke"
+        },
+        {
+          "id": "611386fc",
+          "name": "Lanean"
+        },
+        {
+          "id": "4eca545a",
+          "name": "Berrikusten"
+        },
+        {
+          "id": "3e3b52c3",
+          "name": "Blokeatuta"
+        },
+        {
+          "id": "07c40191",
+          "name": "Eginda"
+        }
+      ],
+      "type": "ProjectV2SingleSelectField"
+    },
+    "Labels": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZNA",
+      "name": "Labels",
+      "type": "ProjectV2Field"
+    },
+    "Linked pull requests": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZNM",
+      "name": "Linked pull requests",
+      "type": "ProjectV2Field"
+    },
+    "Milestone": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZNU",
+      "name": "Milestone",
+      "type": "ProjectV2Field"
+    },
+    "Repository": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZNc",
+      "name": "Repository",
+      "type": "ProjectV2Field"
+    },
+    "Reviewers": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZNo",
+      "name": "Reviewers",
+      "type": "ProjectV2Field"
+    },
+    "Parent issue": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZNs",
+      "name": "Parent issue",
+      "type": "ProjectV2Field"
+    },
+    "Sub-issues progress": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZNw",
+      "name": "Sub-issues progress",
+      "type": "ProjectV2Field"
+    },
+    "Created": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZN4",
+      "name": "Created",
+      "type": "ProjectV2Field"
+    },
+    "Updated": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZOA",
+      "name": "Updated",
+      "type": "ProjectV2Field"
+    },
+    "Closed": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZOI",
+      "name": "Closed",
+      "type": "ProjectV2Field"
+    },
+    "Taldea": {
+      "id": "PVTSSF_lADOE3gaF84Bm1BCzhlcZPc",
+      "name": "Taldea",
+      "options": [
+        {
+          "id": "a5e21b24",
+          "name": "B-taldea"
+        }
+      ],
+      "type": "ProjectV2SingleSelectField"
+    },
+    "Start date": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZPk",
+      "name": "Start date",
+      "type": "ProjectV2Field"
+    },
+    "Target date": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcZPo",
+      "name": "Target date",
+      "type": "ProjectV2Field"
+    },
+    "Lehentasuna": {
+      "id": "PVTSSF_lADOE3gaF84Bm1BCzhlca94",
+      "name": "Lehentasuna",
+      "options": [
+        {
+          "id": "2377b5fe",
+          "name": "Handia"
+        },
+        {
+          "id": "4e56d47f",
+          "name": "Arrunta"
+        }
+      ],
+      "type": "ProjectV2SingleSelectField"
+    },
+    "Arloa": {
+      "id": "PVTSSF_lADOE3gaF84Bm1BCzhlcbAE",
+      "name": "Arloa",
+      "options": [
+        {
+          "id": "94b2fd1c",
+          "name": "Koordinazioa"
+        },
+        {
+          "id": "f897d080",
+          "name": "Datuak"
+        },
+        {
+          "id": "33759d6d",
+          "name": "Modelizazioa"
+        },
+        {
+          "id": "4b76fb1e",
+          "name": "Integrazioa"
+        },
+        {
+          "id": "469d2868",
+          "name": "Bistaratzea"
+        },
+        {
+          "id": "d758f5fc",
+          "name": "Balioztatzea"
+        },
+        {
+          "id": "2e679673",
+          "name": "Dokumentazioa"
+        }
+      ],
+      "type": "ProjectV2SingleSelectField"
+    },
+    "Eginkizuna": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcbDk",
+      "name": "Eginkizuna",
+      "type": "ProjectV2Field"
+    },
+    "Mendekotasunak": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcbFk",
+      "name": "Mendekotasunak",
+      "type": "ProjectV2Field"
+    },
+    "Ahalegina (pertsona-egunak)": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcbHM",
+      "name": "Ahalegina (pertsona-egunak)",
+      "type": "ProjectV2Field"
+    },
+    "Hasiera-data": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcm14",
+      "name": "Hasiera-data",
+      "type": "ProjectV2Field"
+    },
+    "Amaiera-data": {
+      "id": "PVTF_lADOE3gaF84Bm1BCzhlcm3A",
+      "name": "Amaiera-data",
+      "type": "ProjectV2Field"
+    }
+  },
+  "milestones": {
+    "1": {
+      "number": 1,
+      "url": "https://github.com/AABD-Ethazi-2627/B-taldea/milestone/1",
+      "target": "2026-11-16",
+      "name": "1. mugarria · Datu eta modelo erreproduzigarriak"
+    },
+    "2": {
+      "number": 2,
+      "url": "https://github.com/AABD-Ethazi-2627/B-taldea/milestone/2",
+      "target": "2026-12-14",
+      "name": "2. mugarria · Integrazio berreskuragarria eta panela"
+    },
+    "3": {
+      "number": 3,
+      "url": "https://github.com/AABD-Ethazi-2627/B-taldea/milestone/3",
+      "target": "2026-12-28",
+      "name": "3. mugarria · Defentsa eta azken dokumentazioa"
+    }
+  },
+  "verification": {
+    "language": "eu",
+    "issues_verified": 27,
+    "milestones_verified": 3,
+    "dates": "Euskarazko zutabeak eta jatorrizko Gantt datak egiaztatuta",
+    "dependencies": "Jatorrizko mendekotasunak mantenduta",
+    "status": "Ataza guztiak Egiteke"
+  },
+  "language": "eu",
+  "source_commit": "ace74b2e9abbe9fe3a00fad8797a34f6fec72c4a",
+  "snapshot_note": "Snapshot historikoa: aurkezpenaren aurreko arkitekturan oinarritua. Ez da egungo Kafka → NiFi → FastAPI → Elasticsearch/Kibana diseinuaren plan eguneratua."
+}

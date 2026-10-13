@@ -82,3 +82,18 @@ Arquitecturas, ILM, caídas de broker, Connect y flujos NiFi son respuestas de
 diseño; no se aplicaron a servicios. La ejecución del código de referencia no
 constituye entrega de un alumno ni subida a Moodle. El estado de publicación,
 revisión y checks remotos debe consultarse en el PR.
+
+## Reintegración comprobada — 13 de octubre de 2026
+
+Las correcciones del PR #18 se habían fusionado en su rama base después de
+que esa base entrase en `master`. Se recuperan conservando las fuentes actuales.
+La única fuente con hash distinto es `06_NiFi/materialak/02_Denbora_Serieak.pdf`.
+El contraste del texto completo con `pdftotext -layout` frente a la fuente
+del commit `5af3827` muestra únicamente la retirada del índice de los títulos
+05 (proyecto de predicción de energía) y 06 (actividades y resumen). No cambian
+los pasajes ni ejercicios citados por este simulacro. Se renueva únicamente
+ese hash tras el contraste; no se restaura el PDF antiguo.
+
+El comprobador se vuelve a ejecutar sobre el paquete integrado y las fuentes
+actuales. Las ejecuciones y métricas del 9 de octubre descritas arriba son
+evidencias históricas, no ejecuciones nuevas de los ejercicios.
