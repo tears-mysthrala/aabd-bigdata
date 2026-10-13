@@ -1,0 +1,502 @@
+[
+  {
+    "path": "01_Erronka1_CNC_Guard/materialak/1Erronka_ikaslearen_txostena.docx.pdf",
+    "chars": 19888,
+    "sha256": "647fbcc2d9d54895646576ff3c832bcd3bffdc1772f3383eb593703056fc2199"
+  },
+  {
+    "path": "01_Erronka1_CNC_Guard/materialak/ANEXO1-Eus.docx",
+    "chars": 2116,
+    "sha256": "da867dc9f902b8eefb187279e802d15ebe018eb364b391e81f3003c130153c87"
+  },
+  {
+    "path": "01_Erronka1_CNC_Guard/materialak/ANEXO1-Eus.md",
+    "chars": 4966,
+    "sha256": "877ce722b6c54d5f226897cef6e79b75ea6c0002fc5174678f185f7030b7294a"
+  },
+  {
+    "path": "01_Erronka1_CNC_Guard/materialak/ANEXO4.docx",
+    "chars": 91,
+    "sha256": "c1732062eb8707f2e43ed80de2e00c88cb04730e79a0eea428af638673d9a0a8"
+  },
+  {
+    "path": "01_Erronka1_CNC_Guard/materialak/ANEXO4.md",
+    "chars": 57,
+    "sha256": "833646bf26966c58a47ee8feb2fe6d71f8f456defffd4004fe09657fdca6eafa"
+  },
+  {
+    "path": "01_Erronka1_CNC_Guard/materialak/MOODLE_URLs.md",
+    "chars": 411,
+    "sha256": "0cf35193eaa77a131f9f147def6cc6c8cb4f500d199fd0cc28cbbc611d831d75"
+  },
+  {
+    "path": "01_Erronka1_CNC_Guard/materialak/patata tortila - planifikazioa eta kostuak lantzekoAA 2026-2027.docx",
+    "chars": 1243,
+    "sha256": "a6ad47718a7d197cfdcd6b46cfb6bb432abf33803508180579ce6606ffd02c7c"
+  },
+  {
+    "path": "01_Erronka1_CNC_Guard/materialak/patata tortila - planifikazioa eta kostuak lantzekoAA 2026-2027.md",
+    "chars": 1192,
+    "sha256": "e78dc35cdd3374e211acdda6e811ff5fd9c7ba216c4c19a67a198e74201a044a"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/1.1_prompt_injection_diseinua_soluzioa.ipynb",
+    "chars": 9620,
+    "sha256": "1eaf16361ff7d7fb123e7e6bed0d3d11af5901061967f2363f356f46fc97717e"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/1.2_kide_inferentzia_soluzioa.ipynb",
+    "chars": 9268,
+    "sha256": "862b9dc1f6e7bab71e3a78c828a87cf94e23940124f6a2f3b4ffd4560e2c6215"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/2.1_ai_act_arrisku_mailak_sailkatzen.ipynb",
+    "chars": 958,
+    "sha256": "5441b33e0401353f958527804f57a966a86fc74611b569f11b812bfa0fc22f20"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/3.1_privacy_by_design_auditoria_soluzioa.ipynb",
+    "chars": 10041,
+    "sha256": "696b51c084dc442272330756f888e1366fbd58ce3554be86e24b62210e28cb0c"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/4.1_security_vs_privacy_sailkapena_soluzioa.ipynb",
+    "chars": 5747,
+    "sha256": "f472c8546dd3dbc34e144c24c25111df4e429dd8620e7ee25e6bf76936995ca0"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/5.1_eia_aplikatu_soluzioa.ipynb",
+    "chars": 9068,
+    "sha256": "e1b0b8778c5b8451bca61f826eb7bd48ae6374fd5be04482dc54ca2d508ca96c"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/5071-IE1-Logika_Lausoa.docx",
+    "chars": 7126,
+    "sha256": "94eee5ca59f36e06a25e8b29d983a6198c077c4f4598af057e4546b87b631bec"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/5071-IE1-Logika_Lausoa.md",
+    "chars": 6351,
+    "sha256": "78e232f9bbad25365faf49839620fe6b5d93314c4309a1fdac785b1e15f808d4"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/5071-IE1-Sarrera_Kontzeptuala.docx",
+    "chars": 18540,
+    "sha256": "5012e38cf460d64e191ec9c8a352854f433571df0bfdeb0e5653bb7e14764c0a"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/5071-IE1-Sarrera_Kontzeptuala.md",
+    "chars": 16105,
+    "sha256": "ff124a1e3445888237eaf266f8d3bf2a6edf1760641840199d9974e4b56b29a7"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/5071-IE6-Marko_legala.docx",
+    "chars": 65983,
+    "sha256": "b6133eae61eddcebf6bd138ac9f97adab9764d36ef09cabf1b5781f4cb9cae3f"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/5071-IE6-Marko_legala.md",
+    "chars": 68787,
+    "sha256": "26a4f523d7eeba19903e458836e43fbc29c1f67ac6864a78b5430445f09bb6b0"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/6.0_proiektu_integratzailea_soluzioa.ipynb",
+    "chars": 22317,
+    "sha256": "d40efc5956c7664269876bbd4b12fd75f56e77622436e86557da61ffa8ba57da"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/Alborapenak/2.2_compas_historikoa_soluzioa.ipynb",
+    "chars": 7838,
+    "sha256": "9408669a8bb2457b43b97935971a6ce1d58c45fb2d6534965f6c9abe4decb643"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/Alborapenak/README.md",
+    "chars": 2953,
+    "sha256": "d6755f7a5cfd6aa6f545d0be848e51a029a612366b2e1b0cf300351e6fedf44d"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/E1-Ereduak-Aurkezpena.pdf",
+    "chars": 230,
+    "sha256": "8aca4945f58435f296b9cdd6eeea1ae31ec41a133d5cf2a8f2d1d715402212ad"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/E1-Ereduak-Etika_eta_legea.pdf",
+    "chars": 30531,
+    "sha256": "2f0717acd5d236d7c03ddda92c956df746679c0e08b055bc617c4d611e58516f"
+  },
+  {
+    "path": "02_AA_Ereduak_5071/materialak/E1-Ereduak-Sarrera.pdf",
+    "chars": 12888,
+    "sha256": "74c2b5010c31b42579ca5ffa34d38bc7512458240ff8cfd2a11c55645932b96f"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_00_Sarrera.pdf",
+    "chars": 9637,
+    "sha256": "cf473645378c1933961f454b7a01969d0767df99fee8cd4be37eb6685e1a5ca6"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_1_Datua_eta_Aurreprozesamenua.pdf",
+    "chars": 17603,
+    "sha256": "b414e85a7145a110fc5ecbbc47239343a9abbf11b8977f6def301eb964121c7d"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_1_Datua_eta_Aurreprozesamenua_ppt.pdf",
+    "chars": 12282,
+    "sha256": "357c1d40149712f4d90ccc52b6d1a4e374971f0264ab3be486cc89f7d0255646"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_2_01_Erregresio_Lineala.pdf",
+    "chars": 10764,
+    "sha256": "bd4563877507042b88fa39106b0a8f4406574d246427c846939e7872e71692cc"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_2_02_Erregresio_Logistikoa.pdf",
+    "chars": 9349,
+    "sha256": "07a6cf8be7398014ad86b5403a7ab68153366e9c163471fe0b7c8ed458df13f1"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_2_03_KNN.pdf",
+    "chars": 8541,
+    "sha256": "a1051b129d6d1258b587067b5a1972562a177ef59f0d2f1f6bb7e7deb522ae76"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_2_04_Decision_Tree.pdf",
+    "chars": 9606,
+    "sha256": "fce9b6f1eeba6e35f6104f32de5cfd647d3bf9c8073fda08909218a8f6449d3c"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_2_05_SVM.pdf",
+    "chars": 9796,
+    "sha256": "ed7e2f38cb10d432273a56d9ba95e422c1a904e9dacf650cf46a646db5c93a72"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_2_06_Random_Forest.pdf",
+    "chars": 8158,
+    "sha256": "b9b7a16c7d3b778fc4e097e4c66b4abe25e9c348b406feda5bdc9827e36ed9bb"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_2_07_Boosting.pdf",
+    "chars": 15208,
+    "sha256": "845e22fe0b1fb2f38dee881109fc2685227018b8a597fe6f2e3ad42ac12be85a"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_2_Ikasketa_Gainbegiratua.pdf",
+    "chars": 20269,
+    "sha256": "b794aed2f56cd04012a30c9d54a1bc6114bc4e04f62c70705b4055c3fdc3a51d"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_2_Ikasketa_Gainbegiratua_ppt.pdf",
+    "chars": 17550,
+    "sha256": "3fb003adb0b3a3c64b6ebf8c133a31402b362995f5be1acb7e628d8842abcb46"
+  },
+  {
+    "path": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+    "chars": 13340,
+    "sha256": "854425d7bdbe5388d16ba0761655186a487a8329f7415a9b773800e8adf24c95"
+  },
+  {
+    "path": "03_ML_5072/materialak/AI4I_Orange_txostena.pdf",
+    "chars": 6419,
+    "sha256": "00b31532b535f7a479668222409d0d75630d1f7a8602b58325a062c4b5047761"
+  },
+  {
+    "path": "03_ML_5072/materialak/Boosting Ereduak_ Adaboost, Gradient Boost eta XGBoost.pdf",
+    "chars": 12821,
+    "sha256": "73d5020a4e07e821cdda2ca1e4f44de1e93fade72626160c20f56674b6c6fb68"
+  },
+  {
+    "path": "03_ML_5072/materialak/MOODLE_URLs.md",
+    "chars": 631,
+    "sha256": "5b4ba10ba8d753a12cc9908d7bf013f9f3f59d19ed0e335385794ee5988d2732"
+  },
+  {
+    "path": "03_ML_5072/materialak/Orange_Erregresio_Lineala_Entregagarria.pdf",
+    "chars": 5417,
+    "sha256": "f1d6087bc92217868352ce06d2c5a4e9ac6c92e2623e2b0bd4c8a3ef9581cde9"
+  },
+  {
+    "path": "03_ML_5072/materialak/Sailkapen_Ebaluazio-metrikak.md",
+    "chars": 2039,
+    "sha256": "1424ba2443279175b6d2fe16c51c6c3407986085c1f60c3881d79ebaaad2ce4f"
+  },
+  {
+    "path": "03_ML_5072/materialak/ikaskuntza_gainbegiratua_ikaslea.ipynb",
+    "chars": 5518,
+    "sha256": "afbb7c5dc74044c3ee907ec4a18579c2f009fb915d96c5fcd7c181fee8412d48"
+  },
+  {
+    "path": "03_ML_5072/materialak/txostena_ikaslea.md",
+    "chars": 1767,
+    "sha256": "d9868ee22cdc7a0135676e9e52768849008428471888fc8747813563d8b32e2d"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/1_Adibide_koadernoa_URLa.ipynb",
+    "chars": 17623,
+    "sha256": "513cb461c4c7f7b91d73d97b338af1b038243d6c116dab1706e47387b23ce803"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/1_Ariketa_koadernoa_URLa.ipynb",
+    "chars": 8042,
+    "sha256": "248b880b166041eb4697ee3c9a1944140b21cc2d025ad44aa0183d7efbe16fdc"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/1_SOLUZIOAK_URLa.ipynb",
+    "chars": 11215,
+    "sha256": "bed634eb5af6f5769a10ce8d3faff0a6d1fbf9c1561964574a155ff9dac8a071"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/2_Adibide_Koadernoa_URLa.ipynb",
+    "chars": 26376,
+    "sha256": "2ebd3451a45b44c77074b12dae4fddca7d8e93fc837e2386cec9c8a880ce320e"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/2_Ariketa_Koadernoa_URLa.ipynb",
+    "chars": 9207,
+    "sha256": "b5d971b7a9dc79da618db45ec9ded05103313b751c23d6efcf3b4df8c608b3f8"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/2_SOLUZIOAK_URLa.ipynb",
+    "chars": 27524,
+    "sha256": "c8fbc0d243c6e32893d7117a9a5213af7d31ac5859f30e199ea682e64e8f2555"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/3_Adibide_koadernoa_URLa.ipynb",
+    "chars": 53747,
+    "sha256": "cfba4ce5d3c0b1ab4207f6073f75da79f2b5e8b16363741238891aa2fd096058"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/3_Ariketa_koadernoa_URLa.ipynb",
+    "chars": 14573,
+    "sha256": "70238c779bbb4f83f081114525179733dd022610c1218f84f796a5d79594c085"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/3_SOLUZIOAK_URLa.ipynb",
+    "chars": 25974,
+    "sha256": "13aff60e059885a0361a325f2e219837805ac68c50d6e701b9e8c1ba0f8ef078"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/5073_1_Lengoaiak.pdf",
+    "chars": 102746,
+    "sha256": "0525208bc7a90f774f565d1cd4e212c7ffbfc5be9502041e0eb669a995bee04e"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+    "chars": 84169,
+    "sha256": "0115c3bba18f628b224b5b54a39b353d59bd1b0fcbd94152a8bde43bd455568e"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+    "chars": 119365,
+    "sha256": "cdc9f7298efa2c9f71ec0d64e56165ae8092dbf9a91aab4ee2c99ffca4048553"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/Eredu_guztiak_testuinguru_berdina_ADIBIDE_OSODUN_Koadernoa_U.ipynb",
+    "chars": 22992,
+    "sha256": "a3eb735f785ce70c291ac6e1d402e13a5775cf1aabb04663f2cefcfab7564e44"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/ML_ereduak_euskaraz.html",
+    "chars": 25385,
+    "sha256": "220da47f68b92b739bc4213dea7ed92470aeb9079d6c1e26c2017a21376dbdac"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/MOODLE_URLs.md",
+    "chars": 3107,
+    "sha256": "b318236487fe350803081aa5c221ca3087b3a18559a6fb18d439839853023601"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/Moodle_page_64153.md",
+    "chars": 4670,
+    "sha256": "85028dd38e3eea950513abbfc77cca1c938c872f987c9a36404a9bda7531fac6"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/ml_infografia_6_pausotan.html",
+    "chars": 10416,
+    "sha256": "e0d5bda9a63516c35a2a19c92085f53cf93f7ba5cbdffefdc2491f764fe90d49"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_1_Lengoaiak.ipynb",
+    "chars": 17623,
+    "sha256": "e6b9bd730ea1cfab775c16adafc1c74b8972e6ab9f99918220004599d692ef7f"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_1_Lengoaiak.py",
+    "chars": 19717,
+    "sha256": "8ef01e44138d8b6db53e4a16e13d0f1189431cbca42bbdbb2a72d055b7b71b75"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_1_Lengoaiak_Ariketak.ipynb",
+    "chars": 8042,
+    "sha256": "248b880b166041eb4697ee3c9a1944140b21cc2d025ad44aa0183d7efbe16fdc"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_1_Lengoaiak_Ariketak.py",
+    "chars": 9722,
+    "sha256": "978ebf6299b3e2cc5130586a1a590753310d1e89d480c140fe03f684aa1db09e"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_1_Lengoaiak_PDF_Ariketak.ipynb",
+    "chars": 16810,
+    "sha256": "595de2784a3c8a9649218e1b5a7b59c03b83ab7a55dd305d9c93b24d0909dd18"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_1_Lengoaiak_PDF_Ariketak.py",
+    "chars": 17509,
+    "sha256": "49f7ed6e456b91fea8360afa789883d9ea0d7ff57930b64fdc21c2ec9ada6eff"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_2_Datu_Zientzia.ipynb",
+    "chars": 26376,
+    "sha256": "15624d9f7959e1c671f51129782f8381b16d5c17015e4e0fc930a5f5f1b3c294"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_2_Datu_Zientzia.py",
+    "chars": 28423,
+    "sha256": "5221422aafc9aa7778bc084a5a11c1c103e880df46511958ac27aba88cbd517c"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_2_Datu_Zientzia_Ariketak.ipynb",
+    "chars": 9229,
+    "sha256": "993b0231c35d2a81e301bb06a2e3201f5b40011df13206038b8016f8cfc559e4"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_2_Datu_Zientzia_Ariketak.py",
+    "chars": 10805,
+    "sha256": "06b719e3b0f777f5bc4a9d718dcce1477c0f37cf762956812d733fe816adcd3d"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_2_Datu_Zientzia_PDF_Ariketak.ipynb",
+    "chars": 30367,
+    "sha256": "836aa2335174ca869aea7fb415a8463c6a5c20fd6f5cc0266b8832251853975e"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_2_Datu_Zientzia_PDF_Ariketak.py",
+    "chars": 31246,
+    "sha256": "ecefe416b5c7e4dffbbb3366109202fbc3148e14a3e635c207b482d233ab9cc3"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_3_Programazioa.ipynb",
+    "chars": 48131,
+    "sha256": "ef1f2645f4b8931224554c30114a3dc7f3029062a1b050ec6efa450cb1a87e01"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_3_Programazioa.py",
+    "chars": 50657,
+    "sha256": "1c24568b95016e1238eb558799ee864dede47bd40ba8ab8d5c325e3ed22527cc"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_3_Programazioa_Ariketak.ipynb",
+    "chars": 9165,
+    "sha256": "ea87fa0acfd63dfce86d2abc522ba32178b1da36f21bd1d905ef8721ad52124f"
+  },
+  {
+    "path": "04_Programazioa_5073/materialak/notebooks/5073_3_Programazioa_Ariketak.py",
+    "chars": 10796,
+    "sha256": "4b6bb3cc090ca41d9a2c5cf7c1dc3ab0d35c8202e53dd0c035436b9df2c0a3cc"
+  },
+  {
+    "path": "05_BigData_Ingeniaritza/materialak/01_01_big_data_sarrera.pdf",
+    "chars": 13117,
+    "sha256": "469338554c3b8da7b027797f0fb5bdef3093d536abf0eabe00409e16973a0e7a"
+  },
+  {
+    "path": "05_BigData_Ingeniaritza/materialak/01_02_datuen_ingeniaritza.pdf",
+    "chars": 25242,
+    "sha256": "c4553d4a491cd9e7045ae595b47c1879220b9195415ea887a06a3e5b87c31dfc"
+  },
+  {
+    "path": "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
+    "chars": 52384,
+    "sha256": "eb5072685bca39e1dfc8d88dbd0ac71588306c7e9e54864e89bb409965c87183"
+  },
+  {
+    "path": "05_BigData_Ingeniaritza/materialak/Ariketak_01_01_big_data_sarrera.docx",
+    "chars": 4367,
+    "sha256": "0f6e75267d15ad7f5d2bcc8068fb440e87147d3a0d2c77919cf4f1a290b0c8e2"
+  },
+  {
+    "path": "05_BigData_Ingeniaritza/materialak/Ariketak_01_01_big_data_sarrera.md",
+    "chars": 4503,
+    "sha256": "94c9955a2dc9bdebb940dd74efaf4f26cf8e8a79e6a64085849fc780132d08e9"
+  },
+  {
+    "path": "05_BigData_Ingeniaritza/materialak/Ariketak_01_02_datuen_ingeniaritza.docx",
+    "chars": 7315,
+    "sha256": "4c5d31885c09d8770388ce8ad57ba217d0bd4dc203462a96c4352efed82fc629"
+  },
+  {
+    "path": "05_BigData_Ingeniaritza/materialak/Ariketak_01_02_datuen_ingeniaritza.md",
+    "chars": 7267,
+    "sha256": "df9cfd232ae8b2d66edfb95d473e3c5933abfadae4f829a2d2c69568b332db92"
+  },
+  {
+    "path": "06_NiFi/materialak/01_01_ApacheNifi.pdf",
+    "chars": 29371,
+    "sha256": "68489d730205544b25afe655eee75223359872acaa21560e6918c6edb7d371f9"
+  },
+  {
+    "path": "06_NiFi/materialak/01_02_ApacheNifi_aurreratua.pdf",
+    "chars": 39472,
+    "sha256": "f342f97f5ec2b4344c99e02ec2d2a59306d5cdb8326bcceb4e4e93423d44037a"
+  },
+  {
+    "path": "06_NiFi/materialak/02_Denbora_Serieak.pdf",
+    "chars": 23327,
+    "sha256": "209d7cc11316af1d4ae46477e3eb4990ba10fe0bf7fa7fb61244154e074a57fb"
+  },
+  {
+    "path": "06_NiFi/materialak/02_elastic_stack.pdf",
+    "chars": 36029,
+    "sha256": "4a00f8077a3d1107c6f4de2b2eae76bda6fbd71aaec8b84fc8259f4b718edfe1"
+  },
+  {
+    "path": "06_NiFi/materialak/Apache NiFi kasu praktikoak (5-6-7).pdf",
+    "chars": 19818,
+    "sha256": "7d7615cb2dfce0e33e7820d4f26b8d23ae10672c2d26150295fc55a4463ad2e9"
+  },
+  {
+    "path": "06_NiFi/materialak/Ariketak_02_denbora_serieak.docx",
+    "chars": 1624,
+    "sha256": "2bde26fbbd5d9274c3b5a6b88785b3ce25323a975922aa6aa39ad2b728a0c081"
+  },
+  {
+    "path": "06_NiFi/materialak/Ariketak_02_denbora_serieak.md",
+    "chars": 1647,
+    "sha256": "4b2e62b6c2aa8ed17359ccae5e6350dc5765070b891cbaa97bea7982ac057766"
+  },
+  {
+    "path": "06_NiFi/materialak/GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf",
+    "chars": 28711,
+    "sha256": "84de9a409d6e15d919dd59d1f404f8bcfe62002acf8afe59a35e5dba76df27e6"
+  },
+  {
+    "path": "06_NiFi/materialak/GIDA Apache NiFi kasu praktikoak 5-6-7.pdf",
+    "chars": 19818,
+    "sha256": "7d7615cb2dfce0e33e7820d4f26b8d23ae10672c2d26150295fc55a4463ad2e9"
+  },
+  {
+    "path": "06_NiFi/materialak/README.md",
+    "chars": 915,
+    "sha256": "21dab7c19bbab3ee01401dd7f4bf55dbbddf156644b0e0e09716bb3a89e4683a"
+  },
+  {
+    "path": "06_NiFi/materialak/Software instalazioak.pdf",
+    "chars": 7529,
+    "sha256": "2ab946d2c4c2a38bab274e508dc45376ab13eb9c7e4b096ab9ea099505b2a81a"
+  },
+  {
+    "path": "06_NiFi/materialak/denbora_serieak_EGIN_GABE.py",
+    "chars": 2478,
+    "sha256": "6bb5adc5e9b92150aecf2f3c16a1be7acf79e6f7c1406d6b7849dbc530af7de8"
+  },
+  {
+    "path": "07_Kafka/materialak/01_03_ApacheKafka.pdf",
+    "chars": 43445,
+    "sha256": "a0bc8381e79e95dff5002391cdd227b34621ae3d483bb719e5f8a97a375323d1"
+  },
+  {
+    "path": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
+    "chars": 47563,
+    "sha256": "6c7f76d6480de1dd22f2051928738678d5aa815b4625d5af1d37d3402afa56f5"
+  }
+]

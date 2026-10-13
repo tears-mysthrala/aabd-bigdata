@@ -1,0 +1,112 @@
+{
+  "semilla": 7,
+  "registros": [
+    {
+      "id": 1,
+      "ts": "2026-10-06T08:01:00Z",
+      "schema_v": 1,
+      "sensor": "T-02",
+      "temp": 25.6,
+      "sha256": "213d2afde7ecfc75215d5a5f0abe3cbe1d5781dea4f80f2efea27fb4278b6eb5"
+    },
+    {
+      "id": 2,
+      "ts": "2026-10-06T08:02:00Z",
+      "schema_v": 1,
+      "sensor": "T-02",
+      "temp": 23.2,
+      "sha256": "8fe7fddcf454f5f6e7a1a7575e5efd4d63537950a0c4139b911f2429c0e5c410"
+    },
+    {
+      "id": 3,
+      "ts": "2026-10-06T08:03:00Z",
+      "schema_v": 1,
+      "sensor": "T-01",
+      "temp": 24.6,
+      "sha256": "51fabfcd0255a78ed11d43505f914d540e3a3da32ec8dd3f72ee9d7df060fba1"
+    },
+    {
+      "id": 4,
+      "ts": "2026-10-06T08:04:00Z",
+      "schema_v": 1,
+      "sensor": "T-01",
+      "temp": 20.9,
+      "sha256": "5097c191678b9c9b12947eed4ee886e832e6e8fa6404692ab58574ff9a85c6f3"
+    },
+    {
+      "id": 5,
+      "ts": "2026-10-06T08:05:00Z",
+      "schema_v": 1,
+      "sensor": "T-01",
+      "temp": 25.3,
+      "sha256": "3cd0fb64bac562110388bf715600644c356c7ab1fd555271f731b36b5c81ccdc"
+    },
+    {
+      "id": 6,
+      "ts": "2026-10-06T08:06:00Z",
+      "schema_v": 1,
+      "sensor": "T-01",
+      "temp": 18.3,
+      "sha256": "8aa90bb238ca83928f1bfc3fb012d3c49899fa990879bfc8d21afce112725716"
+    },
+    {
+      "id": 7,
+      "ts": "2026-10-06T08:07:00Z",
+      "schema_v": 1,
+      "sensor": "T-02",
+      "temp": 21.3,
+      "sha256": "7e6596235e94b1cbad14e209397b04fe8aaf5717f8c65a1d0c27ead6ee592581"
+    },
+    {
+      "id": 8,
+      "ts": "2026-10-06T08:08:00Z",
+      "schema_v": 1,
+      "sensor": "T-01",
+      "temp": 18.7,
+      "sha256": "fbab94b87c10ff7f9c167ddf6806cf0acc6194ea4bacc6bffff044c23f2a40a4"
+    },
+    {
+      "id": 9,
+      "ts": "2026-10-06T08:09:00Z",
+      "schema_v": 1,
+      "sensor": "T-02",
+      "temp": 18.5,
+      "sha256": "209a286d399272cb59c2d9049e9ca5d604f561d1db81f26de175869803482332"
+    },
+    {
+      "id": 10,
+      "ts": "2026-10-06T08:10:00Z",
+      "schema_v": 1,
+      "sensor": "T-03",
+      "temp": 19.0,
+      "sha256": "a89e177523d9fd6678e220153798b6f2fbb8266cd2ff293d274fe18f36b68b35"
+    },
+    {
+      "id": 11,
+      "ts": "2026-10-06T08:11:00Z",
+      "schema_v": 2,
+      "sensor": "T-01",
+      "temp": 23.0,
+      "bateria": 66.6,
+      "sha256": "479c9370723d607001506f33b1da2f6869a0fa370a0d6d7634c8c5652d700bfa"
+    },
+    {
+      "id": 12,
+      "ts": "2026-10-06T08:12:00Z",
+      "schema_v": 2,
+      "sensor": "T-01",
+      "temp": 22.6,
+      "bateria": 51.7,
+      "sha256": "0738115589eff0ffbe1f5d685a0b893bce01ce0955789e0f9b387b0129db1314"
+    },
+    {
+      "id": 13,
+      "ts": "2026-10-06T08:13:00Z",
+      "schema_v": 2,
+      "sensor": "T-01",
+      "temp": 18.4,
+      "bateria": 88.7,
+      "sha256": "532c74338d8584bc11716eac787dd4f316b3df5e55aec4a4a76bd108dbe1c7e3"
+    }
+  ]
+}

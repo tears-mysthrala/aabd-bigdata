@@ -295,3 +295,20 @@ No compartas tokens de Jupyter, credenciales, certificados privados, datasets in
 ## Estructura y alcance
 
 Incluye `pyproject.toml`, `uv.lock`, scripts de bootstrap y verificación, configuración de recursos, pruebas, `00_verificacion_entorno.ipynb` y la resolución (`src/cnc_guard/fuzzy.py`, `src/cnc_guard/anomaly.py`, `CNC_Guard.ipynb` + `CNC_Guard.py`, generados por `generar_notebook.py`). El notebook auxiliar usa datos de juguete; `CNC_Guard.ipynb` usa `cnc_10M.csv` (generado con `04_Programazioa_5073/data/generar_cnc_10M.py`, no versionado). El método selecciona dos umbrales en 100k filas de validación y evalúa una sola vez en las últimas 100k; la regla final es **consenso AND**, no el máximo de puntuaciones. Un archivo local no versionado registra una ejecución histórica (acc=0.9863, F1=0.1762), que debe volver a medirse tras cambios en código/datos. El objetivo es clasificar errores sintéticos del mismo instante: no predice futuras averías ni demuestra utilidad industrial. No se incluyen datasets, credenciales, conectores que actúen sobre máquinas ni servicios Docker desplegados.
+
+
+## Ampliación orientada a rúbrica docente del 13/10/2026
+
+La solución anterior (IsolationForest + fuzzy y consenso AND sobre datos
+sintéticos) se conserva para comparación; NO acredita predicción temprana.
+El nuevo clasificador supervisado (Random Forest), API de scoring, contratos
+Kafka/Elastic y límites están en:
+
+- docs/RUBRICA_2026_10_13.md — trazabilidad ponderada y estado verificado.
+- docs/MODELO_Y_METRICAS.md — entrenamiento, métricas y uso de history.
+- docs/INTEGRACION.md — contrato CSV/Kafka/NiFi/API/Elastic y test plan.
+- docs/DASHBOARD.md — especificación de Kibana, todavía no desplegado.
+- docs/SEGURIDAD_ETICA.md — seguridad, privacidad y clasificación normativa.
+
+La CI de rúbrica separa los tests puros de los que requieren servicios.
+No atribuir al proyecto resultados de tests en Docker que no se han corrido.
