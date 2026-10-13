@@ -1,0 +1,53 @@
+name: Export CNC Guard presentation
+on:
+  push:
+    branches:
+      - docs/cnc-guard-y-cambios-locales-2026-10-13
+    paths:
+      - "01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/contenido.json"
+      - "01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/generate_presentation.py"
+      - ".github/workflows/export-cnc-presentation.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  export:
+    if: github.repository == 'tears-mysthrala/aabd-bigdata' && github.ref == 'refs/heads/docs/cnc-guard-y-cambios-locales-2026-10-13'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out presentation branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: docs/cnc-guard-y-cambios-locales-2026-10-13
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: "3.13"
+      - name: Install presentation dependencies
+        run: python -m pip install --disable-pip-version-check 'python-pptx==1.0.2' 'reportlab==4.4.9' 'pypdf==6.1.1'
+      - name: Export both formats from editable JSON
+        run: |
+          python 01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/generate_presentation.py
+          python - <<'PY'
+          from pathlib import Path
+          from pptx import Presentation
+          from pypdf import PdfReader
+          base=Path('01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias')
+          assert len(Presentation(base/'CNC_Guard_Tecnologias.pptx').slides)==33
+          assert len(PdfReader(base/'CNC_Guard_Tecnologias.pdf').pages)==33
+          PY
+      - name: Commit PowerPoint and PDF into the existing PR branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/CNC_Guard_Tecnologias.pptx \
+                  01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/CNC_Guard_Tecnologias.pdf
+          if git diff --cached --quiet; then
+            echo "Already current."
+          else
+            git commit -m "docs(cnc): publish synchronized PowerPoint and PDF presentation"
+            git push origin HEAD:refs/heads/docs/cnc-guard-y-cambios-locales-2026-10-13
+          fi
