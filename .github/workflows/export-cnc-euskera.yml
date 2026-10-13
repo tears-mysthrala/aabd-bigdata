@@ -1,0 +1,62 @@
+name: Export CNC Guard Euskara
+on:
+  push:
+    branches:
+      - feat/cnc-guard-aurkezpena-euskaraz-2026-10-13
+    paths:
+      - "01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/contenido.eu.json"
+      - "01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/generate_presentation_eu.py"
+      - ".github/workflows/export-cnc-euskera.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  export:
+    if: github.repository == 'tears-mysthrala/aabd-bigdata' && github.ref == 'refs/heads/feat/cnc-guard-aurkezpena-euskaraz-2026-10-13'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: feat/cnc-guard-aurkezpena-euskaraz-2026-10-13
+          persist-credentials: true
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.13'
+      - name: Install locked exporter dependencies
+        run: python -m pip install --disable-pip-version-check 'python-pptx==1.0.2' 'reportlab==4.4.9' 'pypdf==6.1.1'
+      - name: Export PPTX and PDF; verify 33 slides and matching text
+        run: |
+          python 01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/generate_presentation_eu.py
+          python - <<'PY'
+          from pathlib import Path
+          from pptx import Presentation
+          from pypdf import PdfReader
+          import json
+          folder = Path('01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias')
+          src = json.loads((folder / 'contenido.eu.json').read_text(encoding='utf-8'))
+          deck = Presentation(folder / 'CNC_Guard_Tecnologias_EU.pptx')
+          pdf = PdfReader(folder / 'CNC_Guard_Tecnologias_EU.pdf')
+          assert len(src['slides']) == len(deck.slides) == len(pdf.pages) == 33
+          for i, (data, slide, page) in enumerate(zip(src['slides'], deck.slides, pdf.pages, strict=True), 1):
+              content = '\n'.join(shape.text for shape in slide.shapes if shape.has_text_frame)
+              assert data['title'] in content, f'Slide {i}: title missing from PPTX'
+              assert data['title'] in page.extract_text(), f'Slide {i}: title missing from PDF'
+              for key, paragraph in data['rows']:
+                  assert key in content and paragraph in content, f'Slide {i}: incomplete text'
+              if data['note']:
+                  assert data['note'] in slide.notes_slide.notes_text_frame.text, f'Slide {i}: speaker note missing'
+          print('OK: 33 diapositiba eta 33 orrialde, edukia eta oharrak egiaztatuta')
+          PY
+      - name: Add both exports to the branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/CNC_Guard_Tecnologias_EU.pptx \
+                  01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/CNC_Guard_Tecnologias_EU.pdf
+          if git diff --cached --quiet; then
+            echo "Euskara exports up-to-date"
+          else
+            git commit -m "docs(cnc): publish Euskara PPTX and PDF"
+            git push origin HEAD:refs/heads/feat/cnc-guard-aurkezpena-euskaraz-2026-10-13
+          fi
