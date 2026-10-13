@@ -8,7 +8,6 @@ import io
 import json
 import math
 import re
-from datetime import datetime
 from datetime import datetime, timezone
 
 REQUIRED = ("ts", "makina_id", "tenperatura", "bibrazioa", "presioa")
