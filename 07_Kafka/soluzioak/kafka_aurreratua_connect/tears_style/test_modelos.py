@@ -8,6 +8,7 @@ from modelos import (
     IDS_V1,
     IDS_V2,
     manifiesto_esperado,
+    registro,
     sha_de,
     transformar,
     validar,

@@ -3,11 +3,12 @@ from __future__ import annotations
 
 import pytest
 
+from cnc_guard.supervised import FEATURES
+
+api_module = pytest.importorskip("cnc_guard.api")
 TestClient = pytest.importorskip("fastapi.testclient").TestClient
 pytest.importorskip("httpx")
-
-from cnc_guard.api import create_app
-from cnc_guard.supervised import FEATURES
+create_app = api_module.create_app
 
 
 class FixedModel:

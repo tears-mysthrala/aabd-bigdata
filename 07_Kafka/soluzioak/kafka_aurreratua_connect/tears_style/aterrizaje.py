@@ -11,7 +11,6 @@ import argparse
 import json
 import os
 
-
 TOPIC_RAW = "tears-raw"
 
 
