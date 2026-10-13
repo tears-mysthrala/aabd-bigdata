@@ -383,8 +383,12 @@ El informe TRAZABILIDAD.md contiene criterios rojos originales, mapa de tecnolog
 
 ## Entrega y uso
 
-Abrir `CNC_Guard_Tecnologias.html` en navegador. Flechas, PageUp/PageDown o botones cambian diapositiva; N abre notas y fuentes; F activa pantalla completa. El PDF contiene el mismo contenido visible. El HTML y contenido.json conservan texto editable; no se ha generado PowerPoint porque el runtime obligatorio artifact-tool no está disponible en esta sesión.
+Abrir `CNC_Guard_Tecnologias.html` en navegador. Flechas, PageUp/PageDown o botones cambian diapositiva; N abre notas y fuentes; F activa pantalla completa. **El PDF versionado es anterior a esta revisión y no debe entregarse como equivalente al HTML actual**; regenerarlo y revisarlo antes de la defensa. La fuente editable de esta presentación es `contenido.json`; el HTML se sincroniza en este commit. Cualquier PowerPoint de trabajo debe compararse también con estas modificaciones.
 
 ## Nueva rúbrica (13/10/2026)
 
 El flujo propuesto ahora es Kafka → NiFi → FastAPI /predict → Elasticsearch/Kibana. Este HTML y contenido.json se han actualizado; el PDF anterior no se ha regenerado y requiere nueva exportación antes de entregar. La trazabilidad ponderada y estados de evidencia están en `../../proyecto_cnc_guard/docs/RUBRICA_2026_10_13.md`. Ninguna presentación sustituye a una ejecución real de servicios.
+
+### Revisión de coherencia (feedback PR #19)
+
+Las diapositivas 1, 3, 5, 7, 9, 19 y 26–29 ya describen una única arquitectura de demostración: **Kafka → NiFi (ConvertRecord, validación, InvokeHTTP) → FastAPI/Random Forest → Elasticsearch/Kibana**. El histórico Parquet/DuckDB y el análisis Isolation Forest son bloques complementarios, no rutas rivales de inferencia. Las referencias antiguas a NiFi→Kafka y a inferencia mediante consumidor Python independiente quedan superadas.

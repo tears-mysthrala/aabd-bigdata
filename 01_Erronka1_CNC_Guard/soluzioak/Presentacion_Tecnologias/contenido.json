@@ -2,11 +2,11 @@
   "slides": [
     {
       "title": "CNC_Guard",
-      "lead": "Una propuesta concreta de mantenimiento predictivo",
+      "lead": "CNC Guard: propuesta de análisis y alertas industriales",
       "rows": [
         [
           "Elección",
-          "NiFi → Kafka → consumidor Python con Random Forest → Elasticsearch → Kibana."
+          "Kafka recibe telemetría sintética → NiFi valida y transforma → FastAPI sirve Random Forest → Elasticsearch indexa → Kibana visualiza."
         ],
         [
           "Histórico y anomalías",
@@ -59,7 +59,7 @@
       "rows": [
         [
           "Flujo y servicio",
-          "NiFi ingiere y valida; Kafka distribuye eventos; Python ejecuta preparación e inferencia; Random Forest produce el riesgo supervisado."
+          "Kafka recibe los eventos y NiFi ejecuta validación, transformación y llamadas HTTP a FastAPI. Random Forest clasifica en un servicio separado."
         ],
         [
           "Datos y consulta",
@@ -67,7 +67,7 @@
         ],
         [
           "Fuera de la primera versión",
-          "No incorporamos FastAPI, Streamlit, MongoDB, InfluxDB, Spark, LLM ni conexión directa a CNC. Isolation Forest detecta rareza y solicita revisión; no veta la alerta de Random Forest."
+          "No desplegamos Streamlit, MongoDB, InfluxDB, Spark, LLM ni actuadores industriales. FastAPI es el scoring; Isolation Forest ayuda en revisión, no veta alertas."
         ]
       ],
       "src": [
@@ -136,7 +136,7 @@
         "W"
       ],
       "req": "Sistemas IE1 b,c · IE3 a,d · Aplicada IE1 b,d",
-      "note": "Tres funciones de consumo independientes: archivo, inferencia y salida a Elasticsearch. El código de inferencia se comparte entre notebook y consumidor. Los conectores aún deben implementarse. Actualización de rúbrica 2026-10-13: la vía demostrable será Kafka → NiFi → API de scoring → Elasticsearch/Kibana; esta lámina anterior es una alternativa de diseño. Diseño actualizado según rúbrica: Kafka → NiFi → FastAPI. Falta demostrar la integración.",
+      "note": "Demostración propuesta: telemetría sintética → Kafka → NiFi (validación, histórico e InvokeHTTP) → FastAPI /predict → Elasticsearch/Kibana. Random Forest se entrena offline. Parquet/DuckDB queda para análisis histórico. Aún no hay prueba integrada.",
       "kind": "normal"
     },
     {
@@ -180,7 +180,7 @@
         ],
         [
           "Estructura",
-          "Módulos de contratos, preparación, entrenamiento, inferencia y consumo. Jupyter muestra EDA y resultados; los consumidores ejecutan esos módulos fuera del notebook."
+          "Módulos de contratos, preparación, entrenamiento y servicio FastAPI; Jupyter contiene EDA. NiFi consume Kafka y solicita el scoring por HTTP."
         ]
       ],
       "src": [
@@ -188,7 +188,7 @@
         "W"
       ],
       "req": "Programación IE1 b,e · IE2 c,d",
-      "note": "La instalación respeta uv y el lock del repositorio; uv no se presenta como requisito del temario. No se añade API web: Kafka es el contrato entre servicios de esta propuesta.",
+      "note": "Python y scikit-learn preparan y entrenan el modelo offline. FastAPI expone /health y /predict; NiFi llama por InvokeHTTP. Se mantiene el entorno uv bloqueado. No existe un consumidor Kafka independiente para inferencia.",
       "kind": "normal"
     },
     {
@@ -219,7 +219,7 @@
     },
     {
       "title": "Kafka: topics y consumidores",
-      "lead": "Cada función consume sin bloquear las demás",
+      "lead": "NiFi consume Kafka y coordina las rutas de salida",
       "rows": [
         [
           "Topics elegidos",
@@ -471,8 +471,8 @@
       "kind": "normal"
     },
     {
-      "title": "Consumidor Python: servicio de inferencia",
-      "lead": "Carga una versión del modelo y procesa eventos nuevos",
+      "title": "FastAPI: servicio de inferencia",
+      "lead": "Un modelo cargado una vez y consultado por NiFi",
       "rows": [
         [
           "Al iniciar",
@@ -493,7 +493,7 @@
         "V"
       ],
       "req": "Programación IE2 c,d · ML IE3 f · Sistemas IE4 e",
-      "note": "No se añade FastAPI: el consumidor Kafka es el servicio de esta propuesta. Se implementará y verificará antes de afirmar funcionamiento extremo a extremo.",
+      "note": "FastAPI forma parte explícita de la arquitectura. NiFi consume Kafka y llama a /predict con InvokeHTTP; no hay consumidor Python separado. Medir reintentos, latencia, cold start y rechazos 422/5xx antes de declarar funcionamiento integrado.",
       "kind": "normal"
     },
     {
@@ -659,7 +659,7 @@
       "rows": [
         [
           "Artefactos",
-          "Flujo NiFi exportado, topics/grupos Kafka, consumidores Python, mappings Elasticsearch y dashboard Kibana reproducibles."
+          "Process group NiFi exportado, topics y grupo consumidor Kafka, servicio FastAPI, mappings Elasticsearch y dashboard Kibana reproducibles."
         ],
         [
           "Prueba normal",
@@ -685,7 +685,7 @@
       "rows": [
         [
           "Disponible",
-          "README documenta Mamdani + Isolation Forest con datos sintéticos y decisión AND. Esa base no implementa la nueva arquitectura propuesta."
+          "El prototipo Mamdani + Isolation Forest sigue como comparación. En el PR hay código Random Forest y API con tests aislados; el recorrido completo todavía no está probado."
         ],
         [
           "Cambio decidido",
@@ -693,7 +693,7 @@
         ],
         [
           "Pendiente",
-          "Datos longitudinales, entrenamiento de la propuesta, consumidores, ingesta y panel. No reutilizar métricas antiguas como rendimiento de esta versión."
+          "Falta evaluar datos longitudinales y ejecutar Kafka → NiFi → FastAPI → Elasticsearch/Kibana. No reutilizar métricas antiguas como rendimiento de la nueva versión."
         ]
       ],
       "src": [
@@ -715,7 +715,7 @@
         ],
         [
           "Hito 2: integración",
-          "Integración construye NiFi/Kafka/consumidores; visualización construye índices y Kibana. Ambos verifican el mismo event_id extremo a extremo."
+          "Integración configura Kafka y NiFi → FastAPI; visualización prepara índices y Kibana. Toda la cadena debe conservar event_id para auditoría."
         ],
         [
           "Hito 3: defensa",
@@ -737,7 +737,7 @@
       "rows": [
         [
           "Compromiso técnico",
-          "NiFi + Kafka + Python/scikit-learn + Random Forest; Isolation Forest para revisión de anomalías. Parquet/DuckDB para histórico; Elasticsearch/Kibana para consulta."
+          "Kafka → NiFi → FastAPI (Python/scikit-learn, Random Forest) → Elasticsearch/Kibana. Isolation Forest queda auxiliar y Parquet/DuckDB para análisis."
         ],
         [
           "Resultado esperado",
@@ -745,7 +745,7 @@
         ],
         [
           "Límite de la defensa",
-          "Los 34 criterios rojos se cubren con diseño y evidencias a construir. Solo datos y validación longitudinales permitirán afirmar anticipación de averías."
+          "Cobertura docente por diapositiva, implementación y evidencias separadas. La anticipación de averías necesita datos longitudinales y validación propia."
         ]
       ],
       "src": [
