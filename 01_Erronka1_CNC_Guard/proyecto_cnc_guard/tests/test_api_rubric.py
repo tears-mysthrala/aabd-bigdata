@@ -1,6 +1,7 @@
 """FastAPI contract tests without a trained artifact or external services."""
 from __future__ import annotations
 
+import numpy as np
 import pytest
 
 from cnc_guard.supervised import FEATURES
@@ -16,7 +17,7 @@ class FixedModel:
         self.p = p
 
     def predict_proba(self, _frame):
-        return [[1 - self.p, self.p]]
+        return np.array([[1 - self.p, self.p]])
 
 
 def bundle(prob):

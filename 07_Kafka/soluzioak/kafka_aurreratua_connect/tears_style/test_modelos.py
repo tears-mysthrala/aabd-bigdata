@@ -8,7 +8,7 @@ from modelos import (
     IDS_V1,
     IDS_V2,
     manifiesto_esperado,
-    registro,
+    registro as crear_registro,
     sha_de,
     transformar,
     validar,
@@ -61,14 +61,14 @@ def test_balance_del_caso():
 
 
 def test_unknown_schema_with_correct_hash_is_not_a_poison_hash():
-    record = registro(200, 3, random.Random(7))
+    record = crear_registro(200, 3, random.Random(7))
     assert record["sha256"] == sha_de({k: v for k, v in record.items() if k != "sha256"})
     assert validar(record)[0] is False
     assert "schema_v" in validar(record)[1]
 
 
 def test_missing_required_sensor_fields_rejected_for_dlq():
-    record = registro(201, 1, random.Random(7))
+    record = crear_registro(201, 1, random.Random(7))
     for missing in ("sensor", "temp"):
         altered = {k: v for k, v in record.items() if k not in (missing, "sha256")}
         altered["sha256"] = sha_de(altered)
@@ -77,7 +77,7 @@ def test_missing_required_sensor_fields_rejected_for_dlq():
 
 
 def test_nonfinite_temp_rejected():
-    record = registro(201, 1, random.Random(7))
+    record = crear_registro(201, 1, random.Random(7))
     record["temp"] = float("nan")
     body = {k: v for k, v in record.items() if k != "sha256"}
     record["sha256"] = sha_de(body)
