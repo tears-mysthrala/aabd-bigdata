@@ -174,8 +174,8 @@ def collect(etapa):
     mysql_vs_manifiesto = sorted(f["id"] for f in filas) == ids_validos + [
         ID_VENENO
     ] and all(
-        {k: f["payload"][k] for k in ("id", "ts", "schema_v")}
-        == {k: verdad[f["id"]][k] for k in ("id", "ts", "schema_v")}
+        f["payload"] == verdad[f["id"]]
+        and f["sha256"] == verdad[f["id"]]["sha256"]
         for f in filas
         if f["id"] in verdad
     )
@@ -240,7 +240,11 @@ def collect(etapa):
         "sink_running": estados.get("mongo-sink-curated", {})
         .get("connector", {})
         .get("state")
-        == "RUNNING",
+        == "RUNNING"
+        and any(
+            task.get("state") == "RUNNING"
+            for task in estados.get("mongo-sink-curated", {}).get("tasks", [])
+        ),
     }
     return {
         "captured_at_utc": datetime.now(UTC).isoformat(),

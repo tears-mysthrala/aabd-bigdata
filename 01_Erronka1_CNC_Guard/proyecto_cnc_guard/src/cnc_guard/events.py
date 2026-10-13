@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from datetime import datetime, timezone
 
 REQUIRED = ("ts", "makina_id", "tenperatura", "bibrazioa", "presioa")
@@ -32,7 +33,7 @@ def normalize_record(record: dict) -> dict:
             0 <= readings["vibration"] <= 100 and
             0 <= readings["pressure"] <= 5000):
         raise ValueError("Sensor out of range")
-    if not all(__import__("math").isfinite(v) for v in readings.values()):
+    if not all(math.isfinite(v) for v in readings.values()):
         raise ValueError("Sensor value must be finite")
     payload = {"machine_id": machine, "timestamp": timestamp.isoformat(), **readings}
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"))

@@ -11,7 +11,6 @@ import argparse
 import json
 import os
 
-from modelos import sha_de, validar
 
 TOPIC_RAW = "tears-raw"
 
@@ -48,11 +47,8 @@ def main():
     insertados = duplicados = 0
     for mensaje in consumidor:
         registro = mensaje.value
-        valido, _ = validar(registro)
-        if not valido:
-            # El veneno también aterriza: la zona raw no juzga, conserva.
-            body = {k: v for k, v in registro.items() if k != "sha256"}
-            assert registro.get("sha256") != sha_de(body), "veneno esperado"
+        # Zona raw: conservar registros con estructura de landing aunque
+        # fallen validación de hash o evolución de esquema. Curado decide DLQ.
         try:
             cursor.execute(
                 "INSERT INTO raw (id, ts, schema_v, payload, sha256)"

@@ -54,13 +54,22 @@ def manifiesto_esperado(semilla: int = SEMILLA) -> dict:
 
 def validar(registro_: dict) -> tuple[bool, str]:
     """Pure validation used by landing and processor. Returns (ok, reason)."""
+    if not isinstance(registro_, dict):
+        return False, "registro no es objeto"
     body = {k: v for k, v in registro_.items() if k != "sha256"}
     if registro_.get("sha256") != sha_de(body):
         return False, "sha256 no coincide: corrupción o veneno"
-    if registro_.get("schema_v") not in (1, 2):
+    if type(registro_.get("schema_v")) is not int or registro_["schema_v"] not in (1, 2):
         return False, f"schema_v desconocido: {registro_.get('schema_v')}"
-    if not isinstance(registro_.get("id"), int):
+    if type(registro_.get("id")) is not int:
         return False, "id ausente o no entero"
+    if not isinstance(registro_.get("sensor"), str) or not registro_["sensor"].strip():
+        return False, "sensor ausente o vacío"
+    temp = registro_.get("temp")
+    if isinstance(temp, bool) or not isinstance(temp, (int, float)):
+        return False, "temp ausente o no numérica"
+    if not __import__("math").isfinite(temp):
+        return False, "temp no finita"
     return True, ""
 
 

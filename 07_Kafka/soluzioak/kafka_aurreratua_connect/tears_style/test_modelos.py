@@ -1,3 +1,4 @@
+import random
 """Unit checks of the pure record logic (no Docker, no broker)."""
 
 from modelos import (
@@ -55,3 +56,27 @@ def test_balance_del_caso():
     assert len(IDS_V1) + len(IDS_V2) == 13
     assert ID_DUPLICADO in IDS_V1
     assert ID_VENENO not in IDS_V1 + list(IDS_V2)
+
+
+def test_unknown_schema_with_correct_hash_is_not_a_poison_hash():
+    record = registro(200, 3, random.Random(7))
+    assert record["sha256"] == sha_de({k: v for k, v in record.items() if k != "sha256"})
+    assert validar(record)[0] is False
+    assert "schema_v" in validar(record)[1]
+
+
+def test_missing_required_sensor_fields_rejected_for_dlq():
+    record = registro(201, 1, random.Random(7))
+    for missing in ("sensor", "temp"):
+        altered = {k: v for k, v in record.items() if k not in (missing, "sha256")}
+        altered["sha256"] = sha_de(altered)
+        valid, reason = validar(altered)
+        assert not valid and missing in reason
+
+
+def test_nonfinite_temp_rejected():
+    record = registro(201, 1, random.Random(7))
+    record["temp"] = float("nan")
+    body = {k: v for k, v in record.items() if k != "sha256"}
+    record["sha256"] = sha_de(body)
+    assert validar(record)[0] is False

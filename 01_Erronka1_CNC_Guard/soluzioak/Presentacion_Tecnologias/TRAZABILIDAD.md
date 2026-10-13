@@ -32,7 +32,7 @@ El PDF contiene 34 criterios técnicos rojos en las páginas físicas 3–7. No 
 | Programación/IE1/e | 5 | e) Informatika-programa baten egitura eta adimen artifizialaren aplikazioa garatzeko programazio-lengoaiaren oinarririk egokienak identifikatu ditu. | 7 |
 | Programación/IE2/c | 5 | c) Planteatutako arazoaren arabera inplementatu nahi den eredua definitu du. | 19 |
 | Programación/IE2/d | 5 | d) Adimen artifizialaren aplikazioa inplementatu du. | 19 |
-| Sistemas Big Data/IE1/b | 6 | b) Datu-bolumen handietatik abiatuta, informazioa eta ezagutza automatikoki atera ditu. | 6 |
+| Sistemas Big Data/IE1/b | 6 | b) Datu-bolumen handietatik abiatuta, informazioa eta ezagutza automatikoki atera ditu. | 11 |
 | Sistemas Big Data/IE1/c | 6 | c) Hainbat iturri eta datu mota konbinatu ditu. | 6 |
 | Sistemas Big Data/IE2/a | 6 | a) Informazioa irudikatzeko tekniken hainbat liburutegi eta inplementazio sailkatu ditu. | 21 |
 | Sistemas Big Data/IE2/b | 6 | b) Lortu beharreko helburuari eta datuen izaerari buruzko informazioa gurutzatu du. | 21 |
@@ -41,10 +41,10 @@ El PDF contiene 34 criterios técnicos rojos en las páginas físicas 3–7. No 
 | Sistemas Big Data/IE4/e | 7 | e) Datuen egitura automatikoki programatzeko eta prozesatzeko modua egiaztatu du. | 20 |
 | Sistemas Big Data/IE4/f | 7 | f) Grafikoki adierazi nahi ditugun datuak bistaratzeko moduak baloratu ditu, eta, horrela, emaitzak aztertzeko eta aurkezteko zereginak erraztu ditu. | 20 |
 | Big Data aplicada/IE1/b | 7 | b) Datuak irensteko prozedurak eta mekanismoak zehaztu ditu. | 8 |
-| Big Data aplicada/IE1/d | 7 | d) Biltegiratutako datuak prozesatu ditu. | 8 |
+| Big Data aplicada/IE1/d | 7 | d) Biltegiratutako datuak prozesatu ditu. | 11 |
 | Big Data aplicada/IE3/a | 7 | a) Banatutako fitxategi-sistemetan datuen kalitateak duen garrantzia baloratu du. | 22 |
 | Big Data aplicada/IE3/b | 7 | b) Datuen tratamendu-bolumena zenbat eta handiagoa izan datuen osotasunarekin lotutako arrisku handiagoa dagoela baloratu du. | 22 |
-| Big Data aplicada/IE5/a | 7 | a) Egituratutako eta egituratu gabeko datu ugari hautatu ditu, BIren funtzioa indartzeko. | 12 |
+| Big Data aplicada/IE5/a | 7 | a) Egituratutako eta egituratu gabeko datu ugari hautatu ditu, BIren funtzioa indartzeko. | 6 |
 | Big Data aplicada/IE5/b | 7 | b) Datuak garbitu eta eraldatu ditu, aurrez zehaztutako helburuetan oinarrituta. | 12 |
 
 ## Selección cerrada
@@ -164,7 +164,7 @@ Cada función consume sin bloquear las demás
 - 07_Kafka/materialak/01_03_ApacheKafka.pdf
 - 07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf
 
-Laboratorio con un broker; demostrar consumo, relectura y reinicio, sin afirmar alta disponibilidad. Documentación: https://kafka.apache.org/20/documentation/ .
+Laboratorio con un broker; demostrar consumo, relectura y reinicio, sin afirmar alta disponibilidad. Documentación: https://kafka.apache.org/documentation/ .
 
 ### 10. Parquet: histórico elegido
 Conservar entrenamiento y resultados fuera del índice operativo
@@ -258,7 +258,7 @@ Una base de consulta y un único panel
 30 días es una propuesta inicial a dimensionar. Kibana consulta Elasticsearch; no consume Kafka directamente. No se instala un segundo panel en Streamlit/Grafana.
 
 ### 21. Panel que construiremos
-Cuatro preguntas para mantenimiento
+Preguntas operativas para mantenimiento
 
 - 06_NiFi/materialak/02_Denbora_Serieak.pdf
 - 05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf
@@ -369,12 +369,12 @@ Trazabilidad de la propuesta
 
 - 01_Erronka1_CNC_Guard/materialak/1Erronka_ikaslearen_txostena.docx.pdf
 
-El informe TRAZABILIDAD.md contiene criterios rojos originales, mapa de tecnologías, alcance del corpus y hashes. No se descargaron contenidos nuevos de los enlaces Moodle/Drive en esta revisión.
+El informe TRAZABILIDAD.md contiene criterios rojos originales, mapa de tecnologías, alcance del corpus; los hashes están en fuentes_manifest.json. No se descargaron contenidos nuevos de los enlaces Moodle/Drive en esta revisión.
 
 ## Fuentes primarias externas
 
 - [NiFi User Guide](https://nifi.apache.org/nifi-docs/user-guide.html)
-- [Kafka documentation](https://kafka.apache.org/20/documentation/)
+- [Kafka documentation](https://kafka.apache.org/documentation/)
 - [DuckDB Parquet](https://duckdb.org/docs/stable/data/parquet/overview)
 - [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html)
 - [InfluxDB time-series concepts](https://docs.influxdata.com/influxdb/cloud/get-started/)

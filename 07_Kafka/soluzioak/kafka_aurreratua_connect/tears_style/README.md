@@ -58,13 +58,14 @@ docker compose -p aabd-kafka-tears-style up -d
 docker compose -p aabd-kafka-tears-style exec -d connect \
   connect-standalone /opt/kafka-connect/config/connect-standalone.properties \
   /opt/kafka-connect/config/mongo-sink-curated.properties
-# (o registrar vía REST: registrar_conector.py mongo-sink-curated --aplicar)
+# El modo REST requiere iniciar antes un worker distributed independiente.
+# No ejecutes registrar_conector.py sobre el contenedor inactivo.
 U=127.0.0.1:19095
 uv run --with kafka-python generador.py --bootstrap $U --manifiesto manifest.json
 export MYSQL_PASSWORD=$(grep MYSQL_PASSWORD .env | cut -d= -f2)  # solo entorno local
 uv run --with kafka-python --with mysql-connector-python aterrizaje.py --bootstrap $U
 uv run --with kafka-python --with mysql-connector-python procesador.py --bootstrap $U
-uv run --with pymongo verificar_lab.py --etapa curado --salida evidencias/curado.json
+uv run --with pymongo verificar_lab.py --etapa curado --salida evidencias/curado-$(date +%Y%m%dT%H%M%S).json
 ```
 
 Etapas de evidencia: `aterrizaje` (14 filas + hash OK), `curado`

@@ -136,7 +136,7 @@
         "W"
       ],
       "req": "Sistemas IE1 b,c · IE3 a,d · Aplicada IE1 b,d",
-      "note": "Tres funciones de consumo independientes: archivo, inferencia y salida a Elasticsearch. El código de inferencia se comparte entre notebook y consumidor. Los conectores aún deben implementarse.",
+      "note": "Tres funciones de consumo independientes: archivo, inferencia y salida a Elasticsearch. El código de inferencia se comparte entre notebook y consumidor. Los conectores aún deben implementarse. Actualización de rúbrica 2026-10-13: la vía demostrable será Kafka → NiFi → API de scoring → Elasticsearch/Kibana; esta lámina anterior es una alternativa de diseño.",
       "kind": "normal"
     },
     {
@@ -239,7 +239,7 @@
         "KA"
       ],
       "req": "Aplicada IE1 b · Sistemas IE3 d",
-      "note": "Laboratorio con un broker; demostrar consumo, relectura y reinicio, sin afirmar alta disponibilidad. Documentación: https://kafka.apache.org/20/documentation/ .",
+      "note": "Laboratorio con un broker; demostrar consumo, relectura y reinicio, sin afirmar alta disponibilidad. Documentación: https://kafka.apache.org/documentation/ .",
       "kind": "normal"
     },
     {
@@ -522,7 +522,7 @@
     },
     {
       "title": "Panel que construiremos",
-      "lead": "Cuatro preguntas para mantenimiento",
+      "lead": "Preguntas operativas para mantenimiento",
       "rows": [
         [
           "Estado y evolución",
@@ -884,7 +884,7 @@
         "R"
       ],
       "req": "",
-      "note": "El informe TRAZABILIDAD.md contiene criterios rojos originales, mapa de tecnologías, alcance del corpus y hashes. No se descargaron contenidos nuevos de los enlaces Moodle/Drive en esta revisión.",
+      "note": "El informe TRAZABILIDAD.md contiene criterios rojos originales, mapa de tecnologías, alcance del corpus; los hashes están en fuentes_manifest.json. No se descargaron contenidos nuevos de los enlaces Moodle/Drive en esta revisión.",
       "kind": "normal"
     }
   ],
@@ -1035,7 +1035,7 @@
       "page": 6,
       "original": "b) Datu-bolumen handietatik abiatuta, informazioa eta ezagutza automatikoki atera ditu.",
       "id": "Sistemas Big Data/IE1/b",
-      "slide": 6
+      "slide": 11
     },
     {
       "page": 6,
@@ -1089,7 +1089,7 @@
       "page": 7,
       "original": "d) Biltegiratutako datuak prozesatu ditu.",
       "id": "Big Data aplicada/IE1/d",
-      "slide": 8
+      "slide": 11
     },
     {
       "page": 7,
@@ -1107,7 +1107,7 @@
       "page": 7,
       "original": "a) Egituratutako eta egituratu gabeko datu ugari hautatu ditu, BIren funtzioa indartzeko.",
       "id": "Big Data aplicada/IE5/a",
-      "slide": 12
+      "slide": 6
     },
     {
       "page": 7,

@@ -1,6 +1,6 @@
 """FastAPI scoring interface for a locally trained, trusted CNC model.
 
-Run: CNC_MODEL_PATH=/path/to/model.joblib uv run --extra api uvicorn cnc_guard.api:app
+Run: CNC_MODEL_PATH=/path/to/model.joblib uv run --locked --with fastapi --with uvicorn uvicorn cnc_guard.api:app
 Never load untrusted joblib/pickle files. Do not expose this demonstrator to OT.
 """
 from __future__ import annotations
