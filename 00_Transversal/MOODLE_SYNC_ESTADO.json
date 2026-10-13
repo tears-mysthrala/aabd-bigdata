@@ -1,10 +1,10 @@
 {
-  "activities": 83,
+  "activities": 84,
   "activity_types": {
     "assign": 11,
     "folder": 3,
     "page": 1,
-    "resource": 50,
+    "resource": 51,
     "url": 18
   },
   "assignments": [
@@ -789,6 +789,13 @@
       "sha256": "6bb5adc5e9b92150aecf2f3c16a1be7acf79e6f7c1406d6b7849dbc530af7de8",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64609",
       "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "08_Erronka2_RetailEUS/materialak/2Erronka_ikaslearen_txostena.pdf",
+      "sha256": "54b88a4a923825a9c1013375ed800b3820e26915f4fa2b150ede227feb2f7f7d",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64675",
+      "status": "verified"
     }
   ],
   "errors": 0,
@@ -806,7 +813,8 @@
     9,
     10,
     11,
-    12
+    12,
+    15
   ],
   "unavailable": 0,
   "verified_on": "2026-10-13"
