@@ -17,11 +17,14 @@ No necesitas levantar servicios para los apartados de diseño o traza.
 
 ## Materia de referencia
 
-- [01_01_ApacheNifi.pdf](../01_01_ApacheNifi.pdf)
-- [GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf](<../GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf>)
-- [01_02_ApacheNifi_aurreratua.pdf](../01_02_ApacheNifi_aurreratua.pdf)
+- [01_01_ApacheNifi.pdf](<../01_01_ApacheNifi.pdf>)
+- [01_02_ApacheNifi_aurreratua.pdf](<../01_02_ApacheNifi_aurreratua.pdf>)
+- [02_Denbora_Serieak.pdf](<../02_Denbora_Serieak.pdf>)
 - [Apache NiFi kasu praktikoak (5-6-7).pdf](<../Apache NiFi kasu praktikoak (5-6-7).pdf>)
-- [02_Denbora_Serieak.pdf](../02_Denbora_Serieak.pdf)
+- [GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf](<../GIDA Apache NiFi instalazioa eta kasu praktikoak 1-2-3-4.pdf>)
+
+Correspondencia de cada apartado con páginas y ejercicios docentes:
+[matriz de cobertura](../../../00_Transversal/MOCK_EXAMS_2026-10/COBERTURA.md#nifi).
 
 ## 1. Modelo de flujo (2 puntos; 20 min)
 
@@ -44,8 +47,9 @@ conteos y contenido, sin confundir FlowFiles con registros (0.5).
 Diseña MariaDB → NiFi → MongoDB: extracción SQL, conversión y escritura,
 indicando connection service, control de duplicados y evidencia (0.75).
 API HTTP → Bronze/Silver/Gold: funciones de capas y agregación de diez lecturas
-(0.75). Si API devuelve 405, explica diagnóstico y cómo probar con fixture sin
-atribuir datos simulados a la API (0.5).
+(0.75). Explica el papel de InvokeHTTP, su método/URL y cómo comprobar que se
+conserva el JSON original en Bronze (0.5). No se necesita una cuenta ni ejecutar
+peticiones a proveedores.
 
 ## 4. Práctica de tiempo (2.5 puntos; 30 min)
 
@@ -67,12 +71,15 @@ Escribe Pandas para parsear/ordenar índice y seleccionar 08:01–08:03 inclusiv
 Interpola temperatura por tiempo, rolling de tres lecturas con min_periods=3,
 y calcula primera media válida (0.5). Detecta **inicio de episodio** de tres
 lecturas originales consecutivas >50, separadas un minuto, con NaN/hueco como
-ruptura; indica el instante de alerta (0.5). Explica diferencias size/count,
-resample/rolling y riesgo de interpolar con futuro para predicción (0.5).
+ruptura; indica el instante de alerta (0.5). Dibuja temperatura original y
+suavizada con ejes/unidades, interpreta el efecto del suavizado y distingue
+resample/rolling (0.5), como en los pasos 5 y 7 de la práctica docente.
 
 ## 5. Dimensionamiento e interpretación (1 punto; 15 min)
 
 20 máquinas envían por segundo un mensaje con temperatura y vibración. Cada
 valor ocupa 100 bytes. Calcula mensajes/s, valores/s y MB decimales/día de valores
-sin overhead (0.5). Explica qué ocultan medias de 10 min y cómo agregar
-kWh de intervalo frente a kW o contador acumulativo (0.5).
+sin overhead (0.5). Explica qué ocultan medias de 10 min y elige agregación para
+temperatura máxima, mínima, número de lecturas y kWh de intervalo (0.5),
+siguiendo el reto 2 de la página 38. No se pide integrar potencia ni tratar
+contadores acumulativos.
