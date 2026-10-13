@@ -6,8 +6,7 @@ from io import StringIO
 
 import pytest
 
-from cnc_guard.events import normalize_record
-from scripts.produce_telemetry import OUTPUT_COLUMNS, to_csv_message
+from cnc_guard.events import OUTPUT_COLUMNS, normalize_record, to_csv_message
 
 
 def record():

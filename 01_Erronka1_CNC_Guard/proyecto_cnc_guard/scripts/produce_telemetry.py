@@ -6,21 +6,10 @@ from __future__ import annotations
 
 import argparse
 import csv
-import io
 import json
 from pathlib import Path
 
-from cnc_guard.events import normalize_record
-
-OUTPUT_COLUMNS = ("event_id", "machine_id", "timestamp", "temperature", "vibration", "pressure")
-
-
-def to_csv_message(original: dict) -> tuple[str, dict]:
-    normal = normalize_record(original)
-    buffer = io.StringIO()
-    csv.writer(buffer, lineterminator="").writerow([normal[k] for k in OUTPUT_COLUMNS])
-    return buffer.getvalue(), normal
-
+from cnc_guard.events import to_csv_message
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)

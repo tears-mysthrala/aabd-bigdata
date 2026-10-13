@@ -1,7 +1,9 @@
 """Validate, normalize, and fingerprint telemetry without hiding invalid records."""
 from __future__ import annotations
 
+import csv
 import hashlib
+import io
 import json
 import math
 from datetime import datetime, timezone
@@ -45,3 +47,16 @@ def classify_alert(probability: float) -> str:
     if not 0 <= probability <= 1:
         raise ValueError("Probability must be in [0, 1]")
     return "CRITICA" if probability >= 0.7 else "AVISO" if probability >= 0.15 else "OK"
+
+
+OUTPUT_COLUMNS = ("event_id", "machine_id", "timestamp", "temperature", "vibration", "pressure")
+
+
+def to_csv_message(original: dict) -> tuple[str, dict]:
+    """One validated, schema-stable CSV record for a Kafka message."""
+    normalized = normalize_record(original)
+    output = io.StringIO()
+    csv.writer(output, lineterminator="").writerow(
+        [normalized[column] for column in OUTPUT_COLUMNS]
+    )
+    return output.getvalue(), normalized
