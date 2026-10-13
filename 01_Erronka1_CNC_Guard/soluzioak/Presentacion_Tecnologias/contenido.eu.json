@@ -1,0 +1,1121 @@
+{
+  "language": "eu",
+  "translation_note": "Euskara batua. Izen teknikoak, identifikatzaileak eta informazioaren ziurgabetasuna errespetatu dira.",
+  "slides": [
+    {
+      "title": "CNC Guard",
+      "lead": "Industria-datuak aztertzeko eta alertak sortzeko proposamen teknologikoa",
+      "rows": [
+        [
+          "Hautatutako bidea",
+          "Kafkak telemetria sintetikoa jasotzen du → NiFik baliozkotu eta eraldatu → FastAPIk Random Forest bidez inferentzia egin → Elasticsearch-ek indexatu → Kibanak bistaratu."
+        ],
+        [
+          "Historikoa eta anomaliak",
+          "Parquet eta DuckDB datu historikoak prestatzeko; Isolation Forest anomaliak hautemateko tresna osagarri gisa."
+        ],
+        [
+          "Gure konpromisoa",
+          "Ikastaroan landutako teknologiekin arkitektura eraiki eta baliozkotzea. Aukerak amaieran azalduko ditugu; ez dira lehen bertsioaren parte."
+        ]
+      ],
+      "src": [
+        "R",
+        "D",
+        "K",
+        "L",
+        "RF"
+      ],
+      "req": "",
+      "note": "",
+      "kind": "cover"
+    },
+    {
+      "title": "Helburua eta irismena",
+      "lead": "24 orduko matxura-arriskua: diseinu-hipotesia, ez frogatutako emaitza",
+      "rows": [
+        [
+          "Negozio-testuingurua",
+          "Bilboko 50 CNC makina; enuntziatuak geldialdiaren kostua 1.200 €/ordu dela aurreikusten du. Sistemak ikuskapenak planifikatzen lagunduko luke."
+        ],
+        [
+          "Proposatutako helburua",
+          "Makina eta t une bakoitzerako, hurrengo 24 orduetan matxurarik izango den estimatzea, t unera arte ezagutzen diren aldagaiekin. 24 orduko epea gure proposamena da."
+        ],
+        [
+          "Baliozkotzeko baldintza",
+          "Denboran zehar jasotako historikoa eta datatutako matxurak behar ditugu. AI4Irekin egoeraren sailkapena soilik erakuts daiteke; ez 24 orduko aurreikuspena."
+        ]
+      ],
+      "src": [
+        "R",
+        "V"
+      ],
+      "req": "",
+      "note": "24 orduko epea mantentze-lanak antolatzeko tartea izateko proposatu da. Lantegian erabili aurretik, mantentze-taldearekin kontrastatu behar da. Datu sintetikoek eta AI4Ik ez dute erabilgarritasun industriala frogatzen.",
+      "kind": "normal"
+    },
+    {
+      "title": "Hartutako erabakiak",
+      "lead": "Funtzio bakoitzerako teknologia jakin bat",
+      "rows": [
+        [
+          "Datu-fluxua eta zerbitzua",
+          "Kafkak gertaerak jasotzen ditu; NiFik baliozkotu, eraldatu eta FastAPIri HTTP eskaerak egiten dizkio. Random Forest bereizitako zerbitzu batean exekutatzen da."
+        ],
+        [
+          "Biltegiratzea eta kontsultak",
+          "Parquet-ek historikoa gordetzen du; DuckDBk datu multzoak kontsultatu eta prestatzen ditu; Elasticsearch-ek emaitzak indexatzen ditu; Kibana da panel operatibo bakarra."
+        ],
+        [
+          "Lehen bertsiotik kanpo",
+          "Ez dugu Streamlit, MongoDB, InfluxDB, Spark, LLM edo industria-eragingailurik hedatuko. FastAPI scoring-erako erabiliko da; Isolation Forest lagungarria da, ez alerta baztertzeko iragazkia."
+        ]
+      ],
+      "src": [
+        "N",
+        "K",
+        "D",
+        "L",
+        "RF",
+        "M"
+      ],
+      "req": "",
+      "note": "Jupyter analisia eta entrenamendua egiteko erabiliko da; Git eta Docker Compose laborategia erreproduzitzeko. Datu-baseen, panelen eta eredu nagusiaren aukeraketa eginda dago.",
+      "kind": "normal"
+    },
+    {
+      "title": "Zergatik konbinazio hau?",
+      "lead": "Erronkari erantzun, ikastaroan landutako tresnekin",
+      "rows": [
+        [
+          "Integrazioa eta trazabilitatea",
+          "NiFi eta Kafka ikastaroan landu ditugu: iturriak bateratu, akatsak aztertu eta gertaerak berriz prozesatzeko aukera ematen dute."
+        ],
+        [
+          "Datu tabularren ereduak",
+          "Random Forest-ek tenperatura, momentua, biraketa-abiadura eta higaduraren arteko elkarrekintzak aztertzen ditu. Isolation Forest-ek gainbegiratu gabeko ikaskuntza lantzeko balio du."
+        ],
+        [
+          "Historikoa eta ustiapena",
+          "Parquet/DuckDB entrenamenduko analisirako; Elasticsearch/Kibana kontsultak eta bistaratzea egiteko. Biltegi bakoitzak eginkizun bereizia du."
+        ]
+      ],
+      "src": [
+        "NC",
+        "KA",
+        "RF",
+        "M",
+        "D",
+        "L"
+      ],
+      "req": "",
+      "note": "Aukera hauek egokitasun funtzionalean eta ikasgaien edukietan oinarritzen dira. Konparazio esperimentalik egin gabe, ez dugu Random Forest beste guztien gainetik dagoela baieztatzen.",
+      "kind": "normal"
+    },
+    {
+      "title": "Aukeratutako arkitektura",
+      "lead": "Fluxu bera erakustaldian eta simulatutako ustiapenean",
+      "rows": [
+        [
+          "Sarrera",
+          "CSV sintetikoa → Kafka cnc-telemetry-csv → NiFi; baliozkoak ez diren erregistroak DLQra, event_id bidez identifikatuta."
+        ],
+        [
+          "Inferentzia",
+          "NiFik ConvertRecord eta baliozkotzea egiten ditu → FastAPI /predict deitzen du InvokeHTTP bidez → alertak Elasticsearch-era eta Kibanara."
+        ],
+        [
+          "Historikoa",
+          "Parquet eta DuckDB historikorako; Random Forest konexiorik gabe entrenatzen da eta FastAPIk zerbitzatzen du; Isolation Forest aparteko esperimentua da."
+        ]
+      ],
+      "src": [
+        "N",
+        "K",
+        "D",
+        "L",
+        "W"
+      ],
+      "req": "Big Data sistemak IE1 b,c · IE3 a,d · Big Data aplikatua IE1 b,d",
+      "note": "Proposatutako erakustaldia: telemetria sintetikoa → Kafka → NiFi (baliozkotzea, historikoa eta InvokeHTTP) → FastAPI /predict → Elasticsearch/Kibana. Random Forest aurretik entrenatzen da. Integrazio osoaren proba oraindik egin gabe dago.",
+      "kind": "normal"
+    },
+    {
+      "title": "Datu-iturriak eta kontratua",
+      "lead": "Integraziorako hiru sarrera mota",
+      "rows": [
+        [
+          "Telemetria CSVan",
+          "machine_id, UTC timestamp, tenperatura, rpm, momentua, higadura eta quality_flag. Datu multzoak bibraziorik ez badu, ez dugu asmatuko."
+        ],
+        [
+          "Mantentze-lanen CSV",
+          "machine_id, esku-hartzearen data, mota eta matxuraren data. Benetako historikoa dagoenean, testuingurua eta etorkizuneko etiketa emango ditu."
+        ],
+        [
+          "Ekipamenduaren logak",
+          "Jatorrizko testua gorde; makina, data eta kodea atera eta denbora-testuinguruarekin lotu. Gertaera bakoitzak event_id eta schema_version ditu; datu okerrak baztertu."
+        ]
+      ],
+      "src": [
+        "T",
+        "NC",
+        "D",
+        "L"
+      ],
+      "req": "Big Data sistemak IE1 c · IE3 a · Big Data aplikatua IE5 a",
+      "note": "Laborategiko sarrerak tokiko fitxategiak dira. Mantentze-lanen CSVak eta logak sintetikoak izan daitezke integrazioa erakusteko, baina ez gaitasun industriala frogatzeko. Ez dugu MariaDB edo MongoDB hedatuko.",
+      "kind": "normal"
+    },
+    {
+      "title": "Python prozesamendu osoan",
+      "lead": "Prestaketa eta inferentzia kode-base berean",
+      "rows": [
+        [
+          "Python, NumPy eta pandas",
+          "Ikastaroan erabilitako lengoaia. NumPyk kalkulu numerikoa egiten du; pandasek taulak lotu eta iraganeko neurketetatik denbora-leihoak kalkulatzen ditu."
+        ],
+        [
+          "scikit-learn",
+          "Prestaketarako pipeline-a, RandomForestClassifier eta IsolationForest. Norberak sortutako ereduak soilik gorde, eta bertsioa, aldagaiak eta parametroak erregistratu."
+        ],
+        [
+          "Kodearen egitura",
+          "Kontratuak, prestaketa, entrenamendua eta FastAPI zerbitzua modulu bereizietan; Jupyterren EDA. NiFik Kafka kontsumitu eta HTTP bidez scoring-a eskatzen du."
+        ]
+      ],
+      "src": [
+        "P",
+        "W"
+      ],
+      "req": "Programazioa IE1 b,e · IE2 c,d",
+      "note": "Python eta scikit-learn-ek datuak prestatu eta eredua offline entrenatzen dute. FastAPIk /health eta /predict eskaintzen ditu, eta NiFik InvokeHTTP erabiltzen du. uv bidez blokeatutako ingurunea mantentzen da. Ez dago inferentziarako Kafka kontsumitzaile independente bat.",
+      "kind": "normal"
+    },
+    {
+      "title": "NiFi: eraikiko dugun fluxua",
+      "lead": "Ereduari datuak bidali aurretik baliozkotu",
+      "rows": [
+        [
+          "Hautatutako konfigurazioa",
+          "ConsumeKafka → ConvertRecord (CSVReader/JSON) → ValidateRecord, laborategi-ingurunean. Ez dago CNC errealekin loturarik."
+        ],
+        [
+          "Bideak",
+          "Baliozkoak → Elasticsearch eta POST /predict; baliogabeak edo HTTP 422 → berrogeialdia; HTTP 5xx → saiakera mugatuak."
+        ],
+        [
+          "Froga beharrezkoa",
+          "NiFi fluxu esportatua, kontagailuak, backpressure, replay eta gelditze/berrabiarazte probak; integrazio osoa frogatu gabe dago."
+        ]
+      ],
+      "src": [
+        "N",
+        "NA",
+        "NC"
+      ],
+      "req": "Big Data aplikatua IE1 b · IE5 b · Big Data sistemak IE1 c",
+      "note": "Kafka/Record prozesadoreen izen zehatzak instalatutako NiFi bertsioaren araberakoak dira. Dokumentazio nagusia: https://nifi.apache.org/nifi-docs/user-guide.html .",
+      "kind": "normal"
+    },
+    {
+      "title": "Kafka: topic-ak eta kontsumoa",
+      "lead": "NiFik Kafka kontsumitu eta irteerak koordinatzen ditu",
+      "rows": [
+        [
+          "Aukeratutako topic-a",
+          "cnc-telemetry-csv topic-a; machine_id gakoa, eta telemetria bakoitzerako SHA-256 bidezko event_id identifikatzailea."
+        ],
+        [
+          "Kontsumitzaile-taldea",
+          "NiFiko cnc-nifi-v1 taldeak Kafka kontsumitzen du, telemetria gordetzen du eta HTTP scoring zerbitzuari deitzen dio."
+        ],
+        [
+          "Egiaztatu beharreko bermea",
+          "Gutxienez behingo entrega (at-least-once) eta event_id bidezko deduplikazioa. Ez dugu muturretik muturrerako exactly-once bermatzen."
+        ]
+      ],
+      "src": [
+        "K",
+        "KA"
+      ],
+      "req": "Big Data aplikatua IE1 b · Big Data sistemak IE3 d",
+      "note": "Laborategiak broker bakarra du; kontsumoa, berrirakurketa eta berrabiaraztea frogatu behar dira, erabilgarritasun handia aldarrikatu gabe. Dokumentazioa: https://kafka.apache.org/documentation/ .",
+      "kind": "normal"
+    },
+    {
+      "title": "Parquet: historikorako hautua",
+      "lead": "Entrenamendua eta emaitzak indize operatibotik kanpo",
+      "rows": [
+        [
+          "Zer gordeko dugu?",
+          "Baliozkotutako telemetria eta iragarpenak multzo bereizietan; egunaren araberako partizioak eta machine_id zutabea. Jatorrizko sarrerak eta bazterketak auditoretzarako."
+        ],
+        [
+          "Zergatik Parquet?",
+          "Datu-ingeniaritzan landutako formatu zutabekakoa eta konprimigarria. Zutabeak hautatu eta datu historikoak prestatzeko egokia."
+        ],
+        [
+          "Hasierako politika",
+          "Proposamena: 90 eguneko telemetria azterketa longitudinalerako, eta ebaluatutako datu multzoen bertsio guztiak. Benetako industria-politika finkatu aurretik dimentsionatu."
+        ]
+      ],
+      "src": [
+        "D",
+        "T"
+      ],
+      "req": "Big Data sistemak IE3 a,d · Big Data aplikatua IE1 d · IE5 a",
+      "note": "90 egun proiektuko hipotesi bat dira, ez irakaslearen betebeharra edo lagin nahikoa izatearen froga. Laborategian ez ezabatu ebaluazio-datu multzoak atxikipen automatikoa aplikatzeagatik.",
+      "kind": "normal"
+    },
+    {
+      "title": "DuckDB: datu multzoa prestatzea",
+      "lead": "SQL kontsultak Parquet historikoaren gainean",
+      "rows": [
+        [
+          "Kontsulta zehatzak",
+          "Denbora-tarteak eta makinak hautatu; mantentze-esku-hartzeak lotu; leihoak osatu eta entrenamendu, baliozkotze eta test zatiak prestatu."
+        ],
+        [
+          "Zergatik DuckDB?",
+          "Ikastaroan landu eta praktikatu dugu. pandasera pasa aurretik iragazteko balio du, banatutako motor bat administratu beharrik gabe."
+        ],
+        [
+          "Onartutako muga",
+          "Makina bakarrean dabil. RAM, denbora eta diskoa neurtu; banatutako fitxategien eta errepliken arriskuak dokumentatu, tokiko diseinua sistema banatua dela esan gabe."
+        ]
+      ],
+      "src": [
+        "D"
+      ],
+      "req": "Big Data sistemak IE1 b · Big Data aplikatua IE1 d · IE3 a,b",
+      "note": "Iturri nagusia: https://duckdb.org/docs/stable/data/parquet/overview . Spark eskalatze-aukera gisa bakarrik gelditzen da, neurketek behar hori erakusten badute.",
+      "kind": "normal"
+    },
+    {
+      "title": "Datuen prestaketa",
+      "lead": "5 minutuko leihoak eta 24 orduko etiketak: proposamena",
+      "rows": [
+        [
+          "Garbiketa",
+          "Bereizi sentsore-akatsak eta muturreko balio sinesgarriak; jatorrizkoak eta kalitate-markak gorde. Ez interpolatu etorkizuneko datuetatik. Hutsuneak train zatian ikasitako medianekin bete."
+        ],
+        [
+          "Hasierako ezaugarriak",
+          "Uneko tenperatura, rpm, momentua eta higadura; makina bakoitzeko azken 5 minutuen batezbestekoa, desbideratzea eta joera. Iturriaren unitateak egokitu."
+        ],
+        [
+          "Etiketa eta zatiketa",
+          "y=1 baldin t eta t+24 h artean datatutako matxura badago. Jarraipen osoa ez duten laginak baztertu, eta leihoek edo etiketek zatiketen arteko datu-ihesik ez eragitea zaindu."
+        ]
+      ],
+      "src": [
+        "P",
+        "T",
+        "V"
+      ],
+      "req": "Big Data aplikatua IE5 b · Big Data sistemak IE1 c · Programazioa IE2 c",
+      "note": "5 minutu eta 24 ordu hasierako diseinu-erabakiak dira. Benetako denbora-marka longitudinalik ez badago, uneko aldagaiak eta egoera-etiketa erabili; horrek ez du epe hori baliozkotzen.",
+      "kind": "normal"
+    },
+    {
+      "title": "Aukeratutako AA mota",
+      "lead": "Zeregin zehatz baterako AA ahula eta ML",
+      "rows": [
+        [
+          "AA eta ML",
+          "Adimen artifizialak arrazoibidea eta ikaskuntza barne hartzen ditu. Gure aplikazioak ikaskuntza automatikoa erabiltzen du, neurketetatik eta historikotik ikasteko."
+        ],
+        [
+          "AA ahula eta indartsua",
+          "AA ahula: CNCaren arriskua aztertzeko zeregin espezifikoa. AA indartsua: askotariko zereginak orokorki ebazteko gaitasuna; ez dugu halakorik proposatzen edo frogatzen."
+        ],
+        [
+          "Sailkapena",
+          "Random Forest: gainbegiratutako ML tabularra. Isolation Forest: gainbegiratu gabeko ML. Arauak eta logika lausoa AA sinbolikoan sartzen dira; sare neuronalak konexionistak dira."
+        ]
+      ],
+      "src": [
+        "A",
+        "F",
+        "M"
+      ],
+      "req": "AA IE1 a,c · IE2 b,g · ML IE1 a,b · IE2 b,c",
+      "note": "Eredu-familiak bereizten ditugu aukeraketa arrazoitzeko. Random Forest ez da eredu konexionista, eta logika lausoko kidetasun-maila ez da probabilitate baten baliokidea.",
+      "kind": "normal"
+    },
+    {
+      "title": "Kalitaterako eta berrikuspenerako arauak",
+      "lead": "Arau deterministak, beste motor lauso bat gehitu gabe",
+      "rows": [
+        [
+          "Erabiliko ditugun arauak",
+          "Timestamp baliogabea, unitate ezezaguna edo derrigorrezko eremurik eza → baztertu. Datu zaharregia → «egungo daturik ez»; ez «makina osasuntsua» lehenetsita."
+        ],
+        [
+          "Zergatik?",
+          "Arauek datuen kontratua zaintzen dute. Random Forest-ek etiketen araberako erlazioak ikasten ditu; Isolation Forest-ek bitxikeriak markatzen ditu. Ez dugu hirugarren arrisku-motorrik behar."
+        ],
+        [
+          "Ikasgaiarekin lotura",
+          "Logika lausoa teknika egokia eta azalgarri bat da, baina kidetasun-funtzioek eta arauek hautatutako nukleoak behar ez duen kalibrazio gehigarria ekarriko lukete."
+        ]
+      ],
+      "src": [
+        "F",
+        "Q",
+        "V"
+      ],
+      "req": "AA IE1 c · IE2 b,g · ML IE6 a,b",
+      "note": "Lehen prototipoan Mamdani dago; ez dugu zerbitzu berrian sartuko. Prototipo haren emaitza historikoek ez dute Random Forest-en errendimendua egiaztatzen.",
+      "kind": "normal"
+    },
+    {
+      "title": "Random Forest: eredu nagusia",
+      "lead": "Gainbegiratutako ereduak sortzen du matxura-arriskuaren alerta",
+      "rows": [
+        [
+          "Zer ikasten du?",
+          "Funtzionamendu-baldintzen, denbora-ezaugarrien eta hautatutako epeko matxuren arteko erlazio ez-linealak, baliozko matxura-etiketak daudenean."
+        ],
+        [
+          "Hasierako konfigurazioa",
+          "200 zuhaitz; max_depth=12, min_samples_leaf=5, class_weight=balanced eta random_state=42. Hasierako parametroak dira: baliozkotzeak doikuntzak gidatuko ditu."
+        ],
+        [
+          "Zergatik aukeratu?",
+          "Ikastaroan landutako eredu tabularra; elkarrekintzak hartzen ditu kontuan eta ez du KNN/SVM bezalako eskalatzerik behar. Aldagaien garrantzia ez da kausalitatea."
+        ]
+      ],
+      "src": [
+        "RF",
+        "V"
+      ],
+      "req": "ML IE3 c,f · IE6 a,b · Programazioa IE2 c,d",
+      "note": "predict_proba-ren irteera arrisku-score gisa interpretatzen dugu. Ez dugu kalibratutako probabilitatea dela esango baliozkotu gabe. Aurkezpen honek ez dakar errendimendu-neurketa berririk.",
+      "kind": "normal"
+    },
+    {
+      "title": "Isolation Forest: laguntzailea",
+      "lead": "Anomaliek berrikuspena eragiten dute, ez bigarren matxura-erabakia",
+      "rows": [
+        [
+          "Datuak eta erabilera",
+          "Funtzionamendu normaltzat hartutako datuekin entrenatu, halako historikoa dagoenean. Inferentzian eskuragarri dauden ezaugarri berak erabili, etorkizuneko etiketarik gabe."
+        ],
+        [
+          "Hasierako konfigurazioa",
+          "200 zuhaitz, max_samples=256 eta random_state=42. Score-a gorde; atalasea baliozkotzean aukeratu eta berrikusitako alertak erregistratu."
+        ],
+        [
+          "Eginkizun mugatua",
+          "Ohiz kanpoko patroiak edo erregimen berriak hautematea. Anomalia batek berrikuspen teknikoa eskatzen du; ez da berez matxura, eta ez du alerta gainbegiratua ezeztatzen."
+        ]
+      ],
+      "src": [
+        "M",
+        "V"
+      ],
+      "req": "ML IE4 b,c · IE6 a,b",
+      "note": "Iturria: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html . Erreferentzia egiaztaturik edo giza berrikuspenik gabe, bitxikeria puntuatzen duela bakarrik frogatzen da, ez matxurak identifikatzen dituela.",
+      "kind": "normal"
+    },
+    {
+      "title": "Alerten politika",
+      "lead": "Bi abisu mota, AND adostasunik gabe",
+      "rows": [
+        [
+          "Matxura-arriskua",
+          "Random Forest ≥ baliozkotutako atalasea → planifika daitekeen ikuskapen-abisua. Erakutsi makina, unea, denbora-horizontea eta bertsioa."
+        ],
+        [
+          "Anomalia",
+          "Isolation Forest-ek bere atalasea gainditzen badu → egoera edo datua berrikusteko abisua, arrisku gainbegiratutik bereizia. Score-a eta arrazoia adierazi."
+        ],
+        [
+          "Ustiapena",
+          "Makina bereko abisu iraunkorrak multzokatu, lagin bakoitza intzidentzia berri bihur ez dadin. Teknikariak baieztatu, baztertu edo planifikatuko du; ez da CNCa automatikoki geldituko."
+        ]
+      ],
+      "src": [
+        "V",
+        "Q",
+        "T"
+      ],
+      "req": "AA IE2 g · ML IE6 a,b",
+      "note": "Aurreko prototipoaren AND araua baztertzen dugu, gainbegiratutako ereduak detektatutako matxurak ezaba ditzakeelako. Abisuak multzokatzeko politika probatu eta dokumentatu behar da.",
+      "kind": "normal"
+    },
+    {
+      "title": "Egin beharreko baliozkotzea",
+      "lead": "Arazo bera, zatiketa bera eta prestaketa koherentea",
+      "rows": [
+        [
+          "Zatiketak",
+          "Benetako historikoa: lehen %70 train, hurrengo %15 validation eta azken %15 test. Leihoen eta aurreikuspen-epearen artean datu-ihesa saihestu; datak eta makinak erregistratu."
+        ],
+        [
+          "Atalasea",
+          "Hasierako irizpide akademiko gisa, F1 maximizatzen duen atalasea validation zatian aukeratu. Recall, precision, negatibo faltsuak eta kostua jaso; ez egokitu test datuekin."
+        ],
+        [
+          "Amaierako proba",
+          "Test zatian behin ebaluatu: nahasmen-matrizea, F1, recall, aurreikuspen-aurrerapena eta alerta faltsuak makina/egun bakoitzeko. Alderatu «matxurarik ez» eta erregresio logistikoarekin."
+        ]
+      ],
+      "src": [
+        "V",
+        "LR"
+      ],
+      "req": "ML IE3 c,f · IE6 a,b",
+      "note": "Erregresio logistikoa ebaluatzeko erreferentzia da, ez zerbitzurako hautatu gabeko beste aukera bat. F1 maximoa ez da nahitaez politika industrial onena: negozioaren onarpenerako benetako kostuak behar dira.",
+      "kind": "normal"
+    },
+    {
+      "title": "FastAPI: inferentzia-zerbitzua",
+      "lead": "Eredua behin kargatu eta NiFiren eskaerei erantzun",
+      "rows": [
+        [
+          "Abioan",
+          "FastAPIren /health endpoint-ak eredua behin kargatzen du, eskema egiaztatuta eta tokiko sarbide mugatuarekin."
+        ],
+        [
+          "Gertaera bakoitzean",
+          "NiFik InvokeHTTP bidez /predict deitzen du, makina bereko sentsoreak eta iraganeko testuingurua emanez; aurreikuspena, score-a eta alerta-maila jasotzen ditu."
+        ],
+        [
+          "Erroreak",
+          "HTTP 422 → berrogeialdia; 5xx → saiakera mugatuak; datu historikorik gabeko hasiera esplizitua, eta makinetako eragingailuei agindurik ez."
+        ]
+      ],
+      "src": [
+        "W",
+        "K",
+        "V"
+      ],
+      "req": "Programazioa IE2 c,d · ML IE3 f · Big Data sistemak IE4 e",
+      "note": "FastAPI aukeratutako arkitekturaren parte da. NiFik Kafka kontsumitu eta InvokeHTTP bidez /predict deitzen du; ez dago Python kontsumitzaile independente bat. Latentzia, saiakera berriak, lehen daturik gabeko egoera eta 422/5xx akatsak neurtu behar dira.",
+      "kind": "normal"
+    },
+    {
+      "title": "Elasticsearch eta Kibana",
+      "lead": "Kontsulta-biltegi bat eta panel operatibo bakarra",
+      "rows": [
+        [
+          "Elasticsearch",
+          "Iragarpen-indizea: timestamp (date), machine_id (keyword), score numerikoak, kalitatea eta model_version. event_id erabili dokumentu-ID gisa, saiakera errepikatuak idempotenteak izateko."
+        ],
+        [
+          "Kibana",
+          "Iragarpenentzako data view-a; makina, data eta alerta motaren araberako iragazkiak. Denbora-serieak, abisuen sailkapena eta erregistroen ikuspegia ikerketarako."
+        ],
+        [
+          "Hautuaren arrazoia",
+          "Ikastaroan landutako multzoak bilaketa, agregazioak eta bistaratzea batzen ditu. Hasierako proposamena: 30 egun emaitza operatiboentzat; historiko osoa Parquet-en."
+        ]
+      ],
+      "src": [
+        "L"
+      ],
+      "req": "Big Data sistemak IE2 a,b · IE4 e,f",
+      "note": "30 egun hasierako proposamena dira; datuen tamainaren arabera neurtu behar da. Kibanak Elasticsearch kontsultatzen du, ez Kafka zuzenean. Ez dugu Streamlit/Grafana bidezko bigarren panelik jarriko.",
+      "kind": "normal"
+    },
+    {
+      "title": "Eraikiko dugun panela",
+      "lead": "Mantentze-lanerako galdera praktikoak",
+      "rows": [
+        [
+          "Egoera eta bilakaera",
+          "Makina bakoitzeko tenperatura/momentua eta arriskua denboran; esku-hartzeak eta hutsuneak markatu. Nola aldatu da makinaren egoera?"
+        ],
+        [
+          "Zain dauden abisuak",
+          "Arriskuaren araberako makina-zerrenda eta anomalien zerrenda bereizia. Zer ikuskatu behar dugu, eta zer datu berrikusi?"
+        ],
+        [
+          "Kalitatea eta ebaluazioa",
+          "Azken datuaren antzinatasuna, bazterketak eta atzerapena; rpm–momentu sakabanaketa. Nahasmen-matrizea eta baieztatutako alertak ebaluazioan."
+        ]
+      ],
+      "src": [
+        "T",
+        "L",
+        "V"
+      ],
+      "req": "Big Data sistemak IE2 a,b · IE4 f · ML IE6 b",
+      "note": "Bilakaerarako serieak; lehentasunetarako barrak; erlazioetarako sakabanaketa; trazabilitaterako taula; erroreetarako matrizea. Grafiko bakoitza datu eta helburuen arabera justifikatzen da. Ez dago asmatutako pantaila-argazkirik.",
+      "kind": "normal"
+    },
+    {
+      "title": "Diseinuaren segurtasuna eta osotasuna",
+      "lead": "OT konexiorik gabeko tokiko bertsio erreproduzigarria",
+      "rows": [
+        [
+          "Datuen osotasuna",
+          "Eskema eta fitxategien hashak; sarrera, artxibo eta indexazio kontagailuak; event_id bidezko idempotentzia. Bikoizketak, berreskuratzea eta ustelkeria detektagarria probatu."
+        ],
+        [
+          "Laborategia",
+          "Docker Compose lokala NiFi, Kafka, Elasticsearch eta Kibanarako. Bolumen bereiziak eta ostalarira mugatutako sarbidea. Ostalari bakarrak ez du benetako erabilgarritasun handirik."
+        ],
+        [
+          "Pertsonen arriskuak",
+          "Ez gorde beharrezkoak ez diren operadore-identifikatzaileak. Sarbidea eta atxikipena zehaztu; alerta faltsuen, oharkabean igarotako matxuren eta makina-erregimenen araberako alborapena aztertu."
+        ]
+      ],
+      "src": [
+        "E",
+        "KA",
+        "D",
+        "R"
+      ],
+      "req": "AA IE6 a,b · Big Data sistemak IE3 d · Big Data aplikatua IE3 a,b",
+      "note": "Ez konektatu makineria errealera OT diseinu espezifikorik eta baimenik gabe. Sailkapen juridikoa testuinguruaren araberakoa da: txostenak arriskuak aztertzen ditu, ez du lege-betetzea ziurtatzen.",
+      "kind": "normal"
+    },
+    {
+      "title": "Hasierako dimentsionamendua",
+      "lead": "Neurtu beharreko hipotesi zehatzak",
+      "rows": [
+        [
+          "Laborategiko karga",
+          "Simulazioa: 50 makina, segundo bakoitzeko erregistro bat → 4,32 milioi gertaera/egun. 200 byte/gertaera → 864 MB/egun; 90 egun → 77,76 GB, konpresiorik gabe."
+        ],
+        [
+          "Gaitasun-probak",
+          "Throughput-a, inferentziaren latentzia, kontsumitzaileen lag-a, RAMa eta diskoa neurtu. Parquet-en konpresioa eta indizeen benetako tamaina jaso; ez estrapolatu frogatu gabe."
+        ],
+        [
+          "Kostua eta balioa",
+          "Saihestutako orduak × 1.200 € − alerta faltsuak, ikuskapenak eta azpiegitura. Simulazioari ez diogu benetako aurrezkirik edo industria-errendimendurik egotziko."
+        ]
+      ],
+      "src": [
+        "R",
+        "D",
+        "T"
+      ],
+      "req": "",
+      "note": "1 Hz, 200 byte eta 90 egun proiektuaren hipotesiak dira. Ez dituzte erreplikak, zerbitzu-logak edo jatorrizko fitxategiak barne hartzen. Karga osoa sortu aurretik, disko erabilgarria egiaztatu.",
+      "kind": "normal"
+    },
+    {
+      "title": "Beste aukera batzuk, behar izanez gero",
+      "lead": "Ez dira lehen bertsioan sartuko",
+      "rows": [
+        [
+          "Datuak eta panela",
+          "InfluxDB/TimescaleDB eta Grafana, denbora-serieen pisua nagusitzen bada; MongoDB, dokumentu heterogeneoak funtsezkoak badira. Horrek Kibana erabakia berrikustea eskatuko luke."
+        ],
+        [
+          "Eredua eta eskalagarritasuna",
+          "Boosting, Random Forest-ekiko hobekuntza erreproduzigarria badakar; Spark, makina bakarrak baliabide edo denbora eskakizunak betetzen ez baditu. Ez gehitu frogarik gabe."
+        ],
+        [
+          "Industria-konexioa",
+          "OPC UA/MQTT, makina edo gateway bateragarrietarako. Ikastaroaren tokiko edukitik kanpoko luzapenak dira eta baimendutako probak eskatzen dituzte. Laborategiak fitxategiekin jarraitzen du."
+        ]
+      ],
+      "src": [
+        "T",
+        "L",
+        "B",
+        "D"
+      ],
+      "req": "",
+      "note": "Aukera guztiak diapositiba bakarrean laburbilduta. Kanpo-iturriak: https://docs.influxdata.com/influxdb/cloud/get-started/ ; https://opcfoundation.org/about/opc-technologies/opc-ua/ ; https://reference.opcfoundation.org/specs/OPC-10000-14/7.3.4 .",
+      "kind": "normal"
+    },
+    {
+      "title": "Lehen entrega: datuak eta entrenamendua",
+      "lead": "Eredu erreproduzigarri bat eraikitzea lehenetsi",
+      "rows": [
+        [
+          "Entregagaiak",
+          "JSON kontratua, jatorri ezaguneko sarrerak, Parquet datu multzoa eta DuckDB kontsulta; EDA koadernoa eta prestaketa/entrenamendu moduluak."
+        ],
+        [
+          "Aukeratutako ereduak",
+          "Norberak egindako Random Forest eta Isolation Forest, hash eta parametroekin. Zatiketen txostena eta oinarrizko erreferentzien konparazioa, garaile industrialik aldarrikatu gabe."
+        ],
+        [
+          "Onarpen-irizpideak",
+          "Kode erreproduzigarria, datu-ihesik eza frogatuta, metrikak eta erroreen azalpena. AI4I/datu sintetikoak badira, «egoera-sailkapenaren eta fluxuaren proba» dela esan."
+        ]
+      ],
+      "src": [
+        "V",
+        "RF",
+        "M",
+        "D"
+      ],
+      "req": "",
+      "note": "Diapositiba honek oraindik egiteko dagoen entrega definitzen du; ez du baieztatzen entrenamendua edo entrega egin denik.",
+      "kind": "normal"
+    },
+    {
+      "title": "Bigarren entrega: fluxu osoa",
+      "lead": "Berreskuratzea eta bistaratzea erakutsi",
+      "rows": [
+        [
+          "Entregagaiak",
+          "NiFiren process group esportatua, Kafka topic-ak eta kontsumitzaile-taldea, FastAPI zerbitzua, Elasticsearch mapping-ak eta Kibana panela, modu erreproduzigarrian."
+        ],
+        [
+          "Ohiko proba",
+          "Sarrera baliozko batek historiko-erregistroa, iragarpena eta bistaratzea sortzen ditu, event_id eta bertsio berarekin. Etapa bakoitzeko denborak neurtu."
+        ],
+        [
+          "Hutsegite-probak",
+          "Eremu baliogabea, mezu bikoiztua, kontsumitzailearen berrabiaraztea eta helmuga aldi baterako itzalita. Egiaztatu bazterketa, idempotentzia eta berrirakurketa."
+        ]
+      ],
+      "src": [
+        "NC",
+        "KA",
+        "L"
+      ],
+      "req": "",
+      "note": "Tokiko erakustaldi simulatua da, ez lantegiko ezarpena, erabilgarritasun handia edo 24 orduko aurreikuspenaren baliozkotzea.",
+      "kind": "normal"
+    },
+    {
+      "title": "Benetako abiapuntua",
+      "lead": "Analisirako azpiegitura berrerabili, erabakitzeko nukleoa aldatu",
+      "rows": [
+        [
+          "Eskuragarri dagoena",
+          "Mamdani + Isolation Forest prototipoa konparaziorako gordetzen da. Errepositorioan Random Forest eta API kodea daude, proba isolatuekin; fluxu osoa ez dago frogatuta."
+        ],
+        [
+          "Hartutako erabakia",
+          "Random Forest eredu nagusia izango da; Isolation Forest osagarria eta bereizia. Zerbitzu berrian AND araua kendu, eta aurreko prototipoa erreferentzia historiko gisa gorde."
+        ],
+        [
+          "Oraindik egiteko",
+          "Datu longitudinalak ebaluatu eta Kafka → NiFi → FastAPI → Elasticsearch/Kibana integrazioa exekutatu. Ez erabili metrika zaharrak bertsio berriaren errendimendu gisa."
+        ]
+      ],
+      "src": [
+        "Q",
+        "R",
+        "V"
+      ],
+      "req": "",
+      "note": "READMEak dokumentatutako egoera da, ez gaur exekutatutako baliozkotzea. Aurkezpenak lana prestatzen du; ez du jadanik egindakoa edo falta dena nahasten.",
+      "kind": "normal"
+    },
+    {
+      "title": "Eraikuntza-plana",
+      "lead": "Hiru mugarri eta funtzio bakoitzerako ardura",
+      "rows": [
+        [
+          "1. mugarria: datuak eta eredua",
+          "Datu-ingeniaritzak kontratuak, historikoa eta kalitatea prestatuko ditu; modelatzeak etiketak, zatiketak, Random Forest eta Isolation Forest."
+        ],
+        [
+          "2. mugarria: integrazioa",
+          "Integrazio-taldeak Kafka eta NiFi → FastAPI konfiguratuko ditu; bistaratze-taldeak indizeak eta Kibana. Kate osoan event_id bera mantendu behar da."
+        ],
+        [
+          "3. mugarria: defentsa",
+          "Irizpide nagusiak, metrikak, arriskuak, kostua eta mugak jasoko dituen txostena; ANEXO4n proposamena, ANEXO1en rolak, akordioak eta jarraipena."
+        ]
+      ],
+      "src": [
+        "R",
+        "V",
+        "KA"
+      ],
+      "req": "",
+      "note": "Enuntziatuak 11 aste aurreikusten ditu. Taldeak benetako izenak eta datak jarri behar ditu; hemen agertzen diren rolak eta mugarriak proposamenak dira, ez Moodle-n egindako entregak.",
+      "kind": "normal"
+    },
+    {
+      "title": "Defendatuko dugun proposamena",
+      "lead": "Arkitektura bat, eredu nagusi bat eta panel bat",
+      "rows": [
+        [
+          "Konpromiso teknikoa",
+          "Kafka → NiFi → FastAPI (Python/scikit-learn, Random Forest) → Elasticsearch/Kibana. Isolation Forest osagarri; Parquet/DuckDB analisi historikorako."
+        ],
+        [
+          "Espero den emaitza",
+          "Makina, une, horizonte, kalitate eta bertsioarekin trazatu daitezkeen abisuak; historiko erreproduzigarria eta baliozkotze zein integrazio frogak."
+        ],
+        [
+          "Defentsaren mugak",
+          "Ikasgaietako irizpideak, inplementazioa eta oraindik falta diren frogak bereizita. Matxurak aurretik antzematea aldarrikatzeko, datu longitudinalak eta baliozkotze berezia behar dira."
+        ]
+      ],
+      "src": [
+        "R",
+        "RF",
+        "M",
+        "D",
+        "L"
+      ],
+      "req": "",
+      "note": "Proposamenaren hautaketa amaituta dago. Eranskineko alternatibek ez dute lehen bertsiorako erabaki ireki berririk sortzen.",
+      "kind": "normal"
+    },
+    {
+      "title": "Eranskina: nahitaezko irizpideak",
+      "lead": "Irizpideen eta diapositiben lotura: 1/3",
+      "rows": [
+        [
+          "AA · IE1 a,c",
+          "AAren printzipioak eta teknikak. 13. diapositiba. Dagokion exekuzio-froga oraindik falta da."
+        ],
+        [
+          "AA · IE2 b,g",
+          "Ereduen sailkapena eta egokitasuna. 13. diapositiba. Dagokion exekuzio-froga oraindik falta da."
+        ],
+        [
+          "AA · IE6 a,b",
+          "Arriskuak eta pribatutasuna. 22. diapositiba. Dagokion exekuzio-froga oraindik falta da."
+        ],
+        [
+          "ML · IE1 a,b",
+          "AA ahula/indartsua eta AA–ML lotura. 13. diapositiba. Exekuzio-froga falta da."
+        ],
+        [
+          "ML · IE2 b,c",
+          "ML motak, erabilerak, teknikak eta tresnak. 13. diapositiba. Exekuzio-froga falta da."
+        ],
+        [
+          "ML · IE3 c,f",
+          "Entrenamendua eta datu berriei buruzko iragarpenak. 15. diapositiba. Exekuzio-froga falta da."
+        ]
+      ],
+      "src": [
+        "R"
+      ],
+      "req": "Eranskin honetako irizpide guztiak nahitaezkoak dira",
+      "note": "Diapositiba-zenbakiak irizpideen estaldura azaltzeko dira; ez dute berez inplementazio edo exekuzio egiaztaturik frogatzen.",
+      "kind": "annex"
+    },
+    {
+      "title": "Eranskina: nahitaezko irizpideak",
+      "lead": "Irizpideen eta diapositiben lotura: 2/3",
+      "rows": [
+        [
+          "ML · IE4 b,c",
+          "Gainbegiratu gabeko ikaskuntza ezaugarritzea eta aplikatzea. 16. diapositiba. Frogak falta dira."
+        ],
+        [
+          "ML · IE6 a,b",
+          "Egokitasuna eta ebaluazio praktikoa. 18. diapositiba. Frogak falta dira."
+        ],
+        [
+          "Programazioa · IE1 b,e",
+          "Programazio-lengoaia eta programaren egitura. 7. diapositiba. Frogak falta dira."
+        ],
+        [
+          "Programazioa · IE2 c,d",
+          "Aplikazioa definitu eta inplementatzea. 19. diapositiba. Frogak falta dira."
+        ],
+        [
+          "Big Data sistemak · IE1 b,c",
+          "IE1/b → 11. diapositiba; IE1/c → 6. diapositiba. Exekuzioa oraindik frogatu gabe."
+        ],
+        [
+          "Big Data sistemak · IE2 a,b",
+          "Grafikoak sailkatzea eta helburuekin lotzea. 21. diapositiba. Frogak falta dira."
+        ]
+      ],
+      "src": [
+        "R"
+      ],
+      "req": "Eranskin honetako irizpide guztiak nahitaezkoak dira",
+      "note": "Diapositiba-zenbakiak irizpideen estaldura azaltzeko dira; ez dute berez inplementazio edo exekuzio egiaztaturik frogatzen.",
+      "kind": "annex"
+    },
+    {
+      "title": "Eranskina: nahitaezko irizpideak",
+      "lead": "Irizpideen eta diapositiben lotura: 3/3",
+      "rows": [
+        [
+          "Big Data sistemak · IE3 a,d",
+          "Datuen erauzketa, biltegiratzea eta segurtasuna. 10. diapositiba. Frogak falta dira."
+        ],
+        [
+          "Big Data sistemak · IE4 e,f",
+          "Prozesamendu automatikoa eta bistaratzea. 20. diapositiba. Frogak falta dira."
+        ],
+        [
+          "Big Data aplikatua · IE1 b,d",
+          "IE1/b → 8. diapositiba; IE1/d → 11. diapositiba. Integrazioa egiteko dago."
+        ],
+        [
+          "Big Data aplikatua · IE3 a,b",
+          "Kalitatea eta osotasun-arriskuak datuak banatzean. 22. diapositiba. Frogak falta dira."
+        ],
+        [
+          "Big Data aplikatua · IE5 a,b",
+          "IE5/a → 6. diapositiba; IE5/b → 12. diapositiba. Baliozkotzea falta da."
+        ]
+      ],
+      "src": [
+        "R"
+      ],
+      "req": "Eranskin honetako irizpide guztiak nahitaezkoak dira",
+      "note": "Diapositiba-zenbakiak irizpideen estaldura azaltzeko dira; ez dute berez inplementazio edo exekuzio egiaztaturik frogatzen.",
+      "kind": "annex"
+    },
+    {
+      "title": "Eranskina: iturriak eta mugak",
+      "lead": "Proposamenaren trazabilitatea",
+      "rows": [
+        [
+          "Enuntziatua",
+          "1Erronka_ikaslearen_txostena.docx.pdf: 2.–7. orrialdeak, testuingurua eta irizpideak; 8.–13. orrialdeak, taldea, ebaluazioa eta plangintza."
+        ],
+        [
+          "Ikastaroko materialak",
+          "AA: kontzeptuak/logika lausoa/etika. ML: sarrera, ereduak eta baliozkotzea. Programazioa: datuak, APIa eta Streamlit. Big Data: ingeniaritza/Elastic. NiFi eta Kafka: praktikak."
+        ],
+        [
+          "Iturrien bereizketa",
+          "Diapositibetako oharrek tokiko fitxategiak eta kanpoko iturri nagusiak aipatzen dituzte. Prototipoaren READMEak egungo egoera azaltzen du; ez da irakasmaterialaren autoritate nagusia."
+        ]
+      ],
+      "src": [
+        "R"
+      ],
+      "req": "",
+      "note": "TRAZABILIDAD.md txostenak jatorrizko nahitaezko irizpideak, teknologien mapa eta aztertutako corpusa jasotzen ditu; hashak fuentes_manifest.json fitxategian daude. Ez dugu Moodle/Drive esteken eduki berririk deskargatu berrikuspen honetan.",
+      "kind": "normal"
+    }
+  ],
+  "sources": {
+    "R": "01_Erronka1_CNC_Guard/materialak/1Erronka_ikaslearen_txostena.docx.pdf",
+    "A": "02_AA_Ereduak_5071/materialak/5071-IE1-Sarrera_Kontzeptuala.md",
+    "F": "02_AA_Ereduak_5071/materialak/5071-IE1-Logika_Lausoa.md",
+    "E": "02_AA_Ereduak_5071/materialak/E1-Ereduak-Etika_eta_legea.pdf",
+    "M": "03_ML_5072/materialak/5072_00_Sarrera.pdf",
+    "V": "03_ML_5072/materialak/5072_3_Balidazio_Metodologia.pdf",
+    "P": "04_Programazioa_5073/materialak/5073_2_Datu_Zientzia.pdf",
+    "W": "04_Programazioa_5073/materialak/5073_3_Programazioa.pdf",
+    "D": "05_BigData_Ingeniaritza/materialak/01_02_datuen_ingeniaritza.pdf",
+    "N": "06_NiFi/materialak/01_01_ApacheNifi.pdf",
+    "NA": "06_NiFi/materialak/01_02_ApacheNifi_aurreratua.pdf",
+    "NC": "06_NiFi/materialak/Apache NiFi kasu praktikoak (5-6-7).pdf",
+    "T": "06_NiFi/materialak/02_Denbora_Serieak.pdf",
+    "L": "05_BigData_Ingeniaritza/materialak/02_elastic_stack.pdf",
+    "K": "07_Kafka/materialak/01_03_ApacheKafka.pdf",
+    "KA": "07_Kafka/materialak/01_04_ApacheKafka_aurreratua.pdf",
+    "RF": "03_ML_5072/materialak/5072_2_06_Random_Forest.pdf",
+    "LR": "03_ML_5072/materialak/5072_2_02_Erregresio_Logistikoa.pdf",
+    "B": "03_ML_5072/materialak/5072_2_07_Boosting.pdf",
+    "Q": "01_Erronka1_CNC_Guard/proyecto_cnc_guard/README.md"
+  },
+  "mandatory": [
+    {
+      "page": 3,
+      "original": "a) Sistema adimendunen funtsezko printzipioak identifikatu ditu.",
+      "id": "AA/IE1/a",
+      "slide": 13
+    },
+    {
+      "page": 3,
+      "original": "c) Adimen artifizialaren ingurunean erabili beharreko oinarrizko teknikak identifikatu ditu.",
+      "id": "AA/IE1/c",
+      "slide": 13
+    },
+    {
+      "page": 3,
+      "original": "b) Adimen artifizialeko ereduak sailkatu ditu.",
+      "id": "AA/IE2/b",
+      "slide": 13
+    },
+    {
+      "page": 3,
+      "original": "g) Ereduak problemak ebazteko sistemaren inplementaziora egokitzen diren baloratu du.",
+      "id": "AA/IE2/g",
+      "slide": 13
+    },
+    {
+      "page": 3,
+      "original": "a) Adimen artifiziala aplikatzeak izan ditzakeen arrisku legalak eta etikoak argudiatu ditu.",
+      "id": "AA/IE6/a",
+      "slide": 22
+    },
+    {
+      "page": 3,
+      "original": "b) Datuen pribatutasuna errespetatzeko beharra ezagutu du.",
+      "id": "AA/IE6/b",
+      "slide": 22
+    },
+    {
+      "page": 4,
+      "original": "a) Adimen artifizial indartsu eta ahularen berezitasunak zehaztu ditu.",
+      "id": "ML/IE1/a",
+      "slide": 13
+    },
+    {
+      "page": 4,
+      "original": "b) Adimen artifizialaren eta ikaskuntza automatikoaren (Machine Learning) arteko oztopoak ezarri ditu.",
+      "id": "ML/IE1/b",
+      "slide": 13
+    },
+    {
+      "page": 4,
+      "original": "b) Ikaskuntza automatikoko sistemen motak eta erabilerak zehaztu ditu.",
+      "id": "ML/IE2/b",
+      "slide": 13
+    },
+    {
+      "page": 4,
+      "original": "c) Ikaskuntza automatikoko sistemen teknikak eta tresnak zehaztu ditu.",
+      "id": "ML/IE2/c",
+      "slide": 13
+    },
+    {
+      "page": 4,
+      "original": "c) Entrenamendu-fasean datuak erabili ditu eredua eraikitzeko, lortutako ezaugarri garrantzitsuak aplikatuta.",
+      "id": "ML/IE3/c",
+      "slide": 15
+    },
+    {
+      "page": 4,
+      "original": "f) Datu berriei buruzko iragarpenak egiteko eredua inplementatu du.",
+      "id": "ML/IE3/f",
+      "slide": 15
+    },
+    {
+      "page": 5,
+      "original": "b) Arazo mota horiek ebazteko erabiltzen diren gainbegiratu gabeko ikaskuntza-teknikak ezaugarritu ditu.",
+      "id": "ML/IE4/b",
+      "slide": 16
+    },
+    {
+      "page": 5,
+      "original": "c) Gainbegiratu gabeko ikaskuntzan erabiltzen diren algoritmoak aplikatu ditu.",
+      "id": "ML/IE4/c",
+      "slide": 16
+    },
+    {
+      "page": 5,
+      "original": "a) Planteatutako arazoak konpontzeko proposatutako algoritmoen egokitasuna baloratu du.",
+      "id": "ML/IE6/a",
+      "slide": 18
+    },
+    {
+      "page": 5,
+      "original": "b) Sistema adimendunen oinarrizko printzipio eta tekniken aplikazio praktikoa ebaluatu du.",
+      "id": "ML/IE6/b",
+      "slide": 18
+    },
+    {
+      "page": 5,
+      "original": "b) Aplikazioa garatzeko programazio-lengoaia egokiena zehaztu du.",
+      "id": "Programación/IE1/b",
+      "slide": 7
+    },
+    {
+      "page": 5,
+      "original": "e) Informatika-programa baten egitura eta adimen artifizialaren aplikazioa garatzeko programazio-lengoaiaren oinarririk egokienak identifikatu ditu.",
+      "id": "Programación/IE1/e",
+      "slide": 7
+    },
+    {
+      "page": 5,
+      "original": "c) Planteatutako arazoaren arabera inplementatu nahi den eredua definitu du.",
+      "id": "Programación/IE2/c",
+      "slide": 19
+    },
+    {
+      "page": 5,
+      "original": "d) Adimen artifizialaren aplikazioa inplementatu du.",
+      "id": "Programación/IE2/d",
+      "slide": 19
+    },
+    {
+      "page": 6,
+      "original": "b) Datu-bolumen handietatik abiatuta, informazioa eta ezagutza automatikoki atera ditu.",
+      "id": "Sistemas Big Data/IE1/b",
+      "slide": 11
+    },
+    {
+      "page": 6,
+      "original": "c) Hainbat iturri eta datu mota konbinatu ditu.",
+      "id": "Sistemas Big Data/IE1/c",
+      "slide": 6
+    },
+    {
+      "page": 6,
+      "original": "a) Informazioa irudikatzeko tekniken hainbat liburutegi eta inplementazio sailkatu ditu.",
+      "id": "Sistemas Big Data/IE2/a",
+      "slide": 21
+    },
+    {
+      "page": 6,
+      "original": "b) Lortu beharreko helburuari eta datuen izaerari buruzko informazioa gurutzatu du.",
+      "id": "Sistemas Big Data/IE2/b",
+      "slide": 21
+    },
+    {
+      "page": 6,
+      "original": "a) Hainbat iturritatik datuak atera eta biltegiratu ditu, hainbat agertokitan tratatzeko.",
+      "id": "Sistemas Big Data/IE3/a",
+      "slide": 10
+    },
+    {
+      "page": 6,
+      "original": "d) Datu-bolumen handiak kudeatzeko, biltegiratzeko eta prozesatzeko sistemak modu eraginkorrean eta seguruan garatu ditu, dagoen araudia kontuan hartuta.",
+      "id": "Sistemas Big Data/IE3/d",
+      "slide": 10
+    },
+    {
+      "page": 7,
+      "original": "e) Datuen egitura automatikoki programatzeko eta prozesatzeko modua egiaztatu du.",
+      "id": "Sistemas Big Data/IE4/e",
+      "slide": 20
+    },
+    {
+      "page": 7,
+      "original": "f) Grafikoki adierazi nahi ditugun datuak bistaratzeko moduak baloratu ditu, eta, horrela, emaitzak aztertzeko eta aurkezteko zereginak erraztu ditu.",
+      "id": "Sistemas Big Data/IE4/f",
+      "slide": 20
+    },
+    {
+      "page": 7,
+      "original": "b) Datuak irensteko prozedurak eta mekanismoak zehaztu ditu.",
+      "id": "Big Data aplicada/IE1/b",
+      "slide": 8
+    },
+    {
+      "page": 7,
+      "original": "d) Biltegiratutako datuak prozesatu ditu.",
+      "id": "Big Data aplicada/IE1/d",
+      "slide": 11
+    },
+    {
+      "page": 7,
+      "original": "a) Banatutako fitxategi-sistemetan datuen kalitateak duen garrantzia baloratu du.",
+      "id": "Big Data aplicada/IE3/a",
+      "slide": 22
+    },
+    {
+      "page": 7,
+      "original": "b) Datuen tratamendu-bolumena zenbat eta handiagoa izan datuen osotasunarekin lotutako arrisku handiagoa dagoela baloratu du.",
+      "id": "Big Data aplicada/IE3/b",
+      "slide": 22
+    },
+    {
+      "page": 7,
+      "original": "a) Egituratutako eta egituratu gabeko datu ugari hautatu ditu, BIren funtzioa indartzeko.",
+      "id": "Big Data aplicada/IE5/a",
+      "slide": 6
+    },
+    {
+      "page": 7,
+      "original": "b) Datuak garbitu eta eraldatu ditu, aurrez zehaztutako helburuetan oinarrituta.",
+      "id": "Big Data aplicada/IE5/b",
+      "slide": 12
+    }
+  ]
+}

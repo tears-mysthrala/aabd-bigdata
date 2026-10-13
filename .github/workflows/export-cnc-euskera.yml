@@ -1,0 +1,92 @@
+name: Export CNC Guard Euskara
+on:
+  push:
+    branches:
+      - feat/cnc-guard-aurkezpena-euskaraz-2026-10-13
+    paths:
+      - "01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/contenido.eu.json"
+      - "01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/generate_presentation_eu.py"
+      - "01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/generate_presentation.py"
+      - "01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/pyproject.toml"
+      - "01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/uv.lock"
+      - ".github/workflows/export-cnc-euskera.yml"
+  workflow_dispatch:
+concurrency:
+  group: export-cnc-euskera-${{ github.ref }}
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  export:
+    if: github.repository == 'tears-mysthrala/aabd-bigdata' && github.ref == 'refs/heads/feat/cnc-guard-aurkezpena-euskaraz-2026-10-13'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: feat/cnc-guard-aurkezpena-euskaraz-2026-10-13
+          persist-credentials: true
+      - name: Install uv
+        uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+        with:
+          version: "0.10.0"
+      - name: Sync locked exporter dependencies
+        run: |
+          set -euo pipefail
+          project="01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias"
+          # Bootstrap once; commit the resulting lock with the exported artifacts.
+          if [ ! -f "$project/uv.lock" ]; then
+            uv lock --project "$project"
+          fi
+          uv sync --locked --project "$project"
+      - name: Export PPTX and PDF; verify every visible field and notes
+        run: |
+          set -euo pipefail
+          project="01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias"
+          uv run --locked --project "$project" python "$project/generate_presentation_eu.py"
+          uv run --locked --project "$project" python - <<'PY'
+          from pathlib import Path
+          from pptx import Presentation
+          from pypdf import PdfReader
+          import json
+          import unicodedata
+          folder = Path('01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias')
+          src = json.loads((folder / 'contenido.eu.json').read_text(encoding='utf-8'))
+          deck = Presentation(folder / 'CNC_Guard_Tecnologias_EU.pptx')
+          pdf = PdfReader(folder / 'CNC_Guard_Tecnologias_EU.pdf')
+          assert len(src['slides']) == len(deck.slides) == len(pdf.pages) == 33
+
+          def normalized(value):
+              return " ".join(unicodedata.normalize("NFC", value or "").split())
+
+          for i, (data, slide, page) in enumerate(zip(src['slides'], deck.slides, pdf.pages, strict=True), 1):
+              pptx_text = normalized('\n'.join(shape.text for shape in slide.shapes if shape.has_text_frame))
+              pdf_text = normalized(page.extract_text())
+              for label, field in (("title", data["title"]), ("lead", data["lead"])):
+                  assert normalized(field) in pptx_text, f"Slide {i}: PPTX missing {label}"
+                  assert normalized(field) in pdf_text, f"Slide {i}: PDF missing {label}"
+              for key, paragraph in data['rows']:
+                  for value in (key, paragraph):
+                      assert normalized(value) in pptx_text, f"Slide {i}: missing PPTX body"
+                      assert normalized(value) in pdf_text, f"Slide {i}: missing PDF body"
+              if data['note']:
+                  assert data['note'] in slide.notes_slide.notes_text_frame.text, f'Slide {i}: speaker note missing'
+              assert 'PROPOSAMEN TEKNOLOGIKOA' in pptx_text
+              assert 'PROPOSAMEN TEKNOLOGIKOA' in pdf_text
+              assert 'PROPUESTA TECNOLÓGICA' not in pptx_text
+              assert 'DISEÑO Y ALCANCE' not in pptx_text
+          print('OK: 33 diapositiba eta 33 orrialde; testu osoa eta oharrak egiaztatuta')
+          PY
+      - name: Add both exports to the branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/uv.lock \
+                  01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/CNC_Guard_Tecnologias_EU.pptx \
+                  01_Erronka1_CNC_Guard/soluzioak/Presentacion_Tecnologias/CNC_Guard_Tecnologias_EU.pdf
+          if git diff --cached --quiet; then
+            echo "Euskara exports up-to-date"
+          else
+            git commit -m "docs(cnc): publish Euskara PPTX and PDF"
+            git push origin HEAD:refs/heads/feat/cnc-guard-aurkezpena-euskaraz-2026-10-13
+          fi
