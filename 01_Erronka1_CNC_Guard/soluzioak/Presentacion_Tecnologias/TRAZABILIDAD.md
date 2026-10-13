@@ -383,11 +383,11 @@ El informe TRAZABILIDAD.md contiene criterios rojos originales, mapa de tecnolog
 
 ## Entrega y uso
 
-Abrir `CNC_Guard_Tecnologias.html` en navegador. Flechas, PageUp/PageDown o botones cambian diapositiva; N abre notas y fuentes; F activa pantalla completa. **El PDF versionado es anterior a esta revisión y no debe entregarse como equivalente al HTML actual**; regenerarlo y revisarlo antes de la defensa. La fuente editable de esta presentación es `contenido.json`; el HTML se sincroniza en este commit. Cualquier PowerPoint de trabajo debe compararse también con estas modificaciones.
+Abrir `CNC_Guard_Tecnologias.html` en navegador. Flechas, PageUp/PageDown o botones cambian diapositiva; N abre notas y fuentes; F activa pantalla completa. **La versión PPTX y la versión PDF están regeneradas y versionadas juntas** desde `contenido.json` mediante `generate_presentation.py`. Ambas contienen 33 diapositivas y la validación automática comprueba su número de páginas. El PPTX conserva textos editables y notas; el HTML es la vista navegable, con una maquetación distinta. Para cambiar contenidos, editar primero `contenido.json` y regenerar los formatos.
 
 ## Nueva rúbrica (13/10/2026)
 
-El flujo propuesto ahora es Kafka → NiFi → FastAPI /predict → Elasticsearch/Kibana. Este HTML y contenido.json se han actualizado; el PDF anterior no se ha regenerado y requiere nueva exportación antes de entregar. La trazabilidad ponderada y estados de evidencia están en `../../proyecto_cnc_guard/docs/RUBRICA_2026_10_13.md`. Ninguna presentación sustituye a una ejecución real de servicios.
+El flujo propuesto ahora es Kafka → NiFi → FastAPI /predict → Elasticsearch/Kibana. `contenido.json`, el HTML y los archivos `CNC_Guard_Tecnologias.pptx` y `CNC_Guard_Tecnologias.pdf` ya reflejan el mismo contenido revisado; las exportaciones visuales tienen maquetaciones diferentes. La trazabilidad ponderada y estados de evidencia están en `../../proyecto_cnc_guard/docs/RUBRICA_2026_10_13.md`. Ninguna presentación sustituye a una ejecución real de servicios.
 
 ### Revisión de coherencia (feedback PR #19)
 
