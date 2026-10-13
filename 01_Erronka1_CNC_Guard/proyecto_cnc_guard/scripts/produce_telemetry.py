@@ -11,6 +11,7 @@ from pathlib import Path
 
 from cnc_guard.events import to_csv_message
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--csv", type=Path, required=True)
