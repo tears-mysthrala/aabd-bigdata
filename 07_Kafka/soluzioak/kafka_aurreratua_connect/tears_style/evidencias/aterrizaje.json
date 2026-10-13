@@ -1,0 +1,56 @@
+{
+  "captured_at_utc": "2026-10-06T09:19:19.813419+00:00",
+  "project": "aabd-kafka-tears-style",
+  "stage": "aterrizaje",
+  "mysql_raw_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    99
+  ],
+  "kafka_counts": {
+    "tears-raw": 15,
+    "tears-curated": 0,
+    "tears-dlq": 0
+  },
+  "mongodb_ids": [],
+  "connector_statuses": {
+    "mongo-sink-curated": {
+      "name": "mongo-sink-curated",
+      "connector": {
+        "state": "RUNNING",
+        "worker_id": "172.23.0.5:8083"
+      },
+      "tasks": [
+        {
+          "id": 0,
+          "state": "RUNNING",
+          "worker_id": "172.23.0.5:8083"
+        }
+      ],
+      "type": "sink"
+    }
+  },
+  "checks": {
+    "raw_15_mensajes": true,
+    "mysql_14_filas_hash_ok": true,
+    "mysql_coincide_manifiesto": true,
+    "duplicado_id3_sin_duplicar": true,
+    "curated_linaje_ok": true,
+    "dlq_segun_etapa": true,
+    "mongo_vs_manifiesto": true,
+    "mongo_ids_estables": true,
+    "sink_running": true
+  },
+  "passed": true
+}
