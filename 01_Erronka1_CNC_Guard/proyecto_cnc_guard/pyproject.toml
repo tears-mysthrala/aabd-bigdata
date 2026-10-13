@@ -11,10 +11,13 @@ dependencies = [
     "duckdb>=1.2,<2",
     "pyarrow>=19",
     "joblib>=1.4,<2",
+    "fastapi>=0.115,<1",
 ]
 
 [project.optional-dependencies]
 dashboard = ["streamlit>=1.40,<2"]
+api = ["uvicorn>=0.30,<1"]
+kafka = ["kafka-python>=2.0,<3"]
 opcua = ["asyncua>=1.1,<2"]
 mqtt = ["paho-mqtt>=2,<3"]
 mongo = ["pymongo>=4.10,<5"]
@@ -33,6 +36,7 @@ dev = [
     "pytest>=8,<10",
     "ruff>=0.10,<1",
     "psutil>=6,<8",
+    "httpx>=0.27,<1",
 ]
 security = ["pip-audit>=2.9,<3"]
 classic = ["notebook>=7,<8"]
