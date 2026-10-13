@@ -7,6 +7,8 @@ import hashlib
 import io
 import json
 import math
+import re
+from datetime import datetime
 from datetime import datetime, timezone
 
 REQUIRED = ("ts", "makina_id", "tenperatura", "bibrazioa", "presioa")
@@ -63,3 +65,50 @@ def to_csv_message(original: dict) -> tuple[str, dict]:
         [normalized[column] for column in OUTPUT_COLUMNS]
     )
     return output.getvalue(), normalized
+
+
+ALERT_DOCUMENT_FIELDS = (
+    "machine_id", "timestamp", "failure_predicted",
+    "failure_probability", "alert_level", "history_available", "model_schema",
+)
+
+
+def alert_document(event_id: str, prediction: dict) -> dict:
+    """Translate a /predict response into the strict Elasticsearch alert contract.
+
+    NiFi must preserve the original input event_id; the scoring API does not
+    invent one. Use event_id as Elasticsearch _id for idempotent replay.
+    """
+    if not isinstance(event_id, str) or re.fullmatch(r"[0-9a-f]{64}", event_id) is None:
+        raise ValueError("event_id must be lowercase SHA-256")
+    if not isinstance(prediction, dict) or set(prediction) != set(ALERT_DOCUMENT_FIELDS):
+        raise ValueError("Invalid scoring-response fields")
+    raw_time = prediction["timestamp"]
+    if not isinstance(raw_time, str):
+        raise ValueError("timestamp must be an ISO8601 string")
+    try:
+        parsed = datetime.fromisoformat(raw_time.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError("Invalid scoring timestamp") from exc
+    if parsed.tzinfo is None:
+        raise ValueError("timestamp requires a timezone")
+    if (not isinstance(prediction["machine_id"], str)
+            or not prediction["machine_id"].strip()):
+        raise ValueError("machine_id missing")
+    probability = prediction["failure_probability"]
+    if isinstance(probability, bool) or not isinstance(probability, (int, float)):
+        raise ValueError("failure_probability must be numeric")
+    if not math.isfinite(probability) or not 0 <= probability <= 1:
+        raise ValueError("failure_probability must be finite in [0,1]")
+    for field in ("failure_predicted", "history_available"):
+        if type(prediction[field]) is not bool:
+            raise ValueError(f"{field} must be boolean")
+    if type(prediction["model_schema"]) is not int:
+        raise ValueError("model_schema must be an integer")
+    if prediction["alert_level"] != classify_alert(probability):
+        raise ValueError("Alert level does not match probability")
+    return {
+        "event_id": event_id,
+        "@timestamp": parsed.isoformat(),
+        **{k: prediction[k] for k in ALERT_DOCUMENT_FIELDS if k != "timestamp"},
+    }

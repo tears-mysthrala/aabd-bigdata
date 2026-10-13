@@ -49,8 +49,12 @@ Para publicar tras levantar broker local:
    ajenos al contrato de API. El modelo necesita historia causal para
    reproducir las features históricas; registrar cold start si no hay.
 6. EvaluateJsonPath/RouteOnAttribute: clasificar por alert_level OK,
-   AVISO, CRITICA. Indexar respuesta en cnc-alerts-YYYY.MM.DD,
-   ID = event_id, junto a @timestamp; mapear y aplicar template alerts.
+   AVISO, CRITICA. **No indexar directamente el JSON de /predict**:
+   preservar `event_id` del FlowFile original, transformar el campo de
+   respuesta `timestamp` en `@timestamp` y conservar solo los campos del
+   mapping estricto `integration/alerts-template.json`; indexar usando
+   `event_id` como `_id` en `cnc-alerts-YYYY.MM.DD`.
+   El contrato se valida también mediante `cnc_guard.events.alert_document`.
 7. Retry HTTP 5xx y timeouts de forma acotada, 422 a DLQ para investigar;
    backpressure y expiración de reintentos. Guardar counters y provenance.
 

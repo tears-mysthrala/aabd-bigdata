@@ -84,3 +84,12 @@ def test_nonfinite_temp_rejected():
     body = {k: v for k, v in record.items() if k != "sha256"}
     record["sha256"] = sha_de(body)
     assert validar(record)[0] is False
+
+
+def test_huge_integer_temperature_routes_to_rejection():
+    entry = registro(301, 1, random.Random(7))
+    entry["temp"] = 10**300
+    body = {k: v for k, v in entry.items() if k != "sha256"}
+    entry["sha256"] = sha_de(body)
+    ok, reason = validar(entry)
+    assert not ok and "rango" in reason

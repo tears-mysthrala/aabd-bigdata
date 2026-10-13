@@ -214,13 +214,13 @@ def main() -> None:
     args = parser.parse_args()
     if args.max_rows < 80:
         parser.error("--max-rows must be >= 80")
+    if args.out.exists() or args.metrics.exists():
+        parser.error("Output exists; choose fresh paths to preserve prior evidence")
     # Explicit cap prevents accidentally loading the full 10M-row CSV into RAM.
     df = pd.read_csv(args.csv, nrows=args.max_rows)
     bundle, metrics = train(df)
     for path in (args.out, args.metrics):
         path.parent.mkdir(parents=True, exist_ok=True)
-    if args.out.exists() or args.metrics.exists():
-        parser.error("Output exists; choose fresh paths to preserve prior evidence")
     joblib.dump(bundle, args.out)
     args.metrics.write_text(json.dumps(metrics, indent=2, ensure_ascii=False), encoding="utf-8")
     print(

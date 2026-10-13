@@ -27,8 +27,12 @@ def main() -> None:
     if args.errors and args.errors.exists():
         parser.error("Error evidence already exists. Choose a new path.")
     producer = None
+    kafka_error = ()  # dry-run works without kafka-python
     if args.publish:
         from kafka import KafkaProducer
+        from kafka.errors import KafkaError
+
+        kafka_error = KafkaError
 
         producer = KafkaProducer(
             bootstrap_servers=args.bootstrap,
@@ -37,7 +41,7 @@ def main() -> None:
             value_serializer=lambda v: v.encode(),
             key_serializer=lambda v: v.encode(),
         )
-    sent = invalid = duplicates = 0
+    sent = invalid = duplicates = delivery_failed = 0
     seen: set[str] = set()
     rejected = []
     try:
@@ -58,11 +62,21 @@ def main() -> None:
                     sent += 1
                 except (ValueError, TypeError) as exc:
                     invalid += 1
-                    rejected.append({"row": rowno, "reason": str(exc)})
+                    rejected.append({"row": rowno, "stage": "validation", "reason": str(exc)})
+                except kafka_error as exc:
+                    delivery_failed += 1
+                    rejected.append({"row": rowno, "stage": "kafka_delivery",
+                                     "reason": type(exc).__name__})
     finally:
         if producer:
-            producer.flush(timeout=30)
-            producer.close()
+            try:
+                producer.flush(timeout=30)
+            except kafka_error as exc:
+                delivery_failed += 1
+                rejected.append({"row": None, "stage": "kafka_flush",
+                                 "reason": type(exc).__name__})
+            finally:
+                producer.close()
     if args.errors:
         args.errors.parent.mkdir(parents=True, exist_ok=True)
         args.errors.write_text(json.dumps(rejected, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -73,9 +87,12 @@ def main() -> None:
                 "accepted": sent,
                 "invalid": invalid,
                 "duplicates": duplicates,
+                "delivery_failed": delivery_failed,
             }
         )
     )
+    if delivery_failed:
+        raise SystemExit(1)  # never report a partially failed publish as success
 
 
 if __name__ == "__main__":

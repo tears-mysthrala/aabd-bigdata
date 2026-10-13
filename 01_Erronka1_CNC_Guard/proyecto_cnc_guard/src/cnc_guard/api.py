@@ -16,6 +16,7 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from cnc_guard.events import classify_alert
 from cnc_guard.supervised import FEATURES, features_for_reading
 
 
@@ -98,7 +99,7 @@ def create_app(model_bundle: dict | None = None) -> FastAPI:
         prob = float(bundle["model"].predict_proba(frame)[0, 1])
         if not 0 <= prob <= 1:
             raise HTTPException(status_code=503, detail="invalid model output")
-        level = "CRITICA" if prob >= 0.7 else "AVISO" if prob >= 0.15 else "OK"
+        level = classify_alert(prob)
         return Prediction(
             machine_id=payload.machine_id,
             timestamp=payload.timestamp,

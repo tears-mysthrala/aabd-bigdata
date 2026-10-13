@@ -71,7 +71,11 @@ def validar(registro_: dict) -> tuple[bool, str]:
     temp = registro_.get("temp")
     if isinstance(temp, bool) or not isinstance(temp, (int, float)):
         return False, "temp ausente o no numérica"
-    if not __import__("math").isfinite(temp):
+    # Compare bounds before math.isfinite: huge JSON integers overflow
+    # when converted to float. Such records belong in DLQ, not in curated.
+    if not -273.15 <= temp <= 1000:
+        return False, "temp fuera de rango"
+    if isinstance(temp, float) and not __import__("math").isfinite(temp):
         return False, "temp no finita"
     return True, ""
 
