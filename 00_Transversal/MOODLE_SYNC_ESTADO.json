@@ -1,10 +1,10 @@
 {
-  "activities": 84,
+  "activities": 85,
   "activity_types": {
     "assign": 11,
     "folder": 3,
     "page": 1,
-    "resource": 51,
+    "resource": 52,
     "url": 18
   },
   "assignments": [
@@ -796,6 +796,13 @@
       "sha256": "54b88a4a923825a9c1013375ed800b3820e26915f4fa2b150ede227feb2f7f7d",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64675",
       "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "materialak/5073_3_Programazioa.pdf",
+      "sha256": "68f5bc7ed39417b453cf057cb3ab372620abdfa9ab09138cc3b38780ffd3e773",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64706",
+      "status": "verified"
     }
   ],
   "errors": 0,
@@ -817,5 +824,5 @@
     15
   ],
   "unavailable": 0,
-  "verified_on": "2026-10-13"
+  "verified_on": "2026-10-14"
 }
