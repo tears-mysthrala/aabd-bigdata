@@ -1,11 +1,11 @@
 {
-  "activities": 84,
+  "activities": 87,
   "activity_types": {
     "assign": 11,
     "folder": 3,
     "page": 1,
-    "resource": 51,
-    "url": 18
+    "resource": 53,
+    "url": 19
   },
   "assignments": [
     {
@@ -116,6 +116,13 @@
     },
     {
       "kind": "file",
+      "path": "01_Erronka1_CNC_Guard/materialak/GIDA_ Ahozko komunikazioa euskeraz.pdf",
+      "sha256": "ab3782ac487f4f3b7b9c0349bbf87e0aa4a638fe5344956b914b053ec6072318",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64731",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
       "path": "01_Erronka1_CNC_Guard/materialak/ANEXO1-Eus.docx",
       "sha256": "da867dc9f902b8eefb187279e802d15ebe018eb364b391e81f3003c130153c87",
       "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/87086/mod_assign/introattachment/0/ANEXO1-Eus.docx?forcedownload=1",
@@ -133,6 +140,12 @@
       "sha256": "c1732062eb8707f2e43ed80de2e00c88cb04730e79a0eea428af638673d9a0a8",
       "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/87088/mod_assign/introattachment/0/ANEXO4.docx?forcedownload=1",
       "status": "verified"
+    },
+    {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=64732",
+      "kind": "external link",
+      "source": "https://github.com/AABD-Ethazi-2627",
+      "status": "web reference"
     },
     {
       "kind": "file",
@@ -796,6 +809,13 @@
       "sha256": "54b88a4a923825a9c1013375ed800b3820e26915f4fa2b150ede227feb2f7f7d",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64675",
       "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "materialak/5073_3_Programazioa.pdf",
+      "sha256": "68f5bc7ed39417b453cf057cb3ab372620abdfa9ab09138cc3b38780ffd3e773",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64706",
+      "status": "verified"
     }
   ],
   "errors": 0,
@@ -817,5 +837,5 @@
     15
   ],
   "unavailable": 0,
-  "verified_on": "2026-10-13"
+  "verified_on": "2026-10-15"
 }
