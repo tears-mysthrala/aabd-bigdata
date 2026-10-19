@@ -1,6 +1,6 @@
 # CNC Guard · Contrato UX y asignación de trabajo (propuesta 2026-10-18)
 
-**Estado: diseño para revisión, no código implantado.** Fuentes: `Erronka1_ikaslearen_errubrika.xlsx`, historia del reto y [backlog principal del equipo](https://github.com/AABD-Ethazi-2627/T2-erronka1/issues). El proyecto real se evalúa en el repositorio del equipo; las issues creadas en este repositorio personal son una capa de coordinación para el estudio.
+> **CORRECCIÓN DE ALCANCE (19/10/2026): STREAMLIT OBLIGATORIO PARA LA UI.** Este PR contiene wireframes e infografías de referencia; el frontend de entrega se construirá con Streamlit (vistas nativas + Plotly, `st.session_state` y consultas parametrizadas a Elastic/DuckDB). El HTML anterior es una herramienta de revisión UX, no la aplicación final. El prototipo Streamlit completo está disponible como ZIP adjunto en la conversación de ChatGPT, sin conexión a producción. Se documentarán pruebas de arranque y pantallas una vez instalado Streamlit. Kibana solo tendrá evidencias mínimas donde la rúbrica lo obligue.\n\n**Estado: diseño para revisión, no código implantado.** Fuentes: `Erronka1_ikaslearen_errubrika.xlsx`, historia del reto y [backlog principal del equipo](https://github.com/AABD-Ethazi-2627/T2-erronka1/issues). El proyecto real se evalúa en el repositorio del equipo; las issues creadas en este repositorio personal son una capa de coordinación para el estudio.
 
 ## Pantallas
 
