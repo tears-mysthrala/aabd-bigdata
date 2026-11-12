@@ -1,7 +1,7 @@
 {
-  "activities": 88,
+  "activities": 89,
   "activity_types": {
-    "assign": 11,
+    "assign": 12,
     "folder": 3,
     "forum": 1,
     "page": 1,
@@ -29,6 +29,13 @@
       "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63277",
       "statement": "ANEXO4.docx 2026(e)ko irailaren 8(e)n, 20:39(e)tan",
       "title": "Behin betiko proposamena Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: osteguna, 2026(e)ko azaroaren 12(e)an, 00:00(e)tan Entregatze-data: ostirala, 2026(e)ko azaroaren 13(e)an, 10:00(e)tan",
+      "section": 3,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=65591",
+      "statement": "Igo itzazu: Aurkezpenerako dokumentua. Screencasting bideoa/demoa datuak Kibanan martxan erakusten dituena.",
+      "title": "AURKEZPENA ETA DEMOA Zeregina"
     },
     {
       "dates": "Irekitze-data: asteazkena, 2026(e)ko irailaren 16(e)an, 00:00(e)tan",
