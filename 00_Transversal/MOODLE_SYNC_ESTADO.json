@@ -1,12 +1,12 @@
 {
-  "activities": 92,
+  "activities": 94,
   "activity_types": {
     "assign": 13,
     "folder": 3,
     "forum": 1,
     "page": 1,
     "resource": 53,
-    "url": 21
+    "url": 23
   },
   "assignments": [
     {
@@ -838,9 +838,21 @@
       "status": "verified"
     },
     {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=65853",
+      "kind": "external link",
+      "source": "https://padlet.com/aaretxaga1/aabd-2-erronka-2026-2027-s025r9fc5f4zo7x80ff5",
+      "status": "web reference"
+    },
+    {
       "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=65793",
       "kind": "external link",
       "source": "https://github.com/niko1221/strata",
+      "status": "web reference"
+    },
+    {
+      "activity": "https://elearning20.hezkuntza.net/012053/mod/url/view.php?id=65858",
+      "kind": "external link",
+      "source": "https://ollama.com/",
       "status": "web reference"
     },
     {
