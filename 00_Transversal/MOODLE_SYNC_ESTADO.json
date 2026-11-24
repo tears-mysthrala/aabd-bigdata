@@ -1,11 +1,11 @@
 {
-  "activities": 90,
+  "activities": 92,
   "activity_types": {
-    "assign": 12,
+    "assign": 13,
     "folder": 3,
     "forum": 1,
     "page": 1,
-    "resource": 52,
+    "resource": 53,
     "url": 21
   },
   "assignments": [
@@ -92,6 +92,13 @@
       "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63380",
       "statement": "",
       "title": "SVM - Ariketa Zeregina"
+    },
+    {
+      "dates": "Entregatze-data: asteartea, 2026(e)ko azaroaren 24(e)an, 00:00(e)tan",
+      "section": 9,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=65852",
+      "statement": "Talde bakoitzak bere kontratua osatu eta igo behar du. ANEXO1-Eus.docx 2026(e)ko azaroaren 24(e)n, 08:58(e)tan",
+      "title": "Kontratua Zeregina"
     }
   ],
   "entries": [
@@ -814,6 +821,20 @@
       "path": "06_NiFi/materialak/denbora_serieak_EGIN_GABE.py",
       "sha256": "6bb5adc5e9b92150aecf2f3c16a1be7acf79e6f7c1406d6b7849dbc530af7de8",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64609",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "08_Erronka2_RetailEUS/materialak/2Erronka_ikaslearen_txostena.pdf",
+      "sha256": "6d0f20640aab0f915b2aad9da8387d70afd4c788c569d7e2e6cdad3db53f4706",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=64675",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "08_Erronka2_RetailEUS/materialak/ANEXO1-Eus.docx",
+      "sha256": "da867dc9f902b8eefb187279e802d15ebe018eb364b391e81f3003c130153c87",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/91255/mod_assign/introattachment/0/ANEXO1-Eus.docx?forcedownload=1",
       "status": "verified"
     },
     {
