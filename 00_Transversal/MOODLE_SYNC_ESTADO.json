@@ -1,11 +1,11 @@
 {
-  "activities": 100,
+  "activities": 102,
   "activity_types": {
     "assign": 13,
     "folder": 3,
     "forum": 1,
     "page": 1,
-    "resource": 58,
+    "resource": 60,
     "url": 24
   },
   "assignments": [
@@ -870,6 +870,20 @@
       "kind": "external link",
       "source": "https://padlet.com/aaretxaga1/aabd-2-erronka-2026-2027-s025r9fc5f4zo7x80ff5",
       "status": "web reference"
+    },
+    {
+      "kind": "file",
+      "path": "00_Transversal/azterketak/5071_03_NLP.pptx",
+      "sha256": "f679dfcbdc3271d03317a694f853d3272e05bebe6390e9e6eddaf8d40c308599",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=66234",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "00_Transversal/azterketak/5071_6_NLP.docx",
+      "sha256": "859ac533de49b5a0b0171736bbc7c633f5cfde4ec9a4c8345d1c4919e1bd7fbe",
+      "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=66235",
+      "status": "verified"
     },
     {
       "kind": "file",
