@@ -1,7 +1,7 @@
 {
-  "activities": 103,
+  "activities": 105,
   "activity_types": {
-    "assign": 13,
+    "assign": 15,
     "folder": 4,
     "forum": 1,
     "page": 1,
@@ -92,6 +92,20 @@
       "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=63380",
       "statement": "",
       "title": "SVM - Ariketa Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: asteazkena, 2026(e)ko azaroaren 25(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=66252",
+      "statement": "Atxikitako fitxategian ageri diren ariketak egin, dokumentatu, egindakoa azaldu eta ariketa bakoitzaren amaieran agertzen diren galderei erantzun. Kmeans_Orange_Python.pdf 2026(e)ko azaroaren 25(e)n, 13:19(e)tan",
+      "title": "K-Means (Orange eta Python) Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: asteazkena, 2026(e)ko azaroaren 25(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=66253",
+      "statement": "Atxikitako fitxategian ageri diren ariketak egin, dokumentatu, egindakoa azaldu eta ariketa bakoitzaren amaieran agertzen diren galderei erantzun. PCA_Orange_Python.pdf 2026(e)ko azaroaren 25(e)n, 13:46(e)tan",
+      "title": "PCA (Orange eta Python) Zeregina"
     },
     {
       "dates": "Entregatze-data: asteartea, 2026(e)ko azaroaren 24(e)an, 00:00(e)tan",
@@ -419,9 +433,23 @@
     },
     {
       "kind": "file",
+      "path": "03_ML_5072/materialak/Kmeans_Orange_Python.pdf",
+      "sha256": "96f1826b3c26ca7a0edfa7693a88fef8d419ea432ae136265c10b592ce266794",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/91655/mod_assign/introattachment/0/Kmeans_Orange_Python.pdf?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
       "path": "03_ML_5072/materialak/5072_4_02_PCA_Osagai_Nagusien_Analisia.pdf",
       "sha256": "107f34d533d9bf8d4501950cbd32cbc2769dd2870f750a0b70a5eb053a0f5ca8",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=66194",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "03_ML_5072/materialak/PCA_Orange_Python.pdf",
+      "sha256": "4d278d5dea00f05653b6b59ef996941038b34472bf6b7c98a3f1b04b6b9c9cb4",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/91656/mod_assign/introattachment/0/PCA_Orange_Python.pdf?forcedownload=1",
       "status": "verified"
     },
     {
