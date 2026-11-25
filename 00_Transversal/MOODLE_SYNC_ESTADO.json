@@ -1,8 +1,8 @@
 {
-  "activities": 102,
+  "activities": 103,
   "activity_types": {
     "assign": 13,
-    "folder": 3,
+    "folder": 4,
     "forum": 1,
     "page": 1,
     "resource": 60,
@@ -883,6 +883,13 @@
       "path": "00_Transversal/azterketak/5071_6_NLP.docx",
       "sha256": "859ac533de49b5a0b0171736bbc7c633f5cfde4ec9a4c8345d1c4919e1bd7fbe",
       "source": "https://elearning20.hezkuntza.net/012053/mod/resource/view.php?id=66235",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "00_Transversal/azterketak/1.1_tokenizazioa_euskara_ingelesa_soluzioa.ipynb",
+      "sha256": "266e44f3e50fcf2d279aa33a78a6f08e360dbcc6c6f94e17d8116f9345a28ed7",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/91639/mod_folder/content/0/1.1_tokenizazioa_euskara_ingelesa_soluzioa.ipynb?forcedownload=1",
       "status": "verified"
     },
     {
