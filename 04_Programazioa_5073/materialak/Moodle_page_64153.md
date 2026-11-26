@@ -38,7 +38,10 @@ a) Pythonen bertsio berri bat instalatzeko protokolo segurua da. b) Agentea kanp
 a) Window eta Panel. b) Figure (orri osoa) eta Axes (grafiko indibiduala bere ardatzekin). c) Canvas eta Plot. d) Graph eta Chart.
 (Erantzun zuzena: B)
 4. Datu-garbiketan, zertarako erabiltzen da dropna() funtzioa Pandas-en?
-a) Datu-base osoa ezabatzeko memoria askatzeko. b) Balio falten (NaN) ordez batezbestekoa jartzeko. c) Balio faltadun errenkadak edo zutabeak ezabatzeko. d) Bikoiztutako datuak garbitzeko.
+a) Datu-base osoa ezabatzeko memoria askatzeko. b) Balio falten (NaN) ordez batezbestekoa jartzeko. c) Balio faltadun errenkadak edo zutabeak ezabatzeko. d) Bikoiztutako
+datuak
+(https://elearning20.hezkuntza.net/012053/mod/folder/view.php?id=66244)
+garbitzeko.
 (Erantzun zuzena: C)
 5. REST API baten bidez ML eredua eskaintzean (FastAPI-rekin, adibidez), noiz eta nola da egokiena eredua kargatzea?
 a) Bezeroak GET eskaera bat egiten duen bakoitzean. b) APIaren abiaraztean (startup-ean) behin bakarrik, eskaera bakoitzean ehunka megabyte deskargatzea saihesteko. c) POST eskaera bat jasotzen den bakoitzean. d) Aplikazioa itxiko denean soilik.
@@ -86,4 +89,7 @@ Datu-sarrerak balioztatuko dituen
 BaseModel
 klase bat sortzea eta
 @field_validator
-bat inplementatzea neurrigabeko datuak (adibidez, 0 baino txikiagoak direnak) blokeatzeko.
+bat inplementatzea neurrigabeko
+datuak
+(https://elearning20.hezkuntza.net/012053/mod/folder/view.php?id=66244)
+(adibidez, 0 baino txikiagoak direnak) blokeatzeko.
