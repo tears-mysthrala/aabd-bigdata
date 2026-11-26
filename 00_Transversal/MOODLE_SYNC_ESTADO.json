@@ -1,7 +1,7 @@
 {
-  "activities": 105,
+  "activities": 106,
   "activity_types": {
-    "assign": 15,
+    "assign": 16,
     "folder": 4,
     "forum": 1,
     "page": 1,
@@ -106,6 +106,13 @@
       "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=66253",
       "statement": "Atxikitako fitxategian ageri diren ariketak egin, dokumentatu, egindakoa azaldu eta ariketa bakoitzaren amaieran agertzen diren galderei erantzun. PCA_Orange_Python.pdf 2026(e)ko azaroaren 25(e)n, 13:46(e)tan",
       "title": "PCA (Orange eta Python) Zeregina"
+    },
+    {
+      "dates": "Irekitze-data: osteguna, 2026(e)ko azaroaren 26(e)an, 00:00(e)tan",
+      "section": 5,
+      "source": "https://elearning20.hezkuntza.net/012053/mod/assign/view.php?id=66270",
+      "statement": "Bezeroen segmentazioari buruzko ariketa egin. Lehenik eta behin, osagairik garrantzitsuenak identifikatu PCA eredu ez gainbegiratua erabiliz eta ondoren bezero motak segmentatu (eta klusterizatu) K-means eredua erabiliz. Azkenik, erantzun dokumentuaren amaieran agertzen diren galderei. PCA_Kmeans_Ariketa.pdf 2026(e)ko azaroaren 26(e)n, 09:58(e)tan",
+      "title": "PCA + Kmeans Zeregina"
     },
     {
       "dates": "Entregatze-data: asteartea, 2026(e)ko azaroaren 24(e)an, 00:00(e)tan",
@@ -450,6 +457,13 @@
       "path": "03_ML_5072/materialak/PCA_Orange_Python.pdf",
       "sha256": "4d278d5dea00f05653b6b59ef996941038b34472bf6b7c98a3f1b04b6b9c9cb4",
       "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/91656/mod_assign/introattachment/0/PCA_Orange_Python.pdf?forcedownload=1",
+      "status": "verified"
+    },
+    {
+      "kind": "file",
+      "path": "03_ML_5072/materialak/PCA_Kmeans_Ariketa.pdf",
+      "sha256": "69e9958ed76cb695920c1f86852ac0048ecd73ca80cfd7f98ead17a24c8572dd",
+      "source": "https://elearning20.hezkuntza.net/012053/pluginfile.php/91673/mod_assign/introattachment/0/PCA_Kmeans_Ariketa.pdf?forcedownload=1",
       "status": "verified"
     },
     {
