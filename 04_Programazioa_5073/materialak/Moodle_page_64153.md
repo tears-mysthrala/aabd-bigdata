@@ -29,7 +29,10 @@ erabiltzen den ulertzea, kode zehatza buruz jakitea baino gehiago.
 Autoebaluaziorako Galdera Ereduak (Adibideak)
 Hona hemen azterketan aurki ditzakezun galdera moten 5 adibide:
 1. Zein da Java programazio-lengoaiaren indargunea eta erabilera tipikoa Adimen Artifizialeko proiektuetan?
-a) Estatistika eta bistaratze aurreratua, ikerketa akademikoan. b) ML ekosistema zabalena, datu-zientzian eta LLM ereduen sorkuntzan. c) Errendimendu altua eta ekoizpen-sistema sendoak, Big Data ingurunean (Hadoop, Spark). d) Nabigatzaileen integrazioa, ereduak bezeroaren aldean exekutatzeko.
+a) Estatistika eta bistaratze aurreratua, ikerketa akademikoan. b) ML ekosistema zabalena, datu-zientzian eta LLM ereduen sorkuntzan. c) Errendimendu altua eta ekoizpen-sistema sendoak, Big Data ingurunean (Hadoop,
+Spark
+(https://elearning20.hezkuntza.net/012053/mod/folder/view.php?id=66312)
+). d) Nabigatzaileen integrazioa, ereduak bezeroaren aldean exekutatzeko.
 (Erantzun zuzena: C)
 2. Zer da Model Context Protocol (MCP) eta zein da bere funtzio nagusia agenteen ekosisteman?
 a) Pythonen bertsio berri bat instalatzeko protokolo segurua da. b) Agentea kanpoko sistemetara (datu-baseak, GitHub, Slack) modu estandarrean konektatzeko balio duen protokoloa da (agenteen "USB ataka"). c) IDE desberdinen artean itxura grafikoa partekatzeko fitxategi-formatua da. d) Git adarrak automatikoki batzeko tresna da.
